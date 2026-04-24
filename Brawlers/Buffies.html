@@ -1,0 +1,2138 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buffies — BrawlZone Wiki</title>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #FFD000;
+      --orange: #FF6B00;
+      --green: #00D46A;
+      --teal: #00C9A7;
+      --blue: #3B82F6;
+      --purple: #9B59FF;
+      --c-gadget: #22C55E;
+      --c-star: #FFD000;
+      --c-hyper: #A855F7;
+      --c-bling: #FF3CAC;
+      --dark: #0D0D1A;
+      --dark2: #13132A;
+      --dark3: #1A1A35;
+      --dark4: #1F1F38;
+      --text-dark: #1A1A2E;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    * {
+      cursor: none !important;
+    }
+
+    #cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--yellow);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width .2s, height .2s;
+      mix-blend-mode: difference;
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 2px solid rgba(255, 208, 0, .5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width .25s, height .25s;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(13, 13, 26, .88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .nav-logo {
+      font-family: 'Russo One', sans-serif;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .nav-logo .star {
+      color: var(--yellow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 700;
+      font-size: .88rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .5);
+      transition: color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #fff;
+    }
+
+    .nav-links a.active {
+      color: var(--yellow);
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* HEADER */
+    .page-header {
+      padding: 8rem 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--dark2);
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .header-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 70% at 85% 50%, rgba(168, 85, 247, .2), transparent),
+        radial-gradient(ellipse 40% 50% at 10% 60%, rgba(34, 197, 94, .12), transparent),
+        radial-gradient(ellipse 30% 40% at 50% 20%, rgba(255, 208, 0, .1), transparent);
+    }
+
+    .header-bg::before {
+      content: '🦊';
+      position: absolute;
+      right: 4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12rem;
+      opacity: .06;
+      pointer-events: none;
+    }
+
+    .header-inner {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .page-eyebrow {
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: .5rem;
+    }
+
+    .page-title {
+      font-family: 'Russo One', sans-serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .page-desc {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, .5);
+      max-width: 600px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .type-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .type-pill {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .4rem 1rem;
+      border-radius: 100px;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+
+    .pill-gadget {
+      background: rgba(34, 197, 94, .15);
+      border: 1px solid rgba(34, 197, 94, .35);
+      color: var(--c-gadget);
+    }
+
+    .pill-star {
+      background: rgba(255, 208, 0, .15);
+      border: 1px solid rgba(255, 208, 0, .35);
+      color: var(--c-star);
+    }
+
+    .pill-hyper {
+      background: rgba(168, 85, 247, .15);
+      border: 1px solid rgba(168, 85, 247, .35);
+      color: var(--c-hyper);
+    }
+
+    .pill-bling {
+      background: rgba(255, 60, 172, .15);
+      border: 1px solid rgba(255, 60, 172, .35);
+      color: var(--c-bling);
+    }
+
+    /* LAYOUT WIKI */
+    .wiki-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3rem 6rem;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    @media(max-width:900px) {
+      .wiki-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .wiki-sidebar {
+        position: static !important;
+        top: auto;
+      }
+    }
+
+    @media(max-width:600px) {
+      .wiki-wrap {
+        padding: 0 1.5rem 4rem;
+      }
+
+      .page-header {
+        padding: 7rem 1.5rem 3rem;
+      }
+    }
+
+    /* SIDEBAR */
+    .wiki-sidebar {
+      position: sticky;
+      top: 5.5rem;
+    }
+
+    .sidebar-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+
+    .sidebar-title {
+      font-family: 'Russo One', sans-serif;
+      font-size: .78rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+      padding: .9rem 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .sidebar-nav {
+      list-style: none;
+    }
+
+    .sidebar-nav li a {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      padding: .6rem 1.25rem;
+      font-size: .85rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .5);
+      transition: color .2s, background .2s;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar-nav li a:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .sidebar-nav li a.active-sec {
+      color: var(--yellow);
+      border-left-color: var(--yellow);
+      background: rgba(255, 208, 0, .04);
+    }
+
+    .sidebar-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .65rem 1.25rem;
+      font-size: .84rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
+    }
+
+    .sidebar-stat:last-child {
+      border-bottom: none;
+    }
+
+    .sidebar-stat-label {
+      color: rgba(255, 255, 255, .4);
+      font-weight: 600;
+    }
+
+    .sidebar-stat-val {
+      font-weight: 800;
+      color: #fff;
+    }
+
+    /* CONTEÚDO WIKI */
+    .wiki-content {
+      padding-top: 3rem;
+    }
+
+    .wiki-section {
+      margin-bottom: 4rem;
+    }
+
+    .wiki-h2 {
+      font-family: 'Russo One', sans-serif;
+      font-size: 1.6rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: .75rem;
+      border-bottom: 2px solid rgba(255, 255, 255, .07);
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .wiki-h2 .icon {
+      font-size: 1.4rem;
+    }
+
+    .wiki-p {
+      font-size: .95rem;
+      line-height: 1.85;
+      color: rgba(255, 255, 255, .6);
+      margin-bottom: 1rem;
+    }
+
+    .wiki-p strong {
+      color: #fff;
+    }
+
+    /* INFOBOX */
+    .infobox {
+      float: right;
+      margin: 0 0 1.5rem 2rem;
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 14px;
+      overflow: hidden;
+      width: 260px;
+    }
+
+    .infobox-title {
+      font-family: 'Russo One', sans-serif;
+      font-size: .85rem;
+      text-align: center;
+      padding: .75rem;
+      background: rgba(168, 85, 247, .15);
+      color: #C084FC;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .infobox-emoji {
+      text-align: center;
+      font-size: 4rem;
+      padding: 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .infobox-row {
+      display: flex;
+      justify-content: space-between;
+      padding: .55rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
+      font-size: .82rem;
+    }
+
+    .infobox-row:last-child {
+      border-bottom: none;
+    }
+
+    .infobox-label {
+      color: rgba(255, 255, 255, .4);
+      font-weight: 600;
+    }
+
+    .infobox-val {
+      font-weight: 800;
+      text-align: right;
+    }
+
+    @media(max-width:700px) {
+      .infobox {
+        float: none;
+        width: 100%;
+        margin: 0 0 1.5rem;
+      }
+    }
+
+    /* TIPO DE BUFFIE */
+    .buffie-types {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .buffie-type-card {
+      border-radius: 14px;
+      padding: 1.5rem;
+      border: 1px solid transparent;
+      transition: transform .2s;
+    }
+
+    .buffie-type-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .buffie-type-card.gadget {
+      background: rgba(34, 197, 94, .08);
+      border-color: rgba(34, 197, 94, .25);
+    }
+
+    .buffie-type-card.star {
+      background: rgba(255, 208, 0, .08);
+      border-color: rgba(255, 208, 0, .25);
+    }
+
+    .buffie-type-card.hyper {
+      background: rgba(168, 85, 247, .08);
+      border-color: rgba(168, 85, 247, .25);
+    }
+
+    .buffie-type-card.bling {
+      background: rgba(255, 60, 172, .08);
+      border-color: rgba(255, 60, 172, .25);
+    }
+
+    .bt-keychain {
+      font-size: 2.5rem;
+      margin-bottom: .75rem;
+    }
+
+    .bt-name {
+      font-family: 'Russo One', sans-serif;
+      font-size: 1rem;
+      margin-bottom: .4rem;
+    }
+
+    .bt-desc {
+      font-size: .82rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, .55);
+    }
+
+    .bt-color {
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-top: .5rem;
+    }
+
+    .gadget .bt-color {
+      color: var(--c-gadget);
+    }
+
+    .star .bt-color {
+      color: var(--c-star);
+    }
+
+    .hyper .bt-color {
+      color: var(--c-hyper);
+    }
+
+    .bling .bt-color {
+      color: var(--c-bling);
+    }
+
+    /* CLAW MACHINES */
+    .machines-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .machine-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .machine-header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .machine-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+
+    .machine-name {
+      font-family: 'Russo One', sans-serif;
+      font-size: 1.15rem;
+      margin-bottom: .2rem;
+    }
+
+    .machine-update {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .3);
+    }
+
+    .machine-status {
+      margin-left: auto;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .3rem .8rem;
+      border-radius: 100px;
+      flex-shrink: 0;
+    }
+
+    .status-active {
+      background: rgba(0, 212, 106, .15);
+      border: 1px solid rgba(0, 212, 106, .3);
+      color: var(--green);
+    }
+
+    .status-past {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      color: rgba(255, 255, 255, .35);
+    }
+
+    .machine-brawlers {
+      padding: 1.5rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    /* BRAWLER BUFFIE CARD */
+    .brawler-buffie-card {
+      background: var(--dark3);
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .brawler-buffie-card:hover {
+      border-color: rgba(255, 255, 255, .15);
+      transform: translateY(-3px);
+    }
+
+    .bbc-header {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .bbc-emoji {
+      font-size: 2rem;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .4));
+    }
+
+    .bbc-name {
+      font-family: 'Russo One', sans-serif;
+      font-size: .95rem;
+    }
+
+    .bbc-rarity {
+      font-size: .65rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .35);
+    }
+
+    .bbc-buffies {
+      padding: .75rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .bbc-buffie {
+      display: flex;
+      gap: .6rem;
+      align-items: flex-start;
+      padding: .55rem .75rem;
+      border-radius: 10px;
+      font-size: .82rem;
+    }
+
+    .bbc-buffie.g {
+      background: rgba(34, 197, 94, .07);
+      border: 1px solid rgba(34, 197, 94, .15);
+    }
+
+    .bbc-buffie.s {
+      background: rgba(255, 208, 0, .07);
+      border: 1px solid rgba(255, 208, 0, .15);
+    }
+
+    .bbc-buffie.h {
+      background: rgba(168, 85, 247, .07);
+      border: 1px solid rgba(168, 85, 247, .15);
+    }
+
+    .bbc-buffie-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .g .bbc-buffie-dot {
+      background: var(--c-gadget);
+    }
+
+    .s .bbc-buffie-dot {
+      background: var(--c-star);
+    }
+
+    .h .bbc-buffie-dot {
+      background: var(--c-hyper);
+    }
+
+    .bbc-buffie-label {
+      font-size: .65rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: .15rem;
+    }
+
+    .g .bbc-buffie-label {
+      color: var(--c-gadget);
+    }
+
+    .s .bbc-buffie-label {
+      color: var(--c-star);
+    }
+
+    .h .bbc-buffie-label {
+      color: var(--c-hyper);
+    }
+
+    .bbc-buffie-desc {
+      color: rgba(255, 255, 255, .6);
+      line-height: 1.5;
+    }
+
+    /* COMO OBTER */
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .how-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 14px;
+      padding: 1.4rem;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .how-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, .15);
+    }
+
+    .how-icon {
+      font-size: 2rem;
+      margin-bottom: .75rem;
+    }
+
+    .how-title {
+      font-family: 'Russo One', sans-serif;
+      font-size: .92rem;
+      margin-bottom: .4rem;
+    }
+
+    .how-desc {
+      font-size: .82rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .how-cost {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: rgba(255, 208, 0, .1);
+      border: 1px solid rgba(255, 208, 0, .2);
+      border-radius: 100px;
+      padding: .2rem .65rem;
+      font-size: .7rem;
+      font-weight: 800;
+      color: var(--yellow);
+      margin-top: .6rem;
+    }
+
+    /* CAIXA */
+    .wiki-box {
+      border-radius: 12px;
+      padding: 1.1rem 1.4rem;
+      margin: 1.25rem 0;
+      display: flex;
+      gap: .9rem;
+      align-items: flex-start;
+    }
+
+    .wiki-box-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+
+    .wiki-box-text {
+      font-size: .9rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .wiki-box-text strong {
+      color: #fff;
+    }
+
+    .wiki-box.tip {
+      background: rgba(255, 208, 0, .07);
+      border: 1px solid rgba(255, 208, 0, .2);
+    }
+
+    .wiki-box.info {
+      background: rgba(59, 130, 246, .07);
+      border: 1px solid rgba(59, 130, 246, .2);
+    }
+
+    .wiki-box.warn {
+      background: rgba(239, 68, 68, .07);
+      border: 1px solid rgba(239, 68, 68, .2);
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* TABLE */
+    .wiki-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: .88rem;
+    }
+
+    .wiki-table th {
+      font-family: 'Russo One', sans-serif;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .35);
+      padding: .65rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .wiki-table td {
+      padding: .65rem 1rem;
+      color: rgba(255, 255, 255, .65);
+      border-bottom: 1px solid rgba(255, 255, 255, .04);
+    }
+
+    .wiki-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .wiki-table tr:hover td {
+      background: rgba(255, 255, 255, .02);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="brawlers.html">Brawlers</a></li>
+      <li><a href="updates.html">Updates</a></li>
+      <li><a href="guias.html">Guias</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <div class="header-bg"></div>
+    <div class="header-inner">
+      <p class="page-eyebrow">Wiki — Sistema de Progressão</p>
+      <h1 class="page-title">🦊 Buffies</h1>
+      <p class="page-desc">Tudo o que precisas de saber sobre os Buffies — o sistema de upgrades permanentes introduzido
+        no Update 65. Tipos, Claw Machines, efeitos por brawler e como desbloquear.</p>
+      <div class="type-pills">
+        <div class="type-pill pill-gadget">🟢 Gadget Buffie</div>
+        <div class="type-pill pill-star">🟡 Star Power Buffie</div>
+        <div class="type-pill pill-hyper">🟣 Hyper Buffie</div>
+        <div class="type-pill pill-bling">🩷 Bling Buffie</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- WIKI WRAP -->
+  <div class="wiki-wrap">
+
+    <!-- SIDEBAR -->
+    <aside class="wiki-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-title">Navegação</div>
+        <ul class="sidebar-nav">
+          <li><a href="#oque" class="active-sec">📖 O que são?</a></li>
+          <li><a href="#tipos">🎨 Tipos de Buffie</a></li>
+          <li><a href="#obter">💰 Como Obter</a></li>
+          <li><a href="#machines">🎰 Claw Machines</a></li>
+          <li><a href="#brawlers">⚔️ Por Brawler</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-title">Informação Rápida</div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Introduzido</span><span
+            class="sidebar-stat-val">Update 65</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Data</span><span class="sidebar-stat-val">Dez
+            2025</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Custo Claw</span><span class="sidebar-stat-val">1K
+            Coins + 2K PP</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Buffies por Brawler</span><span
+            class="sidebar-stat-val">3</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Por Claw Machine</span><span
+            class="sidebar-stat-val">18 Buffies</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">1.º pull</span><span
+            class="sidebar-stat-val">GRÁTIS</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Desbloqueio</span><span
+            class="sidebar-stat-val">1.000 Trofeus</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Brawlers com Buffies</span><span
+            class="sidebar-stat-val">24+</span></div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-title">Claw Machines</div>
+        <ul class="sidebar-nav">
+          <li><a href="#machine-1">🤠 Ranger Ranch</a></li>
+          <li><a href="#machine-2">💀 Mortis' Mortuary</a></li>
+          <li><a href="#machine-3">🐂 Bull's Diner</a></li>
+          <li><a href="#machine-4">🌿 Rumble Jungle</a></li>
+          <li><a href="#machine-5">🕹️ Arcade Trio</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <main class="wiki-content">
+
+      <!-- O QUE SÃO -->
+      <section class="wiki-section reveal" id="oque">
+        <h2 class="wiki-h2"><span class="icon">📖</span> O que são os Buffies?</h2>
+
+        <div class="infobox">
+          <div class="infobox-title">Buffie</div>
+          <div class="infobox-emoji">🦊</div>
+          <div class="infobox-row"><span class="infobox-label">Tipo</span><span class="infobox-val">Upgrade
+              Permanente</span></div>
+          <div class="infobox-row"><span class="infobox-label">Afeta</span><span class="infobox-val">Gadgets, Star
+              Powers, HC</span></div>
+          <div class="infobox-row"><span class="infobox-label">Ativação</span><span
+              class="infobox-val">Automática</span></div>
+          <div class="infobox-row"><span class="infobox-label">Custo base</span><span class="infobox-val">1.000 Coins +
+              2.000 PP</span></div>
+          <div class="infobox-row"><span class="infobox-label">Requisito</span><span class="infobox-val">1.000
+              Trofeus</span></div>
+          <div class="infobox-row"><span class="infobox-label">1.º Pull</span><span class="infobox-val"
+              style="color:var(--green)">GRÁTIS</span></div>
+        </div>
+
+        <p class="wiki-p">Os <strong>Buffies</strong> são upgrades permanentes introduzidos no <strong>Update 65
+            (Dezembro 2025)</strong> que melhoram as capacidades dos Gadgets, Star Powers e Hypercharge dos Brawlers.
+          São representados visualmente como <strong>pequenas porta-chaves</strong> que o Brawler carrega consigo.</p>
+        <p class="wiki-p">Ao contrário dos Gears, os Buffies não precisam de ser equipados manualmente — uma vez
+          desbloqueados ficam <strong>ativos permanentemente</strong>. Cada Brawler tem 3 Buffies disponíveis e podes
+          tê-los todos ativos ao mesmo tempo.</p>
+        <p class="wiki-p">Os Buffies substituíram os <strong>Gears Epic e Mythic</strong> dos Brawlers que os receberam
+          — esses Gears foram removidos e os jogadores receberam reembolso total em Coins.</p>
+
+        <div class="wiki-box tip">
+          <div class="wiki-box-icon">💡</div>
+          <div class="wiki-box-text">O <strong>primeiro pull de cada Claw Machine é sempre GRÁTIS</strong>. Aproveita
+            sempre o pull gratuito antes de gastar Coins e Power Points.</div>
+        </div>
+      </section>
+
+      <!-- TIPOS -->
+      <section class="wiki-section reveal" id="tipos">
+        <h2 class="wiki-h2"><span class="icon">🎨</span> Tipos de Buffie</h2>
+        <p class="wiki-p">Existem <strong>4 tipos de Buffies</strong>, cada um com uma cor de porta-chave diferente. Os
+          3 primeiros têm efeitos de gameplay; o quarto é puramente cosmético.</p>
+
+        <div class="buffie-types">
+          <div class="buffie-type-card gadget">
+            <div class="bt-keychain">🟢</div>
+            <div class="bt-name">Gadget Buffie</div>
+            <div class="bt-desc">Melhora ambos os Gadgets do Brawler. Pode adicionar um segundo efeito, tornar o Gadget
+              apontável com joystick, ou amplificar o efeito existente.</div>
+            <div class="bt-color">Porta-chave Verde</div>
+          </div>
+          <div class="buffie-type-card star">
+            <div class="bt-keychain">🟡</div>
+            <div class="bt-name">Star Power Buffie</div>
+            <div class="bt-desc">Melhora ambas as Star Powers do Brawler. Geralmente melhora a fraqueza da Star Power ou
+              adiciona um efeito extra complementar.</div>
+            <div class="bt-color">Porta-chave Amarela</div>
+          </div>
+          <div class="buffie-type-card hyper">
+            <div class="bt-keychain">🟣</div>
+            <div class="bt-name">Hyper Buffie</div>
+            <div class="bt-desc">Melhora o Hypercharge. Todos os Hyper Buffies adicionam <strong>+2 segundos de
+                duração</strong> ao Hypercharge e aumentam a eficácia do ataque base durante o mesmo.</div>
+            <div class="bt-color">Porta-chave Roxa</div>
+          </div>
+          <div class="buffie-type-card bling">
+            <div class="bt-keychain">🩷</div>
+            <div class="bt-name">Bling Buffie</div>
+            <div class="bt-desc">Cosmético exclusivo — não tem efeito de gameplay. Só disponível após desbloquear os 18
+              Buffies de uma Claw Machine. Custa 10.000 Bling por pull.</div>
+            <div class="bt-color">Porta-chave Rosa (Cosmético)</div>
+          </div>
+        </div>
+
+        <div class="wiki-box info">
+          <div class="wiki-box-icon">ℹ️</div>
+          <div class="wiki-box-text">Todos os <strong>Hyper Buffies</strong> partilham um efeito base universal:
+            <strong>+2 segundos de duração do Hypercharge</strong> e aumento da eficácia do ataque base durante o HC. O
+            efeito específico de cada um varia por Brawler.</div>
+        </div>
+      </section>
+
+      <!-- COMO OBTER -->
+      <section class="wiki-section reveal" id="obter">
+        <h2 class="wiki-h2"><span class="icon">💰</span> Como Obter Buffies</h2>
+        <p class="wiki-p">Existem várias formas de desbloquear Buffies. O sistema de Buffies fica disponível para um
+          Brawler quando este atinge <strong>1.000 Trofeus</strong>.</p>
+
+        <div class="how-grid">
+          <div class="how-card">
+            <div class="how-icon">🎰</div>
+            <div class="how-title">Claw Machine</div>
+            <div class="how-desc">A forma principal. Cada pull é aleatório mas garante 1 Buffie. O primeiro pull de cada
+              máquina é sempre grátis.</div>
+            <div class="how-cost">1.000 Coins + 2.000 PP</div>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">🔑</div>
+            <div class="how-title">Buffie Key (Vault)</div>
+            <div class="how-desc">Usa uma Buffie Key no Brawl Pass Vault para escolher o Buffie exato que queres — sem
+              aleatório.</div>
+            <div class="how-cost">1 Buffie Key</div>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">💎</div>
+            <div class="how-title">Gems</div>
+            <div class="how-desc">Podes comprar Buffies específicos diretamente com Gems na loja dedicada.</div>
+            <div class="how-cost">Varia por raridade</div>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">💥</div>
+            <div class="how-title">Ultra Chaos Drop</div>
+            <div class="how-desc">Há cerca de 15% de chance de obter um token de Buffie a partir de um Chaos Drop Mythic
+              ou Legendary.</div>
+            <div class="how-cost">~15% chance (Mythic/Leg.)</div>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">🎯</div>
+            <div class="how-title">Mega Quest Mensal</div>
+            <div class="how-desc">A partir do Update 66, cada temporada tem uma Mega Quest que dá um Buffie aleatório
+              como recompensa.</div>
+            <div class="how-cost">Grátis (completar quest)</div>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">🩷</div>
+            <div class="how-title">Bling Buffie (Cosmético)</div>
+            <div class="how-desc">Depois de teres os 18 Buffies de uma Claw Machine, podes puxar Bling Buffies
+              cosméticos.</div>
+            <div class="how-cost">10.000 Bling</div>
+          </div>
+        </div>
+
+        <div class="wiki-box warn">
+          <div class="wiki-box-icon">⚠️</div>
+          <div class="wiki-box-text">Na Claw Machine <strong>não podes escolher qual Buffie recebes</strong> — é
+            aleatório. Se queres um Buffie específico, usa uma <strong>Buffie Key no Vault</strong> ou compra com Gems.
+          </div>
+        </div>
+
+        <h3 style="font-family:'Russo One',sans-serif;font-size:1.1rem;margin:2rem 0 1rem;">Custo total para completar
+          uma Claw Machine</h3>
+        <table class="wiki-table">
+          <tr>
+            <th>Método</th>
+            <th>Custo por Pull</th>
+            <th>Pulls Necessários</th>
+            <th>Custo Total (18 Buffies)</th>
+          </tr>
+          <tr>
+            <td>Claw Machine</td>
+            <td>1.000 Coins + 2.000 PP</td>
+            <td>18 (1 grátis)</td>
+            <td>17.000 Coins + 34.000 PP</td>
+          </tr>
+          <tr>
+            <td>Buffie Keys</td>
+            <td>1 Key</td>
+            <td>18</td>
+            <td>18 Buffie Keys</td>
+          </tr>
+          <tr>
+            <td>Bling Buffie (após completar)</td>
+            <td>10.000 Bling</td>
+            <td>Ilimitado</td>
+            <td>10.000 Bling por cosmético</td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- CLAW MACHINES -->
+      <section class="wiki-section reveal" id="machines">
+        <h2 class="wiki-h2"><span class="icon">🎰</span> Claw Machines</h2>
+        <p class="wiki-p">Cada Claw Machine contém os Buffies de <strong>6 Brawlers</strong> (18 Buffies no total). São
+          organizadas em <strong>dois trios de Brawlers relacionados</strong>. Uma nova máquina chega em cada update
+          principal.</p>
+
+        <div class="machines-grid" id="machines">
+
+          <!-- MACHINE 1 -->
+          <div class="machine-card reveal" id="machine-1">
+            <div class="machine-header">
+              <div class="machine-icon">🤠</div>
+              <div class="machine-info">
+                <div class="machine-name">Ranger Ranch Claw Machine</div>
+                <div class="machine-update">Update 65 · Dezembro 2025</div>
+              </div>
+              <div class="machine-status status-past">Passado</div>
+            </div>
+            <div class="machine-brawlers">
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🔫</div>
+                  <div>
+                    <div class="bbc-name">Shelly</div>
+                    <div class="bbc-rarity">Starter</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Fast Forward torna-se um dash longo e apontável com 0,5s de
+                        invulnerabilidade</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Shell Shock aplica slow mais duradouro; Band-Aid cura uma percentagem
+                        maior</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Ataques básicos durante HC aplicam slow; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🤠</div>
+                  <div>
+                    <div class="bbc-name">Colt</div>
+                    <div class="bbc-rarity">Rare</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Cada bala rouba 1 munição ao inimigo atingido</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Slick Boots: mais velocidade em sprint; Magnum Special: mais dano ao
+                        longe</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Balas ficam mais rápidas durante HC; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🌵</div>
+                  <div>
+                    <div class="bbc-name">Spike</div>
+                    <div class="bbc-rarity">Legendary</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Popping Pincushion faz raiz nos inimigos se todos os espinhos
+                        acertarem</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Fertilize cura mais; Curveball aumenta mais a curva dos espinhos
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Ataques básicos explodem duas vezes durante HC; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">⚰️</div>
+                  <div>
+                    <div class="bbc-name">Mortis</div>
+                    <div class="bbc-rarity">Mythic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Blood Boomerang: ataque fantasma atinge a mesma área com delay; dash
+                        passa atrás do inimigo</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Creepy Harvest cura mais por kill; Coiled Snake tem ainda mais
+                        alcance</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Clone de sombra copia o próximo ataque — dano em dobro em burst; +2s
+                        de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🔨</div>
+                  <div>
+                    <div class="bbc-name">Frank</div>
+                    <div class="bbc-rarity">Epic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Emite uma onda de choque que destrói projéteis à frente; Power Grab
+                        com efeito de bleed</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Sponge dá Knockback Resistance; Power Grab aumenta dano por mais
+                        tempo</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Ataque base aplica stun de 5s durante HC; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">💅</div>
+                  <div>
+                    <div class="bbc-name">Emz</div>
+                    <div class="bbc-rarity">Super Rare</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Friendzoner tem raio maior; stun de 1s em inimigos empurrados pelo
+                        Gadget</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Bad Karma: slow ainda mais forte; Hype: mais cura por inimigo no
+                        Super</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Nuvem de veneno fica ativa 2s após a morte de Emz; +2s de duração
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MACHINE 2 -->
+          <div class="machine-card reveal" id="machine-2">
+            <div class="machine-header">
+              <div class="machine-icon">💀</div>
+              <div class="machine-info">
+                <div class="machine-name">Mortis' Mortuary Claw Machine</div>
+                <div class="machine-update">Update 65 · Dezembro 2025</div>
+              </div>
+              <div class="machine-status status-past">Passado</div>
+            </div>
+            <div class="machine-brawlers">
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🦁</div>
+                  <div>
+                    <div class="bbc-name">Leon</div>
+                    <div class="bbc-rarity">Legendary</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Clone Projector: pode reativar para trocar de posição com o clone
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Lollipop Drop: Leon e aliados movem-se mais rápido na área</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Smoke Trails: invisível durante mais tempo; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🐦‍⬛</div>
+                  <div>
+                    <div class="bbc-name">Crow</div>
+                    <div class="bbc-rarity">Legendary</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Instapoison regressa a duração do veneno; Slowing Toxin ricocheteiam
+                        em alvos próximos</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Extra Toxic: veneno mais forte; Carrion Crow: mais dano em alvos com
+                        baixo HP</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Utility Knives: ataques HC perfuram e voltam com 20% menos dano; +2s
+                        duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🥋</div>
+                  <div>
+                    <div class="bbc-name">Fang</div>
+                    <div class="bbc-rarity">Mythic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Reenergize carrega o Super completamente; Leave n' Weave tem mais
+                        usos</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Fresh Kicks: mais ricochetes; Corn Paws: velocidade ainda maior no
+                        Super</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Teen Spirit: lança um segundo ataque menor; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">😤</div>
+                  <div>
+                    <div class="bbc-name">Edgar</div>
+                    <div class="bbc-rarity">Epic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Let's Fly apontável, latcha em inimigos/paredes; Hardcore dá
+                        imunidade a crowd control</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Hard Landing aplica ao Gadget e carrega Super; Fisticuffs cura ao
+                        matar</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Outburst: 2 ataques extra com mais alcance mas menos dano; +2s
+                        duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🏎️</div>
+                  <div>
+                    <div class="bbc-name">Stu</div>
+                    <div class="bbc-rarity">Epic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Nitro Boost apontável; Speed Zone tem área maior</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Zero Drag: ainda mais velocidade; Gaso-Heal: mais cura por uso</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Rastro de fogo dura mais e faz mais dano; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🐒</div>
+                  <div>
+                    <div class="bbc-name">Mico</div>
+                    <div class="bbc-rarity">Mythic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Acrobatics aumenta alcance do salto; Monkey See tem mais alcance de
+                        visão</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Last Banana: stacks acumulam mais rápido; velocidade extra com stacks
+                        máximas</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Super não tem cooldown durante HC; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MACHINE 3 -->
+          <div class="machine-card reveal" id="machine-3">
+            <div class="machine-header">
+              <div class="machine-icon">🐂</div>
+              <div class="machine-info">
+                <div class="machine-name">Bull's Diner Claw Machine</div>
+                <div class="machine-update">Update 66 · Fevereiro 2026 (Retropolis Trio)</div>
+              </div>
+              <div class="machine-status status-past">Passado</div>
+            </div>
+            <div class="machine-brawlers">
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🐂</div>
+                  <div>
+                    <div class="bbc-name">Bull</div>
+                    <div class="bbc-rarity">Rare</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">T-Bone Injector introduz efeito Bleed; Stomper: stun e slow mais
+                        fortes</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Tough Guy: imune a dano 0,5s após matar; Berserker: recarga ainda
+                        mais rápida</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Jaws of Steel: ataque HC destrói mais paredes; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🐻</div>
+                  <div>
+                    <div class="bbc-name">Nita</div>
+                    <div class="bbc-rarity">Rare</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Bear Paws: raiz se atingir 3 inimigos; Faux Fur: Bruce recebe escudo
+                        ao ativar</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Bear With Me: cura de Bruce aumentada; Hyper Bear: mais velocidade de
+                        ataque</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Hyperbearing: Bruce causa dano em área ao aparecer; +2s de duração
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🍬</div>
+                  <div>
+                    <div class="bbc-name">Bibi</div>
+                    <div class="bbc-rarity">Epic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Vitamin Booster carrega Home Run bar e cura 60% do dano; Extra
+                        Sticky: slow aumenta com tempo</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Home Run: +20% dano; Batting Stance: escudo de 5s ao acertar Super
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Out of Bounds: ataques HC perfuram e voltam 20% menos dano; +2s
+                        duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🏹</div>
+                  <div>
+                    <div class="bbc-name">Bo</div>
+                    <div class="bbc-rarity">Epic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Super Totem: aliados ficam com mais alcance perto do totem; Tripwire:
+                        minas explodem em área maior</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Circling Eagle: Bo dispara uma 4.ª flecha com área maior; Snare a
+                        Bear: raiz mais longa</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Catch a Bear: minas são invisíveis durante HC; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🧹</div>
+                  <div>
+                    <div class="bbc-name">Griff</div>
+                    <div class="bbc-rarity">Epic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Keep the Change: ataque com mais moedas e Mega Coin ao centro;
+                        Business Resilience: Super cura Griff</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">More Coins: mais largura de ataque e uma linha extra de moedas</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Tax Rebate: ataques HC atravessam inimigos; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">📊</div>
+                  <div>
+                    <div class="bbc-name">Colette</div>
+                    <div class="bbc-rarity">Epic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Na-Ah: projétil atravessa paredes; Gotcha: apontável com 3 usos e
+                        overheal</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Push It: inimigos não podem atacar Colette no final do push; Mass
+                        Tax: mais redução de dano</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Velocidade de dash aumentada; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MACHINE 4 -->
+          <div class="machine-card reveal" id="machine-4">
+            <div class="machine-header">
+              <div class="machine-icon">🌿</div>
+              <div class="machine-info">
+                <div class="machine-name">Rumble Jungle Claw Machine</div>
+                <div class="machine-update">Update 66 · Fevereiro 2026 (Rumble Jungle Trio)</div>
+              </div>
+              <div class="machine-status status-past">Passado</div>
+            </div>
+            <div class="machine-brawlers">
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🏜️</div>
+                  <div>
+                    <div class="bbc-name">Sandy</div>
+                    <div class="bbc-rarity">Legendary</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Sandstorm Gadget tem área maior e aplica slow mais forte</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Rude Sands: slow mais forte na tempestade; Healing Winds: cura
+                        aliados na tempestade</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Tempestade cega inimigos durante HC; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🌿</div>
+                  <div>
+                    <div class="bbc-name">Rosa</div>
+                    <div class="bbc-rarity">Rare</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Strong Stuff dura mais; Plant Life cura mais por segundo nos arbustos
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Thorny Gloves: reflete parte do dano; Plant Life: ainda mais cura
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Escudo durante HC absorve 85% de dano; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🌱</div>
+                  <div>
+                    <div class="bbc-name">Sprout</div>
+                    <div class="bbc-rarity">Mythic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Vine Sanctuary: parede dura mais e cura aliados que estejam perto
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Overgrowth: parede maior e mais HP; Photosynthesis: cura aumentada
+                        nos arbustos</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Sementes durante HC explodem em área dupla; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🐡</div>
+                  <div>
+                    <div class="bbc-name">Hank</div>
+                    <div class="bbc-rarity">Epic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Big Gulp: Hank absorve projéteis inimigos ao inflar; Fresh Squeeze
+                        cura mais</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Overfill: área de explosão 30% maior; mais dano por HP perdido</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Explosão durante HC aplica stun de 2s; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🦈</div>
+                  <div>
+                    <div class="bbc-name">Buzz</div>
+                    <div class="bbc-rarity">Mythic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Tasa dura mais; Lefty dá velocidade após usar Gadget</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Eyes Sharp: carrega Super mais rápido perto de inimigos; Tougher
+                        Skin: redução de dano maior</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Stun durante HC dura mais e tem área maior; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🐝</div>
+                  <div>
+                    <div class="bbc-name">Bea</div>
+                    <div class="bbc-rarity">Epic</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Rattled Hive: dispara mais abelhas com mais raio de slow; Insta
+                        Beeload carrega mais rápido</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Insta Beeload: recarga instantânea ao acertar; Honey Coat: imunidade
+                        dura mais</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Slow de ataques durante HC aumenta a cada acerto; +2s de duração
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MACHINE 5 — ARCADE TRIO (Update 67, em breve) -->
+          <div class="machine-card reveal" id="machine-5">
+            <div class="machine-header">
+              <div class="machine-icon">🕹️</div>
+              <div class="machine-info">
+                <div class="machine-name">Arcade Trio Claw Machine</div>
+                <div class="machine-update">Update 67 · Abril 2026 — Em breve</div>
+              </div>
+              <div class="machine-status status-active">⚡ Próxima</div>
+            </div>
+            <div class="machine-brawlers">
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🚀</div>
+                  <div>
+                    <div class="bbc-name">Brock</div>
+                    <div class="bbc-rarity">Rare</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Rockets deixam chamas persistentes; mais área de explosão</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Incendiary: chamas duram mais e causam mais dano; Rocket Fuel: mais
+                        paredes destruídas</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Rocket Rain durante HC tem mais rockets; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">👾</div>
+                  <div>
+                    <div class="bbc-name">8-Bit</div>
+                    <div class="bbc-rarity">Super Rare</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Cheat Cartridge boost dura mais; Extra Life: cura ao reviver</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Boosted Booster: área de boost maior; extra: turret tem mais HP</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Laser HC atravessa obstáculos; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="brawler-buffie-card">
+                <div class="bbc-header">
+                  <div class="bbc-emoji">🛢️</div>
+                  <div>
+                    <div class="bbc-name">Darryl</div>
+                    <div class="bbc-rarity">Super Rare</div>
+                  </div>
+                </div>
+                <div class="bbc-buffies">
+                  <div class="bbc-buffie g">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Gadget</div>
+                      <div class="bbc-buffie-desc">Steel Hoops tem escudo mais forte; Recoiling Rotator aplica slow
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie s">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Star Power</div>
+                      <div class="bbc-buffie-desc">Steel Hoops: escudo maior ao rolar; Rolling Reload: recarga quase
+                        instantânea</div>
+                    </div>
+                  </div>
+                  <div class="bbc-buffie h">
+                    <div class="bbc-buffie-dot"></div>
+                    <div>
+                      <div class="bbc-buffie-label">Hyper</div>
+                      <div class="bbc-buffie-desc">Roll durante HC aplica knockback e stun; +2s de duração</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="padding:1rem 2rem;border-top:1px solid rgba(255,255,255,.06)">
+              <div class="wiki-box info" style="margin:0">
+                <div class="wiki-box-icon">🔜</div>
+                <div class="wiki-box-text">Os Buffies do <strong>Arcade Trio</strong> (Brock, 8-Bit e Darryl) chegam com
+                  o Update 67. Os outros 3 Brawlers da máquina ainda não foram confirmados oficialmente.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // REVEAL
+    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.05 });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    // SIDEBAR ACTIVE SECTION
+    const sections = document.querySelectorAll("section[id], div[id^='machine']");
+    const navLinks = document.querySelectorAll(".sidebar-nav li a");
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+      navLinks.forEach(a => {
+        a.classList.remove("active-sec");
+        if (a.getAttribute("href") === "#" + current) a.classList.add("active-sec");
+      });
+    });
+
+    // CURSOR
+    const cursor = document.getElementById("cursor");
+    const ring = document.getElementById("cursor-ring");
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+    (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+    document.querySelectorAll("a,button,.brawler-buffie-card,.how-card,.buffie-type-card").forEach(el => {
+      el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+      el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+    });
+  </script>
+</body>
+
+</html>

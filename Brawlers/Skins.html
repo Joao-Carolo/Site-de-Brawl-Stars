@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skins — BrawlZone Wiki</title>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --yellow:#FFD000;--orange:#FF6B00;--pink:#FF3CAC;--teal:#00C9A7;--blue:#3B82F6;--purple:#A855F7;--green:#22C55E;
+      --c-rare:#22C55E;--c-super:#3B82F6;--c-epic:#A855F7;--c-mythic:#EF4444;--c-leg:#FFD000;--c-hyper:#FF6B00;
+      --c-true-silver:#9CA3AF;--c-true-gold:#F59E0B;
+      --dark:#0D0D1A;--dark2:#13132A;--dark3:#1A1A35;--dark4:#1F1F38;--text-dark:#1A1A2E;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Nunito',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;}
+    a{text-decoration:none;color:inherit;}
+    *{cursor:none!important;}
+    #cursor{position:fixed;width:12px;height:12px;background:var(--pink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:difference;}
+    #cursor-ring{position:fixed;width:36px;height:36px;border:2px solid rgba(255,60,172,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(13,13,26,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);}
+    .nav-logo{font-family:'Russo One',sans-serif;font-size:1.4rem;display:flex;align-items:center;gap:.5rem;}
+    .nav-logo .star{color:var(--yellow);}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+    .nav-links a{font-weight:700;font-size:.88rem;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.5);transition:color .2s;}
+    .nav-links a:hover{color:#fff;}
+    @media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-links{display:none;}}
+
+    /* HEADER */
+    .page-header{padding:8rem 3rem 4rem;position:relative;overflow:hidden;background:var(--dark2);border-bottom:1px solid rgba(255,255,255,.06);}
+    .header-bg{position:absolute;inset:0;background:
+      radial-gradient(ellipse 55% 70% at 85% 50%,rgba(255,60,172,.2),transparent),
+      radial-gradient(ellipse 40% 50% at 10% 60%,rgba(168,85,247,.15),transparent),
+      radial-gradient(ellipse 30% 40% at 50% 10%,rgba(255,208,0,.1),transparent);}
+    .header-inner{position:relative;max-width:1200px;margin:0 auto;}
+    .page-eyebrow{font-size:.75rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--pink);margin-bottom:.5rem;}
+    .page-title{font-family:'Russo One',sans-serif;font-size:clamp(2.5rem,7vw,5rem);line-height:1;margin-bottom:1rem;}
+    .page-desc{font-size:1rem;color:rgba(255,255,255,.5);max-width:600px;line-height:1.75;margin-bottom:2rem;}
+    .header-stats{display:flex;gap:2.5rem;flex-wrap:wrap;}
+    .hstat{display:flex;flex-direction:column;}
+    .hstat-num{font-family:'Russo One',sans-serif;font-size:2rem;background:linear-gradient(135deg,var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+    .hstat-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:.2rem;}
+
+    /* RARITY INFO BAR */
+    .rarity-bar{background:var(--dark3);border-bottom:1px solid rgba(255,255,255,.06);padding:1rem 3rem;overflow-x:auto;}
+    .rarity-bar-inner{max-width:1200px;margin:0 auto;display:flex;gap:1rem;align-items:center;min-width:700px;}
+    .rarity-info-pill{display:flex;align-items:center;gap:.6rem;padding:.4rem 1rem;border-radius:100px;font-size:.78rem;font-weight:700;border:1px solid transparent;white-space:nowrap;}
+    .rarity-info-pill .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+    .ri-rare{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.2);color:var(--c-rare);}
+    .ri-super{background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.2);color:var(--c-super);}
+    .ri-epic{background:rgba(168,85,247,.08);border-color:rgba(168,85,247,.2);color:var(--c-epic);}
+    .ri-mythic{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.2);color:var(--c-mythic);}
+    .ri-leg{background:rgba(255,208,0,.08);border-color:rgba(255,208,0,.2);color:var(--c-leg);}
+    .ri-hyper{background:rgba(255,107,0,.1);border-color:rgba(255,107,0,.25);color:var(--c-hyper);}
+    .ri-sep{width:1px;height:20px;background:rgba(255,255,255,.08);flex-shrink:0;}
+
+    /* TOOLBAR */
+    .toolbar{max-width:1200px;margin:2rem auto;padding:0 3rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;}
+    @media(max-width:700px){.toolbar{padding:0 1.5rem;}}
+
+    .filter-group{display:flex;flex-wrap:wrap;gap:.5rem;}
+    .filter-tab{padding:.4rem 1rem;border-radius:100px;font-weight:700;font-size:.78rem;letter-spacing:.04em;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);background:transparent;transition:all .2s;}
+    .filter-tab:hover{color:#fff;border-color:rgba(255,255,255,.3);}
+    .filter-tab.active{color:var(--text-dark);border-color:transparent;}
+    [data-rarity="all"].active{background:#fff;color:var(--text-dark);}
+    [data-rarity="rare"].active{background:var(--c-rare);}
+    [data-rarity="super"].active{background:var(--c-super);}
+    [data-rarity="epic"].active{background:var(--c-epic);}
+    [data-rarity="mythic"].active{background:var(--c-mythic);}
+    [data-rarity="legendary"].active{background:var(--c-leg);}
+    [data-rarity="hyper"].active{background:var(--c-hyper);}
+    [data-rarity="true"].active{background:var(--c-true-gold);color:#000;}
+    [data-rarity="brawlpass"].active{background:var(--pink);}
+
+    .filter-theme-group{display:flex;flex-wrap:wrap;gap:.5rem;}
+    .theme-tab{padding:.35rem .9rem;border-radius:100px;font-weight:700;font-size:.75rem;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);background:transparent;transition:all .2s;}
+    .theme-tab:hover{color:#fff;border-color:rgba(255,255,255,.25);}
+    .theme-tab.active{background:rgba(255,60,172,.15);border-color:rgba(255,60,172,.4);color:var(--pink);}
+
+    .search-wrap{position:relative;}
+    .search-input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:.5rem 1.2rem .5rem 2.4rem;color:#fff;font-family:'Nunito',sans-serif;font-size:.88rem;outline:none;width:210px;transition:border-color .2s;}
+    .search-input::placeholder{color:rgba(255,255,255,.3);}
+    .search-input:focus{border-color:var(--pink);}
+    .search-icon{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);font-size:.85rem;pointer-events:none;opacity:.4;}
+
+    /* VIEW TOGGLE */
+    .view-toggle{display:flex;gap:.4rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:.3rem;}
+    .view-btn{width:30px;height:30px;border-radius:50%;border:none;background:transparent;color:rgba(255,255,255,.4);font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+    .view-btn.active{background:rgba(255,255,255,.12);color:#fff;}
+
+    /* SORT */
+    .sort-select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:.45rem 1rem;color:rgba(255,255,255,.6);font-family:'Nunito',sans-serif;font-size:.8rem;outline:none;appearance:none;padding-right:2rem;}
+
+    /* RESULTADOS */
+    .results-info{max-width:1200px;margin:0 auto;padding:0 3rem .75rem;font-size:.82rem;color:rgba(255,255,255,.3);font-weight:700;}
+    @media(max-width:700px){.results-info{padding:0 1.5rem .75rem;}}
+
+    /* CONTAINER */
+    .skins-container{max-width:1200px;margin:0 auto;padding:0 3rem 6rem;}
+    @media(max-width:700px){.skins-container{padding:0 1.5rem 4rem;}}
+
+    /* GRID */
+    .skins-grid{display:grid;gap:1.1rem;}
+    .skins-grid.grid-large{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));}
+    .skins-grid.grid-small{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
+    .skins-grid.grid-list{grid-template-columns:1fr;}
+
+    /* SKIN CARD */
+    .skin-card{background:var(--dark3);border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;}
+    .skin-card:hover{transform:translateY(-5px);}
+    .skin-card[data-rarity="rare"]:hover{border-color:rgba(34,197,94,.3);box-shadow:0 12px 30px rgba(34,197,94,.08);}
+    .skin-card[data-rarity="super"]:hover{border-color:rgba(59,130,246,.3);box-shadow:0 12px 30px rgba(59,130,246,.08);}
+    .skin-card[data-rarity="epic"]:hover{border-color:rgba(168,85,247,.3);box-shadow:0 12px 30px rgba(168,85,247,.08);}
+    .skin-card[data-rarity="mythic"]:hover{border-color:rgba(239,68,68,.3);box-shadow:0 12px 30px rgba(239,68,68,.08);}
+    .skin-card[data-rarity="legendary"]:hover{border-color:rgba(255,208,0,.3);box-shadow:0 12px 30px rgba(255,208,0,.1);}
+    .skin-card[data-rarity="hyper"]:hover{border-color:rgba(255,107,0,.35);box-shadow:0 12px 30px rgba(255,107,0,.1);}
+    .skin-card[data-rarity="true"]:hover{border-color:rgba(245,158,11,.3);box-shadow:0 12px 30px rgba(245,158,11,.08);}
+    .skin-card[data-rarity="brawlpass"]:hover{border-color:rgba(255,60,172,.3);box-shadow:0 12px 30px rgba(255,60,172,.08);}
+
+    /* THUMB */
+    .skin-thumb{height:130px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+    .skin-thumb-emoji{font-size:4rem;position:relative;z-index:1;transition:transform .3s;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5));}
+    .skin-card:hover .skin-thumb-emoji{transform:scale(1.15) rotate(-5deg);}
+    .skin-thumb-img{width:90px;height:90px;object-fit:contain;position:relative;z-index:1;transition:transform .3s;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5));}
+    .skin-card:hover .skin-thumb-img{transform:scale(1.15) rotate(-5deg);}
+    .skin-card.list-view .skin-thumb-img{width:46px;height:46px;}
+    .skin-thumb-bg{position:absolute;inset:0;opacity:.18;}
+    .skin-rarity-bar{height:3px;width:100%;}
+
+    /* BADGES */
+    .skin-badge{position:absolute;top:.6rem;right:.6rem;font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.18rem .5rem;border-radius:100px;}
+    .badge-new{background:var(--orange);color:#fff;}
+    .badge-limited{background:rgba(239,68,68,.8);color:#fff;}
+    .badge-brawlpass{background:var(--pink);color:#fff;}
+    .badge-collab{background:rgba(59,130,246,.8);color:#fff;}
+    .badge-free{background:rgba(34,197,94,.8);color:#fff;}
+    .badge-seasonal{background:rgba(245,158,11,.8);color:#000;}
+
+    /* BODY DO CARD */
+    .skin-body{padding:.85rem 1rem 1rem;}
+    .skin-name{font-family:'Russo One',sans-serif;font-size:.85rem;line-height:1.2;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .skin-brawler{font-size:.72rem;color:rgba(255,255,255,.4);font-weight:700;margin-bottom:.4rem;}
+    .skin-bottom{display:flex;align-items:center;justify-content:space-between;}
+    .skin-price{font-size:.72rem;font-weight:800;display:flex;align-items:center;gap:.25rem;}
+    .skin-rarity-pill{font-size:.6rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:.15rem .5rem;border-radius:100px;}
+    .p-rare{background:rgba(34,197,94,.12);color:var(--c-rare);}
+    .p-super{background:rgba(59,130,246,.12);color:var(--c-super);}
+    .p-epic{background:rgba(168,85,247,.12);color:var(--c-epic);}
+    .p-mythic{background:rgba(239,68,68,.12);color:var(--c-mythic);}
+    .p-legendary{background:rgba(255,208,0,.12);color:var(--c-leg);}
+    .p-hyper{background:rgba(255,107,0,.12);color:var(--c-hyper);}
+    .p-true{background:rgba(245,158,11,.12);color:var(--c-true-gold);}
+    .p-brawlpass{background:rgba(255,60,172,.12);color:var(--pink);}
+
+    /* LIST VIEW */
+    .skin-card.list-view{display:flex;align-items:center;border-radius:12px;}
+    .skin-card.list-view .skin-thumb{width:70px;height:70px;flex-shrink:0;border-radius:0;}
+    .skin-card.list-view .skin-thumb-emoji{font-size:2.2rem;}
+    .skin-card.list-view .skin-rarity-bar{display:none;}
+    .skin-card.list-view .skin-body{flex:1;padding:.7rem 1rem;display:flex;align-items:center;gap:1rem;}
+    .skin-card.list-view .skin-name{flex:1;font-size:.9rem;white-space:normal;}
+    .skin-card.list-view .skin-brawler{margin-bottom:0;width:90px;flex-shrink:0;}
+    .skin-card.list-view .skin-bottom{flex-direction:row;gap:1rem;}
+    .skin-card.list-view .skin-badge{position:static;margin-left:.5rem;}
+
+    /* NO RESULTS */
+    .no-results{text-align:center;padding:5rem 0;color:rgba(255,255,255,.3);display:none;}
+    .no-results-emoji{font-size:4rem;margin-bottom:1rem;}
+    .no-results h3{font-family:'Russo One',sans-serif;font-size:1.5rem;margin-bottom:.5rem;}
+
+    /* MODAL */
+    .modal-overlay{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.82);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .3s;}
+    .modal-overlay.open{opacity:1;pointer-events:all;}
+    .modal{background:var(--dark2);border:1px solid rgba(255,255,255,.1);border-radius:22px;width:100%;max-width:560px;transform:translateY(25px) scale(.97);transition:transform .3s;position:relative;overflow:hidden;}
+    .modal-overlay.open .modal{transform:translateY(0) scale(1);}
+    .modal-close{position:absolute;top:1.1rem;right:1.1rem;z-index:10;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.6);font-size:.95rem;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+    .modal-close:hover{background:rgba(255,255,255,.2);color:#fff;}
+    .modal-hero{padding:2.5rem;text-align:center;position:relative;overflow:hidden;}
+    .modal-hero-bg{position:absolute;inset:0;opacity:.15;}
+    .modal-emoji{font-size:6rem;position:relative;z-index:1;filter:drop-shadow(0 6px 16px rgba(0,0,0,.5));margin-bottom:1rem;display:flex;align-items:center;justify-content:center;}
+    .modal-rarity-bar{position:absolute;bottom:0;left:0;right:0;height:3px;}
+    .modal-skin-name{font-family:'Russo One',sans-serif;font-size:1.8rem;position:relative;z-index:1;margin-bottom:.25rem;}
+    .modal-brawler{font-size:.9rem;color:rgba(255,255,255,.45);position:relative;z-index:1;}
+    .modal-body{padding:1.5rem 2rem 2rem;}
+    .modal-row{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem;}
+    .modal-row:last-child{border-bottom:none;}
+    .modal-row-label{color:rgba(255,255,255,.4);font-weight:600;}
+    .modal-row-val{font-weight:800;}
+    .modal-desc{font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.55);margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06);}
+    .modal-extras{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;}
+    .modal-extra{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.3rem .7rem;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.5);}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    /* SECTION LABELS */
+    .section-group-label{font-family:'Russo One',sans-serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.25);margin:2rem 0 .75rem;display:flex;align-items:center;gap:.75rem;}
+    .section-group-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06);}
+  </style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="brawlers.html">Brawlers</a></li>
+    <li><a href="updates.html">Updates</a></li>
+    <li><a href="buffies.html">Buffies</a></li>
+    <li><a href="guias.html">Guias</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+<header class="page-header">
+  <div class="header-bg"></div>
+  <div class="header-inner">
+    <p class="page-eyebrow">Wiki — Cosméticos</p>
+    <h1 class="page-title">🎨 Skins</h1>
+    <p class="page-desc">Todas as skins de Brawl Stars numa só página. Filtra por raridade, tema, brawler ou preço. Clica em qualquer skin para ver os detalhes completos.</p>
+    <div class="header-stats">
+      <div class="hstat"><span class="hstat-num">700+</span><span class="hstat-label">Skins totais</span></div>
+      <div class="hstat"><span class="hstat-num">6</span><span class="hstat-label">Raridades</span></div>
+      <div class="hstat"><span class="hstat-num">25</span><span class="hstat-label">Skins do Colt (recorde)</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- RARITY BAR INFO -->
+<div class="rarity-bar">
+  <div class="rarity-bar-inner">
+    <div class="rarity-info-pill ri-rare"><div class="dot" style="background:var(--c-rare)"></div>Rare — 29 Gems / 1.000 Bling</div>
+    <div class="ri-sep"></div>
+    <div class="rarity-info-pill ri-super"><div class="dot" style="background:var(--c-super)"></div>Super Rare — 79 Gems / 3.000 Bling</div>
+    <div class="ri-sep"></div>
+    <div class="rarity-info-pill ri-epic"><div class="dot" style="background:var(--c-epic)"></div>Epic — 149 Gems / 5.000 Bling</div>
+    <div class="ri-sep"></div>
+    <div class="rarity-info-pill ri-mythic"><div class="dot" style="background:var(--c-mythic)"></div>Mythic — 249 Gems</div>
+    <div class="ri-sep"></div>
+    <div class="rarity-info-pill ri-leg"><div class="dot" style="background:var(--c-leg)"></div>Legendary — 299 Gems</div>
+    <div class="ri-sep"></div>
+    <div class="rarity-info-pill ri-hyper"><div class="dot" style="background:var(--c-hyper)"></div>Hypercharge — 499 Gems</div>
+  </div>
+</div>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <!-- Filtros de raridade -->
+  <div class="filter-group" id="rarityFilters">
+    <button class="filter-tab active" data-rarity="all">Todas</button>
+    <button class="filter-tab" data-rarity="rare">Rare</button>
+    <button class="filter-tab" data-rarity="super">Super Rare</button>
+    <button class="filter-tab" data-rarity="epic">Epic</button>
+    <button class="filter-tab" data-rarity="mythic">Mythic</button>
+    <button class="filter-tab" data-rarity="legendary">Legendary</button>
+    <button class="filter-tab" data-rarity="hyper">Hypercharge</button>
+    <button class="filter-tab" data-rarity="true">True Gold/Silver</button>
+    <button class="filter-tab" data-rarity="brawlpass">Brawl Pass</button>
+  </div>
+</div>
+<div class="toolbar" style="padding-top:0;gap:.75rem;">
+  <!-- Filtros de tema -->
+  <div class="filter-theme-group" id="themeFilters">
+    <button class="theme-tab active" data-theme="all">🎨 Todos os Temas</button>
+    <button class="theme-tab" data-theme="madevil">🎸 MadEvil</button>
+    <button class="theme-tab" data-theme="strangerthings">👾 Stranger Things</button>
+    <button class="theme-tab" data-theme="toystory">🚀 Toy Story</button>
+    <button class="theme-tab" data-theme="brawlidays">🎄 Brawlidays</button>
+    <button class="theme-tab" data-theme="retropolis">🌃 Retropolis</button>
+    <button class="theme-tab" data-theme="lunar">🐉 Lunar Brawl</button>
+    <button class="theme-tab" data-theme="championship">🏆 Championship</button>
+    <button class="theme-tab" data-theme="sandsoftime">🏜️ Sands of Time</button>
+    <button class="theme-tab" data-theme="angels">😇 Angels vs Demons</button>
+  </div>
+  <div style="display:flex;gap:.75rem;align-items:center;">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="searchInput" placeholder="Nome, brawler...">
+    </div>
+    <div class="view-toggle">
+      <button class="view-btn active" id="btnLarge" title="Grade grande">⊞</button>
+      <button class="view-btn" id="btnSmall" title="Grade pequena">⊟</button>
+      <button class="view-btn" id="btnList" title="Lista">☰</button>
+    </div>
+  </div>
+</div>
+
+<div class="results-info" id="resultsInfo"></div>
+
+<!-- SKINS GRID -->
+<div class="skins-container">
+  <div class="skins-grid grid-large" id="skinsGrid"></div>
+  <div class="no-results" id="noResults">
+    <div class="no-results-emoji">🎨</div>
+    <h3>Nenhuma skin encontrada</h3>
+    <p>Tenta outro filtro ou termo de pesquisa.</p>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-hero" id="modalHero">
+      <div class="modal-hero-bg" id="modalHeroBg"></div>
+      <div class="modal-emoji" id="modalEmoji"></div>
+      <div class="modal-skin-name" id="modalSkinName"></div>
+      <div class="modal-brawler" id="modalBrawler"></div>
+      <div class="modal-rarity-bar" id="modalRarityBar"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════
+   DADOS DAS SKINS
+══════════════════════════════ */
+const RARITY_COLORS={
+  rare:"#22C55E",super:"#3B82F6",epic:"#A855F7",mythic:"#EF4444",
+  legendary:"#FFD000",hyper:"#FF6B00",true:"#F59E0B",brawlpass:"#FF3CAC"
+};
+const RARITY_LABELS={
+  rare:"Rare",super:"Super Rare",epic:"Epic",mythic:"Mythic",
+  legendary:"Legendary",hyper:"Hypercharge",true:"True Gold/Silver",brawlpass:"Brawl Pass"
+};
+const RARITY_PRICES={
+  rare:"29 Gems / 1.000 Bling",super:"79 Gems / 3.000 Bling",epic:"149 Gems / 5.000 Bling",
+  mythic:"249 Gems",legendary:"299 Gems",hyper:"499 Gems",
+  true:"10.000–25.000 Coins",brawlpass:"Brawl Pass"
+};
+
+// Extras por raridade
+const RARITY_EXTRAS={
+  rare:["Modelo personalizado","Texturas custom"],
+  super:["Modelo personalizado","Efeitos de ataque","Pin","Animações custom"],
+  epic:["Modelo personalizado","Efeitos de ataque","Pin","Animações","Ícone de perfil"],
+  mythic:["Modelo personalizado","Efeitos de ataque","Pin","Animações","Ícone","Spray temático"],
+  legendary:["Modelo personalizado","Efeitos de ataque","9 Pins","Animações","Ícone","Spray","Voice lines","Takedown exclusivo"],
+  hyper:["Tudo do Legendary","Modelo altera ao ativar HC","Efeitos visuais de HC"],
+  true:["Skin metálica","Sem novas animações","Símbolo de dedicação"],
+  brawlpass:["Exclusiva do passe","Chroma disponíveis","Inclui Pin"]
+};
+
+const SKINS = [
+  // ── SHELLY ──
+  {name:"Star Shelly",brawler:"Shelly",emoji:"🌟",rarity:"rare",theme:"classic",price:"Grátis (padrão)",badge:"free",desc:"A skin padrão de Shelly, incluída gratuitamente com a conta."},
+  {name:"Sheriff Shelly",brawler:"Shelly",emoji:"🤠",rarity:"rare",theme:"classic",price:"29 Gems",badge:"",desc:"Shelly transforma-se numa sheriff do Far West com chapéu e esporas."},
+  {name:"Witch Shelly",brawler:"Shelly",emoji:"🧙",rarity:"super",theme:"brawlidays",price:"79 Gems",badge:"seasonal",desc:"Shelly com roupa de bruxa para o Halloween. Skin sazonal de outubro."},
+  {name:"Stellar Shelly",brawler:"Shelly",emoji:"✨",rarity:"epic",theme:"classic",price:"149 Gems",badge:"",desc:"Shelly com tema espacial e efeitos galácticos no ataque."},
+  {name:"Squad Buster Shelly",brawler:"Shelly",emoji:"🔥",rarity:"rare",theme:"classic",price:"Grátis (evento)",badge:"free",desc:"Skin de crossover com Squad Busters. Foi distribuída gratuitamente."},
+  {name:"Princess Shelly",brawler:"Shelly",emoji:"👑",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Shelly como uma princesa real com coroa e vestido elegante."},
+
+  // ── COLT ──
+  {name:"Dark Ride Colt",brawler:"Colt",emoji:"🏍️",rarity:"super",theme:"retropolis",price:"79 Gems",badge:"",desc:"Colt numa moto de noite com visual dark e neón. Tema Retropolis."},
+  {name:"Cowboy Colt",brawler:"Colt",emoji:"🤠",rarity:"rare",theme:"classic",price:"29 Gems",badge:"",desc:"Colt com visual clássico de cowboy do Far West."},
+  {name:"El Rey Colt",brawler:"Colt",emoji:"👑",rarity:"legendary",theme:"classic",price:"299 Gems",badge:"",desc:"Colt como um rei com robes reais e voice lines exclusivas. Legendary com 9 Pins."},
+  {name:"Dark Angel Colt",brawler:"Colt",emoji:"😈",rarity:"legendary",theme:"brawlidays",price:"149 Gems / Grátis evento",badge:"free",desc:"Skin Supercell Make criada pela comunidade. Disponível no calendário Brawlidays 2024."},
+  {name:"Sakura Colt",brawler:"Colt",emoji:"🌸",rarity:"super",theme:"lunar",price:"79 Gems",badge:"seasonal",desc:"Colt com temática japonesa de cerejeiras. Skin sazonal de primavera."},
+
+  // ── NITA ──
+  {name:"Rui Shou Nita",brawler:"Nita",emoji:"🐉",rarity:"mythic",theme:"lunar",price:"249 Gems",badge:"seasonal",desc:"Nita com visual do Ano Novo Chinês — dragão dourado e efeitos de fogo."},
+  {name:"Little Bo Nita",brawler:"Nita",emoji:"🐑",rarity:"rare",theme:"classic",price:"29 Gems",badge:"",desc:"Nita vestida de pastora com o seu urso como ovelha."},
+  {name:"Panda Nita",brawler:"Nita",emoji:"🐼",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Nita e Bruce transformados em pandas fofos."},
+
+  // ── BULL ──
+  {name:"El Toro Bull",brawler:"Bull",emoji:"🐂",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Bull vestido como um toureiro espanhol. Efeitos de vermelho no Super."},
+  {name:"Kansai Dragon Bull",brawler:"Bull",emoji:"🐲",rarity:"mythic",theme:"retropolis",price:"249 Gems",badge:"seasonal",desc:"Bull como um dragão japonês com efeitos de fogo. Skin sazonal de Retropolis Nights."},
+  {name:"True Silver Bull",brawler:"Bull",emoji:"🥈",rarity:"true",theme:"classic",price:"10.000 Coins",badge:"",desc:"Versão metálica prata de Bull. Símbolo de dedicação do jogador."},
+  {name:"True Gold Bull",brawler:"Bull",emoji:"🥇",rarity:"true",theme:"classic",price:"25.000 Coins",badge:"",desc:"Versão metálica ouro de Bull. Requer True Silver primeiro."},
+
+  // ── BROCK ──
+  {name:"Boom Box Brock",brawler:"Brock",emoji:"🎵",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Brock com um boom box gigante e visual de rapper. Rockets com tema musical."},
+  {name:"Lion Dance Brock",brawler:"Brock",emoji:"🦁",rarity:"legendary",theme:"lunar",price:"299 Gems",badge:"limited",desc:"Uma das skins mais raras do jogo. Lion Dance chinês com efeitos exclusivos. Nunca voltou desde o lançamento."},
+  {name:"Hypercharged Brock",brawler:"Brock",emoji:"⚡",rarity:"hyper",theme:"classic",price:"499 Gems",badge:"",desc:"O modelo de Brock transforma-se ao ativar o Hypercharge. Efeitos elétricos no ataque."},
+
+  // ── EL PRIMO ──
+  {name:"El Rey Primo",brawler:"El Primo",emoji:"🤴",rarity:"epic",theme:"classic",price:"149 Gems",badge:"",desc:"El Primo como um rei com manto real. Efeitos dourados nos socos."},
+  {name:"Baby Shark El Primo",brawler:"El Primo",emoji:"🦈",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"El Primo fantasiado de bebé tubarão. Uma das skins mais icónicas e bem-humoradas do jogo."},
+  {name:"Lucha Bull El Primo",brawler:"El Primo",emoji:"💪",rarity:"rare",theme:"classic",price:"29 Gems",badge:"",desc:"El Primo com máscara de lucha libre e calções coloridos."},
+
+  // ── BARLEY ──
+  {name:"Wizard Barley",brawler:"Barley",emoji:"🧙",rarity:"rare",theme:"classic",price:"Grátis (Supercell ID)",badge:"free",desc:"Barley como um feiticeiro. Dada gratuitamente ao criar conta Supercell ID."},
+  {name:"Mortician Barley",brawler:"Barley",emoji:"⚰️",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Barley como um funerário macabro com garrafas de veneno."},
+  {name:"Sailor Barley",brawler:"Barley",emoji:"⚓",rarity:"rare",theme:"classic",price:"29 Gems",badge:"",desc:"Barley como um marinheiro com garrafas de rum."},
+
+  // ── POCO ──
+  {name:"El Rudo Poco",brawler:"Poco",emoji:"😈",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Poco como um músico vilão com guitarra elétrica dark."},
+  {name:"Mariachi Poco",brawler:"Poco",emoji:"🎺",rarity:"rare",theme:"classic",price:"29 Gems",badge:"",desc:"Poco com traje de mariachi mexicano e sombrero."},
+
+  // ── ROSA ──
+  {name:"Spring Rosa",brawler:"Rosa",emoji:"🌹",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Rosa com um visual primaveril com flores e folhagem colorida."},
+
+  // ── PENNY ──
+  {name:"Corsair Penny",brawler:"Penny",emoji:"🏴‍☠️",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Penny como uma corsária temível com canhão pirata."},
+  {name:"Karate Penny",brawler:"Penny",emoji:"🥋",rarity:"rare",theme:"classic",price:"29 Gems",badge:"",desc:"Penny em equipamento de karaté com faixa preta."},
+
+  // ── CARL ──
+  {name:"Captain Carl",brawler:"Carl",emoji:"🚢",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Carl como um capitão de navio. O picão tem visual de âncora."},
+  {name:"True Gold Carl",brawler:"Carl",emoji:"🥇",rarity:"true",theme:"classic",price:"25.000 Coins",badge:"",desc:"Versão dourada de Carl."},
+
+  // ── DARRYL ──
+  {name:"Robo Mike Darryl",brawler:"Darryl",emoji:"🤖",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Darryl como um robô de batalha com efeitos metálicos."},
+  {name:"Dumpling Darryl",brawler:"Darryl",emoji:"🥟",rarity:"legendary",theme:"lunar",price:"299 Gems",badge:"limited",desc:"Darryl como um bolinho chinês. Uma das skins mais raras e únicas do jogo."},
+
+  // ── RICO ──
+  {name:"Robo Kitty Rico",brawler:"Rico",emoji:"🐱",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Rico com o visual de um robô gato. Projéteis com efeitos de felino."},
+
+  // ── 8-BIT ──
+  {name:"High Score 8-Bit",brawler:"8-Bit",emoji:"👾",rarity:"legendary",theme:"retropolis",price:"299 Gems",badge:"seasonal",desc:"8-Bit com visual de videojogo arcade dos anos 80. Voice lines de jogos clássicos."},
+  {name:"Antivirus 8-Bit",brawler:"8-Bit",emoji:"🛡️",rarity:"mythic",theme:"retropolis",price:"249 Gems",badge:"seasonal",desc:"8-Bit como um antivírus. Efeitos de código e vírus digitais."},
+
+  // ── FRANK ──
+  {name:"Caveman Frank",brawler:"Frank",emoji:"🦴",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Frank como um homem das cavernas pré-histórico."},
+  {name:"Ultra Mecha Frank",brawler:"Frank",emoji:"🤖",rarity:"hyper",theme:"classic",price:"499 Gems",badge:"",desc:"Frank transforma-se num mecha gigante ao ativar o Hypercharge."},
+  {name:"Red King Frank",brawler:"Frank",emoji:"♟️",rarity:"legendary",theme:"classic",price:"299 Gems",badge:"limited",desc:"Frank como um rei vermelho de xadrez. Exclusiva da Supercell Store."},
+  {name:"Blue King Frank",brawler:"Frank",emoji:"♟️",rarity:"legendary",theme:"classic",price:"299 Gems",badge:"limited",desc:"Frank como um rei azul de xadrez. Exclusiva da Supercell Store."},
+
+  // ── BIBI ──
+  {name:"Pop Star Bibi",brawler:"Bibi",emoji:"🎤",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Bibi como uma estrela pop. Efeitos musicais na bolha."},
+  {name:"Dream Prom Bibi",brawler:"Bibi",emoji:"💗",rarity:"epic",theme:"classic",price:"149 Gems",badge:"",desc:"Bibi em vestido de baile de finalistas com taco de baseball enfeitado."},
+  {name:"Street Bibi",brawler:"Bibi",emoji:"🛹",rarity:"rare",theme:"retropolis",price:"29 Gems",badge:"",desc:"Bibi com look de skater urbano."},
+
+  // ── BEA ──
+  {name:"Honeybee Bea",brawler:"Bea",emoji:"🐝",rarity:"rare",theme:"classic",price:"29 Gems",badge:"",desc:"Bea com fato de abelha com antenas e asas."},
+  {name:"Firefly Bea",brawler:"Bea",emoji:"✨",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Bea como um vagalume com efeitos luminosos nos projéteis."},
+
+  // ── EDGAR ──
+  {name:"Dark Lord Edgar",brawler:"Edgar",emoji:"🖤",rarity:"epic",theme:"classic",price:"149 Gems",badge:"",desc:"Edgar com visual de senhor das trevas com manto negro e olhos brilhantes."},
+  {name:"Eleven Edgar",brawler:"Edgar",emoji:"🔮",rarity:"legendary",theme:"strangerthings",price:"299 Gems",badge:"collab",desc:"Edgar como Eleven de Stranger Things. Collab oficial com a série Netflix."},
+
+  // ── SANDY ──
+  {name:"Washed Up Sandy",brawler:"Sandy",emoji:"🏖️",rarity:"rare",theme:"classic",price:"29 Gems",badge:"",desc:"Sandy como um surfista desgrenhado que acordou na praia."},
+  {name:"Pharaoh Sandy",brawler:"Sandy",emoji:"🏺",rarity:"mythic",theme:"sandsoftime",price:"249 Gems",badge:"",desc:"Sandy como um faraó egípcio. Perfeito para a temporada Sands of Time."},
+
+  // ── AMBER ──
+  {name:"Dragon Flame Amber",brawler:"Amber",emoji:"🐲",rarity:"epic",theme:"classic",price:"149 Gems",badge:"",desc:"Amber com visual de dragão. As chamas têm efeito de fogo de dragão."},
+
+  // ── MORTIS ──
+  {name:"Rockabilly Mortis",brawler:"Mortis",emoji:"🎸",rarity:"mythic",theme:"retropolis",price:"249 Gems",badge:"seasonal",desc:"Mortis como um rockabilly dos anos 50 com pompadour e couro."},
+  {name:"Frankenstein Mortis",brawler:"Mortis",emoji:"🧟",rarity:"super",theme:"brawlidays",price:"79 Gems",badge:"seasonal",desc:"Mortis como Frankenstein. Skin sazonal de Halloween."},
+  {name:"Void Mortis",brawler:"Mortis",emoji:"🌌",rarity:"legendary",theme:"classic",price:"299 Gems",badge:"",desc:"Mortis com visual cósmico. O seu ataque abre fendas no espaço."},
+
+  // ── TARA ──
+  {name:"Dark Crystal Tara",brawler:"Tara",emoji:"🔮",rarity:"legendary",theme:"classic",price:"299 Gems",badge:"",desc:"Tara com um cristal negro que absorve a luz. Efeitos especiais no buraco negro."},
+  {name:"Urban Ninja Tara",brawler:"Tara",emoji:"🥷",rarity:"mythic",theme:"lunar",price:"249 Gems",badge:"seasonal",desc:"Tara como uma ninja urbana. Skin sazonal do Lunar Brawl."},
+
+  // ── GENE ──
+  {name:"Apocalypse Gene",brawler:"Gene",emoji:"💀",rarity:"epic",theme:"angels",price:"149 Gems",badge:"",desc:"Gene como um espírito do apocalipse. Temática Angels vs Demons."},
+  {name:"True Gold Gene",brawler:"Gene",emoji:"🥇",rarity:"true",theme:"classic",price:"25.000 Coins",badge:"",desc:"Versão dourada de Gene."},
+
+  // ── LEON ──
+  {name:"Shadow Tiger Leon",brawler:"Leon",emoji:"🐯",rarity:"legendary",theme:"classic",price:"299 Gems",badge:"",desc:"Leon como um tigre das sombras. Um dos visuais mais icónicos do jogo."},
+  {name:"El Leon",brawler:"Leon",emoji:"🦁",rarity:"super",theme:"classic",price:"79 Gems",badge:"",desc:"Leon com máscara de lucha libre e visual de luchador."},
+  {name:"Hypercharged Leon",brawler:"Leon",emoji:"⚡",rarity:"hyper",theme:"classic",price:"499 Gems",badge:"",desc:"Modelo de Leon altera ao Hypercharge — torna-se um predador sombrio."},
+
+  // ── SPIKE ──
+  {name:"Buzz Lightyear Spike",brawler:"Spike",emoji:"🚀",rarity:"legendary",theme:"toystory",price:"299 Gems",badge:"collab",desc:"Spike vestido como Buzz Lightyear do Toy Story. Collab Disney/Pixar."},
+  {name:"Cactus Spike",brawler:"Spike",emoji:"🌵",rarity:"rare",theme:"classic",price:"29 Gems",badge:"",desc:"Spike com look simples de cacto decorativo."},
+
+  // ── CROW ──
+  {name:"Gold Mecha Crow",brawler:"Crow",emoji:"🤖",rarity:"legendary",theme:"classic",price:"50.000 Star Points (legado)",badge:"limited",desc:"Uma das skins mais raras do jogo. Originalmente custava 50.000 Star Points — moeda removida do jogo."},
+  {name:"Nightmare Crow",brawler:"Crow",emoji:"😱",rarity:"epic",theme:"brawlidays",price:"149 Gems",badge:"seasonal",desc:"Crow como um pesadelo andante. Skin de Halloween com efeitos sombrios."},
+
+  // ── MEG ──
+  {name:"Mecha Meg",brawler:"Meg",emoji:"🤖",rarity:"hyper",theme:"classic",price:"499 Gems",badge:"",desc:"O robô de Meg fica ainda mais imponente ao Hypercharge — transformação visual espetacular."},
+
+  // ── CHESTER ──
+  {name:"Uno Chester",brawler:"Chester",emoji:"🃏",rarity:"mythic",theme:"classic",price:"249 Gems",badge:"limited",desc:"Chester com tema do jogo de cartas UNO. Já não está disponível desde setembro 2025."},
+  {name:"Haunted Chester",brawler:"Chester",emoji:"👻",rarity:"epic",theme:"brawlidays",price:"149 Gems",badge:"seasonal",desc:"Chester assombrado com efeitos espectrais nos seus Supers variados."},
+
+  // ── KIT ──
+  {name:"Billy the Kit",brawler:"Kit",emoji:"🤠",rarity:"super",theme:"classic",price:"29 Gems",badge:"",desc:"Kit como um gatinho cowboy. Uma das skins mais populares para Kit."},
+
+  // ── DRACO ──
+  {name:"Default Draco",brawler:"Draco",emoji:"🎸",rarity:"legendary",theme:"madevil",price:"Base",badge:"",desc:"O visual padrão de Draco — guitarrista dragão do MadEvil Manor."},
+
+  // ── LUMI ──
+  {name:"Eleven Lumi",brawler:"Lumi",emoji:"🔮",rarity:"legendary",theme:"strangerthings",price:"299 Gems",badge:"collab",desc:"Lumi como Eleven de Stranger Things. Uma das skins de collab mais populares."},
+  {name:"Default Lumi",brawler:"Lumi",emoji:"🥁",rarity:"legendary",theme:"madevil",price:"Base",badge:"",desc:"Visual padrão de Lumi — baterista do MadEvil Manor."},
+
+  // ── SIRIUS ──
+  {name:"Void Sirius",brawler:"Sirius",emoji:"🌑",rarity:"legendary",theme:"classic",price:"Base",badge:"",desc:"Visual padrão de Sirius — o Vilão de Starr Park com efeitos de sombra únicos."},
+
+  // ── DAMIAN ──
+  {name:"Default Damian",brawler:"Damian",emoji:"🎤",rarity:"legendary",theme:"madevil",price:"Base",badge:"new",desc:"O visual padrão de Damian — vocalista do MadEvil Manor. Recém lançado a 24 de Abril de 2026."},
+
+  // ── NAJIA ──
+  {name:"Default Najia",brawler:"Najia",emoji:"🐍",rarity:"legendary",theme:"sandsoftime",price:"Base",badge:"",desc:"Visual padrão de Najia — assassina de cobras com tema egípcio."},
+
+  // ── BRAWL PASS SKINS ──
+  {name:"Sandstalker Lily",brawler:"Lily",emoji:"🌷",rarity:"brawlpass",theme:"sandsoftime",price:"Brawl Pass (T48)",badge:"brawlpass",desc:"Skin principal da temporada Sands of Time. Lily como uma caçadora do deserto. Inclui Chroma: Sandwalker Lily (branco) e Night Sands Lily (vermelho)."},
+  {name:"Sultan Cordelius",brawler:"Cordelius",emoji:"🍄",rarity:"brawlpass",theme:"sandsoftime",price:"Brawl Pass (T48)",badge:"brawlpass",desc:"Cordelius transforma-se num sultão egípcio. Skin do Brawl Pass Sands of Time com visual luxuoso."},
+  {name:"Fairie Bonnie",brawler:"Bonnie",emoji:"🧚",rarity:"brawlpass",theme:"classic",price:"Brawl Pass (T49)",badge:"brawlpass",desc:"Bonnie como uma fada — Dragons & Faeries Brawl Pass Season 49."},
+  {name:"Dragon Griff",brawler:"Griff",emoji:"🐉",rarity:"brawlpass",theme:"classic",price:"Brawl Pass (T49)",badge:"brawlpass",desc:"Griff transformado num dragão. Skin do Brawl Pass Dragons & Faeries (T49)."},
+  {name:"Royale Trunk",brawler:"Shelly",emoji:"👑",rarity:"brawlpass",theme:"classic",price:"Grátis (Keep Brawl Alive)",badge:"free",desc:"Skin especial do evento Keep Brawl Alive — completamente grátis para todos os participantes."},
+
+  // ── CHAMPIONSHIP ──
+  {name:"W Otis",brawler:"Otis",emoji:"🏆",rarity:"legendary",theme:"championship",price:"299 Gems (ex-25.000 SP)",badge:"",desc:"Skin dos vencedores do World Finals 2023 da ZETA Division. Uma das skins mais exclusivas."},
+  {name:"Street Shade",brawler:"Shade",emoji:"🕶️",rarity:"epic",theme:"championship",price:"149 Gems",badge:"",desc:"Skin de Championship com visual urbano e detalhes de esports."},
+];
+
+/* ══════════════════════════════
+   ESTADO
+══════════════════════════════ */
+let currentRarity="all", currentTheme="all", currentSearch="", currentView="large";
+
+/* ══════════════════════════════
+   RENDER
+══════════════════════════════ */
+function render(){
+  const grid=document.getElementById("skinsGrid");
+  const s=currentSearch.toLowerCase().trim();
+  const filtered=SKINS.filter(sk=>{
+    const rMatch=currentRarity==="all"||sk.rarity===currentRarity;
+    const tMatch=currentTheme==="all"||sk.theme===currentTheme;
+    const sMatch=s===""||sk.name.toLowerCase().includes(s)||sk.brawler.toLowerCase().includes(s);
+    return rMatch&&tMatch&&sMatch;
+  });
+
+  document.getElementById("resultsInfo").textContent=`${filtered.length} skin${filtered.length!==1?"s":""} encontrada${filtered.length!==1?"s":""}`;
+
+  if(filtered.length===0){
+    grid.innerHTML="";
+    document.getElementById("noResults").style.display="block";
+    return;
+  }
+  document.getElementById("noResults").style.display="none";
+
+  grid.className=`skins-grid grid-${currentView}`;
+
+  grid.innerHTML=filtered.map(sk=>{
+    const col=RARITY_COLORS[sk.rarity]||"#fff";
+    const isList=currentView==="list";
+    const badgeHTML=sk.badge?`<div class="skin-badge badge-${sk.badge}">${getBadgeLabel(sk.badge)}</div>`:"";
+    const priceIcon=sk.rarity==="true"?"🪙":sk.rarity==="brawlpass"?"🎫":"💎";
+    return `
+    <div class="skin-card${isList?" list-view":""}" data-rarity="${sk.rarity}" onclick="openModal('${sk.name.replace(/'/g,"\\'")}')">
+      ${badgeHTML}
+      <div class="skin-rarity-bar" style="background:${col}"></div>
+      <div class="skin-thumb">
+        <div class="skin-thumb-bg" style="background:radial-gradient(ellipse at center,${col}44,transparent 70%)"></div>
+        ${sk.img
+          ? `<img class="skin-thumb-img" src="${sk.img}" alt="${sk.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">`
+          : ""}
+        <div class="skin-thumb-emoji" style="${sk.img?'display:none':''}">${sk.emoji}</div>
+      </div>
+      <div class="skin-body">
+        <div class="skin-name">${sk.name}</div>
+        <div class="skin-brawler">${sk.brawler}</div>
+        <div class="skin-bottom">
+          <div class="skin-price">${priceIcon} ${sk.price}</div>
+          <div class="skin-rarity-pill p-${sk.rarity}">${RARITY_LABELS[sk.rarity]}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function getBadgeLabel(b){
+  return {new:"NOVO",limited:"LIMITADO",brawlpass:"PASS",collab:"COLLAB",free:"GRÁTIS",seasonal:"SAZONAL"}[b]||b.toUpperCase();
+}
+
+/* ══════════════════════════════
+   MODAL
+══════════════════════════════ */
+function openModal(name){
+  const sk=SKINS.find(s=>s.name===name);
+  if(!sk)return;
+  const col=RARITY_COLORS[sk.rarity];
+  document.getElementById("modalHeroBg").style.background=`radial-gradient(ellipse at center,${col}33,transparent 70%)`;
+  if(sk.img){
+    document.getElementById("modalEmoji").innerHTML=`<img src="${sk.img}" alt="${sk.name}" style="width:100px;height:100px;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,.5))" onerror="this.outerHTML='${sk.emoji}'">`;
+  } else {
+    document.getElementById("modalEmoji").textContent=sk.emoji;
+  }
+  document.getElementById("modalSkinName").textContent=sk.name;
+  document.getElementById("modalBrawler").textContent=`Para ${sk.brawler}`;
+  document.getElementById("modalRarityBar").style.background=col;
+  const extras=(RARITY_EXTRAS[sk.rarity]||[]).map(e=>`<div class="modal-extra">${e}</div>`).join("");
+  const priceIcon=sk.rarity==="true"?"🪙":sk.rarity==="brawlpass"?"🎫":"💎";
+  document.getElementById("modalBody").innerHTML=`
+    <div class="modal-row"><span class="modal-row-label">Raridade</span><span class="modal-row-val" style="color:${col}">${RARITY_LABELS[sk.rarity]}</span></div>
+    <div class="modal-row"><span class="modal-row-label">Brawler</span><span class="modal-row-val">${sk.brawler}</span></div>
+    <div class="modal-row"><span class="modal-row-label">Preço</span><span class="modal-row-val">${priceIcon} ${sk.price}</span></div>
+    <div class="modal-row"><span class="modal-row-label">Tema</span><span class="modal-row-val">${sk.theme.charAt(0).toUpperCase()+sk.theme.slice(1)}</span></div>
+    ${sk.badge?`<div class="modal-row"><span class="modal-row-label">Estado</span><span class="modal-row-val">${getBadgeLabel(sk.badge)}</span></div>`:""}
+    <div class="modal-desc">${sk.desc}</div>
+    ${extras?`<div style="margin-top:.75rem;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.5rem">Incluído nesta skin</div><div class="modal-extras">${extras}</div>`:""}
+  `;
+  document.getElementById("modalOverlay").classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeModal(){document.getElementById("modalOverlay").classList.remove("open");document.body.style.overflow="";}
+document.getElementById("modalClose").addEventListener("click",closeModal);
+document.getElementById("modalOverlay").addEventListener("click",e=>{if(e.target===document.getElementById("modalOverlay"))closeModal();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+
+/* ══════════════════════════════
+   FILTROS & CONTROLOS
+══════════════════════════════ */
+document.querySelectorAll("#rarityFilters .filter-tab").forEach(t=>{
+  t.addEventListener("click",()=>{
+    document.querySelectorAll("#rarityFilters .filter-tab").forEach(x=>x.classList.remove("active"));
+    t.classList.add("active");
+    currentRarity=t.dataset.rarity;
+    render();
+  });
+});
+document.querySelectorAll("#themeFilters .theme-tab").forEach(t=>{
+  t.addEventListener("click",()=>{
+    document.querySelectorAll("#themeFilters .theme-tab").forEach(x=>x.classList.remove("active"));
+    t.classList.add("active");
+    currentTheme=t.dataset.theme;
+    render();
+  });
+});
+document.getElementById("searchInput").addEventListener("input",e=>{currentSearch=e.target.value;render();});
+
+["Large","Small","List"].forEach(v=>{
+  document.getElementById("btn"+v).addEventListener("click",()=>{
+    document.querySelectorAll(".view-btn").forEach(b=>b.classList.remove("active"));
+    document.getElementById("btn"+v).classList.add("active");
+    currentView=v.toLowerCase();
+    render();
+  });
+});
+
+/* ══════════════════════════════
+   CURSOR
+══════════════════════════════ */
+const cursor=document.getElementById("cursor");
+const ring=document.getElementById("cursor-ring");
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+"px";cursor.style.top=my+"px";});
+(function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+"px";ring.style.top=ry+"px";requestAnimationFrame(anim);})();
+document.querySelectorAll("a,button,.skin-card").forEach(el=>{
+  el.addEventListener("mouseenter",()=>{cursor.style.width="20px";cursor.style.height="20px";ring.style.width="50px";ring.style.height="50px";});
+  el.addEventListener("mouseleave",()=>{cursor.style.width="12px";cursor.style.height="12px";ring.style.width="36px";ring.style.height="36px";});
+});
+
+/* INIT */
+render();
+</script>
+</body>
+</html>

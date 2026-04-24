@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guias — BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --orange2: #FF4500;
+            --teal: #00C9A7;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --purple: #A855F7;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --light: #F5F0E8;
+            --light2: #EDE8DE;
+            --text-dark: #1A1A2E;
+            --card-r: 16px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        * {
+            cursor: none !important;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--yellow);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(255, 208, 0, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a.active {
+            color: var(--yellow);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--yellow);
+            border-radius: 2px;
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* HEADER */
+        .page-header {
+            padding: 8rem 3rem 4rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--dark2);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .page-header::before {
+            content: 'GUIAS';
+            position: absolute;
+            bottom: -2rem;
+            right: -1rem;
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(6rem, 14vw, 11rem);
+            color: rgba(255, 255, 255, .03);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .header-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 55% 70% at 85% 50%, rgba(0, 201, 167, .15), transparent), radial-gradient(ellipse 40% 50% at 10% 60%, rgba(168, 85, 247, .12), transparent);
+        }
+
+        .header-inner {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-eyebrow {
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: .5rem;
+        }
+
+        .page-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .page-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, .5);
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .cat-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+        }
+
+        .cat-pill {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .35rem 1rem;
+            border-radius: 100px;
+            font-size: .78rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: rgba(255, 255, 255, .5);
+        }
+
+        /* TOOLBAR */
+        .toolbar {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+
+        .filter-tab {
+            padding: .45rem 1.1rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: .8rem;
+            letter-spacing: .04em;
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: rgba(255, 255, 255, .5);
+            background: transparent;
+            transition: all .2s;
+        }
+
+        .filter-tab:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, .3);
+        }
+
+        .filter-tab.active {
+            border-color: transparent;
+            color: var(--text-dark);
+        }
+
+        .filter-tab[data-cat="all"].active {
+            background: #fff;
+            color: var(--text-dark);
+        }
+
+        .filter-tab[data-cat="ranked"].active {
+            background: #FFD000;
+            color: var(--text-dark);
+        }
+
+        .filter-tab[data-cat="f2p"].active {
+            background: #22C55E;
+            color: #fff;
+        }
+
+        .filter-tab[data-cat="brawlers"].active {
+            background: #A855F7;
+            color: #fff;
+        }
+
+        .filter-tab[data-cat="modos"].active {
+            background: #3B82F6;
+            color: #fff;
+        }
+
+        .search-wrap {
+            position: relative;
+        }
+
+        .search-input {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 100px;
+            padding: .55rem 1.2rem .55rem 2.5rem;
+            color: #fff;
+            font-family: 'Nunito', sans-serif;
+            font-size: .9rem;
+            outline: none;
+            width: 220px;
+            transition: border-color .2s;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .search-input:focus {
+            border-color: var(--yellow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: .9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .9rem;
+            pointer-events: none;
+            opacity: .4;
+        }
+
+        /* GRID */
+        .guias-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem 5rem;
+        }
+
+        .guias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        @media(max-width:800px) {
+            .guias-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .guias-container {
+                padding: 0 1.5rem 4rem;
+            }
+
+            .toolbar {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* CARD */
+        .guia-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform .25s, border-color .25s, box-shadow .25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guia-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .guia-card[data-cat="ranked"]:hover {
+            border-color: rgba(255, 208, 0, .3);
+            box-shadow: 0 20px 50px rgba(255, 208, 0, .08);
+        }
+
+        .guia-card[data-cat="f2p"]:hover {
+            border-color: rgba(34, 197, 94, .3);
+            box-shadow: 0 20px 50px rgba(34, 197, 94, .08);
+        }
+
+        .guia-card[data-cat="brawlers"]:hover {
+            border-color: rgba(168, 85, 247, .3);
+            box-shadow: 0 20px 50px rgba(168, 85, 247, .08);
+        }
+
+        .guia-card[data-cat="modos"]:hover {
+            border-color: rgba(59, 130, 246, .3);
+            box-shadow: 0 20px 50px rgba(59, 130, 246, .08);
+        }
+
+        .guia-color-bar {
+            height: 4px;
+        }
+
+        .guia-thumb {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guia-thumb-emoji {
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .5));
+            transition: transform .3s;
+        }
+
+        .guia-card:hover .guia-thumb-emoji {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .guia-thumb-bg {
+            position: absolute;
+            inset: 0;
+            opacity: .12;
+        }
+
+        .difficulty-badge {
+            position: absolute;
+            top: .75rem;
+            right: .75rem;
+            z-index: 2;
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .2rem .6rem;
+            border-radius: 100px;
+        }
+
+        .diff-facil {
+            background: rgba(34, 197, 94, .2);
+            color: #4ADE80;
+            border: 1px solid rgba(34, 197, 94, .3);
+        }
+
+        .diff-medio {
+            background: rgba(255, 208, 0, .2);
+            color: #FFD000;
+            border: 1px solid rgba(255, 208, 0, .3);
+        }
+
+        .diff-dificil {
+            background: rgba(239, 68, 68, .2);
+            color: #FCA5A5;
+            border: 1px solid rgba(239, 68, 68, .3);
+        }
+
+        .guia-body {
+            padding: 1.25rem 1.5rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guia-cat-label {
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: .5rem;
+        }
+
+        .guia-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.25;
+            margin-bottom: .6rem;
+        }
+
+        .guia-desc {
+            font-size: .875rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .5);
+            flex: 1;
+            margin-bottom: 1.25rem;
+        }
+
+        .guia-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .guia-tags {
+            display: flex;
+            gap: .4rem;
+            flex-wrap: wrap;
+        }
+
+        .guia-tag {
+            font-size: .65rem;
+            font-weight: 700;
+            padding: .15rem .5rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .45);
+        }
+
+        .guia-read-btn {
+            display: flex;
+            align-items: center;
+            gap: .35rem;
+            font-family: 'Russo One', sans-serif;
+            font-size: .75rem;
+            letter-spacing: .05em;
+            padding: .4rem 1rem;
+            border-radius: 100px;
+            border: none;
+            transition: transform .2s, box-shadow .2s;
+            white-space: nowrap;
+        }
+
+        .guia-read-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* NO RESULTS */
+        .no-results {
+            text-align: center;
+            padding: 5rem 0;
+            color: rgba(255, 255, 255, .3);
+            display: none;
+        }
+
+        .no-results-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: .5rem;
+        }
+
+        /* ═══════════ MODAL ARTIGO ═══════════ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 800;
+            background: rgba(0, 0, 0, .85);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 780px;
+            margin: auto;
+            transform: translateY(30px) scale(.97);
+            transition: transform .3s;
+            position: relative;
+        }
+
+        .modal-overlay.open .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            z-index: 10;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .1);
+            border: none;
+            color: rgba(255, 255, 255, .6);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s, color .2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, .2);
+            color: #fff;
+        }
+
+        /* HERO DO ARTIGO */
+        .article-hero {
+            padding: 3rem 3rem 2rem;
+            position: relative;
+            border-radius: 24px 24px 0 0;
+            overflow: hidden;
+        }
+
+        .article-hero-bg {
+            position: absolute;
+            inset: 0;
+            opacity: .12;
+        }
+
+        .article-hero-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .article-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .5));
+        }
+
+        .article-cat {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: .5rem;
+        }
+
+        .article-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.6rem, 4vw, 2.5rem);
+            line-height: 1.1;
+            margin-bottom: .75rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .article-meta-item {
+            font-size: .78rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .35);
+            display: flex;
+            align-items: center;
+            gap: .35rem;
+        }
+
+        /* CONTEÚDO */
+        .article-body {
+            padding: 2.5rem 3rem 3rem;
+        }
+
+        .article-intro {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: rgba(255, 255, 255, .7);
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .article-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .article-h2 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .article-h2-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .article-p {
+            font-size: .95rem;
+            line-height: 1.85;
+            color: rgba(255, 255, 255, .6);
+            margin-bottom: 1rem;
+        }
+
+        .article-tip {
+            background: rgba(255, 208, 0, .08);
+            border: 1px solid rgba(255, 208, 0, .2);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            gap: .75rem;
+            align-items: flex-start;
+            margin: 1.25rem 0;
+        }
+
+        .article-tip-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: .05rem;
+        }
+
+        .article-tip-text {
+            font-size: .9rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .65);
+        }
+
+        .article-tip-text strong {
+            color: var(--yellow);
+        }
+
+        .article-warning {
+            background: rgba(239, 68, 68, .08);
+            border: 1px solid rgba(239, 68, 68, .2);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            gap: .75rem;
+            align-items: flex-start;
+            margin: 1.25rem 0;
+        }
+
+        .article-warning-text {
+            font-size: .9rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .65);
+        }
+
+        .article-warning-text strong {
+            color: #FCA5A5;
+        }
+
+        .article-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            margin: 1rem 0;
+        }
+
+        .article-list li {
+            display: flex;
+            gap: .75rem;
+            font-size: .92rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .article-list li::before {
+            content: '→';
+            color: var(--yellow);
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-top: .05rem;
+        }
+
+        .article-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .75rem;
+            margin: 1.25rem 0;
+        }
+
+        @media(max-width:500px) {
+            .article-cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-body {
+                padding: 1.5rem;
+            }
+
+            .article-hero {
+                padding: 2rem 1.5rem 1.5rem;
+            }
+        }
+
+        .article-mini-card {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .article-mini-card-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: .9rem;
+            margin-bottom: .4rem;
+        }
+
+        .article-mini-card-desc {
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            line-height: 1.6;
+        }
+
+        .article-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, .07);
+            margin: 2rem 0;
+        }
+
+        .brawler-tier-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.25rem 0;
+        }
+
+        .brawler-tier-table th {
+            font-family: 'Russo One', sans-serif;
+            font-size: .75rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .35);
+            padding: .6rem .8rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .brawler-tier-table td {
+            padding: .6rem .8rem;
+            font-size: .85rem;
+            color: rgba(255, 255, 255, .65);
+            border-bottom: 1px solid rgba(255, 255, 255, .04);
+        }
+
+        .tier-s {
+            color: #FFD000;
+            font-weight: 800;
+        }
+
+        .tier-a {
+            color: #4ADE80;
+            font-weight: 800;
+        }
+
+        .tier-b {
+            color: #60A5FA;
+            font-weight: 800;
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="index.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="brawlers.html">Brawlers</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="guias.html" class="active">Guias</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-bg"></div>
+        <div class="header-inner">
+            <p class="page-eyebrow">Para todos os níveis</p>
+            <h1 class="page-title">Guias & Dicas</h1>
+            <p class="page-desc">Tudo o que precisas para melhorar — do básico ao competitivo. Guias escritos em
+                português, sempre atualizados.</p>
+            <div class="cat-pills">
+                <div class="cat-pill" style="border-color:rgba(255,208,0,.3);color:var(--yellow)">🏆 Ranked</div>
+                <div class="cat-pill" style="border-color:rgba(34,197,94,.3);color:#4ADE80">💰 F2P</div>
+                <div class="cat-pill" style="border-color:rgba(168,85,247,.3);color:#C084FC">⚔️ Brawlers</div>
+                <div class="cat-pill" style="border-color:rgba(59,130,246,.3);color:#7EB8FF">🎮 Modos</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="toolbar">
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-cat="all">Todos</button>
+            <button class="filter-tab" data-cat="ranked">🏆 Ranked</button>
+            <button class="filter-tab" data-cat="f2p">💰 F2P</button>
+            <button class="filter-tab" data-cat="brawlers">⚔️ Brawlers</button>
+            <button class="filter-tab" data-cat="modos">🎮 Modos</button>
+        </div>
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="Procurar guia...">
+        </div>
+    </div>
+
+    <div class="guias-container">
+        <div class="guias-grid" id="guiasGrid"></div>
+        <div class="no-results" id="noResults">
+            <div class="no-results-emoji">📖</div>
+            <h3>Nenhum guia encontrado</h3>
+            <p>Tenta outro termo de pesquisa.</p>
+        </div>
+    </div>
+
+    <!-- MODAL ARTIGO -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modal">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div class="article-hero" id="articleHero">
+                <div class="article-hero-bg" id="articleHeroBg"></div>
+                <div class="article-hero-inner">
+                    <div class="article-emoji" id="articleEmoji"></div>
+                    <div class="article-cat" id="articleCat"></div>
+                    <h1 class="article-title" id="articleTitle"></h1>
+                    <div class="article-meta">
+                        <span class="article-meta-item" id="articleDiff"></span>
+                        <span class="article-meta-item" id="articleTime"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-body" id="articleBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const CAT_COLORS = { ranked: "#FFD000", f2p: "#22C55E", brawlers: "#A855F7", modos: "#3B82F6" };
+        const CAT_LABELS = { ranked: "🏆 Ranked & Competitivo", f2p: "💰 F2P & Progressão", brawlers: "⚔️ Guias de Brawlers", modos: "🎮 Modos de Jogo" };
+
+        const GUIAS = [
+            {
+                id: 1, cat: "ranked", emoji: "🏅", diff: "Médio", time: "8 min",
+                title: "Como subir de Rank rapidamente",
+                desc: "Os melhores brawlers, estratégias por modo e os erros mais comuns que te impedem de subir no ranked.",
+                tags: ["Ranked", "Meta", "Estratégia"],
+                color: "#FFD000",
+                gradient: "linear-gradient(135deg,#FFD00033,#FF6B0022)",
+                article: {
+                    intro: "Subir de rank em Brawl Stars pode parecer difícil, mas com as estratégias certas consegues passar de Bronze a Mythic muito mais rápido. Este guia cobre tudo — desde a escolha de brawlers ao mindset competitivo.",
+                    sections: [
+                        {
+                            title: "1. Escolhe os brawlers certos",
+                            content: "A escolha do brawler é o fator mais importante no Ranked. Não uses o teu brawler favorito — usa o brawler mais forte para o mapa e modo selecionados.",
+                            tip: { icon: "💡", text: "<strong>Regra de ouro:</strong> Antes de cada partida, verifica o mapa e adapta o teu brawler. Um Piper num mapa aberto vale mais do que um Mortis no mesmo mapa." },
+                            list: ["Gem Grab — usa brawlers de controlo como Sandy, Emz ou Sprout", "Brawl Ball — tanques e suportes como Frank, Pam e Poco", "Knockout — snipers e damage dealers de longo alcance", "Hot Zone — brawlers com grande área como Nani, Spike e Lou"],
+                            cards: [
+                                { title: "S Tier Meta", desc: "Melodie, Sandy, Kenji, Belle — dominam na maioria dos mapas atuais." },
+                                { title: "Evitar", desc: "Brawlers de baixo tier como El Primo ou Jacky em mapas abertos." },
+                            ]
+                        },
+                        {
+                            title: "2. Joga com equipa",
+                            content: "Jogar com amigos ou pelo menos comunicar com a equipa é a diferença entre ganhar e perder no Diamond+. O Brawl Stars é um jogo de equipa — não tentes fazer tudo sozinho.",
+                            warning: { text: "<strong>Erro mais comum:</strong> Rush no início da partida antes dos aliados estarem em posição. Espera sempre pela tua equipa antes de avançar." },
+                            list: ["Usa os Quick Chat para coordenar (Faz recuo! / Vamos juntos!", "Não te separes da equipa em Gem Grab", "Em Knockout, espera que os aliados confirem kills antes de entrar"]
+                        },
+                        {
+                            title: "3. Domina o posicionamento",
+                            content: "O posicionamento é o que separa jogadores de Bronze de jogadores de Mythic. Mantém distância ideal, usa arbustos estrategicamente e nunca avances sem cobertura.",
+                            tip: { icon: "🗺️", text: "<strong>Dica de mapa:</strong> Aprende os arbustos de cada mapa — os melhores jogadores usam sempre a mesma rota de arbustos para se aproximar em segurança." },
+                            list: ["Damage Dealers — mantém sempre o alcance máximo", "Tanks — avança pelos arbustos, nunca a descoberto", "Supports — fica atrás da equipa, nunca na linha da frente", "Assassinos — espera o momento certo, não te exponhas cedo demais"]
+                        },
+                        {
+                            title: "4. Mindset de subida",
+                            content: "Perder faz parte do processo. O que conta é aprender com cada derrota e não tiltar.",
+                            tip: { icon: "🧠", text: "<strong>Regra dos 3 mapas:</strong> Se perderes 3 vezes seguidas, faz uma pausa de 15 minutos. O tilt é real e destrói a tua performance." },
+                            list: ["Foca em melhorar, não em culpar os aliados", "Analisa o que correu mal em cada derrota", "Não jogas modos onde és fraco — especializa-te em 2 ou 3"]
+                        }
+                    ]
+                }
+            },
+            {
+                id: 2, cat: "ranked", emoji: "🗺️", diff: "Fácil", time: "5 min",
+                title: "Guia de Modos no Ranked — qual escolher",
+                desc: "Cada modo no Ranked tem estratégias muito diferentes. Descobre quais são os mais fáceis para subir e como abordá-los.",
+                tags: ["Ranked", "Modos", "Estratégia"],
+                color: "#FFD000",
+                gradient: "linear-gradient(135deg,#FFD00033,#FF450022)",
+                article: {
+                    intro: "No Ranked, o modo de jogo pode ser tão importante quanto o brawler que escolhes. Alguns modos são muito mais simples de dominar do que outros.",
+                    sections: [
+                        {
+                            title: "Gem Grab — O mais equilibrado",
+                            content: "Gem Grab é o modo mais clássico e equilibrado. O objetivo é simples: apanha 10 gemas e aguenta 15 segundos. Perfeito para subir no Ranked.",
+                            list: ["Quem apanha as gemas deve recuar para zona segura", "Não sejas o healer de gemas — deixa o teu damage dealer pegar", "Em caso de dúvida, mata o gem carrier inimigo antes de avançar"],
+                            tip: { icon: "💎", text: "<strong>Dica:</strong> Se tens 10+ gemas, <strong>não avances</strong>. Fica na tua zona e aguenta a contagem." }
+                        },
+                        {
+                            title: "Brawl Ball — O mais caótico",
+                            content: "Brawl Ball é o modo com maior variância. Uma boa jogada pode virar completamente o resultado.",
+                            list: ["Usa brawlers com knockback para afastar os inimigos da bola", "O Super do Frank e da Bibi são fundamentais neste modo", "Em empate, vai a tudo — é mais fácil ganhar a atacar do que a defender"],
+                            warning: { text: "<strong>Erro clássico:</strong> Tentar fazer golo sozinho quando os inimigos estão todos em campo. Espera sempre apoio da tua equipa." }
+                        },
+                        {
+                            title: "Knockout — O mais técnico",
+                            content: "Knockout é o modo mais exigente tecnicamente. Cada vida conta — morrer significa ficar de fora enquanto os teus aliados jogam 2v3.",
+                            list: ["Snipers como Piper, Belle e Bea dominam este modo", "Nunca te exponhas sem ter o Super disponível", "Prioriza eliminar o damage dealer inimigo antes de qualquer outro"]
+                        }
+                    ]
+                }
+            },
+            {
+                id: 3, cat: "f2p", emoji: "💰", diff: "Fácil", time: "6 min",
+                title: "Guia F2P completo — como progredir sem gastar",
+                desc: "Maximiza os teus recursos grátis. Descobre as melhores formas de ganhar Coins, Credits, Bling e Starr Drops sem gastar um cêntimo.",
+                tags: ["F2P", "Progressão", "Recursos"],
+                color: "#22C55E",
+                gradient: "linear-gradient(135deg,#22C55E33,#00C9A722)",
+                article: {
+                    intro: "Jogar Brawl Stars de forma gratuita é completamente viável em 2026. Com as estratégias certas, podes desbloquear brawlers, Buffies e skins sem gastar dinheiro.",
+                    sections: [
+                        {
+                            title: "1. Maximiza os teus Starr Drops diários",
+                            content: "Os Starr Drops são a principal fonte de recursos grátis. Para maximizares, precisas de completar as Quests diárias e Weekly todos os dias.",
+                            tip: { icon: "📦", text: "<strong>Prioridade máxima:</strong> Completa sempre as 3 Quests diárias. São a forma mais consistente de ganhar Starr Drops e Coins." },
+                            list: ["Completa as Quests diárias todos os dias (≈15 min de jogo)", "Participa nos eventos especiais — têm recompensas muito melhores", "O 6.º win diário dá sempre um Chaos Drop — nunca percas este", "Trofeus acima de 1000 por Brawler dão Prestige Rewards grátis"]
+                        },
+                        {
+                            title: "2. Brawl Pass Gratuito",
+                            content: "A faixa gratuita do Brawl Pass tem cada vez mais valor. Com as Keys, podes escolher recompensas específicas no Vault.",
+                            list: ["Completa todas as tiers da faixa gratuita", "Usa as Resource Keys para Coins ou Power Points", "O Vault de Brawlers vale muito — reserva Keys para brawlers Rare ou Super Rare", "Não gastes Keys em coisas que podes ganhar noutros sítios"],
+                            tip: { icon: "🔑", text: "<strong>Estratégia de Keys:</strong> Guarda as Brawler Keys para Brawlers de raridade Epic ou superior — os de baixa raridade consegues de outras formas." }
+                        },
+                        {
+                            title: "3. Prioridade de desbloqueio de Brawlers",
+                            content: "Não percas Credits em brawlers que não vás usar. Há uma ordem lógica para desbloquear.",
+                            list: ["Desbloqueia primeiro Rare e Super Rare — são os mais baratos e sólidos", "Depois vai para Epic — há muitos excelentes no meta atual", "Mythic e Legendary — aguarda por Brawlers que realmente gostes", "Nunca gastarás recursos em brawlers duplicados — automaticamente converte em Credits"],
+                            cards: [
+                                { title: "Brawlers F2P prioritários", desc: "Shelly (grátis), Colt, Nita, Bull, Poco — excelentes e baratos de obter." },
+                                { title: "Evita gastar em", desc: "Brawlers de raridade muito alta que ainda não tens os básicos." },
+                            ]
+                        },
+                        {
+                            title: "4. Bling e cosméticos grátis",
+                            content: "Com o novo sistema de Shop, há mais Bling grátis disponível do que antes.",
+                            list: ["O Brawl Pass gratuito dá Bling regularmente", "Eventos especiais têm Bling como recompensa", "Não gastes Bling em Skins comuns — guarda para Skins que realmente queres", "O novo sistema de Bling Bundles oferece mais valor por Bling gasto"]
+                        }
+                    ]
+                }
+            },
+            {
+                id: 4, cat: "f2p", emoji: "🦊", diff: "Médio", time: "7 min",
+                title: "Guia de Buffies — tudo o que precisas de saber",
+                desc: "O que são os Buffies, como desbloqueá-los, qual a ordem certa e quais são os melhores para o meta atual.",
+                tags: ["Buffies", "Progressão", "F2P"],
+                color: "#22C55E",
+                gradient: "linear-gradient(135deg,#22C55E33,#FFD00022)",
+                article: {
+                    intro: "Os Buffies chegaram ao Update 65 e mudaram completamente a forma de jogar Brawl Stars. São upgrades permanentes às capacidades dos teus Brawlers — e vale muito a pena investir neles.",
+                    sections: [
+                        {
+                            title: "O que são os Buffies?",
+                            content: "Buffies são upgrades permanentes ao Gadget, Star Power e Hypercharge de cada Brawler. Uma vez desbloqueados, ficam ativos para sempre — não é necessário equipar.",
+                            tip: { icon: "🎰", text: "<strong>Como obter:</strong> Na Claw Machine — custa 1.000 Coins + 2.000 Power Points por pull. O primeiro Buffie é <strong>GRÁTIS</strong> ao atingir 1.000 Trofeus com qualquer Brawler." },
+                            list: ["Cada Brawler tem 3 Buffies: Gadget, Star Power e Hypercharge", "São permanentes — uma vez desbloqueados ficam sempre ativos", "Podes desbloqueá-los em qualquer ordem", "Os Gears Epic e Mythic de Brawlers com Buffies são removidos e reembolsados"]
+                        },
+                        {
+                            title: "Quais Buffies desbloquear primeiro?",
+                            content: "Com recursos limitados, a ordem de prioridade é muito importante. Foca primeiro nos Brawlers que mais jogas e que estão no meta.",
+                            list: ["Prioriza Brawlers que usas no Ranked — o investimento vale mais", "O Hypercharge Buffie é geralmente o mais impactante", "Gadget Buffie vem a seguir, especialmente se usas o Gadget ativamente", "Star Power Buffie é importante mas costuma ser o menos urgente"],
+                            cards: [
+                                { title: "Melhores Buffies do Update 67", desc: "Shelly (Gadget), Spike (Hypercharge), Mortis (Star Power) — top tier." },
+                                { title: "Buffies por Trofeus", desc: "O primeiro é grátis a 1.000 Trofeus — garante este em todos os teus Brawlers principais." }
+                            ]
+                        },
+                        {
+                            title: "Buffie Vault no Brawl Pass",
+                            content: "A forma mais eficiente de obter Buffies é usar Buffie Keys no Vault do Brawl Pass. Podes escolher exatamente qual Buffie queres.",
+                            tip: { icon: "🔑", text: "<strong>Dica:</strong> Guarda as Buffie Keys para Brawlers de raridade alta — os Hypercharge Buffies de Mythic e Legendary têm impacto muito maior." }
+                        }
+                    ]
+                }
+            },
+            {
+                id: 5, cat: "brawlers", emoji: "🌵", diff: "Médio", time: "6 min",
+                title: "Guia de Spike — o melhor do meta",
+                desc: "Tudo sobre Spike — build ideal, melhores modos, posicionamento e estratégias para o dominar.",
+                tags: ["Spike", "Legendary", "Damage Dealer"],
+                color: "#A855F7",
+                gradient: "linear-gradient(135deg,#A855F733,#22C55E22)",
+                article: {
+                    intro: "Spike é um dos Brawlers mais icónicos e consistentes de Brawl Stars. Com a sua área de espinhos e o Super que abranda inimigos, é perfeito para controlo de zona.",
+                    sections: [
+                        {
+                            title: "Build recomendada",
+                            content: "A build ideal para Spike maximiza o seu controlo de zona e o dano sustentado.",
+                            cards: [
+                                { title: "Star Power — Fertilize", desc: "Cura dentro do Super. Fundamental para sustain em Hot Zone e Gem Grab." },
+                                { title: "Gadget — Popping Pincushion", desc: "Dispara espinhos em todas as direções — óptimo para self-defense e escape." },
+                                { title: "Gear — Speed", desc: "Compensa a velocidade baixa de Spike e melhora o posicionamento." },
+                                { title: "Hypercharge", desc: "Enorme — os espinhos ficam permanentes no mapa durante um período." }
+                            ]
+                        },
+                        {
+                            title: "Modos e posicionamento",
+                            content: "Spike brilha em modos onde o controlo de zona é importante e há paredes para se proteger.",
+                            list: ["Gem Grab — fica atrás das paredes e controla o meio com os espinhos", "Hot Zone — usa o Super para criar barreiras de dano dentro da zona", "Showdown — joga defensivo, usa o Super para criar separação", "Bounty — mant'm distância e usa o ataque indireto para causar dano"],
+                            tip: { icon: "🗺️", text: "<strong>Posicionamento:</strong> Spike não precisa de linha de visão direta — dispara em ângulos para alcançar inimigos atrás de paredes. Pratica os ângulos dos teus mapas favoritos." }
+                        },
+                        {
+                            title: "Dicas avançadas",
+                            content: "Para tirar o máximo proveito de Spike, há algumas mecânicas avançadas que deves dominar.",
+                            list: ["O Super dá slow — usa-o antes do aliado avançar para facilitar kills", "Combina o Super com um aliado que cause stun (Frank, Bibi) para locks perfeitos", "O Gadget pode ser usado defensivamente para afastar inimigos que te perseguem", "Com Fertilize, ficar dentro do teu próprio Super regenera HP — usa isto para duels"]
+                        }
+                    ]
+                }
+            },
+            {
+                id: 6, cat: "brawlers", emoji: "💀", diff: "Difícil", time: "8 min",
+                title: "Guia de Mortis — o assassino do mapa",
+                desc: "Mortis é difícil de dominar mas devastador nas mãos certas. Aprende os dashes, o timing e os matchups.",
+                tags: ["Mortis", "Mythic", "Assassin"],
+                color: "#A855F7",
+                gradient: "linear-gradient(135deg,#A855F733,#EF444422)",
+                article: {
+                    intro: "Mortis é o Brawler com a curva de aprendizagem mais acentuada de Brawl Stars. Usado corretamente, é uma máquina de kills. Usado incorretamente, é um peso para a equipa.",
+                    sections: [
+                        {
+                            title: "Mecânica dos Dashes",
+                            content: "O ataque de Mortis é um dash para a frente com a pá. Dominar esta mecânica é fundamental.",
+                            tip: { icon: "⚡", text: "<strong>Regra dos dashes:</strong> Nunca faças um dash sem uma direção de escape planeada. Cada dash deve ter um propósito — aproximar, escapar ou fazer dano." },
+                            list: ["Podes encadear 3 dashes seguidos com ammo cheia", "Alterna dashes em zigzag para ser difícil de acertar", "Usa obstáculos e cantos para fazer dashes surpreendentes", "Com Coiled Snake Star Power, o 1.º dash tem alcance muito maior"]
+                        },
+                        {
+                            title: "Quando e quando não usar Mortis",
+                            content: "Mortis não é uma escolha válida em todos os modos. Saber quando o usar é metade da batalha.",
+                            list: ["✅ Brawl Ball — excelente para roubar a bola e criar confusão", "✅ Showdown — apanha Power Cubes isolados e elimina alvos fracos", "✅ Bounty — mata brawlers de low HP antes que escapem", "❌ Gem Grab — muito difícil de ser útil sem limpeza garantida", "❌ Heist — não causa dano suficiente ao cofre"],
+                            warning: { text: "<strong>Atenção:</strong> Mortis perde para quase todos os brawlers em duelo direto se não tiver vantagem de HP. Só entra no 1v1 quando tens certeza absoluta de ganhar." }
+                        },
+                        {
+                            title: "Build e Buffies",
+                            content: "A build de Mortis muda bastante dependendo do modo. Para uso geral:",
+                            cards: [
+                                { title: "Star Power — Creepy Harvest", desc: "Cura ao eliminar inimigos — transforma cada kill numa oportunidade de sustain." },
+                                { title: "Gadget — Combo Spinner", desc: "Spin que cura — ótimo para sair de situações difíceis." },
+                                { title: "Hypercharge", desc: "Os morcegos do Super ficam mais rápidos e curam mais — devastador em teamfights." },
+                                { title: "Gears recomendados", desc: "Speed + Shield — Mortis precisa de velocidade e de aguentar o primeiro hit." }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                id: 7, cat: "brawlers", emoji: "🌑", diff: "Difícil", time: "9 min",
+                title: "Guia de Sirius — dominando o Ultra Legendary",
+                desc: "O vilão de Starr Park é o Brawler mais único do jogo. Aprende a gerir as sombras, o timing do Super e os melhores modos.",
+                tags: ["Sirius", "Ultra Legendary", "Controller"],
+                color: "#A855F7",
+                gradient: "linear-gradient(135deg,#A855F733,#6D28D922)",
+                article: {
+                    intro: "Sirius é o 100.º Brawler e o mais complexo do jogo. Com um sistema de sombras único, tem um potencial devastador — mas exige muito do jogador.",
+                    sections: [
+                        {
+                            title: "Como funciona o sistema de sombras",
+                            content: "Sirius tem dois projéteis diferentes — a Starr Bomb (área) e a Shadow Strike (single target). Cada Shadow Strike que acerta guarda uma Sombra de um Brawler adversário.",
+                            tip: { icon: "🌑", text: "<strong>Mecânica chave:</strong> Quanto mais Sombras tens guardadas, mais poderoso é o teu Super. Tenta guardar o Super para quando tiveres 3+ Sombras." },
+                            list: ["Shadow Strike guarda 1 Sombra por acerto", "Com Star Power The Darkest Starr, o 4.º acerto guarda 2 Sombras", "Starr Bomb é o teu poke — usa para danificar grupos", "Shadow Strike é para acumular Sombras e eliminar alvos isolados"]
+                        },
+                        {
+                            title: "O Super — Shadow Summon",
+                            content: "O Super invoca todas as Sombras guardadas. Cada Sombra tem as características do Brawler que representa — HP, ataque e velocidade.",
+                            list: ["Invoca Sombras quando tens 4-6 acumuladas para máximo impacto", "Podes dar waypoints às Sombras — tap para seguir, aim para guardar zona", "Use o Gadget A Starr is Born para adicionar uma Sombra extra e slow", "As Sombras são eliminadas quando Sirius morre — não moiras com Sombras guardadas!"],
+                            warning: { text: "<strong>Erro comum:</strong> Usar o Super com poucas Sombras acumuladas. Com 1-2 Sombras o impacto é mínimo — aguenta sempre por mais." }
+                        },
+                        {
+                            title: "Modos ideais",
+                            content: "Sirius brilha em modos onde pode gerir múltiplos inimigos com as Sombras.",
+                            cards: [
+                                { title: "Gem Grab", desc: "As Sombras guardam zona e mantêm pressão constante — excelente." },
+                                { title: "Bounty", desc: "Acumula Sombras de jogadores de alto bounty e elimina com o Super." },
+                                { title: "Evita Heist", desc: "Sirius não causa dano suficiente ao cofre — não vale a pena." },
+                                { title: "Ranked", desc: "Muito forte em Diamond+ onde os jogadores são mais previsíveis." }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                id: 8, cat: "modos", emoji: "💎", diff: "Fácil", time: "5 min",
+                title: "Guia de Gem Grab — como ganhar sempre",
+                desc: "O modo mais clássico do Ranked. Aprende as regras de ouro do Gem Grab e nunca mais percas por erros básicos.",
+                tags: ["Gem Grab", "Modos", "Estratégia"],
+                color: "#3B82F6",
+                gradient: "linear-gradient(135deg,#3B82F633,#00C9A722)",
+                article: {
+                    intro: "Gem Grab é o modo mais equilibrado de Brawl Stars — e ironicamente o que mais erros de principiante tem. Com as regras certas, é também o mais fácil de dominar.",
+                    sections: [
+                        {
+                            title: "Regras de ouro do Gem Grab",
+                            content: "Antes de aprender estratégias avançadas, há regras que nunca deves quebrar:",
+                            list: ["NUNCA deixes o gem carrier avançar para a linha da frente", "A pessoa com mais gemas deve SEMPRE recuar quando atacada", "O objetivo é chegar a 10 gemas e aguardar — não é eliminar toda a equipa", "Quando a contagem começa, toda a equipa deve criar espaço defensivo"],
+                            warning: { text: "<strong>Erro clássico:</strong> O gem carrier com 9 gemas avança para apanhar a 10.ª e morre. Deixa um aliado apanhar a última gema enquanto te proteges." }
+                        },
+                        {
+                            title: "Composição de equipa ideal",
+                            content: "Em Gem Grab, a composição certa faz toda a diferença.",
+                            cards: [
+                                { title: "Gem Carrier", desc: "Tank ou Healer — Bull, Pam, Frank, El Primo. Aguenta mais dano e sobrevive mais." },
+                                { title: "Damage Dealer", desc: "Brawler de alcance médio/longo para pressionar — Brock, Spike, Sandy." },
+                                { title: "Support/Control", desc: "Controla o mid e protege o carrier — Emz, Sandy, Sprout, Barley." }
+                            ]
+                        },
+                        {
+                            title: "Controlo do mid",
+                            content: "O centro do mapa é onde as gemas aparecem — controlar esta zona é ganhar o jogo.",
+                            tip: { icon: "🗺️", text: "<strong>Estratégia:</strong> Não tentes sempre o teamfight no mid. Por vezes basta manter pressão dos lados e apanhar as gemas que caem sem arriscar." },
+                            list: ["Usa arbustos do mid para emboscar — muitos jogadores esquecem-se", "Se tens vantagem de gemas, não precisas de ganhar o fight — só sobreviver", "Quando a contagem começa, recua toda a equipa — não arrisques um fight desnecessário"]
+                        }
+                    ]
+                }
+            },
+            {
+                id: 9, cat: "modos", emoji: "⚽", diff: "Médio", time: "6 min",
+                title: "Guia de Brawl Ball — dicas para ganhar",
+                desc: "Brawl Ball é o modo mais caótico e imprevisível. Domina o posicionamento, o passe e as jogadas de golo.",
+                tags: ["Brawl Ball", "Modos", "Estratégia"],
+                color: "#3B82F6",
+                gradient: "linear-gradient(135deg,#3B82F633,#FF3CAC22)",
+                article: {
+                    intro: "Brawl Ball é o modo que mais vezes resulta em derrotas inesperadas — e em vitórias épicas. Com boas mecânicas e posicionamento, podes virar qualquer jogo.",
+                    sections: [
+                        {
+                            title: "Mecânica do passe e golo",
+                            content: "A bola pode ser lançada com o Super. Saber quando passar e quando tentar o golo é fundamental.",
+                            tip: { icon: "⚽", text: "<strong>Dica de golo:</strong> Não tentes fazer golo sozinho contra 2-3 inimigos. Aproxima-te com apoio da equipa e cria uma situação de superioridade numérica primeiro." },
+                            list: ["Usa brawlers com knockback (Frank, Bibi, Gale) para limpar o caminho", "Passa para um aliado em posição melhor em vez de forçar o golo", "Usa o Super para lançar a bola para além dos inimigos quando bloqueado", "Um Sumo perfeito pode mudar completamente o momentum do jogo"]
+                        },
+                        {
+                            title: "Brawlers recomendados",
+                            content: "Em Brawl Ball, a mobilidade e o knockback são as características mais valiosas.",
+                            cards: [
+                                { title: "Bibi", desc: "Knockback natural e escudo — perfeita para abrir caminho para o golo." },
+                                { title: "Frank", desc: "Super com stun em área — para o avanço inimigo e cria espaço." },
+                                { title: "Stu", desc: "Mobilidade extrema — passa pela defesa e vai ao golo em segundos." },
+                                { title: "El Primo", desc: "Tank que aguenta muito e bloqueia o adversário com o corpo." }
+                            ]
+                        },
+                        {
+                            title: "Defesa vs Ataque",
+                            content: "Saber quando defender e quando atacar é o que separa jogadores de Bronze de jogadores de Diamond.",
+                            list: ["Em empate, é sempre melhor atacar — os adversários farão o mesmo", "Quando tens 1-0, fecha o jogo com posicionamento defensivo", "Nunca avances todos ao mesmo tempo — mantém pelo menos 1 brawler em defesa", "O golo de overhead (lançar a bola para trás) surpreende muitos jogadores"]
+                        }
+                    ]
+                }
+            },
+            {
+                id: 10, cat: "modos", emoji: "🎯", diff: "Difícil", time: "7 min",
+                title: "Guia de Knockout — sobreviver e eliminar",
+                desc: "O modo mais técnico do Ranked. Cada vida conta — aprende a não desperdiçar a tua e a eliminar os inimigos com eficiência.",
+                tags: ["Knockout", "Modos", "Competitivo"],
+                color: "#3B82F6",
+                gradient: "linear-gradient(135deg,#3B82F633,#EF444422)",
+                article: {
+                    intro: "Knockout é o modo mais punitivo de Brawl Stars. Morres e ficas de fora enquanto os teus aliados jogam 2 contra 3. A sobrevivência é tão importante quanto as kills.",
+                    sections: [
+                        {
+                            title: "Princípio fundamental — a vida vale tudo",
+                            content: "Em Knockout, uma morte tua é mais valiosa para o inimigo do que para ti matar um inimigo. Isso parece estranho, mas é a realidade.",
+                            warning: { text: "<strong>Nunca:</strong> entres num fight de 1v2 sem o Super disponível e com baixo HP. O Knockout pune imenso estas decisões — prefere recuar mesmo perdendo posição no mapa." }
+                        },
+                        {
+                            title: "Brawlers que dominam",
+                            content: "Snipers e Damage Dealers de longo alcance dominam o Knockout. A segurança do alcance compensa a falta de mobilidade.",
+                            list: ["Piper — dano massivo à distância, Super de escape", "Belle — marca inimigos para a equipa toda", "Bea — slow consistente e dano acumulado", "Nani — Peep teleguiado para acertos garantidos", "Brock — destrói cobertura e force repositioning"],
+                            tip: { icon: "🎯", text: "<strong>Composição ideal:</strong> 1 Sniper + 1 Damage Dealer + 1 Tank/Aggressive. O tank entra primeiro, absorve dano, e os outros limpam a partir de posição segura." }
+                        },
+                        {
+                            title: "Gestão de round",
+                            content: "Cada round de Knockout tem 3 fases distintas — early, mid e late. A tua abordagem deve mudar.",
+                            cards: [
+                                { title: "Early Round", desc: "Mantém posição, faz poke seguro, não arrisques. Deixa o inimigo errar primeiro." },
+                                { title: "Mid Round", desc: "Se tens vantagem numérica, pressiona. Se não tens, joga defensivo." },
+                                { title: "Late Round", desc: "Com timer a acabar, o risco aumenta. Usa o Super para fechar rounds quando tens vantagem." },
+                                { title: "2v3", desc: "Com desvantagem, joga com muito mais cuidado — uma morte acaba o round." }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                id: 11, cat: "f2p", emoji: "📈", diff: "Fácil", time: "4 min",
+                title: "Como ganhar Trofeus rapidamente",
+                desc: "Estratégias simples para acumular Trofeus em todos os modos — sem gastar recursos nem ser o melhor jogador.",
+                tags: ["Trofeus", "Progressão", "F2P"],
+                color: "#22C55E",
+                gradient: "linear-gradient(135deg,#22C55E33,#3B82F622)",
+                article: {
+                    intro: "Os Trofeus são a métrica principal de progressão em Brawl Stars. Com as estratégias certas, podes subir muito mais rápido do que imaginas.",
+                    sections: [
+                        {
+                            title: "O método da especialização",
+                            content: "Em vez de jogar todos os brawlers igualmente, especializa-te em 3-5 brawlers que realmente dominates. A consistência bate a variedade.",
+                            tip: { icon: "🏆", text: "<strong>Regra prática:</strong> Escolhe 1 brawler por cada modo principal e joga exclusivamente com ele nesse modo. Ao fim de 50 partidas vais notar uma melhoria enorme." },
+                            list: ["Gem Grab — 1 Support (Sandy ou Emz)", "Brawl Ball — 1 Tank (Frank ou Bibi)", "Showdown — 1 Survivor (Spike ou Rosa)", "Knockout — 1 Sniper (Piper ou Belle)"]
+                        },
+                        {
+                            title: "Eventos com multiplicador de Trofeus",
+                            content: "Em determinadas alturas do dia e da semana, há eventos que dão mais Trofeus por vitória.",
+                            list: ["Sugar Rush — eventos de tempo limitado com Trofeus em dobro", "Weekends — mais partidas = mais Trofeus acumulados", "Push durante Challenges — o ambiente competitivo eleva o nível do jogo", "Evita jogar quando estás cansado — as derrotas custam mais Trofeus"]
+                        }
+                    ]
+                }
+            },
+            {
+                id: 12, cat: "ranked", emoji: "🧠", diff: "Difícil", time: "10 min",
+                title: "Mentalidade competitiva — do Gold ao Mythic",
+                desc: "O que te impede de chegar ao Mythic não são os brawlers — é a mentalidade. Este guia aborda o lado psicológico do ranked.",
+                tags: ["Ranked", "Mentalidade", "Competitivo"],
+                color: "#FFD000",
+                gradient: "linear-gradient(135deg,#FFD00033,#A855F722)",
+                article: {
+                    intro: "Muitos jogadores ficam presos em Gold ou Diamond não por falta de skill, mas por erros mentais repetidos. Este guia não te ensina mecânicas — ensina-te como pensar como um jogador de Mythic.",
+                    sections: [
+                        {
+                            title: "O problema do tilt",
+                            content: "Tilt é o estado de jogo emocional onde deixas de tomar decisões racionais. É o maior inimigo de qualquer jogador competitivo.",
+                            warning: { text: "<strong>Sinais de tilt:</strong> Começares a culpar os aliados em cada derrota, jogares mais rápido e menos cuidadoso, ou sentires raiva durante o jogo. Se isto acontece — pára imediatamente." },
+                            list: ["Nunca jogues mais de 3 derrotas seguidas sem fazer uma pausa", "Muda de modo ou de brawler quando sentes que estás a tilt", "Aceita que 40% das derrotas são incontroláveis — foca nos outros 60%", "Analisa sempre: o que EU fiz errado? Não o que os aliados fizeram"]
+                        },
+                        {
+                            title: "Ownership das derrotas",
+                            content: "Os melhores jogadores têm uma característica em comum — assumem responsabilidade pelas suas derrotas mesmo quando os aliados jogaram mal.",
+                            tip: { icon: "🧠", text: "<strong>Exercício mental:</strong> Depois de cada derrota, identifica 1 coisa que PUDESTE fazer diferente. Não importa o que os aliados fizeram — foca em ti." },
+                            list: ["Morri cedo — posicionei-me mal no início", "Não usei o Super no momento certo", "Escolhi o brawler errado para o mapa", "Tentei forçar um golo impossível"]
+                        },
+                        {
+                            title: "O ciclo de melhoria contínua",
+                            content: "Melhorar no Ranked não é uma linha reta — há altos e baixos. O que importa é a tendência geral ao longo do tempo.",
+                            cards: [
+                                { title: "Sessões de melhoria", desc: "Sessões de 1h com foco total valem mais do que 4h de jogo casuale." },
+                                { title: "Review mental", desc: "Após cada sessão, pensa em 2-3 situações onde podias ter jogado melhor." },
+                                { title: "Paciência", desc: "De Gold a Diamond são semanas. De Diamond a Mythic podem ser meses — é normal." },
+                                { title: "Comunidade", desc: "Joga com pessoas melhores do que tu — aprendes muito mais e mais rápido." }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ];
+
+        const CAT_BTN_COLORS = { ranked: "var(--yellow)", f2p: "#4ADE80", brawlers: "#C084FC", modos: "#7EB8FF" };
+        let currentCat = "all", currentSearch = "";
+
+        function renderGuias() {
+            const grid = document.getElementById("guiasGrid");
+            grid.innerHTML = "";
+            const s = currentSearch.toLowerCase().trim();
+            const filtered = GUIAS.filter(g => {
+                const catMatch = currentCat === "all" || g.cat === currentCat;
+                const searchMatch = s === "" || g.title.toLowerCase().includes(s) || g.desc.toLowerCase().includes(s) || g.tags.some(t => t.toLowerCase().includes(s));
+                return catMatch && searchMatch;
+            });
+            if (filtered.length === 0) { document.getElementById("noResults").style.display = "block"; return; }
+            document.getElementById("noResults").style.display = "none";
+            filtered.forEach((g, i) => {
+                const catColor = CAT_COLORS[g.cat];
+                const btnColor = CAT_BTN_COLORS[g.cat];
+                const diffClass = g.diff === "Fácil" ? "diff-facil" : g.diff === "Médio" ? "diff-medio" : "diff-dificil";
+                const card = document.createElement("div");
+                card.className = "guia-card reveal";
+                card.dataset.cat = g.cat;
+                card.style.transitionDelay = `${i * 0.06}s`;
+                card.innerHTML = `
+      <div class="guia-color-bar" style="background:linear-gradient(90deg,${catColor},${catColor}88)"></div>
+      <div class="guia-thumb" style="">
+        <div class="guia-thumb-bg" style="background:${g.gradient}"></div>
+        <div class="guia-thumb-emoji">${g.emoji}</div>
+        <div class="difficulty-badge ${diffClass}">${g.diff}</div>
+      </div>
+      <div class="guia-body">
+        <div class="guia-cat-label" style="color:${catColor}">${CAT_LABELS[g.cat]}</div>
+        <h3 class="guia-title">${g.title}</h3>
+        <p class="guia-desc">${g.desc}</p>
+        <div class="guia-meta">
+          <div class="guia-tags">${g.tags.map(t => `<span class="guia-tag">${t}</span>`).join("")}</div>
+          <button class="guia-read-btn" style="background:${catColor};color:${g.cat === "ranked" ? "var(--text-dark)" : "#fff"}" onclick="openGuia(${g.id})">
+            📖 Ler →
+          </button>
+        </div>
+      </div>
+    `;
+                grid.appendChild(card);
+            });
+            document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+        }
+
+        function openGuia(id) {
+            const g = GUIAS.find(x => x.id === id);
+            if (!g) return;
+            const catColor = CAT_COLORS[g.cat];
+            document.getElementById("articleHeroBg").style.background = `radial-gradient(ellipse 80% 80% at 0% 0%,${catColor}33,transparent 70%)`;
+            document.getElementById("articleEmoji").textContent = g.emoji;
+            document.getElementById("articleCat").textContent = CAT_LABELS[g.cat];
+            document.getElementById("articleCat").style.color = catColor;
+            document.getElementById("articleTitle").textContent = g.title;
+            document.getElementById("articleDiff").innerHTML = `⚡ Dificuldade: <strong>${g.diff}</strong>`;
+            document.getElementById("articleTime").innerHTML = `⏱️ Leitura: <strong>${g.time}</strong>`;
+
+            let html = `<p class="article-intro">${g.article.intro}</p>`;
+            g.article.sections.forEach(sec => {
+                html += `<div class="article-section">`;
+                html += `<h2 class="article-h2">${sec.title}<div class="article-h2-line"></div></h2>`;
+                if (sec.content) html += `<p class="article-p">${sec.content}</p>`;
+                if (sec.tip) html += `<div class="article-tip"><div class="article-tip-icon">${sec.tip.icon}</div><div class="article-tip-text">${sec.tip.text}</div></div>`;
+                if (sec.warning) html += `<div class="article-warning"><div class="article-tip-icon">⚠️</div><div class="article-warning-text">${sec.warning.text}</div></div>`;
+                if (sec.list) html += `<ul class="article-list">${sec.list.map(l => `<li>${l}</li>`).join("")}</ul>`;
+                if (sec.cards) html += `<div class="article-cards-grid">${sec.cards.map(c => `<div class="article-mini-card"><div class="article-mini-card-title">${c.title}</div><div class="article-mini-card-desc">${c.desc}</div></div>`).join("")}</div>`;
+                html += `</div>`;
+            });
+            document.getElementById("articleBody").innerHTML = html;
+            document.getElementById("modalOverlay").classList.add("open");
+            document.getElementById("modalOverlay").scrollTop = 0;
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() { document.getElementById("modalOverlay").classList.remove("open"); document.body.style.overflow = ""; }
+        document.getElementById("modalClose").addEventListener("click", closeModal);
+        document.getElementById("modalOverlay").addEventListener("click", e => { if (e.target === document.getElementById("modalOverlay")) closeModal(); });
+        document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+        document.querySelectorAll(".filter-tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+                currentCat = tab.dataset.cat;
+                renderGuias();
+            });
+        });
+        document.getElementById("searchInput").addEventListener("input", e => { currentSearch = e.target.value; renderGuias(); });
+
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.05 });
+
+        const cursor = document.getElementById("cursor");
+        const ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        document.querySelectorAll("a,button,.guia-card").forEach(el => {
+            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+        });
+
+        renderGuias();
+    </script>
+</body>
+
+</html>

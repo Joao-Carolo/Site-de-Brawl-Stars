@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mudanças no Bling, Shop e Cosméticos — BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --teal: #00C9A7;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --purple: #9B59FF;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --light: #F5F0E8;
+            --light2: #EDE8DE;
+            --text-dark: #1A1A2E;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        * {
+            cursor: none !important;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--yellow);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(255, 208, 0, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-weight: 700;
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .4);
+            transition: color .2s;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .nav-back:hover {
+            color: var(--yellow);
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* HERO */
+        .article-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: flex-end;
+            padding: 8rem 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(155, 89, 255, .25) 0%, rgba(255, 208, 0, .15) 50%, rgba(255, 107, 0, .2) 100%), var(--dark2);
+        }
+
+        .hero-dots {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, .06) 1px, transparent 1px);
+            background-size: 36px 36px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 300px;
+            background: radial-gradient(ellipse, rgba(155, 89, 255, .3), transparent 70%);
+            filter: blur(40px);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 3rem 4rem;
+            width: 100%;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .3rem .9rem;
+            border-radius: 100px;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .tag-novidade {
+            background: rgba(155, 89, 255, .2);
+            border: 1px solid rgba(155, 89, 255, .4);
+            color: #B07AFF;
+        }
+
+        .tag-oficial {
+            background: rgba(255, 208, 0, .15);
+            border: 1px solid rgba(255, 208, 0, .3);
+            color: var(--yellow);
+        }
+
+        .hero-date {
+            font-size: .78rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .3);
+            letter-spacing: .05em;
+        }
+
+        .hero-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2rem, 6vw, 3.8rem);
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-title span {
+            background: linear-gradient(90deg, #B07AFF, var(--yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .55);
+            max-width: 620px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+        }
+
+        .hero-pill {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 100px;
+            padding: .3rem .9rem;
+            font-size: .78rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .hero-bar {
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple), var(--yellow), var(--orange));
+            margin-top: 0;
+        }
+
+        /* LAYOUT ARTIGO */
+        .article-wrap {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 3.5rem 3rem 6rem;
+        }
+
+        @media(max-width:700px) {
+            .article-wrap {
+                padding: 2.5rem 1.5rem 4rem;
+            }
+
+            .hero-inner {
+                padding: 0 1.5rem 3rem;
+            }
+        }
+
+        /* TIPOGRAFIA */
+        .article-intro {
+            font-size: 1.08rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, .7);
+            margin-bottom: 3rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .article-h2 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+            margin: 2.5rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .article-h2 .h2-icon {
+            font-size: 1.3rem;
+        }
+
+        .article-h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .article-p {
+            font-size: .97rem;
+            line-height: 1.85;
+            color: rgba(255, 255, 255, .6);
+            margin-bottom: 1.1rem;
+        }
+
+        /* CAIXAS */
+        .box {
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .box-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: .1rem;
+        }
+
+        .box-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: .9rem;
+            margin-bottom: .4rem;
+        }
+
+        .box-text {
+            font-size: .88rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .box-text strong {
+            color: #fff;
+        }
+
+        .box.tip {
+            background: rgba(155, 89, 255, .08);
+            border: 1px solid rgba(155, 89, 255, .2);
+        }
+
+        .box.tip .box-title {
+            color: #B07AFF;
+        }
+
+        .box.warn {
+            background: rgba(255, 208, 0, .07);
+            border: 1px solid rgba(255, 208, 0, .2);
+        }
+
+        .box.warn .box-title {
+            color: var(--yellow);
+        }
+
+        .box.info {
+            background: rgba(59, 130, 246, .07);
+            border: 1px solid rgba(59, 130, 246, .2);
+        }
+
+        .box.info .box-title {
+            color: #7EB8FF;
+        }
+
+        .box.success {
+            background: rgba(34, 197, 94, .07);
+            border: 1px solid rgba(34, 197, 94, .2);
+        }
+
+        .box.success .box-title {
+            color: #4ADE80;
+        }
+
+        /* LISTA */
+        .article-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .7rem;
+            margin: 1.1rem 0 1.5rem;
+        }
+
+        .article-list li {
+            display: flex;
+            gap: .75rem;
+            font-size: .93rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .62);
+        }
+
+        .article-list li .li-icon {
+            flex-shrink: 0;
+            font-size: 1rem;
+            margin-top: .1rem;
+        }
+
+        /* CARDS GRID */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        @media(max-width:560px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .change-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 14px;
+            padding: 1.25rem;
+            transition: transform .2s, border-color .2s;
+        }
+
+        .change-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, .15);
+        }
+
+        .change-card-icon {
+            font-size: 1.8rem;
+            margin-bottom: .75rem;
+        }
+
+        .change-card-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: .95rem;
+            margin-bottom: .4rem;
+        }
+
+        .change-card-desc {
+            font-size: .82rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .5);
+        }
+
+        /* COMPARAÇÃO ANTES/DEPOIS */
+        .compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        @media(max-width:560px) {
+            .compare {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .compare-col {
+            border-radius: 14px;
+            padding: 1.25rem;
+        }
+
+        .compare-col.before {
+            background: rgba(239, 68, 68, .07);
+            border: 1px solid rgba(239, 68, 68, .2);
+        }
+
+        .compare-col.after {
+            background: rgba(34, 197, 94, .07);
+            border: 1px solid rgba(34, 197, 94, .2);
+        }
+
+        .compare-label {
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: .9rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .compare-col.before .compare-label {
+            color: #FCA5A5;
+        }
+
+        .compare-col.after .compare-label {
+            color: #4ADE80;
+        }
+
+        .compare-item {
+            display: flex;
+            gap: .6rem;
+            font-size: .85rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .6);
+            margin-bottom: .5rem;
+        }
+
+        .compare-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* SECÇÃO DESTAQUE */
+        .highlight-section {
+            background: var(--dark3);
+            border-radius: 18px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .highlight-section-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            letter-spacing: .05em;
+            margin-bottom: 1.25rem;
+            color: var(--yellow);
+        }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--purple), var(--yellow));
+        }
+
+        .tl-item {
+            position: relative;
+            padding: 0 0 1.75rem 1.75rem;
+        }
+
+        .tl-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: -2.35rem;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid var(--dark);
+        }
+
+        .tl-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: .95rem;
+            margin-bottom: .3rem;
+        }
+
+        .tl-desc {
+            font-size: .85rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .55);
+        }
+
+        /* PERGUNTA/RESPOSTA */
+        .qa {
+            background: var(--dark3);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .07);
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .qa-q {
+            padding: 1.1rem 1.4rem;
+            font-family: 'Russo One', sans-serif;
+            font-size: .95rem;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .qa-q .q-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .qa-a {
+            padding: 1rem 1.4rem;
+            font-size: .9rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .6);
+            border-top: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .qa-a strong {
+            color: var(--yellow);
+        }
+
+        /* DIVISOR */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .08), transparent);
+            margin: 2.5rem 0;
+        }
+
+        /* PARTILHA / FOOTER */
+        .article-footer {
+            background: var(--dark2);
+            border-radius: 18px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            border: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .article-footer-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            margin-bottom: .3rem;
+        }
+
+        .article-footer-sub {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: var(--yellow);
+            color: var(--text-dark);
+            font-weight: 800;
+            font-size: .85rem;
+            padding: .65rem 1.4rem;
+            border-radius: 100px;
+            border: none;
+            transition: transform .2s, box-shadow .2s;
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 208, 0, .3);
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../Página inicial.html">Início</a></li>
+            <li><a href="../Brawlers/Brawlers.html">Brawlers</a></li>
+            <li><a href="../Temporadas/Geral.html">Updates</a></li>
+            <li><a href="../Guias/Guias.html">Guias</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <div class="article-hero">
+        <div class="hero-bg"></div>
+        <div class="hero-dots"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-inner">
+            <div class="hero-meta">
+                <span class="hero-tag tag-novidade">🔮 Cosméticos</span>
+                <span class="hero-tag tag-oficial">⭐ Oficial Supercell</span>
+                <span class="hero-date">1 de Abril de 2026</span>
+            </div>
+            <h1 class="hero-title">Mudanças no <span>Bling</span>,<br>Shop e Cosméticos</h1>
+            <p class="hero-subtitle">A Supercell anunciou uma renovação completa ao sistema de Bling, ao Catálogo e à
+                Loja do jogo. Aqui está tudo o que muda e o que precisas de saber antes do update chegar.</p>
+            <div class="hero-pills">
+                <div class="hero-pill">🔮 Bling Rework</div>
+                <div class="hero-pill">🏪 Nova Shop</div>
+                <div class="hero-pill">📦 Bling Bundles</div>
+                <div class="hero-pill">🎨 Catálogo Rotativo</div>
+                <div class="hero-pill">💰 Mais Bling F2P</div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-bar"></div>
+
+    <!-- ARTIGO -->
+    <div class="article-wrap">
+
+        <p class="article-intro reveal">
+            A Supercell publicou um artigo oficial a 1 de abril de 2026 a anunciar mudanças profundas ao sistema de
+            cosméticos de Brawl Stars. O objetivo é resolver problemas que a própria equipa reconhece — o Bling perdeu
+            valor, há demasiadas skins, e o Catálogo deixou de ser entusiasmante. Aqui está tudo o que muda no Update
+            67.
+        </p>
+
+        <!-- PORQUÊ MUDAR -->
+        <h2 class="article-h2 reveal"><span class="h2-icon">🤔</span> Porque é que a Supercell está a mudar isto?</h2>
+
+        <p class="article-p reveal">A Supercell identificou três problemas principais com o sistema atual de Bling e
+            cosméticos que querem resolver com este update:</p>
+
+        <div class="cards-grid reveal">
+            <div class="change-card">
+                <div class="change-card-icon">😴</div>
+                <div class="change-card-title">Bling desvalorizado</div>
+                <div class="change-card-desc">Muitos jogadores acumulam Bling sem o gastar porque não há incentivo forte
+                    o suficiente para o fazer. A moeda inflacionou.</div>
+            </div>
+            <div class="change-card">
+                <div class="change-card-icon">😵</div>
+                <div class="change-card-title">Demasiadas skins</div>
+                <div class="change-card-desc">Com tantas skins disponíveis no Catálogo ao mesmo tempo, os jogadores
+                    ficam sobrecarregados e é difícil escolher o que comprar.</div>
+            </div>
+            <div class="change-card">
+                <div class="change-card-icon">📉</div>
+                <div class="change-card-title">Skins sem significado</div>
+                <div class="change-card-desc">Como os jogadores recebem skins em excesso via Starr Drops, estas deixaram
+                    de parecer especiais. A Supercell quer que cada skin seja uma escolha consciente.</div>
+            </div>
+            <div class="change-card">
+                <div class="change-card-icon">🔄</div>
+                <div class="change-card-title">Catálogo estático</div>
+                <div class="change-card-desc">O Catálogo fixo com todas as skins sempre disponíveis remove a sensação de
+                    novidade e o entusiasmo de ver algo que queres aparecer na loja.</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- PRINCIPAIS MUDANÇAS -->
+        <h2 class="article-h2 reveal"><span class="h2-icon">🔮</span> O que muda no Bling e na Shop?</h2>
+
+        <p class="article-p reveal">A mudança mais importante é a <strong style="color:#fff">remoção do Catálogo
+                fixo</strong> e a introdução de um sistema de loja rotativa com Bling Bundles. Aqui está o que muda em
+            detalhe:</p>
+
+        <div class="compare reveal">
+            <div class="compare-col before">
+                <div class="compare-label">❌ Antes (sistema atual)</div>
+                <div class="compare-item"><span>→</span> Catálogo fixo com todas as skins disponíveis sempre</div>
+                <div class="compare-item"><span>→</span> Gastas Bling em qualquer skin a qualquer momento</div>
+                <div class="compare-item"><span>→</span> Bling não dava progressão, só cosméticos</div>
+                <div class="compare-item"><span>→</span> Skins de alta raridade não disponíveis no Catálogo</div>
+                <div class="compare-item"><span>→</span> Muitos jogadores acumulam Bling sem o gastar</div>
+            </div>
+            <div class="compare-col after">
+                <div class="compare-label">✅ Depois (Update 67)</div>
+                <div class="compare-item"><span>→</span> Nova secção de Shop rotativa com ofertas diárias</div>
+                <div class="compare-item"><span>→</span> Gastas Bling em Bundles com deals incorporados</div>
+                <div class="compare-item"><span>→</span> Bling agora também dá progressão (Boxes/Starr Drops)</div>
+                <div class="compare-item"><span>→</span> Bundles com acesso ocasional a skins Mythic e Legendary</div>
+                <div class="compare-item"><span>→</span> Mais incentivo para gastar Bling regularmente</div>
+            </div>
+        </div>
+
+        <!-- BLING BUNDLES -->
+        <h2 class="article-h2 reveal"><span class="h2-icon">📦</span> Como funcionam os Bling Bundles?</h2>
+
+        <p class="article-p reveal">Os Bling Bundles são o coração do novo sistema. Em vez de escolheres uma skin
+            específica do Catálogo, vais encontrar bundles na nova secção da Shop que funcionam assim:</p>
+
+        <ul class="article-list reveal">
+            <li><span class="li-icon">🎁</span> Cada bundle contém cosméticos (skins, pins, ícones, sprays) <strong
+                    style="color:#fff">e</strong> Boxes/Starr Drops</li>
+            <li><span class="li-icon">🎰</span> Os bundles são <strong style="color:#fff">Tap to Reveal</strong> — cada
+                toque revela parte do conteúdo e dá algum Bling de volta</li>
+            <li><span class="li-icon">💸</span> Os descontos variam entre 0% e <strong style="color:#fff">100% de
+                    desconto real</strong> — sim, podes obter bundles completamente de graça</li>
+            <li><span class="li-icon">⭐</span> Alguns bundles contêm skins <strong style="color:#fff">Mythic e
+                    Legendary</strong> — antes impossíveis de obter com Bling</li>
+            <li><span class="li-icon">🛒</span> Alguns bundles permitem <strong style="color:#fff">escolher uma skin de
+                    uma lista</strong> por raridade, preservando a experiência do Catálogo</li>
+            <li><span class="li-icon">📈</span> O Bling agora dá <strong style="color:#fff">progressão</strong> — não é
+                só cosméticos, também ganhas recursos do jogo</li>
+        </ul>
+
+        <div class="box tip reveal">
+            <div class="box-icon">💡</div>
+            <div class="box-content">
+                <div class="box-title">O que isto significa para ti</div>
+                <div class="box-text">O teu Bling vai render <strong>mais</strong> no novo sistema. Os bundles têm deals
+                    integrados e podes aceder a skins de raridade superior. A única diferença é que não podes comprar
+                    qualquer skin a qualquer momento — tens de esperar que apareça na rotação.</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- STARR DROPS -->
+        <h2 class="article-h2 reveal"><span class="h2-icon">📉</span> Menos skins nos Starr Drops — e agora?</h2>
+
+        <p class="article-p reveal">A Supercell vai reduzir a probabilidade de skins nos Starr Drops, Chaos Drops e
+            Brawler Boxes. À primeira vista parece mau, mas a lógica por trás é importante de perceber:</p>
+
+        <div class="highlight-section reveal">
+            <div class="highlight-section-title">📊 O impacto real para jogadores F2P</div>
+            <ul class="article-list" style="margin:0">
+                <li><span class="li-icon">✅</span> Jogadores F2P continuam a receber o <strong style="color:#fff">mesmo
+                        número médio de skins</strong> no total</li>
+                <li><span class="li-icon">✅</span> Mas agora têm <strong style="color:#fff">mais controlo</strong> sobre
+                    quais skins recebem via Bling Bundles</li>
+                <li><span class="li-icon">✅</span> Mais Bling grátis disponível — nova Mega Quest de Bling por temporada
+                </li>
+                <li><span class="li-icon">✅</span> Mais Bling na faixa gratuita do Brawl Pass</li>
+                <li><span class="li-icon">⚠️</span> Menos skins aleatórias — mas as que recebes são mais <strong
+                        style="color:#fff">escolhidas por ti</strong></li>
+            </ul>
+        </div>
+
+        <!-- MAIS BLING F2P -->
+        <h2 class="article-h2 reveal"><span class="h2-icon">💰</span> Como ganhar mais Bling?</h2>
+
+        <p class="article-p reveal">Com o novo sistema, a Supercell também está a adicionar mais fontes de Bling
+            gratuito. Aqui estão todas as formas de ganhar Bling agora e no Update 67:</p>
+
+        <div class="cards-grid reveal">
+            <div class="change-card">
+                <div class="change-card-icon">🏆</div>
+                <div class="change-card-title">Ranked & Pro Pass</div>
+                <div class="change-card-desc">Jogar no Ranked e colecionar recompensas do Pro Pass é uma das formas mais
+                    consistentes de ganhar Bling.</div>
+            </div>
+            <div class="change-card">
+                <div class="change-card-icon">🎯</div>
+                <div class="change-card-title">6 Wins Diários</div>
+                <div class="change-card-desc">Completa os teus 6 wins diários todos os dias para acumular recompensas
+                    regulares que incluem Bling.</div>
+            </div>
+            <div class="change-card">
+                <div class="change-card-icon">🔑</div>
+                <div class="change-card-title">Resource Key de Bling</div>
+                <div class="change-card-desc">Se ainda não usaste a Resource Key para Bling no Vault do Brawl Pass,
+                    aproveita — é Bling instantâneo.</div>
+            </div>
+            <div class="change-card">
+                <div class="change-card-icon">🆕</div>
+                <div class="change-card-title">Nova Mega Quest (Update 67)</div>
+                <div class="change-card-desc">Cada temporada vai ter uma nova Mega Quest dedicada a dar Bling —
+                    adicional às Mega Quests que já existem.</div>
+            </div>
+            <div class="change-card">
+                <div class="change-card-icon">🎁</div>
+                <div class="change-card-title">Brawl Pass Gratuito</div>
+                <div class="change-card-desc">A faixa gratuita do Brawl Pass vai ter mais Bling a partir do Update 67.
+                    Vale a pena completar todos os níveis.</div>
+            </div>
+            <div class="change-card">
+                <div class="change-card-icon">🎪</div>
+                <div class="change-card-title">Eventos Especiais</div>
+                <div class="change-card-desc">Pequenos eventos semanais distribuem Bling. Fica atento ao calendário de
+                    eventos para não perderes nenhum.</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- PERGUNTAS FREQUENTES -->
+        <h2 class="article-h2 reveal"><span class="h2-icon">❓</span> Perguntas frequentes</h2>
+
+        <div class="qa reveal">
+            <div class="qa-q"><span class="q-icon">💬</span> Devo gastar o meu Bling AGORA ou esperar pelo update?</div>
+            <div class="qa-a">Segundo a própria Supercell, o teu Bling vai render <strong>mais</strong> no novo sistema
+                graças aos deals dos Bling Bundles e ao acesso a skins de raridade superior. No entanto, se há uma skin
+                específica no Catálogo que queres muito, compra-a <strong>antes do update</strong> — depois terás de
+                esperar que apareça na rotação da nova Shop.</div>
+        </div>
+
+        <div class="qa reveal">
+            <div class="qa-q"><span class="q-icon">💬</span> O Catálogo vai desaparecer completamente?</div>
+            <div class="qa-a">Não completamente. As skins que estavam no Catálogo continuam a existir no jogo e vão
+                aparecer em rotação na nova Shop. A diferença é que <strong>não podes comprar qualquer skin a qualquer
+                    momento</strong> — tens de esperar que apareça nas ofertas do dia. Alguns bundles especiais vão
+                permitir escolher de uma lista.</div>
+        </div>
+
+        <div class="qa reveal">
+            <div class="qa-q"><span class="q-icon">💬</span> Os jogadores F2P ficam prejudicados?</div>
+            <div class="qa-a">De acordo com a Supercell, <strong>não</strong>. O número médio de skins que um jogador
+                F2P recebe mantém-se igual. A diferença é que vais receber menos skins aleatórias e ter mais controlo
+                sobre quais escolhes via Bling. Além disso, há mais Bling gratuito disponível com a nova Mega Quest e o
+                Brawl Pass melhorado.</div>
+        </div>
+
+        <div class="qa reveal">
+            <div class="qa-q"><span class="q-icon">💬</span> Posso ainda obter skins Mythic e Legendary com Bling?</div>
+            <div class="qa-a">Sim! Isto é uma das novidades — alguns Bling Bundles vão conter skins <strong>Mythic e
+                    Legendary</strong>, o que antes era impossível no Catálogo. No entanto, não vão estar sempre
+                disponíveis — é uma aparição ocasional nos bundles da nova Shop.</div>
+        </div>
+
+        <div class="qa reveal">
+            <div class="qa-q"><span class="q-icon">💬</span> Quando chegam estas mudanças?</div>
+            <div class="qa-a">Estas mudanças chegam com o <strong>Update 67</strong>, anunciado no Brawl Talk de 18 de
+                abril de 2026. O Damian chega a 24 de abril — as mudanças à Shop devem chegar ao mesmo tempo ou muito
+                próximo desta data.</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- TIMELINE DO QUE FAZER -->
+        <h2 class="article-h2 reveal"><span class="h2-icon">📅</span> O que fazer antes do update chegar?</h2>
+
+        <div class="highlight-section reveal">
+            <div class="highlight-section-title">🗓️ Checklist antes do Update 67</div>
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot" style="background:#EF4444"></div>
+                    <div class="tl-title">Compra skins específicas do Catálogo</div>
+                    <div class="tl-desc">Se há alguma skin no Catálogo atual que queres muito, compra-a agora. Após o
+                        update, terás de esperar que apareça na rotação da nova Shop.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot" style="background:var(--yellow)"></div>
+                    <div class="tl-title">Guarda Bling para os novos Bundles</div>
+                    <div class="tl-desc">Se não há nada urgente que queiras agora, guarda o Bling — os bundles do Update
+                        67 vão ter mais valor e deals melhores do que o sistema atual.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot" style="background:var(--teal)"></div>
+                    <div class="tl-title">Completa a Resource Key de Bling</div>
+                    <div class="tl-desc">Se ainda tens uma Resource Key para Bling por usar no Vault do Brawl Pass,
+                        usa-a antes ou logo após o update para teres mais Bling disponível para os novos bundles.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot" style="background:var(--purple)"></div>
+                    <div class="tl-title">Aproveita o evento desta semana</div>
+                    <div class="tl-desc">A Supercell confirmou um pequeno evento a dar Bling grátis na semana de 30 de
+                        março. Aproveita para acumular antes do update.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box warn reveal" style="margin-top:2rem">
+            <div class="box-icon">⚠️</div>
+            <div class="box-content">
+                <div class="box-title">Lembra-te</div>
+                <div class="box-text">A Supercell deixou claro que estas mudanças são experimentais —
+                    <strong>"tentaremos uma nova versão do sistema"</strong>. Se não correr bem, podem ajustar. Fica
+                    atento às novidades após o update.
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- FOOTER DO ARTIGO -->
+        <div class="article-footer reveal">
+            <div class="article-footer-left">
+                <div class="article-footer-title">Mais novidades do Update 67</div>
+                <div class="article-footer-sub">Damian, Bolt, Starr Nova, novos Buffies e muito mais</div>
+            </div>
+            <a href="updates.html" class="back-btn">← Ver todos os Updates</a>
+        </div>
+
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.08 });
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+        const cursor = document.getElementById("cursor");
+        const ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        document.querySelectorAll("a,button").forEach(el => {
+            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+        });
+    </script>
+</body>
+
+</html>

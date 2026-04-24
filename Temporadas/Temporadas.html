@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updates — BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --orange2: #FF4500;
+            --teal: #00C9A7;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --dark4: #22223D;
+            --light: #F5F0E8;
+            --light2: #EDE8DE;
+            --text-dark: #1A1A2E;
+            --card-r: 16px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        * {
+            cursor: none !important;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--yellow);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(255, 208, 0, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a.active {
+            color: var(--yellow);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--yellow);
+            border-radius: 2px;
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* HEADER */
+        .page-header {
+            padding: 8rem 3rem 4rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--dark2);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .page-header::before {
+            content: 'UPDATES';
+            position: absolute;
+            bottom: -2rem;
+            right: -1rem;
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(5rem, 12vw, 9rem);
+            color: rgba(255, 255, 255, .03);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .header-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(59, 130, 246, .15), transparent), radial-gradient(ellipse 40% 50% at 10% 60%, rgba(255, 60, 172, .1), transparent);
+        }
+
+        .header-inner {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-eyebrow {
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: .5rem;
+        }
+
+        .page-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .page-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, .5);
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hstat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hstat-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--yellow), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .hstat-label {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-top: .2rem;
+        }
+
+        /* TOOLBAR */
+        .toolbar {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+
+        .filter-tab {
+            padding: .45rem 1.1rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: .8rem;
+            letter-spacing: .04em;
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: rgba(255, 255, 255, .5);
+            background: transparent;
+            transition: all .2s;
+        }
+
+        .filter-tab:hover {
+            border-color: rgba(255, 255, 255, .3);
+            color: #fff;
+        }
+
+        .filter-tab.active {
+            background: var(--yellow);
+            color: var(--text-dark);
+            border-color: var(--yellow);
+        }
+
+        .search-wrap {
+            position: relative;
+        }
+
+        .search-input {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 100px;
+            padding: .55rem 1.2rem .55rem 2.5rem;
+            color: #fff;
+            font-family: 'Nunito', sans-serif;
+            font-size: .9rem;
+            outline: none;
+            width: 220px;
+            transition: border-color .2s;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .search-input:focus {
+            border-color: var(--yellow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: .9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .9rem;
+            pointer-events: none;
+            opacity: .4;
+        }
+
+        /* GRID DE CARDS */
+        .updates-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem 5rem;
+        }
+
+        .updates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        @media(max-width:800px) {
+            .updates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .updates-container {
+                padding: 0 1.5rem 4rem;
+            }
+
+            .toolbar {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* CARD */
+        .update-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform .25s, border-color .25s, box-shadow .25s;
+            position: relative;
+        }
+
+        .update-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .4);
+        }
+
+        .update-card.latest {
+            border-color: rgba(255, 208, 0, .3);
+        }
+
+        .update-card.latest:hover {
+            box-shadow: 0 20px 50px rgba(255, 208, 0, .1);
+        }
+
+        .card-top {
+            padding: 1.5rem 1.5rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-top-bg {
+            position: absolute;
+            inset: 0;
+            opacity: .12;
+        }
+
+        .card-top-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 3rem;
+            line-height: 1;
+            opacity: .15;
+            letter-spacing: -0.02em;
+        }
+
+        .latest-badge {
+            background: var(--yellow);
+            color: var(--text-dark);
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .25rem .7rem;
+            border-radius: 100px;
+            white-space: nowrap;
+            margin-top: .25rem;
+        }
+
+        .new-badge-card {
+            background: var(--orange2);
+            color: #fff;
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .25rem .7rem;
+            border-radius: 100px;
+            white-space: nowrap;
+            margin-top: .25rem;
+        }
+
+        .card-year-tag {
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            color: rgba(255, 255, 255, .3);
+            text-transform: uppercase;
+            margin-bottom: .3rem;
+        }
+
+        .card-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.3rem;
+            line-height: 1.2;
+            margin-bottom: .3rem;
+        }
+
+        .card-period {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .35);
+            font-weight: 700;
+            margin-bottom: .75rem;
+        }
+
+        .card-desc {
+            font-size: .88rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .55);
+        }
+
+        .card-body {
+            padding: .75rem 1.5rem 1.5rem;
+        }
+
+        /* pills de features */
+        .feature-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .feature-pill {
+            display: flex;
+            align-items: center;
+            gap: .35rem;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 100px;
+            padding: .22rem .7rem;
+            font-size: .72rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .new-brawlers-mini {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+        }
+
+        .brawler-chip {
+            font-size: .75rem;
+            font-weight: 700;
+            padding: .2rem .6rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .55);
+        }
+
+        .card-cta {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            font-family: 'Russo One', sans-serif;
+            font-size: .78rem;
+            letter-spacing: .05em;
+            color: rgba(255, 255, 255, .35);
+            transition: color .2s, gap .2s;
+            white-space: nowrap;
+        }
+
+        .card-cta:hover {
+            color: var(--yellow);
+            gap: .65rem;
+        }
+
+        /* NO RESULTS */
+        .no-results {
+            text-align: center;
+            padding: 5rem 0;
+            color: rgba(255, 255, 255, .3);
+            display: none;
+        }
+
+        .no-results-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: .5rem;
+        }
+
+        /* ═══════════════ MODAL ═══════════════ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 800;
+            background: rgba(0, 0, 0, .8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 780px;
+            max-height: 92vh;
+            overflow-y: auto;
+            transform: translateY(30px) scale(.97);
+            transition: transform .3s;
+            position: relative;
+        }
+
+        .modal-overlay.open .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            z-index: 10;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .1);
+            border: none;
+            color: rgba(255, 255, 255, .6);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s, color .2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, .2);
+            color: #fff;
+        }
+
+        .modal-hero {
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .modal-hero-bg {
+            position: absolute;
+            inset: 0;
+            opacity: .15;
+        }
+
+        .modal-hero-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-update-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 5rem;
+            line-height: 1;
+            opacity: .1;
+            letter-spacing: -.02em;
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+        }
+
+        .modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(0, 0, 0, .3);
+            border-radius: 100px;
+            padding: .3rem .9rem;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: .75rem;
+        }
+
+        .modal-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            line-height: 1;
+            margin-bottom: .4rem;
+        }
+
+        .modal-period {
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .4);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .modal-desc {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .65);
+            max-width: 580px;
+        }
+
+        .modal-body {
+            padding: 2rem 2.5rem 2.5rem;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal-section-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: .78rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .modal-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .75rem;
+        }
+
+        @media(max-width:500px) {
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .highlight-item {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 12px;
+            padding: 1rem;
+            display: flex;
+            gap: .75rem;
+            align-items: flex-start;
+        }
+
+        .highlight-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: .1rem;
+        }
+
+        .highlight-text {
+            font-size: .88rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .highlight-text strong {
+            color: #fff;
+            display: block;
+            font-size: .9rem;
+            margin-bottom: .15rem;
+        }
+
+        .brawlers-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+        }
+
+        .brawler-modal-chip {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .4rem 1rem;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .05);
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .seasons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .6rem;
+        }
+
+        .season-item {
+            background: rgba(255, 255, 255, .04);
+            border-radius: 10px;
+            padding: .75rem 1rem;
+            font-size: .82rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .65);
+        }
+
+        .season-item span {
+            display: block;
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-bottom: .2rem;
+        }
+
+        .yt-embed {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .08);
+            aspect-ratio: 16/9;
+        }
+
+        .yt-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media(max-width:600px) {
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .modal-hero {
+                padding: 2rem 1.5rem;
+            }
+
+            .page-header {
+                padding: 7rem 1.5rem 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="brawlers.html">Brawlers</a></li>
+            <li><a href="updates.html" class="active">Updates</a></li>
+            <li><a href="#">Guias</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-bg"></div>
+        <div class="header-inner">
+            <p class="page-eyebrow">Histórico Completo</p>
+            <h1 class="page-title">Todos os Updates</h1>
+            <p class="page-desc">Do Update 56 ao mais recente Update 67 — tudo o que a Supercell lançou, com novos
+                brawlers, modos, collabs e muito mais.</p>
+            <div class="header-stats">
+                <div class="hstat"><span class="hstat-num">67</span><span class="hstat-label">Updates</span></div>
+                <div class="hstat"><span class="hstat-num">104</span><span class="hstat-label">Brawlers</span></div>
+                <div class="hstat"><span class="hstat-num">2018</span><span class="hstat-label">Lançamento</span></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="toolbar">
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">Todos</button>
+            <button class="filter-tab" data-filter="2026">2026</button>
+            <button class="filter-tab" data-filter="2025">2025</button>
+            <button class="filter-tab" data-filter="2024">2024</button>
+        </div>
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="Procurar update...">
+        </div>
+    </div>
+
+    <div class="updates-container">
+        <div class="updates-grid" id="updatesGrid"></div>
+        <div class="no-results" id="noResults">
+            <div class="no-results-emoji">🔍</div>
+            <h3>Nenhum update encontrado</h3>
+            <p>Tenta outro termo de pesquisa.</p>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div class="modal-hero" id="modalHero">
+                <div class="modal-hero-bg" id="modalHeroBg"></div>
+                <div class="modal-update-num" id="modalNum"></div>
+                <div class="modal-hero-inner">
+                    <div class="modal-badge" id="modalBadge"></div>
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <p class="modal-period" id="modalPeriod"></p>
+                    <p class="modal-desc" id="modalDesc"></p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <div class="modal-section-title">Destaques</div>
+                    <div class="highlights-grid" id="modalHighlights"></div>
+                </div>
+                <div class="modal-section" id="modalBrawlersSection">
+                    <div class="modal-section-title">Novos Brawlers</div>
+                    <div class="brawlers-list" id="modalBrawlers"></div>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-section-title">Temporadas Brawl Pass</div>
+                    <div class="seasons-grid" id="modalSeasons"></div>
+                </div>
+                <div class="modal-section" id="modalYTSection" style="display:none">
+                    <div class="modal-section-title">Brawl Talk</div>
+                    <div class="yt-embed" id="modalYT"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const UPDATES = [
+            {
+                num: 67, year: 2026, title: "Brawl Talk — 3 Novos Brawlers!", period: "Abril 2026", color: "#FFD000",
+                emoji: "🎤", isLatest: true,
+                desc: "O maior update do ano. 3 novos Brawlers, rework completo da Shop e do Bling, Buffies para um novo trio e uma collab épica com os Electric Callboy.",
+                features: ["🤯 3 Novos Brawlers", "🦊 Novos Buffies", "🔮 Shop & Bling Rework", "🎸 Collab Electric Callboy", "🏆 Keep Brawl Alive Event", "🐉 Dragons & Faeries Pass"],
+                brawlers: [{ e: "🎤", n: "Damian", r: "Legendary" }, { e: "⚡", n: "Bolt", r: "Mythic" }, { e: "🌟", n: "Starr Nova", r: "Epic" }],
+                seasons: ["Temporada 50 — em breve"],
+                yt: "7B0-WJ5QYsc",
+                highlights: [
+                    { icon: "🎤", title: "Damian", desc: "O vocalista do MadEvil Manor. Legendary Tank revelado com Electric Callboy." },
+                    { icon: "⚡", title: "Bolt", desc: "Novo Mythic Damage Dealer com tema elétrico e ataques de raios." },
+                    { icon: "🌟", title: "Starr Nova", desc: "Nova Epic cósmica nascida em Starr Park." },
+                    { icon: "🔮", title: "Shop Rework", desc: "Nova loja rotativa com Bling Bundles e menos skins em Starr Drops." },
+                    { icon: "🦊", title: "Novos Buffies", desc: "Arcade Trio — Brock, 8-Bit e Darryl recebem Buffies." },
+                    { icon: "🎸", title: "Electric Callboy Collab", desc: "Parceria com a banda de electronic metal para revelar Damian em 'HYPERCHARGED'." },
+                ]
+            },
+            {
+                num: 66, year: 2026, title: "Prestige!", period: "Março – Abril 2026", color: "#A855F7",
+                emoji: "🏆", isLatest: false,
+                desc: "Sistema de Prestige chegou ao jogo. Dois novos brawlers ultra-raros e um novo modo Loaded Showdown.",
+                features: ["🏆 Sistema de Prestige", "🌑 Sirius — Ultra Legendary", "🐍 Najia — Ultra Legendary", "🚗 Loaded Showdown", "⭐ Prestige Battle Card"],
+                brawlers: [{ e: "🌑", n: "Sirius", r: "Ultra Legendary" }, { e: "🐍", n: "Najia", r: "Ultra Legendary" }],
+                seasons: ["Temporada 48 — Sands of Time", "Temporada 49 — Dragons & Faeries"],
+                yt: "",
+                highlights: [
+                    { icon: "🏆", title: "Sistema de Prestige", desc: "Chega a 1000 Trofeus num Brawler e pode Prestigiá-lo para continuar a ganhar recompensas exclusivas." },
+                    { icon: "🌑", title: "Sirius — Ultra Legendary", desc: "O 100.º Brawler e vilão de Starr Park. Coleciona sombras de Brawlers e invoca-as em batalha." },
+                    { icon: "🐍", title: "Najia — Ultra Legendary", desc: "A 101.ª Brawler. Assassina de cobras com ataques em duas etapas." },
+                    { icon: "🚗", title: "Loaded Showdown", desc: "Battle Royale com power-ups, armas e veículos. Um modo completamente novo." },
+                ]
+            },
+            {
+                num: 65, year: 2025, title: "Buffies!", period: "Dezembro 2025 – Fevereiro 2026", color: "#22C55E",
+                emoji: "🦊", isLatest: false,
+                desc: "Os Buffies chegaram ao jogo — upgrades aos Gadgets, Star Powers e Hypercharges. Dois novos Brawlers e Chaos Drops.",
+                features: ["🦊 Sistema de Buffies", "🐚 Pierce — Legendary", "🐟 Glowbert — Mythic", "📦 Brawl Pass Vault", "💥 Chaos Drops"],
+                brawlers: [{ e: "🐚", n: "Pierce", r: "Legendary" }, { e: "🐟", n: "Glowbert", r: "Mythic" }],
+                seasons: ["Temporada 46 — Steampunk", "Temporada 47 — Brawlentine's"],
+                yt: "",
+                highlights: [
+                    { icon: "🦊", title: "Sistema de Buffies", desc: "Upgrades permanentes aos Gadgets, Star Powers e Hypercharges. Desbloqueados na Claw Machine." },
+                    { icon: "🐚", title: "Pierce", desc: "Marine biólogo com tiros perfurantes. Legendary Damage Dealer." },
+                    { icon: "🐟", title: "Glowbert", desc: "Biólogo marinho que liga aliados e inimigos com feixes de luz. Mythic Support." },
+                    { icon: "💥", title: "Chaos Drops", desc: "Novo tipo de Starr Drop mais poderoso. Começa em Super Rare e pode dividir-se." },
+                    { icon: "🔑", title: "Brawl Pass Vault", desc: "Novas Keys para escolher recompensas específicas — Recursos, Skins, Brawlers ou Buffies." },
+                    { icon: "🎯", title: "Gadgets Aiming", desc: "Gadgets compatíveis recebem joystick de mira para mais precisão." },
+                ]
+            },
+            {
+                num: 64, year: 2025, title: "Stranger Things!", period: "Novembro – Dezembro 2025", color: "#EF4444",
+                emoji: "👾", isLatest: false,
+                desc: "Parceria épica com Stranger Things. Novo modo roguelite, skins exclusivas e a chegada de Gigi.",
+                features: ["👾 Collab Stranger Things", "🎲 Upside Showdown", "💐 Gigi — Mythic", "🤖 Mechmas Brawlidays", "🎃 Skins Exclusivas"],
+                brawlers: [{ e: "💐", n: "Gigi", r: "Mythic" }],
+                seasons: ["Temporada 44 — Stranger Things", "Temporada 45 — Mechmas"],
+                yt: "",
+                highlights: [
+                    { icon: "👾", title: "Stranger Things Collab", desc: "Skins exclusivas como Eleven Lumi e Scoops Ahoy Berry com o universo de Hawkins." },
+                    { icon: "🎲", title: "Upside Showdown", desc: "Modo roguelite PVP onde cada corrida dá poderes únicos e diferentes." },
+                    { icon: "💐", title: "Gigi", desc: "Bailarina Mythic que cura aliados e fica invulnerável durante o Super." },
+                    { icon: "🤖", title: "Mechmas Brawlidays", desc: "As Brawlidays ficaram mecânicas! Calendário de prendas diárias." },
+                ]
+            },
+            {
+                num: 63, year: 2025, title: "Brawl Arena!", period: "Setembro – Outubro 2025", color: "#FF6B00",
+                emoji: "🏟️", isLatest: false,
+                desc: "Novo modo de jogo — Brawl Arena! Dois novos Brawlers e melhorias ao sistema de Ranked.",
+                features: ["🏟️ Brawl Arena", "⚔️ Kenji — Mythic", "🎮 Jae-Yong — Mythic", "📊 Ranked Melhorado", "🗺️ Novos Mapas"],
+                brawlers: [{ e: "⚔️", n: "Kenji", r: "Mythic" }, { e: "🎮", n: "Jae-Yong", r: "Mythic" }],
+                seasons: ["Temporada 42 — Neon City", "Temporada 43 — Autumn Harvest"],
+                yt: "",
+                highlights: [
+                    { icon: "🏟️", title: "Brawl Arena", desc: "Novo modo onde duas equipas de 3 destroem as torres inimigas enquanto eliminam minions." },
+                    { icon: "⚔️", title: "Kenji", desc: "Samurai Mythic que bloqueia projéteis e contra-ataca com a katana." },
+                    { icon: "🎮", title: "Jae-Yong", desc: "Gamer profissional Mythic que usa dispositivos de jogo como arma." },
+                    { icon: "📊", title: "Ranked Melhorado", desc: "Melhorias ao matchmaking, recompensas e sistema de pontos do Ranked." },
+                ]
+            },
+            {
+                num: 62, year: 2025, title: "Collabs de Verão!", period: "Julho – Agosto 2025", color: "#3B82F6",
+                emoji: "☀️", isLatest: false,
+                desc: "Update de verão com múltiplas collabs e dois novos Brawlers com tema aquático.",
+                features: ["☀️ Tema de Verão", "🌊 Kaze — Mythic", "🌷 Lily — Mythic", "🎯 Novos Eventos", "🏄 Modos Aquáticos"],
+                brawlers: [{ e: "🌊", n: "Kaze", r: "Mythic" }, { e: "🌷", n: "Lily", r: "Mythic" }],
+                seasons: ["Temporada 40 — Summer Splash", "Temporada 41 — Ocean Vibes"],
+                yt: "",
+                highlights: [
+                    { icon: "🌊", title: "Kaze", desc: "Ninja do vento Mythic que controla direção dos ataques com um leque." },
+                    { icon: "🌷", title: "Lily", desc: "Assassina Mythic invisível que troca de lugar com inimigos com o Super." },
+                    { icon: "☀️", title: "Eventos de Verão", desc: "Múltiplos eventos sazonais com recompensas exclusivas e modos especiais." },
+                    { icon: "🏄", title: "Modos Aquáticos", desc: "Novos mapas com elementos aquáticos e mecânicas de natação." },
+                ]
+            },
+            {
+                num: 61, year: 2025, title: "MadEvil Manor!", period: "Maio – Junho 2025", color: "#EC4899",
+                emoji: "🎸", isLatest: false,
+                desc: "Chegada do trio MadEvil Manor ao jogo. Draco e Lumi estrearam-se com um tema de heavy metal.",
+                features: ["🎸 Draco — Legendary", "🥁 Lumi — Legendary", "🏰 MadEvil Manor", "🤘 Heavy Metal Theme", "🗡️ Larry & Lawrie — Mythic"],
+                brawlers: [{ e: "🎸", n: "Draco", r: "Legendary" }, { e: "🥁", n: "Lumi", r: "Legendary" }, { e: "🤖", n: "Larry & Lawrie", r: "Mythic" }],
+                seasons: ["Temporada 38 — MadEvil Manor", "Temporada 39 — Rock Legends"],
+                yt: "",
+                highlights: [
+                    { icon: "🎸", title: "Draco", desc: "Guitarrista dragão Legendary que se transforma num dragão de fogo com o Super." },
+                    { icon: "🥁", title: "Lumi", desc: "Baterista Legendary cujo ritmo melhora toda a equipa próxima." },
+                    { icon: "🏰", title: "MadEvil Manor", desc: "Nova localização de Starr Park com tema de banda de heavy metal." },
+                    { icon: "🤖", title: "Larry & Lawrie", desc: "Duo de robôs Mythic que trabalham em equipa com ataques coordenados." },
+                ]
+            },
+            {
+                num: 60, year: 2025, title: "Ranked Refresh!", period: "Fevereiro – Abril 2025", color: "#F59E0B",
+                emoji: "🏅", isLatest: false,
+                desc: "Grande rework ao Ranked, Daily Streaks para todos, dois novos Brawlers e 12 Hypercharges novos.",
+                features: ["🏅 Ranked Rework", "📅 Daily Streaks", "🔮 Finx — Mythic", "🥁 Lumi — Mythic", "⚡ 12 Novos Hypercharges", "🃏 Evento UNO!"],
+                brawlers: [{ e: "🔮", n: "Finx", r: "Mythic" }, { e: "🥁", n: "Lumi", r: "Mythic" }],
+                seasons: ["Temporada 36 — Dark Sands", "Temporada 37 — Super Brawl"],
+                yt: "",
+                highlights: [
+                    { icon: "🏅", title: "Ranked Rework", desc: "Sistema de Ranked completamente renovado com novos ranks, pontos e recompensas." },
+                    { icon: "📅", title: "Daily Streaks", desc: "Recompensas diárias progressivas para todos os jogadores." },
+                    { icon: "⚡", title: "12 Hypercharges Novos", desc: "Vaga massiva de Hypercharges para brawlers que ainda não tinham." },
+                    { icon: "🃏", title: "Evento UNO!", desc: "Collab com o clássico jogo de cartas UNO dentro de Brawl Stars." },
+                ]
+            },
+            {
+                num: 59, year: 2024, title: "Toy Story & Mais!", period: "Dezembro 2024 – Fevereiro 2025", color: "#10B981",
+                emoji: "🚀", isLatest: false,
+                desc: "Collab épica com Toy Story. Buzz Lightyear como brawler temporário e dois novos brawlers permanentes.",
+                features: ["🚀 Buzz Lightyear Temp.", "🧩 Meeple — Epic", "🛹 Ollie — Mythic", "🎄 Mega Tree", "🍕 Pizza Planet Arcade", "🎬 Toy Story Skins"],
+                brawlers: [{ e: "🧩", n: "Meeple", r: "Epic" }, { e: "🛹", n: "Ollie", r: "Mythic" }],
+                seasons: ["Temporada 34 — Starr Force", "Temporada 35 — Good Randoms"],
+                yt: "",
+                highlights: [
+                    { icon: "🚀", title: "Buzz Lightyear", desc: "Primeiro brawler temporário da história. Disponível grátis de Dezembro 2024 a Fevereiro 2025." },
+                    { icon: "🧩", title: "Meeple", desc: "Nova Epic obtível no Pizza Planet Arcade com Pizza Slices." },
+                    { icon: "🛹", title: "Ollie", desc: "Hoverboarder Mythic que hipnotiza inimigos com a sua música contagiante." },
+                    { icon: "🎄", title: "Mega Tree", desc: "As Brawlidays com a Mega Pig transformada numa Mega Árvore de prendas diárias." },
+                ]
+            },
+            {
+                num: 58, year: 2024, title: "Angels vs Demons!", period: "Outubro – Novembro 2024", color: "#8B5CF6",
+                emoji: "😇", isLatest: false,
+                desc: "Época de Angels vs Demons em Starr Park. Dois novos Brawlers únicos e uma temporada sobrenatural.",
+                features: ["😇 Angels vs Demons", "🧿 Juju — Epic", "💀 Shade — Epic", "🌺 Eventos Especiais", "⚖️ Escolhe o teu lado"],
+                brawlers: [{ e: "🌺", n: "Juju", r: "Epic" }, { e: "👻", n: "Shade", r: "Epic" }],
+                seasons: ["Temporada 32 — Angels & Demons", "Temporada 33 — Starr Toon"],
+                yt: "",
+                highlights: [
+                    { icon: "🌺", title: "Juju", desc: "Epic Artillery dona da Oddities Shop com três ataques elementais — relva, terra e água." },
+                    { icon: "👻", title: "Shade", desc: "Epic Assassin fantasma de roupa flutuante que pode atravessar paredes." },
+                    { icon: "😇", title: "Angels vs Demons", desc: "Evento onde cada dia os jogadores são atribuídos a Team Angel ou Team Demon." },
+                    { icon: "⚖️", title: "Poderes Especiais", desc: "Cada equipa tem habilidades e recompensas exclusivas durante a temporada." },
+                ]
+            },
+            {
+                num: 57, year: 2024, title: "Melodie & Mais!", period: "Agosto – Outubro 2024", color: "#EC4899",
+                emoji: "🎵", isLatest: false,
+                desc: "Novos Brawlers musicais e melhorias ao sistema de progressão. Temporadas com temas vibrantes.",
+                features: ["🎵 Melodie — Mythic", "🐒 Mico — Mythic", "🎭 Novos Eventos", "📈 Progressão Melhorada", "🗺️ Novos Mapas"],
+                brawlers: [{ e: "🎵", n: "Melodie", r: "Mythic" }, { e: "🐒", n: "Mico", r: "Mythic" }],
+                seasons: ["Temporada 30 — Pop Stars", "Temporada 31 — Wild West"],
+                yt: "",
+                highlights: [
+                    { icon: "🎵", title: "Melodie", desc: "Cantora pop Mythic com notas musicais em órbita que causam dano constante." },
+                    { icon: "🐒", title: "Mico", desc: "Macaco Mythic saltitante que ganha stacks de velocidade e dano ao acertar." },
+                    { icon: "📈", title: "Progressão Melhorada", desc: "Melhorias ao sistema de recompensas e ao caminho de progressão dos Brawlers." },
+                    { icon: "🗺️", title: "Novos Mapas", desc: "Vários mapas novos adicionados em múltiplos modos de jogo." },
+                ]
+            },
+            {
+                num: 56, year: 2024, title: "Mega Boxes?!", period: "Junho – Agosto 2024", color: "#06B6D4",
+                emoji: "📦", isLatest: false,
+                desc: "Update com Berry e Clancy, Classic Brawl de volta e uma enorme vaga de Hypercharges.",
+                features: ["🫐 Berry — Epic", "🎩 Clancy — Mythic", "⚡ 7 Hypercharges", "🎮 Classic Brawl", "🔧 Reworks Frank/Meg/Chester"],
+                brawlers: [{ e: "🫐", n: "Berry", r: "Epic" }, { e: "🎩", n: "Clancy", r: "Mythic" }],
+                seasons: ["Temporada 28 — Gods vs Monsters", "Temporada 29 — Paint Brawl"],
+                yt: "",
+                highlights: [
+                    { icon: "🫐", title: "Berry", desc: "Epic Support baga que cura aliados através dos ataques." },
+                    { icon: "🎩", title: "Clancy", desc: "Mythic político que evolui em 3 estágios ao causar dano." },
+                    { icon: "⚡", title: "7 Hypercharges", desc: "Barley, Piper, Frank, Emz, Angelo, Gale e Rico recebem Hypercharges." },
+                    { icon: "🔧", title: "Reworks", desc: "Frank, Meg e Chester recebem reworks às suas habilidades e stats." },
+                ]
+            },
+        ];
+
+        let currentFilter = "all", currentSearch = "";
+
+        function getGradient(color) {
+            return `radial-gradient(ellipse 80% 80% at 0% 0%, ${color}33, transparent 70%), radial-gradient(ellipse 60% 60% at 100% 100%, ${color}22, transparent 60%)`;
+        }
+
+        function renderUpdates() {
+            const grid = document.getElementById("updatesGrid");
+            grid.innerHTML = "";
+            const s = currentSearch.toLowerCase().trim();
+            const filtered = UPDATES.filter(u => {
+                const yearMatch = currentFilter === "all" || String(u.year) === currentFilter;
+                const searchMatch = s === "" || u.title.toLowerCase().includes(s) || String(u.num).includes(s) || u.desc.toLowerCase().includes(s);
+                return yearMatch && searchMatch;
+            });
+            if (filtered.length === 0) { document.getElementById("noResults").style.display = "block"; return; }
+            document.getElementById("noResults").style.display = "none";
+            filtered.forEach((u, i) => {
+                const card = document.createElement("div");
+                card.className = `update-card${u.isLatest ? " latest" : ""} reveal`;
+                card.style.transitionDelay = `${i * 0.06}s`;
+                card.innerHTML = `
+      <div class="card-top">
+        <div class="card-top-bg" style="background:${getGradient(u.color)}"></div>
+        <div class="card-top-inner">
+          <div class="card-header">
+            <div>
+              <div class="card-year-tag">${u.year} · Update ${u.num}</div>
+              <div class="card-title">${u.emoji} ${u.title}</div>
+              <div class="card-period">📅 ${u.period}</div>
+            </div>
+            <div>${u.isLatest ? '<div class="latest-badge">✨ Mais Recente</div>' : ""}</div>
+          </div>
+          <p class="card-desc">${u.desc}</p>
+        </div>
+        <div class="card-num">${u.num}</div>
+      </div>
+      <div class="card-body">
+        <div class="feature-pills">${u.features.slice(0, 4).map(f => `<div class="feature-pill">${f}</div>`).join("")}</div>
+        <div class="card-footer">
+          <div class="new-brawlers-mini">${u.brawlers.slice(0, 3).map(b => `<div class="brawler-chip">${b.e} ${b.n}</div>`).join("")}</div>
+          <button class="card-cta" onclick="openModal(${u.num})">Ver detalhes →</button>
+        </div>
+      </div>
+    `;
+                grid.appendChild(card);
+            });
+            document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+        }
+
+        function openModal(num) {
+            const u = UPDATES.find(x => x.num === num);
+            if (!u) return;
+            document.getElementById("modalHeroBg").style.background = getGradient(u.color);
+            document.getElementById("modalNum").textContent = u.num;
+            document.getElementById("modalBadge").innerHTML = `<span>${u.emoji}</span> Update ${u.num} · ${u.year}`;
+            document.getElementById("modalBadge").style.cssText = `color:${u.color}`;
+            document.getElementById("modalTitle").textContent = u.title;
+            document.getElementById("modalPeriod").textContent = `📅 ${u.period}`;
+            document.getElementById("modalDesc").textContent = u.desc;
+            document.getElementById("modalHighlights").innerHTML = (u.highlights || []).map(h => `
+    <div class="highlight-item">
+      <div class="highlight-icon">${h.icon}</div>
+      <div class="highlight-text"><strong>${h.title}</strong>${h.desc}</div>
+    </div>
+  `).join("");
+            const bSection = document.getElementById("modalBrawlersSection");
+            if (u.brawlers.length > 0) {
+                bSection.style.display = "block";
+                document.getElementById("modalBrawlers").innerHTML = u.brawlers.map(b => `
+      <div class="brawler-modal-chip" style="border-color:rgba(255,255,255,.15)">${b.e} ${b.n} <span style="opacity:.4;font-size:.72rem">${b.r}</span></div>
+    `).join("");
+            } else { bSection.style.display = "none"; }
+            document.getElementById("modalSeasons").innerHTML = u.seasons.map(s => `<div class="season-item"><span>🎭 Temporada</span>${s}</div>`).join("");
+            const ytSection = document.getElementById("modalYTSection");
+            if (u.yt) {
+                ytSection.style.display = "block";
+                document.getElementById("modalYT").innerHTML = `<iframe src="https://www.youtube.com/embed/${u.yt}" allowfullscreen></iframe>`;
+            } else { ytSection.style.display = "none"; }
+            document.getElementById("modalOverlay").classList.add("open");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            document.getElementById("modalOverlay").classList.remove("open");
+            document.body.style.overflow = "";
+            document.getElementById("modalYT").innerHTML = "";
+        }
+        document.getElementById("modalClose").addEventListener("click", closeModal);
+        document.getElementById("modalOverlay").addEventListener("click", e => { if (e.target === document.getElementById("modalOverlay")) closeModal(); });
+        document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+        document.querySelectorAll(".filter-tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+                currentFilter = tab.dataset.filter;
+                renderUpdates();
+            });
+        });
+        document.getElementById("searchInput").addEventListener("input", e => { currentSearch = e.target.value; renderUpdates(); });
+
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.05 });
+
+        const cursor = document.getElementById("cursor");
+        const ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        document.querySelectorAll("a,button").forEach(el => {
+            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+        });
+
+        renderUpdates();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapas — BrawlZone Wiki</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --green: #22C55E;
+            --teal: #00C9A7;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --purple: #A855F7;
+            --red: #E8202A;
+            --c-gg: #22C55E;
+            --c-bb: #3B82F6;
+            --c-sd: #F59E0B;
+            --c-ko: #EF4444;
+            --c-hz: #FF6B00;
+            --c-bou: #A855F7;
+            --c-hei: #FF3CAC;
+            --c-wip: #00C9A7;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --text-dark: #1A1A2E;
+            /* cores do mapa */
+            --tile-wall: #2A2A4A;
+            --tile-wall2: #1E1E38;
+            --tile-grass: #1A3A1A;
+            --tile-bush: #2D5A2D;
+            --tile-open: #12122A;
+            --tile-water: #0A2040;
+            --tile-spawn: #1A1A4A;
+            --tile-gem: #00C9A7;
+            --tile-zone: #FF6B0033;
+            --tile-safe: #FF3CAC33;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        * {
+            cursor: none !important;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--teal);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(0, 201, 167, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a.active {
+            color: var(--teal);
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* HEADER */
+        .page-header {
+            padding: 8rem 3rem 4rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--dark2);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .header-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 50% 70% at 85% 50%, rgba(0, 201, 167, .18), transparent),
+                radial-gradient(ellipse 40% 50% at 10% 60%, rgba(59, 130, 246, .12), transparent);
+        }
+
+        .header-inner {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-eyebrow {
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: .5rem;
+        }
+
+        .page-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .page-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, .5);
+            max-width: 580px;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
+
+        .mode-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+        }
+
+        .mode-pill {
+            padding: .35rem .9rem;
+            border-radius: 100px;
+            font-size: .78rem;
+            font-weight: 700;
+            border: 1px solid transparent;
+        }
+
+        /* TOOLBAR */
+        .toolbar {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media(max-width:700px) {
+            .toolbar {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+
+        .filter-tab {
+            padding: .4rem 1rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: .8rem;
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: rgba(255, 255, 255, .5);
+            background: transparent;
+            transition: all .2s;
+        }
+
+        .filter-tab:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, .3);
+        }
+
+        .filter-tab.active {
+            color: #fff;
+            border-color: transparent;
+        }
+
+        [data-mode="all"].active {
+            background: rgba(255, 255, 255, .15);
+        }
+
+        [data-mode="gem_grab"].active {
+            background: var(--c-gg);
+        }
+
+        [data-mode="brawl_ball"].active {
+            background: var(--c-bb);
+        }
+
+        [data-mode="showdown"].active {
+            background: var(--c-sd);
+            color: var(--text-dark);
+        }
+
+        [data-mode="knockout"].active {
+            background: var(--c-ko);
+        }
+
+        [data-mode="hot_zone"].active {
+            background: var(--c-hz);
+        }
+
+        [data-mode="bounty"].active {
+            background: var(--c-bou);
+        }
+
+        [data-mode="heist"].active {
+            background: var(--c-hei);
+        }
+
+        [data-mode="wipeout"].active {
+            background: var(--c-wip);
+        }
+
+        .search-wrap {
+            position: relative;
+        }
+
+        .search-input {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 100px;
+            padding: .5rem 1.2rem .5rem 2.4rem;
+            color: #fff;
+            font-family: 'Nunito', sans-serif;
+            font-size: .88rem;
+            outline: none;
+            width: 210px;
+            transition: border-color .2s;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .search-input:focus {
+            border-color: var(--teal);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: .85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .88rem;
+            pointer-events: none;
+            opacity: .4;
+        }
+
+        /* RESULTS INFO */
+        .results-info {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem .75rem;
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .3);
+            font-weight: 700;
+        }
+
+        @media(max-width:700px) {
+            .results-info {
+                padding: 0 1.5rem .75rem;
+            }
+        }
+
+        /* CONTAINER */
+        .maps-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem 6rem;
+        }
+
+        @media(max-width:700px) {
+            .maps-container {
+                padding: 0 1.5rem 4rem;
+            }
+        }
+
+        /* GRUPO DE MODO */
+        .mode-group {
+            margin-bottom: 4rem;
+        }
+
+        .mode-group-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mode-group-icon {
+            font-size: 1.5rem;
+        }
+
+        .mode-group-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .mode-group-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .mode-group-count {
+            font-size: .75rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .3);
+        }
+
+        /* GRID */
+        .maps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        /* MAP CARD */
+        .map-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform .25s, border-color .25s, box-shadow .25s;
+        }
+
+        .map-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .map-card[data-mode="gem_grab"]:hover {
+            border-color: rgba(34, 197, 94, .3);
+            box-shadow: 0 12px 30px rgba(34, 197, 94, .08);
+        }
+
+        .map-card[data-mode="brawl_ball"]:hover {
+            border-color: rgba(59, 130, 246, .3);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, .08);
+        }
+
+        .map-card[data-mode="showdown"]:hover {
+            border-color: rgba(245, 158, 11, .3);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, .08);
+        }
+
+        .map-card[data-mode="knockout"]:hover {
+            border-color: rgba(239, 68, 68, .3);
+            box-shadow: 0 12px 30px rgba(239, 68, 68, .08);
+        }
+
+        .map-card[data-mode="hot_zone"]:hover {
+            border-color: rgba(255, 107, 0, .3);
+            box-shadow: 0 12px 30px rgba(255, 107, 0, .08);
+        }
+
+        .map-card[data-mode="bounty"]:hover {
+            border-color: rgba(168, 85, 247, .3);
+            box-shadow: 0 12px 30px rgba(168, 85, 247, .08);
+        }
+
+        .map-card[data-mode="heist"]:hover {
+            border-color: rgba(255, 60, 172, .3);
+            box-shadow: 0 12px 30px rgba(255, 60, 172, .08);
+        }
+
+        .map-card[data-mode="wipeout"]:hover {
+            border-color: rgba(0, 201, 167, .3);
+            box-shadow: 0 12px 30px rgba(0, 201, 167, .08);
+        }
+
+        /* SVG PREVIEW */
+        .map-preview {
+            height: 160px;
+            background: #0A0A1A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-preview svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .map-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .4s;
+        }
+
+        .map-card:hover .map-preview img {
+            transform: scale(1.05);
+        }
+
+        .map-color-bar {
+            height: 3px;
+        }
+
+        /* CARD BODY */
+        .map-body {
+            padding: 1.1rem 1.25rem 1.25rem;
+        }
+
+        .map-mode-badge {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .2rem .65rem;
+            border-radius: 100px;
+            display: inline-block;
+            margin-bottom: .5rem;
+        }
+
+        .map-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            margin-bottom: .3rem;
+        }
+
+        .map-meta {
+            display: flex;
+            gap: .75rem;
+            margin-bottom: .75rem;
+            flex-wrap: wrap;
+        }
+
+        .map-meta-item {
+            font-size: .72rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .35);
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+        }
+
+        .map-tip {
+            font-size: .8rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .5);
+            margin-bottom: .85rem;
+        }
+
+        .map-brawlers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+        }
+
+        .map-brawler-chip {
+            font-size: .68rem;
+            font-weight: 700;
+            padding: .18rem .55rem;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .55);
+        }
+
+        /* NO RESULTS */
+        .no-results {
+            text-align: center;
+            padding: 5rem 0;
+            color: rgba(255, 255, 255, .3);
+            display: none;
+        }
+
+        .no-results-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: .5rem;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 800;
+            background: rgba(0, 0, 0, .82);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 22px;
+            width: 100%;
+            max-width: 720px;
+            margin: auto;
+            transform: translateY(25px) scale(.97);
+            transition: transform .3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-overlay.open .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.1rem;
+            right: 1.1rem;
+            z-index: 10;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .1);
+            border: none;
+            color: rgba(255, 255, 255, .6);
+            font-size: .95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, .2);
+            color: #fff;
+        }
+
+        .modal-map-preview {
+            height: 300px;
+            background: #0A0A1A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-map-preview svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .modal-map-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-color-bar {
+            height: 4px;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .modal-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .modal-mode-badge {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .3rem .9rem;
+            border-radius: 100px;
+        }
+
+        .modal-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: .75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-stat {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 12px;
+            padding: .9rem;
+            text-align: center;
+        }
+
+        .modal-stat-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: .2rem;
+        }
+
+        .modal-stat-label {
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .35);
+        }
+
+        .modal-section-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: .78rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-bottom: .75rem;
+            margin-top: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+
+        .modal-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .modal-desc {
+            font-size: .92rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .modal-tips {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+        }
+
+        .modal-tip-item {
+            display: flex;
+            gap: .75rem;
+            font-size: .88rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .modal-tip-icon {
+            flex-shrink: 0;
+            font-size: 1rem;
+            margin-top: .05rem;
+        }
+
+        .modal-brawlers-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+
+        .modal-brawler {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .09);
+            border-radius: 100px;
+            padding: .28rem .8rem;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+
+        /* LEGENDA SVG */
+        .map-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem;
+            margin-top: .75rem;
+            padding: .75rem 1rem;
+            background: rgba(255, 255, 255, .03);
+            border-radius: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            font-size: .7rem;
+            color: rgba(255, 255, 255, .4);
+            font-weight: 700;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .55s ease, transform .55s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../Brawlers/Brawlers.html">Brawlers</a></li>
+            <li><a href="../Temporadas/Temporadas.html">Updates</a></li>
+            <li><a href="Mapas.html" class="active">Mapas</a></li>
+            <li><a href="../Guias/Guias.html">Guias</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-bg"></div>
+        <div class="header-inner">
+            <p class="page-eyebrow">Wiki — Arenas de Batalha</p>
+            <h1 class="page-title">🗺️ Mapas</h1>
+            <p class="page-desc">Os mapas mais importantes de cada modo de jogo — com layout visual, dicas de
+                posicionamento e os melhores brawlers para cada arena.</p>
+            <div class="mode-pills">
+                <div class="mode-pill"
+                    style="background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.3);color:var(--c-gg)">💎 Gem Grab
+                </div>
+                <div class="mode-pill"
+                    style="background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.3);color:var(--c-bb)">⚽ Brawl
+                    Ball</div>
+                <div class="mode-pill"
+                    style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.3);color:var(--c-sd)">💀
+                    Showdown</div>
+                <div class="mode-pill"
+                    style="background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.3);color:var(--c-ko)">🎯 Knockout
+                </div>
+                <div class="mode-pill"
+                    style="background:rgba(255,107,0,.12);border-color:rgba(255,107,0,.3);color:var(--c-hz)">🔥 Hot Zone
+                </div>
+                <div class="mode-pill"
+                    style="background:rgba(168,85,247,.12);border-color:rgba(168,85,247,.3);color:var(--c-bou)">⭐ Bounty
+                </div>
+                <div class="mode-pill"
+                    style="background:rgba(255,60,172,.12);border-color:rgba(255,60,172,.3);color:var(--c-hei)">🏦 Heist
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="toolbar">
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-mode="all">Todos</button>
+            <button class="filter-tab" data-mode="gem_grab">💎 Gem Grab</button>
+            <button class="filter-tab" data-mode="brawl_ball">⚽ Brawl Ball</button>
+            <button class="filter-tab" data-mode="showdown">💀 Showdown</button>
+            <button class="filter-tab" data-mode="knockout">🎯 Knockout</button>
+            <button class="filter-tab" data-mode="hot_zone">🔥 Hot Zone</button>
+            <button class="filter-tab" data-mode="bounty">⭐ Bounty</button>
+            <button class="filter-tab" data-mode="heist">🏦 Heist</button>
+        </div>
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="Nome do mapa...">
+        </div>
+    </div>
+
+    <div class="results-info" id="resultsInfo"></div>
+    <div class="maps-container" id="mapsContainer"></div>
+    <div class="no-results" id="noResults">
+        <div class="no-results-emoji">🗺️</div>
+        <h3>Nenhum mapa encontrado</h3>
+        <p>Tenta outro filtro ou nome.</p>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div class="modal-map-preview" id="modalMapPreview"></div>
+            <div class="modal-color-bar" id="modalColorBar"></div>
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <span class="modal-mode-badge" id="modalModeBadge"></span>
+                </div>
+                <div class="modal-stats" id="modalStats"></div>
+                <div class="modal-section-title">Descrição</div>
+                <p class="modal-desc" id="modalDesc"></p>
+                <div class="modal-section-title">Dicas de Jogo</div>
+                <div class="modal-tips" id="modalTips"></div>
+                <div class="modal-section-title">Melhores Brawlers</div>
+                <div class="modal-brawlers-grid" id="modalBrawlers"></div>
+                <div class="modal-section-title">Legenda do Mapa</div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#2A2A4A"></div>Parede
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#2D5A2D"></div>Arbusto
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#0A2040"></div>Água
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#1A1A4A"></div>Chão aberto
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#00C9A7"></div>Gemas/Objetivo
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#EF4444"></div>Zona quente / Cofre
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#FFD000"></div>Spawn
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ══════════════════════════════
+           FUNÇÕES SVG DOS MAPAS
+        ══════════════════════════════ */
+        // Helpers para desenhar tiles
+        const T = 8; // tamanho do tile em px
+
+        function rect(x, y, w, h, fill, op = 1) {
+            return `<rect x="${x * T}" y="${y * T}" width="${w * T}" height="${h * T}" fill="${fill}" opacity="${op}"/>`;
+        }
+        function circle(cx, cy, r, fill) {
+            return `<circle cx="${cx * T}" cy="${cy * T}" r="${r}" fill="${fill}"/>`;
+        }
+        function text(x, y, t, fill = "#fff", sz = 8) {
+            return `<text x="${x * T}" y="${y * T}" fill="${fill}" font-size="${sz}" font-family="Nunito" font-weight="800" text-anchor="middle" dominant-baseline="middle">${t}</text>`;
+        }
+
+        /* ─── LAYOUTS DOS MAPAS (grelha simplificada) ─── */
+        // Legenda: 0=chão, 1=parede, 2=arbusto, 3=água, 4=spawn, 5=objetivo, 6=zona
+
+        function svgGemFort(small = false) {
+            const W = 19, H = 19, s = small ? 6 : T;
+            // Layout clássico do Gem Fort (Gem Grab)
+            const grid = [
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [1, 4, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 4, 1],
+                [1, 0, 1, 1, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 1, 1, 0, 1],
+                [1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1],
+                [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+                [1, 2, 0, 0, 1, 1, 0, 0, 2, 0, 2, 0, 0, 1, 1, 0, 0, 2, 1],
+                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+                [1, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 1],
+                [1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1],
+                [1, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+                [1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1],
+                [1, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 1],
+                [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+                [1, 2, 0, 0, 1, 1, 0, 0, 2, 0, 2, 0, 0, 1, 1, 0, 0, 2, 1],
+                [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+                [1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1],
+                [1, 0, 1, 1, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 1, 1, 0, 1],
+                [1, 4, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 4, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            ];
+            const colors = { 0: "#12122A", 1: "#2A2A4A", 2: "#2D5A2D", 3: "#0A2040", 4: "#1A1A5A", 5: "#00C9A7", 6: "#FF6B0040" };
+            let svg = `<svg viewBox="0 0 ${W * s} ${H * s}" xmlns="http://www.w3.org/2000/svg">`;
+            svg += `<rect width="100%" height="100%" fill="#0A0A1A"/>`;
+            grid.forEach((row, y) => row.forEach((cell, x) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="${colors[cell] || '#0A0A1A'}"/>`;
+            }));
+            // gem mine indicator
+            svg += `<circle cx="${9 * s + s / 2}" cy="${9 * s + s / 2}" r="${s * .7}" fill="#00C9A7" opacity=".9"/>`;
+            svg += `<text x="${9 * s + s / 2}" y="${9 * s + s / 2 + 1}" fill="#000" font-size="${s * .7}" font-weight="800" text-anchor="middle" dominant-baseline="middle">💎</text>`;
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function svgSneakyFields(small = false) {
+            const W = 17, H = 17, s = small ? 7 : T;
+            const grid = [
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [1, 4, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 4, 1],
+                [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+                [1, 2, 0, 0, 1, 1, 0, 2, 0, 2, 0, 1, 1, 0, 0, 2, 1],
+                [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1],
+                [1, 0, 1, 1, 0, 0, 2, 0, 0, 0, 2, 0, 0, 1, 1, 0, 1],
+                [1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1],
+                [1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 1],
+                [1, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 1],
+                [1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 1],
+                [1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1],
+                [1, 0, 1, 1, 0, 0, 2, 0, 0, 0, 2, 0, 0, 1, 1, 0, 1],
+                [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1],
+                [1, 2, 0, 0, 1, 1, 0, 2, 0, 2, 0, 1, 1, 0, 0, 2, 1],
+                [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+                [1, 4, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 4, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            ];
+            const colors = { 0: "#12122A", 1: "#2A2A4A", 2: "#2D5A2D", 3: "#0A2040", 4: "#1A1A5A", 5: "#00C9A7" };
+            let svg = `<svg viewBox="0 0 ${W * s} ${H * s}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#0A0A1A"/>`;
+            grid.forEach((row, y) => row.forEach((cell, x) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="${colors[cell] || '#0A0A1A'}"/>`;
+            }));
+            svg += `<circle cx="${8 * s + s / 2}" cy="${8 * s + s / 2}" r="${s * .7}" fill="#00C9A7" opacity=".9"/>`;
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function svgSneakyFieldsBB(small = false) {
+            // Sneaky Fields Brawl Ball
+            const W = 19, H = 23, s = small ? 5 : 7;
+            let svg = `<svg viewBox="0 0 ${W * s} ${H * s}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#0A0A1A"/>`;
+            // chão
+            svg += `<rect x="0" y="0" width="${W * s}" height="${H * s}" fill="#12122A"/>`;
+            // paredes externas
+            svg += `<rect x="0" y="0" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="${(H - 1) * s}" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="${(W - 1) * s}" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            // arbustos laterais
+            [[1, 3], [1, 4], [1, 5], [W - 2, 3], [W - 2, 4], [W - 2, 5],
+            [1, 17], [1, 18], [1, 19], [W - 2, 17], [W - 2, 18], [W - 2, 19]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2D5A2D"/>`;
+            });
+            // paredes centrais
+            [[5, 8], [6, 8], [12, 8], [13, 8], [5, 14], [6, 14], [12, 14], [13, 14]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s * 2}" height="${s}" fill="#2A2A4A"/>`;
+            });
+            // baliza cima
+            svg += `<rect x="${8 * s}" y="${s}" width="${3 * s}" height="${s}" fill="#3B82F6" opacity=".6"/>`;
+            // baliza baixo
+            svg += `<rect x="${8 * s}" y="${(H - 2) * s}" width="${3 * s}" height="${s}" fill="#EF4444" opacity=".6"/>`;
+            // bola centro
+            svg += `<circle cx="${(W / 2) * s}" cy="${(H / 2) * s}" r="${s * .8}" fill="#fff" opacity=".7"/>`;
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function svgRingOfFire(small = false) {
+            const W = 20, H = 20, s = small ? 5 : T;
+            let svg = `<svg viewBox="0 0 ${W * s} ${H * s}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#0A0A1A"/>`;
+            svg += `<rect x="0" y="0" width="${W * s}" height="${H * s}" fill="#12122A"/>`;
+            // paredes externas
+            svg += `<rect x="0" y="0" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="${(H - 1) * s}" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="${(W - 1) * s}" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            // zona quente central (anel de fogo)
+            svg += `<circle cx="${W * s / 2}" cy="${H * s / 2}" r="${s * 5}" fill="#FF6B00" opacity=".15"/>`;
+            svg += `<circle cx="${W * s / 2}" cy="${H * s / 2}" r="${s * 3}" fill="#FF6B00" opacity=".25"/>`;
+            svg += `<circle cx="${W * s / 2}" cy="${H * s / 2}" r="${s * 1.5}" fill="#FF6B00" opacity=".4"/>`;
+            // arbustos
+            [[2, 2], [3, 2], [2, 3], [W - 3, 2], [W - 4, 2], [W - 3, 3],
+            [2, H - 3], [3, H - 3], [2, H - 4], [W - 3, H - 3], [W - 4, H - 3], [W - 3, H - 4]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2D5A2D"/>`;
+            });
+            // paredes internas
+            [[4, 8], [4, 9], [4, 10], [4, 11], [W - 5, 8], [W - 5, 9], [W - 5, 10], [W - 5, 11]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2A2A4A"/>`;
+            });
+            // label zona
+            svg += `<text x="${W * s / 2}" y="${H * s / 2 + 2}" fill="#FF6B00" font-size="10" font-weight="800" text-anchor="middle" font-family="Nunito">HOT</text>`;
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function svgBridgeTooFar(small = false) {
+            const W = 21, H = 17, s = small ? 5 : T;
+            let svg = `<svg viewBox="0 0 ${W * s} ${H * s}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#0A2040"/>`;
+            // água de fundo
+            svg += `<rect x="0" y="0" width="${W * s}" height="${H * s}" fill="#0A2040"/>`;
+            // plataformas
+            [[0, 6, 6, H - 12], [W - 7, 6, 7, H - 12], [7, 0, 7, H]].forEach(([x, y, w, h]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${w * s}" height="${h * s}" fill="#12122A"/>`;
+            });
+            // paredes externas
+            svg += `<rect x="0" y="0" width="${6 * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="${(H - 1) * s}" width="${6 * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="${(W - 7) * s}" y="0" width="${7 * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="${(W - 7) * s}" y="${(H - 1) * s}" width="${7 * s}" height="${s}" fill="#2A2A4A"/>`;
+            // ponte
+            svg += `<rect x="${6 * s}" y="${7 * s}" width="${s}" height="${3 * s}" fill="#2A2A4A" opacity=".5"/>`;
+            svg += `<rect x="${14 * s}" y="${7 * s}" width="${s}" height="${3 * s}" fill="#2A2A4A" opacity=".5"/>`;
+            // arbustos
+            [[1, 2], [2, 2], [1, H - 3], [2, H - 3], [W - 3, 2], [W - 4, 2], [W - 3, H - 3], [W - 4, H - 3]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2D5A2D"/>`;
+            });
+            // spawns
+            svg += `<rect x="${s}" y="${7 * s}" width="${s}" height="${3 * s}" fill="#1A1A5A"/>`;
+            svg += `<rect x="${(W - 2) * s}" y="${7 * s}" width="${s}" height="${3 * s}" fill="#1A1A5A"/>`;
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function svgDiamondDome(small = false) {
+            const W = 19, H = 25, s = small ? 5 : 6;
+            let svg = `<svg viewBox="0 0 ${W * s} ${H * s}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#0A0A1A"/>`;
+            svg += `<rect x="0" y="0" width="${W * s}" height="${H * s}" fill="#12122A"/>`;
+            // bordas
+            svg += `<rect x="0" y="0" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="${(H - 1) * s}" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="${(W - 1) * s}" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            // estrela de bounty
+            svg += `<circle cx="${W * s / 2}" cy="${H * s / 2}" r="${s * 1.2}" fill="#A855F7" opacity=".7"/>`;
+            svg += `<text x="${W * s / 2}" y="${H * s / 2 + 2}" fill="#fff" font-size="10" text-anchor="middle" font-family="Nunito" font-weight="800">⭐</text>`;
+            // paredes em diamante
+            [[6, 5], [7, 4], [8, 5], [9, 5], [10, 5], [11, 4], [12, 5],
+            [6, 19], [7, 20], [8, 19], [9, 19], [10, 19], [11, 20], [12, 19]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2A2A4A"/>`;
+            });
+            // arbustos
+            [[2, 6], [2, 7], [2, 17], [2, 18], [W - 3, 6], [W - 3, 7], [W - 3, 17], [W - 3, 18]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2D5A2D"/>`;
+            });
+            // spawns
+            svg += `<rect x="${7 * s}" y="${2 * s}" width="${5 * s}" height="${s}" fill="#1A1A5A"/>`;
+            svg += `<rect x="${7 * s}" y="${(H - 3) * s}" width="${5 * s}" height="${s}" fill="#1A1A5A"/>`;
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function svgSafezone(small = false) {
+            const W = 19, H = 19, s = small ? 6 : T;
+            let svg = `<svg viewBox="0 0 ${W * s} ${H * s}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#0A0A1A"/>`;
+            svg += `<rect x="0" y="0" width="${W * s}" height="${H * s}" fill="#12122A"/>`;
+            // bordas
+            svg += `<rect x="0" y="0" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="${(H - 1) * s}" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="${(W - 1) * s}" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            // cofres
+            svg += `<rect x="${7 * s}" y="${2 * s}" width="${5 * s}" height="${2 * s}" fill="#FF3CAC" opacity=".5"/>`;
+            svg += `<text x="${9.5 * s}" y="${3 * s + 3}" fill="#fff" font-size="11" text-anchor="middle" font-family="Nunito" font-weight="800">🏦</text>`;
+            svg += `<rect x="${7 * s}" y="${(H - 4) * s}" width="${5 * s}" height="${2 * s}" fill="#FF3CAC" opacity=".5"/>`;
+            svg += `<text x="${9.5 * s}" y="${(H - 3) * s + 3}" fill="#fff" font-size="11" text-anchor="middle" font-family="Nunito" font-weight="800">🏦</text>`;
+            // paredes centrais
+            [[5, 7], [6, 7], [7, 7], [11, 7], [12, 7], [13, 7],
+            [5, 11], [6, 11], [7, 11], [11, 11], [12, 11], [13, 11]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2A2A4A"/>`;
+            });
+            // arbustos
+            [[2, 4], [2, 5], [2, 13], [2, 14], [W - 3, 4], [W - 3, 5], [W - 3, 13], [W - 3, 14]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2D5A2D"/>`;
+            });
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function svgKnockoutMap(small = false) {
+            const W = 21, H = 21, s = small ? 5 : T;
+            let svg = `<svg viewBox="0 0 ${W * s} ${H * s}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#0A0A1A"/>`;
+            svg += `<rect x="0" y="0" width="${W * s}" height="${H * s}" fill="#12122A"/>`;
+            svg += `<rect x="0" y="0" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="${(H - 1) * s}" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="${(W - 1) * s}" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            // paredes simétricas
+            [[4, 4], [5, 4], [4, 5], [W - 5, 4], [W - 6, 4], [W - 5, 5],
+            [4, H - 5], [5, H - 5], [4, H - 6], [W - 5, H - 5], [W - 6, H - 5], [W - 5, H - 6],
+            [8, 8], [8, 9], [8, 10], [W - 9, 8], [W - 9, 9], [W - 9, 10]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2A2A4A"/>`;
+            });
+            // arbustos
+            [[2, 2], [3, 3], [W - 3, 2], [W - 4, 3], [2, H - 3], [3, H - 4], [W - 3, H - 3], [W - 4, H - 4],
+            [9, 4], [10, 4], [11, 4], [9, H - 5], [10, H - 5], [11, H - 5]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2D5A2D"/>`;
+            });
+            // spawns
+            svg += `<rect x="${3 * s}" y="${8 * s}" width="${3 * s}" height="${5 * s}" fill="#1A1A5A" opacity=".6"/>`;
+            svg += `<rect x="${(W - 6) * s}" y="${8 * s}" width="${3 * s}" height="${5 * s}" fill="#1A1A5A" opacity=".6"/>`;
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function svgOpenSpace(small = false) {
+            // Open Space — Gem Grab aberto
+            const W = 19, H = 19, s = small ? 6 : T;
+            let svg = `<svg viewBox="0 0 ${W * s} ${H * s}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#0A0A1A"/>`;
+            svg += `<rect x="0" y="0" width="${W * s}" height="${H * s}" fill="#12122A"/>`;
+            svg += `<rect x="0" y="0" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="${(H - 1) * s}" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="${(W - 1) * s}" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            // muito aberto — poucos obstáculos
+            [[5, 5], [6, 5], [5, 6], [12, 5], [13, 5], [13, 6],
+            [5, 12], [6, 13], [5, 13], [12, 12], [13, 12], [13, 13]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2A2A4A"/>`;
+            });
+            // arbustos espalhados
+            [[3, 3], [15, 3], [3, 15], [15, 15], [8, 3], [10, 3], [8, 15], [10, 15]].forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2D5A2D"/>`;
+            });
+            // gema
+            svg += `<circle cx="${9.5 * s}" cy="${9.5 * s}" r="${s * .8}" fill="#00C9A7" opacity=".85"/>`;
+            svg += `<text x="${9.5 * s}" y="${9.5 * s + 2}" fill="#000" font-size="10" text-anchor="middle" font-family="Nunito" font-weight="800">💎</text>`;
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function svgShowdownMap(small = false) {
+            const W = 25, H = 25, s = small ? 4 : 7;
+            let svg = `<svg viewBox="0 0 ${W * s} ${H * s}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#0A0A1A"/>`;
+            svg += `<rect x="0" y="0" width="${W * s}" height="${H * s}" fill="#12122A"/>`;
+            // bordas e poison cloud indicator
+            svg += `<rect x="0" y="0" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="${(H - 1) * s}" width="${W * s}" height="${s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="0" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            svg += `<rect x="${(W - 1) * s}" y="0" width="${s}" height="${H * s}" fill="#2A2A4A"/>`;
+            // poison ring
+            svg += `<rect x="${s}" y="${s}" width="${(W - 2) * s}" height="${s}" fill="#4A1A4A" opacity=".3"/>`;
+            svg += `<rect x="${s}" y="${(H - 2) * s}" width="${(W - 2) * s}" height="${s}" fill="#4A1A4A" opacity=".3"/>`;
+            svg += `<rect x="${s}" y="${s}" width="${s}" height="${(H - 2) * s}" fill="#4A1A4A" opacity=".3"/>`;
+            svg += `<rect x="${(W - 2) * s}" y="${s}" width="${s}" height="${(H - 2) * s}" fill="#4A1A4A" opacity=".3"/>`;
+            // power cubes e obstáculos
+            const obst = [[4, 4], [5, 4], [4, 5], [W - 5, 4], [W - 6, 4], [W - 5, 5], [4, W - 5], [5, W - 5], [4, W - 6], [W - 5, W - 5], [W - 6, W - 5], [W - 5, W - 6],
+            [10, 4], [11, 4], [10, W - 5], [11, W - 5], [4, 10], [4, 11], [W - 5, 10], [W - 5, 11],
+            [8, 8], [9, 8], [8, 9], [W - 9, 8], [W - 10, 8], [W - 9, 9], [8, W - 9], [9, W - 9], [8, W - 10], [W - 9, W - 9], [W - 10, W - 9], [W - 9, W - 10]];
+            obst.forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2A2A4A"/>`;
+            });
+            // arbustos
+            const bush = [[6, 2], [7, 2], [2, 6], [2, 7], [W - 7, 2], [W - 8, 2], [W - 3, 6], [W - 3, 7],
+            [6, W - 3], [7, W - 3], [2, W - 7], [2, W - 8], [W - 7, W - 3], [W - 8, W - 3], [W - 3, W - 7], [W - 3, W - 8],
+            [11, 11], [12, 11], [11, 12], [12, 12]];
+            bush.forEach(([x, y]) => {
+                svg += `<rect x="${x * s}" y="${y * s}" width="${s}" height="${s}" fill="#2D5A2D"/>`;
+            });
+            // power cube central
+            svg += `<circle cx="${W * s / 2}" cy="${H * s / 2}" r="${s}" fill="#F59E0B" opacity=".7"/>`;
+            svg += `<text x="${W * s / 2}" y="${H * s / 2 + 2}" fill="#000" font-size="9" text-anchor="middle" font-family="Nunito" font-weight="800">💎</text>`;
+            svg += `</svg>`;
+            return svg;
+        }
+
+        /* ══════════════════════════════
+           DADOS DOS MAPAS
+        ══════════════════════════════ */
+        const MODE_COLORS = { gem_grab: "#22C55E", brawl_ball: "#3B82F6", showdown: "#F59E0B", knockout: "#EF4444", hot_zone: "#FF6B00", bounty: "#A855F7", heist: "#FF3CAC", wipeout: "#00C9A7" };
+        const MODE_LABELS = { gem_grab: "💎 Gem Grab", brawl_ball: "⚽ Brawl Ball", showdown: "💀 Showdown", knockout: "🎯 Knockout", hot_zone: "🔥 Hot Zone", bounty: "⭐ Bounty", heist: "🏦 Heist", wipeout: "🌀 Wipeout" };
+
+        const MAPS = [
+            // ── GEM GRAB ────────────────────────────────────────
+            {
+                id: "gem_fort", nome: "Gem Fort", modo: "gem_grab", img: "", svgFn: svgGemFort,
+                tamanho: "Grande", ambiente: "Pedra", rankeds: true,
+                desc: "Um dos mapas mais clássicos de Gem Grab. Tem paredes centrais que criam um T-shape perfeito para posicionamento. Os arbustos nos flancos são ideais para brawlers de controlo.",
+                dicas: [
+                    { i: "💎", t: "Controla o centro — quem controla o T no meio controla o jogo" },
+                    { i: "🌿", t: "Usa os arbustos laterais para rotações seguras sem exposição" },
+                    { i: "🛡️", t: "Com 9+ gems, recua para a tua metade e força os inimigos a avançar" },
+                    { i: "🎯", t: "Snipers como Piper são muito fortes aqui pelo alcance das lanes abertas" },
+                ],
+                brawlers: [{ e: "🏜️", n: "Sandy" }, { e: "💅", n: "Emz" }, { e: "☂️", n: "Piper" }, { e: "🧪", n: "Byron" }, { e: "🌵", n: "Spike" }, { e: "🌀", n: "Gray" }],
+                stats: { openness: "Médio", snipers: "Bom", tanks: "Médio", throwers: "Bom" },
+            },
+            {
+                id: "sneaky_fields_gg", nome: "Sneaky Fields", modo: "gem_grab", img: "", svgFn: svgSneakyFields,
+                tamanho: "Médio", ambiente: "Relva", rankeds: true,
+                desc: "Muitos arbustos e passagens abertas. Favorece brawlers que conseguem esconder-se e brawlers de médio alcance. Um dos mapas mais utilizados no Ranked.",
+                dicas: [
+                    { i: "🌿", t: "Os arbustos do centro são a chave — controla-os antes do inimigo" },
+                    { i: "🐻", t: "Nita e tanks com mobilidade beneficiam muito dos arbustos centrais" },
+                    { i: "🎯", t: "Throwers como Barley e Sprout controlam o mapa com as paredes centrais" },
+                    { i: "⚠️", t: "Nunca avances sozinho — os arbustos escondem emboscadas fáceis" },
+                ],
+                brawlers: [{ e: "🏜️", n: "Sandy" }, { e: "🍺", n: "Barley" }, { e: "🌱", n: "Sprout" }, { e: "🐻", n: "Nita" }, { e: "💅", n: "Emz" }, { e: "🎤", n: "Janet" }],
+                stats: { openness: "Baixo", snipers: "Fraco", tanks: "Bom", throwers: "Ótimo" },
+            },
+            {
+                id: "open_space", nome: "Open Space", modo: "gem_grab", img: "", svgFn: svgOpenSpace,
+                tamanho: "Grande", ambiente: "Espaço", rankeds: true,
+                desc: "Um dos mapas mais abertos de Gem Grab. Poucas paredes e muito espaço livre favorecem snipers e brawlers de longo alcance.",
+                dicas: [
+                    { i: "🎯", t: "Snipers dominam aqui — Piper, Belle e Bea são S-tier neste mapa" },
+                    { i: "💎", t: "Com tanto espaço aberto, o gem carrier precisa sempre de escolta" },
+                    { i: "🌿", t: "Os poucos arbustos nos cantos são extremamente valiosos — usa-os" },
+                    { i: "⚠️", t: "Tanks como Frank e Bull são muito fracos aqui pela falta de cobertura" },
+                ],
+                brawlers: [{ e: "☂️", n: "Piper" }, { e: "🤠", n: "Belle" }, { e: "🐝", n: "Bea" }, { e: "🤖", n: "Nani" }, { e: "⚡", n: "Maisie" }, { e: "🏹", n: "Angelo" }],
+                stats: { openness: "Alto", snipers: "Ótimo", tanks: "Fraco", throwers: "Médio" },
+            },
+
+            // ── BRAWL BALL ──────────────────────────────────────
+            {
+                id: "sneaky_fields_bb", nome: "Sneaky Fields", modo: "brawl_ball", img: "", svgFn: svgSneakyFieldsBB,
+                tamanho: "Grande", ambiente: "Relva", rankeds: true,
+                desc: "O mapa de Brawl Ball mais jogado no Ranked. Os arbustos laterais são fundamentais para aproximações seguras. O centro relativamente aberto favorece fights diretos.",
+                dicas: [
+                    { i: "⚽", t: "Nunca tentes o golo 1v3 — aproxima com a equipa e cria superioridade" },
+                    { i: "🌿", t: "Os arbustos laterais permitem aproximar a bola de forma segura" },
+                    { i: "🔨", t: "Frank e Bibi são excelentes para criar espaço à beira da baliza" },
+                    { i: "🔒", t: "Com vantagem, mantém um brawler em defesa — não avances todos" },
+                ],
+                brawlers: [{ e: "🔨", n: "Frank" }, { e: "🍬", n: "Bibi" }, { e: "🏎️", n: "Stu" }, { e: "🤼", n: "El Primo" }, { e: "🎤", n: "Damian" }, { e: "⚡", n: "Max" }],
+                stats: { openness: "Médio", snipers: "Fraco", tanks: "Ótimo", throwers: "Fraco" },
+            },
+
+            // ── SHOWDOWN ────────────────────────────────────────
+            {
+                id: "showdown_main", nome: "Skull Creek", modo: "showdown", img: "", svgFn: svgShowdownMap,
+                tamanho: "Muito Grande", ambiente: "Caveira", rankeds: false,
+                desc: "Um dos mapas de Showdown mais equilibrados. Mix de áreas abertas e zonas com arbustos. Power Cubes espalhados uniformemente tornam o early game muito importante.",
+                dicas: [
+                    { i: "💎", t: "Prioriza os Power Cubes dos cantos — dão vantagem enorme no late game" },
+                    { i: "🌿", t: "Usa os arbustos centrais para emboscadas quando tens cubes suficientes" },
+                    { i: "☁️", t: "Fica atento à poison cloud — não percas HP a tentar ir a lugares perigosos" },
+                    { i: "🎯", t: "No late game, brawlers de área como Spike e Gale dominam os espaços apertados" },
+                ],
+                brawlers: [{ e: "🌵", n: "Spike" }, { e: "🦁", n: "Leon" }, { e: "🐦‍⬛", n: "Crow" }, { e: "🐻", n: "Nita" }, { e: "🌱", n: "Rosa" }, { e: "💅", n: "Emz" }],
+                stats: { openness: "Médio", snipers: "Médio", tanks: "Bom", throwers: "Médio" },
+            },
+
+            // ── KNOCKOUT ────────────────────────────────────────
+            {
+                id: "knockout_main", nome: "Out in the Open", modo: "knockout", img: "", svgFn: svgKnockoutMap,
+                tamanho: "Grande", ambiente: "Industrial", rankeds: true,
+                desc: "Um mapa de Knockout com bastante espaço aberto. Favorece snipers e brawlers de longo alcance. Os arbustos nos cantos são locais de emboscada críticos.",
+                dicas: [
+                    { i: "🎯", t: "Nunca te exponhas sem o Super disponível — morrer significa ficar de fora" },
+                    { i: "☂️", t: "Piper e Belle dominam aqui pelas lanes abertas de longo alcance" },
+                    { i: "🌿", t: "Os arbustos dos cantos são cruciais para rotações seguras entre rounds" },
+                    { i: "⚠️", t: "Evita 1v2 a todo o custo — prefere recuar e deixar os aliados ajudarem" },
+                ],
+                brawlers: [{ e: "☂️", n: "Piper" }, { e: "🤠", n: "Belle" }, { e: "🐝", n: "Bea" }, { e: "🤖", n: "Nani" }, { e: "🌵", n: "Spike" }, { e: "🎤", n: "Janet" }],
+                stats: { openness: "Alto", snipers: "Ótimo", tanks: "Fraco", throwers: "Médio" },
+            },
+            {
+                id: "bridge_too_far", nome: "Bridge Too Far", modo: "knockout", img: "", svgFn: svgBridgeTooFar,
+                tamanho: "Médio", ambiente: "Água", rankeds: true,
+                desc: "Um mapa único com água e pontes estreitas. O controlo das passagens é fundamental. Muito diferente dos mapas de Knockout normais — favorece tanks e brawlers de controlo.",
+                dicas: [
+                    { i: "🌉", t: "Controla as pontes centrais — quem as controla controla o mapa" },
+                    { i: "🔨", t: "Tanks como Frank e Bull são ótimos aqui para bloquear as passagens" },
+                    { i: "🐍", t: "Brawlers como Charlie e Otis que imobilizam são S-tier neste mapa" },
+                    { i: "⚠️", t: "Snipers são muito fracos aqui — as linhas de visão são muito curtas" },
+                ],
+                brawlers: [{ e: "🔨", n: "Frank" }, { e: "🕷️", n: "Charlie" }, { e: "🎨", n: "Otis" }, { e: "🦈", n: "Buzz" }, { e: "🐂", n: "Bull" }, { e: "🤼", n: "El Primo" }],
+                stats: { openness: "Baixo", snipers: "Fraco", tanks: "Ótimo", throwers: "Médio" },
+            },
+
+            // ── HOT ZONE ────────────────────────────────────────
+            {
+                id: "ring_of_fire", nome: "Ring of Fire", modo: "hot_zone", img: "", svgFn: svgRingOfFire,
+                tamanho: "Grande", ambiente: "Fogo", rankeds: true,
+                desc: "O mapa de Hot Zone mais icónico. Uma única zona circular no centro exige controlo constante. O design favorece brawlers de área e suportes de zona.",
+                dicas: [
+                    { i: "🔥", t: "A zona é tudo — não percas tempo a matar inimigos fora da zona" },
+                    { i: "💅", t: "Emz é S-tier aqui — o Super de área controla quem sai e entra na zona" },
+                    { i: "🌵", t: "Spike e outros brawlers com slow são perfeitos para manter inimigos fora" },
+                    { i: "🔴", t: "Nunca entres sozinho na zona — espera que a equipa avance em conjunto" },
+                ],
+                brawlers: [{ e: "💅", n: "Emz" }, { e: "🌵", n: "Spike" }, { e: "❄️", n: "Lou" }, { e: "🔮", n: "Tara" }, { e: "🌿", n: "Rosa" }, { e: "🤖", n: "Meg" }],
+                stats: { openness: "Médio", snipers: "Médio", tanks: "Ótimo", throwers: "Bom" },
+            },
+
+            // ── BOUNTY ──────────────────────────────────────────
+            {
+                id: "diamond_dome", nome: "Diamond Dome", modo: "bounty", img: "", svgFn: svgDiamondDome,
+                tamanho: "Grande", ambiente: "Rocha", rankeds: true,
+                desc: "Um mapa de Bounty longo e simétrico. As paredes em forma de diamante criam lanes distintas. Snipers dominam as zonas abertas, mas os arbustos permitem flanking.",
+                dicas: [
+                    { i: "⭐", t: "Mata inimigos com bounty alto — 7-8 estrelas valem muito mais do que eliminar 1-estrela" },
+                    { i: "☂️", t: "Piper e brawlers de longo alcance dominam as lanes centrais e laterais" },
+                    { i: "🌿", t: "Os arbustos laterais são caminhos de flanking excelentes para assassinos" },
+                    { i: "🛡️", t: "Com vantagem de estrelas, joga defensivo e força o inimigo a arriscar" },
+                ],
+                brawlers: [{ e: "☂️", n: "Piper" }, { e: "🤠", n: "Belle" }, { e: "🐦‍⬛", n: "Crow" }, { e: "🦁", n: "Leon" }, { e: "🐝", n: "Bea" }, { e: "🏹", n: "Angelo" }],
+                stats: { openness: "Alto", snipers: "Ótimo", tanks: "Fraco", throwers: "Médio" },
+            },
+
+            // ── HEIST ───────────────────────────────────────────
+            {
+                id: "safe_zone", nome: "Safe Zone", modo: "heist", img: "", svgFn: svgSafezone,
+                tamanho: "Grande", ambiente: "Pedra", rankeds: false,
+                desc: "Heist clássico com cofres bem protegidos. As paredes centrais criam chokepoints críticos. Brawlers explosivos e de longo alcance são preferíveis.",
+                dicas: [
+                    { i: "💣", t: "O objetivo é o cofre — ignora kills desnecessários e foca no dano ao cofre" },
+                    { i: "🚀", t: "Brock e Dynamike destroem paredes e danificam o cofre ao mesmo tempo" },
+                    { i: "🛡️", t: "Na defesa, mantém um brawler atrás do cofre para eliminar quem se aproxima" },
+                    { i: "⚡", t: "Bull e El Primo são ótimos para rushes rápidos direto ao cofre inimigo" },
+                ],
+                brawlers: [{ e: "🚀", n: "Brock" }, { e: "💣", n: "Dynamike" }, { e: "💥", n: "Tick" }, { e: "🐂", n: "Bull" }, { e: "🤖", n: "Meg" }, { e: "🎆", n: "Pearl" }],
+                stats: { openness: "Médio", snipers: "Médio", tanks: "Bom", throwers: "Ótimo" },
+            },
+        ];
+
+        /* ══════════════════════════════
+           ESTADO E RENDER
+        ══════════════════════════════ */
+        let currentMode = "all", currentSearch = "";
+
+        const MODE_ORDER = ["gem_grab", "brawl_ball", "showdown", "knockout", "hot_zone", "bounty", "heist", "wipeout"];
+
+        function render() {
+            const container = document.getElementById("mapsContainer");
+            container.innerHTML = "";
+            const s = currentSearch.toLowerCase().trim();
+            const filtered = MAPS.filter(m => {
+                const modeMatch = currentMode === "all" || m.modo === currentMode;
+                const searchMatch = s === "" || m.nome.toLowerCase().includes(s) || MODE_LABELS[m.modo].toLowerCase().includes(s);
+                return modeMatch && searchMatch;
+            });
+
+            document.getElementById("resultsInfo").textContent = `${filtered.length} mapa${filtered.length !== 1 ? "s" : ""} encontrado${filtered.length !== 1 ? "s" : ""}`;
+            if (filtered.length === 0) { document.getElementById("noResults").style.display = "block"; return; }
+            document.getElementById("noResults").style.display = "none";
+
+            // Agrupar por modo
+            const groups = {};
+            filtered.forEach(m => { if (!groups[m.modo]) groups[m.modo] = []; groups[m.modo].push(m); });
+
+            MODE_ORDER.forEach(mode => {
+                if (!groups[mode]) return;
+                const col = MODE_COLORS[mode];
+                const section = document.createElement("div");
+                section.className = "mode-group reveal";
+                section.innerHTML = `
+      <div class="mode-group-header">
+        <div class="mode-group-title" style="color:${col}">${MODE_LABELS[mode]}</div>
+        <div class="mode-group-line"></div>
+        <div class="mode-group-count">${groups[mode].length} mapa${groups[mode].length !== 1 ? "s" : ""}</div>
+      </div>
+      <div class="maps-grid" id="mgrid-${mode}"></div>
+    `;
+                container.appendChild(section);
+                const grid = section.querySelector(`#mgrid-${mode}`);
+                groups[mode].forEach((m, i) => {
+                    const card = document.createElement("div");
+                    card.className = "map-card reveal";
+                    card.dataset.mode = m.modo;
+                    card.style.transitionDelay = `${i * 0.08}s`;
+                    const badgeStyle = `background:${col}22;border:1px solid ${col}44;color:${col}`;
+                    const topBrawlers = m.brawlers.slice(0, 4).map(b => `<span class="map-brawler-chip">${b.e} ${b.n}</span>`).join("");
+                    card.innerHTML = `
+        <div class="map-color-bar" style="background:${col}"></div>
+        <div class="map-preview">${m.svgFn(true)}</div>
+        <div class="map-body">
+          <div class="map-mode-badge" style="${badgeStyle}">${MODE_LABELS[m.modo]}</div>
+          <div class="map-name">${m.nome}</div>
+          <div class="map-meta">
+            <div class="map-meta-item">📏 ${m.tamanho}</div>
+            <div class="map-meta-item">🏔️ ${m.ambiente}</div>
+            ${m.rankeds ? '<div class="map-meta-item" style="color:#FFD000">⭐ Ranked</div>' : ''}
+          </div>
+          <div class="map-tip">${m.dicas[0].t}</div>
+          <div class="map-brawlers">${topBrawlers}</div>
+        </div>
+      `;
+                    card.addEventListener("click", () => openModal(m.id));
+                    grid.appendChild(card);
+                });
+            });
+
+            document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+        }
+
+        function openModal(id) {
+            const m = MAPS.find(x => x.id === id);
+            if (!m) return;
+            const col = MODE_COLORS[m.modo];
+            const prev = document.getElementById("modalMapPreview");
+            if (m.img) {
+                prev.innerHTML = `<img src="${m.img}" alt="${m.nome}" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML=m.svgFn(false)">`;
+            } else {
+                prev.innerHTML = m.svgFn(false);
+            }
+            document.getElementById("modalColorBar").style.background = col;
+            document.getElementById("modalTitle").textContent = m.nome;
+            const badge = document.getElementById("modalModeBadge");
+            badge.textContent = MODE_LABELS[m.modo];
+            badge.style.cssText = `background:${col}22;border:1px solid ${col}44;color:${col}`;
+            document.getElementById("modalStats").innerHTML = `
+    <div class="modal-stat"><div class="modal-stat-num" style="color:${col}">${m.tamanho}</div><div class="modal-stat-label">Tamanho</div></div>
+    <div class="modal-stat"><div class="modal-stat-num" style="color:${col}">${m.ambiente}</div><div class="modal-stat-label">Ambiente</div></div>
+    <div class="modal-stat"><div class="modal-stat-num" style="color:${col}">${m.rankeds ? "✅" : "❌"}</div><div class="modal-stat-label">Ranked</div></div>
+    <div class="modal-stat"><div class="modal-stat-num" style="color:${col}">${m.stats.snipers}</div><div class="modal-stat-label">Snipers</div></div>
+    <div class="modal-stat"><div class="modal-stat-num" style="color:${col}">${m.stats.tanks}</div><div class="modal-stat-label">Tanks</div></div>
+    <div class="modal-stat"><div class="modal-stat-num" style="color:${col}">${m.stats.throwers}</div><div class="modal-stat-label">Throwers</div></div>
+  `;
+            document.getElementById("modalDesc").textContent = m.desc;
+            document.getElementById("modalTips").innerHTML = m.dicas.map(d => `
+    <div class="modal-tip-item"><span class="modal-tip-icon">${d.i}</span><span>${d.t}</span></div>
+  `).join("");
+            document.getElementById("modalBrawlers").innerHTML = m.brawlers.map(b => `
+    <div class="modal-brawler" style="border-color:${col}33">${b.e} ${b.n}</div>
+  `).join("");
+            document.getElementById("modalOverlay").classList.add("open");
+            document.getElementById("modalOverlay").scrollTop = 0;
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() { document.getElementById("modalOverlay").classList.remove("open"); document.body.style.overflow = ""; }
+        document.getElementById("modalClose").addEventListener("click", closeModal);
+        document.getElementById("modalOverlay").addEventListener("click", e => { if (e.target === document.getElementById("modalOverlay")) closeModal(); });
+        document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+        document.querySelectorAll(".filter-tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+                currentMode = tab.dataset.mode;
+                render();
+            });
+        });
+        document.getElementById("searchInput").addEventListener("input", e => { currentSearch = e.target.value; render(); });
+
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.05 });
+
+        const cursor = document.getElementById("cursor");
+        const ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        document.querySelectorAll("a,button,.map-card").forEach(el => {
+            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+        });
+
+        render();
+    </script>
+</body>
+
+</html>

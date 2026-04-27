@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícias — BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --red: #E8202A;
+            --teal: #00C9A7;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --purple: #A855F7;
+            --green: #22C55E;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --text-dark: #1A1A2E;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        * {
+            cursor: none !important;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--yellow);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(255, 208, 0, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a.active {
+            color: var(--yellow);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--yellow);
+            border-radius: 2px;
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* HEADER */
+        .page-header {
+            padding: 8rem 3rem 4rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--dark2);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .header-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 50% 70% at 85% 50%, rgba(255, 107, 0, .18), transparent),
+                radial-gradient(ellipse 40% 50% at 10% 60%, rgba(59, 130, 246, .12), transparent),
+                radial-gradient(ellipse 30% 40% at 50% 10%, rgba(255, 208, 0, .08), transparent);
+        }
+
+        .header-inner {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-eyebrow {
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: .5rem;
+        }
+
+        .page-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .page-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, .5);
+            max-width: 550px;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hstat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hstat-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--yellow), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .hstat-label {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-top: .2rem;
+        }
+
+        /* TOOLBAR */
+        .toolbar {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media(max-width:700px) {
+            .toolbar {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+
+        .filter-tab {
+            padding: .42rem 1.1rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: .8rem;
+            letter-spacing: .04em;
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: rgba(255, 255, 255, .5);
+            background: transparent;
+            transition: all .2s;
+        }
+
+        .filter-tab:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, .3);
+        }
+
+        .filter-tab.active {
+            color: var(--text-dark);
+            border-color: transparent;
+        }
+
+        [data-cat="all"].active {
+            background: #fff;
+            color: var(--text-dark);
+        }
+
+        [data-cat="atual"].active {
+            background: var(--green);
+        }
+
+        [data-cat="antiga"].active {
+            background: rgba(255, 255, 255, .4);
+            color: var(--text-dark);
+        }
+
+        [data-cat="brawler"].active {
+            background: var(--orange);
+        }
+
+        [data-cat="update"].active {
+            background: var(--blue);
+        }
+
+        [data-cat="evento"].active {
+            background: var(--red);
+        }
+
+        [data-cat="cosmético"].active {
+            background: var(--purple);
+        }
+
+        .search-wrap {
+            position: relative;
+        }
+
+        .search-input {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 100px;
+            padding: .52rem 1.2rem .52rem 2.4rem;
+            color: #fff;
+            font-family: 'Nunito', sans-serif;
+            font-size: .88rem;
+            outline: none;
+            width: 220px;
+            transition: border-color .2s;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .search-input:focus {
+            border-color: var(--yellow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: .85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .88rem;
+            pointer-events: none;
+            opacity: .4;
+        }
+
+        /* DESTAQUE */
+        .featured-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem 2rem;
+        }
+
+        @media(max-width:700px) {
+            .featured-wrap {
+                padding: 0 1.5rem 2rem;
+            }
+        }
+
+        .featured-label {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+
+        .featured-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .featured-card {
+            border-radius: 22px;
+            overflow: hidden;
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .08);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 280px;
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .4);
+        }
+
+        @media(max-width:700px) {
+            .featured-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .featured-thumb {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7rem;
+            min-height: 200px;
+        }
+
+        .featured-thumb-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .featured-thumb-emoji {
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 6px 20px rgba(0, 0, 0, .5));
+            transition: transform .4s;
+        }
+
+        .featured-card:hover .featured-thumb-emoji {
+            transform: scale(1.08);
+        }
+
+        .featured-body {
+            padding: 2.5rem;
+        }
+
+        .featured-metas {
+            display: flex;
+            gap: .6rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .featured-tag {
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .25rem .75rem;
+            border-radius: 100px;
+        }
+
+        .featured-date {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .3);
+            font-weight: 700;
+        }
+
+        .featured-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            line-height: 1.2;
+            margin-bottom: .75rem;
+        }
+
+        .featured-desc {
+            font-size: .92rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .55);
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: var(--yellow);
+            color: var(--text-dark);
+            font-weight: 800;
+            font-size: .85rem;
+            padding: .65rem 1.4rem;
+            border-radius: 100px;
+            border: none;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .featured-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 208, 0, .3);
+        }
+
+        /* CONTAINER PRINCIPAL */
+        .news-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem 6rem;
+        }
+
+        @media(max-width:700px) {
+            .news-container {
+                padding: 0 1.5rem 4rem;
+            }
+        }
+
+        /* GRUPO DE CATEGORIA */
+        .cat-group {
+            margin-bottom: 3.5rem;
+        }
+
+        .cat-group-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cat-group-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            letter-spacing: .05em;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .cat-group-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .cat-group-count {
+            font-size: .75rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .3);
+            letter-spacing: .08em;
+        }
+
+        /* GRID DE NOTÍCIAS */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.25rem;
+        }
+
+        /* CARD DE NOTÍCIA */
+        .news-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform .25s, border-color .25s, box-shadow .25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-card[data-cat="atual"]:hover {
+            border-color: rgba(34, 197, 94, .3);
+            box-shadow: 0 12px 30px rgba(34, 197, 94, .07);
+        }
+
+        .news-card[data-cat="antiga"]:hover {
+            border-color: rgba(255, 255, 255, .2);
+            box-shadow: 0 12px 30px rgba(255, 255, 255, .04);
+        }
+
+        .news-card[data-cat="brawler"]:hover {
+            border-color: rgba(255, 107, 0, .3);
+            box-shadow: 0 12px 30px rgba(255, 107, 0, .07);
+        }
+
+        .news-card[data-cat="update"]:hover {
+            border-color: rgba(59, 130, 246, .3);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, .07);
+        }
+
+        .news-card[data-cat="evento"]:hover {
+            border-color: rgba(232, 32, 42, .3);
+            box-shadow: 0 12px 30px rgba(232, 32, 42, .07);
+        }
+
+        .news-card[data-cat="cosmético"]:hover {
+            border-color: rgba(168, 85, 247, .3);
+            box-shadow: 0 12px 30px rgba(168, 85, 247, .07);
+        }
+
+        .card-thumb {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-thumb-bg {
+            position: absolute;
+            inset: 0;
+            opacity: .2;
+        }
+
+        .card-thumb-emoji {
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .5));
+            transition: transform .3s;
+        }
+
+        .news-card:hover .card-thumb-emoji {
+            transform: scale(1.12) rotate(-4deg);
+        }
+
+        .card-color-bar {
+            height: 3px;
+        }
+
+        .card-body {
+            padding: 1.25rem 1.4rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-metas {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            flex-wrap: wrap;
+            margin-bottom: .65rem;
+        }
+
+        .card-tag {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .2rem .65rem;
+            border-radius: 100px;
+        }
+
+        .tag-atual {
+            background: rgba(34, 197, 94, .15);
+            color: var(--green);
+        }
+
+        .tag-antiga {
+            background: rgba(255, 255, 255, .08);
+            color: rgba(255, 255, 255, .45);
+        }
+
+        .tag-brawler {
+            background: rgba(255, 107, 0, .15);
+            color: var(--orange);
+        }
+
+        .tag-update {
+            background: rgba(59, 130, 246, .15);
+            color: var(--blue);
+        }
+
+        .tag-evento {
+            background: rgba(232, 32, 42, .15);
+            color: #FF8080;
+        }
+
+        .tag-cosmético {
+            background: rgba(168, 85, 247, .15);
+            color: #C084FC;
+        }
+
+        .card-date {
+            font-size: .72rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .card-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            line-height: 1.3;
+            margin-bottom: .6rem;
+        }
+
+        .card-desc {
+            font-size: .85rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .5);
+            flex: 1;
+            margin-bottom: 1.1rem;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-read {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-weight: 800;
+            font-size: .8rem;
+            letter-spacing: .04em;
+            transition: gap .2s;
+        }
+
+        .card-read:hover {
+            gap: .6rem;
+        }
+
+        .card-ended {
+            font-size: .7rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .25);
+            font-style: italic;
+        }
+
+        /* SEM RESULTADOS */
+        .no-results {
+            text-align: center;
+            padding: 5rem 0;
+            color: rgba(255, 255, 255, .3);
+            display: none;
+        }
+
+        .no-results-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: .5rem;
+        }
+
+        /* RESULTADOS INFO */
+        .results-info {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem .75rem;
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .3);
+            font-weight: 700;
+        }
+
+        @media(max-width:700px) {
+            .results-info {
+                padding: 0 1.5rem .75rem;
+            }
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .55s ease, transform .55s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../Brawlers/Brawlers.html">Brawlers</a></li>
+            <li><a href="../Temporadas/Temporadas.html">Updates</a></li>
+            <li><a href="Notícias.html" class="active">Notícias</a></li>
+            <li><a href="../Guias/Guias.html">Guias</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="header-bg"></div>
+        <div class="header-inner">
+            <p class="page-eyebrow">Sempre Atualizado</p>
+            <h1 class="page-title">📰 Notícias</h1>
+            <p class="page-desc">Todas as novidades de Brawl Stars — novos brawlers, eventos, updates, cosméticos e
+                muito mais. Sempre em português.</p>
+            <div class="header-stats">
+                <div class="hstat"><span class="hstat-num" id="totalCount">--</span><span
+                        class="hstat-label">Notícias</span></div>
+                <div class="hstat"><span class="hstat-num" id="atualCount">--</span><span
+                        class="hstat-label">Atuais</span></div>
+                <div class="hstat"><span class="hstat-num" id="antigaCount">--</span><span
+                        class="hstat-label">Arquivo</span></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- DESTAQUE -->
+    <div class="featured-wrap" id="featuredWrap">
+        <div class="featured-label">⭐ Destaque</div>
+        <a class="featured-card" id="featuredCard" href="#">
+            <div class="featured-thumb" id="featuredThumb">
+                <div class="featured-thumb-bg" id="featuredThumbBg"></div>
+                <div class="featured-thumb-emoji" id="featuredEmoji"></div>
+            </div>
+            <div class="featured-body">
+                <div class="featured-metas" id="featuredMetas"></div>
+                <div class="featured-date" id="featuredDate"></div>
+                <div class="featured-title" id="featuredTitle"></div>
+                <div class="featured-desc" id="featuredDesc"></div>
+                <div class="featured-btn">Ler notícia →</div>
+            </div>
+        </a>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-cat="all">Todas</button>
+            <button class="filter-tab" data-cat="atual">🟢 Atuais</button>
+            <button class="filter-tab" data-cat="antiga">⚫ Arquivo</button>
+            <button class="filter-tab" data-cat="brawler">🥊 Brawlers</button>
+            <button class="filter-tab" data-cat="update">📦 Updates</button>
+            <button class="filter-tab" data-cat="evento">🎉 Eventos</button>
+            <button class="filter-tab" data-cat="cosmético">🎨 Cosméticos</button>
+        </div>
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="Pesquisar notícia...">
+        </div>
+    </div>
+
+    <div class="results-info" id="resultsInfo"></div>
+
+    <!-- CONTAINER -->
+    <div class="news-container" id="newsContainer"></div>
+    <div class="no-results" id="noResults">
+        <div class="no-results-emoji">📰</div>
+        <h3>Nenhuma notícia encontrada</h3>
+        <p>Tenta outro filtro ou termo de pesquisa.</p>
+    </div>
+
+    <script>
+        /* ══════════════════════════════
+           DADOS DAS NOTÍCIAS
+           Para adicionar uma nova notícia,
+           copia um objeto e preenche os campos.
+        ══════════════════════════════ */
+        const NOTICIAS = [
+            {
+                id: 1,
+                titulo: "Damian chegou ao jogo! O vocalista do MadEvil Manor",
+                desc: "O 102.º Brawler de Brawl Stars já está disponível. Damian é um Mythic Tank com sistema de punch-kick, Super de Mosh Pit e Hypercharge de chão em chamas. Win rate de 66.2% no dia de lançamento.",
+                emoji: "🎤",
+                cat: "brawler",
+                estado: "atual",
+                data: "24 Abr 2026",
+                cor: "#FF6B00",
+                gradient: "linear-gradient(135deg,rgba(232,32,42,.4),rgba(255,107,0,.2))",
+                link: "Notícias Atuais/Damian.html",
+                destaque: true,
+                tags: ["Novo Brawler", "Mythic", "Tank"]
+            },
+            {
+                id: 2,
+                titulo: "Mudanças no Bling, Shop e Cosméticos — Update 67",
+                desc: "A Supercell anunciou uma renovação completa ao sistema de Bling e à Shop. Nova loja rotativa com Bling Bundles, acesso a skins Mythic e Legendary, e mais Bling gratuito para jogadores F2P.",
+                emoji: "🔮",
+                cat: "cosmético",
+                estado: "atual",
+                data: "1 Abr 2026",
+                cor: "#A855F7",
+                gradient: "linear-gradient(135deg,rgba(168,85,247,.35),rgba(255,60,172,.2))",
+                link: "Notícias Atuais/Mudanças nos blings.html",
+                destaque: false,
+                tags: ["Bling", "Shop", "Cosméticos"]
+            },
+            {
+                id: 3,
+                titulo: "Keep Brawl Alive — O evento comunitário terminou",
+                desc: "O maior evento comunitário da história de Brawl Stars encerrou a 24 de Abril. A comunidade completou os objetivos e ganhou Buffies grátis, Chaos Drops, a skin Royale Trunk e o giveaway de 100K Gems diários.",
+                emoji: "❤️‍🔥",
+                cat: "evento",
+                estado: "antiga",
+                data: "14–24 Abr 2026",
+                cor: "#22C55E",
+                gradient: "linear-gradient(135deg,rgba(0,212,106,.3),rgba(34,197,94,.15))",
+                link: "Notícias Antigas/Keep Brawl Alive.html",
+                destaque: false,
+                ended: true,
+                tags: ["Evento", "Comunitário", "Grátis"]
+            },
+        ];
+
+        /* ══════════════════════════════
+           CORES DAS CATEGORIAS
+        ══════════════════════════════ */
+        const CAT_COLORS = { atual: "#22C55E", antiga: "rgba(255,255,255,.4)", brawler: "#FF6B00", update: "#3B82F6", evento: "#E8202A", cosmético: "#A855F7" };
+        const CAT_LABELS = { atual: "Atuais", antiga: "Arquivo", brawler: "Brawlers", update: "Updates", evento: "Eventos", cosmético: "Cosméticos" };
+
+        let currentCat = "all", currentSearch = "";
+
+        /* ══════════════════════════════
+           DESTAQUE
+        ══════════════════════════════ */
+        function renderFeatured() {
+            const dest = NOTICIAS.find(n => n.destaque);
+            if (!dest) { document.getElementById("featuredWrap").style.display = "none"; return; }
+            document.getElementById("featuredCard").href = dest.link;
+            document.getElementById("featuredThumbBg").style.background = dest.gradient;
+            document.getElementById("featuredEmoji").textContent = dest.emoji;
+            document.getElementById("featuredDate").textContent = "📅 " + dest.data;
+            document.getElementById("featuredTitle").textContent = dest.titulo;
+            document.getElementById("featuredDesc").textContent = dest.desc;
+            const metas = dest.tags.map(t => `<span class="featured-tag tag-${dest.cat}">${t}</span>`).join("");
+            document.getElementById("featuredMetas").innerHTML = metas;
+        }
+
+        /* ══════════════════════════════
+           RENDER NOTÍCIAS
+        ══════════════════════════════ */
+        function render() {
+            const container = document.getElementById("newsContainer");
+            container.innerHTML = "";
+            const s = currentSearch.toLowerCase().trim();
+
+            const filtered = NOTICIAS.filter(n => {
+                const catMatch = currentCat === "all" || n.cat === currentCat || n.estado === currentCat;
+                const searchMatch = s === "" || n.titulo.toLowerCase().includes(s) || n.desc.toLowerCase().includes(s) || n.tags.some(t => t.toLowerCase().includes(s));
+                return catMatch && searchMatch;
+            });
+
+            document.getElementById("resultsInfo").textContent = `${filtered.length} notícia${filtered.length !== 1 ? "s" : ""} encontrada${filtered.length !== 1 ? "s" : ""}`;
+
+            if (filtered.length === 0) {
+                document.getElementById("noResults").style.display = "block";
+                return;
+            }
+            document.getElementById("noResults").style.display = "none";
+
+            // Agrupar por categoria
+            const groups = {};
+            filtered.forEach(n => {
+                const key = n.estado === "antiga" ? "antiga" : n.cat;
+                if (!groups[key]) groups[key] = [];
+                groups[key].push(n);
+            });
+
+            const ORDER = ["atual", "brawler", "update", "evento", "cosmético", "antiga"];
+            ORDER.forEach(cat => {
+                if (!groups[cat] || groups[cat].length === 0) return;
+                const section = document.createElement("div");
+                section.className = "cat-group reveal";
+                const color = CAT_COLORS[cat] || "#fff";
+                section.innerHTML = `
+      <div class="cat-group-header">
+        <div class="cat-group-title" style="color:${color}">${cat === "antiga" ? "⚫ Arquivo" : CAT_LABELS[cat] || cat}</div>
+        <div class="cat-group-line"></div>
+        <div class="cat-group-count">${groups[cat].length} notícia${groups[cat].length !== 1 ? "s" : ""}</div>
+      </div>
+      <div class="news-grid" id="grid-${cat}"></div>
+    `;
+                container.appendChild(section);
+                const grid = section.querySelector(`#grid-${cat}`);
+                groups[cat].forEach((n, i) => {
+                    const color = CAT_COLORS[n.cat] || "#fff";
+                    const card = document.createElement("a");
+                    card.className = "news-card reveal";
+                    card.dataset.cat = n.cat;
+                    card.href = n.link;
+                    card.style.transitionDelay = `${i * 0.07}s`;
+                    card.innerHTML = `
+        <div class="card-color-bar" style="background:${color}"></div>
+        <div class="card-thumb">
+          <div class="card-thumb-bg" style="background:${n.gradient}"></div>
+          <div class="card-thumb-emoji">${n.emoji}</div>
+        </div>
+        <div class="card-body">
+          <div class="card-metas">
+            ${n.tags.map(t => `<span class="card-tag tag-${n.cat}">${t}</span>`).join("")}
+            <span class="card-date">📅 ${n.data}</span>
+          </div>
+          <div class="card-title">${n.titulo}</div>
+          <div class="card-desc">${n.desc}</div>
+          <div class="card-footer">
+            <span class="card-read" style="color:${color}">Ler notícia →</span>
+            ${n.ended ? `<span class="card-ended">Evento terminado</span>` : `<span class="card-tag tag-${n.estado}" style="font-size:.65rem">${n.estado === "atual" ? "🟢 Atual" : "⚫ Arquivo"}</span>`}
+          </div>
+        </div>
+      `;
+                    grid.appendChild(card);
+                });
+            });
+
+            document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+            // Atualizar contadores
+            document.getElementById("totalCount").textContent = NOTICIAS.length;
+            document.getElementById("atualCount").textContent = NOTICIAS.filter(n => n.estado === "atual").length;
+            document.getElementById("antigaCount").textContent = NOTICIAS.filter(n => n.estado === "antiga").length;
+        }
+
+        /* ══════════════════════════════
+           FILTROS
+        ══════════════════════════════ */
+        document.querySelectorAll(".filter-tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+                currentCat = tab.dataset.cat;
+                render();
+            });
+        });
+        document.getElementById("searchInput").addEventListener("input", e => { currentSearch = e.target.value; render(); });
+
+        /* ══════════════════════════════
+           OBSERVER
+        ══════════════════════════════ */
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.05 });
+
+        /* ══════════════════════════════
+           CURSOR
+        ══════════════════════════════ */
+        const cursor = document.getElementById("cursor");
+        const ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        document.querySelectorAll("a,button,.news-card").forEach(el => {
+            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+        });
+
+        /* INIT */
+        renderFeatured();
+        render();
+    </script>
+    <script src="../pesquisa.js"></script>
+</body>
+
+</html>

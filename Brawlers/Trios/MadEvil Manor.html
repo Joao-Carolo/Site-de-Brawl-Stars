@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MadEvil Manor — BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --red: #E8202A;
+            --orange: #FF6B00;
+            --yellow: #FFD000;
+            --purple: #9B59FF;
+            --gold: #F59E0B;
+            --draco: #FFD000;
+            --lumi: #9B59FF;
+            --damian: #E8202A;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --text-dark: #1A1A2E;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        * {
+            cursor: none !important;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--red);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(232, 32, 42, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* ══ HERO ══ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 7rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 50% 80%, rgba(232, 32, 42, .3) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 20% 30%, rgba(255, 208, 0, .15) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 40% at 80% 30%, rgba(155, 89, 255, .15) 0%, transparent 55%),
+                #080810;
+        }
+
+        .hero-dots {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+        }
+
+        /* spotlights */
+        .spot {
+            position: absolute;
+            bottom: 0;
+            width: 180px;
+            height: 85%;
+            background: linear-gradient(to top, rgba(232, 32, 42, .12), transparent);
+            clip-path: polygon(35% 100%, 65% 100%, 85% 0%, 15% 0%);
+            pointer-events: none;
+        }
+
+        .spot-1 {
+            left: 15%;
+            animation: s1 5s ease-in-out infinite alternate;
+        }
+
+        .spot-2 {
+            left: 45%;
+            animation: s2 4s ease-in-out infinite alternate;
+            opacity: .6;
+        }
+
+        .spot-3 {
+            right: 15%;
+            animation: s3 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes s1 {
+            from {
+                transform: rotate(-10deg)
+            }
+
+            to {
+                transform: rotate(10deg)
+            }
+        }
+
+        @keyframes s2 {
+            from {
+                transform: rotate(8deg)
+            }
+
+            to {
+                transform: rotate(-8deg)
+            }
+        }
+
+        @keyframes s3 {
+            from {
+                transform: rotate(12deg)
+            }
+
+            to {
+                transform: rotate(-12deg)
+            }
+        }
+
+        /* partículas */
+        .particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .par {
+            position: absolute;
+            border-radius: 50%;
+            animation: rise linear infinite;
+        }
+
+        @keyframes rise {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-400px) scale(0);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(232, 32, 42, .15);
+            border: 1px solid rgba(232, 32, 42, .4);
+            border-radius: 100px;
+            padding: .35rem 1rem;
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #FF8080;
+            margin-bottom: 1.5rem;
+            animation: fup .6s ease both;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(.9rem, 2vw, 1.2rem);
+            letter-spacing: .3em;
+            color: rgba(255, 255, 255, .35);
+            text-transform: uppercase;
+            margin-bottom: .5rem;
+            animation: fup .6s ease both .1s;
+        }
+
+        .hero-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(3rem, 12vw, 9rem);
+            line-height: .95;
+            letter-spacing: -.01em;
+            background: linear-gradient(135deg, #fff 0%, #FF8080 35%, var(--red) 65%, #8B0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 50px rgba(232, 32, 42, .45));
+            animation: fup .8s cubic-bezier(.16, 1, .3, 1) both .15s;
+        }
+
+        .hero-title-2 {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2rem, 7vw, 5rem);
+            line-height: 1;
+            letter-spacing: .05em;
+            color: rgba(255, 255, 255, .5);
+            animation: fup .7s ease both .3s;
+        }
+
+        .hero-members {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            animation: fup .7s ease both .4s;
+        }
+
+        .hero-member {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 100px;
+            padding: .45rem 1.1rem;
+            font-weight: 700;
+            font-size: .88rem;
+        }
+
+        .hero-member.draco {
+            border-color: rgba(255, 208, 0, .3);
+            color: var(--draco);
+        }
+
+        .hero-member.lumi {
+            border-color: rgba(155, 89, 255, .3);
+            color: var(--lumi);
+        }
+
+        .hero-member.damian {
+            border-color: rgba(232, 32, 42, .3);
+            color: var(--damian);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5rem;
+            z-index: 2;
+            animation: fadeIn 1s ease both 1.2s;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, rgba(232, 32, 42, .6), transparent);
+            animation: sp 2s ease-in-out infinite;
+        }
+
+        .scroll-txt {
+            font-size: .65rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .25);
+        }
+
+        @keyframes sp {
+
+            0%,
+            100% {
+                opacity: .4
+            }
+
+            50% {
+                opacity: 1
+            }
+        }
+
+        @keyframes fup {
+            from {
+                opacity: 0;
+                transform: translateY(25px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /* GLOW LINE */
+        .glow-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--draco), var(--red), var(--lumi), transparent);
+            opacity: .6;
+        }
+
+        /* LAYOUT */
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        @media(max-width:700px) {
+            .wrap {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .sec-label {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: .5rem;
+        }
+
+        .sec-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .08), transparent);
+        }
+
+        /* ══ LORE ══ */
+        .lore-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media(max-width:750px) {
+            .lore-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .lore-p {
+            font-size: .97rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, .62);
+            margin-bottom: 1rem;
+        }
+
+        .lore-p strong {
+            color: #fff;
+        }
+
+        .lore-visual {
+            background: linear-gradient(135deg, rgba(30, 0, 10, .8), rgba(15, 0, 30, .9));
+            border: 1px solid rgba(232, 32, 42, .2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lore-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at bottom, rgba(232, 32, 42, .15), transparent 60%);
+        }
+
+        .lore-emojis {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: .5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lore-quote {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .8);
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+        }
+
+        /* ══ MEMBROS ══ */
+        .members-section {
+            background: var(--dark2);
+            padding: 5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .members-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        @media(max-width:700px) {
+            .members-inner {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .member-block {
+            margin-bottom: 4rem;
+        }
+
+        .member-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .member-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .member-emoji {
+            font-size: 4rem;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .5));
+        }
+
+        .member-role {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: .3rem;
+        }
+
+        .member-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        .member-sub {
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .4);
+            margin-top: .3rem;
+        }
+
+        .member-rarity {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            padding: .25rem .75rem;
+            border-radius: 100px;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-top: .5rem;
+        }
+
+        .member-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        @media(max-width:700px) {
+            .member-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* stats */
+        .member-stats {
+            display: flex;
+            flex-direction: column;
+            gap: .65rem;
+        }
+
+        .mstat-row {
+            display: flex;
+            align-items: center;
+            gap: .9rem;
+        }
+
+        .mstat-label {
+            font-size: .75rem;
+            font-weight: 700;
+            width: 85px;
+            color: rgba(255, 255, 255, .4);
+            flex-shrink: 0;
+        }
+
+        .mstat-bar {
+            flex: 1;
+            height: 5px;
+            background: rgba(255, 255, 255, .07);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .mstat-fill {
+            height: 100%;
+            border-radius: 100px;
+        }
+
+        .mstat-val {
+            font-size: .75rem;
+            font-weight: 800;
+            width: 50px;
+            text-align: right;
+            color: rgba(255, 255, 255, .65);
+            flex-shrink: 0;
+        }
+
+        /* abilities */
+        .abilities {
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .ability {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .ability-type {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: .3rem;
+        }
+
+        .ability-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: .92rem;
+            margin-bottom: .35rem;
+        }
+
+        .ability-desc {
+            font-size: .82rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .55);
+        }
+
+        /* ══ BUFFIES DO TRIO ══ */
+        .buffies-section {
+            background: var(--dark);
+            padding: 5rem 0;
+        }
+
+        .buffies-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        @media(max-width:700px) {
+            .buffies-inner {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .claw-machine-visual {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .claw-machine-header {
+            padding: 1.75rem 2rem;
+            background: linear-gradient(135deg, rgba(232, 32, 42, .1), rgba(255, 208, 0, .08));
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .claw-icon {
+            font-size: 2.5rem;
+        }
+
+        .claw-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .claw-update {
+            font-size: .75rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .3);
+            letter-spacing: .05em;
+            margin-top: .2rem;
+        }
+
+        .claw-status {
+            margin-left: auto;
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .28rem .75rem;
+            border-radius: 100px;
+            background: rgba(34, 197, 94, .12);
+            border: 1px solid rgba(34, 197, 94, .25);
+            color: #4ADE80;
+        }
+
+        .buffies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+            padding: 1.5rem 2rem;
+        }
+
+        .buffie-member-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .bmc-header {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            padding: .9rem 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .bmc-emoji {
+            font-size: 1.8rem;
+        }
+
+        .bmc-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: .95rem;
+        }
+
+        .bmc-rarity {
+            font-size: .65rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .35);
+        }
+
+        .bmc-buffies {
+            padding: .75rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+
+        .bmc-buffie {
+            display: flex;
+            gap: .6rem;
+            align-items: flex-start;
+            padding: .5rem .7rem;
+            border-radius: 10px;
+            font-size: .82rem;
+        }
+
+        .bmc-buffie.g {
+            background: rgba(34, 197, 94, .07);
+            border: 1px solid rgba(34, 197, 94, .15);
+        }
+
+        .bmc-buffie.s {
+            background: rgba(255, 208, 0, .07);
+            border: 1px solid rgba(255, 208, 0, .15);
+        }
+
+        .bmc-buffie.h {
+            background: rgba(155, 89, 255, .07);
+            border: 1px solid rgba(155, 89, 255, .15);
+        }
+
+        .bmc-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .g .bmc-dot {
+            background: #22C55E;
+        }
+
+        .s .bmc-dot {
+            background: var(--yellow);
+        }
+
+        .h .bmc-dot {
+            background: #9B59FF;
+        }
+
+        .bmc-type {
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin-bottom: .12rem;
+        }
+
+        .g .bmc-type {
+            color: #4ADE80;
+        }
+
+        .s .bmc-type {
+            color: var(--yellow);
+        }
+
+        .h .bmc-type {
+            color: #B07AFF;
+        }
+
+        .bmc-desc {
+            color: rgba(255, 255, 255, .6);
+            line-height: 1.55;
+        }
+
+        /* ══ SINERGIA ══ */
+        .synergy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.1rem;
+        }
+
+        .syn-card {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: transform .2s, border-color .2s;
+        }
+
+        .syn-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .syn-icon {
+            font-size: 2rem;
+            margin-bottom: .75rem;
+        }
+
+        .syn-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: .95rem;
+            margin-bottom: .4rem;
+        }
+
+        .syn-desc {
+            font-size: .85rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .5);
+        }
+
+        /* ══ COLLAB ══ */
+        .collab-wrap {
+            background: linear-gradient(135deg, rgba(30, 0, 10, .9), rgba(15, 0, 30, .9));
+            border: 1px solid rgba(232, 32, 42, .2);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .collab-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 50% 80% at 100% 50%, rgba(232, 32, 42, .12), transparent), radial-gradient(ellipse 40% 60% at 0% 50%, rgba(155, 89, 255, .08), transparent);
+        }
+
+        .collab-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .collab-tag {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: rgba(232, 32, 42, .8);
+            margin-bottom: .5rem;
+        }
+
+        .collab-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: .75rem;
+        }
+
+        .collab-desc {
+            font-size: .95rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .6);
+            max-width: 560px;
+            margin-bottom: 1.5rem;
+        }
+
+        .yt-wrap {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .08);
+            aspect-ratio: 16/9;
+            margin-top: 2rem;
+        }
+
+        .yt-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ══ ADVENTURE BOOK ══ */
+        .book-banner {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 208, 0, .2);
+            border-radius: 18px;
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media(max-width:600px) {
+            .book-banner {
+                grid-template-columns: 1fr;
+            }
+
+            .book-big {
+                display: none;
+            }
+        }
+
+        .book-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 0% 50%, rgba(255, 208, 0, .06), transparent);
+        }
+
+        .book-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .book-tag {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: .5rem;
+        }
+
+        .book-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            margin-bottom: .75rem;
+        }
+
+        .book-desc {
+            font-size: .92rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .book-big {
+            font-size: 5rem;
+            opacity: .2;
+            flex-shrink: 0;
+        }
+
+        /* ══ BOX INFO ══ */
+        .wiki-box {
+            border-radius: 12px;
+            padding: 1.1rem 1.4rem;
+            margin: 1.5rem 0;
+            display: flex;
+            gap: .9rem;
+            align-items: flex-start;
+        }
+
+        .wiki-box-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .wiki-box-text {
+            font-size: .9rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .wiki-box-text strong {
+            color: #fff;
+        }
+
+        .wiki-box.info {
+            background: rgba(59, 130, 246, .07);
+            border: 1px solid rgba(59, 130, 246, .2);
+        }
+
+        .wiki-box.tip {
+            background: rgba(255, 208, 0, .07);
+            border: 1px solid rgba(255, 208, 0, .2);
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="../../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../../Brawlers/Brawlers.html">Brawlers</a></li>
+            <li><a href="../../Brawlers/Buffies.html">Buffies</a></li>
+            <li><a href="../../Temporadas/Temporadas.html">Updates</a></li>
+            <li><a href="../../Guias/Guias.html">Guias</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-dots"></div>
+        <div class="spot spot-1"></div>
+        <div class="spot spot-2"></div>
+        <div class="spot spot-3"></div>
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🤘 Trio Completo — Update 67</div>
+            <p class="hero-eyebrow">A Banda de Heavy Metal de Starr Park</p>
+            <h1 class="hero-title">MadEvil</h1>
+            <h2 class="hero-title-2">Manor</h2>
+            <div class="hero-members">
+                <div class="hero-member draco">🎸 Draco — Guitarra</div>
+                <div class="hero-member lumi">🥁 Lumi — Bateria</div>
+                <div class="hero-member damian">🎤 Damian — Vocalista</div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span class="scroll-txt">Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <div class="glow-line"></div>
+
+    <!-- LORE -->
+    <div class="wrap">
+        <section class="section">
+            <div class="sec-label reveal">Lore & História</div>
+            <h2 class="sec-title reveal">A História do Trio</h2>
+            <div class="lore-grid">
+                <div class="reveal">
+                    <p class="lore-p">O <strong>MadEvil Manor</strong> é a banda de heavy metal de Starr Park — três
+                        brawlers unidos pela música mais pesada e caótica do universo do jogo. Formada por
+                        <strong>Draco</strong> na guitarra, <strong>Lumi</strong> na bateria e <strong>Damian</strong>
+                        como vocalista, a banda representa a ala mais agressiva e energética de Starr Park.</p>
+                    <p class="lore-p"><strong>Draco</strong> é o guitarrista dragão e irmão mais novo de Damian. Foi ele
+                        que fundou a banda e que descobriu a solução para os episódios de raiva de Damian — umas colunas
+                        de cancelamento de ruído. Transforma-se num dragão de fogo com o Super.</p>
+                    <p class="lore-p"><strong>Lumi</strong> é a baterista do grupo. O seu ritmo é tão poderoso que
+                        potencia fisicamente todos os aliados próximos. Sabe exatamente quando Damian está prestes a
+                        entrar em modo fúria e usa isso em seu favor em palco.</p>
+                    <p class="lore-p"><strong>Damian</strong> sobreviveu a uma falha cardíaca e inúmeras cirurgias,
+                        tendo agora um pacemaker — o que ele chama orgulhosamente de um <em>verdadeiro coração de
+                            metal</em>. A música de heavy metal coloca-o num estado de raiva incontrolável. Os seus
+                        espetáculos terminam quase sempre com ele a destruir tudo à volta do palco.</p>
+                </div>
+                <div class="lore-visual reveal" style="transition-delay:.15s">
+                    <div class="lore-emojis">🎸🎤🥁</div>
+                    <div class="lore-quote">"Tendo sobrevivido a uma falha cardíaca e inúmeras cirurgias, Damian luta
+                        com um pacemaker — e orgulha-se de ter um verdadeiro coração de metal."</div>
+                    <div style="margin-top:1.5rem;font-size:.78rem;color:rgba(255,255,255,.3);font-style:normal">—
+                        Descrição oficial da Supercell</div>
+                </div>
+            </div>
+
+            <div class="wiki-box info reveal">
+                <div class="wiki-box-icon">📖</div>
+                <div class="wiki-box-text">A história completa do trio pode ser explorada no <strong>Brawl Adventure
+                        Book: Metal Heart</strong>, lançado com o Update 67. O livro de aventura narra a lore de Damian
+                    e a formação do MadEvil Manor.</div>
+            </div>
+        </section>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- MEMBROS -->
+    <section class="members-section">
+        <div class="members-inner">
+            <div class="sec-label reveal">Os três membros</div>
+            <h2 class="sec-title reveal">Stats & Habilidades</h2>
+
+            <!-- DRACO -->
+            <div class="member-block reveal">
+                <div class="member-header">
+                    <div class="member-emoji">🎸</div>
+                    <div class="member-meta">
+                        <div class="member-role" style="color:var(--draco)">🎸 Guitarra & Líder</div>
+                        <div class="member-name" style="color:var(--draco)">Draco</div>
+                        <div class="member-sub">Brawler #98 · Legendary · Tank</div>
+                        <div class="member-rarity"
+                            style="background:rgba(255,208,0,.12);border:1px solid rgba(255,208,0,.3);color:var(--draco)">
+                            ⭐ Legendary</div>
+                    </div>
+                </div>
+                <div class="member-grid">
+                    <div>
+                        <div
+                            style="font-family:'Russo One',sans-serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1rem">
+                            Stats (Power Level 11)</div>
+                        <div class="member-stats">
+                            <div class="mstat-row">
+                                <div class="mstat-label">HP</div>
+                                <div class="mstat-bar">
+                                    <div class="mstat-fill"
+                                        style="width:74%;background:linear-gradient(90deg,var(--draco),var(--orange))">
+                                    </div>
+                                </div>
+                                <div class="mstat-val">11.200</div>
+                            </div>
+                            <div class="mstat-row">
+                                <div class="mstat-label">Dano</div>
+                                <div class="mstat-bar">
+                                    <div class="mstat-fill"
+                                        style="width:70%;background:linear-gradient(90deg,var(--draco),var(--orange))">
+                                    </div>
+                                </div>
+                                <div class="mstat-val">700</div>
+                            </div>
+                            <div class="mstat-row">
+                                <div class="mstat-label">Alcance</div>
+                                <div class="mstat-bar">
+                                    <div class="mstat-fill"
+                                        style="width:25%;background:linear-gradient(90deg,var(--draco),var(--orange))">
+                                    </div>
+                                </div>
+                                <div class="mstat-val">5 bl</div>
+                            </div>
+                            <div class="mstat-row">
+                                <div class="mstat-label">Velocidade</div>
+                                <div class="mstat-bar">
+                                    <div class="mstat-fill"
+                                        style="width:80%;background:linear-gradient(90deg,var(--draco),var(--orange))">
+                                    </div>
+                                </div>
+                                <div class="mstat-val">720</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="abilities">
+                        <div class="ability">
+                            <div class="ability-type" style="color:var(--draco)">⚔️ Ataque — Power Chord</div>
+                            <div class="ability-name">Acorde Elétrico</div>
+                            <div class="ability-desc">Draco toca um acorde explosivo na guitarra que causa dano em cone
+                                a curto alcance. O ataque carrega a sua barra de transformação.</div>
+                        </div>
+                        <div class="ability">
+                            <div class="ability-type" style="color:var(--draco)">⚡ Super — Dragon Form</div>
+                            <div class="ability-name">Forma Dragão</div>
+                            <div class="ability-desc">Draco transforma-se num dragão que cospe fogo. Ganha HP extra,
+                                velocidade e o ataque muda para cuspir chamas contínuas. O modo dura 7 segundos.</div>
+                        </div>
+                        <div class="ability">
+                            <div class="ability-type" style="color:#4ADE80">🟢 Gadgets</div>
+                            <div class="ability-name">Infernal Rush / Fire Shield</div>
+                            <div class="ability-desc">Infernal Rush: carga para a frente em modo dragão. Fire Shield:
+                                escudo de fogo que bloqueia projéteis e devolve dano.</div>
+                        </div>
+                        <div class="ability">
+                            <div class="ability-type" style="color:var(--yellow)">⭐ Star Powers</div>
+                            <div class="ability-name">Metal Head / Rock On</div>
+                            <div class="ability-desc">Metal Head: mais dano no modo dragão. Rock On: o modo dragão dura
+                                +2 segundos adicionais.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LUMI -->
+            <div class="member-block reveal">
+                <div class="member-header">
+                    <div class="member-emoji">🥁</div>
+                    <div class="member-meta">
+                        <div class="member-role" style="color:var(--lumi)">🥁 Bateria & Suporte</div>
+                        <div class="member-name" style="color:var(--lumi)">Lumi</div>
+                        <div class="member-sub">Brawler #99 · Legendary · Support</div>
+                        <div class="member-rarity"
+                            style="background:rgba(155,89,255,.12);border:1px solid rgba(155,89,255,.3);color:var(--lumi)">
+                            ⭐ Legendary</div>
+                    </div>
+                </div>
+                <div class="member-grid">
+                    <div>
+                        <div
+                            style="font-family:'Russo One',sans-serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1rem">
+                            Stats (Power Level 11)</div>
+                        <div class="member-stats">
+                            <div class="mstat-row">
+                                <div class="mstat-label">HP</div>
+                                <div class="mstat-bar">
+                                    <div class="mstat-fill"
+                                        style="width:24%;background:linear-gradient(90deg,var(--lumi),#6C2DC7)"></div>
+                                </div>
+                                <div class="mstat-val">3.600</div>
+                            </div>
+                            <div class="mstat-row">
+                                <div class="mstat-label">Dano</div>
+                                <div class="mstat-bar">
+                                    <div class="mstat-fill"
+                                        style="width:46%;background:linear-gradient(90deg,var(--lumi),#6C2DC7)"></div>
+                                </div>
+                                <div class="mstat-val">460</div>
+                            </div>
+                            <div class="mstat-row">
+                                <div class="mstat-label">Alcance</div>
+                                <div class="mstat-bar">
+                                    <div class="mstat-fill"
+                                        style="width:40%;background:linear-gradient(90deg,var(--lumi),#6C2DC7)"></div>
+                                </div>
+                                <div class="mstat-val">8 bl</div>
+                            </div>
+                            <div class="mstat-row">
+                                <div class="mstat-label">Velocidade</div>
+                                <div class="mstat-bar">
+                                    <div class="mstat-fill"
+                                        style="width:72%;background:linear-gradient(90deg,var(--lumi),#6C2DC7)"></div>
+                                </div>
+                                <div class="mstat-val">720</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="abilities">
+                        <div class="ability">
+                            <div class="ability-type" style="color:var(--lumi)">⚔️ Ataque — Drumbeat</div>
+                            <div class="ability-name">Onda Sonora</div>
+                            <div class="ability-desc">Lumi emite uma onda sonora da bateria que aplica slow nos inimigos
+                                atingidos. Pode atravessar obstáculos.</div>
+                        </div>
+                        <div class="ability">
+                            <div class="ability-type" style="color:var(--lumi)">⚡ Super — Drum Solo</div>
+                            <div class="ability-name">Ritmo Amplificado</div>
+                            <div class="ability-desc">Lumi toca um solo de bateria que aumenta o dano e a velocidade de
+                                todos os aliados próximos por 5 segundos. Um dos Supers de suporte mais fortes do jogo.
+                            </div>
+                        </div>
+                        <div class="ability">
+                            <div class="ability-type" style="color:#4ADE80">🟢 Gadgets</div>
+                            <div class="ability-name">Bass Drop / Rhythm Shield</div>
+                            <div class="ability-desc">Bass Drop: explosão de área ao redor de Lumi. Rhythm Shield:
+                                escudo temporário para um aliado próximo.</div>
+                        </div>
+                        <div class="ability">
+                            <div class="ability-type" style="color:var(--yellow)">⭐ Star Powers</div>
+                            <div class="ability-name">Bass Drop / Encore</div>
+                            <div class="ability-desc">Bass Drop: o Super tem área maior. Encore: o Super dura mais 2
+                                segundos.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAMIAN -->
+            <div class="member-block reveal">
+                <div class="member-header">
+                    <div class="member-emoji">🎤</div>
+                    <div class="member-meta">
+                        <div class="member-role" style="color:var(--damian)">🎤 Vocalista & Frontman</div>
+                        <div class="member-name" style="color:var(--damian)">Damian</div>
+                        <div class="member-sub">Brawler #102 · Mythic · Tank · Win Rate: 66.2%</div>
+                        <div class="member-rarity"
+                            style="background:rgba(232,32,42,.12);border:1px solid rgba(232,32,42,.3);color:var(--damian)">
+                            💜 Mythic</div>
+                    </div>
+                </div>
+                <div class="member-grid">
+                    <div>
+                        <div
+                            style="font-family:'Russo One',sans-serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1rem">
+                            Stats (Power Level 11)</div>
+                        <div class="member-stats">
+                            <div class="mstat-row">
+                                <div class="mstat-label">HP</div>
+                                <div class="mstat-bar">
+                                    <div class="mstat-fill"
+                                        style="width:74%;background:linear-gradient(90deg,var(--damian),var(--orange))">
+                                    </div>
+                                </div>
+                                <div class="mstat-val">11.200</div>
+                            </div>
+                            <div class="mstat-row">
+                                <div class="mstat-label">Dano kick</div>
+                                <div class="mstat-bar">
+                                    <div class="mstat-fill"
+                                        style="width:78%;background:linear-gradient(90deg,var(--damian),var(--orange))">
+                                    </div>
+                                </div>
+                                <div class="mstat-val">2.400</div>
+                            </div>
+                            <div class="mstat-row">
+                                <div class="mstat-label">Alcance</div>
+                                <div class="mstat-bar">
+                                    <div class="mstat-fill"
+                                        style="width:27%;background:linear-gradient(90deg,var(--damian),var(--orange))">
+                                    </div>
+                                </div>
+                                <div class="mstat-val">2.7 bl</div>
+                            </div>
+                            <div class="mstat-row">
+                                <div class="mstat-label">Velocidade</div>
+                                <div class="mstat-bar">
+                                    <div class="mstat-fill"
+                                        style="width:86%;background:linear-gradient(90deg,var(--damian),var(--orange))">
+                                    </div>
+                                </div>
+                                <div class="mstat-val">770</div>
+                            </div>
+                        </div>
+                        <div class="wiki-box tip" style="margin-top:1rem">
+                            <div class="wiki-box-icon">💡</div>
+                            <div class="wiki-box-text" style="font-size:.82rem">O Super de Damian carrega
+                                automaticamente ao <strong>receber dano</strong> — atacar Damian é literalmente dar-lhe
+                                o Super.</div>
+                        </div>
+                    </div>
+                    <div class="abilities">
+                        <div class="ability">
+                            <div class="ability-type" style="color:var(--damian)">⚔️ Ataque — Power Trio</div>
+                            <div class="ability-name">Punch-Kick Combo</div>
+                            <div class="ability-desc">2 socos carregam a barra → 3.º ataque é um chute explosivo com
+                                2.400 de dano, knockback e explosão em cadeia (1.600 dano).</div>
+                        </div>
+                        <div class="ability">
+                            <div class="ability-type" style="color:var(--damian)">⚡ Super — Mosh Pit</div>
+                            <div class="ability-name">Stage Dive</div>
+                            <div class="ability-desc">Salta por cima de obstáculos e cria um Mosh Pit de 5 segundos que
+                                prende inimigos. Com HC: chão em chamas (600 DPS).</div>
+                        </div>
+                        <div class="ability">
+                            <div class="ability-type" style="color:#4ADE80">🟢 Gadgets</div>
+                            <div class="ability-name">Spiritual Healing / Wall of Sound</div>
+                            <div class="ability-desc">Spiritual Healing: microfone que cura (1.600 HP) aliados. Wall of
+                                Sound: 3 amplificadores indestrutíveis por 7s.</div>
+                        </div>
+                        <div class="ability">
+                            <div class="ability-type" style="color:var(--yellow)">⭐ Star Powers</div>
+                            <div class="ability-name">Crowdkill / Vulgar Display of Punch</div>
+                            <div class="ability-desc">Crowdkill: stun ao projetar inimigos contra paredes. Vulgar
+                                Display: carga imediata da barra durante o Super.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- BUFFIES -->
+    <section class="buffies-section">
+        <div class="buffies-inner">
+            <div class="sec-label reveal">Claw Machine</div>
+            <h2 class="sec-title reveal">Buffies do MadEvil Manor</h2>
+            <p style="color:rgba(255,255,255,.5);font-size:.97rem;line-height:1.75;max-width:650px;margin-bottom:2rem;"
+                class="reveal">Os Buffies do MadEvil Manor estão disponíveis em duas Claw Machines — Draco e Lumi na
+                <strong style="color:#fff">MadEvil Manor Machine</strong> (Update 61), e Damian numa futura máquina.</p>
+
+            <div class="claw-machine-visual reveal">
+                <div class="claw-machine-header">
+                    <div class="claw-icon">🎸</div>
+                    <div>
+                        <div class="claw-name">MadEvil Manor Claw Machine</div>
+                        <div class="claw-update">Update 61 · Maio 2025</div>
+                    </div>
+                    <div class="claw-status">✅ Disponível</div>
+                </div>
+                <div class="buffies-grid">
+                    <!-- DRACO -->
+                    <div class="buffie-member-card">
+                        <div class="bmc-header">
+                            <div class="bmc-emoji">🎸</div>
+                            <div>
+                                <div class="bmc-name">Draco</div>
+                                <div class="bmc-rarity">Legendary · Tank</div>
+                            </div>
+                        </div>
+                        <div class="bmc-buffies">
+                            <div class="bmc-buffie g">
+                                <div class="bmc-dot"></div>
+                                <div>
+                                    <div class="bmc-type">Gadget</div>
+                                    <div class="bmc-desc">Infernal Rush fica apontável — podes escolher a direção da
+                                        carga em modo dragão.</div>
+                                </div>
+                            </div>
+                            <div class="bmc-buffie s">
+                                <div class="bmc-dot"></div>
+                                <div>
+                                    <div class="bmc-type">Star Power</div>
+                                    <div class="bmc-desc">Metal Head aumenta o dano do modo dragão em 20% adicional.
+                                        Rock On adiciona mais 1s.</div>
+                                </div>
+                            </div>
+                            <div class="bmc-buffie h">
+                                <div class="bmc-dot"></div>
+                                <div>
+                                    <div class="bmc-type">Hypercharge</div>
+                                    <div class="bmc-desc">Modo dragão durante HC ganha imunidade a slow e knockback. +2s
+                                        de duração.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- LUMI -->
+                    <div class="buffie-member-card">
+                        <div class="bmc-header">
+                            <div class="bmc-emoji">🥁</div>
+                            <div>
+                                <div class="bmc-name">Lumi</div>
+                                <div class="bmc-rarity">Legendary · Support</div>
+                            </div>
+                        </div>
+                        <div class="bmc-buffies">
+                            <div class="bmc-buffie g">
+                                <div class="bmc-dot"></div>
+                                <div>
+                                    <div class="bmc-type">Gadget</div>
+                                    <div class="bmc-desc">Bass Drop tem área 30% maior e aplica slow adicional de 1
+                                        segundo.</div>
+                                </div>
+                            </div>
+                            <div class="bmc-buffie s">
+                                <div class="bmc-dot"></div>
+                                <div>
+                                    <div class="bmc-type">Star Power</div>
+                                    <div class="bmc-desc">Encore: Super dura mais 3s no total. Bass Drop SP: mais área e
+                                        dano no Gadget.</div>
+                                </div>
+                            </div>
+                            <div class="bmc-buffie h">
+                                <div class="bmc-dot"></div>
+                                <div>
+                                    <div class="bmc-type">Hypercharge</div>
+                                    <div class="bmc-desc">O Super durante HC também aumenta o alcance de ataque da
+                                        equipa. +2s de duração.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- DAMIAN -->
+                    <div class="buffie-member-card" style="border-color:rgba(232,32,42,.2)">
+                        <div class="bmc-header">
+                            <div class="bmc-emoji">🎤</div>
+                            <div>
+                                <div class="bmc-name">Damian</div>
+                                <div class="bmc-rarity">Mythic · Tank</div>
+                            </div>
+                        </div>
+                        <div class="bmc-buffies">
+                            <div class="bmc-buffie g">
+                                <div class="bmc-dot" style="background:#FF8080"></div>
+                                <div>
+                                    <div class="bmc-type" style="color:#FF8080">Gadget</div>
+                                    <div class="bmc-desc">Spiritual Healing cura também o próprio Damian em 50% do
+                                        valor. Wall of Sound dura +2s.</div>
+                                </div>
+                            </div>
+                            <div class="bmc-buffie s">
+                                <div class="bmc-dot" style="background:#FF8080"></div>
+                                <div>
+                                    <div class="bmc-type" style="color:#FF8080">Star Power</div>
+                                    <div class="bmc-desc">Crowdkill: stun dura 0.8s em vez de 0.5s. Vulgar Display:
+                                        carga imediata aplica-se também após o Super.</div>
+                                </div>
+                            </div>
+                            <div class="bmc-buffie h">
+                                <div class="bmc-dot" style="background:#FF8080"></div>
+                                <div>
+                                    <div class="bmc-type" style="color:#FF8080">Hypercharge</div>
+                                    <div class="bmc-desc">Chão em chamas do HC causa 750 DPS em vez de 600. +2s de
+                                        duração do Mosh Pit.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SINERGIA -->
+    <div class="wrap">
+        <section class="section">
+            <div class="sec-label reveal">Jogar em conjunto</div>
+            <h2 class="sec-title reveal">Sinergia do Trio</h2>
+            <p style="color:rgba(255,255,255,.5);font-size:.97rem;line-height:1.75;max-width:650px;margin-bottom:2rem;"
+                class="reveal">Os três juntos formam uma das composições mais poderosas do jogo. Cada membro complementa
+                os outros de forma única.</p>
+            <div class="synergy-grid">
+                <div class="syn-card reveal" style="border-color:rgba(232,32,42,.15)">
+                    <div class="syn-icon">🎤🥁</div>
+                    <div class="syn-title">Damian + Lumi</div>
+                    <div class="syn-desc">O Super de Lumi boosta Damian enquanto ele está no Mosh Pit — velocidade e
+                        dano aumentados tornam-no impossível de escapar. Combo devastador em Hot Zone e Gem Grab.</div>
+                </div>
+                <div class="syn-card reveal" style="transition-delay:.08s;border-color:rgba(255,208,0,.15)">
+                    <div class="syn-icon">🎸🎤</div>
+                    <div class="syn-title">Draco + Damian</div>
+                    <div class="syn-desc">Dois Tanks em simultâneo com HP elevado. Draco em modo dragão absorve dano
+                        enquanto Damian entra com o Mosh Pit. A equipa adversária raramente consegue gerir os dois ao
+                        mesmo tempo.</div>
+                </div>
+                <div class="syn-card reveal" style="transition-delay:.16s;border-color:rgba(155,89,255,.15)">
+                    <div class="syn-icon">🎸🥁</div>
+                    <div class="syn-title">Draco + Lumi</div>
+                    <div class="syn-desc">Lumi boosta Draco no modo dragão — o resultado é devastador. Velocidade e dano
+                        amplificados com o Super de Lumi tornam o Draco quase intocável nesse período.</div>
+                </div>
+                <div class="syn-card reveal"
+                    style="transition-delay:.24s;border-color:rgba(232,32,42,.25);background:rgba(232,32,42,.04)">
+                    <div class="syn-icon">🎸🎤🥁</div>
+                    <div class="syn-title">MadEvil Manor Completo</div>
+                    <div class="syn-desc">O trio completo é S-tier em Brawl Ball e Gem Grab. Lumi boosta, Draco faz
+                        frontline e Damian controla zonas com o Mosh Pit. Uma das composições mais difíceis de
+                        contrariar do meta atual.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- COLLAB + ADVENTURE BOOK -->
+    <div class="wrap">
+        <section class="section">
+            <div class="sec-label reveal">Conteúdo Exclusivo</div>
+            <h2 class="sec-title reveal">Collab & Adventure Book</h2>
+
+            <div class="collab-wrap reveal">
+                <div class="collab-inner">
+                    <div class="collab-tag">🎸 Parceria Musical Oficial · Update 67</div>
+                    <div class="collab-title">Electric Callboy × MadEvil Manor</div>
+                    <div class="collab-desc">A banda alemã de electronic metal <strong style="color:#fff">Electric
+                            Callboy</strong> uniu-se à Supercell para revelar Damian com um music video épico — <strong
+                            style="color:#fff">"HYPERCHARGED"</strong>. A música faz parte do álbum <em>Tanzneid</em>,
+                        com lançamento a 7 de Agosto de 2026. O vídeo atingiu 1 milhão de likes em tempo recorde,
+                        desbloqueando um Chaos Drop grátis para todos os jogadores do Keep Brawl Alive.</div>
+                </div>
+                <div class="yt-wrap reveal">
+                    <iframe src="https://www.youtube.com/embed/7B0-WJ5QYsc"
+                        title="Brawl Talk — Damian & Electric Callboy" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="book-banner reveal" style="margin-top:2rem">
+                <div class="book-inner">
+                    <div class="book-tag">📖 Lore Exclusivo · Update 67</div>
+                    <div class="book-title">Adventure Book: Metal Heart</div>
+                    <div class="book-desc">O Adventure Book do Update 67 é dedicado ao MadEvil Manor. Lança um dado e
+                        explora a história de Damian, a formação da banda e os segredos do MadEvil Manor em Starr Park.
+                        Recompensas exclusivas ao completar cada capítulo da história.</div>
+                </div>
+                <div class="book-big">📖</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Partículas de fogo
+        const fp = document.getElementById("particles");
+        for (let i = 0; i < 35; i++) {
+            const p = document.createElement("div");
+            p.className = "par";
+            const hue = Math.random() < .5 ? 0 + Math.random() * 20 : 20 + Math.random() * 20;
+            p.style.cssText = `left:${Math.random() * 100}%;bottom:0;width:${2 + Math.random() * 4}px;height:${2 + Math.random() * 4}px;background:hsl(${hue},100%,60%);animation-duration:${1.5 + Math.random() * 3}s;animation-delay:${Math.random() * 3}s;`;
+            fp.appendChild(p);
+        }
+
+        // REVEAL
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.07 });
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+        // CURSOR
+        const cursor = document.getElementById("cursor");
+        const ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        document.querySelectorAll("a,button,.syn-card,.buffie-member-card,.ability").forEach(el => {
+            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+        });
+    </script>
+</body>
+
+</html>

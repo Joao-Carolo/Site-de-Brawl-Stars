@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas de Lançamento — Abril 2026 · BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --red: #E8202A;
+            --green: #22C55E;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --purple: #A855F7;
+            --teal: #00C9A7;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --text-dark: #1A1A2E;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        * {
+            cursor: none !important;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--yellow);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(255, 208, 0, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* HERO */
+        .hero {
+            padding: 8rem 3rem 5rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--dark2);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 70% at 85% 50%, rgba(255, 107, 0, .18), transparent),
+                radial-gradient(ellipse 40% 50% at 10% 60%, rgba(59, 130, 246, .12), transparent),
+                radial-gradient(ellipse 30% 40% at 50% 10%, rgba(255, 208, 0, .08), transparent);
+        }
+
+        .hero-inner {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hero-metas {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-tag {
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .28rem .8rem;
+            border-radius: 100px;
+        }
+
+        .tag-oficial {
+            background: rgba(255, 208, 0, .15);
+            border: 1px solid rgba(255, 208, 0, .3);
+            color: var(--yellow);
+        }
+
+        .tag-update {
+            background: rgba(255, 107, 0, .15);
+            border: 1px solid rgba(255, 107, 0, .3);
+            color: var(--orange);
+        }
+
+        .tag-date {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: rgba(255, 255, 255, .5);
+        }
+
+        .hero-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2rem, 6vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: .75rem;
+        }
+
+        .hero-title span {
+            background: linear-gradient(90deg, var(--yellow), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, .55);
+            max-width: 620px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+        }
+
+        .hero-pill {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .09);
+            border-radius: 100px;
+            padding: .32rem .9rem;
+            font-size: .78rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        /* GLOW LINE */
+        .glow-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--orange), var(--yellow), var(--orange), transparent);
+            opacity: .55;
+        }
+
+        /* LAYOUT */
+        .article-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 3rem 6rem;
+        }
+
+        @media(max-width:700px) {
+            .article-wrap {
+                padding: 0 1.5rem 4rem;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 4rem;
+            }
+        }
+
+        /* SECÇÕES */
+        .art-section {
+            padding: 3.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .art-section:last-child {
+            border-bottom: none;
+        }
+
+        .art-eyebrow {
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            margin-bottom: .5rem;
+        }
+
+        .art-h2 {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .art-h2 .h2-icon {
+            font-size: 1.4rem;
+        }
+
+        .art-p {
+            font-size: .95rem;
+            line-height: 1.85;
+            color: rgba(255, 255, 255, .62);
+            margin-bottom: 1rem;
+        }
+
+        .art-p strong {
+            color: #fff;
+        }
+
+        /* NOVOS BRAWLERS */
+        .brawler-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .brawler-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .brawler-card-header {
+            padding: 2rem 2rem 1.25rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brawler-card-bg {
+            position: absolute;
+            inset: 0;
+            opacity: .1;
+        }
+
+        .brawler-emoji-big {
+            font-size: 4rem;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .5));
+            flex-shrink: 0;
+        }
+
+        .brawler-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .brawler-rarity-badge {
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .22rem .7rem;
+            border-radius: 100px;
+            display: inline-block;
+            margin-bottom: .5rem;
+        }
+
+        .brawler-name-big {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            line-height: 1;
+            margin-bottom: .3rem;
+        }
+
+        .brawler-subtitle {
+            font-size: .88rem;
+            color: rgba(255, 255, 255, .45);
+            margin-bottom: .75rem;
+        }
+
+        .brawler-attr {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 100px;
+            padding: .25rem .8rem;
+            font-size: .75rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .55);
+            display: inline-flex;
+        }
+
+        .brawler-abilities {
+            padding: 0 2rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .75rem;
+        }
+
+        @media(max-width:600px) {
+            .brawler-abilities {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ability-card {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .ability-type {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: .3rem;
+        }
+
+        .ability-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: .9rem;
+            margin-bottom: .35rem;
+        }
+
+        .ability-desc {
+            font-size: .82rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .55);
+        }
+
+        /* NOVO EVENTO */
+        .event-banner {
+            background: linear-gradient(135deg, rgba(168, 85, 247, .12), rgba(255, 60, 172, .08));
+            border: 1px solid rgba(168, 85, 247, .25);
+            border-radius: 18px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: .5rem;
+        }
+
+        .event-desc {
+            font-size: .9rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        /* BUFFIES */
+        .buffie-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .buffie-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .buffie-card-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .buffie-brawler-emoji {
+            font-size: 1.8rem;
+        }
+
+        .buffie-brawler-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+        }
+
+        .buffie-items {
+            padding: .75rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+
+        .buffie-item {
+            background: rgba(155, 89, 255, .07);
+            border: 1px solid rgba(155, 89, 255, .15);
+            border-radius: 10px;
+            padding: .6rem .85rem;
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .6);
+            line-height: 1.6;
+        }
+
+        .buffie-item strong {
+            color: #B07AFF;
+        }
+
+        /* BALANCE CHANGES */
+        .balance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .balance-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 14px;
+            padding: 1.25rem;
+            border-left: 3px solid transparent;
+            transition: transform .2s;
+        }
+
+        .balance-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .balance-card.buff {
+            border-left-color: var(--green);
+        }
+
+        .balance-card.nerf {
+            border-left-color: var(--red);
+        }
+
+        .balance-card.change {
+            border-left-color: var(--blue);
+        }
+
+        .balance-header {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: .75rem;
+        }
+
+        .balance-emoji {
+            font-size: 1.5rem;
+        }
+
+        .balance-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: .95rem;
+        }
+
+        .balance-type {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .15rem .5rem;
+            border-radius: 100px;
+            margin-left: auto;
+        }
+
+        .buff .balance-type {
+            background: rgba(34, 197, 94, .15);
+            color: var(--green);
+        }
+
+        .nerf .balance-type {
+            background: rgba(239, 68, 68, .15);
+            color: #FCA5A5;
+        }
+
+        .change .balance-type {
+            background: rgba(59, 130, 246, .15);
+            color: #7EB8FF;
+        }
+
+        .balance-changes {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+
+        .balance-change {
+            font-size: .82rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .55);
+            display: flex;
+            gap: .5rem;
+        }
+
+        .balance-arrow {
+            flex-shrink: 0;
+            font-weight: 800;
+        }
+
+        .buff .balance-arrow {
+            color: var(--green);
+        }
+
+        .nerf .balance-arrow {
+            color: var(--red);
+        }
+
+        .change .balance-arrow {
+            color: var(--blue);
+        }
+
+        .balance-reason {
+            font-size: .78rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .35);
+            margin-top: .5rem;
+            font-style: italic;
+            padding-top: .5rem;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        /* SKINS GRID */
+        .skins-season {
+            margin-bottom: 2rem;
+        }
+
+        .season-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+
+        .season-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .skins-list {
+            display: flex;
+            flex-direction: column;
+            gap: .45rem;
+        }
+
+        .skin-item {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 10px;
+            padding: .6rem 1rem;
+            font-size: .85rem;
+        }
+
+        .skin-name {
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .skin-rarity {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .15rem .5rem;
+            border-radius: 100px;
+        }
+
+        .r-epic {
+            background: rgba(168, 85, 247, .15);
+            color: #C084FC;
+        }
+
+        .r-mythic {
+            background: rgba(239, 68, 68, .15);
+            color: #FCA5A5;
+        }
+
+        .r-legendary {
+            background: rgba(255, 208, 0, .15);
+            color: var(--yellow);
+        }
+
+        .skin-source {
+            font-size: .72rem;
+            color: rgba(255, 255, 255, .3);
+            font-weight: 700;
+        }
+
+        /* MISC */
+        .misc-list {
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .misc-item {
+            display: flex;
+            gap: .75rem;
+            align-items: flex-start;
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+        }
+
+        .misc-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .misc-text {
+            font-size: .9rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .62);
+        }
+
+        .misc-text strong {
+            color: #fff;
+        }
+
+        /* BUGFIXES */
+        .bug-list {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+
+        .bug-item {
+            display: flex;
+            gap: .65rem;
+            font-size: .88rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .55);
+            background: rgba(255, 255, 255, .02);
+            border: 1px solid rgba(255, 255, 255, .05);
+            border-radius: 10px;
+            padding: .65rem .9rem;
+        }
+
+        .bug-icon {
+            flex-shrink: 0;
+            color: var(--green);
+        }
+
+        /* BOX */
+        .info-box {
+            border-radius: 12px;
+            padding: 1.1rem 1.4rem;
+            margin: 1.25rem 0;
+            display: flex;
+            gap: .9rem;
+            align-items: flex-start;
+        }
+
+        .info-box-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .info-box-text {
+            font-size: .9rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .info-box-text strong {
+            color: #fff;
+        }
+
+        .info-box.yellow {
+            background: rgba(255, 208, 0, .07);
+            border: 1px solid rgba(255, 208, 0, .2);
+        }
+
+        .info-box.blue {
+            background: rgba(59, 130, 246, .07);
+            border: 1px solid rgba(59, 130, 246, .2);
+        }
+
+        .info-box.green {
+            background: rgba(34, 197, 94, .07);
+            border: 1px solid rgba(34, 197, 94, .2);
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .55s ease, transform .55s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* FOOTER */
+        .article-footer {
+            background: var(--dark2);
+            border-radius: 18px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            border: 1px solid rgba(255, 255, 255, .07);
+            margin-top: 3rem;
+        }
+
+        .footer-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            margin-bottom: .3rem;
+        }
+
+        .footer-sub {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: var(--yellow);
+            color: var(--text-dark);
+            font-weight: 800;
+            font-size: .85rem;
+            padding: .65rem 1.4rem;
+            border-radius: 100px;
+            border: none;
+            transition: transform .2s, box-shadow .2s;
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 208, 0, .3);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="../../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../../Brawlers/Brawlers.html">Brawlers</a></li>
+            <li><a href="../../Temporadas/Temporadas.html">Updates</a></li>
+            <li><a href="../Notícias.html">Notícias</a></li>
+            <li><a href="../../Guias/Guias.html">Guias</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-inner">
+            <div class="hero-metas">
+                <span class="hero-tag tag-oficial">⭐ Oficial Supercell</span>
+                <span class="hero-tag tag-update">🔥 Update 67</span>
+                <span class="hero-tag tag-date">📅 Abril 2026</span>
+            </div>
+            <h1 class="hero-title">Notas de Lançamento:<br><span>Abril 2026</span></h1>
+            <p class="hero-desc">As notas oficiais do Update 67 de Brawl Stars — 3 novos Brawlers, reformulação da loja,
+                novos Buffies, ajustes de balanceamento, novas skins e muito mais. Traduzido e adaptado para português
+                de Portugal.</p>
+            <div class="hero-pills">
+                <div class="hero-pill">🎤 Damian</div>
+                <div class="hero-pill">🌟 Starr Nova</div>
+                <div class="hero-pill">⚡ Bolt</div>
+                <div class="hero-pill">🏪 Nova Loja</div>
+                <div class="hero-pill">🦊 Novos Buffies</div>
+                <div class="hero-pill">⚖️ Balanceamentos</div>
+                <div class="hero-pill">🎨 Novas Skins</div>
+                <div class="hero-pill">🐛 Correções</div>
+            </div>
+        </div>
+    </header>
+    <div class="glow-line"></div>
+
+    <div class="article-wrap">
+
+        <!-- LOJA -->
+        <section class="art-section reveal">
+            <div class="art-eyebrow" style="color:var(--yellow)">Reformulação</div>
+            <h2 class="art-h2"><span class="h2-icon">🏪</span> Reformulação da Loja</h2>
+            <p class="art-p">A loja foi <strong>totalmente redesenhada</strong> para facilitar a descoberta de ofertas e
+                a navegação. Agora está dividida em abas, cada uma com a sua própria seleção — se não houver ofertas
+                ativas, a aba fica oculta automaticamente.</p>
+            <p class="art-p">Ao tocar numa oferta, é mostrada uma <strong>visualização detalhada</strong> com
+                informações sobre cada item incluído. Cada item conta agora com uma descrição própria. Podem ser
+                exibidas até <strong>7 abas</strong> em simultâneo.</p>
+
+            <div class="info-box yellow">
+                <div class="info-box-icon">🛍️</div>
+                <div class="info-box-text"><strong>Bazar das Bizarrices</strong> — Uma forma totalmente nova de obter
+                    cosméticos por Bling! A cada 48h surgem novos pacotes de cosméticos, e uma nova oferta de
+                    Bling por Gemas. As ofertas são personalizadas para cada jogador. Ganhas <strong>10 Bling por
+                        toque</strong> ao ver as ofertas diárias. A <strong>Juju</strong> recebe-te com frases, balões
+                    de fala e poses!</div>
+            </div>
+
+            <div class="misc-list" style="margin-top:1.25rem">
+                <div class="misc-item">
+                    <div class="misc-icon">📦</div>
+                    <div class="misc-text"><strong>Pacotes normais</strong> — 1 cosmético + 2 recompensas secundárias.
+                        <strong>Pacotes grandes</strong> — 2 cosméticos + 4 recompensas secundárias.
+                    </div>
+                </div>
+                <div class="misc-item">
+                    <div class="misc-icon">💎</div>
+                    <div class="misc-text"><strong>Descontos de 0% a 100%</strong> — sim, é possível obter pacotes
+                        completamente de graça!</div>
+                </div>
+                <div class="misc-item">
+                    <div class="misc-icon">🎯</div>
+                    <div class="misc-text">Os jogadores têm <strong>mais probabilidade de receber cosméticos</strong>
+                        para os Brawlers que jogam frequentemente, que desbloquearam recentemente ou que estão no nível
+                        de poder 11.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOVOS BRAWLERS -->
+        <section class="art-section reveal">
+            <div class="art-eyebrow" style="color:var(--orange)">Update 67</div>
+            <h2 class="art-h2"><span class="h2-icon">🥊</span> Novos Brawlers</h2>
+            <div class="brawler-cards">
+                <a href="../../Brawlers/Brawlers Específicos/Damian.html">
+                    <!-- DAMIAN -->
+                    <div class="brawler-card">
+                        <div class="brawler-card-header">
+                            <div class="brawler-card-bg"
+                                style="background:radial-gradient(ellipse at left,rgba(232,32,42,.4),transparent 60%)">
+                            </div>
+                            <div class="brawler-emoji-big">🎤</div>
+                            <div class="brawler-info">
+                                <div class="brawler-rarity-badge"
+                                    style="background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.3);color:#C084FC">
+                                    💜 Mítico · Tank</div>
+                                <div class="brawler-name-big" style="color:#FF8080">Damian</div>
+                                <div class="brawler-subtitle">Vocalista da banda MadEvil Manor — irmão de Draco</div>
+                                <div class="brawler-attr">⚡ Atributo: Super carrega ao receber dano</div>
+                            </div>
+                        </div>
+                        <div class="brawler-abilities">
+                            <div class="ability-card">
+                                <div class="ability-type" style="color:#FF8080">⚔️ Ataque — Trio Pesadão</div>
+                                <div class="ability-name">Punch-Kick Combo</div>
+                                <div class="ability-desc">Dois socos seguidos carregam a barra. O 3.º ataque é um chute
+                                    explosivo que empurra e incendeia. O fogo espalha-se para inimigos próximos após um
+                                    breve intervalo.</div>
+                            </div>
+                            <div class="ability-card">
+                                <div class="ability-type" style="color:#FF8080">⚡ Super — Roda Punk</div>
+                                <div class="ability-name">Stage Dive</div>
+                                <div class="ability-desc">Damian salta e cria uma Roda-Punk. Os inimigos são repelidos
+                                    pelas
+                                    caixas de som ao atingi-las, recebendo 1.400 de dano.</div>
+                            </div>
+                            <div class="ability-card">
+                                <div class="ability-type" style="color:#4ADE80">🟢 Acessório 1</div>
+                                <div class="ability-name">Alô, Alô, Aliados!</div>
+                                <div class="ability-desc">Lança o microfone para uma posição. O primeiro aliado a
+                                    apanhá-lo
+                                    recupera saúde.</div>
+                            </div>
+                            <div class="ability-card">
+                                <div class="ability-type" style="color:#4ADE80">🟢 Acessório 2</div>
+                                <div class="ability-name">Barreira do Som</div>
+                                <div class="ability-desc">Cria uma barreira temporária de amplificadores indestrutíveis!
+                                </div>
+                            </div>
+                            <div class="ability-card">
+                                <div class="ability-type" style="color:var(--yellow)">⭐ Poder de Estrela 1</div>
+                                <div class="ability-name">Roots Muros Roots</div>
+                                <div class="ability-desc">Inimigos empurrados contra a parede ficam atordoados.</div>
+                            </div>
+                            <div class="ability-card">
+                                <div class="ability-type" style="color:var(--yellow)">⭐ Poder de Estrela 2</div>
+                                <div class="ability-name">Admirável Soco Novo</div>
+                                <div class="ability-desc">Durante o Super, Damian usa o seu punho flamejante para
+                                    queimar os
+                                    inimigos.</div>
+                            </div>
+                            <div class="ability-card"
+                                style="background:rgba(155,89,255,.08);border-color:rgba(155,89,255,.2);grid-column:span 2">
+                                <div class="ability-type" style="color:#B07AFF">⚡ Hipercarga — Da Chama ao Caos</div>
+                                <div class="ability-name">Chão em Chamas</div>
+                                <div class="ability-desc">O Super do Damian incendeia o chão ao aterrar, causando dano
+                                    por
+                                    segundo a todos os inimigos dentro da Roda Punk.</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- STARR NOVA -->
+                <div class="brawler-card">
+                    <div class="brawler-card-header">
+                        <div class="brawler-card-bg"
+                            style="background:radial-gradient(ellipse at left,rgba(168,85,247,.4),transparent 60%)">
+                        </div>
+                        <div class="brawler-emoji-big">🌟</div>
+                        <div class="brawler-info">
+                            <div class="brawler-rarity-badge"
+                                style="background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.3);color:#C084FC">
+                                💜 Mítico · Algoz</div>
+                            <div class="brawler-name-big" style="color:#C084FC">Starr Nova</div>
+                            <div class="brawler-subtitle">Fã de cosplay que acredita ser a personagem principal de um
+                                anime</div>
+                        </div>
+                    </div>
+                    <div class="brawler-abilities">
+                        <div class="ability-card">
+                            <div class="ability-type" style="color:#C084FC">⚔️ Ataque — Madeixas Starr, Ação!</div>
+                            <div class="ability-name">Projéteis Loiros</div>
+                            <div class="ability-desc">Starr Nova usa o seu glorioso cabelo como arma, disparando dois
+                                projéteis loiros.</div>
+                        </div>
+                        <div class="ability-card">
+                            <div class="ability-type" style="color:#C084FC">⚡ Super — Cristal Nova, Transformação!</div>
+                            <div class="ability-name">Forma Suprema</div>
+                            <div class="ability-desc">Corre para a frente e assume a forma suprema, conjurando a espada
+                                Starr! Ganha velocidade, converte dano em saúde e o ataque muda. Dura 7 segundos.</div>
+                        </div>
+                        <div class="ability-card">
+                            <div class="ability-type" style="color:#4ADE80">🟢 Acessório 1</div>
+                            <div class="ability-name">Tempo Flutuante</div>
+                            <div class="ability-desc">Ativa um dispositivo antigravidade — os aliados dentro do alcance
+                                flutuam!</div>
+                        </div>
+                        <div class="ability-card">
+                            <div class="ability-type" style="color:#4ADE80">🟢 Acessório 2</div>
+                            <div class="ability-name">Starr da Amizade e da Justiça</div>
+                            <div class="ability-desc">Dispara uma esfera de energia que dana inimigos e cura aliados.
+                                Pode teletransportar-se em direção à esfera antes de atingir um alvo!</div>
+                        </div>
+                        <div class="ability-card">
+                            <div class="ability-type" style="color:var(--yellow)">⭐ Poder de Estrela 1</div>
+                            <div class="ability-name">Poder Sublimado</div>
+                            <div class="ability-desc">Acertar um inimigo enquanto transformada aumenta o dano em 5%, até
+                                o máximo de 30%.</div>
+                        </div>
+                        <div class="ability-card">
+                            <div class="ability-type" style="color:var(--yellow)">⭐ Poder de Estrela 2</div>
+                            <div class="ability-name">Starr Mística</div>
+                            <div class="ability-desc">O ataque principal da Starr Nova também restaura a saúde dos
+                                aliados.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOLT -->
+                <div class="brawler-card">
+                    <div class="brawler-card-header">
+                        <div class="brawler-card-bg"
+                            style="background:radial-gradient(ellipse at left,rgba(59,130,246,.4),transparent 60%)">
+                        </div>
+                        <div class="brawler-emoji-big">⚡</div>
+                        <div class="brawler-info">
+                            <div class="brawler-rarity-badge"
+                                style="background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);color:#7EB8FF">
+                                💙 Épico · Tank</div>
+                            <div class="brawler-name-big" style="color:#7EB8FF">Bolt</div>
+                            <div class="brawler-subtitle">Brinquedo da linha Brinquedo Bélico que sonha em ser um
+                                carrinho de corrida</div>
+                            <div class="brawler-attr">⚡ Atributo: velocidade aumenta enquanto se move</div>
+                        </div>
+                    </div>
+                    <div class="brawler-abilities">
+                        <div class="ability-card">
+                            <div class="ability-type" style="color:#7EB8FF">⚔️ Ataque — Brinquedo Bélico</div>
+                            <div class="ability-name">Dano por Velocidade</div>
+                            <div class="ability-desc">Bolt causa dano ao rolar sobre Brawlers — quanto mais rápido, mais
+                                dano. Liberta excesso de calor causando o dobro de dano em área e ganhando velocidade!
+                            </div>
+                        </div>
+                        <div class="ability-card">
+                            <div class="ability-type" style="color:#7EB8FF">⚡ Super — Sobrecarga</div>
+                            <div class="ability-name">Modo Turbobolt</div>
+                            <div class="ability-desc">Entra em modo de sobrecarga — ganha velocidade, reduz dano
+                                recebido e deixa um rastro destrutivo por onde passa.</div>
+                        </div>
+                        <div class="ability-card">
+                            <div class="ability-type" style="color:#4ADE80">🟢 Acessório 1</div>
+                            <div class="ability-name">Reparo Rápido</div>
+                            <div class="ability-desc">Ganha um escudo baseado na velocidade atual — quanto mais rápido,
+                                maior o escudo.</div>
+                        </div>
+                        <div class="ability-card">
+                            <div class="ability-type" style="color:#4ADE80">🟢 Acessório 2</div>
+                            <div class="ability-name">Bate-bola</div>
+                            <div class="ability-desc">Salta para um local específico causando dano em área e destruindo
+                                obstáculos, mas perde toda a velocidade no impacto.</div>
+                        </div>
+                        <div class="ability-card">
+                            <div class="ability-type" style="color:var(--yellow)">⭐ Poder de Estrela 1</div>
+                            <div class="ability-name">Pelos Ares</div>
+                            <div class="ability-desc">À velocidade máxima, Bolt manda os inimigos pelos ares.</div>
+                        </div>
+                        <div class="ability-card">
+                            <div class="ability-type" style="color:var(--yellow)">⭐ Poder de Estrela 2</div>
+                            <div class="ability-name">Bola Imparável</div>
+                            <div class="ability-desc">Durante o Super, Bolt fica imune a controlo dispersivo e recebe
+                                15% da velocidade máxima.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EVENTO STARR NOVA -->
+        <section class="art-section reveal">
+            <div class="art-eyebrow" style="color:var(--purple)">Evento Especial</div>
+            <h2 class="art-h2"><span class="h2-icon">🌟</span> Evento da Starr Nova</h2>
+            <div class="event-banner">
+                <div class="event-title">🎮 Transformações das Starr Girls</div>
+                <div class="event-desc">Desbloqueias o visual <strong>Finx Rei do Vácuo</strong> gratuitamente e evoluis
+                    as transformações das Starr Girls para usar em modos selecionados. Quando o modificador estiver
+                    ativo, cristais surgem durante a partida — apanha um para te transformares numa das cinco Starr
+                    Girls por tempo limitado!</div>
+            </div>
+            <div class="misc-list">
+                <div class="misc-item">
+                    <div class="misc-icon">🧬</div>
+                    <div class="misc-text">As <strong>5 Starr Girls</strong> têm visuais exclusivos: variantes da Starr
+                        Nova, Bea, Juju, Amber e Spike — muito mais fortes do que o Brawler básico.</div>
+                </div>
+                <div class="misc-item">
+                    <div class="misc-icon">⬆️</div>
+                    <div class="misc-text">Começam no <strong>nível de poder 11</strong> e podem ser melhoradas até ao
+                        <strong>nível de poder 30</strong> abrindo Sorteios Nova.
+                    </div>
+                </div>
+                <div class="misc-item">
+                    <div class="misc-icon">💥</div>
+                    <div class="misc-text">Ao melhorar uma Starr Girl, habilitas uma ativação de dano ao
+                        <strong>Finx</strong>. Causa dano suficiente para desbloquear o visual dele!
+                    </div>
+                </div>
+                <div class="misc-item">
+                    <div class="misc-icon">🏆</div>
+                    <div class="misc-text">Após desbloquear o visual Finx Rei do Vácuo, ganhas <strong>recompensas
+                            alternativas</strong> em vez da ativação de dano.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOVOS BUFFIES -->
+        <section class="art-section reveal">
+            <div class="art-eyebrow" style="color:#B07AFF">Sistema de Upgrades</div>
+            <h2 class="art-h2"><span class="h2-icon">🦊</span> Novos Buffies</h2>
+            <div class="info-box blue" style="margin-bottom:1.5rem">
+                <div class="info-box-icon">ℹ️</div>
+                <div class="info-box-text">A partir deste update, <strong>a Máquina de Buffies funciona por
+                        trios</strong> — tens mais chances de conseguir o Buffie que queres! Uma oferta aleatória de
+                    Buffie estará disponível na loja durante <strong>14 dias</strong> após o lançamento.</div>
+            </div>
+            <div class="buffie-cards">
+                <div class="buffie-card">
+                    <div class="buffie-card-header">
+                        <div class="buffie-brawler-emoji">📊</div>
+                        <div class="buffie-brawler-name">Colette</div>
+                    </div>
+                    <div class="buffie-items">
+                        <div class="buffie-item"><strong>Acessório 1 (Nananinanão!):</strong> com Buffie, o projétil
+                            atravessa obstáculos e Brawlers.</div>
+                        <div class="buffie-item"><strong>Acessório 2 (Saúde Trocada):</strong> com Buffie, pode exceder
+                            o limite de cura, criando um escudo de 1.000 pontos de saúde máxima.</div>
+                        <div class="buffie-item"><strong>Star Power 1 (Empurrão):</strong> com Buffie, a velocidade da
+                            investida do Super aumenta bastante.</div>
+                        <div class="buffie-item"><strong>Star Power 2 (Tributação em Massa):</strong> com Buffie, o
+                            Super da Colette rouba 33% de munição dos Brawlers atingidos.</div>
+                        <div class="buffie-item"><strong>Hipercarga (Espírito Rebelde):</strong> cada ataque principal é
+                            complementado com um segundo golpe menor.</div>
+                    </div>
+                </div>
+                <div class="buffie-card">
+                    <div class="buffie-card-header">
+                        <div class="buffie-brawler-emoji">🧹</div>
+                        <div class="buffie-brawler-name">Griff</div>
+                    </div>
+                    <div class="buffie-items">
+                        <div class="buffie-item"><strong>Acessório 1 (Cofrinho):</strong> com Buffie, podes atirar no
+                            cofrinho para aumentar o dano e raio da explosão gradualmente.</div>
+                        <div class="buffie-item"><strong>Acessório 2 (Chuva de Moedas):</strong> com Buffie, a chuva de
+                            moedas aumenta ao longo da sua duração.</div>
+                        <div class="buffie-item"><strong>Star Power 1 (Aceita Bala?):</strong> com Buffie, munição
+                            completa lança uma megamoeda com dano extra ao centro.</div>
+                        <div class="buffie-item"><strong>Star Power 2 (Crédito Empresarial):</strong> com Buffie, os
+                            projéteis do Super que regressam curam 5% da saúde perdida.</div>
+                        <div class="buffie-item"><strong>Hipercarga (Dedução de Impostos):</strong> o ataque principal
+                            atravessa inimigos durante a hipercarga.</div>
+                    </div>
+                </div>
+                <div class="buffie-card">
+                    <div class="buffie-card-header">
+                        <div class="buffie-brawler-emoji">😤</div>
+                        <div class="buffie-brawler-name">Edgar</div>
+                    </div>
+                    <div class="buffie-items">
+                        <div class="buffie-item"><strong>Acessório 1 (Alçar Voo):</strong> com Buffie, Edgar ganha
+                            aumento de velocidade ao agarrar-se a uma parede ou Brawler.</div>
+                        <div class="buffie-item"><strong>Acessório 2 (Refúgio):</strong> com Buffie, também fica imune a
+                            controlo dispersivo por 1 segundo.</div>
+                        <div class="buffie-item"><strong>Star Power 1 (Sem Amortecimento):</strong> com Buffie, acertar
+                            um Brawler no epicentro carrega o Super do Edgar.</div>
+                        <div class="buffie-item"><strong>Star Power 2 (Punhos Implacáveis):</strong> com Buffie, ao
+                            eliminar um Brawler, Edgar recupera uma percentagem da saúde máxima imediatamente.</div>
+                        <div class="buffie-item"><strong>Hipercarga (Explosão):</strong> lança dois cachecóis adicionais
+                            a maior distância e com menos dano.</div>
+                    </div>
+                </div>
+                <div class="buffie-card">
+                    <div class="buffie-card-header">
+                        <div class="buffie-brawler-emoji">🐍</div>
+                        <div class="buffie-brawler-name">Najia — Nova Hipercarga</div>
+                    </div>
+                    <div class="buffie-items">
+                        <div class="buffie-item"><strong>Hipercarga (Poder Ilimitado!):</strong> ao usar o Super, Najia
+                            lança seis jarros. As cobras que saem deles deixam um rastro de veneno.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BALANCEAMENTO -->
+        <section class="art-section reveal">
+            <div class="art-eyebrow" style="color:var(--blue)">Equilíbrio do Meta</div>
+            <h2 class="art-h2"><span class="h2-icon">⚖️</span> Ajustes de Balanceamento</h2>
+
+            <div
+                style="font-family:'Russo One',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:.75rem">
+                ⬆️ Melhorias</div>
+            <div class="balance-grid" style="margin-bottom:2rem">
+                <div class="balance-card buff">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🥁</div>
+                        <div class="balance-name">Lumi</div>
+                        <div class="balance-type">Buff</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Velocidade dos projéteis: 3.200
+                            → 3.500</div>
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Saúde básica: 3.100 → 3.500
+                        </div>
+                    </div>
+                    <div class="balance-reason">Uma das Brawlers menos eficazes dos últimos meses. Mudanças para
+                        melhorar o controlo de espaço e a capacidade de troca de dano.</div>
+                </div>
+                <div class="balance-card buff">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🎭</div>
+                        <div class="balance-name">Lola</div>
+                        <div class="balance-type">Buff</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Redução de dano do Super: 50% →
+                            35% quando Ego está próximo</div>
+                    </div>
+                    <div class="balance-reason">Desempenho abaixo da média há algum tempo. Objetivo: mais controlo de
+                        espaço com o Ego.</div>
+                </div>
+                <div class="balance-card buff">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🥋</div>
+                        <div class="balance-name">Fang</div>
+                        <div class="balance-type">Buff</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Saúde básica: 4.500 → 4.800
+                        </div>
+                    </div>
+                    <div class="balance-reason">Jogo muito arriscado. Esta mudança permite mais agressividade sem riscos
+                        excessivos.</div>
+                </div>
+                <div class="balance-card buff">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🤖</div>
+                        <div class="balance-name">Wattson</div>
+                        <div class="balance-type">Buff</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Taxa de recarga do Super: 70 →
+                            75</div>
+                    </div>
+                    <div class="balance-reason">Já se sai bem, precisa de incentivo para presença mais marcante.</div>
+                </div>
+                <div class="balance-card buff">
+                    <div class="balance-header">
+                        <div class="balance-emoji">⚡</div>
+                        <div class="balance-name">Maisie</div>
+                        <div class="balance-type">Buff</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Dano de Precisão Cirúrgica: 20%
+                            → 25%</div>
+                    </div>
+                    <div class="balance-reason">A categoria tiro preciso é competitiva — Maisie estava a ficar para
+                        trás.</div>
+                </div>
+                <div class="balance-card buff">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🎸</div>
+                        <div class="balance-name">Draco</div>
+                        <div class="balance-type">Buff</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Resistência a dano do Super: 15%
+                            → 20%</div>
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Velocidade de movimento do
+                            Super: 15% → 20%</div>
+                    </div>
+                    <div class="balance-reason">Num meta de tanques, Draco não era resistente nem ameaçador o
+                        suficiente.</div>
+                </div>
+                <div class="balance-card buff">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🎮</div>
+                        <div class="balance-name">Jae-Yong</div>
+                        <div class="balance-type">Buff</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Cooldown de Papelada
+                            Burocrática: 15s → 12s</div>
+                    </div>
+                    <div class="balance-reason">Os acessórios estavam a deixar a desejar — objetivo de os tornar mais
+                        competitivos.</div>
+                </div>
+                <div class="balance-card buff">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🛢️</div>
+                        <div class="balance-name">Darryl</div>
+                        <div class="balance-type">Buff</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Dano do Super: 400 → 660</div>
+                    </div>
+                    <div class="balance-reason">Precisa de ser mais imponente e versátil para competir com os tanques do
+                        meta.</div>
+                </div>
+                <div class="balance-card buff">
+                    <div class="balance-header">
+                        <div class="balance-emoji">💐</div>
+                        <div class="balance-name">Gigi</div>
+                        <div class="balance-type">Buff</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Bónus de velocidade do ataque:
+                            30% → 35%</div>
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Munição máxima do ataque: 8 → 10
+                        </div>
+                    </div>
+                    <div class="balance-reason">Precisa de mais mobilidade para perseguir e desviar — usa o ataque como
+                        recurso de movimento.</div>
+                </div>
+                <div class="balance-card buff">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🐟</div>
+                        <div class="balance-name">Glowbert</div>
+                        <div class="balance-type">Buff</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Alcance do ataque principal: 20
+                            → 22</div>
+                    </div>
+                    <div class="balance-reason">A última série de mudanças foi dura demais. Tentar encontrar um
+                        equilíbrio.</div>
+                </div>
+            </div>
+
+            <div
+                style="font-family:'Russo One',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem">
+                ⬇️ Enfraquecimentos</div>
+            <div class="balance-grid">
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🐍</div>
+                        <div class="balance-name">Najia</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>2.º projétil já não mira
+                            automaticamente após o 1.º</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Saúde das cobras: 1.600 → 1.200
+                        </div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Cobras já não explodem ao serem
+                            derrotadas</div>
+                    </div>
+                    <div class="balance-reason">Ataque muito flexível e cobras difíceis de combater, especialmente para
+                        corpo-a-corpo.</div>
+                </div>
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🦁</div>
+                        <div class="balance-name">Leon</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Saúde básica: 3.600 → 3.300
+                        </div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Bónus de velocidade de Sinal de
+                            Fumaça e Pirulito Furtivo já não se acumulam</div>
+                    </div>
+                    <div class="balance-reason">Consistentemente entre os melhores, com alto dano e melhorias incríveis
+                        de equipa.</div>
+                </div>
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">⚡</div>
+                        <div class="balance-name">Ziggy</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Atraso dos projéteis: 700 → 750
+                        </div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Taxa de recarga do Super: 85 →
+                            80</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Cooldown de Descarga Elétrica:
+                            13s → 17s</div>
+                    </div>
+                    <div class="balance-reason">Rapidamente um dos mais poderosos do meta — controlo incrivelmente
+                        opressor.</div>
+                </div>
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🗿</div>
+                        <div class="balance-name">Grom</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Dano do ataque: 1.140 → 1.040
+                        </div>
+                        <div class="balance-change"><span class="balance-arrow">↑</span>Dano extra de Fator X: 30% → 35%
+                        </div>
+                    </div>
+                    <div class="balance-reason">Pesadelo para níveis intermédios, mas também a crescer nos níveis altos.
+                        Exigir mais skill para extrair o máximo potencial.</div>
+                </div>
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">⚰️</div>
+                        <div class="balance-name">Mortis</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Redução de dano de Bote Letal:
+                            40% → 35%</div>
+                    </div>
+                    <div class="balance-reason">Superpopular com taxa de vitórias muito alta. Deve ser mais seletivo nas
+                        oportunidades.</div>
+                </div>
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🐚</div>
+                        <div class="balance-name">Pierce</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Dano do Super: 1.600 → 1.400
+                        </div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Slow de Missão: Nado Impossível:
+                            30% → 25%</div>
+                    </div>
+                    <div class="balance-reason">Com a Hipercarga, o Super tornou-se excessivamente opressor.</div>
+                </div>
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🎩</div>
+                        <div class="balance-name">Clancy</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Alcance do ataque: 25 → 23</div>
+                    </div>
+                    <div class="balance-reason">A fase 3 ficou fácil e previsível demais de alcançar após os buffs
+                        anteriores.</div>
+                </div>
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🍬</div>
+                        <div class="balance-name">Bibi</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Dano bónus de Home Run: 20% →
+                            15%</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Cura de Vitamina: 60% → 50%
+                        </div>
+                    </div>
+                    <div class="balance-reason">Maior taxa de vitórias nos níveis altos mesmo após ajustes anteriores.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKINS -->
+        <section class="art-section reveal">
+            <div class="art-eyebrow" style="color:var(--pink)">Cosméticos</div>
+            <h2 class="art-h2"><span class="h2-icon">🎨</span> Temporadas e Visuais</h2>
+
+            <div class="skins-season">
+                <div class="season-title" style="color:var(--purple)">🌟 Temporada: Patrulha Starr</div>
+                <div class="skins-list">
+                    <div class="skin-item"><span class="skin-name">Spike Patrulha Starr</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">Brawl Pass</span></div>
+                    <div class="skin-item"><span class="skin-name">Spike Caçador Starr</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">Brawl Pass · Cromático
+                            1</span></div>
+                    <div class="skin-item"><span class="skin-name">Spike Guardião Starr</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">Brawl Pass · Cromático
+                            2</span></div>
+                    <div class="skin-item"><span class="skin-name">Colette Rainha do Vácuo</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">Brawl Pass</span></div>
+                    <div class="skin-item"><span class="skin-name">Colette Estrela Branca</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">Brawl Pass · Cromático
+                            1</span></div>
+                    <div class="skin-item"><span class="skin-name">Colette Buraco Negro</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">Brawl Pass · Cromático
+                            2</span></div>
+                    <div class="skin-item"><span class="skin-name">Juju Patrulha Starr</span><span
+                            class="skin-rarity r-mythic">Mítico</span><span class="skin-source">149 Gemas</span></div>
+                    <div class="skin-item"><span class="skin-name">Bea Patrulha Starr</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">149 Gemas</span></div>
+                    <div class="skin-item"><span class="skin-name">Amber Patrulha Starr</span><span
+                            class="skin-rarity r-legendary">Lendário</span><span class="skin-source">299 Gemas</span>
+                    </div>
+                    <div class="skin-item"><span class="skin-name">Amber Rainha do Vácuo</span><span
+                            class="skin-rarity r-legendary">Lendário</span><span class="skin-source">299 Gemas</span>
+                    </div>
+                    <div class="skin-item"><span class="skin-name">Finx Rei do Vácuo</span><span
+                            class="skin-rarity r-mythic">Mítico</span><span class="skin-source">199 Gemas</span></div>
+                </div>
+            </div>
+
+            <div class="skins-season">
+                <div class="season-title" style="color:var(--blue)">⚽ Temporada: Craques do Brawl</div>
+                <div class="skins-list">
+                    <div class="skin-item"><span class="skin-name">Eugénio Bom de Bola</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">Brawl Pass</span></div>
+                    <div class="skin-item"><span class="skin-name">Eugénio Goleiro</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">Brawl Pass · Cromático
+                            1</span></div>
+                    <div class="skin-item"><span class="skin-name">Eugénio Impede-Pontos</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">Brawl Pass · Cromático
+                            2</span></div>
+                    <div class="skin-item"><span class="skin-name">Carl Bom de Bola</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">Brawl Pass</span></div>
+                    <div class="skin-item"><span class="skin-name">Carl Atacante</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">Brawl Pass · Cromático
+                            1</span></div>
+                    <div class="skin-item"><span class="skin-name">Carl Chutador</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">Brawl Pass · Cromático
+                            2</span></div>
+                    <div class="skin-item"><span class="skin-name">Lou Superatacante</span><span
+                            class="skin-rarity r-legendary">Lendário</span><span class="skin-source">299 Gemas</span>
+                    </div>
+                    <div class="skin-item"><span class="skin-name">Wattson Marca-Pontos</span><span
+                            class="skin-rarity r-mythic">Mítico</span><span class="skin-source">199 Gemas</span></div>
+                    <div class="skin-item"><span class="skin-name">Otis Quarterback</span><span
+                            class="skin-rarity r-mythic">Mítico</span><span class="skin-source">199 Gemas</span></div>
+                    <div class="skin-item"><span class="skin-name">Meeple Árbitro</span><span
+                            class="skin-rarity r-mythic">Mítico</span><span class="skin-source">199 Gemas</span></div>
+                </div>
+            </div>
+
+            <div class="skins-season">
+                <div class="season-title" style="color:var(--orange)">🦸 My Hero Academia Collab</div>
+                <div class="skins-list">
+                    <div class="skin-item"><span class="skin-name">El Primo: All Might</span><span
+                            class="skin-rarity r-legendary">Lendário</span><span class="skin-source">299 Gemas</span>
+                    </div>
+                    <div class="skin-item"><span class="skin-name">Gus: Tomura Shigaraki</span><span
+                            class="skin-rarity r-mythic">Mítico</span><span class="skin-source">199 Gemas</span></div>
+                    <div class="skin-item"><span class="skin-name">Janet: Uravity</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">149 Gemas</span></div>
+                    <div class="skin-item"><span class="skin-name">Fang: Deku</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">149 Gemas</span></div>
+                    <div class="skin-item"><span class="skin-name">Edgar: Bakugo</span><span
+                            class="skin-rarity r-mythic">Mítico</span><span class="skin-source">199 Gemas</span></div>
+                </div>
+            </div>
+
+            <div class="skins-season">
+                <div class="season-title" style="color:rgba(255,255,255,.5)">🥈🥇 True Silver & True Gold + Outros</div>
+                <div class="skins-list">
+                    <div class="skin-item"><span class="skin-name">Najia Dourada</span><span class="skin-rarity"
+                            style="background:rgba(255,208,0,.15);color:var(--yellow)">True Gold</span><span
+                            class="skin-source">25.000 Coins</span></div>
+                    <div class="skin-item"><span class="skin-name">Najia Prateada</span><span class="skin-rarity"
+                            style="background:rgba(156,163,175,.15);color:#9CA3AF">True Silver</span><span
+                            class="skin-source">10.000 Coins</span></div>
+                    <div class="skin-item"><span class="skin-name">Jacky E-Sports</span><span
+                            class="skin-rarity r-epic">Épico</span><span class="skin-source">149 Gemas</span></div>
+                </div>
+            </div>
+
+            <div class="info-box yellow" style="margin-top:1rem">
+                <div class="info-box-icon">✨</div>
+                <div class="info-box-text"><strong>Reformulação dos Visuais</strong> — Os visuais Míticos e Lendários
+                    agora têm efeitos adicionais! As animações de abertura foram aprimoradas. Exceção: os visuais de My
+                    Hero Academia continuam a ter reações, sprays e ícones.</div>
+            </div>
+        </section>
+
+        <!-- MELHORIAS GERAIS -->
+        <section class="art-section reveal">
+            <div class="art-eyebrow" style="color:var(--teal)">Qualidade de Vida</div>
+            <h2 class="art-h2"><span class="h2-icon">⚙️</span> Melhorias & Novidades</h2>
+            <div class="misc-list">
+                <div class="misc-item">
+                    <div class="misc-icon">⭐</div>
+                    <div class="misc-text"><strong>Amigos Favoritos</strong> — Adiciona amigos à lista de favoritos e
+                        recebe notificações quando estiverem online. Modo anónimo disponível.</div>
+                </div>
+                <div class="misc-item">
+                    <div class="misc-icon">👥</div>
+                    <div class="misc-text"><strong>Tela de Amigos Modernizada</strong> — Ordena amigos por vitórias
+                        juntos, troféus, prestígio, divisão ou estado online. Podes adicionar comentários sobre cada
+                        amigo (visível só para ti).</div>
+                </div>
+                <div class="misc-item">
+                    <div class="misc-icon">🚩</div>
+                    <div class="misc-text"><strong>Denúncias nas partidas com troféus</strong> — A função de denúncia
+                        foi adicionada às partidas com troféus. Os jogadores têm agora reputação separada para troféus e
+                        Ranked.</div>
+                </div>
+                <div class="misc-item">
+                    <div class="misc-icon">🎨</div>
+                    <div class="misc-text"><strong>Nita Shiba Inu reformulada</strong> — Reformulação completa dos
+                        efeitos visuais! Novo efeito no ataque principal e projétil do Super completamente repaginado
+                        com estilo Shiba.</div>
+                </div>
+                <div class="misc-item">
+                    <div class="misc-icon">⚽</div>
+                    <div class="misc-text"><strong>Física do Fute-brawl atualizada</strong> — Funcionamento da bola
+                        baseado em cálculos físicos reais. Corrige problemas com obstáculos destruídos.</div>
+                </div>
+                <div class="misc-item">
+                    <div class="misc-icon">☁️</div>
+                    <div class="misc-text"><strong>Nuvem Tóxica</strong> — Agora causa dano adicional baseado na
+                        profundidade dentro da nuvem. Quanto mais fundo, maior o dano!</div>
+                </div>
+                <div class="misc-item">
+                    <div class="misc-icon">🏆</div>
+                    <div class="misc-text"><strong>Batalhas contra Chefões</strong> — Duas novas batalhas: Colette
+                        Rainha do Vácuo e Finx Rei do Vácuo. Todas as batalhas agora para <strong>5 jogadores</strong>.
+                    </div>
+                </div>
+                <div class="misc-item">
+                    <div class="misc-icon">🎽</div>
+                    <div class="misc-text"><strong>Evento Adidas</strong> — Parceria com a Adidas com o novo modo
+                        Megabola, Supercopa Starr da Adidas e o ambiente inédito da Arena Adidas!</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORREÇÕES -->
+        <section class="art-section reveal">
+            <div class="art-eyebrow" style="color:var(--green)">Correções de Erros</div>
+            <h2 class="art-h2"><span class="h2-icon">🐛</span> Correções</h2>
+            <div class="bug-list">
+                <div class="bug-item"><span class="bug-icon">✅</span>Corrigido o tempo excessivo para encontrar partidas
+                    em duplas ou trios.</div>
+                <div class="bug-item"><span class="bug-icon">✅</span>Corrigido um travamento no Android ao sair com o
+                    botão "Voltar" e reiniciar o jogo.</div>
+                <div class="bug-item"><span class="bug-icon">✅</span>Corrigido o ataque invisível do Hank ao lançar
+                    várias vezes o ataque principal.</div>
+                <div class="bug-item"><span class="bug-icon">✅</span>Brawlers já não ficam impedidos de atacar ao
+                    arremessar objetos sob controlo da Marionete da Willow.</div>
+                <div class="bug-item"><span class="bug-icon">✅</span>Corrigido o ataque principal da Willow que não
+                    carregava o Super após usar "Pura Magia".</div>
+                <div class="bug-item"><span class="bug-icon">✅</span>Corrigido o Super da Gigi que não carregava quando
+                    inimigos disparavam dentro do alcance.</div>
+                <div class="bug-item"><span class="bug-icon">✅</span>Velocidade de "Sinal de Fumaça" do Leon já não se
+                    acumula com "Pirulito Furtivo".</div>
+                <div class="bug-item"><span class="bug-icon">✅</span>Corrigido o Super do Eugénio e o acessório do Gray
+                    que ignoravam imunidade a controlo dispersivo.</div>
+                <div class="bug-item"><span class="bug-icon">✅</span>Clones do Sirius já não atacam indefinidamente ao
+                    copiar Brawlers com vários tipos de ataque (como Kenji).</div>
+                <div class="bug-item"><span class="bug-icon">✅</span>Corrigido o ataque do Doug hipercarregado que
+                    atingia inimigos abaixo da Janet em voo.</div>
+                <div class="bug-item"><span class="bug-icon">✅</span>Corrigida a Bomba de Espetos do Spike que não
+                    aplicava variação de dano por distância.</div>
+                <div class="bug-item"><span class="bug-icon">✅</span>Vários problemas de efeitos sonoros corrigidos —
+                    Maisie Dracônica, Frank e Melodie Inflável.</div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <div class="article-footer reveal">
+            <div>
+                <div class="footer-title">Ver todas as notícias</div>
+                <div class="footer-sub">Notas de lançamento, eventos e muito mais</div>
+            </div>
+            <a href="../Notícias.html" class="back-btn">← Voltar às Notícias</a>
+        </div>
+
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.06 });
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+        const cursor = document.getElementById("cursor");
+        const ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        document.querySelectorAll("a,button,.brawler-card,.balance-card,.misc-item").forEach(el => {
+            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+        });
+    </script>
+</body>
+
+</html>

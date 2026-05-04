@@ -131,6 +131,7 @@
         { tipo: "noticia", emoji: "🎤", titulo: "Damian chegou ao jogo!", desc: "O 102.º Brawler · Mythic Tank · MadEvil Manor", tags: ["damian", "mythic", "brawler", "madevil", "lançamento"], link: "Brawlers/Brawlers Específicos/Damian.html" },
         { tipo: "noticia", emoji: "🔮", titulo: "Mudanças no Bling, Shop e Cosméticos", desc: "Rework completo à Shop · Bling Bundles · Update 67", tags: ["bling", "shop", "cosmético", "update", "bundles"], link: "Notícias/Notícias Atuais/Mudanças nos blings.html" },
         { tipo: "noticia", emoji: "❤️‍🔥", titulo: "Keep Brawl Alive — Evento terminado", desc: "Evento comunitário · Buffie grátis · 100K Gems diários", tags: ["evento", "keep brawl alive", "gratis", "buffie", "gems"], link: "Notícias/Notícias Antigas/Keep Brawl Alive.html" },
+        { tipo: "noticia", emoji: "📋", titulo: "Notas de Lançamento — Abril 2026", desc: "Update 67 · Damian · Starr Nova · Bolt · Balanceamentos · Skins", tags: ["notas", "update 67", "lancamento", "abril", "balanceamento", "skins"], link: "Notícias/Notícias Atuais/Notas de lançamento de abril de 2026.html" },
 
         // ── GUIAS ─────────────────────────────────────────
         { tipo: "guia", emoji: "🏅", titulo: "Como subir de Rank rapidamente", desc: "Ranked · Brawlers certos · Posicionamento · Mentalidade", tags: ["ranked", "rank", "subir", "competitivo", "guia"], link: "Guias/Guias.html" },
@@ -167,6 +168,11 @@
         { tipo: "skin", emoji: "🤘", titulo: "Skins MadEvil Manor", desc: "Draco · Lumi · Damian — Trio completo", tags: ["madevil", "skin", "draco", "lumi", "damian", "heavy metal"], link: "Brawlers/Skins.html" },
         { tipo: "skin", emoji: "👾", titulo: "Skins Stranger Things", desc: "Eleven Lumi · Eleven Edgar — Collab Netflix", tags: ["stranger things", "skin", "collab", "netflix", "lumi", "edgar"], link: "Brawlers/Skins.html" },
         { tipo: "skin", emoji: "🚀", titulo: "Skins Toy Story", desc: "Buzz Lightyear Spike — Collab Disney/Pixar", tags: ["toy story", "skin", "collab", "disney", "pixar", "spike", "buzz"], link: "Brawlers/Skins.html" },
+
+        // ── Páginas ────────────────────────────────────────
+        { tipo: "update", emoji: "🗺️", titulo: "Mapas", desc: "Todos os mapas por modo · Layouts visuais · Dicas · Brawlers recomendados", tags: ["mapas", "gem grab", "brawl ball", "showdown", "knockout", "hot zone"], link: "Mapas/Mapas.html" },
+        { tipo: "update", emoji: "🏆", titulo: "Ranqueado", desc: "Sistema ELO · Ranks · Recompensas · Formatos · Pro Pass", tags: ["ranked", "ranqueado", "elo", "bronze", "diamond", "mythic", "masters", "pro"], link: "Ranqueado/Ranqueado.html" },
+        { tipo: "update", emoji: "🤘", titulo: "MadEvil Manor", desc: "Trio completo · Draco · Lumi · Damian · Lore · Buffies · Sinergia", tags: ["madevil", "trio", "draco", "lumi", "damian", "heavy metal", "lore"], link: "Brawlers/Trios/MadEvil Manor.html" },
     ];
 
     /* ─── CSS DO MODAL ───────────────────────────────────── */

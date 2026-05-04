@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glossário — BrawlZone Wiki</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --green: #22C55E;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --purple: #A855F7;
+            --red: #E8202A;
+            --teal: #00C9A7;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --text-dark: #1A1A2E;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        * {
+            cursor: none !important;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--teal);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(0, 201, 167, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a.active {
+            color: var(--teal);
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* HEADER */
+        .page-header {
+            padding: 8rem 3rem 4rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--dark2);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .header-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 50% 70% at 85% 50%, rgba(0, 201, 167, .18), transparent),
+                radial-gradient(ellipse 40% 50% at 10% 60%, rgba(59, 130, 246, .12), transparent);
+        }
+
+        .header-inner {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-eyebrow {
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: .5rem;
+        }
+
+        .page-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .page-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, .5);
+            max-width: 600px;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hstat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hstat-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--teal), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .hstat-label {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-top: .2rem;
+        }
+
+        /* GLOW LINE */
+        .glow-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--teal), var(--blue), var(--teal), transparent);
+            opacity: .5;
+        }
+
+        /* LAYOUT */
+        .main-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 3rem 6rem;
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        @media(max-width:900px) {
+            .main-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static !important;
+            }
+        }
+
+        @media(max-width:600px) {
+            .main-wrap {
+                padding: 2rem 1.5rem 4rem;
+            }
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            position: sticky;
+            top: 5.5rem;
+        }
+
+        .sidebar-card {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+        }
+
+        .sidebar-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: .72rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            padding: .85rem 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            background: rgba(255, 255, 255, .02);
+        }
+
+        /* SEARCH */
+        .search-wrap {
+            padding: 1rem;
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 10px;
+            padding: .55rem .9rem;
+            color: #fff;
+            font-family: 'Nunito', sans-serif;
+            font-size: .88rem;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .search-input:focus {
+            border-color: var(--teal);
+        }
+
+        /* CATEGORIA FILTER */
+        .cat-filters {
+            padding: .5rem .75rem 1rem;
+        }
+
+        .cat-filter-btn {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            width: 100%;
+            padding: .5rem .6rem;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, .45);
+            font-family: 'Nunito', sans-serif;
+            font-size: .85rem;
+            font-weight: 700;
+            text-align: left;
+            transition: background .2s, color .2s;
+            margin-bottom: .2rem;
+        }
+
+        .cat-filter-btn:hover {
+            background: rgba(255, 255, 255, .05);
+            color: #fff;
+        }
+
+        .cat-filter-btn.active {
+            color: #fff;
+        }
+
+        .cat-filter-btn .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .cat-count {
+            margin-left: auto;
+            font-size: .72rem;
+            background: rgba(255, 255, 255, .08);
+            padding: .1rem .45rem;
+            border-radius: 100px;
+            color: rgba(255, 255, 255, .35);
+        }
+
+        /* ALPHABET NAV */
+        .alpha-nav {
+            padding: .75rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+        }
+
+        .alpha-btn {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            border: none;
+            background: rgba(255, 255, 255, .06);
+            color: rgba(255, 255, 255, .4);
+            font-size: .78rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+        }
+
+        .alpha-btn:hover,
+        .alpha-btn.has-terms:hover {
+            background: var(--teal);
+            color: var(--text-dark);
+        }
+
+        .alpha-btn.has-terms {
+            background: rgba(0, 201, 167, .15);
+            color: var(--teal);
+        }
+
+        .alpha-btn.disabled {
+            opacity: .25;
+            pointer-events: none;
+        }
+
+        /* STATS QUICK */
+        .sidebar-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .6rem 1.25rem;
+            font-size: .83rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .sidebar-stat:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-stat-label {
+            color: rgba(255, 255, 255, .4);
+            font-weight: 600;
+        }
+
+        .sidebar-stat-val {
+            font-weight: 800;
+            color: var(--teal);
+        }
+
+        /* CONTEÚDO PRINCIPAL */
+        .content {
+            padding-top: 2rem;
+        }
+
+        .results-info {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .3);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        /* GRUPO ALFABÉTICO */
+        .alpha-group {
+            margin-bottom: 3rem;
+        }
+
+        .alpha-group-label {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            color: var(--teal);
+            opacity: .25;
+            margin-bottom: 1rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .alpha-group-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        /* TERMO CARD */
+        .term-card {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 14px;
+            padding: 1.25rem 1.4rem;
+            margin-bottom: .75rem;
+            transition: border-color .2s, transform .2s;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .term-card:hover {
+            border-color: rgba(255, 255, 255, .15);
+            transform: translateX(4px);
+        }
+
+        .term-card.hidden {
+            display: none;
+        }
+
+        .term-emoji {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            margin-top: .1rem;
+        }
+
+        .term-body {
+            flex: 1;
+        }
+
+        .term-header {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            flex-wrap: wrap;
+            margin-bottom: .4rem;
+        }
+
+        .term-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+        }
+
+        .term-en {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .3);
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        .term-cat {
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .15rem .5rem;
+            border-radius: 100px;
+            flex-shrink: 0;
+        }
+
+        .term-desc {
+            font-size: .88rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .term-desc strong {
+            color: #fff;
+        }
+
+        .term-example {
+            margin-top: .5rem;
+            font-size: .82rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .4);
+            font-style: italic;
+            padding: .5rem .75rem;
+            background: rgba(255, 255, 255, .03);
+            border-radius: 8px;
+            border-left: 2px solid rgba(0, 201, 167, .3);
+        }
+
+        /* EMPTY */
+        .no-results {
+            text-align: center;
+            padding: 4rem;
+            color: rgba(255, 255, 255, .3);
+            display: none;
+        }
+
+        .no-results-emoji {
+            font-size: 3.5rem;
+            margin-bottom: .75rem;
+        }
+
+        .no-results h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: .4rem;
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../Brawlers/Brawlers.html">Brawlers</a></li>
+            <li><a href="../Guias/Guias.html">Guias</a></li>
+            <li><a href="Glossário.html" class="active">Glossário</a></li>
+            <li><a href="../Ranqueado/Ranqueado.html">Ranked</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="header-bg"></div>
+        <div class="header-inner">
+            <p class="page-eyebrow">Wiki — Dicionário do Jogo</p>
+            <h1 class="page-title">📖 Glossário</h1>
+            <p class="page-desc">Todos os termos de Brawl Stars explicados em português — gameplay, progressão, esports
+                e gírias da comunidade. Perfeito para novatos e veteranos.</p>
+            <div class="header-stats">
+                <div class="hstat"><span class="hstat-num" id="totalTerms">0</span><span
+                        class="hstat-label">Termos</span></div>
+                <div class="hstat"><span class="hstat-num">4</span><span class="hstat-label">Categorias</span></div>
+                <div class="hstat"><span class="hstat-num">PT</span><span class="hstat-label">Em Português</span></div>
+            </div>
+        </div>
+    </header>
+    <div class="glow-line"></div>
+
+    <div class="main-wrap">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="sidebar-title">Pesquisar</div>
+                <div class="search-wrap">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Pesquisar termo...">
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <div class="sidebar-title">Categorias</div>
+                <div class="cat-filters" id="catFilters">
+                    <button class="cat-filter-btn active" data-cat="all">
+                        <div class="dot" style="background:#fff"></div>Todos<span class="cat-count"
+                            id="cnt-all">0</span>
+                    </button>
+                    <button class="cat-filter-btn" data-cat="gameplay">
+                        <div class="dot" style="background:var(--red)"></div>Gameplay<span class="cat-count"
+                            id="cnt-gameplay">0</span>
+                    </button>
+                    <button class="cat-filter-btn" data-cat="progressao">
+                        <div class="dot" style="background:var(--yellow)"></div>Progressão<span class="cat-count"
+                            id="cnt-progressao">0</span>
+                    </button>
+                    <button class="cat-filter-btn" data-cat="esports">
+                        <div class="dot" style="background:var(--blue)"></div>Esports<span class="cat-count"
+                            id="cnt-esports">0</span>
+                    </button>
+                    <button class="cat-filter-btn" data-cat="giria">
+                        <div class="dot" style="background:var(--pink)"></div>Gírias<span class="cat-count"
+                            id="cnt-giria">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <div class="sidebar-title">Alfabeto</div>
+                <div class="alpha-nav" id="alphNav"></div>
+            </div>
+
+            <div class="sidebar-card">
+                <div class="sidebar-title">Estatísticas</div>
+                <div class="sidebar-stat"><span class="sidebar-stat-label">Gameplay</span><span class="sidebar-stat-val"
+                        id="s-gameplay">0</span></div>
+                <div class="sidebar-stat"><span class="sidebar-stat-label">Progressão</span><span
+                        class="sidebar-stat-val" id="s-progressao">0</span></div>
+                <div class="sidebar-stat"><span class="sidebar-stat-label">Esports</span><span class="sidebar-stat-val"
+                        id="s-esports">0</span></div>
+                <div class="sidebar-stat"><span class="sidebar-stat-label">Gírias</span><span class="sidebar-stat-val"
+                        id="s-giria">0</span></div>
+            </div>
+        </aside>
+
+        <!-- CONTEÚDO -->
+        <main class="content">
+            <div class="results-info" id="resultsInfo"></div>
+            <div id="glossaryContent"></div>
+            <div class="no-results" id="noResults">
+                <div class="no-results-emoji">🔍</div>
+                <h3>Nenhum termo encontrado</h3>
+                <p>Tenta outra pesquisa ou categoria.</p>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        /* ══════════════════════════════
+           DADOS DO GLOSSÁRIO
+        ══════════════════════════════ */
+        const CAT_COLORS = { gameplay: "#E8202A", progressao: "#FFD000", esports: "#3B82F6", giria: "#FF3CAC" };
+        const CAT_LABELS = { gameplay: "Gameplay", progressao: "Progressão", esports: "Esports", giria: "Gíria" };
+
+        const TERMS = [
+            // ── GAMEPLAY ─────────────────────────────────────────
+            { nome: "Aggro", en: "Aggro", emoji: "😤", cat: "gameplay", desc: "Jogar de forma agressiva, pressionando os adversários constantemente em vez de jogar defensivo.", exemplo: "Ex: 'O Bull está em full aggro — não conseguimos aproximar-nos das gemas.'" },
+            { nome: "Area Denial", en: "Area Denial", emoji: "🚫", cat: "gameplay", desc: "Estratégia de controlar e negar o acesso a certas zonas do mapa usando ataques de área, paredes ou presença. Throwers como Barley e Sprout são os reis do area denial.", exemplo: "Ex: 'O Sprout com a parede faz area denial perfeito no mid.'" },
+            { nome: "Assassino", en: "Assassin", emoji: "🗡️", cat: "gameplay", desc: "Classe de brawlers com alto dano a curta distância mas HP baixo. Especialistas em eliminar alvos isolados. Exemplos: Mortis, Leon, Edgar, Crow.", exemplo: "Ex: 'Leon é o assassino clássico — invisível, rápido e letal.'" },
+            { nome: "Ataque", en: "Attack / Main Attack", emoji: "⚔️", cat: "gameplay", desc: "O ataque principal de um Brawler, ativado com o botão de ataque. Cada Brawler tem até 3 munições que regeneram automaticamente.", exemplo: "Ex: 'O ataque do Colt tem 6 balas em linha reta.'" },
+            { nome: "Burst", en: "Burst", emoji: "💥", cat: "gameplay", desc: "Quantidade enorme de dano causada em muito pouco tempo, muitas vezes suficiente para eliminar um inimigo de imediato. Associado a brawlers como Piper ou Dynamike.", exemplo: "Ex: 'O Dynamike fez burst de 8.000 com Super + ataque.'" },
+            { nome: "Bush Check", en: "Bush Check", emoji: "🌿", cat: "gameplay", desc: "Verificar se há inimigos escondidos nos arbustos antes de avançar. Pode ser feito atacando os arbustos ou usando brawlers com visão extra.", exemplo: "Ex: 'Faz sempre bush check antes de avançar no mid do Sneaky Fields.'" },
+            { nome: "CC", en: "Crowd Control", emoji: "😵", cat: "gameplay", desc: "Abreviatura de Crowd Control — habilidades que limitam o movimento ou ação dos inimigos. Inclui stun, slow, knockback, freeze e silêncio.", exemplo: "Ex: 'O Frank tem imenso CC com o stun de área do Super.'" },
+            { nome: "Chase", en: "Chase", emoji: "🏃", cat: "gameplay", desc: "Perseguir um inimigo para o eliminar. Brawlers com muita velocidade ou mobilidade são melhores a fazer chase.", exemplo: "Ex: 'Max é perfeita para chase com a velocidade do Super.'" },
+            { nome: "Damage Dealer", en: "Damage Dealer", emoji: "💢", cat: "gameplay", desc: "Classe de brawlers especializados em causar muito dano. São o principal foco de dano da equipa. Exemplos: Colt, Brock, Piper.", exemplo: "Ex: 'Precisamos de um damage dealer — mete o Spike.'" },
+            { nome: "Disengage", en: "Disengage", emoji: "🏃‍♂️", cat: "gameplay", desc: "Retirar-se de um combate desfavorável para recuperar HP ou esperar pelo Super. Saberes quando fazer disengage é uma das skills mais importantes.", exemplo: "Ex: 'Aprende a fazer disengage quando tens menos de 30% de HP.'" },
+            { nome: "Engage", en: "Engage", emoji: "⚡", cat: "gameplay", desc: "Iniciar um combate. O engage timing é crucial — entrar muito cedo pode ser fatal.", exemplo: "Ex: 'O Buzz engagea com o Super de stun para a equipa seguir.'" },
+            { nome: "Flank", en: "Flank", emoji: "↪️", cat: "gameplay", desc: "Atacar os inimigos pelo lado ou por trás em vez de de frente. Eficaz para surpreender e para evitar lutas frontais desvantajosas.", exemplo: "Ex: 'O Leon flankeou o gem carrier pelo arbusto lateral.'" },
+            { nome: "Freeze", en: "Freeze", emoji: "❄️", cat: "gameplay", desc: "Efeito que congela completamente um inimigo — não consegue mover-se nem atacar. Lou é o principal brawler com este efeito.", exemplo: "Ex: 'Lou freezou o inimigo no mid e a equipa fechou.'" },
+            { nome: "Hypercharge", en: "Hypercharge", emoji: "⚡", cat: "gameplay", desc: "Sistema de upgrade especial que potencia o Super de um Brawler, adicionando efeitos visuais e mecânicos extra. Introduzido no Update 45.", exemplo: "Ex: 'Com o Hypercharge do Leon, o Super tem 5 segundos a mais de invisibilidade.'" },
+            { nome: "Invulnerável", en: "Invulnerable", emoji: "🛡️", cat: "gameplay", desc: "Estado em que um Brawler não pode receber dano durante um curto período. Algumas habilidades e Star Powers concedem invulnerabilidade.", exemplo: "Ex: 'O Stu é invulnerável durante o dash do Super.'" },
+            { nome: "Kite", en: "Kite", emoji: "🪁", cat: "gameplay", desc: "Manter distância de um inimigo enquanto continuas a atacá-lo, movendo-te para evitar ser atingido. Essencial para snipers e throwers.", exemplo: "Ex: 'Piper kita tanks a longa distância — eles nunca chegam.'" },
+            { nome: "Knockback", en: "Knockback", emoji: "💨", cat: "gameplay", desc: "Efeito que empurra um inimigo para longe. Pode ser usado ofensivamente para afastar inimigos de objetivos ou defensivamente para criar distância.", exemplo: "Ex: 'O Super do Gale tem imenso knockback — perfeito para Hot Zone.'" },
+            { nome: "Lane", en: "Lane", emoji: "➡️", cat: "gameplay", desc: "Caminho ou corredor no mapa por onde os brawlers se movem. Mapas de Gem Grab geralmente têm 3 lanes: esquerda, centro e direita.", exemplo: "Ex: 'Controla a lane do meio e tens vantagem no mapa inteiro.'" },
+            { nome: "Melee", en: "Melee", emoji: "👊", cat: "gameplay", desc: "Combate corpo-a-corpo, a curta distância. Brawlers melee incluem El Primo, Bull, Frank, Bibi e Damian.", exemplo: "Ex: 'O El Primo é puro melee — tem de chegar ao inimigo para fazer dano.'" },
+            { nome: "Meta", en: "Meta", emoji: "👑", cat: "gameplay", desc: "Abreviatura de 'Most Effective Tactics Available' — os brawlers, composições e estratégias mais fortes no estado atual do jogo.", exemplo: "Ex: 'O Damian está S-tier no meta atual com 58% de win rate.'" },
+            { nome: "Mid", en: "Mid / Middle", emoji: "🎯", cat: "gameplay", desc: "O centro do mapa. Controlar o mid é geralmente essencial para vencer em modos como Gem Grab e Hot Zone.", exemplo: "Ex: 'Precisamos de controlar o mid ou perdemos as gemas.'" },
+            { nome: "Peel", en: "Peel", emoji: "🛡️", cat: "gameplay", desc: "Proteger um aliado, especialmente o gem carrier ou o jogador mais vulnerável, de inimigos que tentam eliminá-lo.", exemplo: "Ex: 'O Emz faz peel perfeito ao inimigo que quer chegar ao nosso gem carrier.'" },
+            { nome: "Poke", en: "Poke", emoji: "👉", cat: "gameplay", desc: "Atacar inimigos à distância para fazer dano sem entrar em combate direto. Usado para desgastar o HP do adversário antes de um engage.", exemplo: "Ex: 'O Brock faz poke constante sem se expor — aguenta posição.'" },
+            { nome: "Push", en: "Push", emoji: "🚀", cat: "gameplay", desc: "Avançar agressivamente para o lado do inimigo. Também significa fazer progressão de trofeus num brawler específico.", exemplo: "Ex: 'Vou fazer push no Leon esta semana para chegar aos 1000 trofeus.'" },
+            { nome: "Range", en: "Range", emoji: "📏", cat: "gameplay", desc: "O alcance do ataque de um Brawler — a distância máxima a que os projéteis chegam. Medido em tiles/blocos no jogo.", exemplo: "Ex: 'Angelo tem o maior range do jogo com 18 blocos.'" },
+            { nome: "Reload", en: "Reload / Recarga", emoji: "🔄", cat: "gameplay", desc: "O tempo que um Brawler demora a recarregar a munição entre ataques. Brawlers com reload rápido conseguem pressionar mais continuamente.", exemplo: "Ex: 'O Frank tem reload muito lento — uma razão para não usar.'" },
+            { nome: "Roam", en: "Roam", emoji: "🗺️", cat: "gameplay", desc: "Mover-se pelo mapa para ajudar aliados em diferentes posições em vez de ficar sempre na mesma zona.", exemplo: "Ex: 'O Max roama o mapa inteiro a dar velocidade à equipa.'" },
+            { nome: "Rotation", en: "Rotation", emoji: "🔃", cat: "gameplay", desc: "A gestão de quando usar o Super — guardar para o momento certo em vez de desperdiçar.", exemplo: "Ex: 'Guarda o Super do Tara para quando os 3 inimigos estiverem juntos.'" },
+            { nome: "Slow", en: "Slow", emoji: "🐌", cat: "gameplay", desc: "Efeito que reduz a velocidade de movimento de um inimigo. Muito eficaz para facilitar hits de brawlers com projéteis lentos.", exemplo: "Ex: 'O Emz aplica slow com o ataque — perfeito para manter inimigos na zona.'" },
+            { nome: "Sniper", en: "Sniper", emoji: "🎯", cat: "gameplay", desc: "Classe de brawlers especializados em causar alto dano a longa distância. Exemplos: Piper, Belle, Bea, Angelo, Maisie.", exemplo: "Ex: 'Mapa muito aberto — precisamos de um sniper como a Piper.'" },
+            { nome: "Stun", en: "Stun", emoji: "😵", cat: "gameplay", desc: "Efeito que impede completamente um inimigo de se mover ou atacar durante um curto período. Um dos CC mais poderosos do jogo.", exemplo: "Ex: 'O Frank stunna toda a equipa adversária com o Super.'" },
+            { nome: "Super", en: "Super", emoji: "⚡", cat: "gameplay", desc: "A habilidade especial de cada Brawler, mais poderosa que o ataque base. Carrega ao causar dano com o ataque principal.", exemplo: "Ex: 'O Super do Tara cria um buraco negro que atrai todos os inimigos.'" },
+            { nome: "Support", en: "Support", emoji: "💚", cat: "gameplay", desc: "Classe de brawlers que apoiam a equipa com cura, shields, velocidade ou outras utilidades. Exemplos: Poco, Pam, Byron, Max, Lumi.", exemplo: "Ex: 'Precisamos de um support — o Byron cura e dana ao mesmo tempo.'" },
+            { nome: "Tank", en: "Tank", emoji: "🛡️", cat: "gameplay", desc: "Classe de brawlers com muito HP e resistência. Usados para absorver dano e proteger a equipa. Exemplos: Bull, Frank, Damian, El Primo.", exemplo: "Ex: 'O Damian é o tank do trio — aguenta na frente enquanto os outros atacam.'" },
+            { nome: "Thrower", en: "Thrower", emoji: "🎳", cat: "gameplay", desc: "Brawler que lança projéteis em arco, capazes de atingir inimigos por cima de paredes e obstáculos. Exemplos: Barley, Dynamike, Tick, Sprout.", exemplo: "Ex: 'Barley é o melhor thrower — controla todo o mid sem se expor.'" },
+            { nome: "Trade", en: "Trade", emoji: "🔄", cat: "gameplay", desc: "Trocar HP ou eliminar um adversário em simultâneo. Um trade positivo é quando eliminam um inimigo mais valioso do que perdes.", exemplo: "Ex: 'Fizemos um trade favorável — eliminaram o Barley mas nós eliminámos o gem carrier.'" },
+            { nome: "Win Condition", en: "Win Condition", emoji: "🏆", cat: "gameplay", desc: "A condição ou estratégia que fará a tua equipa ganhar a partida. Entender a win condition é essencial para jogar de forma coordenada.", exemplo: "Ex: 'A nossa win condition é o Super do Tara — aguarda pelo momento certo.'" },
+            { nome: "Zone", en: "Zone / Zona", emoji: "🔴", cat: "gameplay", desc: "A área de objetivo num modo como Hot Zone. Controlar a zona é o principal objetivo desse modo.", exemplo: "Ex: 'Temos de estar na zona durante 10 segundos para ganhar um ponto.'" },
+
+            // ── PROGRESSÃO ────────────────────────────────────────
+            { nome: "Bling", en: "Bling", emoji: "🔮", cat: "progressao", desc: "Moeda cosmética introduzida no Update 62. Usada no Bazar das Bizarrices e na Shop para comprar skins. Obtida em Starr Drops, Ranked e eventos.", exemplo: "Ex: 'Tenho 5.000 Bling — vou ver o que o Bazar tem hoje.'" },
+            { nome: "Brawl Pass", en: "Brawl Pass", emoji: "🎫", cat: "progressao", desc: "O passe de temporada de Brawl Stars, com recompensas exclusivas ao longo de 70 tiers. Tem versão gratuita e paga (169 Gems). Dá skins, Power Points, Coins e Starr Drops.", exemplo: "Ex: 'Com o Brawl Pass comprei as 6 skins da temporada.'" },
+            { nome: "Buffie", en: "Buffie", emoji: "🦊", cat: "progressao", desc: "Sistema de upgrades permanentes introduzido no Update 65 que melhoram Gadgets, Star Powers e Hypercharge. Representados como porta-chaves.", exemplo: "Ex: 'O Buffie do Edgar dá imunidade a CC durante 1 segundo.'" },
+            { nome: "Chaos Drop", en: "Chaos Drop", emoji: "💥", cat: "progressao", desc: "Sistema de sorteio introduzido no Update 60 que substitui as antigas Mega Boxes. Dá recursos e cosméticos aleatórios de diferentes raridades.", exemplo: "Ex: 'Abri 30 Chaos Drops e consegui a skin Legendary do Leon.'" },
+            { nome: "Claw Machine", en: "Claw Machine", emoji: "🎰", cat: "progressao", desc: "A máquina de garra onde obténs os Buffies. Cada Claw Machine tem 18 Buffies de 6 brawlers. O primeiro pull é sempre grátis.", exemplo: "Ex: 'A Ranger Ranch Claw Machine tem os Buffies da Shelly, Colt e Spike.'" },
+            { nome: "Coins", en: "Coins", emoji: "🪙", cat: "progressao", desc: "A moeda principal do jogo, usada para fazer upgrade de brawlers (Power Levels) e comprar Power Points na loja.", exemplo: "Ex: 'Preciso de 5.000 Coins para chegar ao Power Level 11 no Spike.'" },
+            { nome: "Gadget", en: "Gadget", emoji: "🟢", cat: "progressao", desc: "Habilidade ativa desbloqueada ao nível 7, com usos limitados por partida (geralmente 3). Cada Brawler tem 2 Gadgets disponíveis.", exemplo: "Ex: 'O Gadget do Barley restaura vida — essencial no mid game.'" },
+            { nome: "Gems", en: "Gems", emoji: "💎", cat: "progressao", desc: "A moeda premium do jogo. Comprada com dinheiro real ou obtida em pequenas quantidades no Brawl Pass gratuito. Usada para skins e Brawl Pass.", exemplo: "Ex: 'A skin do El Primo All Might custa 299 Gems.'" },
+            { nome: "Gear", en: "Gear", emoji: "⚙️", cat: "progressao", desc: "Sistema de upgrades de habilidades passivas desbloqueado a certo nível. Cada Brawler pode equipar 2 Gears em simultâneo. Inclui Shield, Health, Speed, etc.", exemplo: "Ex: 'Meto Shield Gear + Health Gear no Frank para máximo sustain.'" },
+            { nome: "Power Level", en: "Power Level", emoji: "⬆️", cat: "progressao", desc: "O nível de poder de um Brawler (1 a 11). Upgrades de PL aumentam HP e dano. PL9+ é necessário para Ranked.", exemplo: "Ex: 'Tenho o Leon no PL11 — máximo de HP e dano.'" },
+            { nome: "Power Points", en: "Power Points", emoji: "⚡", cat: "progressao", desc: "Recursos necessários para fazer upgrade do Power Level de um Brawler. Obtidos em Starr Drops, Brawl Pass e na loja.", exemplo: "Ex: 'Preciso de 2.000 Power Points para chegar ao PL11.'" },
+            { nome: "Prestige", en: "Prestige", emoji: "👑", cat: "progressao", desc: "Sistema de progressão cosmética introduzido no Update 61. Aumenta ao jogar partidas e desbloqueia cartões de batalha e ícones exclusivos.", exemplo: "Ex: 'Estou no Prestígio 150 — desbloqueei o cartão dourado.'" },
+            { nome: "Ranked", en: "Ranked", emoji: "🏆", cat: "progressao", desc: "Modo competitivo com sistema ELO, divisões (Bronze ao Pro) e formatos que evoluem (Blind Pick → Bans → Snake Draft). Requer 1.000 trofeus para aceder.", exemplo: "Ex: 'Cheguei a Mythic esta temporada — objetivo era Diamond.'" },
+            { nome: "Star Power", en: "Star Power", emoji: "⭐", cat: "progressao", desc: "Habilidade passiva desbloqueada ao Power Level 9. Cada Brawler tem 2 Star Powers — geralmente uma das duas é significativamente melhor.", exemplo: "Ex: 'A Star Power Coiled Snake do Mortis é muito melhor do que a outra.'" },
+            { nome: "Starr Drop", en: "Starr Drop", emoji: "🌟", cat: "progressao", desc: "Sistema de sorteio principal do jogo. Existem várias raridades (Rare ao Legendary). Substituíram as antigas caixas em 2023.", exemplo: "Ex: 'Abri um Legendary Starr Drop e consegui a skin do Leon.'" },
+            { nome: "Trofeu", en: "Trophy", emoji: "🏅", cat: "progressao", desc: "A pontuação de progressão de cada Brawler obtida ao ganhar partidas. Cada Brawler tem trofeus individuais e existe um total da conta.", exemplo: "Ex: 'Tenho 80.000 trofeus no total e o Leon nos 1.500.'" },
+            { nome: "True Gold", en: "True Gold", emoji: "🥇", cat: "progressao", desc: "Skin metálica dourada disponível após atingir um certo número de trofeus com um brawler. Custa 25.000 Coins. Requer True Silver primeiro.", exemplo: "Ex: 'Consegui finalmente a True Gold do Bull depois de 800 partidas.'" },
+            { nome: "True Silver", en: "True Silver", emoji: "🥈", cat: "progressao", desc: "Skin metálica prateada disponível após atingir um certo número de trofeus com um brawler. Custa 10.000 Coins.", exemplo: "Ex: 'A True Silver é o primeiro marco cosmético de dedicação.'" },
+
+            // ── ESPORTS ───────────────────────────────────────────
+            { nome: "Ban", en: "Ban", emoji: "🚫", cat: "esports", desc: "Proibir um Brawler de ser jogado numa partida do Draft. Disponível a partir de Diamond no Ranked. Cada equipa bana brawlers antes de escolher.", exemplo: "Ex: 'Vão banir o Damian — está demasiado forte no mapa atual.'" },
+            { nome: "Best of Three", en: "Best of Three (Bo3)", emoji: "3️⃣", cat: "esports", desc: "Formato onde a primeira equipa a ganhar 2 jogos de 3 possíveis vence o confronto. Usado em Mythic+ do Ranked e em torneios profissionais.", exemplo: "Ex: 'Vencemos o Bo3 por 2-1 — foi muito riscado no último jogo.'" },
+            { nome: "BSC", en: "Brawl Stars Championship", emoji: "🌍", cat: "esports", desc: "A liga profissional oficial de Brawl Stars organizada pela Supercell em parceria com a BLAST. Tem Monthly Finals por região e culmina no World Finals.", exemplo: "Ex: 'O BSC 2026 tem um prize pool total de $2 milhões.'" },
+            { nome: "Draft", en: "Draft", emoji: "📋", cat: "esports", desc: "O processo de escolha de brawlers antes de uma partida, incluindo bans. O Snake Draft é o formato mais complexo, usado em Mythic+.", exemplo: "Ex: 'Fizemos um draft perfeito — counter a tudo que eles escolheram.'" },
+            { nome: "LAN", en: "LAN Event", emoji: "🏟️", cat: "esports", desc: "Evento presencial onde as equipas jogam no mesmo local físico. Contrário dos torneios online. Exemplos: Brawl Cup, World Finals.", exemplo: "Ex: 'O Brawl Cup em Berlim é o primeiro LAN do BSC 2026.'" },
+            { nome: "Meta Pick", en: "Meta Pick", emoji: "👑", cat: "esports", desc: "Um brawler que é consistentemente escolhido em torneios porque é considerado o mais forte no estado atual do jogo.", exemplo: "Ex: 'Damian é o meta pick deste mês — ban ou pick imediato.'" },
+            { nome: "Monthly Finals", en: "Monthly Finals", emoji: "📊", cat: "esports", desc: "Torneio mensal de cada região do BSC onde as melhores equipas competem por prize money e pontos BSC que determinam quem vai ao World Finals.", exemplo: "Ex: 'FUT Esports venceu as February EMEA Monthly Finals.'" },
+            { nome: "Pick", en: "Pick", emoji: "✅", cat: "esports", desc: "Escolher um Brawler para jogar no Draft. Um bom pick counter os picks do adversário e complementa a composição da equipa.", exemplo: "Ex: 'Primeiro pick — Damian. Segundo pick — Emz para o suporte.'" },
+            { nome: "Snake Draft", en: "Snake Draft", emoji: "🐍", cat: "esports", desc: "O formato de draft mais complexo do Ranked. Picks em ordem 1-2-2-1 após os bans. Disponível a partir de Mythic.", exemplo: "Ex: 'No Snake Draft, a ordem é A→ BB → AA → BB → A.'" },
+            { nome: "World Finals", en: "World Finals", emoji: "🌍", cat: "esports", desc: "O evento culminante da temporada do BSC onde as melhores 12 equipas do mundo competem pelo título de campeã mundial e pelo prize pool principal.", exemplo: "Ex: 'O World Finals 2026 é em Novembro com $1M+ em prémios.'" },
+
+            // ── GÍRIAS ────────────────────────────────────────────
+            { nome: "AFK", en: "AFK (Away From Keyboard)", emoji: "💤", cat: "giria", desc: "Jogador que está ausente ou inativo durante a partida. Um dos maiores problemas do jogo, especialmente no Ranked.", exemplo: "Ex: 'Perdemos porque um aliado foi AFK do início ao fim.'" },
+            { nome: "Brain Dead", en: "Brain Dead", emoji: "🧠", cat: "giria", desc: "Jogada ou decisão completamente óbvia que não requer grande raciocínio. Também usado para descrever jogadores que não pensam.", exemplo: "Ex: 'Foi brain dead — ele estava sozinho com 5% de HP e fui atrás.'" },
+            { nome: "Carry", en: "Carry", emoji: "💪", cat: "giria", desc: "Quando um jogador salva a equipa de uma derrota quase certa graças à sua performance individual excepcional.", exemplo: "Ex: 'O carry do nosso Edgar foi incrível — ganhámos 3vs1 no final.'" },
+            { nome: "Diff", en: "Diff", emoji: "↕️", cat: "giria", desc: "Abreviatura de 'difference'. Usado após a partida para apontar qual posição foi decisiva. 'Barley diff' significa que o Barley foi melhor.", exemplo: "Ex: 'Barley diff — o deles controlou o mapa inteiro.'" },
+            { nome: "Ez", en: "Ez / Easy", emoji: "😎", cat: "giria", desc: "Abreviatura de 'easy'. Dito após uma vitória fácil. Pode ser considerado tóxico dependendo do contexto.", exemplo: "Ex: 'Ez win — eles nem chegaram ao mid.'" },
+            { nome: "F2P", en: "Free to Play (F2P)", emoji: "🆓", cat: "giria", desc: "Jogador que não gasta dinheiro real no jogo. O oposto de P2W (Pay to Win).", exemplo: "Ex: 'Consegui a skin Legendary sem gastar nada — F2P life.'" },
+            { nome: "Feeder", en: "Feeder", emoji: "🍗", cat: "giria", desc: "Jogador que morre repetidamente, dando ao adversário vantagem (como Super carregado). Comportamento prejudicial para a equipa.", exemplo: "Ex: 'O nosso Edgar foi feeder — morreu 8 vezes e carregou o Super do inimigo.'" },
+            { nome: "GG", en: "GG (Good Game)", emoji: "🤝", cat: "giria", desc: "'Good Game' — dito no final de uma partida em sinal de fair play. 'GG WP' significa 'Good Game, Well Played'.", exemplo: "Ex: 'GG WP — foi uma partida muito equilibrada.'" },
+            { nome: "Grief", en: "Grief", emoji: "😡", cat: "giria", desc: "Comportamento intencional de sabotar a própria equipa. Exemplo: mover-se para o lado errado ou não jogar o objetivo.", exemplo: "Ex: 'Ele estava a grief — foi buscar caixas em vez de defender.'" },
+            { nome: "Hardstuck", en: "Hardstuck", emoji: "🧱", cat: "giria", desc: "Jogador que não consegue subir de divisão no Ranked, ficando 'preso' no mesmo rank durante muito tempo.", exemplo: "Ex: 'Estou hardstuck em Gold III há duas semanas.'" },
+            { nome: "ISO", en: "ISO (Isolation)", emoji: "🎯", cat: "giria", desc: "Isolar um inimigo da equipa para o eliminar em situação de 1v1 favorável. Também usado para descrever uma partida individual.", exemplo: "Ex: 'ISO no gem carrier — tira-o do combate enquanto a equipa aguanta.'" },
+            { nome: "Juking", en: "Juking", emoji: "🏃", cat: "giria", desc: "Movimento imprevisível para iludir o adversário e evitar ser atingido. Movimentos erráticos que dificultam o aim do inimigo.", exemplo: "Ex: 'Aprende a fazer juke — fica difícil de acertar com o Colt.'" },
+            { nome: "L + Ratio", en: "L + Ratio", emoji: "📉", cat: "giria", desc: "Expressão da internet usada para dizer que alguém perdeu um argumento. No contexto do jogo, usado de forma humorística após uma derrota.", exemplo: "Ex: 'L + ratio + Barley diff.'" },
+            { nome: "Nerf", en: "Nerf", emoji: "⬇️", cat: "giria", desc: "Quando a Supercell reduz o poder de um Brawler ou habilidade numa atualização. O oposto de buff.", exemplo: "Ex: 'O Damian foi nerfado na manutenção — win rate passou de 66% para 58%.'" },
+            { nome: "Buff", en: "Buff", emoji: "⬆️", cat: "giria", desc: "Quando a Supercell aumenta o poder de um Brawler ou habilidade numa atualização. O oposto de nerf.", exemplo: "Ex: 'O Fang recebeu buff no HP — agora consegue sobreviver mais fights.'" },
+            { nome: "One Shot", en: "One Shot", emoji: "💀", cat: "giria", desc: "Eliminar um inimigo com um único ataque ou combo. Acontece geralmente com snipers de longa distância.", exemplo: "Ex: 'A Piper one shot o Edgar antes mesmo de ele chegar.'" },
+            { nome: "Outplay", en: "Outplay", emoji: "🧠", cat: "giria", desc: "Superar o adversário através de skill e tomadas de decisão superiores, especialmente em situações desvantajosas.", exemplo: "Ex: 'Que outplay — venceu o 1v2 com um Super perfeito do Tara.'" },
+            { nome: "P2W", en: "Pay to Win (P2W)", emoji: "💳", cat: "giria", desc: "Quando gastar dinheiro real dá vantagem de gameplay significativa. Controverso — alguns argumentam que Brawl Stars tem elementos P2W.", exemplo: "Ex: 'PL11 com todos os Buffies vs PL9 — isso é um pouco P2W.'" },
+            { nome: "Smurf", en: "Smurf", emoji: "🔵", cat: "giria", desc: "Jogador experiente que usa uma conta secundária de nível mais baixo para jogar contra adversários mais fracos.", exemplo: "Ex: 'Esse Gold III é claramente um smurf — joga como um Masters.'" },
+            { nome: "Tilted", en: "Tilted", emoji: "😤", cat: "giria", desc: "Estado emocional negativo após várias derrotas consecutivas, levando a pior performance e decisões impulsivas.", exemplo: "Ex: 'Estou tilted após 5 derrotas seguidas — pausa obrigatória.'" },
+            { nome: "Throw", en: "Throw", emoji: "🤦", cat: "giria", desc: "Perder uma partida que estava praticamente ganha devido a um erro grave ou série de erros no final.", exemplo: "Ex: 'Fizemos throw — tínhamos 9 gemas e fomos para o mid desnecessariamente.'" },
+            { nome: "Yolo", en: "Yolo", emoji: "🎲", cat: "giria", desc: "Jogar de forma completamente impulsiva e sem estratégia, muitas vezes em situações desesperadas. Do inglês 'You Only Live Once'.", exemplo: "Ex: 'Fui yolo com o Super do Damian — não correu bem.'" },
+        ];
+
+        /* ══════════════════════════════
+           RENDER
+        ══════════════════════════════ */
+        let currentCat = "all", currentSearch = "";
+
+        // Contadores
+        const counts = { all: TERMS.length, gameplay: 0, progressao: 0, esports: 0, giria: 0 };
+        TERMS.forEach(t => { counts[t.cat]++; });
+        document.getElementById("totalTerms").textContent = TERMS.length;
+        document.getElementById("cnt-all").textContent = counts.all;
+        document.getElementById("cnt-gameplay").textContent = counts.gameplay;
+        document.getElementById("cnt-progressao").textContent = counts.progressao;
+        document.getElementById("cnt-esports").textContent = counts.esports;
+        document.getElementById("cnt-giria").textContent = counts.giria;
+        document.getElementById("s-gameplay").textContent = counts.gameplay;
+        document.getElementById("s-progressao").textContent = counts.progressao;
+        document.getElementById("s-esports").textContent = counts.esports;
+        document.getElementById("s-giria").textContent = counts.giria;
+
+        function render() {
+            const s = currentSearch.toLowerCase().trim();
+            const filtered = TERMS.filter(t => {
+                const catOk = currentCat === "all" || t.cat === currentCat;
+                const sOk = s === "" || t.nome.toLowerCase().includes(s) || t.en.toLowerCase().includes(s) || t.desc.toLowerCase().includes(s);
+                return catOk && sOk;
+            }).sort((a, b) => a.nome.localeCompare(b.nome));
+
+            document.getElementById("resultsInfo").textContent = `${filtered.length} termo${filtered.length !== 1 ? "s" : ""} encontrado${filtered.length !== 1 ? "s" : ""}`;
+
+            if (filtered.length === 0) {
+                document.getElementById("glossaryContent").innerHTML = "";
+                document.getElementById("noResults").style.display = "block";
+                return;
+            }
+            document.getElementById("noResults").style.display = "none";
+
+            // Agrupar por letra
+            const groups = {};
+            filtered.forEach(t => {
+                const l = t.nome[0].toUpperCase();
+                if (!groups[l]) groups[l] = [];
+                groups[l].push(t);
+            });
+
+            let html = "";
+            Object.keys(groups).sort().forEach(letter => {
+                html += `<div class="alpha-group" id="letter-${letter}">
+      <div class="alpha-group-label">${letter}</div>`;
+                groups[letter].forEach(t => {
+                    const col = CAT_COLORS[t.cat];
+                    const catLabel = CAT_LABELS[t.cat];
+                    html += `<div class="term-card">
+        <div class="term-emoji">${t.emoji}</div>
+        <div class="term-body">
+          <div class="term-header">
+            <div class="term-name">${t.nome}</div>
+            ${t.en && t.en !== t.nome ? `<div class="term-en">${t.en}</div>` : ""}
+            <div class="term-cat" style="background:${col}22;color:${col}">${catLabel}</div>
+          </div>
+          <div class="term-desc">${t.desc}</div>
+          ${t.exemplo ? `<div class="term-example">${t.exemplo}</div>` : ""}
+        </div>
+      </div>`;
+                });
+                html += "</div>";
+            });
+            document.getElementById("glossaryContent").innerHTML = html;
+
+            // Atualizar navbar alfabética
+            buildAlphNav(Object.keys(groups));
+        }
+
+        function buildAlphNav(activeLetters) {
+            const nav = document.getElementById("alphNav");
+            const allLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+            nav.innerHTML = allLetters.map(l => {
+                const has = activeLetters.includes(l);
+                return `<button class="alpha-btn ${has ? "has-terms" : "disabled"}" onclick="scrollToLetter('${l}')">${l}</button>`;
+            }).join("");
+        }
+
+        function scrollToLetter(l) {
+            const el = document.getElementById("letter-" + l);
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        // Filtros
+        document.querySelectorAll(".cat-filter-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".cat-filter-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentCat = btn.dataset.cat;
+                render();
+            });
+        });
+        document.getElementById("searchInput").addEventListener("input", e => { currentSearch = e.target.value; render(); });
+
+        /* REVEAL */
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.05 });
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+        /* CURSOR */
+        const cursor = document.getElementById("cursor");
+        const ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        document.querySelectorAll("a,button,.term-card").forEach(el => {
+            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+        });
+
+        render();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novidades — BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --green: #22C55E;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --purple: #A855F7;
+            --red: #E8202A;
+            --teal: #00C9A7;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --text-dark: #1A1A2E;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        * {
+            cursor: none !important;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--pink);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(255, 60, 172, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a.active {
+            color: var(--pink);
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* HEADER */
+        .page-header {
+            padding: 7rem 3rem 3rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--dark2);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .header-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 50% 70% at 85% 50%, rgba(255, 60, 172, .18), transparent),
+                radial-gradient(ellipse 40% 50% at 10% 60%, rgba(168, 85, 247, .12), transparent);
+        }
+
+        .header-inner {
+            position: relative;
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .page-eyebrow {
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--pink);
+            margin-bottom: .5rem;
+        }
+
+        .page-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            line-height: 1;
+            margin-bottom: .75rem;
+        }
+
+        .page-desc {
+            font-size: .95rem;
+            color: rgba(255, 255, 255, .5);
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(232, 32, 42, .12);
+            border: 1px solid rgba(232, 32, 42, .3);
+            border-radius: 100px;
+            padding: .3rem .9rem;
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #FF8080;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--red);
+            box-shadow: 0 0 8px var(--red);
+            animation: blink 1.2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .2
+            }
+        }
+
+        /* GLOW LINE */
+        .glow-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--pink), var(--purple), var(--pink), transparent);
+            opacity: .5;
+        }
+
+        /* LAYOUT */
+        .feed-wrap {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 6rem;
+        }
+
+        /* FILTROS */
+        .filter-bar {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 4.5rem;
+            z-index: 100;
+            background: rgba(13, 13, 26, .9);
+            backdrop-filter: blur(12px);
+            padding: .75rem 0;
+        }
+
+        .filter-chip {
+            padding: .35rem .9rem;
+            border-radius: 100px;
+            font-size: .78rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: rgba(255, 255, 255, .45);
+            background: transparent;
+            transition: all .2s;
+            white-space: nowrap;
+        }
+
+        .filter-chip:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, .25);
+        }
+
+        .filter-chip.active {
+            color: #fff;
+            border-color: transparent;
+        }
+
+        [data-cat="all"].active {
+            background: rgba(255, 255, 255, .15);
+        }
+
+        [data-cat="update"].active {
+            background: var(--orange);
+        }
+
+        [data-cat="brawler"].active {
+            background: var(--purple);
+        }
+
+        [data-cat="skin"].active {
+            background: var(--pink);
+        }
+
+        [data-cat="evento"].active {
+            background: var(--red);
+        }
+
+        [data-cat="torneio"].active {
+            background: var(--yellow);
+            color: var(--text-dark);
+        }
+
+        [data-cat="mapa"].active {
+            background: var(--teal);
+        }
+
+        [data-cat="ranked"].active {
+            background: var(--blue);
+        }
+
+        /* FEED */
+        .feed {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        /* POST CARD */
+        .post {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 16px;
+            padding: 1.25rem 1.4rem;
+            margin-bottom: 1rem;
+            transition: border-color .2s, transform .2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post:hover {
+            border-color: rgba(255, 255, 255, .15);
+            transform: translateX(4px);
+        }
+
+        .post.hidden {
+            display: none;
+        }
+
+        /* linha colorida esquerda */
+        .post::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .post[data-cat="update"]::before {
+            background: var(--orange);
+        }
+
+        .post[data-cat="brawler"]::before {
+            background: var(--purple);
+        }
+
+        .post[data-cat="skin"]::before {
+            background: var(--pink);
+        }
+
+        .post[data-cat="evento"]::before {
+            background: var(--red);
+        }
+
+        .post[data-cat="torneio"]::before {
+            background: var(--yellow);
+        }
+
+        .post[data-cat="mapa"]::before {
+            background: var(--teal);
+        }
+
+        .post[data-cat="ranked"]::before {
+            background: var(--blue);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: .65rem;
+        }
+
+        .post-emoji {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .post-meta {
+            flex: 1;
+        }
+
+        .post-cat {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: .1rem;
+        }
+
+        .post[data-cat="update"] .post-cat {
+            color: var(--orange);
+        }
+
+        .post[data-cat="brawler"] .post-cat {
+            color: var(--purple);
+        }
+
+        .post[data-cat="skin"] .post-cat {
+            color: var(--pink);
+        }
+
+        .post[data-cat="evento"] .post-cat {
+            color: var(--red);
+        }
+
+        .post[data-cat="torneio"] .post-cat {
+            color: var(--yellow);
+        }
+
+        .post[data-cat="mapa"] .post-cat {
+            color: var(--teal);
+        }
+
+        .post[data-cat="ranked"] .post-cat {
+            color: var(--blue);
+        }
+
+        .post-date {
+            font-size: .72rem;
+            color: rgba(255, 255, 255, .3);
+            font-weight: 700;
+        }
+
+        .post-badge {
+            font-size: .6rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .15rem .5rem;
+            border-radius: 100px;
+            flex-shrink: 0;
+        }
+
+        .badge-breaking {
+            background: rgba(232, 32, 42, .2);
+            color: #FF8080;
+            border: 1px solid rgba(232, 32, 42, .3);
+            animation: pulse-badge 1.5s ease-in-out infinite;
+        }
+
+        .badge-novo {
+            background: rgba(255, 107, 0, .2);
+            color: var(--orange);
+            border: 1px solid rgba(255, 107, 0, .3);
+        }
+
+        .badge-oficial {
+            background: rgba(255, 208, 0, .15);
+            color: var(--yellow);
+            border: 1px solid rgba(255, 208, 0, .3);
+        }
+
+        @keyframes pulse-badge {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .5
+            }
+        }
+
+        .post-text {
+            font-size: .92rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .75);
+            margin-bottom: .75rem;
+        }
+
+        .post-text strong {
+            color: #fff;
+        }
+
+        .post-text a {
+            color: var(--pink);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* IMAGEM OPCIONAL */
+        .post-img {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: .75rem;
+            max-height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* TAGS */
+        .post-tags {
+            display: flex;
+            gap: .4rem;
+            flex-wrap: wrap;
+            margin-bottom: .75rem;
+        }
+
+        .post-tag {
+            font-size: .68rem;
+            font-weight: 700;
+            padding: .18rem .6rem;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .45);
+        }
+
+        /* FOOTER DO POST */
+        .post-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: .65rem;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .post-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .78rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, .4);
+            transition: color .2s, gap .2s;
+        }
+
+        .post-link:hover {
+            color: #fff;
+            gap: .55rem;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: .75rem;
+            align-items: center;
+        }
+
+        .like-btn {
+            display: flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .78rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .3);
+            background: transparent;
+            border: none;
+            transition: color .2s, transform .2s;
+            padding: .2rem .4rem;
+            border-radius: 100px;
+        }
+
+        .like-btn:hover {
+            color: #FF8080;
+            transform: scale(1.1);
+        }
+
+        .like-btn.liked {
+            color: #FF8080;
+        }
+
+        .like-count {
+            font-size: .75rem;
+        }
+
+        /* SEPARADOR DE DIA */
+        .day-sep {
+            text-align: center;
+            position: relative;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .day-sep::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 1px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .day-sep span {
+            position: relative;
+            z-index: 1;
+            background: var(--dark);
+            padding: 0 .75rem;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .25);
+        }
+
+        /* EMPTY */
+        .feed-empty {
+            text-align: center;
+            padding: 4rem 0;
+            color: rgba(255, 255, 255, .3);
+            display: none;
+        }
+
+        .feed-empty-emoji {
+            font-size: 3rem;
+            margin-bottom: .75rem;
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../Brawlers/Brawlers.html">Brawlers</a></li>
+            <li><a href="../Temporadas/Temporadas.html">Updates</a></li>
+            <li><a href="Notícias.html">Notícias</a></li>
+            <li><a href="Novidades.html" class="active">Novidades</a></li>
+            <li><a href="../Guias/Guias.html">Guias</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="header-bg"></div>
+        <div class="header-inner">
+            <p class="page-eyebrow">Feed em tempo real</p>
+            <h1 class="page-title">⚡ Novidades</h1>
+            <p class="page-desc">As últimas novidades de Brawl Stars em formato rápido — updates, brawlers, skins,
+                eventos, torneios e muito mais.</p>
+            <div class="live-badge"><span class="live-dot"></span>A atualizar regularmente</div>
+        </div>
+    </header>
+    <div class="glow-line"></div>
+
+    <!-- FEED -->
+    <div class="feed-wrap">
+
+        <!-- FILTROS -->
+        <div class="filter-bar">
+            <button class="filter-chip active" data-cat="all">Tudo</button>
+            <button class="filter-chip" data-cat="update">📦 Updates</button>
+            <button class="filter-chip" data-cat="brawler">🥊 Brawlers</button>
+            <button class="filter-chip" data-cat="skin">🎨 Skins</button>
+            <button class="filter-chip" data-cat="evento">🎉 Eventos</button>
+            <button class="filter-chip" data-cat="torneio">🏆 Torneios</button>
+            <button class="filter-chip" data-cat="mapa">🗺️ Mapas</button>
+            <button class="filter-chip" data-cat="ranked">⚔️ Ranked</button>
+        </div>
+
+        <div class="feed" id="feed">
+
+            <div class="day-sep"><span>Hoje · 3 Maio 2026</span></div>
+
+            <!-- POST 1 — BREAKING -->
+            <div class="post reveal" data-cat="torneio">
+                <div class="post-header">
+                    <div class="post-emoji">🏟️</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Torneios</div>
+                        <div class="post-date">3 Mai · há momentos</div>
+                    </div>
+                    <span class="post-badge badge-breaking">🔴 Breaking</span>
+                </div>
+                <div class="post-text">O <strong>Brawl Cup 2026 em Berlim</strong> arranca a 15 de Maio! As equipas
+                    qualificadas foram anunciadas — FUT Esports, ZETA DIVISION, Tribe Gaming e mais 9 equipas
+                    confirmadas. <strong>12 dias para o maior LAN do ano.</strong></div>
+                <div class="post-tags">
+                    <span class="post-tag">BSC 2026</span>
+                    <span class="post-tag">Berlim</span>
+                    <span class="post-tag">LAN</span>
+                    <span class="post-tag">$100.000</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="../Torneios/Torneios.html">Ver Torneios →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">47</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 2 -->
+            <div class="post reveal" data-cat="ranked">
+                <div class="post-header">
+                    <div class="post-emoji">⚔️</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Ranked</div>
+                        <div class="post-date">3 Mai · há 2 horas</div>
+                    </div>
+                    <span class="post-badge badge-novo">Novo</span>
+                </div>
+                <div class="post-text">A <strong>Temporada 2 do Ranked</strong> arrancou! Modo em destaque:
+                    <strong>Knockout</strong>. Mapas: Fontes Fartas e Garganta do Braço Dourado. Brawlers gratuitos:
+                    <strong>Bea (Épico), Finx (Mítico), Spike (Lendário)</strong>. Vais à Mythic esta temporada?</div>
+                <div class="post-tags">
+                    <span class="post-tag">Temporada 2</span>
+                    <span class="post-tag">Knockout</span>
+                    <span class="post-tag">Brawlers Grátis</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="../Ranqueado/Ranqueado.html">Ver Ranked →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">31</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-sep"><span>Ontem · 2 Maio 2026</span></div>
+
+            <!-- POST 3 -->
+            <div class="post reveal" data-cat="brawler">
+                <div class="post-header">
+                    <div class="post-emoji">🎤</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Brawlers</div>
+                        <div class="post-date">2 Mai</div>
+                    </div>
+                    <span class="post-badge badge-novo">Novo</span>
+                </div>
+                <div class="post-text"><strong>Damian</strong> continua a dominar o meta uma semana após o lançamento.
+                    Win rate de <strong>58.4%</strong> após os nerfs da manutenção de 28 de Abril — ainda S-tier em Gem
+                    Grab e Wipeout. A Supercell está a monitorizar os dados.</div>
+                <div class="post-tags">
+                    <span class="post-tag">Damian</span>
+                    <span class="post-tag">Meta</span>
+                    <span class="post-tag">Win Rate</span>
+                    <span class="post-tag">S-Tier</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="../Brawlers/Brawlers Específicos/Damian.html">Ver Damian →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">89</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 4 -->
+            <div class="post reveal" data-cat="skin">
+                <div class="post-header">
+                    <div class="post-emoji">🦸</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Skins</div>
+                        <div class="post-date">2 Mai</div>
+                    </div>
+                    <span class="post-badge badge-oficial">Oficial</span>
+                </div>
+                <div class="post-text">A collab <strong>My Hero Academia × Brawl Stars</strong> está a fazer furor! El
+                    Primo All Might (Lendário, 299 Gems) esgotou rapidamente na loja. As skins de Fang: Deku e Edgar:
+                    Bakugo também têm números recordes de vendas segundo dados da comunidade.</div>
+                <div class="post-tags">
+                    <span class="post-tag">MHA</span>
+                    <span class="post-tag">Collab</span>
+                    <span class="post-tag">El Primo</span>
+                    <span class="post-tag">Fang</span>
+                    <span class="post-tag">Edgar</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="../Brawlers/Skins.html">Ver Skins →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">124</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-sep"><span>1 Maio 2026</span></div>
+
+            <!-- POST 5 -->
+            <div class="post reveal" data-cat="evento">
+                <div class="post-header">
+                    <div class="post-emoji">👟</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Eventos</div>
+                        <div class="post-date">1 Mai</div>
+                    </div>
+                    <span class="post-badge badge-novo">Novo</span>
+                </div>
+                <div class="post-text">O <strong>Evento Adidas</strong> arrancou com o novo modo
+                    <strong>Megabola</strong>! A Arena Adidas já está disponível. O novo modo tem goleiros automáticos e
+                    chutes carregados — uma das mecânicas mais originais dos últimos meses. Experimenta antes de acabar!
+                </div>
+                <div class="post-tags">
+                    <span class="post-tag">Adidas</span>
+                    <span class="post-tag">Megabola</span>
+                    <span class="post-tag">Collab</span>
+                    <span class="post-tag">Evento Limitado</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="Notícias.html">Ver Notícias →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">56</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 6 -->
+            <div class="post reveal" data-cat="brawler">
+                <div class="post-header">
+                    <div class="post-emoji">⚡</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Brawlers</div>
+                        <div class="post-date">1 Mai</div>
+                    </div>
+                </div>
+                <div class="post-text"><strong>Bolt</strong> está a surpreender positivamente no meta! O novo brawler
+                    Épico tem uma mecânica única de velocidade crescente — quanto mais se move, mais rápido fica e mais
+                    dano causa. A comunidade está a descobrir combos interessantes com o Acessório Bate-bola.</div>
+                <div class="post-tags">
+                    <span class="post-tag">Bolt</span>
+                    <span class="post-tag">Épico</span>
+                    <span class="post-tag">Meta</span>
+                    <span class="post-tag">Update 67</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="../Brawlers/Brawlers.html">Ver Brawlers →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">43</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-sep"><span>30 Abril 2026</span></div>
+
+            <!-- POST 7 -->
+            <div class="post reveal" data-cat="update">
+                <div class="post-header">
+                    <div class="post-emoji">⚙️</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Updates</div>
+                        <div class="post-date">30 Abr</div>
+                    </div>
+                    <span class="post-badge badge-oficial">Oficial</span>
+                </div>
+                <div class="post-text">A <strong>Manutenção de 28 de Abril</strong> trouxe nerfs urgentes a
+                    <strong>Damian, Sirius, Bull, Crow, Chester e Najia</strong>. O bug crítico da Colette (+4.600 dano
+                    extra) foi corrigido e ela foi reativada. O R-T também foi ajustado temporariamente.</div>
+                <div class="post-tags">
+                    <span class="post-tag">Manutenção</span>
+                    <span class="post-tag">Nerfs</span>
+                    <span class="post-tag">Colette</span>
+                    <span class="post-tag">Bug Fix</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="Notícias Atuais/Manutenção 28 de abril.html">Ver detalhes →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">78</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 8 -->
+            <div class="post reveal" data-cat="mapa">
+                <div class="post-header">
+                    <div class="post-emoji">🗺️</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Mapas</div>
+                        <div class="post-date">30 Abr</div>
+                    </div>
+                </div>
+                <div class="post-text">Os novos mapas da <strong>Arena Adidas</strong> já estão na rotação: Arena do
+                    Sufoco, Bola na Gaveta, Coliseu da Tabelinha e Perigo na Banheira. Mapas do Gramado também
+                    disponíveis. A comunidade está a dar notas mistas — alguns adoram, outros acham demasiado abertos.
+                </div>
+                <div class="post-tags">
+                    <span class="post-tag">Arena Adidas</span>
+                    <span class="post-tag">Megabola</span>
+                    <span class="post-tag">Novos Mapas</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="../Mapas/Mapas.html">Ver Mapas →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">22</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-sep"><span>28 Abril 2026 — Update 67</span></div>
+
+            <!-- POST 9 -->
+            <div class="post reveal" data-cat="brawler">
+                <div class="post-header">
+                    <div class="post-emoji">🌟</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Brawlers</div>
+                        <div class="post-date">28 Abr</div>
+                    </div>
+                    <span class="post-badge badge-novo">Novo</span>
+                </div>
+                <div class="post-text"><strong>Starr Nova</strong> chegou ao jogo! A nova brawler Mítica é uma fã de
+                    cosplay que conjura uma espada gigante no Super — <strong>7 segundos de forma suprema</strong> com
+                    conversão de dano em cura. Uma das mecânicas mais originais dos últimos tempos.</div>
+                <div class="post-tags">
+                    <span class="post-tag">Starr Nova</span>
+                    <span class="post-tag">Mítico</span>
+                    <span class="post-tag">Update 67</span>
+                    <span class="post-tag">Novo</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="../Brawlers/Brawlers.html">Ver Brawlers →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">203</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 10 -->
+            <div class="post reveal" data-cat="update">
+                <div class="post-header">
+                    <div class="post-emoji">🏪</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Updates</div>
+                        <div class="post-date">28 Abr</div>
+                    </div>
+                    <span class="post-badge badge-oficial">Oficial</span>
+                </div>
+                <div class="post-text">O <strong>Bazar das Bizarrices</strong> chegou ao Update 67! Nova forma de obter
+                    skins por Bling com ofertas diárias personalizadas. Cada toque = <strong>10 Bling grátis</strong>. A
+                    Juju recebe-te com poses e balões de fala. Descontos de 0% a 100%!</div>
+                <div class="post-tags">
+                    <span class="post-tag">Bazar das Bizarrices</span>
+                    <span class="post-tag">Bling</span>
+                    <span class="post-tag">Shop</span>
+                    <span class="post-tag">Update 67</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="Notícias Atuais/Notas de lançamento de abril de 2026.html">Ver Notas
+                        →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">167</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 11 -->
+            <div class="post reveal" data-cat="skin">
+                <div class="post-header">
+                    <div class="post-emoji">🎶</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Skins</div>
+                        <div class="post-date">28 Abr</div>
+                    </div>
+                </div>
+                <div class="post-text">A <strong>Royale Trunk skin</strong> do evento Keep Brawl Alive foi entregue a
+                    todos os participantes! Uma das skins mais populares dos últimos meses — completamente grátis para
+                    quem completou o evento. Vês a tua na coleção?</div>
+                <div class="post-tags">
+                    <span class="post-tag">Royale Trunk</span>
+                    <span class="post-tag">Keep Brawl Alive</span>
+                    <span class="post-tag">Grátis</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="Notícias Antigas/Keep Brawl Alive.html">Ver evento →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">312</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 12 -->
+            <div class="post reveal" data-cat="torneio">
+                <div class="post-header">
+                    <div class="post-emoji">🏆</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Torneios</div>
+                        <div class="post-date">28 Abr</div>
+                    </div>
+                </div>
+                <div class="post-text">Os resultados das <strong>April Monthly Finals</strong> de todas as regiões foram
+                    confirmados. Os pontos BSC acumulados estão a definir quem vai ao <strong>Brawl Cup em
+                        Berlim</strong> (15 Mai). FUT Esports e ZETA DIVISION lideram as suas respetivas regiões.</div>
+                <div class="post-tags">
+                    <span class="post-tag">BSC 2026</span>
+                    <span class="post-tag">Monthly Finals</span>
+                    <span class="post-tag">Pontos BSC</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="../Torneios/Torneios.html">Ver Torneios →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">38</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feed-empty" id="feedEmpty">
+                <div class="feed-empty-emoji">🔍</div>
+                <p>Nenhuma novidade nesta categoria ainda.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        /* LIKES */
+        function toggleLike(btn) {
+            const liked = btn.classList.toggle("liked");
+            const span = btn.querySelector(".like-count");
+            const count = parseInt(span.textContent);
+            span.textContent = liked ? count + 1 : count - 1;
+            btn.querySelector("span:first-child") ? null : null;
+            btn.innerHTML = (liked ? "❤️" : "🤍") + ` <span class="like-count">${liked ? count + 1 : count - 1}</span>`;
+        }
+
+        /* FILTROS */
+        document.querySelectorAll(".filter-chip").forEach(chip => {
+            chip.addEventListener("click", () => {
+                document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+                chip.classList.add("active");
+                const cat = chip.dataset.cat;
+                let visible = 0;
+                document.querySelectorAll(".post").forEach(post => {
+                    if (cat === "all" || post.dataset.cat === cat) {
+                        post.classList.remove("hidden");
+                        visible++;
+                    } else {
+                        post.classList.add("hidden");
+                    }
+                });
+                // separadores
+                document.querySelectorAll(".day-sep").forEach(sep => {
+                    sep.style.display = cat === "all" ? "block" : "none";
+                });
+                document.getElementById("feedEmpty").style.display = visible === 0 ? "block" : "none";
+            });
+        });
+
+        /* REVEAL */
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.08 });
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+        /* CURSOR */
+        const cursor = document.getElementById("cursor");
+        const ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        document.querySelectorAll("a,button,.post").forEach(el => {
+            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collabs — BrawlZone Wiki</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --green: #22C55E;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --purple: #A855F7;
+            --red: #E8202A;
+            --teal: #00C9A7;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --text-dark: #1A1A2E;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        * {
+            cursor: none !important;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--pink);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(255, 60, 172, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a.active {
+            color: var(--pink);
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* HEADER */
+        .page-header {
+            padding: 8rem 3rem 5rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--dark2);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .header-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 70% at 85% 50%, rgba(255, 60, 172, .2), transparent),
+                radial-gradient(ellipse 40% 50% at 10% 60%, rgba(168, 85, 247, .15), transparent),
+                radial-gradient(ellipse 30% 30% at 50% 10%, rgba(255, 208, 0, .08), transparent);
+        }
+
+        .header-inner {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-eyebrow {
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--pink);
+            margin-bottom: .5rem;
+        }
+
+        .page-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .page-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, .5);
+            max-width: 600px;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hstat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hstat-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .hstat-label {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-top: .2rem;
+        }
+
+        /* GLOW LINE */
+        .glow-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--pink), var(--purple), var(--pink), transparent);
+            opacity: .55;
+        }
+
+        /* LAYOUT */
+        .wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        @media(max-width:700px) {
+            .wrap {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-label {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--pink);
+            margin-bottom: .5rem;
+        }
+
+        .section-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .08), transparent);
+        }
+
+        /* FILTROS */
+        .filter-bar {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .filter-chip {
+            padding: .4rem 1rem;
+            border-radius: 100px;
+            font-size: .8rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: rgba(255, 255, 255, .5);
+            background: transparent;
+            transition: all .2s;
+        }
+
+        .filter-chip:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, .3);
+        }
+
+        .filter-chip.active {
+            color: #fff;
+            border-color: transparent;
+        }
+
+        [data-f="all"].active {
+            background: rgba(255, 255, 255, .15);
+        }
+
+        [data-f="anime"].active {
+            background: var(--red);
+        }
+
+        [data-f="filme"].active {
+            background: var(--blue);
+        }
+
+        [data-f="musica"].active {
+            background: var(--orange);
+        }
+
+        [data-f="serie"].active {
+            background: var(--purple);
+        }
+
+        [data-f="jogo"].active {
+            background: var(--green);
+        }
+
+        [data-f="desporto"].active {
+            background: var(--yellow);
+            color: var(--text-dark);
+        }
+
+        [data-f="marca"].active {
+            background: var(--pink);
+        }
+
+        /* TIMELINE */
+        .timeline-section {
+            background: var(--dark2);
+            padding: 5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .timeline-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        @media(max-width:700px) {
+            .timeline-inner {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: .75rem;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--pink), var(--purple), var(--blue), var(--green), var(--yellow));
+        }
+
+        .tl-year {
+            margin-bottom: 2.5rem;
+        }
+
+        .tl-year-label {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            position: relative;
+        }
+
+        .tl-year-dot {
+            position: absolute;
+            left: -2.1rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid var(--dark2);
+            flex-shrink: 0;
+        }
+
+        .tl-items {
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .tl-item {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform .2s, border-color .2s;
+        }
+
+        .tl-item:hover {
+            transform: translateX(5px);
+        }
+
+        .tl-emoji {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .tl-info {
+            flex: 1;
+        }
+
+        .tl-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: .92rem;
+            margin-bottom: .2rem;
+        }
+
+        .tl-date {
+            font-size: .72rem;
+            color: rgba(255, 255, 255, .3);
+            font-weight: 700;
+        }
+
+        .tl-cat {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .15rem .5rem;
+            border-radius: 100px;
+            flex-shrink: 0;
+        }
+
+        /* COLLAB CARDS GRID */
+        .collabs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* COLLAB CARD */
+        .collab-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform .25s, border-color .25s, box-shadow .25s;
+            position: relative;
+        }
+
+        .collab-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .collab-card.hidden {
+            display: none;
+        }
+
+        .cc-thumb {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cc-thumb-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .cc-emoji {
+            font-size: 5rem;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .5));
+            transition: transform .3s;
+        }
+
+        .collab-card:hover .cc-emoji {
+            transform: scale(1.12) rotate(-5deg);
+        }
+
+        .cc-top-bar {
+            height: 3px;
+            width: 100%;
+        }
+
+        .cc-body {
+            padding: 1.4rem;
+        }
+
+        .cc-metas {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+            margin-bottom: .65rem;
+            align-items: center;
+        }
+
+        .cc-cat {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .2rem .65rem;
+            border-radius: 100px;
+        }
+
+        .cc-year {
+            font-size: .72rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .cc-status {
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .18rem .55rem;
+            border-radius: 100px;
+        }
+
+        .status-disponivel {
+            background: rgba(34, 197, 94, .15);
+            color: var(--green);
+        }
+
+        .status-limitado {
+            background: rgba(255, 208, 0, .15);
+            color: var(--yellow);
+        }
+
+        .status-encerrado {
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .35);
+        }
+
+        .cc-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.15rem;
+            margin-bottom: .35rem;
+        }
+
+        .cc-partner {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .4);
+            margin-bottom: .65rem;
+        }
+
+        .cc-desc {
+            font-size: .85rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .55);
+            margin-bottom: 1rem;
+        }
+
+        .cc-skins-title {
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-bottom: .5rem;
+        }
+
+        .cc-skins {
+            display: flex;
+            flex-direction: column;
+            gap: .35rem;
+        }
+
+        .cc-skin {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            font-size: .82rem;
+        }
+
+        .cc-skin-emoji {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .cc-skin-name {
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .cc-skin-rarity {
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: .12rem .5rem;
+            border-radius: 100px;
+        }
+
+        .r-rare {
+            background: rgba(34, 197, 94, .12);
+            color: var(--green);
+        }
+
+        .r-super {
+            background: rgba(59, 130, 246, .12);
+            color: var(--blue);
+        }
+
+        .r-epic {
+            background: rgba(168, 85, 247, .12);
+            color: var(--purple);
+        }
+
+        .r-mythic {
+            background: rgba(239, 68, 68, .12);
+            color: #FCA5A5;
+        }
+
+        .r-legendary {
+            background: rgba(255, 208, 0, .12);
+            color: var(--yellow);
+        }
+
+        .r-free {
+            background: rgba(34, 197, 94, .2);
+            color: var(--green);
+        }
+
+        /* RATING STARS */
+        .cc-footer {
+            margin-top: 1rem;
+            padding-top: .75rem;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cc-rating {
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+            font-size: .78rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .cc-rating .stars {
+            color: var(--yellow);
+            font-size: .85rem;
+        }
+
+        .cc-update {
+            font-size: .72rem;
+            color: rgba(255, 255, 255, .25);
+            font-weight: 700;
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .55s ease, transform .55s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* EMPTY */
+        .no-results {
+            text-align: center;
+            padding: 4rem;
+            color: rgba(255, 255, 255, .3);
+            display: none;
+        }
+
+        .no-results-emoji {
+            font-size: 3.5rem;
+            margin-bottom: .75rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../Brawlers/Brawlers.html">Brawlers</a></li>
+            <li><a href="../Temporadas/Temporadas.html">Updates</a></li>
+            <li><a href="../Notícias/Notícias.html">Notícias</a></li>
+            <li><a href="Collabs.html" class="active">Collabs</a></li>
+            <li><a href="../Guias/Guias.html">Guias</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="header-bg"></div>
+        <div class="header-inner">
+            <p class="page-eyebrow">Parcerias Oficiais</p>
+            <h1 class="page-title">🤝 Collabs</h1>
+            <p class="page-desc">Todas as colaborações oficiais de Brawl Stars — animes, filmes, séries, música,
+                desporto e marcas. Timeline cronológica e detalhe das skins de cada collab.</p>
+            <div class="header-stats">
+                <div class="hstat"><span class="hstat-num">15+</span><span class="hstat-label">Collabs totais</span>
+                </div>
+                <div class="hstat"><span class="hstat-num">2024</span><span class="hstat-label">Era das grandes
+                        collabs</span></div>
+                <div class="hstat"><span class="hstat-num">3</span><span class="hstat-label">Collabs ativas agora</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="glow-line"></div>
+
+    <!-- TIMELINE -->
+    <section class="timeline-section">
+        <div class="timeline-inner">
+            <div class="section-label reveal">Cronologia</div>
+            <h2 class="section-title reveal">Todas as Collabs por Ano</h2>
+            <div class="timeline">
+
+                <!-- 2026 -->
+                <div class="tl-year reveal">
+                    <div class="tl-year-label">
+                        <div class="tl-year-dot" style="background:var(--pink)"></div>
+                        <span style="color:var(--pink)">2026</span>
+                    </div>
+                    <div class="tl-items">
+                        <div class="tl-item">
+                            <div class="tl-emoji">🦸</div>
+                            <div class="tl-info">
+                                <div class="tl-name">My Hero Academia</div>
+                                <div class="tl-date">28 Abril 2026 · Até Maio 2027</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(239,68,68,.15);color:#FCA5A5">Anime</div>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-emoji">👟</div>
+                            <div class="tl-info">
+                                <div class="tl-name">Adidas × Brawl Stars</div>
+                                <div class="tl-date">Maio 2026 · Limitado</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(255,60,172,.15);color:var(--pink)">Marca</div>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-emoji">🎸</div>
+                            <div class="tl-info">
+                                <div class="tl-name">Electric Callboy — HYPERCHARGED</div>
+                                <div class="tl-date">24 Abril 2026 · Music Video</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(255,107,0,.15);color:var(--orange)">Música</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2025 -->
+                <div class="tl-year reveal">
+                    <div class="tl-year-label">
+                        <div class="tl-year-dot" style="background:var(--purple)"></div>
+                        <span style="color:var(--purple)">2025</span>
+                    </div>
+                    <div class="tl-items">
+                        <div class="tl-item">
+                            <div class="tl-emoji">👾</div>
+                            <div class="tl-info">
+                                <div class="tl-name">Stranger Things</div>
+                                <div class="tl-date">2025 · Disponível até Nov 2026</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(168,85,247,.15);color:var(--purple)">Série</div>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-emoji">🦖</div>
+                            <div class="tl-info">
+                                <div class="tl-name">Godzilla × Brawl Stars</div>
+                                <div class="tl-date">Maio 2025</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(34,197,94,.15);color:var(--green)">Filme</div>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-emoji">🃏</div>
+                            <div class="tl-info">
+                                <div class="tl-name">UNO × Brawl Stars</div>
+                                <div class="tl-date">2025 · Encerrado Set 2025</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(59,130,246,.15);color:var(--blue)">Jogo</div>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-emoji">🚇</div>
+                            <div class="tl-info">
+                                <div class="tl-name">Subway Surfers</div>
+                                <div class="tl-date">2025 · Disponível até Jan 2027</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(59,130,246,.15);color:var(--blue)">Jogo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2024 -->
+                <div class="tl-year reveal">
+                    <div class="tl-year-label">
+                        <div class="tl-year-dot" style="background:var(--orange)"></div>
+                        <span style="color:var(--orange)">2024 — Era das Grandes Collabs</span>
+                    </div>
+                    <div class="tl-items">
+                        <div class="tl-item">
+                            <div class="tl-emoji">🧽</div>
+                            <div class="tl-info">
+                                <div class="tl-name">SpongeBob SquarePants</div>
+                                <div class="tl-date">2024 · A collab mais icónica</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(255,208,0,.15);color:var(--yellow)">Série</div>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-emoji">🚀</div>
+                            <div class="tl-info">
+                                <div class="tl-name">Toy Story (Disney/Pixar)</div>
+                                <div class="tl-date">2024 · Encerrado Jan 2026</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(59,130,246,.15);color:var(--blue)">Filme</div>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-emoji">🎮</div>
+                            <div class="tl-info">
+                                <div class="tl-name">Squad Busters × Brawl Stars</div>
+                                <div class="tl-date">Abril 2024 · Shelly grátis</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(34,197,94,.15);color:var(--green)">Jogo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ANTIGAS -->
+                <div class="tl-year reveal">
+                    <div class="tl-year-label">
+                        <div class="tl-year-dot" style="background:rgba(255,255,255,.25)"></div>
+                        <span style="color:rgba(255,255,255,.35)">Antigas (2018–2023)</span>
+                    </div>
+                    <div class="tl-items">
+                        <div class="tl-item">
+                            <div class="tl-emoji">⚽</div>
+                            <div class="tl-info">
+                                <div class="tl-name">PSG × Brawl Stars</div>
+                                <div class="tl-date">2018 · Skins PSG</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(255,208,0,.12);color:rgba(255,208,0,.6)">Desporto
+                            </div>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-emoji">🐰</div>
+                            <div class="tl-info">
+                                <div class="tl-name">Line Friends / BT21</div>
+                                <div class="tl-date">2019–2020 · Skins permanentes</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(255,60,172,.12);color:rgba(255,60,172,.6)">Marca
+                            </div>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-emoji">⚔️</div>
+                            <div class="tl-info">
+                                <div class="tl-name">Clash of Clans / Clash Royale</div>
+                                <div class="tl-date">2020–2022 · Crossover Supercell</div>
+                            </div>
+                            <div class="tl-cat" style="background:rgba(34,197,94,.12);color:rgba(34,197,94,.6)">Jogo
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- COLLAB CARDS -->
+    <div class="wrap">
+        <section class="section">
+            <div class="section-label reveal">Detalhe completo</div>
+            <h2 class="section-title reveal">Todas as Collabs</h2>
+
+            <div class="filter-bar reveal">
+                <button class="filter-chip active" data-f="all">Todas</button>
+                <button class="filter-chip" data-f="anime">🎌 Anime</button>
+                <button class="filter-chip" data-f="filme">🎬 Filme</button>
+                <button class="filter-chip" data-f="serie">📺 Série</button>
+                <button class="filter-chip" data-f="musica">🎵 Música</button>
+                <button class="filter-chip" data-f="jogo">🎮 Jogo</button>
+                <button class="filter-chip" data-f="desporto">⚽ Desporto</button>
+                <button class="filter-chip" data-f="marca">🏷️ Marca</button>
+            </div>
+
+            <div class="collabs-grid" id="collabsGrid">
+
+                <!-- MY HERO ACADEMIA -->
+                <div class="collab-card reveal" data-cat="anime">
+                    <div class="cc-top-bar" style="background:linear-gradient(90deg,#EF4444,#FF6B00)"></div>
+                    <div class="cc-thumb">
+                        <div class="cc-thumb-bg"
+                            style="background:radial-gradient(ellipse at center,rgba(239,68,68,.3),transparent 70%)">
+                        </div>
+                        <div class="cc-emoji">🦸</div>
+                    </div>
+                    <div class="cc-body">
+                        <div class="cc-metas">
+                            <span class="cc-cat" style="background:rgba(239,68,68,.15);color:#FCA5A5">🎌 Anime</span>
+                            <span class="cc-year">Abril 2026</span>
+                            <span class="cc-status status-disponivel">✅ Disponível</span>
+                        </div>
+                        <div class="cc-name">My Hero Academia</div>
+                        <div class="cc-partner">Kohei Horikoshi × Bones Studio × Supercell</div>
+                        <div class="cc-desc">A primeira collab de anime da história de Brawl Stars! MHA escolhida pela
+                            Supercell por ser culturalmente relevante após o fim da série em Dezembro 2025. 5 skins com
+                            os personagens mais icónicos.</div>
+                        <div class="cc-skins-title">Skins incluídas</div>
+                        <div class="cc-skins">
+                            <div class="cc-skin"><span class="cc-skin-emoji">💪</span><span class="cc-skin-name">El
+                                    Primo: All Might</span><span class="cc-skin-rarity r-legendary">Legendary</span>
+                            </div>
+                            <div class="cc-skin"><span class="cc-skin-emoji">😈</span><span class="cc-skin-name">Gus:
+                                    Tomura Shigaraki</span><span class="cc-skin-rarity r-mythic">Mythic</span></div>
+                            <div class="cc-skin"><span class="cc-skin-emoji">🌸</span><span class="cc-skin-name">Janet:
+                                    Uravity</span><span class="cc-skin-rarity r-epic">Epic</span></div>
+                            <div class="cc-skin"><span class="cc-skin-emoji">🥋</span><span class="cc-skin-name">Fang:
+                                    Deku</span><span class="cc-skin-rarity r-epic">Epic</span></div>
+                            <div class="cc-skin"><span class="cc-skin-emoji">💥</span><span class="cc-skin-name">Edgar:
+                                    Bakugo</span><span class="cc-skin-rarity r-mythic">Mythic</span></div>
+                        </div>
+                        <div class="cc-footer">
+                            <div class="cc-rating"><span class="stars">★★★★★</span> 4.8</div>
+                            <div class="cc-update">Até Maio 2027</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELECTRIC CALLBOY -->
+                <div class="collab-card reveal" data-cat="musica">
+                    <div class="cc-top-bar" style="background:linear-gradient(90deg,var(--red),var(--orange))"></div>
+                    <div class="cc-thumb">
+                        <div class="cc-thumb-bg"
+                            style="background:radial-gradient(ellipse at center,rgba(232,32,42,.3),transparent 70%)">
+                        </div>
+                        <div class="cc-emoji">🎸</div>
+                    </div>
+                    <div class="cc-body">
+                        <div class="cc-metas">
+                            <span class="cc-cat" style="background:rgba(255,107,0,.15);color:var(--orange)">🎵
+                                Música</span>
+                            <span class="cc-year">Abril 2026</span>
+                            <span class="cc-status status-disponivel">✅ Ativo</span>
+                        </div>
+                        <div class="cc-name">Electric Callboy — HYPERCHARGED</div>
+                        <div class="cc-partner">Electric Callboy × Supercell · Álbum Tanzneid</div>
+                        <div class="cc-desc">Banda alemã de electronic metal criou o music video "HYPERCHARGED" para
+                            revelar Damian. 1 milhão de likes em tempo recorde, desbloqueando um Chaos Drop para todos
+                            os participantes do Keep Brawl Alive.</div>
+                        <div class="cc-skins-title">Conteúdo exclusivo</div>
+                        <div class="cc-skins">
+                            <div class="cc-skin"><span class="cc-skin-emoji">🎤</span><span class="cc-skin-name">Damian
+                                    (novo brawler)</span><span class="cc-skin-rarity r-mythic">Mythic</span></div>
+                            <div class="cc-skin"><span class="cc-skin-emoji">🎵</span><span class="cc-skin-name">Music
+                                    Video HYPERCHARGED</span><span class="cc-skin-rarity r-free">Grátis</span></div>
+                        </div>
+                        <div class="cc-footer">
+                            <div class="cc-rating"><span class="stars">★★★★★</span> 4.9</div>
+                            <div class="cc-update">Permanente</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADIDAS -->
+                <div class="collab-card reveal" data-cat="marca">
+                    <div class="cc-top-bar" style="background:linear-gradient(90deg,#fff,#000)"></div>
+                    <div class="cc-thumb">
+                        <div class="cc-thumb-bg"
+                            style="background:radial-gradient(ellipse at center,rgba(255,255,255,.15),transparent 70%)">
+                        </div>
+                        <div class="cc-emoji">👟</div>
+                    </div>
+                    <div class="cc-body">
+                        <div class="cc-metas">
+                            <span class="cc-cat" style="background:rgba(255,60,172,.15);color:var(--pink)">🏷️
+                                Marca</span>
+                            <span class="cc-year">Maio 2026</span>
+                            <span class="cc-status status-limitado">⏳ Limitado</span>
+                        </div>
+                        <div class="cc-name">Adidas × Brawl Stars</div>
+                        <div class="cc-partner">Adidas × Supercell · Evento de Futebol</div>
+                        <div class="cc-desc">Parceria com a Adidas com o novo modo Megabola, Supercopa Starr da Adidas e
+                            o ambiente inédito da Arena Adidas. Inclui skins exclusivas e o primeiro modo com goleiros
+                            automáticos.</div>
+                        <div class="cc-skins-title">Conteúdo exclusivo</div>
+                        <div class="cc-skins">
+                            <div class="cc-skin"><span class="cc-skin-emoji">🏟️</span><span class="cc-skin-name">Arena
+                                    Adidas (ambiente)</span><span class="cc-skin-rarity r-free">Grátis</span></div>
+                            <div class="cc-skin"><span class="cc-skin-emoji">⚽</span><span class="cc-skin-name">Modo
+                                    Megabola</span><span class="cc-skin-rarity r-free">Grátis</span></div>
+                        </div>
+                        <div class="cc-footer">
+                            <div class="cc-rating"><span class="stars">★★★★☆</span> 3.9</div>
+                            <div class="cc-update">Evento Limitado</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STRANGER THINGS -->
+                <div class="collab-card reveal" data-cat="serie">
+                    <div class="cc-top-bar" style="background:linear-gradient(90deg,var(--purple),#1a0030)"></div>
+                    <div class="cc-thumb">
+                        <div class="cc-thumb-bg"
+                            style="background:radial-gradient(ellipse at center,rgba(168,85,247,.3),transparent 70%)">
+                        </div>
+                        <div class="cc-emoji">👾</div>
+                    </div>
+                    <div class="cc-body">
+                        <div class="cc-metas">
+                            <span class="cc-cat" style="background:rgba(168,85,247,.15);color:var(--purple)">📺
+                                Série</span>
+                            <span class="cc-year">2025</span>
+                            <span class="cc-status status-disponivel">✅ Disponível</span>
+                        </div>
+                        <div class="cc-name">Stranger Things</div>
+                        <div class="cc-partner">Netflix × Supercell</div>
+                        <div class="cc-desc">Collab com a série cult da Netflix — o Upside Down chegou a Starr Park!
+                            Skins inspiradas nas personagens mais icónicas da série, com efeitos visuais do Mundo
+                            Invertido.</div>
+                        <div class="cc-skins-title">Skins incluídas</div>
+                        <div class="cc-skins">
+                            <div class="cc-skin"><span class="cc-skin-emoji">🔮</span><span class="cc-skin-name">Eleven
+                                    Lumi</span><span class="cc-skin-rarity r-legendary">Legendary</span></div>
+                            <div class="cc-skin"><span class="cc-skin-emoji">😤</span><span class="cc-skin-name">Eleven
+                                    Edgar</span><span class="cc-skin-rarity r-legendary">Legendary</span></div>
+                        </div>
+                        <div class="cc-footer">
+                            <div class="cc-rating"><span class="stars">★★★★★</span> 4.7</div>
+                            <div class="cc-update">Até Nov 2026</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GODZILLA -->
+                <div class="collab-card reveal" data-cat="filme">
+                    <div class="cc-top-bar" style="background:linear-gradient(90deg,var(--green),#004400)"></div>
+                    <div class="cc-thumb">
+                        <div class="cc-thumb-bg"
+                            style="background:radial-gradient(ellipse at center,rgba(34,197,94,.25),transparent 70%)">
+                        </div>
+                        <div class="cc-emoji">🦖</div>
+                    </div>
+                    <div class="cc-body">
+                        <div class="cc-metas">
+                            <span class="cc-cat" style="background:rgba(34,197,94,.15);color:var(--green)">🎬
+                                Filme</span>
+                            <span class="cc-year">Maio 2025</span>
+                            <span class="cc-status status-encerrado">⚫ Encerrado</span>
+                        </div>
+                        <div class="cc-name">Godzilla × Brawl Stars</div>
+                        <div class="cc-partner">Legendary × Supercell</div>
+                        <div class="cc-desc">Godzilla invadiu Starr Park! Evento com modo especial onde os Brawlers
+                            tinham de enfrentar o monstro. Skins temáticas com efeitos de radiação. Um dos eventos mais
+                            espetaculares visualmente.</div>
+                        <div class="cc-skins-title">Conteúdo incluído</div>
+                        <div class="cc-skins">
+                            <div class="cc-skin"><span class="cc-skin-emoji">🦖</span><span class="cc-skin-name">Skins
+                                    temáticas Godzilla</span><span class="cc-skin-rarity r-epic">Epic+</span></div>
+                            <div class="cc-skin"><span class="cc-skin-emoji">🌊</span><span class="cc-skin-name">Modo
+                                    especial Godzilla</span><span class="cc-skin-rarity r-free">Evento</span></div>
+                        </div>
+                        <div class="cc-footer">
+                            <div class="cc-rating"><span class="stars">★★★★☆</span> 4.2</div>
+                            <div class="cc-update">Encerrado</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SPONGEBOB -->
+                <div class="collab-card reveal" data-cat="serie">
+                    <div class="cc-top-bar" style="background:linear-gradient(90deg,var(--yellow),var(--orange))"></div>
+                    <div class="cc-thumb">
+                        <div class="cc-thumb-bg"
+                            style="background:radial-gradient(ellipse at center,rgba(255,208,0,.3),transparent 70%)">
+                        </div>
+                        <div class="cc-emoji">🧽</div>
+                    </div>
+                    <div class="cc-body">
+                        <div class="cc-metas">
+                            <span class="cc-cat" style="background:rgba(255,208,0,.15);color:var(--yellow)">📺
+                                Série</span>
+                            <span class="cc-year">2024</span>
+                            <span class="cc-status status-encerrado">⚫ Encerrado</span>
+                        </div>
+                        <div class="cc-name">SpongeBob SquarePants</div>
+                        <div class="cc-partner">Nickelodeon × Supercell</div>
+                        <div class="cc-desc">A collab mais icónica da história de Brawl Stars! Bikini Bottom chegou a
+                            Starr Park com skins para os brawlers mais populares. Considerada a melhor collab de sempre
+                            pela maioria da comunidade.</div>
+                        <div class="cc-skins-title">Skins incluídas</div>
+                        <div class="cc-skins">
+                            <div class="cc-skin"><span class="cc-skin-emoji">🧽</span><span
+                                    class="cc-skin-name">SpongeBob (múltiplos brawlers)</span><span
+                                    class="cc-skin-rarity r-epic">Epic+</span></div>
+                            <div class="cc-skin"><span class="cc-skin-emoji">⭐</span><span class="cc-skin-name">Patrick
+                                    Star</span><span class="cc-skin-rarity r-legendary">Legendary</span></div>
+                        </div>
+                        <div class="cc-footer">
+                            <div class="cc-rating"><span class="stars">★★★★★</span> 4.9</div>
+                            <div class="cc-update">Encerrado · Icónica</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TOY STORY -->
+                <div class="collab-card reveal" data-cat="filme">
+                    <div class="cc-top-bar" style="background:linear-gradient(90deg,var(--blue),var(--purple))"></div>
+                    <div class="cc-thumb">
+                        <div class="cc-thumb-bg"
+                            style="background:radial-gradient(ellipse at center,rgba(59,130,246,.25),transparent 70%)">
+                        </div>
+                        <div class="cc-emoji">🚀</div>
+                    </div>
+                    <div class="cc-body">
+                        <div class="cc-metas">
+                            <span class="cc-cat" style="background:rgba(59,130,246,.15);color:var(--blue)">🎬
+                                Filme</span>
+                            <span class="cc-year">2024</span>
+                            <span class="cc-status status-encerrado">⚫ Encerrado</span>
+                        </div>
+                        <div class="cc-name">Toy Story (Disney/Pixar)</div>
+                        <div class="cc-partner">Disney × Pixar × Supercell</div>
+                        <div class="cc-desc">Buzz Lightyear e os amigos chegaram a Brawl Stars! Spike tornou-se Buzz
+                            Lightyear numa das skins mais criativas já feitas. Brawler limitado disponível no evento.
+                        </div>
+                        <div class="cc-skins-title">Skins incluídas</div>
+                        <div class="cc-skins">
+                            <div class="cc-skin"><span class="cc-skin-emoji">🚀</span><span class="cc-skin-name">Buzz
+                                    Lightyear Spike</span><span class="cc-skin-rarity r-legendary">Legendary</span>
+                            </div>
+                            <div class="cc-skin"><span class="cc-skin-emoji">🤠</span><span class="cc-skin-name">Woody
+                                    (brawler limitado)</span><span class="cc-skin-rarity r-epic">Epic</span></div>
+                        </div>
+                        <div class="cc-footer">
+                            <div class="cc-rating"><span class="stars">★★★★☆</span> 4.1</div>
+                            <div class="cc-update">Encerrado Jan 2026</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UNO -->
+                <div class="collab-card reveal" data-cat="jogo">
+                    <div class="cc-top-bar" style="background:linear-gradient(90deg,var(--red),var(--blue))"></div>
+                    <div class="cc-thumb">
+                        <div class="cc-thumb-bg"
+                            style="background:radial-gradient(ellipse at center,rgba(239,68,68,.2),transparent 70%)">
+                        </div>
+                        <div class="cc-emoji">🃏</div>
+                    </div>
+                    <div class="cc-body">
+                        <div class="cc-metas">
+                            <span class="cc-cat" style="background:rgba(59,130,246,.15);color:var(--blue)">🎮
+                                Jogo</span>
+                            <span class="cc-year">2025</span>
+                            <span class="cc-status status-encerrado">⚫ Encerrado</span>
+                        </div>
+                        <div class="cc-name">UNO × Chester</div>
+                        <div class="cc-partner">Mattel × Supercell</div>
+                        <div class="cc-desc">Chester recebeu uma skin temática do jogo de cartas UNO! A skin foi
+                            disponibilizada gratuitamente através de um desafio, tornando-se uma das collabs com melhor
+                            receção da comunidade.</div>
+                        <div class="cc-skins-title">Skins incluídas</div>
+                        <div class="cc-skins">
+                            <div class="cc-skin"><span class="cc-skin-emoji">🃏</span><span class="cc-skin-name">Uno
+                                    Chester</span><span class="cc-skin-rarity r-mythic">Mythic</span></div>
+                        </div>
+                        <div class="cc-footer">
+                            <div class="cc-rating"><span class="stars">★★★★☆</span> 4.3</div>
+                            <div class="cc-update">Encerrado Set 2025</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SQUAD BUSTERS -->
+                <div class="collab-card reveal" data-cat="jogo">
+                    <div class="cc-top-bar" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div>
+                    <div class="cc-thumb">
+                        <div class="cc-thumb-bg"
+                            style="background:radial-gradient(ellipse at center,rgba(34,197,94,.25),transparent 70%)">
+                        </div>
+                        <div class="cc-emoji">🎮</div>
+                    </div>
+                    <div class="cc-body">
+                        <div class="cc-metas">
+                            <span class="cc-cat" style="background:rgba(34,197,94,.15);color:var(--green)">🎮
+                                Jogo</span>
+                            <span class="cc-year">Abril 2024</span>
+                            <span class="cc-status status-disponivel">✅ Disponível</span>
+                        </div>
+                        <div class="cc-name">Squad Busters × Brawl Stars</div>
+                        <div class="cc-partner">Supercell × Supercell</div>
+                        <div class="cc-desc">Crossover entre jogos da Supercell! A Squad Buster Shelly foi
+                            disponibilizada gratuitamente a todos os jogadores de Brawl Stars. Um dos crossovers mais
+                            simples mas com boa receção.</div>
+                        <div class="cc-skins-title">Skins incluídas</div>
+                        <div class="cc-skins">
+                            <div class="cc-skin"><span class="cc-skin-emoji">🔫</span><span class="cc-skin-name">Squad
+                                    Buster Shelly</span><span class="cc-skin-rarity r-free">Grátis</span></div>
+                        </div>
+                        <div class="cc-footer">
+                            <div class="cc-rating"><span class="stars">★★★☆☆</span> 3.5</div>
+                            <div class="cc-update">Skin permanente</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PSG -->
+                <div class="collab-card reveal" data-cat="desporto">
+                    <div class="cc-top-bar" style="background:linear-gradient(90deg,#001A5E,#C90A0A)"></div>
+                    <div class="cc-thumb">
+                        <div class="cc-thumb-bg"
+                            style="background:radial-gradient(ellipse at center,rgba(0,26,94,.4),transparent 70%)">
+                        </div>
+                        <div class="cc-emoji">⚽</div>
+                    </div>
+                    <div class="cc-body">
+                        <div class="cc-metas">
+                            <span class="cc-cat" style="background:rgba(255,208,0,.12);color:rgba(255,208,0,.8)">⚽
+                                Desporto</span>
+                            <span class="cc-year">2018</span>
+                            <span class="cc-status status-disponivel">✅ Permanente</span>
+                        </div>
+                        <div class="cc-name">Paris Saint-Germain (PSG)</div>
+                        <div class="cc-partner">PSG × Supercell · Primeira collab</div>
+                        <div class="cc-desc">A primeira collab da história de Brawl Stars! PSG Shelly e PSG Mic foram
+                            distribuídas gratuitamente através de desafios. Vídeos de jogadores do PSG a jogar Brawl
+                            Ball foram publicados.</div>
+                        <div class="cc-skins-title">Skins incluídas</div>
+                        <div class="cc-skins">
+                            <div class="cc-skin"><span class="cc-skin-emoji">🔫</span><span class="cc-skin-name">PSG
+                                    Shelly</span><span class="cc-skin-rarity r-free">Grátis</span></div>
+                        </div>
+                        <div class="cc-footer">
+                            <div class="cc-rating"><span class="stars">★★★☆☆</span> 3.2</div>
+                            <div class="cc-update">Skins permanentes</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="no-results" id="noResults">
+                <div class="no-results-emoji">🤝</div>
+                <p>Nenhuma collab nesta categoria ainda.</p>
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        /* FILTROS */
+        document.querySelectorAll(".filter-chip").forEach(chip => {
+            chip.addEventListener("click", () => {
+                document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+                chip.classList.add("active");
+                const f = chip.dataset.f;
+                let visible = 0;
+                document.querySelectorAll(".collab-card").forEach(card => {
+                    if (f === "all" || card.dataset.cat === f) { card.classList.remove("hidden"); visible++; }
+                    else card.classList.add("hidden");
+                });
+                document.getElementById("noResults").style.display = visible === 0 ? "block" : "none";
+            });
+        });
+
+        /* REVEAL */
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.06 });
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+        /* CURSOR */
+        const cursor = document.getElementById("cursor");
+        const ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        document.querySelectorAll("a,button,.collab-card,.tl-item").forEach(el => {
+            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+        });
+    </script>
+</body>
+
+</html>

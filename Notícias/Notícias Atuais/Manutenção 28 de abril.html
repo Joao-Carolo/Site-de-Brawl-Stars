@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manutenção 28 de Abril — BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --red: #E8202A;
+            --green: #22C55E;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --purple: #A855F7;
+            --teal: #00C9A7;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --text-dark: #1A1A2E;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        * {
+            cursor: none !important;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--yellow);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(255, 208, 0, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* HERO */
+        .hero {
+            padding: 8rem 3rem 5rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--dark2);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 70% at 85% 50%, rgba(239, 68, 68, .15), transparent),
+                radial-gradient(ellipse 40% 50% at 10% 60%, rgba(255, 208, 0, .1), transparent);
+        }
+
+        .hero-inner {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hero-metas {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-tag {
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .28rem .8rem;
+            border-radius: 100px;
+        }
+
+        .tag-manut {
+            background: rgba(239, 68, 68, .15);
+            border: 1px solid rgba(239, 68, 68, .3);
+            color: #FCA5A5;
+        }
+
+        .tag-oficial {
+            background: rgba(255, 208, 0, .15);
+            border: 1px solid rgba(255, 208, 0, .3);
+            color: var(--yellow);
+        }
+
+        .tag-date {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: rgba(255, 255, 255, .5);
+        }
+
+        .hero-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2rem, 6vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: .75rem;
+        }
+
+        .hero-title span {
+            background: linear-gradient(90deg, #FCA5A5, var(--red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, .55);
+            max-width: 620px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+        }
+
+        .hero-pill {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .09);
+            border-radius: 100px;
+            padding: .32rem .9rem;
+            font-size: .78rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        /* GLOW LINE */
+        .glow-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--red), var(--orange), var(--red), transparent);
+            opacity: .55;
+        }
+
+        /* LAYOUT */
+        .article-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 3rem 6rem;
+        }
+
+        @media(max-width:700px) {
+            .article-wrap {
+                padding: 0 1.5rem 4rem;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 4rem;
+            }
+        }
+
+        /* SECÇÕES */
+        .art-section {
+            padding: 3.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .art-section:last-child {
+            border-bottom: none;
+        }
+
+        .art-eyebrow {
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            margin-bottom: .5rem;
+        }
+
+        .art-h2 {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .art-h2 .h2-icon {
+            font-size: 1.4rem;
+        }
+
+        .art-p {
+            font-size: .95rem;
+            line-height: 1.85;
+            color: rgba(255, 255, 255, .62);
+            margin-bottom: 1rem;
+        }
+
+        .art-p strong {
+            color: #fff;
+        }
+
+        /* BUGFIXES */
+        .bug-list {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+
+        .bug-item {
+            display: flex;
+            gap: .75rem;
+            align-items: flex-start;
+            font-size: .9rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .62);
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 10px;
+            padding: .7rem 1rem;
+        }
+
+        .bug-icon {
+            flex-shrink: 0;
+            color: var(--green);
+            font-size: 1rem;
+            margin-top: .1rem;
+        }
+
+        .bug-item.important {
+            background: rgba(239, 68, 68, .05);
+            border-color: rgba(239, 68, 68, .15);
+        }
+
+        .bug-item.important .bug-icon {
+            color: #FCA5A5;
+        }
+
+        /* BALANCE */
+        .balance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .balance-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 14px;
+            padding: 1.25rem;
+            border-left: 3px solid transparent;
+            transition: transform .2s;
+        }
+
+        .balance-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .balance-card.nerf {
+            border-left-color: var(--red);
+        }
+
+        .balance-header {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: .75rem;
+        }
+
+        .balance-emoji {
+            font-size: 1.5rem;
+        }
+
+        .balance-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: .95rem;
+        }
+
+        .balance-type {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .15rem .5rem;
+            border-radius: 100px;
+            margin-left: auto;
+        }
+
+        .nerf .balance-type {
+            background: rgba(239, 68, 68, .15);
+            color: #FCA5A5;
+        }
+
+        .balance-changes {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+
+        .balance-change {
+            font-size: .82rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .55);
+            display: flex;
+            gap: .5rem;
+        }
+
+        .balance-arrow {
+            flex-shrink: 0;
+            font-weight: 800;
+            color: var(--red);
+        }
+
+        .balance-reason {
+            font-size: .78rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .35);
+            margin-top: .5rem;
+            font-style: italic;
+            padding-top: .5rem;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        /* INFO BOX */
+        .info-box {
+            border-radius: 12px;
+            padding: 1.1rem 1.4rem;
+            margin: 1.25rem 0;
+            display: flex;
+            gap: .9rem;
+            align-items: flex-start;
+        }
+
+        .info-box-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .info-box-text {
+            font-size: .9rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .info-box-text strong {
+            color: #fff;
+        }
+
+        .info-box.green {
+            background: rgba(34, 197, 94, .07);
+            border: 1px solid rgba(34, 197, 94, .2);
+        }
+
+        .info-box.red {
+            background: rgba(239, 68, 68, .07);
+            border: 1px solid rgba(239, 68, 68, .2);
+        }
+
+        .info-box.yellow {
+            background: rgba(255, 208, 0, .07);
+            border: 1px solid rgba(255, 208, 0, .2);
+        }
+
+        /* FOOTER */
+        .article-footer {
+            background: var(--dark2);
+            border-radius: 18px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            border: 1px solid rgba(255, 255, 255, .07);
+            margin-top: 3rem;
+        }
+
+        .footer-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            margin-bottom: .3rem;
+        }
+
+        .footer-sub {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: var(--yellow);
+            color: var(--text-dark);
+            font-weight: 800;
+            font-size: .85rem;
+            padding: .65rem 1.4rem;
+            border-radius: 100px;
+            border: none;
+            transition: transform .2s, box-shadow .2s;
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 208, 0, .3);
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .55s ease, transform .55s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="../../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../../Brawlers/Brawlers.html">Brawlers</a></li>
+            <li><a href="../../Temporadas/Temporadas.html">Updates</a></li>
+            <li><a href="../Notícias.html">Notícias</a></li>
+            <li><a href="../../Guias/Guias.html">Guias</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-inner">
+            <div class="hero-metas">
+                <span class="hero-tag tag-manut">⚙️ Manutenção</span>
+                <span class="hero-tag tag-oficial">⭐ Oficial Supercell</span>
+                <span class="hero-tag tag-date">📅 28 de Abril de 2026</span>
+            </div>
+            <h1 class="hero-title">Manutenção:<br><span>28 de Abril de 2026</span></h1>
+            <p class="hero-desc">Patch de emergência lançado após o Update 67 — correção de erros críticos incluindo o
+                bug da Colette, problemas com o Super do Damian e ajustes de balanceamento urgentes para vários
+                brawlers.</p>
+            <div class="hero-pills">
+                <div class="hero-pill">🐛 12 Correções</div>
+                <div class="hero-pill">⚖️ 6 Nerfs</div>
+                <div class="hero-pill">📊 Colette reativada</div>
+                <div class="hero-pill">🎤 Damian nerfado</div>
+                <div class="hero-pill">🌑 Sirius nerfado</div>
+            </div>
+        </div>
+    </header>
+    <div class="glow-line"></div>
+
+    <div class="article-wrap">
+
+        <!-- CONTEXTO -->
+        <section class="art-section reveal">
+            <div class="art-eyebrow" style="color:var(--red)">Porquê esta manutenção?</div>
+            <h2 class="art-h2"><span class="h2-icon">⚠️</span> O que aconteceu?</h2>
+            <p class="art-p">Após o lançamento do Update 67, vários <strong>bugs críticos</strong> foram descobertos —
+                em especial com a Colette que causava dano excessivo com o Super hipercarregado, e problemas graves com
+                o Super do Damian. A Supercell desativou temporariamente a Colette e lançou este patch de emergência.
+            </p>
+            <div class="info-box green">
+                <div class="info-box-icon">✅</div>
+                <div class="info-box-text"><strong>A Colette foi reativada</strong> após a correção dos bugs críticos
+                    relacionados ao seu Super hipercarregado. Já podes jogar com ela normalmente!</div>
+            </div>
+            <div class="info-box red">
+                <div class="info-box-icon">⚡</div>
+                <div class="info-box-text"><strong>Damian nerfado de urgência</strong> — o win rate de 66.2% no
+                    lançamento era demasiado alto. Este patch traz vários nerfs ao seu kit para equilibrar o meta.</div>
+            </div>
+        </section>
+
+        <!-- CORREÇÕES DE ERROS -->
+        <section class="art-section reveal">
+            <div class="art-eyebrow" style="color:var(--green)">Patch de Emergência</div>
+            <h2 class="art-h2"><span class="h2-icon">🐛</span> Correções de Erros</h2>
+            <div class="bug-list">
+                <div class="bug-item important">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigido o erro em que <strong>Colette causava ~4.600 pontos de dano base a mais</strong>
+                        além do dano do Super ao usar o Super hipercarregado.</span>
+                </div>
+                <div class="bug-item important">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigido o erro em que o <strong>segundo escudo da Star Power da Colette</strong> permanecia
+                        ativo após a interrupção do Super (até ser eliminada).</span>
+                </div>
+                <div class="bug-item important">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigida a <strong>falha no servidor</strong> causada por certos Brawlers — Mina, Spike, Meg,
+                        Damian, entre outros.</span>
+                </div>
+                <div class="bug-item">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigido o erro em que o <strong>ícone de Prestígio do Trunk</strong> era exibido
+                        incorretamente como o ícone da Starr Nova.</span>
+                </div>
+                <div class="bug-item">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigido o erro que impedia o desbloqueio do <strong>cartão de batalha do Prestígio
+                            100</strong> para jogadores que já tinham atingido o limite antes da atualização.</span>
+                </div>
+                <div class="bug-item">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigido o erro em que <strong>itens de personalização exclusivos</strong> (ícone de
+                        criadores, ocorrência da plataforma Matcherino e da classe 35) eram exibidos indevidamente no
+                        Bazar das Bizarrices.</span>
+                </div>
+                <div class="bug-item">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigido o erro em que ofertas de visuais do <strong>Bazar das Bizarrices</strong> continham
+                        reações, sprays e ícones duplicados.</span>
+                </div>
+                <div class="bug-item">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigido o erro em que a <strong>ultracaixa de troféus</strong> não concedia um visual
+                        épico.</span>
+                </div>
+                <div class="bug-item important">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigido o erro ocasional em que o <strong>Super do Damian era interrompido no canto superior
+                            do mapa</strong>.</span>
+                </div>
+                <div class="bug-item important">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigido o erro em que o <strong>dano causado pelas paredes do Super do Damian
+                            ignorava</strong> a redução de dano, imunidade e transmissão de escudo.</span>
+                </div>
+                <div class="bug-item important">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigido o erro em que os <strong>Brawlers ficavam presos ao saltar contra a parede do Super
+                            do Damian</strong> inimigo.</span>
+                </div>
+                <div class="bug-item">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigido o erro em que o <strong>Star Power do Carl</strong> aumentava incorretamente a
+                        velocidade dos projéteis em 10%.</span>
+                </div>
+                <div class="bug-item">
+                    <span class="bug-icon">⚙️</span>
+                    <span>Corrigido temporariamente o bug do <strong>R-T</strong> — dano das pernas ao dividir reduzido:
+                        1.240 → 740 / 2.480 → 1.480 (nível de poder 11) enquanto o erro não é resolvido
+                        definitivamente.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- BALANCEAMENTO -->
+        <section class="art-section reveal">
+            <div class="art-eyebrow" style="color:var(--red)">Ajustes Urgentes</div>
+            <h2 class="art-h2"><span class="h2-icon">⚖️</span> Ajustes de Balanceamento</h2>
+
+            <div class="info-box yellow" style="margin-bottom:1.5rem">
+                <div class="info-box-icon">💡</div>
+                <div class="info-box-text">Todos os ajustes deste patch são <strong>nerfs de emergência</strong> —
+                    brawlers que ficaram demasiado fortes após o Update 67 ou que tinham bugs que inflacionavam o seu
+                    poder.</div>
+            </div>
+
+            <div class="balance-grid">
+
+                <!-- DAMIAN -->
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🎤</div>
+                        <div class="balance-name">Damian</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Taxa de recarga do Super: 80 →
+                            75</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Distância do salto do Super: 26
+                            → 18</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Dano do ricochete na parede: 700
+                            → 600</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Dano da explosão do ataque
+                            principal: 700 → 500</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Recarga do Super obtida com
+                            explosões: -50%</div>
+                    </div>
+                    <div class="balance-reason">Win rate de 66.2% no lançamento — demasiado alto. Nerfs urgentes para
+                        equilibrar o meta.</div>
+                </div>
+
+                <!-- SIRIUS -->
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🌑</div>
+                        <div class="balance-name">Sirius</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Saúde: 3.700 → 3.400</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Saúde dos clones de sombra: 70%
+                            → 60% da saúde do Brawler clonado</div>
+                    </div>
+                    <div class="balance-reason">Dominante no meta com tanques — saúde e clones demasiado resistentes.
+                    </div>
+                </div>
+
+                <!-- BULL -->
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🐂</div>
+                        <div class="balance-name">Bull</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Taxa de recarga do Super: 150 →
+                            120</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Limite de HP da Star Power
+                            Marrento: 40% → 30%</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Cura do acessório Míssil de
+                            Músculos: 50% → 25%</div>
+                    </div>
+                    <div class="balance-reason">Com os buffs de tanques do Update 67, Bull tornou-se demasiado
+                        sustentável.</div>
+                </div>
+
+                <!-- CROW -->
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🐦‍⬛</div>
+                        <div class="balance-name">Crow</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Dano bónus da Star Power
+                            Corvo-abutre: 40% → 30%</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Redução de cura do ataque
+                            principal: 60% → 50%</div>
+                    </div>
+                    <div class="balance-reason">O veneno do Crow tornava-se demasiado opressor em combinação com outros
+                        brawlers do meta.</div>
+                </div>
+
+                <!-- CHESTER -->
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🎪</div>
+                        <div class="balance-name">Chester</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Taxa de recarga do Super: 100 →
+                            90</div>
+                    </div>
+                    <div class="balance-reason">Super a carregar demasiado rápido em combinação com os novos Buffies.
+                    </div>
+                </div>
+
+                <!-- NAJIA -->
+                <div class="balance-card nerf">
+                    <div class="balance-header">
+                        <div class="balance-emoji">🐍</div>
+                        <div class="balance-name">Najia</div>
+                        <div class="balance-type">Nerf</div>
+                    </div>
+                    <div class="balance-changes">
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Duração de Poça Pestilenta: 4s →
+                            2s</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Taxa de recarga do Super: 100 →
+                            80</div>
+                        <div class="balance-change"><span class="balance-arrow">↓</span>Taxa de recarga da Hipercarga:
+                            40 → 35</div>
+                    </div>
+                    <div class="balance-reason">Apesar dos nerfs do Update 67, a Najia continuava demasiado forte com a
+                        nova Hipercarga.</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <div class="article-footer reveal">
+            <div>
+                <div class="footer-title">Ver todas as notícias</div>
+                <div class="footer-sub">Notas de lançamento, eventos e muito mais</div>
+            </div>
+            <a href="../Notícias.html" class="back-btn">← Voltar às Notícias</a>
+        </div>
+
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.06 });
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+        const cursor = document.getElementById("cursor");
+        const ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        document.querySelectorAll("a,button,.balance-card,.bug-item").forEach(el => {
+            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+        });
+    </script>
+</body>
+<script src="../../pesquisa.js"></script>
+<script src="../../tema.js"></script>
+</html>

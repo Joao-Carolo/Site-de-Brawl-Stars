@@ -47,8 +47,16 @@
             color: inherit;
         }
 
-        * {
-            cursor: none !important;
+        @media(pointer:coarse) {
+            * {
+                cursor: auto !important;
+            }
+        }
+
+        @media(pointer:fine) {
+            * {
+                cursor: none !important;
+            }
         }
 
         #cursor {
@@ -672,16 +680,42 @@
         </div>
 
         <div class="feed" id="feed">
-
-            <div class="day-sep"><span>Hoje · 3 Maio 2026</span></div>
-
+            <div class="day-sep"><span>7 Maio 2026</span></div>
             <!-- POST 1 — BREAKING -->
+            <div class="post reveal" data-cat="evento">
+                <div class="post-header">
+                    <div class="post-emoji">🎉</div>
+                    <div class="post-meta">
+                        <div class="post-cat">Eventos</div>
+                        <div class="post-date">7 Mai</div>
+                    </div>
+                    <span class="post-badge badge-breaking">🔴 Breaking</span>
+                </div>
+                <div class="post-text">O <strong>Starr Nova</strong> chega hoje! Um evento especial com
+                    o "<strong>fim" do nível 11</strong>. Não percas!</div>
+                <div class="post-tags">
+                    <span class="post-tag">2026</span>
+                    <span class="post-tag">Evento</span>
+                    <span class="post-tag">Skins</span>
+                </div>
+                <div class="post-footer">
+                    <a class="post-link" href="../Eventos/Starr Nova event.html">Ver Evento →</a>
+                    <div class="post-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">🤍 <span
+                                class="like-count">47</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-sep"><span>3 Maio 2026</span></div>
+
+            <!-- POST 2 -->
             <div class="post reveal" data-cat="torneio">
                 <div class="post-header">
                     <div class="post-emoji">🏟️</div>
                     <div class="post-meta">
                         <div class="post-cat">Torneios</div>
-                        <div class="post-date">3 Mai · há momentos</div>
+                        <div class="post-date">3 Mai</div>
                     </div>
                     <span class="post-badge badge-breaking">🔴 Breaking</span>
                 </div>
@@ -709,13 +743,14 @@
                     <div class="post-emoji">⚔️</div>
                     <div class="post-meta">
                         <div class="post-cat">Ranked</div>
-                        <div class="post-date">3 Mai · há 2 horas</div>
+                        <div class="post-date">3 Mai</div>
                     </div>
                     <span class="post-badge badge-novo">Novo</span>
                 </div>
                 <div class="post-text">A <strong>Temporada 2 do Ranked</strong> arrancou! Modo em destaque:
                     <strong>Knockout</strong>. Mapas: Fontes Fartas e Garganta do Braço Dourado. Brawlers gratuitos:
-                    <strong>Bea (Épico), Finx (Mítico), Spike (Lendário)</strong>. Vais à Mythic esta temporada?</div>
+                    <strong>Bea (Épico), Finx (Mítico), Spike (Lendário)</strong>. Vais à Mythic esta temporada?
+                </div>
                 <div class="post-tags">
                     <span class="post-tag">Temporada 2</span>
                     <span class="post-tag">Knockout</span>
@@ -730,7 +765,7 @@
                 </div>
             </div>
 
-            <div class="day-sep"><span>Ontem · 2 Maio 2026</span></div>
+            <div class="day-sep"><span>2 Maio 2026</span></div>
 
             <!-- POST 3 -->
             <div class="post reveal" data-cat="brawler">
@@ -861,7 +896,8 @@
                 </div>
                 <div class="post-text">A <strong>Manutenção de 28 de Abril</strong> trouxe nerfs urgentes a
                     <strong>Damian, Sirius, Bull, Crow, Chester e Najia</strong>. O bug crítico da Colette (+4.600 dano
-                    extra) foi corrigido e ela foi reativada. O R-T também foi ajustado temporariamente.</div>
+                    extra) foi corrigido e ela foi reativada. O R-T também foi ajustado temporariamente.
+                </div>
                 <div class="post-tags">
                     <span class="post-tag">Manutenção</span>
                     <span class="post-tag">Nerfs</span>
@@ -1062,6 +1098,21 @@
         document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
         /* CURSOR */
+        // Desativar cursor personalizado em dispositivos touch
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        if (isTouchDevice) {
+            document.getElementById("cursor").style.display = "none";
+            document.getElementById("cursor-ring").style.display = "none";
+            document.body.style.cursor = "auto";
+            document.querySelectorAll("*").forEach(el => el.style.cursor = "");
+        } else {
+            // Todo o código do cursor fica aqui dentro
+            const cursor = document.getElementById("cursor");
+            const ring = document.getElementById("cursor-ring");
+            let mx = 0, my = 0, rx = 0, ry = 0;
+            document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+            (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        }
         const cursor = document.getElementById("cursor");
         const ring = document.getElementById("cursor-ring");
         let mx = 0, my = 0, rx = 0, ry = 0;
@@ -1072,6 +1123,9 @@
             el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
         });
     </script>
+    <script src="../pesquisa.js"></script>
+    <script src="../tema.js"></script>
+    <script src="../Breadcrumbs.js"></script>
 </body>
 
 </html>

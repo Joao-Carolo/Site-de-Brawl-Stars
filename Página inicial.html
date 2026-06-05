@@ -7,1323 +7,68 @@
     <title>BrawlZone — O Teu Fan Site de Brawl Stars</title>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
         rel="stylesheet">
-    <style>
-        /* ═══════════════════════════════════════
-       VARIÁVEIS & RESET
-    ═══════════════════════════════════════ */
-        :root {
-            --yellow: #FFD000;
-            --orange: #FF6B00;
-            --orange2: #FF4500;
-            --teal: #00C9A7;
-            --blue: #3B82F6;
-            --pink: #FF3CAC;
-            --dark: #0D0D1A;
-            --dark2: #13132A;
-            --dark3: #1A1A35;
-            --light: #F5F0E8;
-            --light2: #EDE8DE;
-            --light3: #DDD8CE;
-            --text-dark: #1A1A2E;
-            --card-r: 16px;
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Nunito', sans-serif;
-            background: var(--dark);
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* ═══════════════════════════════════════
-       CURSOR CUSTOMIZADO
-    ═══════════════════════════════════════ */
-        * {
-            cursor: none !important;
-        }
-
-        #cursor {
-            position: fixed;
-            width: 12px;
-            height: 12px;
-            background: var(--yellow);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
-            mix-blend-mode: difference;
-        }
-
-        #cursor-ring {
-            position: fixed;
-            width: 36px;
-            height: 36px;
-            border: 2px solid rgba(255, 208, 0, 0.5);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: transform 0.12s ease-out, width 0.25s, height 0.25s, opacity 0.2s;
-        }
-
-        /* ═══════════════════════════════════════
-       NAVBAR
-    ═══════════════════════════════════════ */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 500;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 3rem;
-            background: rgba(13, 13, 26, 0.75);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            transition: background 0.3s;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-family: 'Russo One', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 0.04em;
-        }
-
-        .nav-logo .star {
-            color: var(--yellow);
-        }
-
-        .nav-logo .zone {
-            color: #fff;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
-            color: rgba(255, 255, 255, 0.55);
-            text-transform: uppercase;
-            transition: color 0.2s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--yellow);
-            transform: scaleX(0);
-            transition: transform 0.2s;
-            border-radius: 2px;
-        }
-
-        .nav-links a:hover {
-            color: #fff;
-        }
-
-        .nav-links a:hover::after {
-            transform: scaleX(1);
-        }
-
-        .nav-cta {
-            background: var(--yellow);
-            color: var(--text-dark) !important;
-            padding: 0.5rem 1.3rem;
-            border-radius: 100px;
-            font-weight: 800 !important;
-            font-size: 0.85rem !important;
-            transition: transform 0.2s, box-shadow 0.2s !important;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 208, 0, 0.35);
-        }
-
-        .nav-cta::after {
-            display: none !important;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            padding: 0.5rem;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: #fff;
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-        }
-
-        /* ═══════════════════════════════════════
-       HERO — dark com explosão de cores
-    ═══════════════════════════════════════ */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 3rem 4rem;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 70% 60% at 70% 40%, rgba(255, 107, 0, 0.22) 0%, transparent 65%),
-                radial-gradient(ellipse 50% 50% at 20% 70%, rgba(59, 130, 246, 0.18) 0%, transparent 60%),
-                radial-gradient(ellipse 40% 40% at 85% 85%, rgba(255, 60, 172, 0.12) 0%, transparent 55%),
-                var(--dark);
-        }
-
-        /* grid de pontos decorativos */
-        .hero-dots {
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
-        }
-
-        /* blob animado */
-        .hero-blob {
-            position: absolute;
-            right: -100px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 700px;
-            height: 700px;
-            border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
-            background: conic-gradient(from 200deg, var(--orange2), var(--pink), var(--blue), var(--teal), var(--yellow), var(--orange2));
-            opacity: 0.13;
-            filter: blur(60px);
-            animation: blobMorph 10s ease-in-out infinite;
-        }
-
-        @keyframes blobMorph {
-
-            0%,
-            100% {
-                border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
-            }
-
-            33% {
-                border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%;
-            }
-
-            66% {
-                border-radius: 55% 45% 60% 40% / 45% 55% 50% 50%;
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            max-width: 680px;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 208, 0, 0.12);
-            border: 1px solid rgba(255, 208, 0, 0.3);
-            border-radius: 100px;
-            padding: 0.4rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--yellow);
-            margin-bottom: 1.5rem;
-            animation: fadeSlideUp 0.6s ease both;
-        }
-
-        .hero-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(3.5rem, 9vw, 7rem);
-            line-height: 1;
-            letter-spacing: -0.01em;
-            margin-bottom: 1.5rem;
-            animation: fadeSlideUp 0.7s ease both 0.1s;
-        }
-
-        .hero-title .line1 {
-            display: block;
-            color: #fff;
-        }
-
-        .hero-title .line2 {
-            display: block;
-            background: linear-gradient(90deg, var(--yellow) 0%, var(--orange) 50%, var(--pink) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-desc {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 2.5rem;
-            animation: fadeSlideUp 0.7s ease both 0.2s;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            animation: fadeSlideUp 0.7s ease both 0.3s;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--yellow);
-            color: var(--text-dark);
-            font-weight: 800;
-            font-size: 0.95rem;
-            padding: 0.85rem 2rem;
-            border-radius: 100px;
-            border: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 208, 0, 0.4);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.07);
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.95rem;
-            padding: 0.85rem 2rem;
-            border-radius: 100px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.12);
-            transform: translateY(-3px);
-        }
-
-        /* stats flutuantes */
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 3rem;
-            animation: fadeSlideUp 0.8s ease both 0.5s;
-            z-index: 2;
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-num {
-            font-family: 'Russo One', sans-serif;
-            font-size: 2rem;
-            background: linear-gradient(135deg, var(--yellow), var(--orange));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.4);
-            margin-top: 0.2rem;
-        }
-
-        .stat-divider {
-            width: 1px;
-            background: rgba(255, 255, 255, 0.1);
-            align-self: stretch;
-        }
-
-        /* scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            right: 3rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            z-index: 2;
-            animation: fadeIn 1s ease both 1s;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3));
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-
-            0%,
-            100% {
-                opacity: 0.3;
-                transform: scaleY(1);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scaleY(1.1);
-            }
-        }
-
-        .scroll-text {
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.3);
-            writing-mode: vertical-rl;
-        }
-
-        /* ═══════════════════════════════════════
-       SECÇÃO — ÚLTIMAS NOVIDADES (light)
-    ═══════════════════════════════════════ */
-        .news-section {
-            background: var(--light);
-            color: var(--text-dark);
-            padding: 6rem 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .news-section::before {
-            content: 'NEWS';
-            position: absolute;
-            top: -0.5rem;
-            left: -1rem;
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(6rem, 15vw, 12rem);
-            color: rgba(0, 0, 0, 0.04);
-            letter-spacing: -0.02em;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .section-eyebrow {
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--orange);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            line-height: 1.05;
-            letter-spacing: -0.01em;
-        }
-
-        .section-title.light {
-            color: var(--text-dark);
-        }
-
-        .section-title.dark {
-            color: #fff;
-        }
-
-        .see-all {
-            font-weight: 800;
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-            color: var(--orange);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            transition: gap 0.2s;
-            white-space: nowrap;
-        }
-
-        .see-all:hover {
-            gap: 0.7rem;
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            grid-template-rows: auto auto;
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 900px) {
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .news-card {
-            background: #fff;
-            border-radius: var(--card-r);
-            overflow: hidden;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
-            transition: transform 0.25s, box-shadow 0.25s;
-        }
-
-        .news-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-        }
-
-        .news-card.featured {
-            grid-row: span 2;
-        }
-
-        .news-thumb {
-            height: 200px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .news-card.featured .news-thumb {
-            height: 300px;
-        }
-
-        .news-thumb-bg {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            transition: transform 0.4s;
-        }
-
-        .news-card:hover .news-thumb-bg {
-            transform: scale(1.05);
-        }
-
-        .news-thumb-bg.orange {
-            background: linear-gradient(135deg, #FF6B00, #FF3CAC);
-        }
-
-        .news-thumb-bg.blue {
-            background: linear-gradient(135deg, #3B82F6, #00C9A7);
-        }
-
-        .news-thumb-bg.yellow {
-            background: linear-gradient(135deg, #FFD000, #FF6B00);
-        }
-
-        .news-thumb-bg.purple {
-            background: linear-gradient(135deg, #7C3AED, #3B82F6);
-        }
-
-        .news-tag {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            color: #fff;
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 0.3rem 0.7rem;
-            border-radius: 100px;
-        }
-
-        .news-body {
-            padding: 1.25rem 1.5rem 1.5rem;
-        }
-
-        .news-date {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: rgba(26, 26, 46, 0.4);
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-
-        .news-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: 1.05rem;
-            line-height: 1.3;
-            color: var(--text-dark);
-            margin-bottom: 0.75rem;
-        }
-
-        .news-card.featured .news-title {
-            font-size: 1.5rem;
-        }
-
-        .news-excerpt {
-            font-size: 0.88rem;
-            line-height: 1.7;
-            color: rgba(26, 26, 46, 0.55);
-        }
-
-        /* ═══════════════════════════════════════
-       SECÇÃO — BRAWLERS EM DESTAQUE (dark)
-    ═══════════════════════════════════════ */
-        .brawlers-section {
-            background: var(--dark2);
-            padding: 6rem 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .brawlers-section::before {
-            content: 'BRAWLERS';
-            position: absolute;
-            bottom: -2rem;
-            right: -1rem;
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(5rem, 12vw, 10rem);
-            color: rgba(255, 255, 255, 0.03);
-            letter-spacing: -0.02em;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        /* tabs */
-        .filter-tabs {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 2.5rem;
-        }
-
-        .filter-tab {
-            padding: 0.5rem 1.2rem;
-            border-radius: 100px;
-            font-weight: 700;
-            font-size: 0.82rem;
-            letter-spacing: 0.05em;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: rgba(255, 255, 255, 0.5);
-            background: transparent;
-            transition: all 0.2s;
-        }
-
-        .filter-tab:hover,
-        .filter-tab.active {
-            background: var(--yellow);
-            border-color: var(--yellow);
-            color: var(--text-dark);
-        }
-
-        .brawlers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1.2rem;
-        }
-
-        .brawler-card {
-            position: relative;
-            border-radius: var(--card-r);
-            overflow: hidden;
-            background: var(--dark3);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 1.75rem 1rem 1.25rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.6rem;
-            transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-        }
-
-        .brawler-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(255, 208, 0, 0.3);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 208, 0, 0.15);
-        }
-
-        .brawler-emoji {
-            font-size: 3.5rem;
-            line-height: 1;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
-            transition: transform 0.3s;
-        }
-
-        .brawler-card:hover .brawler-emoji {
-            transform: scale(1.15) rotate(-5deg);
-        }
-
-        .brawler-name {
-            font-family: 'Russo One', sans-serif;
-            font-size: 1rem;
-            letter-spacing: 0.02em;
-            text-align: center;
-        }
-
-        .brawler-rarity {
-            font-size: 0.72rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 0.2rem 0.6rem;
-            border-radius: 100px;
-        }
-
-        .rarity-rare {
-            background: rgba(0, 201, 167, 0.15);
-            color: var(--teal);
-        }
-
-        .rarity-super {
-            background: rgba(59, 130, 246, 0.15);
-            color: #7EB8FF;
-        }
-
-        .rarity-epic {
-            background: rgba(168, 85, 247, 0.15);
-            color: #C084FC;
-        }
-
-        .rarity-mythic {
-            background: rgba(239, 68, 68, 0.15);
-            color: #FCA5A5;
-        }
-
-        .rarity-legendary {
-            background: rgba(255, 208, 0, 0.15);
-            color: var(--yellow);
-        }
-
-        .brawler-new-badge {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            background: var(--orange);
-            color: #fff;
-            font-size: 0.62rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            padding: 0.18rem 0.5rem;
-            border-radius: 100px;
-        }
-
-        /* ═══════════════════════════════════════
-       SECÇÃO — UPDATE 67 BANNER (misto)
-    ═══════════════════════════════════════ */
-        .update-banner {
-            background: var(--light2);
-            padding: 6rem 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .update-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        @media (max-width: 800px) {
-            .update-inner {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .update-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--orange2);
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            margin-bottom: 1.2rem;
-        }
-
-        .update-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            line-height: 1.05;
-            color: var(--text-dark);
-            margin-bottom: 1.2rem;
-        }
-
-        .update-desc {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: rgba(26, 26, 46, 0.6);
-            margin-bottom: 2rem;
-        }
-
-        .update-features {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .update-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-        }
-
-        .update-feature-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: var(--dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-
-        .update-visual {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .update-card {
-            border-radius: 16px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .update-card.dark-card {
-            background: var(--dark);
-            color: #fff;
-        }
-
-        .update-card.orange-card {
-            background: linear-gradient(135deg, var(--orange2), var(--pink));
-            color: #fff;
-        }
-
-        .update-card.yellow-card {
-            background: var(--yellow);
-            color: var(--text-dark);
-        }
-
-        .update-card.teal-card {
-            background: linear-gradient(135deg, var(--teal), var(--blue));
-            color: #fff;
-        }
-
-        .update-card-icon {
-            font-size: 1.8rem;
-        }
-
-        .update-card-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: 0.95rem;
-        }
-
-        .update-card-sub {
-            font-size: 0.78rem;
-            opacity: 0.7;
-            font-weight: 600;
-        }
-
-        /* ═══════════════════════════════════════
-       SECÇÃO — GUIAS (dark com cards claros)
-    ═══════════════════════════════════════ */
-        .guides-section {
-            background: var(--dark);
-            padding: 6rem 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .guides-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .guide-card {
-            background: var(--dark3);
-            border-radius: var(--card-r);
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: transform 0.25s, border-color 0.25s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .guide-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .guide-color-bar {
-            height: 5px;
-        }
-
-        .guide-body {
-            padding: 1.75rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .guide-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .guide-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: 1.15rem;
-            line-height: 1.3;
-            margin-bottom: 0.75rem;
-        }
-
-        .guide-desc {
-            font-size: 0.88rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.5);
-            flex: 1;
-            margin-bottom: 1.5rem;
-        }
-
-        .guide-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-weight: 800;
-            font-size: 0.82rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            transition: gap 0.2s;
-        }
-
-        .guide-link:hover {
-            gap: 0.7rem;
-        }
-
-        /* ═══════════════════════════════════════
-       SECÇÃO — CTA NEWSLETTER
-    ═══════════════════════════════════════ */
-        .cta-section {
-            background: var(--dark2);
-            padding: 5rem 3rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-bg {
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255, 107, 0, 0.12), transparent);
-        }
-
-        .cta-section h2 {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .cta-section p {
-            color: rgba(255, 255, 255, 0.55);
-            font-size: 1.05rem;
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-
-        .email-form {
-            display: flex;
-            gap: 0.75rem;
-            max-width: 480px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .email-input {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 100px;
-            padding: 0.9rem 1.5rem;
-            color: #fff;
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .email-input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .email-input:focus {
-            border-color: var(--yellow);
-        }
-
-        .email-btn {
-            background: var(--yellow);
-            color: var(--text-dark);
-            font-family: 'Nunito', sans-serif;
-            font-weight: 800;
-            font-size: 0.9rem;
-            padding: 0.9rem 1.75rem;
-            border-radius: 100px;
-            border: none;
-            white-space: nowrap;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .email-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 208, 0, 0.35);
-        }
-
-        /* ═══════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════ */
-        footer {
-            background: #070710;
-            padding: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-        }
-
-        @media (max-width: 768px) {
-            .footer-inner {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .footer-brand .logo {
-            font-family: 'Russo One', sans-serif;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand .logo .star {
-            color: var(--yellow);
-        }
-
-        .footer-brand p {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.35);
-            line-height: 1.7;
-            max-width: 240px;
-        }
-
-        .footer-col h4 {
-            font-family: 'Russo One', sans-serif;
-            font-size: 0.8rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.4);
-            margin-bottom: 1.2rem;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col li {
-            margin-bottom: 0.6rem;
-        }
-
-        .footer-col a {
-            font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.5);
-            transition: color 0.2s;
-        }
-
-        .footer-col a:hover {
-            color: #fff;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 2.5rem auto 0;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-bottom p {
-            font-size: 0.78rem;
-            color: rgba(255, 255, 255, 0.2);
-        }
-
-        .footer-bottom p strong {
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        /* ═══════════════════════════════════════
-       ANIMAÇÕES GLOBAIS
-    ═══════════════════════════════════════ */
-        @keyframes fadeSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ═══════════════════════════════════════
-       CONTENTOR GLOBAL
-    ═══════════════════════════════════════ */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* mobile nav */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: var(--dark);
-            z-index: 400;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .mobile-menu.open {
-            display: flex;
-        }
-
-        .mobile-menu a {
-            font-family: 'Russo One', sans-serif;
-            font-size: 2rem;
-            color: rgba(255, 255, 255, 0.7);
-            transition: color 0.2s;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--yellow);
-        }
-
-        .mobile-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.5);
-        }
-    </style>
+    <link rel="stylesheet" href="Página inicial.css">
 </head>
 
 <body>
 
-    <!-- CURSOR -->
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
-
+    <div class="mobile-overlay" id="mobileOverlay"></div>
     <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-close" id="mobileClose">✕</button>
-        <a href="#novidades">Novidades</a>
-        <a href="#brawlers">Brawlers</a>
+        <a href="Notícias/Novidades.html">Novidades</a>
+        <a href="Brawlers/Brawlers.html">Brawlers</a>
         <a href="Temporadas/Temporadas.html">Updates</a>
-        <a href="#guias">Guias</a>
+        <a href="Guias/Guias.html">Guias</a>
     </div>
 
     <!-- NAVBAR -->
     <nav>
-        <div class="nav-logo">
-            <span class="star">★</span><span class="zone">BrawlZone</span>
-        </div>
+        <div class="nav-logo"><span class="star">★</span><span class="zone">BrawlZone</span></div>
         <ul class="nav-links">
-            <li><a href="#novidades">Novidades</a></li>
-            <li><a href="#brawlers">Brawlers</a></li>
+            <li><a href="Notícias/Novidades.html">Novidades</a></li>
+            <li><a href="Brawlers/Brawlers.html">Brawlers</a></li>
             <li><a href="Temporadas/Temporadas.html">Updates</a></li>
-            <li><a href="#guias">Guias</a></li>
-            <li><a href="#" class="nav-cta">Explorar →</a></li>
+            <li><a href="Guias/Guias.html">Guias</a></li>
+            <li><a href="Brawlers/Brawlers.html" class="nav-cta">Explorar →</a></li>
         </ul>
-        <button class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
     </nav>
 
-    <!-- ══════════ HERO ══════════ -->
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-dots"></div>
         <div class="hero-blob"></div>
-
         <div class="hero-content">
             <div class="hero-badge">⭐ Fan Site Português nº1</div>
             <h1 class="hero-title">
                 <span class="line1">O universo</span>
                 <span class="line2">Brawl Stars</span>
             </h1>
-            <p class="hero-desc">
-                Tudo o que precisas — brawlers, guias, updates e as últimas novidades do jogo. Sempre atualizado, sempre
-                em português.
-            </p>
+            <p class="hero-desc">Tudo o que precisas — brawlers, guias, updates e as últimas novidades do jogo. Sempre
+                atualizado, sempre em português.</p>
             <div class="hero-actions">
                 <a href="Brawlers/Brawlers.html" class="btn-primary">🎮 Ver Brawlers</a>
-                <a href="#novidades" class="btn-secondary">📰 Últimas Novidades</a>
+                <a href="Notícias/Novidades.html" class="btn-secondary">📰 Últimas Novidades</a>
             </div>
-
             <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-num">104</span>
-                    <span class="stat-label">Brawlers</span>
-                </div>
+                <div class="stat-item"><span class="stat-num">104</span><span class="stat-label">Brawlers</span></div>
                 <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-num">67</span>
-                    <span class="stat-label">Updates</span>
-                </div>
+                <div class="stat-item"><span class="stat-num">67</span><span class="stat-label">Updates</span></div>
                 <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-num">∞</span>
-                    <span class="stat-label">Horas de Jogo</span>
+                <div class="stat-item"><span class="stat-num">∞</span><span class="stat-label">Horas de Jogo</span>
                 </div>
             </div>
         </div>
-
         <div class="scroll-indicator">
-            <div class="scroll-line"></div>
-            <span class="scroll-text">Scroll</span>
+            <div class="scroll-line"></div><span class="scroll-text">Scroll</span>
         </div>
     </section>
 
-    <!-- ══════════ NOVIDADES ══════════ -->
+    <!-- NOVIDADES — geradas automaticamente -->
     <section class="news-section" id="novidades">
         <div class="container">
             <div class="section-header reveal">
@@ -1331,109 +76,13 @@
                     <p class="section-eyebrow">Sempre Atualizado</p>
                     <h2 class="section-title light">Últimas Novidades</h2>
                 </div>
-                <a href="Notícias/Notícias.html" class="see-all" style="color: var(--orange2);">Ver todas →</a>
+                <a href="Notícias/Novidades.html" class="see-all" style="color:var(--orange2);">Ver todas →</a>
             </div>
-
-            <div class="news-grid reveal">
-
-                <!-- DESTAQUE -->
-                <article class="news-card featured">
-                    <div class="news-thumb">
-                        <div class="news-thumb-bg orange">🎤</div>
-                        <span class="news-tag">🔥 Brawl Talk</span>
-                    </div>
-                    <div class="news-body">
-                        <p class="news-date">18 Abril 2026</p>
-                        <h3 class="news-title">Update 67: 3 Novos Brawlers, Shop Rework e muito mais!</h3>
-                        <p class="news-excerpt">O Brawl Talk do Update 67 foi revelado hoje. Damian, Bolt e Starr Nova
-                            chegam ao jogo, o sistema de Bling e Shop vai ser completamente renovado, e o trio MadEvil
-                            Manor fica completo. Tudo o que precisas de saber sobre o maior update do ano.</p>
-                        <a href="https://www.youtube.com/watch?v=7B0-WJ5QYsc&t" class="see-all"
-                            style="color: var(--orange2);">Ver Brawl Talk
-                            →</a>
-                    </div>
-                </article>
-                <!-- CARD 2 -->
-                <article class="news-card">
-                    <div class="news-thumb">
-                        <div class="news-thumb-bg yellow">🎤</div>
-                        <span class="news-tag">Brawlers</span>
-                    </div>
-                    <div class="news-body">
-                        <p class="news-date">24 Abril 2026</p>
-                        <h3 class="news-title">Damian</h3>
-                        <p class="news-excerpt">O Damian é o novo brawler do Brawl Stars</p>
-                        <a href="Brawlers/Brawlers Específicos/Damian.html" class="see-all"
-                            style="color: var(--orange2);">Saber tudo sobre ele →</a>
-                    </div>
-                </article>
-                <!-- CARD 3 -->
-                <article class="news-card">
-                    <div class="news-thumb">
-                        <div class="news-thumb-bg blue">⚡</div>
-                        <span class="news-tag">Collab</span>
-                    </div>
-                    <div class="news-body">
-                        <p class="news-date">16 Abril 2026</p>
-                        <h3 class="news-title">Electric Callboy × Brawl Stars: "HYPERCHARGED"</h3>
-                        <p class="news-excerpt">A banda alemã de electronic metal revelou Damian num music video
-                            explosivo.</p>
-                        <a href="https://www.youtube.com/watch?v=Io1ZL0rc2Ac&list=RDIo1ZL0rc2Ac&start_radio=1"
-                            class="see-all" style="color: var(--orange2);">Ver Vídeo →</a>
-                    </div>
-                </article>
-                <!-- CARD 4 -->
-
-                <article class="news-card">
-                    <div class="news-thumb">
-                        <div class="news-thumb-bg orange">❤️</div>
-                        <span class="news-tag">Evento de comunidade</span>
-                    </div>
-                    <div class="news-body">
-                        <p class="news-date">14 Abril 2026</p>
-                        <h3 class="news-title">#keepbrawlalive</h3>
-                        <p class="news-excerpt">O evento da comunidade para manter o Brawl Stars vivo!</p>
-                        <a href="Notícias/Notícias Antigas/Keep Brawl Alive.html" class="see-all"
-                            style="color: var(--orange2);">Saber
-                            mais →</a>
-                    </div>
-                </article>
-                <!-- CARD 5 -->
-                <article class="news-card">
-                    <div class="news-thumb">
-                        <div class="news-thumb-bg yellow">🔑</div>
-                        <span class="news-tag">Cosmético</span>
-                    </div>
-                    <div class="news-body">
-                        <p class="news-date">10 Abril 2026</p>
-                        <h3 class="news-title">Bling &amp; Shop: tudo o que muda no Update 67</h3>
-                        <p class="news-excerpt">A Supercell anunciou um rework completo ao sistema de cosméticos do
-                            jogo.</p>
-                        <a href="Notícias/Notícias Atuais/Mudanças nos blings.html" class="see-all"
-                            style="color: var(--orange2);">Saber
-                            mais →</a>
-                    </div>
-                </article>
-
-                <!-- CARD 6 
-                <article class="news-card">
-                    <div class="news-thumb">
-                        <div class="news-thumb-bg purple">🦊</div>
-                        <span class="news-tag">Buffies</span>
-                    </div>
-                    <div class="news-body">
-                        <p class="news-date">5 Abril 2026</p>
-                        <h3 class="news-title">Próximo trio de Buffies revelado — Arcade Trio!</h3>
-                        <p class="news-excerpt">Brock, 8-Bit e Darryl são os próximos Brawlers a receber Buffies.</p>
-                        <a href="Brawlers/Buffies.html" class="see-all" style="color: var(--orange2);">Saber mais →</a>
-                    </div>
-                </article>
-                -->
-            </div>
+            <div class="news-grid reveal" id="newsGrid"></div>
         </div>
     </section>
 
-    <!-- ══════════ BRAWLERS ══════════ -->
+    <!-- BRAWLERS — interativos -->
     <section class="brawlers-section" id="brawlers">
         <div class="container">
             <div class="section-header reveal">
@@ -1443,122 +92,62 @@
                 </div>
                 <a href="Brawlers/Brawlers.html" class="see-all" style="color:var(--teal);">Ver todos →</a>
             </div>
-
-            <div class="filter-tabs reveal">
-                <button class="filter-tab active">Todos</button>
-                <button class="filter-tab">⭐ Novo</button>
-                <button class="filter-tab">💛 Legendary</button>
-                <button class="filter-tab">❤️ Mythic</button>
-                <button class="filter-tab">💜 Epic</button>
-                <button class="filter-tab">💙 Super Rare</button>
-                <button class="filter-tab">💚 Rare</button>
+            <div class="filter-tabs reveal" id="brawlerTabs">
+                <button class="filter-tab active" data-r="all">Todos</button>
+                <button class="filter-tab" data-r="novo">⭐ Novo</button>
+                <button class="filter-tab" data-r="legendary">💛 Legendary</button>
+                <button class="filter-tab" data-r="mythic">❤️ Mythic</button>
+                <button class="filter-tab" data-r="epic">💜 Epic</button>
+                <button class="filter-tab" data-r="super">💙 Super Rare</button>
+                <button class="filter-tab" data-r="rare">💚 Rare</button>
             </div>
-
-            <div class="brawlers-grid reveal">
-
-                <div class="brawler-card">
-                    <span class="brawler-new-badge">NOVO</span>
-                    <div class="brawler-emoji">🎤</div>
-                    <div class="brawler-name">Damian</div>
-                    <div class="brawler-rarity rarity-legendary">Legendary</div>
-                </div>
-
-                <div class="brawler-card">
-                    <span class="brawler-new-badge">NOVO</span>
-                    <div class="brawler-emoji">⚡</div>
-                    <div class="brawler-name">Bolt</div>
-                    <div class="brawler-rarity rarity-mythic">Mythic</div>
-                </div>
-
-                <div class="brawler-card">
-                    <span class="brawler-new-badge">NOVO</span>
-                    <div class="brawler-emoji">🌟</div>
-                    <div class="brawler-name">Starr Nova</div>
-                    <div class="brawler-rarity rarity-epic">Epic</div>
-                </div>
-
-                <div class="brawler-card">
-                    <div class="brawler-emoji">🌑</div>
-                    <div class="brawler-name">Sirius</div>
-                    <div class="brawler-rarity rarity-legendary">Ultra Leg.</div>
-                </div>
-
-                <div class="brawler-card">
-                    <div class="brawler-emoji">🐍</div>
-                    <div class="brawler-name">Najia</div>
-                    <div class="brawler-rarity rarity-legendary">Legendary</div>
-                </div>
-
-                <div class="brawler-card">
-                    <div class="brawler-emoji">🎸</div>
-                    <div class="brawler-name">Draco</div>
-                    <div class="brawler-rarity rarity-legendary">Legendary</div>
-                </div>
-
-                <div class="brawler-card">
-                    <div class="brawler-emoji">🥁</div>
-                    <div class="brawler-name">Lumi</div>
-                    <div class="brawler-rarity rarity-mythic">Mythic</div>
-                </div>
-
-                <div class="brawler-card">
-                    <div class="brawler-emoji">💀</div>
-                    <div class="brawler-name">Mortis</div>
-                    <div class="brawler-rarity rarity-mythic">Mythic</div>
-                </div>
-
-                <div class="brawler-card">
-                    <div class="brawler-emoji">🦁</div>
-                    <div class="brawler-name">Leon</div>
-                    <div class="brawler-rarity rarity-legendary">Legendary</div>
-                </div>
-
-                <div class="brawler-card">
-                    <div class="brawler-emoji">🌵</div>
-                    <div class="brawler-name">Spike</div>
-                    <div class="brawler-rarity rarity-legendary">Legendary</div>
-                </div>
-
-            </div>
+            <div class="brawlers-grid reveal" id="brawlersGrid"></div>
         </div>
     </section>
 
-    <!-- ══════════ UPDATE BANNER ══════════ -->
+    <!-- MODAL BRAWLER -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div class="modal-hero" id="modalHero">
+                <div class="modal-hero-bg" id="modalHeroBg"></div>
+                <div class="modal-emoji" id="modalEmoji"></div>
+                <div class="modal-name" id="modalName"></div>
+                <div class="modal-class" id="modalClass"></div>
+                <div class="modal-rarity-bar" id="modalRarityBar"></div>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- UPDATE BANNER -->
     <section class="update-banner" id="update">
         <div class="update-inner">
-
             <div class="reveal">
                 <div class="update-badge">🔥 Update 67 — Abril 2026</div>
                 <h2 class="update-title">O maior update do ano está aqui</h2>
-                <p class="update-desc">
-                    3 novos Brawlers, Buffies para um novo trio, rework completo da Shop e do Bling, uma collab épica
-                    com os Electric Callboy, e muito mais. Fica a par de tudo.
-                </p>
+                <p class="update-desc">3 novos Brawlers, Buffies para um novo trio, rework completo da Shop e do Bling,
+                    uma collab épica com os Electric Callboy, e muito mais. Fica a par de tudo.</p>
                 <div class="update-features">
                     <div class="update-feature">
-                        <div class="update-feature-icon">🎤</div>
-                        3 Novos Brawlers — Damian, Bolt e Starr Nova
+                        <div class="update-feature-icon">🎤</div>3 Novos Brawlers — Damian, Bolt e Starr Nova
                     </div>
                     <div class="update-feature">
-                        <div class="update-feature-icon">🦊</div>
-                        Novos Buffies para o Arcade Trio
+                        <div class="update-feature-icon">🦊</div>Novos Buffies para o Arcade Trio
                     </div>
                     <div class="update-feature">
-                        <div class="update-feature-icon">🔮</div>
-                        Shop &amp; Bling completamente renovados
+                        <div class="update-feature-icon">🔮</div>Shop &amp; Bling completamente renovados
                     </div>
                     <div class="update-feature">
-                        <div class="update-feature-icon">🎸</div>
-                        Collab com Electric Callboy
+                        <div class="update-feature-icon">🎸</div>Collab com Electric Callboy
                     </div>
                 </div>
             </div>
-
-            <div class="update-visual reveal" style="transition-delay:0.15s">
+            <div class="update-visual reveal" style="transition-delay:.15s">
                 <div class="update-card dark-card">
                     <div class="update-card-icon">🎤</div>
                     <div class="update-card-title">Damian</div>
-                    <div class="update-card-sub">Chega a 24 Abr</div>
+                    <div class="update-card-sub">Chegou a 24 Abr</div>
                 </div>
                 <div class="update-card orange-card">
                     <div class="update-card-icon">🔮</div>
@@ -1568,7 +157,7 @@
                 <div class="update-card yellow-card">
                     <div class="update-card-icon">🦊</div>
                     <div class="update-card-title">Buffies</div>
-                    <div class="update-card-sub" style="color:rgba(0,0,0,0.5)">Arcade Trio</div>
+                    <div class="update-card-sub" style="color:rgba(0,0,0,.5)">Arcade Trio</div>
                 </div>
                 <div class="update-card teal-card">
                     <div class="update-card-icon">🎸</div>
@@ -1577,12 +166,11 @@
                 </div>
             </div>
             <a href="https://www.youtube.com/watch?v=7B0-WJ5QYsc&t" class="see-all" style="color:var(--teal);">Ver Brawl
-                Talk
-                →</a>
+                Talk →</a>
         </div>
     </section>
 
-    <!-- ══════════ GUIAS ══════════ -->
+    <!-- GUIAS -->
     <section class="guides-section" id="guias">
         <div class="container">
             <div class="section-header reveal">
@@ -1592,50 +180,11 @@
                 </div>
                 <a href="Guias/Guias.html" class="see-all" style="color:var(--pink);">Ver todos →</a>
             </div>
-
-            <div class="guides-grid">
-
-                <div class="guide-card reveal">
-                    <div class="guide-color-bar"
-                        style="background: linear-gradient(90deg, var(--yellow), var(--orange));"></div>
-                    <div class="guide-body">
-                        <div class="guide-icon">🏆</div>
-                        <h3 class="guide-title">Como subir de rank rapidamente</h3>
-                        <p class="guide-desc">Os melhores brawlers para ranked, as melhores estratégias por modo de
-                            jogo, e os erros mais comuns que te impedem de subir.</p>
-                        <a href="Guias/Guias.html" class="guide-link" style="color:var(--yellow);">Ler guia →</a>
-                    </div>
-                </div>
-
-                <div class="guide-card reveal" style="transition-delay:0.1s">
-                    <div class="guide-color-bar" style="background: linear-gradient(90deg, var(--blue), var(--teal));">
-                    </div>
-                    <div class="guide-body">
-                        <div class="guide-icon">💰</div>
-                        <h3 class="guide-title">Guia F2P: Como progredir sem gastar</h3>
-                        <p class="guide-desc">Maximiza os teus recursos grátis — Starr Drops, Chaos Drops, Brawl Pass
-                            gratuito e os melhores brawlers para desbloquear primeiro.</p>
-                        <a href="Guias/Guias.html" class="guide-link" style="color:var(--teal);">Ler guia →</a>
-                    </div>
-                </div>
-
-                <div class="guide-card reveal" style="transition-delay:0.2s">
-                    <div class="guide-color-bar"
-                        style="background: linear-gradient(90deg, var(--pink), var(--orange2));"></div>
-                    <div class="guide-body">
-                        <div class="guide-icon">🦊</div>
-                        <h3 class="guide-title">Buffies: Tudo o que precisas de saber</h3>
-                        <p class="guide-desc">O que são, como desbloqueá-los, qual a ordem certa e quais são os melhores
-                            Buffies por brawler no meta atual.</p>
-                        <a href="Guias/Guias.html" class="guide-link" style="color:var(--pink);">Ler guia →</a>
-                    </div>
-                </div>
-
-            </div>
+            <div class="guides-grid" id="guidesGrid"></div>
         </div>
     </section>
 
-    <!-- ══════════ CTA ══════════ -->
+    <!-- CTA -->
     <section class="cta-section">
         <div class="cta-bg"></div>
         <h2 class="reveal">Fica sempre a par 🔔</h2>
@@ -1646,7 +195,7 @@
         </div>
     </section>
 
-    <!-- ══════════ FOOTER ══════════ -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-inner">
             <div class="footer-brand">
@@ -1658,26 +207,27 @@
                 <h4>Conteúdo</h4>
                 <ul>
                     <li><a href="Brawlers/Brawlers.html">Brawlers</a></li>
-                    <li><a href="Temporadas/Geral.html">Updates</a></li>
+                    <li><a href="Temporadas/Temporadas.html">Updates</a></li>
                     <li><a href="Guias/Guias.html">Guias</a></li>
-                    <li><a href="#">Tier List</a></li>
+                    <li><a href="Brawlers/Skins.html">Skins</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Recursos</h4>
                 <ul>
-                    <li><a href="https://www.youtube.com/watch?v=7B0-WJ5QYsc">Brawl Talk</a></li>
-                    <li><a href="#">Patch Notes</a></li>
-                    <li><a href="Eventos/Eventos.html">Eventos</a></li>
                     <li><a href="Brawlers/Buffies.html">Buffies</a></li>
+                    <li><a href="Eventos/Eventos.html">Eventos</a></li>
+                    <li><a href="Torneios/Torneios.html">Torneios</a></li>
+                    <li><a href="Glossário/Glossário.html">Glossário</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Site</h4>
                 <ul>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="#">Contacto</a></li>
-                    <li><a href="#">Privacidade</a></li>
+                    <li><a href="Newsletter.html">Newsletter</a></li>
+                    <li><a href="Collabs/Collabs.html">Collabs</a></li>
+                    <li><a href="Ranqueado/Ranqueado.html">Ranked</a></li>
+                    <li><a href="Notícias/Notícias.html">Notícias</a></li>
                 </ul>
             </div>
         </div>
@@ -1687,97 +237,10 @@
         </div>
     </footer>
 
-    <script>
-        /* ── CURSOR ── */
-        const cursor = document.getElementById('cursor');
-        const ring = document.getElementById('cursor-ring');
-        let mx = 0, my = 0, rx = 0, ry = 0;
-
-        document.addEventListener('mousemove', e => {
-            mx = e.clientX; my = e.clientY;
-            cursor.style.left = mx + 'px';
-            cursor.style.top = my + 'px';
-        });
-
-        function animRing() {
-            rx += (mx - rx) * 0.12;
-            ry += (my - ry) * 0.12;
-            ring.style.left = rx + 'px';
-            ring.style.top = ry + 'px';
-            requestAnimationFrame(animRing);
-        }
-        animRing();
-
-        document.querySelectorAll('a, button, .brawler-card, .news-card, .guide-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.width = '20px';
-                cursor.style.height = '20px';
-                ring.style.width = '50px';
-                ring.style.height = '50px';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.width = '12px';
-                cursor.style.height = '12px';
-                ring.style.width = '36px';
-                ring.style.height = '36px';
-            });
-        });
-
-        /* ── REVEAL ON SCROLL ── */
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach((e, i) => {
-                if (e.isIntersecting) e.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-        reveals.forEach(el => observer.observe(el));
-
-        /* ── FILTER TABS ── */
-        document.querySelectorAll('.filter-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-            });
-        });
-
-        /* ── MOBILE MENU ── */
-        document.getElementById('hamburger').addEventListener('click', () => {
-            document.getElementById('mobileMenu').classList.add('open');
-        });
-        document.getElementById('mobileClose').addEventListener('click', () => {
-            document.getElementById('mobileMenu').classList.remove('open');
-        });
-        document.querySelectorAll('#mobileMenu a').forEach(a => {
-            a.addEventListener('click', () => {
-                document.getElementById('mobileMenu').classList.remove('open');
-            });
-        });
-
-        /* ── NAV SCROLL EFFECT ── */
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(13,13,26,0.97)';
-            } else {
-                nav.style.background = 'rgba(13,13,26,0.75)';
-            }
-        });
-
-        /* ── EMAIL FORM ── */
-        document.querySelector('.email-btn').addEventListener('click', () => {
-            const input = document.querySelector('.email-input');
-            if (input.value.includes('@')) {
-                input.value = '✅ Subscrito com sucesso!';
-                input.style.color = 'var(--teal)';
-                input.disabled = true;
-            } else {
-                input.style.borderColor = '#FF4444';
-                input.placeholder = 'Insere um email válido!';
-            }
-        });
-    </script>
+    <script src="Página inicial.js"></script>
     <script src="pesquisa.js"></script>
     <script src="tema.js"></script>
+    <script src="Breadcrumbs.js"></script>
 </body>
 
 </html>

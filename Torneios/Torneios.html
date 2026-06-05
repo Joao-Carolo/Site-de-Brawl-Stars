@@ -2,1489 +2,1321 @@
 <html lang="pt">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranked — BrawlZone Wiki</title>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --yellow: #FFD000;
-            --orange: #FF6B00;
-            --green: #22C55E;
-            --blue: #3B82F6;
-            --pink: #FF3CAC;
-            --purple: #A855F7;
-            --red: #EF4444;
-            --bronze: #CD7F32;
-            --silver: #9CA3AF;
-            --gold: #FFD000;
-            --diamond: #7DD3FC;
-            --mythic: #EF4444;
-            --legendary: #F59E0B;
-            --masters: #A855F7;
-            --pro: #FF3CAC;
-            --dark: #0D0D1A;
-            --dark2: #13132A;
-            --dark3: #1A1A35;
-            --text-dark: #1A1A2E;
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Nunito', sans-serif;
-            background: var(--dark);
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        * {
-            cursor: none !important;
-        }
-
-        #cursor {
-            position: fixed;
-            width: 12px;
-            height: 12px;
-            background: var(--yellow);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width .2s, height .2s;
-            mix-blend-mode: difference;
-        }
-
-        #cursor-ring {
-            position: fixed;
-            width: 36px;
-            height: 36px;
-            border: 2px solid rgba(255, 208, 0, .5);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: width .25s, height .25s;
-        }
-
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 500;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 3rem;
-            background: rgba(13, 13, 26, .88);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, .06);
-        }
-
-        .nav-logo {
-            font-family: 'Russo One', sans-serif;
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-        }
-
-        .nav-logo .star {
-            color: var(--yellow);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            font-weight: 700;
-            font-size: .88rem;
-            letter-spacing: .05em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .5);
-            transition: color .2s;
-        }
-
-        .nav-links a:hover {
-            color: #fff;
-        }
-
-        .nav-links a.active {
-            color: var(--yellow);
-        }
-
-        @media(max-width:768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-        }
-
-        /* HEADER */
-        .page-header {
-            padding: 8rem 3rem 5rem;
-            position: relative;
-            overflow: hidden;
-            background: var(--dark2);
-            border-bottom: 1px solid rgba(255, 255, 255, .06);
-        }
-
-        .header-bg {
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 60% 80% at 80% 50%, rgba(255, 208, 0, .15), transparent),
-                radial-gradient(ellipse 40% 50% at 10% 60%, rgba(168, 85, 247, .12), transparent),
-                radial-gradient(ellipse 30% 40% at 50% 10%, rgba(255, 60, 172, .08), transparent);
-        }
-
-        .header-inner {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .page-eyebrow {
-            font-size: .75rem;
-            font-weight: 800;
-            letter-spacing: .3em;
-            text-transform: uppercase;
-            color: var(--yellow);
-            margin-bottom: .5rem;
-        }
-
-        .page-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            line-height: 1;
-            margin-bottom: 1rem;
-        }
-
-        .page-desc {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, .5);
-            max-width: 600px;
-            line-height: 1.75;
-            margin-bottom: 2.5rem;
-        }
-
-        .header-stats {
-            display: flex;
-            gap: 2.5rem;
-            flex-wrap: wrap;
-        }
-
-        .hstat {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .hstat-num {
-            font-family: 'Russo One', sans-serif;
-            font-size: 2rem;
-            background: linear-gradient(135deg, var(--yellow), var(--orange));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-        }
-
-        .hstat-label {
-            font-size: .72rem;
-            font-weight: 700;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .3);
-            margin-top: .2rem;
-        }
-
-        /* GLOW LINE */
-        .glow-line {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--yellow), var(--orange), var(--yellow), transparent);
-            opacity: .5;
-        }
-
-        /* LAYOUT */
-        .page-wrap {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 3rem;
-        }
-
-        @media(max-width:700px) {
-            .page-wrap {
-                padding: 0 1.5rem;
-            }
-        }
-
-        .section {
-            padding: 5rem 0;
-        }
-
-        .section-label {
-            font-size: .72rem;
-            font-weight: 800;
-            letter-spacing: .3em;
-            text-transform: uppercase;
-            color: var(--yellow);
-            margin-bottom: .5rem;
-        }
-
-        .section-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            line-height: 1.1;
-            margin-bottom: 2rem;
-        }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .08), transparent);
-            margin: 0;
-        }
-
-        /* ══════ RANKS LADDER ══════ */
-        .ranks-section {
-            background: var(--dark);
-            padding: 5rem 0;
-        }
-
-        .ranks-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 3rem;
-        }
-
-        @media(max-width:700px) {
-            .ranks-inner {
-                padding: 0 1.5rem;
-            }
-        }
-
-        .ranks-ladder {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .rank-row {
-            display: grid;
-            grid-template-columns: 200px 1fr auto;
-            gap: 1.5rem;
-            align-items: center;
-            background: var(--dark2);
-            border: 1px solid rgba(255, 255, 255, .07);
-            border-radius: 16px;
-            padding: 1.25rem 1.75rem;
-            transition: transform .2s, border-color .2s, box-shadow .2s;
-        }
-
-        .rank-row:hover {
-            transform: translateX(6px);
-        }
-
-        @media(max-width:700px) {
-            .rank-row {
-                grid-template-columns: 1fr;
-                gap: .75rem;
-            }
-        }
-
-        .rank-row.bronze {
-            border-left: 4px solid var(--bronze);
-        }
-
-        .rank-row.bronze:hover {
-            border-color: var(--bronze);
-            box-shadow: 0 8px 24px rgba(205, 127, 50, .1);
-        }
-
-        .rank-row.silver {
-            border-left: 4px solid var(--silver);
-        }
-
-        .rank-row.silver:hover {
-            border-color: var(--silver);
-            box-shadow: 0 8px 24px rgba(156, 163, 175, .1);
-        }
-
-        .rank-row.gold {
-            border-left: 4px solid var(--gold);
-        }
-
-        .rank-row.gold:hover {
-            border-color: var(--gold);
-            box-shadow: 0 8px 24px rgba(255, 208, 0, .1);
-        }
-
-        .rank-row.diamond {
-            border-left: 4px solid var(--diamond);
-        }
-
-        .rank-row.diamond:hover {
-            border-color: var(--diamond);
-            box-shadow: 0 8px 24px rgba(125, 211, 252, .1);
-        }
-
-        .rank-row.mythic {
-            border-left: 4px solid var(--mythic);
-        }
-
-        .rank-row.mythic:hover {
-            border-color: var(--mythic);
-            box-shadow: 0 8px 24px rgba(239, 68, 68, .1);
-        }
-
-        .rank-row.legendary {
-            border-left: 4px solid var(--legendary);
-        }
-
-        .rank-row.legendary:hover {
-            border-color: var(--legendary);
-            box-shadow: 0 8px 24px rgba(245, 158, 11, .1);
-        }
-
-        .rank-row.masters {
-            border-left: 4px solid var(--masters);
-        }
-
-        .rank-row.masters:hover {
-            border-color: var(--masters);
-            box-shadow: 0 8px 24px rgba(168, 85, 247, .1);
-        }
-
-        .rank-row.pro {
-            border-left: 4px solid var(--pro);
-            background: linear-gradient(135deg, rgba(255, 60, 172, .06), var(--dark2));
-        }
-
-        .rank-row.pro:hover {
-            border-color: var(--pro);
-            box-shadow: 0 8px 24px rgba(255, 60, 172, .15);
-        }
-
-        .rank-identity {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .rank-medal {
-            font-size: 2.5rem;
-            filter: drop-shadow(0 3px 8px rgba(0, 0, 0, .4));
-        }
-
-        .rank-name {
-            font-family: 'Russo One', sans-serif;
-            font-size: 1.1rem;
-        }
-
-        .rank-tiers {
-            font-size: .75rem;
-            font-weight: 700;
-            color: rgba(255, 255, 255, .35);
-            margin-top: .15rem;
-        }
-
-        .rank-info {
-            display: flex;
-            flex-direction: column;
-            gap: .5rem;
-        }
-
-        .rank-elo {
-            font-family: 'Russo One', sans-serif;
-            font-size: .95rem;
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-        }
-
-        .rank-reqs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .4rem;
-        }
-
-        .req-chip {
-            font-size: .68rem;
-            font-weight: 800;
-            padding: .2rem .6rem;
-            border-radius: 100px;
-            background: rgba(255, 255, 255, .07);
-            color: rgba(255, 255, 255, .5);
-        }
-
-        .req-chip.warn {
-            background: rgba(239, 68, 68, .1);
-            color: #FCA5A5;
-        }
-
-        .req-chip.ok {
-            background: rgba(34, 197, 94, .1);
-            color: #4ADE80;
-        }
-
-        .rank-format {
-            text-align: right;
-        }
-
-        .format-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: .4rem;
-            padding: .35rem .85rem;
-            border-radius: 100px;
-            font-size: .75rem;
-            font-weight: 800;
-            letter-spacing: .06em;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .format-bo1 {
-            background: rgba(59, 130, 246, .12);
-            border: 1px solid rgba(59, 130, 246, .25);
-            color: var(--blue);
-        }
-
-        .format-bans {
-            background: rgba(245, 158, 11, .12);
-            border: 1px solid rgba(245, 158, 11, .25);
-            color: var(--legendary);
-        }
-
-        .format-bo3 {
-            background: rgba(255, 60, 172, .12);
-            border: 1px solid rgba(255, 60, 172, .25);
-            color: var(--pro);
-        }
-
-        .format-pro {
-            background: rgba(255, 60, 172, .2);
-            border: 1px solid rgba(255, 60, 172, .4);
-            color: var(--pro);
-        }
-
-        /* PROGRESS BAR */
-        .elo-bar-wrap {
-            width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, .06);
-            border-radius: 100px;
-            margin-top: .5rem;
-            overflow: hidden;
-        }
-
-        .elo-bar-fill {
-            height: 100%;
-            border-radius: 100px;
-            transition: width 1s cubic-bezier(.16, 1, .3, 1);
-        }
-
-        /* ══════ COMO FUNCIONA ══════ */
-        .how-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.25rem;
-        }
-
-        .how-card {
-            background: var(--dark2);
-            border: 1px solid rgba(255, 255, 255, .07);
-            border-radius: 16px;
-            padding: 1.75rem;
-            transition: transform .2s, border-color .2s;
-        }
-
-        .how-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 208, 0, .2);
-        }
-
-        .how-icon {
-            font-size: 2rem;
-            margin-bottom: .9rem;
-        }
-
-        .how-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: 1rem;
-            margin-bottom: .5rem;
-        }
-
-        .how-desc {
-            font-size: .88rem;
-            line-height: 1.75;
-            color: rgba(255, 255, 255, .55);
-        }
-
-        /* ══════ FORMATO POR RANK ══════ */
-        .format-section {
-            background: var(--dark2);
-            padding: 5rem 0;
-            border-top: 1px solid rgba(255, 255, 255, .05);
-            border-bottom: 1px solid rgba(255, 255, 255, .05);
-        }
-
-        .format-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 3rem;
-        }
-
-        @media(max-width:700px) {
-            .format-inner {
-                padding: 0 1.5rem;
-            }
-        }
-
-        .format-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.25rem;
-        }
-
-        .format-card {
-            border-radius: 16px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, .08);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .format-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-        }
-
-        .format-card.f-blind::before {
-            background: var(--blue);
-        }
-
-        .format-card.f-bans::before {
-            background: var(--legendary);
-        }
-
-        .format-card.f-draft::before {
-            background: var(--pro);
-        }
-
-        .format-card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .format-card-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: 1.15rem;
-            margin-bottom: .4rem;
-        }
-
-        .format-card-ranks {
-            font-size: .75rem;
-            font-weight: 800;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            margin-bottom: .9rem;
-        }
-
-        .format-card-desc {
-            font-size: .88rem;
-            line-height: 1.75;
-            color: rgba(255, 255, 255, .55);
-        }
-
-        .format-card-reqs {
-            margin-top: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: .4rem;
-        }
-
-        .format-req {
-            display: flex;
-            gap: .6rem;
-            font-size: .82rem;
-            color: rgba(255, 255, 255, .55);
-        }
-
-        /* ══════ RECOMPENSAS ══════ */
-        .rewards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1rem;
-        }
-
-        .reward-card {
-            background: var(--dark3);
-            border: 1px solid rgba(255, 255, 255, .07);
-            border-radius: 14px;
-            padding: 1.4rem;
-            text-align: center;
-            transition: transform .2s, border-color .2s;
-        }
-
-        .reward-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .reward-card.premium {
-            border-color: rgba(255, 208, 0, .2);
-            background: rgba(255, 208, 0, .04);
-        }
-
-        .reward-emoji {
-            font-size: 2.2rem;
-            margin-bottom: .75rem;
-        }
-
-        .reward-name {
-            font-family: 'Russo One', sans-serif;
-            font-size: .88rem;
-            margin-bottom: .3rem;
-        }
-
-        .reward-desc {
-            font-size: .75rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, .4);
-        }
-
-        .reward-when {
-            display: inline-block;
-            font-size: .65rem;
-            font-weight: 800;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            padding: .2rem .6rem;
-            border-radius: 100px;
-            background: rgba(255, 208, 0, .12);
-            color: var(--yellow);
-            margin-top: .5rem;
-        }
-
-        /* ══════ PRO PASS ══════ */
-        .propass-banner {
-            background: linear-gradient(135deg, rgba(168, 85, 247, .12), rgba(255, 60, 172, .08));
-            border: 1px solid rgba(168, 85, 247, .25);
-            border-radius: 20px;
-            padding: 2.5rem;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        @media(max-width:600px) {
-            .propass-banner {
-                grid-template-columns: 1fr;
-            }
-
-            .propass-big {
-                display: none;
-            }
-        }
-
-        .propass-tag {
-            font-size: .72rem;
-            font-weight: 800;
-            letter-spacing: .15em;
-            text-transform: uppercase;
-            color: #C084FC;
-            margin-bottom: .5rem;
-        }
-
-        .propass-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(1.4rem, 4vw, 2rem);
-            margin-bottom: .75rem;
-        }
-
-        .propass-desc {
-            font-size: .92rem;
-            line-height: 1.75;
-            color: rgba(255, 255, 255, .6);
-        }
-
-        .propass-big {
-            font-size: 5rem;
-            opacity: .2;
-            flex-shrink: 0;
-        }
-
-        /* ══════ REQUISITOS ══════ */
-        .reqs-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1.5rem;
-        }
-
-        .reqs-table th {
-            font-family: 'Russo One', sans-serif;
-            font-size: .72rem;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .3);
-            padding: .7rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, .08);
-        }
-
-        .reqs-table td {
-            padding: .7rem 1rem;
-            font-size: .88rem;
-            color: rgba(255, 255, 255, .65);
-            border-bottom: 1px solid rgba(255, 255, 255, .04);
-        }
-
-        .reqs-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .reqs-table tr:hover td {
-            background: rgba(255, 255, 255, .02);
-        }
-
-        /* ══════ RESET ══════ */
-        .reset-box {
-            background: var(--dark2);
-            border: 1px solid rgba(255, 208, 0, .2);
-            border-radius: 14px;
-            padding: 1.5rem;
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-
-        .reset-icon {
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .reset-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: .95rem;
-            color: var(--yellow);
-            margin-bottom: .4rem;
-        }
-
-        .reset-desc {
-            font-size: .88rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, .6);
-        }
-
-        /* ══════ BOX INFO ══════ */
-        .wiki-box {
-            border-radius: 12px;
-            padding: 1.1rem 1.4rem;
-            margin: 1.5rem 0;
-            display: flex;
-            gap: .9rem;
-            align-items: flex-start;
-        }
-
-        .wiki-box-icon {
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .wiki-box-text {
-            font-size: .9rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, .6);
-        }
-
-        .wiki-box-text strong {
-            color: #fff;
-        }
-
-        .wiki-box.info {
-            background: rgba(59, 130, 246, .07);
-            border: 1px solid rgba(59, 130, 246, .2);
-        }
-
-        .wiki-box.tip {
-            background: rgba(255, 208, 0, .07);
-            border: 1px solid rgba(255, 208, 0, .2);
-        }
-
-        .wiki-box.warn {
-            background: rgba(239, 68, 68, .07);
-            border: 1px solid rgba(239, 68, 68, .2);
-        }
-
-        /* REVEAL */
-        .reveal {
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity .55s ease, transform .55s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torneios — BrawlZone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #FFD000;
+      --orange: #FF6B00;
+      --green: #22C55E;
+      --blue: #3B82F6;
+      --pink: #FF3CAC;
+      --purple: #A855F7;
+      --red: #E8202A;
+      --teal: #00C9A7;
+      --dark: #0D0D1A;
+      --dark2: #13132A;
+      --dark3: #1A1A35;
+      --text-dark: #1A1A2E;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    @media(pointer:coarse) {
+      * {
+        cursor: auto !important;
+      }
+    }
+
+    @media(pointer:fine) {
+      * {
+        cursor: none !important;
+      }
+    }
+
+    #cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--yellow);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width .2s, height .2s;
+      mix-blend-mode: difference;
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 2px solid rgba(255, 208, 0, .5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width .25s, height .25s;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(13, 13, 26, .88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .nav-logo {
+      font-family: 'Russo One', sans-serif;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .nav-logo .star {
+      color: var(--yellow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 700;
+      font-size: .88rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .5);
+      transition: color .2s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-links a.active {
+      color: var(--yellow);
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--yellow);
+      border-radius: 2px;
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* HEADER */
+    .page-header {
+      padding: 8rem 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--dark2);
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .header-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 85% 50%, rgba(255, 208, 0, .18), transparent),
+        radial-gradient(ellipse 40% 50% at 10% 60%, rgba(168, 85, 247, .12), transparent),
+        radial-gradient(ellipse 30% 30% at 50% 10%, rgba(255, 107, 0, .1), transparent);
+    }
+
+    .header-bg::before {
+      content: '🏆';
+      position: absolute;
+      right: 3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12rem;
+      opacity: .05;
+      pointer-events: none;
+    }
+
+    .header-inner {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .page-eyebrow {
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: .5rem;
+    }
+
+    .page-title {
+      font-family: 'Russo One', sans-serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .page-desc {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, .5);
+      max-width: 600px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .header-stats {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hstat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hstat-num {
+      font-family: 'Russo One', sans-serif;
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .hstat-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .3);
+      margin-top: .2rem;
+    }
+
+    /* GLOW LINE */
+    .glow-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--yellow), var(--orange), var(--yellow), transparent);
+      opacity: .5;
+    }
+
+    /* LAYOUT */
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    @media(max-width:700px) {
+      .wrap {
+        padding: 0 1.5rem;
+      }
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: .5rem;
+    }
+
+    .section-title {
+      font-family: 'Russo One', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .08), transparent);
+    }
+
+    /* TABS */
+    .tabs-wrap {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .tab-btn {
+      padding: .5rem 1.25rem;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: .85rem;
+      border: 1px solid rgba(255, 255, 255, .12);
+      color: rgba(255, 255, 255, .5);
+      background: transparent;
+      transition: all .2s;
+    }
+
+    .tab-btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, .3);
+    }
+
+    .tab-btn.active {
+      background: var(--yellow);
+      color: var(--text-dark);
+      border-color: var(--yellow);
+    }
+
+    /* ROADMAP */
+    .roadmap-section {
+      background: var(--dark2);
+      padding: 5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, .05);
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
+    }
+
+    .roadmap-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    @media(max-width:700px) {
+      .roadmap-inner {
+        padding: 0 1.5rem;
+      }
+    }
+
+    .roadmap {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .roadmap::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--yellow), var(--orange), var(--purple), var(--blue), var(--green));
+    }
+
+    .roadmap-item {
+      position: relative;
+      padding: 0 0 2rem 1.75rem;
+    }
+
+    .roadmap-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .roadmap-dot {
+      position: absolute;
+      left: -2.35rem;
+      top: 5px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid var(--dark2);
+    }
+
+    .roadmap-date {
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .3);
+      margin-bottom: .3rem;
+    }
+
+    .roadmap-title {
+      font-family: 'Russo One', sans-serif;
+      font-size: 1rem;
+      margin-bottom: .3rem;
+    }
+
+    .roadmap-desc {
+      font-size: .85rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .roadmap-tags {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+      margin-top: .5rem;
+    }
+
+    .roadmap-tag {
+      font-size: .65rem;
+      font-weight: 800;
+      padding: .15rem .55rem;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, .07);
+      color: rgba(255, 255, 255, .45);
+    }
+
+    .roadmap-tag.live {
+      background: rgba(34, 197, 94, .15);
+      color: var(--green);
+    }
+
+    .roadmap-tag.next {
+      background: rgba(255, 208, 0, .15);
+      color: var(--yellow);
+    }
+
+    .roadmap-tag.lan {
+      background: rgba(255, 107, 0, .15);
+      color: var(--orange);
+    }
+
+    .roadmap-tag.done {
+      background: rgba(255, 255, 255, .07);
+      color: rgba(255, 255, 255, .35);
+    }
+
+    .roadmap-tag.prize {
+      background: rgba(168, 85, 247, .15);
+      color: #C084FC;
+    }
+
+    /* TORNEIOS GRID */
+    .tournaments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* TORNEIO CARD */
+    .tournament-card {
+      background: var(--dark3);
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+
+    .tournament-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .tournament-card.upcoming:hover {
+      border-color: rgba(255, 208, 0, .3);
+      box-shadow: 0 12px 30px rgba(255, 208, 0, .08);
+    }
+
+    .tournament-card.completed:hover {
+      border-color: rgba(255, 255, 255, .2);
+      box-shadow: 0 12px 30px rgba(255, 255, 255, .04);
+    }
+
+    .tournament-card.lan:hover {
+      border-color: rgba(255, 107, 0, .3);
+      box-shadow: 0 12px 30px rgba(255, 107, 0, .08);
+    }
+
+    .tc-top {
+      height: 5px;
+    }
+
+    .tc-body {
+      padding: 1.5rem;
+    }
+
+    .tc-metas {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: .75rem;
+    }
+
+    .tc-status {
+      font-size: .65rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .2rem .65rem;
+      border-radius: 100px;
+    }
+
+    .status-upcoming {
+      background: rgba(255, 208, 0, .15);
+      color: var(--yellow);
+    }
+
+    .status-live {
+      background: rgba(34, 197, 94, .2);
+      color: var(--green);
+      animation: pulse-badge 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-badge {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .6
+      }
+    }
+
+    .status-completed {
+      background: rgba(255, 255, 255, .08);
+      color: rgba(255, 255, 255, .4);
+    }
+
+    .status-lan {
+      background: rgba(255, 107, 0, .15);
+      color: var(--orange);
+    }
+
+    .tc-region {
+      font-size: .68rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .35);
+    }
+
+    .tc-date {
+      font-size: .72rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .35);
+    }
+
+    .tc-name {
+      font-family: 'Russo One', sans-serif;
+      font-size: 1rem;
+      line-height: 1.3;
+      margin-bottom: .4rem;
+    }
+
+    .tc-prize {
+      font-size: .82rem;
+      font-weight: 800;
+      color: var(--yellow);
+      margin-bottom: .75rem;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+
+    .tc-teams {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .45);
+      margin-bottom: 1rem;
+    }
+
+    /* RESULTADO */
+    .tc-result {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-top: .75rem;
+    }
+
+    .tc-result-title {
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .3);
+      margin-bottom: .75rem;
+    }
+
+    .tc-podium {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .tc-place {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .85rem;
+    }
+
+    .place-num {
+      font-family: 'Russo One', sans-serif;
+      font-size: .75rem;
+      width: 20px;
+      flex-shrink: 0;
+      text-align: center;
+    }
+
+    .place-1 .place-num {
+      color: var(--yellow);
+    }
+
+    .place-2 .place-num {
+      color: #9CA3AF;
+    }
+
+    .place-3 .place-num {
+      color: #CD7F32;
+    }
+
+    .place-4 .place-num {
+      color: rgba(255, 255, 255, .3);
+    }
+
+    .place-team {
+      font-weight: 800;
+      flex: 1;
+    }
+
+    .place-prize {
+      font-size: .75rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .35);
+    }
+
+    .place-mvp {
+      font-size: .65rem;
+      background: rgba(255, 208, 0, .15);
+      color: var(--yellow);
+      padding: .1rem .4rem;
+      border-radius: 100px;
+      font-weight: 800;
+    }
+
+    /* REGIÃO SECTION */
+    .region-section {
+      background: var(--dark2);
+      padding: 5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, .05);
+    }
+
+    .region-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    @media(max-width:700px) {
+      .region-inner {
+        padding: 0 1.5rem;
+      }
+    }
+
+    .regions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.1rem;
+      margin-top: 2rem;
+    }
+
+    .region-card {
+      background: var(--dark3);
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 14px;
+      padding: 1.4rem;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .region-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, .15);
+    }
+
+    .region-flag {
+      font-size: 1.8rem;
+      margin-bottom: .6rem;
+    }
+
+    .region-name {
+      font-family: 'Russo One', sans-serif;
+      font-size: .95rem;
+      margin-bottom: .3rem;
+    }
+
+    .region-leader {
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .5);
+      margin-bottom: .5rem;
+    }
+
+    .region-leader span {
+      color: var(--yellow);
+      font-weight: 800;
+    }
+
+    .region-points {
+      font-size: .75rem;
+      color: rgba(255, 255, 255, .3);
+      font-weight: 700;
+    }
+
+    /* COMO QUALIFICAR */
+    .qual-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .qual-step {
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 14px;
+      padding: 1.4rem;
+      position: relative;
+      text-align: center;
+    }
+
+    .qual-step::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 14px 14px 0 0;
+    }
+
+    .qs-1::before {
+      background: var(--yellow);
+    }
+
+    .qs-2::before {
+      background: var(--orange);
+    }
+
+    .qs-3::before {
+      background: var(--purple);
+    }
+
+    .qs-4::before {
+      background: var(--green);
+    }
+
+    .qual-num {
+      font-family: 'Russo One', sans-serif;
+      font-size: 2rem;
+      opacity: .15;
+      margin-bottom: .4rem;
+    }
+
+    .qual-icon {
+      font-size: 1.8rem;
+      margin-bottom: .6rem;
+    }
+
+    .qual-title {
+      font-family: 'Russo One', sans-serif;
+      font-size: .9rem;
+      margin-bottom: .35rem;
+    }
+
+    .qual-desc {
+      font-size: .8rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    /* INFO BOX */
+    .info-box {
+      border-radius: 12px;
+      padding: 1.1rem 1.4rem;
+      margin: 1.5rem 0;
+      display: flex;
+      gap: .9rem;
+      align-items: flex-start;
+    }
+
+    .info-box-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .info-box-text {
+      font-size: .9rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .info-box-text strong {
+      color: #fff;
+    }
+
+    .info-box.yellow {
+      background: rgba(255, 208, 0, .07);
+      border: 1px solid rgba(255, 208, 0, .2);
+    }
+
+    .info-box.blue {
+      background: rgba(59, 130, 246, .07);
+      border: 1px solid rgba(59, 130, 246, .2);
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* FILTER HIDDEN */
+    .tournament-card.hidden {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="cursor"></div>
-    <div id="cursor-ring"></div>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
 
-    <nav>
-        <a href="../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
-        <ul class="nav-links">
-            <li><a href="../Brawlers/Brawlers.html">Brawlers</a></li>
-            <li><a href="../Temporadas/Temporadas.html">Updates</a></li>
-            <li><a href="Ranked.html" class="active">Ranked</a></li>
-            <li><a href="../Guias/Guias.html">Guias</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <a href="../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+    <ul class="nav-links">
+      <li><a href="../Brawlers/Brawlers.html">Brawlers</a></li>
+      <li><a href="../Temporadas/Temporadas.html">Updates</a></li>
+      <li><a href="Torneios.html" class="active">Torneios</a></li>
+      <li><a href="../Guias/Guias.html">Guias</a></li>
+    </ul>
+  </nav>
 
-    <!-- HEADER -->
-    <header class="page-header">
-        <div class="header-bg"></div>
-        <div class="header-inner">
-            <p class="page-eyebrow">Wiki — Modo Competitivo</p>
-            <h1 class="page-title">🏆 Ranked</h1>
-            <p class="page-desc">Tudo sobre o modo competitivo de Brawl Stars — ranks, pontos ELO, formatos de jogo,
-                requisitos, recompensas e o sistema de Pro Pass. Atualizado para a temporada de Abril 2026.</p>
-            <div class="header-stats">
-                <div class="hstat"><span class="hstat-num">22</span><span class="hstat-label">Ranks totais</span></div>
-                <div class="hstat"><span class="hstat-num">8</span><span class="hstat-label">Categorias</span></div>
-                <div class="hstat"><span class="hstat-num">11.250+</span><span class="hstat-label">ELO para Pro</span>
-                </div>
-                <div class="hstat"><span class="hstat-num">1.000</span><span class="hstat-label">Trofeus para
-                        desbloquear</span></div>
-            </div>
+  <!-- HEADER -->
+  <header class="page-header">
+    <div class="header-bg"></div>
+    <div class="header-inner">
+      <p class="page-eyebrow">Brawl Stars Championship 2026</p>
+      <h1 class="page-title">🏆 Torneios</h1>
+      <p class="page-desc">Calendário completo do BSC 2026 — resultados das Monthly Finals, datas dos eventos LAN e o
+        caminho para o World Finals. Parceria com BLAST e prize pool de 2 milhões de dólares.</p>
+      <div class="header-stats">
+        <div class="hstat"><span class="hstat-num">$2M</span><span class="hstat-label">Prize Pool Total</span></div>
+        <div class="hstat"><span class="hstat-num">6</span><span class="hstat-label">Monthly Finals</span></div>
+        <div class="hstat"><span class="hstat-num">3</span><span class="hstat-label">Eventos LAN</span></div>
+        <div class="hstat"><span class="hstat-num">12</span><span class="hstat-label">Equipas no World Finals</span>
         </div>
-    </header>
-
-    <div class="glow-line"></div>
-
-    <!-- COMO FUNCIONA -->
-    <div class="page-wrap">
-        <section class="section">
-            <div class="section-label reveal">Fundamentos</div>
-            <h2 class="section-title reveal">Como funciona o Ranked?</h2>
-            <div class="how-grid">
-                <div class="how-card reveal">
-                    <div class="how-icon">📊</div>
-                    <div class="how-title">Sistema ELO</div>
-                    <div class="how-desc">O Ranked usa <strong style="color:#fff">pontos ELO</strong> em vez de trofeus.
-                        Ganhas pontos ao vencer e perdes ao perder. A quantidade varia — ganhas mais ao bater jogadores
-                        mais fortes e menos ao bater mais fracos.</div>
-                </div>
-                <div class="how-card reveal" style="transition-delay:.08s">
-                    <div class="how-icon">🔓</div>
-                    <div class="how-title">Como Desbloquear</div>
-                    <div class="how-desc">Precisas de <strong style="color:#fff">1.000 trofeus totais</strong> na conta
-                        e pelo menos <strong style="color:#fff">3 Brawlers a Power Level 9</strong> para aceder ao
-                        Ranked. Disponível no separador Competitivo.</div>
-                </div>
-                <div class="how-card reveal" style="transition-delay:.12s">
-                    <div class="how-icon">📅</div>
-                    <div class="how-title">Temporadas Mensais</div>
-                    <div class="how-desc">Cada temporada dura <strong style="color:#fff">1 mês</strong> e começa na
-                        terceira quinta-feira do mês. No início de cada temporada, todos os ranks fazem reset com base
-                        no rank anterior.</div>
-                </div>
-                <div class="how-card reveal" style="transition-delay:.16s">
-                    <div class="how-icon">🎁</div>
-                    <div class="how-title">3 Brawlers Grátis</div>
-                    <div class="how-desc">Cada temporada, <strong style="color:#fff">3 brawlers maximizados</strong>
-                        ficam disponíveis para todos usarem em Ranked — mesmo sem os ter desbloqueado. Desde Abril 2026,
-                        incluem também os Buffies.</div>
-                </div>
-                <div class="how-card reveal" style="transition-delay:.2s">
-                    <div class="how-icon">👥</div>
-                    <div class="how-title">Jogar em Grupo</div>
-                    <div class="how-desc">Podes jogar solo, duo ou trio — mas há restrições. Diamond só permite jogar
-                        com jogadores dentro de 8 ranks. Mythic dentro de 3. Masters I+, só <strong
-                            style="color:#fff">solo queue</strong>.</div>
-                </div>
-                <div class="how-card reveal" style="transition-delay:.24s">
-                    <div class="how-icon">⭐</div>
-                    <div class="how-title">Ranked Boost</div>
-                    <div class="how-desc">No início de cada temporada, recebes um boost de ELO com base no teu rank
-                        anterior — até Mythic. Bronze (0%), Silver (10%), Gold (20%), Diamond (30%), Mythic (50%),
-                        Legendary (75%), Masters (100%).</div>
-                </div>
-            </div>
-        </section>
+      </div>
     </div>
+  </header>
+  <div class="glow-line"></div>
 
-    <div class="divider"></div>
-
-    <!-- RANKS LADDER -->
-    <section class="ranks-section">
-        <div class="ranks-inner">
-            <div class="section-label reveal">Do Bronze ao Pro</div>
-            <h2 class="section-title reveal">Todos os Ranks</h2>
-
-            <div class="wiki-box info reveal">
-                <div class="wiki-box-icon">ℹ️</div>
-                <div class="wiki-box-text">O Ranked tem <strong>22 ranks</strong> divididos em <strong>8
-                        categorias</strong>. Cada categoria (exceto Pro) tem 3 tiers: I, II e III. Os pontos ELO
-                    necessários aumentam à medida que subes.</div>
-            </div>
-
-            <div class="ranks-ladder" style="margin-top:2rem">
-
-                <!-- BRONZE -->
-                <div class="rank-row bronze reveal">
-                    <div class="rank-identity">
-                        <div class="rank-medal">🥉</div>
-                        <div>
-                            <div class="rank-name" style="color:var(--bronze)">Bronze</div>
-                            <div class="rank-tiers">Tiers I · II · III</div>
-                        </div>
-                    </div>
-                    <div class="rank-info">
-                        <div class="rank-elo" style="color:var(--bronze)">0 — 750 ELO <span
-                                style="font-size:.75rem;color:rgba(255,255,255,.35);font-family:'Nunito'">(250 ELO por
-                                tier)</span></div>
-                        <div class="rank-reqs">
-                            <span class="req-chip ok">✅ 3 Brawlers PL9</span>
-                            <span class="req-chip">Blind Pick</span>
-                            <span class="req-chip">Best-of-1</span>
-                        </div>
-                        <div class="elo-bar-wrap">
-                            <div class="elo-bar-fill" style="width:6%;background:var(--bronze)"></div>
-                        </div>
-                    </div>
-                    <div class="rank-format">
-                        <div class="format-badge format-bo1">🎲 Blind Pick</div>
-                    </div>
-                </div>
-
-                <!-- SILVER -->
-                <div class="rank-row silver reveal">
-                    <div class="rank-identity">
-                        <div class="rank-medal">🥈</div>
-                        <div>
-                            <div class="rank-name" style="color:var(--silver)">Silver</div>
-                            <div class="rank-tiers">Tiers I · II · III</div>
-                        </div>
-                    </div>
-                    <div class="rank-info">
-                        <div class="rank-elo" style="color:var(--silver)">750 — 1.500 ELO <span
-                                style="font-size:.75rem;color:rgba(255,255,255,.35);font-family:'Nunito'">(250 ELO por
-                                tier)</span></div>
-                        <div class="rank-reqs">
-                            <span class="req-chip ok">✅ 3 Brawlers PL9</span>
-                            <span class="req-chip">Blind Pick</span>
-                            <span class="req-chip">Best-of-1</span>
-                        </div>
-                        <div class="elo-bar-wrap">
-                            <div class="elo-bar-fill" style="width:13%;background:var(--silver)"></div>
-                        </div>
-                    </div>
-                    <div class="rank-format">
-                        <div class="format-badge format-bo1">🎲 Blind Pick</div>
-                    </div>
-                </div>
-
-                <!-- GOLD -->
-                <div class="rank-row gold reveal">
-                    <div class="rank-identity">
-                        <div class="rank-medal">🥇</div>
-                        <div>
-                            <div class="rank-name" style="color:var(--gold)">Gold</div>
-                            <div class="rank-tiers">Tiers I · II · III</div>
-                        </div>
-                    </div>
-                    <div class="rank-info">
-                        <div class="rank-elo" style="color:var(--gold)">1.500 — 2.250 ELO <span
-                                style="font-size:.75rem;color:rgba(255,255,255,.35);font-family:'Nunito'">(250 ELO por
-                                tier)</span></div>
-                        <div class="rank-reqs">
-                            <span class="req-chip ok">✅ 3 Brawlers PL9</span>
-                            <span class="req-chip">Blind Pick</span>
-                            <span class="req-chip">Best-of-1</span>
-                        </div>
-                        <div class="elo-bar-wrap">
-                            <div class="elo-bar-fill" style="width:20%;background:var(--gold)"></div>
-                        </div>
-                    </div>
-                    <div class="rank-format">
-                        <div class="format-badge format-bo1">🎲 Blind Pick</div>
-                    </div>
-                </div>
-
-                <!-- DIAMOND -->
-                <div class="rank-row diamond reveal">
-                    <div class="rank-identity">
-                        <div class="rank-medal">💎</div>
-                        <div>
-                            <div class="rank-name" style="color:var(--diamond)">Diamond</div>
-                            <div class="rank-tiers">Tiers I · II · III</div>
-                        </div>
-                    </div>
-                    <div class="rank-info">
-                        <div class="rank-elo" style="color:var(--diamond)">2.250 — 3.750 ELO <span
-                                style="font-size:.75rem;color:rgba(255,255,255,.35);font-family:'Nunito'">(500 ELO por
-                                tier)</span></div>
-                        <div class="rank-reqs">
-                            <span class="req-chip warn">⚠️ 9 Brawlers PL9</span>
-                            <span class="req-chip">Bans + Pick</span>
-                            <span class="req-chip">Best-of-1</span>
-                            <span class="req-chip warn">Demoção possível</span>
-                        </div>
-                        <div class="elo-bar-wrap">
-                            <div class="elo-bar-fill" style="width:33%;background:var(--diamond)"></div>
-                        </div>
-                    </div>
-                    <div class="rank-format">
-                        <div class="format-badge format-bans">🚫 Bans Ativados</div>
-                    </div>
-                </div>
-
-                <!-- MYTHIC -->
-                <div class="rank-row mythic reveal">
-                    <div class="rank-identity">
-                        <div class="rank-medal">🔴</div>
-                        <div>
-                            <div class="rank-name" style="color:var(--mythic)">Mythic</div>
-                            <div class="rank-tiers">Tiers I · II · III</div>
-                        </div>
-                    </div>
-                    <div class="rank-info">
-                        <div class="rank-elo" style="color:var(--mythic)">3.750 — 5.250 ELO <span
-                                style="font-size:.75rem;color:rgba(255,255,255,.35);font-family:'Nunito'">(500 ELO por
-                                tier)</span></div>
-                        <div class="rank-reqs">
-                            <span class="req-chip warn">⚠️ 12 Brawlers PL11</span>
-                            <span class="req-chip">Snake Draft</span>
-                            <span class="req-chip warn">Best-of-3</span>
-                        </div>
-                        <div class="elo-bar-wrap">
-                            <div class="elo-bar-fill" style="width:47%;background:var(--mythic)"></div>
-                        </div>
-                    </div>
-                    <div class="rank-format">
-                        <div class="format-badge format-bo3">🏆 Best-of-3</div>
-                    </div>
-                </div>
-
-                <!-- LEGENDARY -->
-                <div class="rank-row legendary reveal">
-                    <div class="rank-identity">
-                        <div class="rank-medal">🌟</div>
-                        <div>
-                            <div class="rank-name" style="color:var(--legendary)">Legendary</div>
-                            <div class="rank-tiers">Tiers I · II · III</div>
-                        </div>
-                    </div>
-                    <div class="rank-info">
-                        <div class="rank-elo" style="color:var(--legendary)">5.250 — 7.500 ELO <span
-                                style="font-size:.75rem;color:rgba(255,255,255,.35);font-family:'Nunito'">(750 ELO por
-                                tier)</span></div>
-                        <div class="rank-reqs">
-                            <span class="req-chip warn">⚠️ 12 Brawlers PL11</span>
-                            <span class="req-chip">Snake Draft</span>
-                            <span class="req-chip warn">Best-of-3</span>
-                        </div>
-                        <div class="elo-bar-wrap">
-                            <div class="elo-bar-fill" style="width:67%;background:var(--legendary)"></div>
-                        </div>
-                    </div>
-                    <div class="rank-format">
-                        <div class="format-badge format-bo3">🏆 Best-of-3</div>
-                    </div>
-                </div>
-
-                <!-- MASTERS -->
-                <div class="rank-row masters reveal">
-                    <div class="rank-identity">
-                        <div class="rank-medal">👑</div>
-                        <div>
-                            <div class="rank-name" style="color:var(--masters)">Masters</div>
-                            <div class="rank-tiers">Tiers I · II · III</div>
-                        </div>
-                    </div>
-                    <div class="rank-info">
-                        <div class="rank-elo" style="color:var(--masters)">7.500 — 11.250 ELO <span
-                                style="font-size:.75rem;color:rgba(255,255,255,.35);font-family:'Nunito'">(1.000 ELO por
-                                tier)</span></div>
-                        <div class="rank-reqs">
-                            <span class="req-chip warn">⚠️ 30 Brawlers PL11 (M I)</span>
-                            <span class="req-chip warn">Solo Queue (M II+)</span>
-                            <span class="req-chip warn">Best-of-3</span>
-                        </div>
-                        <div class="elo-bar-wrap">
-                            <div class="elo-bar-fill" style="width:87%;background:var(--masters)"></div>
-                        </div>
-                    </div>
-                    <div class="rank-format">
-                        <div class="format-badge format-bo3">👑 Masters Draft</div>
-                    </div>
-                </div>
-
-                <!-- PRO -->
-                <div class="rank-row pro reveal">
-                    <div class="rank-identity">
-                        <div class="rank-medal">💖</div>
-                        <div>
-                            <div class="rank-name" style="color:var(--pro)">Pro</div>
-                            <div class="rank-tiers">Rank único — Topo absoluto</div>
-                        </div>
-                    </div>
-                    <div class="rank-info">
-                        <div class="rank-elo" style="color:var(--pro)">11.250+ ELO <span
-                                style="font-size:.75rem;color:rgba(255,255,255,.35);font-family:'Nunito'">(apenas os
-                                melhores)</span></div>
-                        <div class="rank-reqs">
-                            <span class="req-chip warn">⚠️ Solo Queue obrigatório</span>
-                            <span class="req-chip warn">Performance consistente</span>
-                        </div>
-                        <div class="elo-bar-wrap">
-                            <div class="elo-bar-fill"
-                                style="width:100%;background:linear-gradient(90deg,var(--pro),var(--purple))"></div>
-                        </div>
-                    </div>
-                    <div class="rank-format">
-                        <div class="format-badge format-pro">💖 Pro</div>
-                    </div>
-                </div>
-
-            </div>
+  <!-- ROADMAP -->
+  <section class="roadmap-section">
+    <div class="roadmap-inner">
+      <div class="section-label reveal">Temporada Completa</div>
+      <h2 class="section-title reveal">Roadmap BSC 2026</h2>
+      <div class="info-box yellow reveal">
+        <div class="info-box-icon">🤝</div>
+        <div class="info-box-text">O BSC 2026 é organizado em parceria com a <strong>BLAST</strong> — a empresa
+          responsável por torneios de Counter-Strike e outros títulos. Primeira vez que a Supercell tem um parceiro
+          externo a gerir todo o ecossistema competitivo.</div>
+      </div>
+      <div class="roadmap" style="margin-top:2rem">
+        <div class="roadmap-item reveal">
+          <div class="roadmap-dot" style="background:var(--yellow)"></div>
+          <div class="roadmap-date">30 Janeiro 2026</div>
+          <div class="roadmap-title" style="color:var(--yellow)">🎮 Championship Challenge — Início da Temporada</div>
+          <div class="roadmap-desc">Arranque oficial do BSC 2026. Qualquer jogador pode participar através do
+            Championship Challenge no jogo — 15 vitórias com máximo de 3 derrotas para qualificar.</div>
+          <div class="roadmap-tags"><span class="roadmap-tag done">✅ Concluído</span><span
+              class="roadmap-tag">In-Game</span></div>
         </div>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-dot" style="background:var(--orange)"></div>
+          <div class="roadmap-date">Fevereiro 2026</div>
+          <div class="roadmap-title" style="color:var(--orange)">📊 February Monthly Finals</div>
+          <div class="roadmap-desc">Primeiras Monthly Finals da temporada — EMEA, East Asia, North America, South
+            America e Chinese Mainland. ZETA DIVISION venceu o East Asia, FUT Esports venceu o EMEA.</div>
+          <div class="roadmap-tags"><span class="roadmap-tag done">✅ Concluído</span><span
+              class="roadmap-tag prize">$31K–$42.5K por região</span></div>
+        </div>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-dot" style="background:var(--purple)"></div>
+          <div class="roadmap-date">Março — Abril 2026</div>
+          <div class="roadmap-title" style="color:var(--purple)">📊 March & April Monthly Finals</div>
+          <div class="roadmap-desc">NAVI, HMBLE e SK Gaming continuam a acumular pontos BSC. Os resultados de Abril
+            determinam quais equipas vão ao Brawl Cup em Berlim.</div>
+          <div class="roadmap-tags"><span class="roadmap-tag done">✅ Concluído</span><span
+              class="roadmap-tag prize">Pontos BSC</span></div>
+        </div>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-dot" style="background:var(--orange)"></div>
+          <div class="roadmap-date">15–17 Maio 2026</div>
+          <div class="roadmap-title" style="color:var(--orange)">🏟️ Brawl Cup 2026 — Berlim, Alemanha</div>
+          <div class="roadmap-desc">Primeiro grande evento LAN da temporada! Berlim acolhe o Brawl Cup pela primeira
+            vez. As melhores equipas das Spring Monthly Finals competem por $100.000 e slots diretos para o World
+            Finals.</div>
+          <div class="roadmap-tags"><span class="roadmap-tag next">🔜 Em breve</span><span class="roadmap-tag lan">🏟️
+              LAN</span><span class="roadmap-tag prize">$100.000</span></div>
+        </div>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-dot" style="background:var(--blue)"></div>
+          <div class="roadmap-date">Junho — Setembro 2026</div>
+          <div class="roadmap-title" style="color:var(--blue)">📊 Summer Monthly Finals</div>
+          <div class="roadmap-desc">Continuação da temporada com mais 3 Monthly Finals. Os pontos acumulados definem as
+            equipas qualificadas para o Last Chance Qualifier.</div>
+          <div class="roadmap-tags"><span class="roadmap-tag">Futuro</span><span class="roadmap-tag prize">Pontos
+              BSC</span></div>
+        </div>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-dot" style="background:var(--red)"></div>
+          <div class="roadmap-date">Outubro 2026</div>
+          <div class="roadmap-title" style="color:var(--red)">⚔️ Last Chance Qualifier (LCQ)</div>
+          <div class="roadmap-desc">8 equipas lutam pelos últimos 2 slots no World Finals. Evento de 2 dias — "win or go
+            home". Conhecido como o fim de semana mais intenso do mobile esports.</div>
+          <div class="roadmap-tags"><span class="roadmap-tag">Futuro</span><span class="roadmap-tag lan">🏟️ LAN</span>
+          </div>
+        </div>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-dot" style="background:var(--yellow)"></div>
+          <div class="roadmap-date">Novembro 2026</div>
+          <div class="roadmap-title" style="color:var(--yellow)">🌍 World Finals 2026</div>
+          <div class="roadmap-desc">O evento culminante — 12 melhores equipas do mundo. Localização ainda não confirmada
+            mas a Supercell está a apontar para uma "cidade de esports de referência". Prize pool principal do $2M
+            total.</div>
+          <div class="roadmap-tags"><span class="roadmap-tag">Futuro</span><span class="roadmap-tag lan">🏟️
+              LAN</span><span class="roadmap-tag prize">$1M+</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TORNEIOS -->
+  <div class="wrap">
+    <section class="section">
+      <div class="section-label reveal">Resultados & Calendário</div>
+      <h2 class="section-title reveal">Todos os Torneios</h2>
+
+      <div class="tabs-wrap reveal">
+        <button class="tab-btn active" data-filter="all">Todos</button>
+        <button class="tab-btn" data-filter="upcoming">🔜 Próximos</button>
+        <button class="tab-btn" data-filter="lan">🏟️ LAN</button>
+        <button class="tab-btn" data-filter="completed">✅ Concluídos</button>
+        <button class="tab-btn" data-filter="emea">🌍 EMEA</button>
+        <button class="tab-btn" data-filter="eastasia">🌏 East Asia</button>
+        <button class="tab-btn" data-filter="na">🌎 Norte América</button>
+        <button class="tab-btn" data-filter="sa">🌎 Sul América</button>
+      </div>
+
+      <div class="tournaments-grid" id="tournamentsGrid">
+
+        <!-- BRAWL CUP -->
+        <div class="tournament-card lan" data-tags="upcoming lan">
+          <div class="tc-top" style="background:linear-gradient(90deg,var(--orange),var(--yellow))"></div>
+          <div class="tc-body">
+            <div class="tc-metas">
+              <span class="tc-status status-upcoming">🔜 Próximo</span>
+              <span class="tc-status status-lan">🏟️ LAN</span>
+              <span class="tc-region">🌍 Internacional</span>
+            </div>
+            <div class="tc-date">📅 15–17 Maio 2026 · Berlim, Alemanha</div>
+            <div class="tc-name">Brawl Stars Championship 2026: Brawl Cup</div>
+            <div class="tc-prize">💰 $100.000</div>
+            <div class="tc-teams">Top equipas das Spring Monthly Finals · Slots diretos para o World Finals</div>
+            <div class="info-box yellow" style="margin:0;padding:.75rem 1rem">
+              <div class="info-box-icon">📍</div>
+              <div class="info-box-text" style="font-size:.82rem">Berlim recebe o Brawl Cup pela primeira vez na
+                história do BSC. Primeiro grande LAN da temporada 2026.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APRIL EMEA -->
+        <div class="tournament-card completed" data-tags="completed emea">
+          <div class="tc-top" style="background:var(--blue)"></div>
+          <div class="tc-body">
+            <div class="tc-metas">
+              <span class="tc-status status-completed">✅ Concluído</span>
+              <span class="tc-region">🌍 EMEA</span>
+            </div>
+            <div class="tc-date">📅 11 Abril 2026</div>
+            <div class="tc-name">BSC 2026: April EMEA Monthly Finals</div>
+            <div class="tc-prize">💰 ~$42.500</div>
+            <div class="tc-teams">Top 8 equipas da região EMEA</div>
+            <div class="tc-result">
+              <div class="tc-result-title">Resultados</div>
+              <div class="tc-podium">
+                <div class="tc-place place-1"><span class="place-num">🥇</span><span class="place-team">A
+                    confirmar</span><span class="place-prize">$12.000</span></div>
+                <div class="tc-place place-2"><span class="place-num">🥈</span><span class="place-team">A
+                    confirmar</span><span class="place-prize">$8.000</span></div>
+                <div class="tc-place place-3"><span class="place-num">🥉</span><span class="place-team">A
+                    confirmar</span><span class="place-prize">$5.500</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APRIL NA -->
+        <div class="tournament-card completed" data-tags="completed na">
+          <div class="tc-top" style="background:var(--purple)"></div>
+          <div class="tc-body">
+            <div class="tc-metas">
+              <span class="tc-status status-completed">✅ Concluído</span>
+              <span class="tc-region">🌎 North America</span>
+            </div>
+            <div class="tc-date">📅 19 Abril 2026</div>
+            <div class="tc-name">BSC 2026: April North America Monthly Finals</div>
+            <div class="tc-prize">💰 ~$35.000</div>
+            <div class="tc-teams">Top 8 equipas da América do Norte</div>
+            <div class="tc-result">
+              <div class="tc-result-title">Resultados</div>
+              <div class="tc-podium">
+                <div class="tc-place place-1"><span class="place-num">🥇</span><span class="place-team">A
+                    confirmar</span><span class="place-prize">$12.000</span></div>
+                <div class="tc-place place-2"><span class="place-num">🥈</span><span class="place-team">A
+                    confirmar</span><span class="place-prize">$8.000</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APRIL SA -->
+        <div class="tournament-card completed" data-tags="completed sa">
+          <div class="tc-top" style="background:var(--green)"></div>
+          <div class="tc-body">
+            <div class="tc-metas">
+              <span class="tc-status status-completed">✅ Concluído</span>
+              <span class="tc-region">🌎 South America</span>
+            </div>
+            <div class="tc-date">📅 18 Abril 2026</div>
+            <div class="tc-name">BSC 2026: April South America Monthly Finals</div>
+            <div class="tc-prize">💰 ~$35.000</div>
+            <div class="tc-teams">Top 8 equipas da América do Sul</div>
+            <div class="tc-result">
+              <div class="tc-result-title">Resultados</div>
+              <div class="tc-podium">
+                <div class="tc-place place-1"><span class="place-num">🥇</span><span class="place-team">A
+                    confirmar</span><span class="place-prize">$12.000</span></div>
+                <div class="tc-place place-2"><span class="place-num">🥈</span><span class="place-team">A
+                    confirmar</span><span class="place-prize">$8.000</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FEB EMEA -->
+        <div class="tournament-card completed" data-tags="completed emea">
+          <div class="tc-top" style="background:var(--blue)"></div>
+          <div class="tc-body">
+            <div class="tc-metas">
+              <span class="tc-status status-completed">✅ Concluído</span>
+              <span class="tc-region">🌍 EMEA</span>
+            </div>
+            <div class="tc-date">📅 Fevereiro 2026</div>
+            <div class="tc-name">BSC 2026: February EMEA Monthly Finals</div>
+            <div class="tc-prize">💰 $42.500</div>
+            <div class="tc-teams">Top 8 equipas da região EMEA</div>
+            <div class="tc-result">
+              <div class="tc-result-title">Resultados</div>
+              <div class="tc-podium">
+                <div class="tc-place place-1"><span class="place-num">🥇</span><span class="place-team">FUT
+                    Esports</span><span class="place-prize">$12.000</span><span class="place-mvp">MVP: Guesti
+                    🇺🇦</span></div>
+                <div class="tc-place place-2"><span class="place-num">🥈</span><span
+                    class="place-team">HMBLE</span><span class="place-prize">$8.000</span></div>
+                <div class="tc-place place-3"><span class="place-num">🥉</span><span class="place-team">Tribe
+                    Gaming</span><span class="place-prize">$4.000</span></div>
+                <div class="tc-place place-4"><span class="place-num">4º</span><span class="place-team">KDS
+                    Esports</span><span class="place-prize">$4.000</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FEB EAST ASIA -->
+        <div class="tournament-card completed" data-tags="completed eastasia">
+          <div class="tc-top" style="background:var(--red)"></div>
+          <div class="tc-body">
+            <div class="tc-metas">
+              <span class="tc-status status-completed">✅ Concluído</span>
+              <span class="tc-region">🌏 East Asia</span>
+            </div>
+            <div class="tc-date">📅 Fevereiro 2026</div>
+            <div class="tc-name">BSC 2026: February East Asia Monthly Finals</div>
+            <div class="tc-prize">💰 $42.500</div>
+            <div class="tc-teams">Top 8 equipas da Ásia Oriental</div>
+            <div class="tc-result">
+              <div class="tc-result-title">Resultados</div>
+              <div class="tc-podium">
+                <div class="tc-place place-1"><span class="place-num">🥇</span><span class="place-team">ZETA
+                    DIVISION</span><span class="place-prize">$12.000</span><span class="place-mvp">MVP: Sitetampo
+                    🇯🇵</span></div>
+                <div class="tc-place place-2"><span class="place-num">🥈</span><span class="place-team">ABC</span><span
+                    class="place-prize">$8.000</span></div>
+                <div class="tc-place place-3"><span class="place-num">🥉</span><span class="place-team">Rival
+                    Esports</span><span class="place-prize">$5.500</span></div>
+                <div class="tc-place place-4"><span class="place-num">4º</span><span class="place-team">WWL
+                    Esports</span><span class="place-prize">$5.500</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FEB NA -->
+        <div class="tournament-card completed" data-tags="completed na">
+          <div class="tc-top" style="background:var(--purple)"></div>
+          <div class="tc-body">
+            <div class="tc-metas">
+              <span class="tc-status status-completed">✅ Concluído</span>
+              <span class="tc-region">🌎 North America</span>
+            </div>
+            <div class="tc-date">📅 23 Fevereiro 2026</div>
+            <div class="tc-name">BSC 2026: February North America Monthly Finals</div>
+            <div class="tc-prize">💰 $35.000</div>
+            <div class="tc-teams">Top 8 equipas da América do Norte</div>
+            <div class="tc-result">
+              <div class="tc-result-title">Resultados</div>
+              <div class="tc-podium">
+                <div class="tc-place place-1"><span class="place-num">🥇</span><span class="place-team">Tribe
+                    Gaming</span><span class="place-prize">$12.000</span></div>
+                <div class="tc-place place-2"><span class="place-num">🥈</span><span class="place-team">A
+                    confirmar</span><span class="place-prize">$8.000</span></div>
+                <div class="tc-place place-3"><span class="place-num">🥉</span><span class="place-team">A
+                    confirmar</span><span class="place-prize">$4.000</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WORLD FINALS -->
+        <div class="tournament-card upcoming" data-tags="upcoming lan">
+          <div class="tc-top" style="background:linear-gradient(90deg,var(--yellow),var(--orange),var(--pink))"></div>
+          <div class="tc-body">
+            <div class="tc-metas">
+              <span class="tc-status status-upcoming">🔜 Futuro</span>
+              <span class="tc-status status-lan">🏟️ LAN</span>
+              <span class="tc-region">🌍 Internacional</span>
+            </div>
+            <div class="tc-date">📅 Novembro 2026 · Local TBA</div>
+            <div class="tc-name">Brawl Stars Championship 2026: World Finals</div>
+            <div class="tc-prize">💰 $1.000.000+</div>
+            <div class="tc-teams">Top 12 equipas do mundo · Evento culminante da temporada</div>
+            <div class="info-box yellow" style="margin:0;padding:.75rem 1rem">
+              <div class="info-box-icon">📍</div>
+              <div class="info-box-text" style="font-size:.82rem">Localização ainda não anunciada. A Supercell está a
+                apontar para uma "cidade de esports de referência".</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LCQ -->
+        <div class="tournament-card upcoming" data-tags="upcoming lan">
+          <div class="tc-top" style="background:var(--red)"></div>
+          <div class="tc-body">
+            <div class="tc-metas">
+              <span class="tc-status status-upcoming">🔜 Futuro</span>
+              <span class="tc-status status-lan">🏟️ LAN</span>
+              <span class="tc-region">🌍 Internacional</span>
+            </div>
+            <div class="tc-date">📅 Outubro 2026</div>
+            <div class="tc-name">BSC 2026: Last Chance Qualifier (LCQ)</div>
+            <div class="tc-prize">💰 A confirmar</div>
+            <div class="tc-teams">8 equipas · 2 slots para o World Finals</div>
+            <div class="tc-teams" style="margin-top:.5rem;font-style:italic">O evento de 2 dias mais intenso do mobile
+              esports — "win or go home"</div>
+          </div>
+        </div>
+
+      </div>
     </section>
+  </div>
 
-    <div class="divider"></div>
+  <div class="divider"></div>
 
-    <!-- FORMATO DE JOGO -->
-    <section class="format-section">
-        <div class="format-inner">
-            <div class="section-label reveal">Como se joga</div>
-            <h2 class="section-title reveal">Formato por Rank</h2>
-            <p style="color:rgba(255,255,255,.5);font-size:.97rem;line-height:1.75;max-width:650px;margin-bottom:2rem;"
-                class="reveal">O formato de jogo muda drasticamente à medida que subes. De escolhas cegas no Bronze a
-                Snake Drafts no Mythic — cada divisão tem as suas próprias regras.</p>
-
-            <div class="format-grid">
-                <div class="format-card f-blind reveal">
-                    <div class="format-card-icon">🎲</div>
-                    <div class="format-card-title">Blind Pick</div>
-                    <div class="format-card-ranks" style="color:var(--blue)">Bronze I → Gold III</div>
-                    <div class="format-card-desc">Todos escolhem o brawler em simultâneo sem ver as escolhas do
-                        adversário. Sem bans — qualquer brawler pode ser usado. O formato mais simples e acessível.
-                    </div>
-                    <div class="format-card-reqs">
-                        <div class="format-req">✅ 3 Brawlers PL9 para entrar</div>
-                        <div class="format-req">✅ Partida única (Best-of-1)</div>
-                        <div class="format-req">✅ Sem bans</div>
-                        <div class="format-req">✅ Sem demoção entre tiers</div>
-                    </div>
-                </div>
-                <div class="format-card f-bans reveal" style="transition-delay:.1s">
-                    <div class="format-card-icon">🚫</div>
-                    <div class="format-card-title">Bans + Pick</div>
-                    <div class="format-card-ranks" style="color:var(--legendary)">Diamond I → Diamond III</div>
-                    <div class="format-card-desc">Antes de escolher, cada equipa bana brawlers em simultâneo. 6 bans no
-                        total. Se o timer de 20 segundos expirar sem escolha, um brawler aleatório é banido.</div>
-                    <div class="format-card-reqs">
-                        <div class="format-req">⚠️ 9 Brawlers PL9 necessários</div>
-                        <div class="format-req">⚠️ Demoção possível</div>
-                        <div class="format-req">✅ Partida única (Best-of-1)</div>
-                        <div class="format-req">✅ 6 bans por partida</div>
-                    </div>
-                </div>
-                <div class="format-card f-draft reveal" style="transition-delay:.2s">
-                    <div class="format-card-icon">🏆</div>
-                    <div class="format-card-title">Snake Draft + Best-of-3</div>
-                    <div class="format-card-ranks" style="color:var(--pro)">Mythic I → Pro</div>
-                    <div class="format-card-desc">O formato mais exigente. Bans alternados, depois picks em Snake Order
-                        (1-2-2-1). Vence a equipa que ganhe 2 de 3 jogos. O draft é a chave da vitória.</div>
-                    <div class="format-card-reqs">
-                        <div class="format-req">⚠️ 12 Brawlers PL11 obrigatórios</div>
-                        <div class="format-req">⚠️ Masters II+ — Solo Queue only</div>
-                        <div class="format-req">✅ Primeiro a 2 vitórias</div>
-                        <div class="format-req">✅ Bans + Snake Draft completo</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="wiki-box tip" style="margin-top:2rem" class="reveal">
-                <div class="wiki-box-icon">💡</div>
-                <div class="wiki-box-text">No Snake Draft de Mythic+, a ordem de picks é: <strong>A → B B → A A → B B →
-                        A</strong>. O Team Captain (jogador com rank mais alto ou líder do grupo) vê as escolhas
-                    primeiro. <strong>Ban o brawler que domina o mapa atual</strong> — não necessariamente o mais forte
-                    em geral.</div>
-            </div>
+  <!-- REGIÕES -->
+  <section class="region-section">
+    <div class="region-inner">
+      <div class="section-label reveal">Competição Global</div>
+      <h2 class="section-title reveal">Regiões Competitivas</h2>
+      <p style="color:rgba(255,255,255,.5);font-size:.97rem;line-height:1.75;max-width:650px;margin-bottom:1rem;"
+        class="reveal">O BSC 2026 abrange 5 regiões principais. Cada região tem as suas próprias Monthly Finals com
+        prize pools separados.</p>
+      <div class="regions-grid">
+        <div class="region-card reveal">
+          <div class="region-flag">🌍</div>
+          <div class="region-name">EMEA</div>
+          <div class="region-leader">Líder Fev: <span>FUT Esports</span></div>
+          <div class="region-points">Europa, Médio Oriente e África · Prize pool: $42.500/mês</div>
         </div>
+        <div class="region-card reveal" style="transition-delay:.06s">
+          <div class="region-flag">🌏</div>
+          <div class="region-name">East Asia</div>
+          <div class="region-leader">Líder Fev: <span>ZETA DIVISION</span></div>
+          <div class="region-points">Japão, Coreia, Taiwan · Prize pool: $42.500/mês</div>
+        </div>
+        <div class="region-card reveal" style="transition-delay:.1s">
+          <div class="region-flag">🌎</div>
+          <div class="region-name">North America</div>
+          <div class="region-leader">Líder Fev: <span>Tribe Gaming</span></div>
+          <div class="region-points">EUA e Canadá · Prize pool: ~$35.000/mês</div>
+        </div>
+        <div class="region-card reveal" style="transition-delay:.14s">
+          <div class="region-flag">🌎</div>
+          <div class="region-name">South America</div>
+          <div class="region-leader">Equipas: <span>LOUD, RED Canids, INTZ</span></div>
+          <div class="region-points">Brasil e restante América do Sul · Nova prioridade em 2026</div>
+        </div>
+        <div class="region-card reveal" style="transition-delay:.18s">
+          <div class="region-flag">🇨🇳</div>
+          <div class="region-name">Chinese Mainland</div>
+          <div class="region-leader">Circuito: <span>Separado das outras regiões</span></div>
+          <div class="region-points">China continental · Top 4 qualificam para o Chinese Finals</div>
+        </div>
+        <div class="region-card reveal" style="transition-delay:.22s">
+          <div class="region-flag">🌏</div>
+          <div class="region-name">SESA (novo)</div>
+          <div class="region-leader">Caminho alternativo: <span>Road to Brawl Cup</span></div>
+          <div class="region-points">Sul da Ásia e Sudeste Asiático · Nova rota de qualificação em 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- COMO QUALIFICAR -->
+  <div class="wrap">
+    <section class="section">
+      <div class="section-label reveal">Para jogadores</div>
+      <h2 class="section-title reveal">Como Qualificar?</h2>
+      <p style="color:rgba(255,255,255,.5);font-size:.97rem;line-height:1.75;max-width:650px;margin-bottom:2rem;"
+        class="reveal">Qualquer jogador pode tentar chegar ao World Finals — o caminho começa dentro do próprio jogo.
+      </p>
+      <div class="qual-steps">
+        <div class="qual-step qs-1 reveal">
+          <div class="qual-num">1</div>
+          <div class="qual-icon">🎮</div>
+          <div class="qual-title">Championship Challenge</div>
+          <div class="qual-desc">Dentro do jogo. Consegue 15 vitórias com no máximo 3 derrotas para qualificar para as
+            Monthly Qualifiers da tua região.</div>
+        </div>
+        <div class="qual-step qs-2 reveal" style="transition-delay:.08s">
+          <div class="qual-num">2</div>
+          <div class="qual-icon">📊</div>
+          <div class="qual-title">Monthly Qualifiers</div>
+          <div class="qual-desc">Torneio online da tua região. As melhores 8 equipas avançam para as Monthly Finals com
+            prize pool e pontos BSC.</div>
+        </div>
+        <div class="qual-step qs-3 reveal" style="transition-delay:.16s">
+          <div class="qual-num">3</div>
+          <div class="qual-icon">🏅</div>
+          <div class="qual-title">Monthly Finals</div>
+          <div class="qual-desc">Acumula pontos BSC ao longo das 6 Monthly Finals. Os pontos determinam quem vai ao
+            Brawl Cup e ao World Finals.</div>
+        </div>
+        <div class="qual-step qs-4 reveal" style="transition-delay:.24s">
+          <div class="qual-num">4</div>
+          <div class="qual-icon">🏆</div>
+          <div class="qual-title">World Finals</div>
+          <div class="qual-desc">As 12 melhores equipas do mundo em Novembro. Prize pool principal de $1M+. O objetivo
+            de toda a temporada.</div>
+        </div>
+      </div>
     </section>
+  </div>
 
-    <div class="divider"></div>
+  <script>
+    // REVEAL
+    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.07 });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-    <!-- RECOMPENSAS -->
-    <div class="page-wrap">
-        <section class="section">
-            <div class="section-label reveal">Vale a pena jogar</div>
-            <h2 class="section-title reveal">Recompensas do Ranked</h2>
-            <p style="color:rgba(255,255,255,.5);font-size:.97rem;line-height:1.75;max-width:650px;margin-bottom:2.5rem;"
-                class="reveal">Cada rank tem recompensas únicas. Ganhas Ranked Starr Drops a cada tier II e III, e Starr
-                Drops de raridade superior ao mudar de categoria.</p>
-
-            <div class="rewards-grid">
-                <div class="reward-card reveal">
-                    <div class="reward-emoji">📦</div>
-                    <div class="reward-name">Ranked Starr Drop</div>
-                    <div class="reward-desc">Ganhas a cada Tier II e III completado. Contém Bling, ícones, sprays e
-                        skins.</div>
-                    <div class="reward-when">Tier II & III</div>
-                </div>
-                <div class="reward-card premium reveal" style="transition-delay:.06s">
-                    <div class="reward-emoji">💎</div>
-                    <div class="reward-name">Epic Starr Drop</div>
-                    <div class="reward-desc">Ao atingir Diamond pela primeira vez na temporada.</div>
-                    <div class="reward-when">Diamond I</div>
-                </div>
-                <div class="reward-card premium reveal" style="transition-delay:.1s">
-                    <div class="reward-emoji">🌟</div>
-                    <div class="reward-name">Mythic Starr Drop</div>
-                    <div class="reward-desc">Ao atingir Mythic pela primeira vez. Recompensa de alto valor.</div>
-                    <div class="reward-when">Mythic I</div>
-                </div>
-                <div class="reward-card premium reveal" style="transition-delay:.14s">
-                    <div class="reward-emoji">👑</div>
-                    <div class="reward-name">Legendary Starr Drop</div>
-                    <div class="reward-desc">Ao atingir Legendary. Um dos Starr Drops mais valiosos do jogo.</div>
-                    <div class="reward-when">Legendary I</div>
-                </div>
-                <div class="reward-card reveal" style="transition-delay:.18s">
-                    <div class="reward-emoji">🎨</div>
-                    <div class="reward-name">Battle Card Background</div>
-                    <div class="reward-desc">Fundo exclusivo da temporada para o teu cartão de batalha. Expira no fim da
-                        temporada.</div>
-                    <div class="reward-when">Cada novo rank</div>
-                </div>
-                <div class="reward-card reveal" style="transition-delay:.22s">
-                    <div class="reward-emoji">🔮</div>
-                    <div class="reward-name">Bling</div>
-                    <div class="reward-desc">Moeda cosmética dentro dos Ranked Starr Drops. Usada na nova Shop.</div>
-                    <div class="reward-when">Nos Starr Drops</div>
-                </div>
-                <div class="reward-card reveal" style="transition-delay:.26s">
-                    <div class="reward-emoji">🎭</div>
-                    <div class="reward-name">Skins Sazonais</div>
-                    <div class="reward-desc">Skins exclusivas do Ranked que rodam cada temporada. Só disponíveis durante
-                        a season.</div>
-                    <div class="reward-when">Nos Starr Drops</div>
-                </div>
-                <div class="reward-card reveal" style="transition-delay:.3s">
-                    <div class="reward-emoji">⚡</div>
-                    <div class="reward-name">Pro Pass XP</div>
-                    <div class="reward-desc">Cada vitória e cada rank atingido dá XP ao Pro Pass — progressão paralela
-                        ao Ranked.</div>
-                    <div class="reward-when">Todas as vitórias</div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- PRO PASS -->
-    <div class="page-wrap">
-        <section class="section" style="padding-top:4rem">
-            <div class="section-label reveal">Progressão Extra</div>
-            <h2 class="section-title reveal">Pro Pass</h2>
-            <div class="propass-banner reveal">
-                <div>
-                    <div class="propass-tag">🏆 Sistema de Progressão Paralelo</div>
-                    <div class="propass-title">O que é o Pro Pass?</div>
-                    <div class="propass-desc">O <strong style="color:#fff">Pro Pass</strong> foi adicionado no Update 60
-                        (Fevereiro 2025) e corre em paralelo com o Ranked. Cada vitória em Ranked e cada rank atingido
-                        dá <strong style="color:#fff">Pro Pass XP</strong>. À medida que subes de nível no Pro Pass,
-                        desbloqueias recompensas cosméticas exclusivas — ícones de perfil, sprays, Battle Card
-                        Backgrounds e skins temáticas do Pro Pass. É completamente gratuito — não há versão paga. Quanto
-                        mais jogas Ranked, mais progredes no Pro Pass.</div>
-                </div>
-                <div class="propass-big">🏅</div>
-            </div>
-        </section>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- REPUTAÇÃO E RESET -->
-    <div class="page-wrap">
-        <section class="section">
-            <div class="section-label reveal">Sistema de Fair Play</div>
-            <h2 class="section-title reveal">Reputação & Reset</h2>
-
-            <div class="how-grid" style="margin-bottom:2.5rem">
-                <div class="how-card reveal">
-                    <div class="how-icon">⭐</div>
-                    <div class="how-title">Medidor de Reputação</div>
-                    <div class="how-desc">A tua reputação em Ranked reflete o teu comportamento. Podes reportar até
-                        <strong style="color:#fff">10 jogadores por dia</strong> por mau comportamento. Boa conduta
-                        aumenta a reputação, deixar partidas ou grief faz baixar.</div>
-                </div>
-                <div class="how-card reveal" style="transition-delay:.08s">
-                    <div class="how-icon">🟡</div>
-                    <div class="how-title">Cartão Amarelo</div>
-                    <div class="how-desc">Quando a reputação baixa para amarelo, recebes um <strong
-                            style="color:#fff">aviso de cartão amarelo</strong>. Continuar com mau comportamento pode
-                        resultar em suspensão temporária do Ranked.</div>
-                </div>
-                <div class="how-card reveal" style="transition-delay:.12s">
-                    <div class="how-icon">🔴</div>
-                    <div class="how-title">Suspensão</div>
-                    <div class="how-desc">Se a reputação chegar ao vermelho, ficas <strong style="color:#fff">impedido
-                            de jogar Ranked</strong> durante algum tempo. Jogar bem e cooperar é a melhor forma de
-                        recuperar a reputação.</div>
-                </div>
-            </div>
-
-            <div class="reset-box reveal">
-                <div class="reset-icon">🔄</div>
-                <div>
-                    <div class="reset-title">Reset de Temporada — Como funciona?</div>
-                    <div class="reset-desc">No final de cada temporada, todos os ranks fazem reset. Os jogadores em
-                        <strong style="color:#fff">Diamond I e acima</strong> são demovidos 6 ranks. Os jogadores em
-                        <strong style="color:#fff">Gold III e abaixo</strong> são resetados para Silver I. O Ranked
-                        Boost de início de temporada compensa parcialmente este reset — quanto mais alto chegaste, maior
-                        o boost.</div>
-                </div>
-            </div>
-
-            <!-- TABELA DE REQUISITOS -->
-            <h3 style="font-family:'Russo One',sans-serif;font-size:1.2rem;margin:2.5rem 0 .5rem" class="reveal">Tabela
-                de Requisitos Completa</h3>
-            <table class="reqs-table reveal">
-                <tr>
-                    <th>Rank</th>
-                    <th>ELO Necessário</th>
-                    <th>Brawlers Necessários</th>
-                    <th>Power Level</th>
-                    <th>Formato</th>
-                    <th>Queue</th>
-                </tr>
-                <tr>
-                    <td style="color:var(--bronze)">🥉 Bronze</td>
-                    <td>0 – 750</td>
-                    <td>3</td>
-                    <td>PL9+</td>
-                    <td>Blind Pick · Bo1</td>
-                    <td>Solo/Duo/Trio</td>
-                </tr>
-                <tr>
-                    <td style="color:var(--silver)">🥈 Silver</td>
-                    <td>750 – 1.500</td>
-                    <td>3</td>
-                    <td>PL9+</td>
-                    <td>Blind Pick · Bo1</td>
-                    <td>Solo/Duo/Trio</td>
-                </tr>
-                <tr>
-                    <td style="color:var(--gold)">🥇 Gold</td>
-                    <td>1.500 – 2.250</td>
-                    <td>3</td>
-                    <td>PL9+</td>
-                    <td>Blind Pick · Bo1</td>
-                    <td>Solo/Duo/Trio</td>
-                </tr>
-                <tr>
-                    <td style="color:var(--diamond)">💎 Diamond</td>
-                    <td>2.250 – 3.750</td>
-                    <td>9</td>
-                    <td>PL9+</td>
-                    <td>Bans · Bo1</td>
-                    <td>Solo/Duo/Trio (±8 ranks)</td>
-                </tr>
-                <tr>
-                    <td style="color:var(--mythic)">🔴 Mythic</td>
-                    <td>3.750 – 5.250</td>
-                    <td>12</td>
-                    <td>PL11</td>
-                    <td>Snake Draft · Bo3</td>
-                    <td>Solo/Duo/Trio (±3 ranks)</td>
-                </tr>
-                <tr>
-                    <td style="color:var(--legendary)">🌟 Legendary</td>
-                    <td>5.250 – 7.500</td>
-                    <td>12</td>
-                    <td>PL11</td>
-                    <td>Snake Draft · Bo3</td>
-                    <td>Solo/Duo (±3 ranks)</td>
-                </tr>
-                <tr>
-                    <td style="color:var(--masters)">👑 Masters I</td>
-                    <td>7.500 – 8.500</td>
-                    <td>30</td>
-                    <td>PL11</td>
-                    <td>Snake Draft · Bo3</td>
-                    <td>Solo/Duo (±1 rank)</td>
-                </tr>
-                <tr>
-                    <td style="color:var(--masters)">👑 Masters II+</td>
-                    <td>8.500 – 11.250</td>
-                    <td>30</td>
-                    <td>PL11</td>
-                    <td>Snake Draft · Bo3</td>
-                    <td>Solo Queue obrigatório</td>
-                </tr>
-                <tr>
-                    <td style="color:var(--pro)">💖 Pro</td>
-                    <td>11.250+</td>
-                    <td>30+</td>
-                    <td>PL11</td>
-                    <td>Snake Draft · Bo3</td>
-                    <td>Solo Queue obrigatório</td>
-                </tr>
-            </table>
-        </section>
-    </div>
-
-    <script>
-        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.07 });
-        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-
-        const cursor = document.getElementById("cursor");
-        const ring = document.getElementById("cursor-ring");
-        let mx = 0, my = 0, rx = 0, ry = 0;
-        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
-        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
-        document.querySelectorAll("a,button,.rank-row,.how-card,.reward-card,.format-card").forEach(el => {
-            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
-            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
-        });
-    </script>
+    // CURSOR
+    // Desativar cursor personalizado em dispositivos touch
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (isTouchDevice) {
+      document.getElementById("cursor").style.display = "none";
+      document.getElementById("cursor-ring").style.display = "none";
+      document.body.style.cursor = "auto";
+      document.querySelectorAll("*").forEach(el => el.style.cursor = "");
+    } else {
+      // Todo o código do cursor fica aqui dentro
+      const cursor = document.getElementById("cursor");
+      const ring = document.getElementById("cursor-ring");
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+      (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+    }
+    const cursor = document.getElementById("cursor");
+    const ring = document.getElementById("cursor-ring");
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+    (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+    document.querySelectorAll("a,button,.tournament-card,.region-card,.qual-step").forEach(el => {
+      el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+      el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+    });
+  </script>
+  <script src="../pesquisa.js"></script>
+  <script src="../tema.js"></script>
+  <script src="../Breadcrumbs.js"></script>
 </body>
 
 </html>

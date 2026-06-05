@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="BrawlZone — Todos os Brawlers de Brawl Stars. Habilidades, stats, Hypercharge e modos recomendados.">
     <title>Brawlers — BrawlZone</title>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -54,8 +56,17 @@
             color: inherit;
         }
 
-        * {
-            cursor: none !important;
+        /* CURSOR — corrigido (sem duplicação, deteção melhorada) */
+        @media(hover:none) {
+            * {
+                cursor: auto !important;
+            }
+        }
+
+        @media(hover:hover) and (pointer:fine) {
+            * {
+                cursor: none !important;
+            }
         }
 
         #cursor {
@@ -83,6 +94,7 @@
             transition: width .25s, height .25s;
         }
 
+        /* NAV */
         nav {
             position: fixed;
             top: 0;
@@ -146,6 +158,23 @@
             border-radius: 2px;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: .5rem;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+        }
+
         @media(max-width:768px) {
             nav {
                 padding: 1rem 1.5rem;
@@ -154,8 +183,92 @@
             .nav-links {
                 display: none;
             }
+
+            .hamburger {
+                display: flex;
+            }
         }
 
+        /* MOBILE MENU — painel lateral */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .6);
+            z-index: 399;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        .mobile-overlay.open {
+            display: block;
+            opacity: 1;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: min(320px, 85vw);
+            background: var(--dark2);
+            z-index: 400;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0;
+            padding: 2rem;
+            border-left: 1px solid rgba(255, 255, 255, .08);
+            transform: translateX(100%);
+            transition: transform .35s cubic-bezier(.16, 1, .3, 1);
+            display: flex;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .mobile-menu a {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, .6);
+            transition: color .2s, padding-left .2s;
+            padding: .9rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--yellow);
+            padding-left: .5rem;
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .08);
+            border: none;
+            color: rgba(255, 255, 255, .6);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s;
+        }
+
+        .mobile-close:hover {
+            background: rgba(255, 255, 255, .15);
+            color: #fff;
+        }
+
+        /* PAGE HEADER */
         .page-header {
             padding: 8rem 3rem 3rem;
             position: relative;
@@ -236,6 +349,7 @@
             border-radius: 50%;
         }
 
+        /* TOOLBAR */
         .toolbar {
             max-width: 1200px;
             margin: 2.5rem auto;
@@ -344,6 +458,7 @@
             opacity: .4;
         }
 
+        /* BRAWLERS GRID */
         .brawlers-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -384,6 +499,14 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 1rem;
+        }
+
+        .brawler-img {
+            width: 3rem;
+            height: 3rem;
+            object-fit: contain;
+            filter: drop-shadow(0 3px 8px rgba(0, 0, 0, .4));
+            transition: transform .3s;
         }
 
         .brawler-card {
@@ -436,6 +559,10 @@
         .brawler-card[data-rarity="ultra"]:hover {
             border-color: var(--c-ultra);
             box-shadow: 0 16px 40px rgba(255, 107, 0, .2);
+        }
+
+        .brawler-card:hover .brawler-img {
+            transform: scale(1.18) rotate(-6deg);
         }
 
         .new-badge {
@@ -517,6 +644,8 @@
             font-size: .65rem;
             color: rgba(255, 255, 255, .35);
             font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
         }
 
         .no-results {
@@ -537,6 +666,7 @@
             margin-bottom: .5rem;
         }
 
+        /* MODAL */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -688,6 +818,38 @@
             flex: 1;
             height: 1px;
             background: rgba(255, 255, 255, .07);
+        }
+
+        .modal-action-btn {
+            flex: 1;
+            text-align: center;
+            padding: .7rem 1rem;
+            border-radius: 12px;
+            font-family: 'Russo One', sans-serif;
+            font-size: .85rem;
+            transition: transform .2s, box-shadow .2s;
+            min-width: 140px;
+        }
+
+        .modal-action-primary {
+            background: var(--yellow);
+            color: var(--text-dark);
+        }
+
+        .modal-action-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(255, 208, 0, .3);
+        }
+
+        .modal-action-secondary {
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .7);
+            border: 1px solid rgba(255, 255, 255, .12);
+        }
+
+        .modal-action-secondary:hover {
+            background: rgba(255, 255, 255, .12);
+            transform: translateY(-2px);
         }
 
         .abilities-grid {
@@ -846,7 +1008,6 @@
 
         .toggle-btn.on::after {
             transform: translateX(16px);
-            background: #fff;
         }
 
         .hyper-active .stat-bar-fill {
@@ -953,7 +1114,9 @@
 <body>
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
+
     <nav>
+
         <a href="../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
         <ul class="nav-links">
             <li><a href="../Página inicial.html">Início</a></li>
@@ -961,7 +1124,21 @@
             <li><a href="../Updates/Updates.html">Updates</a></li>
             <li><a href="../Guias/Guias.html">Guias</a></li>
         </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose">✕</button>
+        <a href="../Página inicial.html">Início</a>
+        <a href="#" class="active">Brawlers</a>
+        <a href="../Updates/Updates.html">Updates</a>
+        <a href="../Guias/Guias.html">Guias</a>
+    </div>
+
     <header class="page-header">
         <div class="page-header-bg"></div>
         <div class="page-header-content">
@@ -969,31 +1146,11 @@
             <h1 class="page-title">Todos os Brawlers</h1>
             <p class="page-desc">Explora todos os Brawlers do jogo. Clica em qualquer um para ver habilidades, stats e
                 modos ideais.</p>
-            <div class="rarity-counts">
-                <div class="rarity-count-pill">
-                    <div class="rarity-dot" style="background:var(--c-starter)"></div>Starter: 1
-                </div>
-                <div class="rarity-count-pill">
-                    <div class="rarity-dot" style="background:var(--c-rare)"></div>Rare: 8
-                </div>
-                <div class="rarity-count-pill">
-                    <div class="rarity-dot" style="background:var(--c-super)"></div>Super Rare: 10
-                </div>
-                <div class="rarity-count-pill">
-                    <div class="rarity-dot" style="background:var(--c-epic)"></div>Epic: 29+
-                </div>
-                <div class="rarity-count-pill">
-                    <div class="rarity-dot" style="background:var(--c-mythic)"></div>Mythic: 38+
-                </div>
-                <div class="rarity-count-pill">
-                    <div class="rarity-dot" style="background:var(--c-leg)"></div>Legendary: 15
-                </div>
-                <div class="rarity-count-pill">
-                    <div class="rarity-dot" style="background:var(--c-ultra)"></div>Ultra Leg.: 2
-                </div>
-            </div>
+            <!-- Contagens geradas automaticamente pelo JS -->
+            <div class="rarity-counts" id="rarityCounts"></div>
         </div>
     </header>
+
     <div class="toolbar">
         <div class="filter-tabs">
             <button class="filter-tab active" data-filter="all">Todos</button>
@@ -1010,12 +1167,14 @@
             <input type="text" class="search-input" id="searchInput" placeholder="Procurar brawler...">
         </div>
     </div>
+
     <div class="brawlers-container" id="brawlersContainer"></div>
     <div class="no-results" id="noResults">
         <div class="no-results-emoji">😅</div>
         <h3>Nenhum brawler encontrado</h3>
         <p>Tenta outro nome ou filtro.</p>
     </div>
+
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal" id="modal">
             <button class="modal-close" id="modalClose">✕</button>
@@ -1038,7 +1197,11 @@
                     <div class="stats-header">
                         <div class="modal-section-title" style="margin-bottom:0">Stats</div>
                         <div class="stats-toggle" id="statsToggle">
-                            <span class="stats-toggle-label">⚡ Hypercharge</span>
+                            document.querySelector(".stats-toggle-label").innerHTML = `
+                            <img src="Imagens (Poderes de Estrela ou Acessórios)/${b.name}/Hipercarga.png"
+                                style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle"
+                                onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+                            <span style="display:none">⚡</span> Hypercharge`;
                             <button class="toggle-btn" id="toggleBtn" onclick="toggleHyper()"></button>
                         </div>
                     </div>
@@ -1048,20 +1211,27 @@
                     <div class="modal-section-title">Modos Recomendados</div>
                     <div class="modes-wrap" id="modalModes"></div>
                 </div>
+
+                <div class="modal-section">
+                    <div id="modalActions" style="display:flex;gap:.75rem;flex-wrap:wrap;"></div>
+                </div>
             </div>
         </div>
     </div>
+
+
     <script>
         const BRAWLERS = [
-            { name: "Shelly", emoji: "🔫", rarity: "starter", cls: "Damage Dealer", isNew: false, desc: "A brawler inicial de todos os jogadores. Dispara uma rajada de cartuchos devastadora ao perto.", attack: "Buckshot — Rajada de cartuchos a curto alcance.", super: "Super Shell — Disparo que destrói obstáculos e dá knockback.", sp1: "Shell Shock — O Super aplica slow.", sp2: "Band-Aid — Cura abaixo de 40% HP.", hp: 7800, dmg: 5760, range: 8, speed: 720, modes: ["Showdown", "Heist", "Brawl Ball"] },
-            { name: "Colt", emoji: "🤠", rarity: "rare", cls: "Damage Dealer", isNew: false, desc: "Um cowboy preciso com grande alcance. Dispara rajadas de 6 balas em linha reta.", attack: "Six-Shooters — 6 balas em linha reta.", super: "Bullet Storm — 12 balas que destroem paredes.", sp1: "Slick Boots — Velocidade aumentada.", sp2: "Magnum Special — Mais alcance e dano.", hp: 2800, dmg: 460, range: 10, speed: 720, modes: ["Heist", "Brawl Ball", "Bounty"] },
-            { name: "Nita", emoji: "🐻", rarity: "rare", cls: "Damage Dealer", isNew: false, desc: "Controla o espírito de um urso. O seu Super invoca Bruce, um urso fantasma.", attack: "Bear Paw — Onda de choque.", super: "Overbearing — Invoca Bruce, o urso.", sp1: "Bear With Me — Bruce cura Nita.", sp2: "Hyper Bear — Bruce ataca mais rápido.", hp: 3800, dmg: 800, range: 7, speed: 720, modes: ["Showdown", "Hot Zone", "Gem Grab"] },
+            { name: "Shelly", emoji: "🔫", rarity: "starter", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Shelly é a lutadora perfeita: confiável, durona e imbatível com a espingarda. Com tantas qualidades assim, ela nunca entendeu como o Colt virou o queridinho da galera...", attack: "Chumbo Grosso — A arma da Shelly dispara chumbinhos em grande amplitude e longo alcance. Quanto mais chumbinhos acertarem o alvo, maior o dano.", super: "SuperBala — A Superbala da Shelly oblitera coberturas e inimigos. Os sobreviventes são empurrados para longe.", hyper: "Super Shell HC — O Super da Shelly durante o Hypercharge destrói ainda mais obstáculos e empurra inimigos com mais força.", sp1: "Xeque-Mate — A Superbala da Shelly desacelera os inimigos por 2 segundos e deixa a área em chamas!", sp2: "Tônico Revigorante — Quando a saúde da Shelly está abaixo de 40%, ela recupera 1989 pontos de saúde instantaneamente. É preciso esperar 15 segundos até que a habilidade esteja disponível novamente.", g1: "", g2: "", hp: 7800, dmg: 5760, range: 8, speed: 720, modes: ["Showdown", "Heist", "Brawl Ball"] },
+            { name: "Colt", emoji: "🤠", rarity: "rare", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Um cowboy preciso com grande alcance. Dispara rajadas de 6 balas em linha reta.", attack: "Six-Shooters — 6 balas em linha reta.", super: "Bullet Storm — 12 balas que destroem paredes.", sp1: "Slick Boots — Velocidade aumentada.", sp2: "Magnum Special — Mais alcance e dano.", hp: 2800, dmg: 460, range: 10, speed: 720, modes: ["Heist", "Brawl Ball", "Bounty"] },
+            { name: "Nita", emoji: "🐻", rarity: "rare", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Controla o espírito de um urso. O seu Super invoca Bruce, um urso fantasma.", attack: "Bear Paw — Onda de choque.", super: "Overbearing — Invoca Bruce, o urso.", sp1: "Bear With Me — Bruce cura Nita.", sp2: "Hyper Bear — Bruce ataca mais rápido.", hp: 3800, dmg: 800, range: 7, speed: 720, modes: ["Showdown", "Hot Zone", "Gem Grab"] },
             { name: "Bull", emoji: "🐂", rarity: "rare", cls: "Tank", isNew: false, desc: "Um tanque com espingarda dupla. Dano massivo ao perto, usa arbustos para emboscar.", attack: "Double-Barreled — Espingarda dupla.", super: "Bulldozer — Carrega destruindo obstáculos.", sp1: "Berserker — Recarga rápida abaixo de 40% HP.", sp2: "Tough Guy — Escudo ao ativar o Super.", hp: 6000, dmg: 940, range: 4, speed: 720, modes: ["Heist", "Showdown", "Brawl Ball"] },
-            { name: "Brock", emoji: "🚀", rarity: "rare", cls: "Damage Dealer", isNew: false, desc: "Especialista em rockets com grande alcance. Destrói paredes com facilidade.", attack: "Rockin' Rocket — Rocket que destrói obstáculos.", super: "Rocket Rain — Chuva de rockets em área.", sp1: "Incendiary — Chamas no Super.", sp2: "Rocket Fuel — Mais destruição de paredes.", hp: 2800, dmg: 700, range: 13, speed: 720, modes: ["Bounty", "Heist", "Siege"] },
+            { name: "Brock", emoji: "🚀", rarity: "rare", cls: "Sniper", isNew: false, desc: "Especialista em rockets com grande alcance. Destrói paredes com facilidade.", attack: "Rockin' Rocket — Rocket que destrói obstáculos.", super: "Rocket Rain — Chuva de rockets em área.", sp1: "Incendiary — Chamas no Super.", sp2: "Rocket Fuel — Mais destruição de paredes.", hp: 2800, dmg: 700, range: 13, speed: 720, modes: ["Bounty", "Heist", "Siege"] },
             { name: "El Primo", emoji: "🤼", rarity: "rare", cls: "Tank", isNew: false, desc: "Um luchador com punhos de aço. Tanque ágil graças ao salto do Super.", attack: "Fists of Fury — Soco em cone.", super: "Flying Elbow Drop — Salta causando dano de área.", sp1: "El Fuego — Super deixa chamas.", sp2: "Meteor Rush — Velocidade após Super.", hp: 6400, dmg: 760, range: 4, speed: 720, modes: ["Showdown", "Brawl Ball", "Hot Zone"] },
-            { name: "Barley", emoji: "🍺", rarity: "rare", cls: "Support", isNew: false, desc: "Lança garrafas de líquido inflamável por cima de paredes. Controlo de zona.", attack: "Undiluted — Garrafa que deixa chamas.", super: "Last Call — 5 garrafas em área.", sp1: "Medical Use — Super cura aliados.", sp2: "Extra Nails — Chamas duram mais.", hp: 2800, dmg: 560, range: 10, speed: 720, modes: ["Gem Grab", "Hot Zone", "Bounty"] },
+            { name: "Barley", emoji: "🍺", rarity: "rare", cls: "Artillery", isNew: false, desc: "Lança garrafas de líquido inflamável por cima de paredes. Controlo de zona.", attack: "Undiluted — Garrafa que deixa chamas.", super: "Last Call — 5 garrafas em área.", sp1: "Medical Use — Super cura aliados.", sp2: "Extra Nails — Chamas duram mais.", hp: 2800, dmg: 560, range: 10, speed: 720, modes: ["Gem Grab", "Hot Zone", "Bounty"] },
             { name: "Poco", emoji: "🎸", rarity: "rare", cls: "Support", isNew: false, desc: "Um músico curandeiro. Os seus ataques e Super curam aliados.", attack: "Power Chord — Ondas sonoras.", super: "Encore — Cura massiva para aliados.", sp1: "Da Capo! — Ataque básico cura aliados.", sp2: "Screeching Solo — Super causa dano.", hp: 3600, dmg: 380, range: 8, speed: 720, modes: ["Gem Grab", "Hot Zone", "Brawl Ball"] },
             { name: "Rosa", emoji: "🌿", rarity: "rare", cls: "Tank", isNew: false, desc: "Uma botanista que luta com punhos. O Super cria um escudo de folhas.", attack: "Hands of Stone — Golpes em cone.", super: "Strong Stuff — Escudo de 70% de redução.", sp1: "Plant Life — Cura nos arbustos.", sp2: "Thorny Gloves — Mais dano com escudo.", hp: 7200, dmg: 600, range: 3, speed: 720, modes: ["Showdown", "Brawl Ball", "Hot Zone"] },
+            { name: "Jessie", emoji: "🤠", rarity: "super_rare", cls: "", isNew: false, desc: "Dispara balas que ricocheteiam nas paredes. Perfeito em mapas fechados.", attack: "Bouncy Bullets — Balas ricocheteantes.", super: "Trick Shot — Mais balas ricocheteantes.", sp1: "Robo Retreat — Velocidade abaixo de 30% HP.", sp2: "Super Bouncy — Mais ricochetes no Super.", hp: 2800, dmg: 560, range: 11, speed: 720, modes: ["Bounty", "Gem Grab", "Brawl Ball"] },
             { name: "Penny", emoji: "🪙", rarity: "super_rare", cls: "Support", isNew: false, desc: "Uma pirata que dispara bolsas de ouro com splash. O Super coloca um canhão.", attack: "Plunderbuss — Bolsa de ouro com splash.", super: "Old Lobber — Canhão que dispara por cima de paredes.", sp1: "Balls of Fire — Canhão deixa chamas.", sp2: "Master Blaster — Canhão explode ao ser destruído.", hp: 3200, dmg: 580, range: 10, speed: 720, modes: ["Gem Grab", "Siege", "Bounty"] },
             { name: "Carl", emoji: "⛏️", rarity: "super_rare", cls: "Damage Dealer", isNew: false, desc: "Arremessa o picão que volta como bumerangue. Dano ao ir e ao voltar.", attack: "Pickaxe — Picão bumerangue.", super: "Flying Hook — Roda com o picão causando dano.", sp1: "Power Throw — Picão mais rápido.", sp2: "Heat Ejector — Super deixa chamas.", hp: 3400, dmg: 660, range: 9, speed: 720, modes: ["Showdown", "Gem Grab", "Heist"] },
             { name: "Jacky", emoji: "🪨", rarity: "super_rare", cls: "Tank", isNew: false, desc: "Opera uma broca de rocha. Dano de área e atrai inimigos com o Super.", attack: "Groundbreaker — Tremor de terra circular.", super: "Counter Crush — Atrai inimigos próximos.", sp1: "Hardy Hard Hat — Reduz dano recebido.", sp2: "Pneumatic Booster — Mais velocidade após Super.", hp: 6000, dmg: 680, range: 4, speed: 720, modes: ["Showdown", "Brawl Ball", "Hot Zone"] },
@@ -1070,15 +1240,14 @@
             { name: "Dynamike", emoji: "💣", rarity: "super_rare", cls: "Damage Dealer", isNew: false, desc: "Lança dinamite por cima de paredes. Artillery clássico e eficaz.", attack: "Short Fuse — Dois sticks de dinamite.", super: "Big Barrel O' Boom — Barril de grande explosão.", sp1: "Dyna-Jump — Super propulsa Dynamike.", sp2: "Demolition — Super causa mais dano.", hp: 2800, dmg: 700, range: 10, speed: 720, modes: ["Gem Grab", "Hot Zone", "Bounty"] },
             { name: "Tick", emoji: "💥", rarity: "super_rare", cls: "Damage Dealer", isNew: false, desc: "Uma mina ambulante. Controla zonas com miniminas e uma cabeça teleguiada.", attack: "Minimines — 3 minas com delay.", super: "Headfirst! — Cabeça teleguiada como míssil.", sp1: "Well Oiled — Recupera HP ao atingir.", sp2: "Backup Mine — Mina ao morrer.", hp: 2800, dmg: 560, range: 9, speed: 720, modes: ["Gem Grab", "Hot Zone", "Siege"] },
             { name: "8-Bit", emoji: "👾", rarity: "super_rare", cls: "Damage Dealer", isNew: false, desc: "Um arcade game lento mas com dano e turret de boost para aliados.", attack: "Plugged In — Laser de grande alcance.", super: "Cheat Cartridge — Turret que boosta aliados.", sp1: "Boosted Booster — Turret de área maior.", sp2: "Extra Life — Revive uma vez.", hp: 3600, dmg: 880, range: 12, speed: 210, modes: ["Siege", "Heist", "Gem Grab"] },
-            { name: "Emz", emoji: "💅", rarity: "super_rare", cls: "Control", isNew: false, desc: "Influencer com spray tóxico. Controla zonas e aplica slow.", attack: "Spray — Laca tóxica progressiva.", super: "Caustic Charisma — Área de slow à volta.", sp1: "Bad Karma — Slow aumenta com tempo.", sp2: "Hype — Cura por inimigos no Super.", hp: 3200, dmg: 500, range: 8, speed: 720, modes: ["Hot Zone", "Gem Grab", "Bounty"] },
-            { name: "Lou", emoji: "❄️", rarity: "super_rare", cls: "Control", isNew: false, desc: "Máquina de slushie que congela inimigos. Controlo de zona gelado.", attack: "Chill-n-Kill — Projéteis de gelo.", super: "Subzero Slushie — Zona que imobiliza.", sp1: "Hypothermia — Freeze dura mais.", sp2: "Black Ice — Chão escorregadio.", hp: 2800, dmg: 480, range: 9, speed: 720, modes: ["Hot Zone", "Gem Grab", "Knockout"] },
+            { name: "Emz", emoji: "💅", rarity: "epic", cls: "Control", isNew: false, desc: "Influencer com spray tóxico. Controla zonas e aplica slow.", attack: "Spray — Laca tóxica progressiva.", super: "Caustic Charisma — Área de slow à volta.", sp1: "Bad Karma — Slow aumenta com tempo.", sp2: "Hype — Cura por inimigos no Super.", hp: 3200, dmg: 500, range: 8, speed: 720, modes: ["Hot Zone", "Gem Grab", "Bounty"] },
             { name: "Bo", emoji: "🏹", rarity: "epic", cls: "Damage Dealer", isNew: false, desc: "Caçador com 3 flechas em leque e armadilhas invisíveis no chão.", attack: "Eagle-Eyed — 3 flechas em leque.", super: "Catch a Fox — 3 minas invisíveis.", sp1: "Circling Eagle — Vê nos arbustos.", sp2: "Snare a Bear — Minas imobilizam.", hp: 3200, dmg: 640, range: 9, speed: 720, modes: ["Bounty", "Gem Grab", "Showdown"] },
             { name: "Piper", emoji: "☂️", rarity: "epic", cls: "Sniper", isNew: false, desc: "Sniper com dano proporcional à distância. Mais longe = mais letal.", attack: "Auto Aimer — Dano por distância.", super: "Poppin' — Salta lançando granadas.", sp1: "Ambush — Mais dano dos arbustos.", sp2: "Snappy Sniping — Recarga mais rápida.", hp: 2400, dmg: 880, range: 14, speed: 720, modes: ["Bounty", "Knockout", "Showdown"] },
             { name: "Pam", emoji: "🔧", rarity: "epic", cls: "Support", isNew: false, desc: "Mecânica que dispara detritos e coloca uma estação de cura.", attack: "Scrapstorm — Spray de detritos.", super: "Mama's Kiss — Turret de cura.", sp1: "Mama's Hug — Cura de projéteis afeta aliados.", sp2: "Bandage Toss — Turret cura mais.", hp: 4800, dmg: 540, range: 6, speed: 720, modes: ["Gem Grab", "Hot Zone", "Brawl Ball"] },
             { name: "Frank", emoji: "🔨", rarity: "epic", cls: "Tank", isNew: false, desc: "Monstro de HP com martelo. Super causa stun em grande área.", attack: "Hammer Hit — Golpe de martelo.", super: "Stunning Blow — Stun em área enorme.", sp1: "Power Grab — Mais forte ao eliminar.", sp2: "Sponge — Menos dano recebido.", hp: 8000, dmg: 820, range: 4, speed: 390, modes: ["Showdown", "Hot Zone", "Brawl Ball"] },
             { name: "Bibi", emoji: "🍬", rarity: "epic", cls: "Tank", isNew: false, desc: "Jogadora de basebol com knockback e bolha de escudo.", attack: "Home Run — Swing com knockback.", super: "Spitball — Bolha com knockback.", sp1: "Home Run — Velocidade e dano com escudo.", sp2: "Batting Stance — Escudo mais resistente.", hp: 5200, dmg: 760, range: 4, speed: 720, modes: ["Brawl Ball", "Showdown", "Hot Zone"] },
             { name: "Bea", emoji: "🐝", rarity: "epic", cls: "Sniper", isNew: false, desc: "Cientista com abelhas. Slow no ataque e super de nuvem de abelhas.", attack: "Honeycomb — Bala com slow.", super: "Honey Slow — Nuvem de abelhas.", sp1: "Insta Beeload — Recarga imediata ao acertar.", sp2: "Honey Coat — Imunidade temporária.", hp: 2400, dmg: 760, range: 12, speed: 720, modes: ["Bounty", "Knockout", "Gem Grab"] },
-            { name: "Nani", emoji: "🤖", rarity: "epic", cls: "Damage Dealer", isNew: false, desc: "Robô que teledirige o Super — Peep — para explodir nos inimigos.", attack: "Kintsugi — 3 projéteis convergentes.", super: "Warp — Teledirige Peep explosivo.", sp1: "Autofocus — Recarga ao acertar Peep.", sp2: "Tempered Steel — Peep tem mais HP.", hp: 2400, dmg: 680, range: 10, speed: 720, modes: ["Bounty", "Knockout", "Showdown"] },
+            { name: "Nani", emoji: "🦾", rarity: "epic", cls: "Damage Dealer", isNew: false, desc: "Robô que teledirige o Super — Peep — para explodir nos inimigos.", attack: "Kintsugi — 3 projéteis convergentes.", super: "Warp — Teledirige Peep explosivo.", sp1: "Autofocus — Recarga ao acertar Peep.", sp2: "Tempered Steel — Peep tem mais HP.", hp: 2400, dmg: 680, range: 10, speed: 720, modes: ["Bounty", "Knockout", "Showdown"] },
             { name: "Gale", emoji: "🌬️", rarity: "epic", cls: "Support", isNew: false, desc: "Senhor idoso com soprador de neve. Controlo por knockback.", attack: "Blustery Blow — Neve com knockback.", super: "Icy Blast — Parede de gelo.", sp1: "Blustery Blow — Maior knockback.", sp2: "Supercool — Super dura mais.", hp: 2800, dmg: 420, range: 8, speed: 720, modes: ["Hot Zone", "Gem Grab", "Brawl Ball"] },
             { name: "Colette", emoji: "📊", rarity: "epic", cls: "Damage Dealer", isNew: false, desc: "Dano proporcional ao HP máximo do alvo. Mata tanques facilmente.", attack: "Ta da! — Dano % do HP máximo.", super: "C'mon! — Carrega e volta causando dano.", sp1: "Mass Tax — Super causa mais dano.", sp2: "Na na na! — Cura ao causar dano.", hp: 3200, dmg: 560, range: 8, speed: 720, modes: ["Showdown", "Hot Zone", "Brawl Ball"] },
             { name: "Edgar", emoji: "😤", rarity: "epic", cls: "Assassin", isNew: false, desc: "Assassino de punhos que cura ao atacar. Super carrega automaticamente.", attack: "Let's Fly — Soco que cura.", super: "Flying Hook — Salta para inimigo.", sp1: "Fisticuffs — Mais cura por dano.", sp2: "Hard Landing — Super causa stun.", hp: 3800, dmg: 640, range: 3, speed: 800, modes: ["Showdown", "Knockout", "Brawl Ball"] },
@@ -1086,30 +1255,31 @@
             { name: "Ash", emoji: "🗑️", rarity: "epic", cls: "Tank", isNew: false, desc: "Gato de lixo que fica mais forte ao perder HP. Invoca ratos com o Super.", attack: "Clangin' & Bangin' — Vassoura em arco.", super: "Raging Rats — Ratos que perseguem.", sp1: "Cackle — Super dura mais.", sp2: "Last Hurrah — Dano ao ser eliminado.", hp: 6400, dmg: 700, range: 4, speed: 720, modes: ["Heist", "Showdown", "Brawl Ball"] },
             { name: "Lola", emoji: "🎭", rarity: "epic", cls: "Damage Dealer", isNew: false, desc: "Atriz que invoca Ego, o seu clone espelhado com movimentos invertidos.", attack: "Star Treatment — Bala em linha reta.", super: "Ego — Invoca Ego, o clone.", sp1: "Improvise — Ego cura Lola.", sp2: "Dressed to Kill — Ego causa mais dano.", hp: 2800, dmg: 580, range: 11, speed: 720, modes: ["Bounty", "Gem Grab", "Knockout"] },
             { name: "Stu", emoji: "🏎️", rarity: "epic", cls: "Assassin", isNew: false, desc: "Stuntman de kart com Super auto-carregado. Mobilidade extrema.", attack: "Nitro Boost — Bola de fogo.", super: "Burnout — Zigzag com rastro de fogo.", sp1: "Zero Drag — Velocidade máxima no Super.", sp2: "Gaso-Heal — Cura ao usar Super.", hp: 2800, dmg: 500, range: 7, speed: 870, modes: ["Showdown", "Brawl Ball", "Hot Zone"] },
-            { name: "Belle", emoji: "🤠", rarity: "epic", cls: "Sniper", isNew: false, desc: "Caçadora que marca alvos. Inimigos marcados recebem mais dano de todos.", attack: "Shocky — Bala ricocheteante.", super: "Stunning Gold — Marca um inimigo.", sp1: "Gold Arm — Mais ricochetes.", sp2: "Nest Egg — Mais dano a marcados.", hp: 2400, dmg: 680, range: 12, speed: 720, modes: ["Bounty", "Knockout", "Gem Grab"] },
+            { name: "Belle", emoji: "🎯", rarity: "epic", cls: "Sniper", isNew: false, desc: "Caçadora que marca alvos. Inimigos marcados recebem mais dano de todos.", attack: "Shocky — Bala ricocheteante.", super: "Stunning Gold — Marca um inimigo.", sp1: "Gold Arm — Mais ricochetes.", sp2: "Nest Egg — Mais dano a marcados.", hp: 2400, dmg: 680, range: 12, speed: 720, modes: ["Bounty", "Knockout", "Gem Grab"] },
             { name: "Bonnie", emoji: "🦄", rarity: "epic", cls: "Damage Dealer", isNew: false, desc: "Menina a cavalo de um canhão andante. Duas formas: à distância e melee.", attack: "Boom — Bala de canhão.", super: "Crash — Salta do Clyde para melee.", sp1: "Boom Box — Mais dano ao longe.", sp2: "Hyper Fuel — Clyde mais rápido.", hp: 3200, dmg: 780, range: 10, speed: 720, modes: ["Bounty", "Showdown", "Gem Grab"] },
             { name: "Grom", emoji: "🗿", rarity: "epic", cls: "Artillery", isNew: false, desc: "Estátua que arremessa projéteis em arco de longo alcance extremo.", attack: "Chucks — 4 projéteis em arco.", super: "City Block — Chuva de projéteis.", sp1: "Bat Saver — Recarga rápida a caminhar.", sp2: "Homing Chucks — Projéteis teleguiados.", hp: 2400, dmg: 640, range: 13, speed: 630, modes: ["Gem Grab", "Hot Zone", "Bounty"] },
             { name: "Sam", emoji: "⚙️", rarity: "epic", cls: "Tank", isNew: false, desc: "Lança a luva magnética que atrai inimigos para Sam.", attack: "Knuckle Busters — Soco magnético.", super: "Magnetic Field — Luva atrai inimigos.", sp1: "Hearty Recovery — Cura ao recuperar luva.", sp2: "Heavenly Taste — Super causa mais dano.", hp: 5600, dmg: 720, range: 3, speed: 720, modes: ["Showdown", "Brawl Ball", "Hot Zone"] },
             { name: "Mandy", emoji: "🍭", rarity: "epic", cls: "Sniper", isNew: false, desc: "Sniper de caramelos com alcance infinito em modo focado.", attack: "Caramel Candy — Projétil que atravessa.", super: "Eye Candy — Foco com alcance infinito.", sp1: "Hard Candy — Mais dano no foco.", sp2: "Coated in Sugar — Obstáculos não bloqueiam foco.", hp: 2400, dmg: 820, range: 14, speed: 720, modes: ["Bounty", "Knockout", "Siege"] },
-            { name: "Maisie", emoji: "⚡", rarity: "epic", cls: "Damage Dealer", isNew: false, desc: "Dispara plasma acumulado. Mais plasma = mais dano e alcance.", attack: "Plasma Shot — Projétil crescente.", super: "Plasma Storm — Liberta plasma em área.", sp1: "Overload — Mais plasma máximo.", sp2: "Energy Drink — Cura ao usar Super.", hp: 2800, dmg: 680, range: 9, speed: 720, modes: ["Hot Zone", "Gem Grab", "Bounty"] },
+            { name: "Maisie", emoji: "🔋", rarity: "epic", cls: "Damage Dealer", isNew: false, desc: "Dispara plasma acumulado. Mais plasma = mais dano e alcance.", attack: "Plasma Shot — Projétil crescente.", super: "Plasma Storm — Liberta plasma em área.", sp1: "Overload — Mais plasma máximo.", sp2: "Energy Drink — Cura ao usar Super.", hp: 2800, dmg: 680, range: 9, speed: 720, modes: ["Hot Zone", "Gem Grab", "Bounty"] },
             { name: "Hank", emoji: "🐡", rarity: "epic", cls: "Tank", isNew: false, desc: "Peixe-balão que infla antes de disparar. Enorme dano de área único.", attack: "Big Blow — Infla e explode.", super: "It's Gonna Blow — Grande explosão.", sp1: "Overfill — Mais dano e área.", sp2: "Fresh Squeeze — Cura após disparar.", hp: 6400, dmg: 880, range: 7, speed: 630, modes: ["Showdown", "Hot Zone", "Heist"] },
             { name: "Pearl", emoji: "🎆", rarity: "epic", cls: "Damage Dealer", isNew: false, desc: "Aquece disparos com o tempo. Quanto mais quente = mais dano.", attack: "Flame Thrower — Chamas progressivas.", super: "Overcooked — Explosão de grande área.", sp1: "Spicy — Mais dano máximo.", sp2: "Hard Boiled — Mais HP.", hp: 3200, dmg: 640, range: 6, speed: 720, modes: ["Heist", "Hot Zone", "Showdown"] },
-            { name: "Angelo", emoji: "🏹", rarity: "epic", cls: "Sniper", isNew: false, desc: "Anjo arqueiro que carrega o tiro para mais dano. Flutua sobre a água.", attack: "Heavenward — Tiro carregado.", super: "Sky High — Eleva-se e ataca abaixo.", sp1: "Angelic Touch — Cura aliados ao atingi-los.", sp2: "Eagle Eye — Mais dano carregado.", hp: 2400, dmg: 800, range: 15, speed: 720, modes: ["Bounty", "Knockout", "Showdown"] },
+            { name: "Angelo", emoji: "💘", rarity: "epic", cls: "Sniper", isNew: false, desc: "Anjo arqueiro que carrega o tiro para mais dano. Flutua sobre a água.", attack: "Heavenward — Tiro carregado.", super: "Sky High — Eleva-se e ataca abaixo.", sp1: "Angelic Touch — Cura aliados ao atingi-los.", sp2: "Eagle Eye — Mais dano carregado.", hp: 2400, dmg: 800, range: 15, speed: 720, modes: ["Bounty", "Knockout", "Showdown"] },
             { name: "Berry", emoji: "🫐", rarity: "epic", cls: "Support", isNew: false, desc: "Baga que cura aliados através dos ataques.", attack: "Berry Blast — Projéteis que curam aliados.", super: "Smoothie — Cura massiva em área.", sp1: "Extra Pulp — Mais cura por projétil.", sp2: "Vitamin C — Super também causa dano.", hp: 3400, dmg: 320, range: 8, speed: 720, modes: ["Hot Zone", "Gem Grab", "Brawl Ball"] },
             { name: "Clancy", emoji: "🎩", rarity: "epic", cls: "Damage Dealer", isNew: false, desc: "Político que evolui em 3 estágios conforme causa dano.", attack: "Speechmaker — Disparos por estágio.", super: "Landslide — Ataque de área por estágio.", sp1: "Pork Barrel — Mais HP por estágio.", sp2: "Ballot Stuffer — Evolução mais rápida.", hp: 3200, dmg: 640, range: 9, speed: 720, modes: ["Hot Zone", "Brawl Ball", "Gem Grab"] },
             { name: "Moe", emoji: "🦫", rarity: "epic", cls: "Tank", isNew: false, desc: "Castor que escava túneis para se mover por baixo do campo.", attack: "Chomp — Mordida poderosa.", super: "Drill Down — Mergulha e reaparece noutra posição.", sp1: "Dig That! — Mais alcance no túnel.", sp2: "Groundhog Day — Cura ao emergir.", hp: 5600, dmg: 720, range: 4, speed: 720, modes: ["Heist", "Showdown", "Brawl Ball"] },
             { name: "Juju", emoji: "🌺", rarity: "epic", cls: "Artillery", isNew: false, desc: "Dona da Oddities Shop com três ataques elementais — relva, terra e água.", attack: "Elemental — Roda entre 3 tipos.", super: "Gris-Gris — Boneco vodu que persegue.", sp1: "Nature's Wrath — Mais forte.", sp2: "Fluid Motion — Caminha na água.", hp: 2800, dmg: 600, range: 9, speed: 720, modes: ["Gem Grab", "Hot Zone", "Bounty"] },
-            { name: "Shade", emoji: "👻", rarity: "epic", cls: "Assassin", isNew: false, desc: "Fantasma de roupa flutuante que atravessa paredes.", attack: "Wraith — Cone que passa por paredes.", super: "Phase — Atravessa paredes e reaparece.", sp1: "Phantom Touch — Mais dano ao emergir.", sp2: "Soul Drain — Cura ao atingir.", hp: 2800, dmg: 640, range: 5, speed: 800, modes: ["Showdown", "Knockout", "Bounty"] },
+            { name: "Shade", emoji: "🌫️", rarity: "epic", cls: "Assassin", isNew: false, desc: "Fantasma de roupa flutuante que atravessa paredes.", attack: "Wraith — Cone que passa por paredes.", super: "Phase — Atravessa paredes e reaparece.", sp1: "Phantom Touch — Mais dano ao emergir.", sp2: "Soul Drain — Cura ao atingir.", hp: 2800, dmg: 640, range: 5, speed: 800, modes: ["Showdown", "Knockout", "Bounty"] },
             { name: "Starr Nova", emoji: "🌟", rarity: "epic", cls: "Damage Dealer", isNew: true, desc: "Uma nova estrela cósmica nascida em Starr Park. Revelada no Update 67.", attack: "Cosmic Ray — Raio estelar.", super: "Supernova — Explosão cósmica de área.", sp1: "Stellar Pull — Atrai inimigos.", sp2: "Stardust — Rastro que causa dano.", hp: 2800, dmg: 700, range: 11, speed: 720, modes: ["Bounty", "Gem Grab", "Hot Zone"] },
             { name: "Pierce", emoji: "🐚", rarity: "epic", cls: "Damage Dealer", isNew: false, desc: "Marine biólogo com tiros perfurantes e conchas que reforçam o escudo.", attack: "Penetrating Shot — Tiro perfurante.", super: "Shell Shield — Conchas dão escudos.", sp1: "Speed Shell — Mais velocidade com conchas.", sp2: "Last Shell — Última munição aplica slow.", hp: 3000, dmg: 620, range: 10, speed: 720, modes: ["Bounty", "Gem Grab", "Knockout"] },
             { name: "Glowbert", emoji: "🐟", rarity: "epic", cls: "Support", isNew: false, desc: "Biólogo marinho que liga aliados e inimigos com um feixe de luz.", attack: "Glowbeam — Feixe de ligação.", super: "Deep Light — Dano a todos os ligados.", sp1: "Bioluminescence — Maior alcance.", sp2: "Marine Therapy — Mais cura.", hp: 2800, dmg: 440, range: 9, speed: 720, modes: ["Gem Grab", "Hot Zone", "Brawl Ball"] },
             { name: "Mortis", emoji: "⚰️", rarity: "mythic", cls: "Assassin", isNew: false, desc: "Coveiro que se teleporta com cada ataque. Cura ao eliminar inimigos.", attack: "Shovel Swing — Desliza com a pá.", super: "Life Blood — Morcegos que curam.", sp1: "Creepy Harvest — Cura ao eliminar.", sp2: "Coiled Snake — Mais distância no dash.", hp: 2800, dmg: 620, range: 5, speed: 870, modes: ["Showdown", "Bounty", "Brawl Ball"] },
             { name: "Tara", emoji: "🔮", rarity: "mythic", cls: "Support", isNew: false, desc: "Adivinha com tarot. O Super cria um buraco negro que atrai todos os inimigos.", attack: "Triple Tarot — 3 cartas em leque.", super: "Black Hole — Buraco negro.", sp1: "Black Portal — Invoca clone aliado.", sp2: "Healing Shade — Super cura aliados.", hp: 2800, dmg: 520, range: 9, speed: 720, modes: ["Gem Grab", "Hot Zone", "Showdown"] },
             { name: "Gene", emoji: "🧞", rarity: "mythic", cls: "Support", isNew: false, desc: "Génio da lâmpada que puxa inimigos com o Super. Fundamental no jogo de equipa.", attack: "Smoke Blast — Projétil que se divide.", super: "Magic Hand — Mão que puxa inimigo.", sp1: "Magic Puffs — Cura aliados próximos.", sp2: "Spirit Slap — Mais dano ao perto.", hp: 3000, dmg: 480, range: 9, speed: 720, modes: ["Gem Grab", "Heist", "Hot Zone"] },
-            { name: "Max", emoji: "⚡", rarity: "mythic", cls: "Support", isNew: false, desc: "A mais rápida de todos. O Super dá sprint a toda a equipa.", attack: "Faster Shooters — Rajada rápida.", super: "Super Fly — Velocidade turbo à equipa.", sp1: "Run n Gun — Recarga ao correr.", sp2: "Friendship — Super dura mais.", hp: 2800, dmg: 440, range: 8, speed: 900, modes: ["Brawl Ball", "Gem Grab", "Hot Zone"] },
-            { name: "Mr. P", emoji: "🎩", rarity: "mythic", cls: "Support", isNew: false, desc: "Porteiro que usa mala como arma e coloca porteiros robôs.", attack: "Suitcase Throw — Mala ricocheteante.", super: "Porters! — Invoca porteiros robôs.", sp1: "Porters! Plus — Porteiros com mais HP.", sp2: "Handle With Care — Mala explode.", hp: 2800, dmg: 540, range: 8, speed: 720, modes: ["Gem Grab", "Siege", "Heist"] },
+            { name: "Max", emoji: "🏃", rarity: "mythic", cls: "Support", isNew: false, desc: "A mais rápida de todos. O Super dá sprint a toda a equipa.", attack: "Faster Shooters — Rajada rápida.", super: "Super Fly — Velocidade turbo à equipa.", sp1: "Run n Gun — Recarga ao correr.", sp2: "Friendship — Super dura mais.", hp: 2800, dmg: 440, range: 8, speed: 900, modes: ["Brawl Ball", "Gem Grab", "Hot Zone"] },
+            { name: "Mr. P", emoji: "🐧", rarity: "mythic", cls: "Support", isNew: false, desc: "Porteiro que usa mala como arma e coloca porteiros robôs.", attack: "Suitcase Throw — Mala ricocheteante.", super: "Porters! — Invoca porteiros robôs.", sp1: "Porters! Plus — Porteiros com mais HP.", sp2: "Handle With Care — Mala explode.", hp: 2800, dmg: 540, range: 8, speed: 720, modes: ["Gem Grab", "Siege", "Heist"] },
             { name: "Sprout", emoji: "🌱", rarity: "mythic", cls: "Artillery", isNew: false, desc: "Robô jardineiro com sementes explosivas e paredes de arbustos.", attack: "Seed Bomb — Semente explosiva.", super: "Garden Grove — Parede de arbustos.", sp1: "Overgrowth — Parede dura mais.", sp2: "Photosynthesis — Cura nos arbustos.", hp: 2400, dmg: 600, range: 10, speed: 720, modes: ["Hot Zone", "Gem Grab", "Bounty"] },
             { name: "Byron", emoji: "🧪", rarity: "mythic", cls: "Support", isNew: false, desc: "Charlatão que cura aliados e dana inimigos com os mesmos projéteis.", attack: "Injection — Seringa dupla função.", super: "Injection Overdose — Grande área de cura/dano.", sp1: "Injection — Maior alcance.", sp2: "Malaise — Reduz cura dos inimigos.", hp: 2400, dmg: 480, range: 10, speed: 720, modes: ["Hot Zone", "Gem Grab", "Bounty"] },
+            { name: "Lou", emoji: "❄️", rarity: "mythic", cls: "Control", isNew: false, desc: "Máquina de slushie que congela inimigos. Controlo de zona gelado.", attack: "Chill-n-Kill — Projéteis de gelo.", super: "Subzero Slushie — Zona que imobiliza.", sp1: "Hypothermia — Freeze dura mais.", sp2: "Black Ice — Chão escorregadio.", hp: 2800, dmg: 480, range: 9, speed: 720, modes: ["Hot Zone", "Gem Grab", "Knockout"] },
             { name: "Squeak", emoji: "🐱", rarity: "mythic", cls: "Artillery", isNew: false, desc: "Gato que cola bolas de slime nas paredes. Explodem com delay.", attack: "Sticky Slime — Slime que cola e explode.", super: "Big Squeeze — Grande slime explosivo.", sp1: "Residue — Slime abranda inimigos.", sp2: "Windup — Mais dano no Super.", hp: 2400, dmg: 560, range: 9, speed: 720, modes: ["Gem Grab", "Hot Zone", "Bounty"] },
             { name: "Buzz", emoji: "🦈", rarity: "mythic", cls: "Tank", isNew: false, desc: "Guarda-vidas que atordoa inimigos próximos com o Super.", attack: "Lifeline — Bóia que causa dano.", super: "Reserve Buoy — Stun em inimigos próximos.", sp1: "Eyes Sharp — Super carrega mais rápido perto de inimigos.", sp2: "Tougher Skin — Menos dano ao usar Super.", hp: 5200, dmg: 580, range: 6, speed: 720, modes: ["Hot Zone", "Showdown", "Knockout"] },
             { name: "Fang", emoji: "🥋", rarity: "mythic", cls: "Assassin", isNew: false, desc: "Lutador de artes marciais que elimina em cadeia. Super ricocheteante.", attack: "Roundhouse — Chute em cone.", super: "Flying Kick — Chute de inimigo em inimigo.", sp1: "Fresh Kicks — Mais ricochetes.", sp2: "Corn Paws — Mais velocidade no Super.", hp: 3400, dmg: 640, range: 4, speed: 800, modes: ["Showdown", "Knockout", "Brawl Ball"] },
@@ -1126,25 +1296,25 @@
             { name: "Mico", emoji: "🐒", rarity: "mythic", cls: "Assassin", isNew: false, desc: "Macaco saltitante que ganha stacks de velocidade e dano ao acertar.", attack: "Tail Whip — Cauda em arco.", super: "Monkey Business — Salta para inimigo.", sp1: "Last Banana — Mais dano com stacks máximas.", sp2: "Monkey See — Vê aliados próximos.", hp: 2800, dmg: 560, range: 4, speed: 800, modes: ["Showdown", "Bounty", "Knockout"] },
             { name: "Melodie", emoji: "🎵", rarity: "mythic", cls: "Assassin", isNew: false, desc: "Cantora pop com notas musicais em órbita que causam dano constante.", attack: "Chart Topper — Notas em órbita.", super: "Solo — Notas causam mais dano.", sp1: "Interlude — Mais notas simultâneas.", sp2: "Chorus — Notas mais rápidas.", hp: 2800, dmg: 540, range: 5, speed: 800, modes: ["Showdown", "Brawl Ball", "Hot Zone"] },
             { name: "Lily", emoji: "🌷", rarity: "mythic", cls: "Assassin", isNew: false, desc: "Assassina invisível que troca de lugar com inimigos.", attack: "Petal Throw — Pétalas dañinas.", super: "In the Pocket — Invisível e troca com inimigo.", sp1: "Blackout — Invisibilidade dura mais.", sp2: "Camo — Mais rápida ao ser invisível.", hp: 2600, dmg: 560, range: 7, speed: 800, modes: ["Showdown", "Bounty", "Knockout"] },
+            { name: "Lumi", emoji: "🪘", rarity: "mythic", cls: "Support", isNew: false, desc: "Baterista do MadEvil Manor. O ritmo melhora toda a equipa próxima.", attack: "Drumbeat — Onda sonora com slow.", super: "Drum Solo — Boost de dano e velocidade à equipa.", sp1: "Bass Drop — Super tem mais área.", sp2: "Encore — Super dura mais.", hp: 2800, dmg: 460, range: 8, speed: 720, modes: ["Gem Grab", "Hot Zone", "Brawl Ball"] },
+            { name: "Gus", emoji: "👻", rarity: "super_rare", cls: "Support", isNew: false, desc: "Fantasma amigável que distribui escudos pela equipa com o Super.", attack: "Spirit Slap — Golpe de fantasma.", super: "Spirits Up! — Escudos para todos os aliados.", sp1: "Friendly Spirits — Mais fantasmas.", sp2: "Comet Shield — Escudos com mais HP.", hp: 2800, dmg: 460, range: 8, speed: 720, modes: ["Gem Grab", "Hot Zone", "Brawl Ball"] },
             { name: "Kaze", emoji: "🌊", rarity: "mythic", cls: "Control", isNew: false, desc: "Ninja do vento que controla direção dos ataques com o leque.", attack: "Fan Storm — Rajada de vento.", super: "Hyper Fan — Tornado persistente no mapa.", sp1: "Breeze — Mais velocidade após Super.", sp2: "Tailwind — Tornado atrai inimigos.", hp: 2800, dmg: 520, range: 8, speed: 720, modes: ["Hot Zone", "Gem Grab", "Bounty"] },
             { name: "Jae-Yong", emoji: "🎮", rarity: "mythic", cls: "Damage Dealer", isNew: false, desc: "Gamer profissional que usa dispositivos de jogo como arma.", attack: "Button Mash — Projéteis rápidos.", super: "Level Up! — Zona de dano invisível.", sp1: "GG — Mais dano após eliminar.", sp2: "No Lag — Menos recarga.", hp: 2800, dmg: 600, range: 9, speed: 720, modes: ["Gem Grab", "Bounty", "Knockout"] },
             { name: "Kenji", emoji: "⚔️", rarity: "mythic", cls: "Assassin", isNew: false, desc: "Samurai que bloqueia projéteis e contra-ataca com a katana.", attack: "Katana Slash — Golpe em arco.", super: "Deflection — Bloqueia e devolve projéteis.", sp1: "Counter Strike — Contra-ataque automático.", sp2: "Bushido — Mais dano após Super.", hp: 3600, dmg: 720, range: 4, speed: 800, modes: ["Showdown", "Knockout", "Brawl Ball"] },
             { name: "Gigi", emoji: "💐", rarity: "mythic", cls: "Support", isNew: false, desc: "Bailarina que cura aliados e fica invulnerável durante o Super.", attack: "Plié — Projéteis que curam aliados.", super: "Grand Jeté — Salta invulnerável em área.", sp1: "Plié Protection — Escudo ao não receber dano.", sp2: "Graceful — Velocidade após Super.", hp: 2800, dmg: 400, range: 8, speed: 720, modes: ["Gem Grab", "Brawl Ball", "Hot Zone"] },
-            { name: "Bolt", emoji: "⚡", rarity: "mythic", cls: "Damage Dealer", isNew: true, desc: "Novo brawler elétrico revelado no Update 67. Ataques de raios e energia pura.", attack: "Lightning Strike — Raio elétrico.", super: "Thunderclap — Tempestade de raios.", sp1: "Static — Aplica slow ao atingir.", sp2: "Charged — Mais dano após recarregar.", hp: 3000, dmg: 640, range: 9, speed: 800, modes: ["Hot Zone", "Gem Grab", "Bounty"] },
+            { name: "Bolt", emoji: "🌩️", rarity: "mythic", cls: "Damage Dealer", isNew: true, desc: "Novo brawler elétrico revelado no Update 67. Ataques de raios e energia pura.", attack: "Lightning Strike — Raio elétrico.", super: "Thunderclap — Tempestade de raios.", sp1: "Static — Aplica slow ao atingir.", sp2: "Charged — Mais dano após recarregar.", hp: 3000, dmg: 640, range: 9, speed: 800, modes: ["Hot Zone", "Gem Grab", "Bounty"] },
             { name: "Spike", emoji: "🌵", rarity: "legendary", cls: "Damage Dealer", isNew: false, desc: "Cacto fofo que dispara espinhos em todas as direções.", attack: "Needle Grenade — 6 espinhos em explosão.", super: "Stick Around! — Zona de espinhos e slow.", sp1: "Fertilize — Cura na zona do Super.", sp2: "Curveball — Espinhos curvam.", hp: 2400, dmg: 620, range: 9, speed: 720, modes: ["Gem Grab", "Hot Zone", "Showdown"] },
             { name: "Crow", emoji: "🐦‍⬛", rarity: "legendary", cls: "Assassin", isNew: false, desc: "Assassino corvídeo com veneno que reduz a cura dos inimigos.", attack: "Switchblade — 3 facas envenenadas.", super: "Swoop — Salta e aterra com dano.", sp1: "Extra Toxic — Mais redução de cura.", sp2: "Carrion Crow — Mais dano com baixo HP.", hp: 2400, dmg: 520, range: 10, speed: 870, modes: ["Showdown", "Bounty", "Knockout"] },
             { name: "Leon", emoji: "🦁", rarity: "legendary", cls: "Assassin", isNew: false, desc: "Assassino invisível com lâminas. O Super deixa-o completamente invisível.", attack: "Spinner Blades — 4 lâminas em leque.", super: "Smoke Bomb — Invisibilidade.", sp1: "Smoke Trails — Invisível ao mover.", sp2: "Eye of the Tiger — Mais alcance.", hp: 2800, dmg: 580, range: 7, speed: 870, modes: ["Showdown", "Bounty", "Gem Grab"] },
             { name: "Sandy", emoji: "🏜️", rarity: "legendary", cls: "Control", isNew: false, desc: "Espírito do deserto sonolento. O Super esconde a equipa numa tempestade.", attack: "Psammophyte — Projétil divisor.", super: "Sandstorm — Tempestade que esconde equipa.", sp1: "Rude Sands — Slow na tempestade.", sp2: "Psammophyte — Mais areia.", hp: 2800, dmg: 480, range: 9, speed: 720, modes: ["Hot Zone", "Gem Grab", "Brawl Ball"] },
             { name: "Amber", emoji: "🔥", rarity: "legendary", cls: "Damage Dealer", isNew: false, desc: "Artista de circo que cospe fogo. Controla zonas com chamas persistentes.", attack: "Spit Fire — Cuspe de fogo contínuo.", super: "Fire Starter — Botija de fogo em área.", sp1: "Wild Flame — Chamas espalham-se.", sp2: "Scorchin' Spit — Dano progressivo.", hp: 2800, dmg: 520, range: 7, speed: 720, modes: ["Hot Zone", "Heist", "Showdown"] },
-            { name: "Meg", emoji: "🤖", rarity: "legendary", cls: "Tank", isNew: false, desc: "Mecânica que pilota um robô gigante. Ao morrer o robô, Meg sai e continua.", attack: "Heavy Metal — Ataque de robô.", super: "Mech Suit — Pilota robô gigante.", sp1: "Force Field — Escudo ao sair do robô.", sp2: "Jolting Volts — Robô aplica slow.", hp: 5600, dmg: 740, range: 5, speed: 630, modes: ["Hot Zone", "Heist", "Showdown"] },
+            { name: "Meg", emoji: "🦿", rarity: "legendary", cls: "Tank", isNew: false, desc: "Mecânica que pilota um robô gigante. Ao morrer o robô, Meg sai e continua.", attack: "Heavy Metal — Ataque de robô.", super: "Mech Suit — Pilota robô gigante.", sp1: "Force Field — Escudo ao sair do robô.", sp2: "Jolting Volts — Robô aplica slow.", hp: 5600, dmg: 740, range: 5, speed: 630, modes: ["Hot Zone", "Heist", "Showdown"] },
             { name: "Surge", emoji: "🤩", rarity: "legendary", cls: "Damage Dealer", isNew: false, desc: "DJ que evolui em 4 estágios. Cada estágio muda o ataque.", attack: "Party Blaster — Projétil divisor.", super: "Super Surge — Teleporta e evolui.", sp1: "Speed Zone — Zona de velocidade.", sp2: "To the Max — Último nível com mais dano.", hp: 2400, dmg: 520, range: 9, speed: 720, modes: ["Showdown", "Gem Grab", "Bounty"] },
             { name: "Chester", emoji: "🎪", rarity: "legendary", cls: "Damage Dealer", isNew: false, desc: "Palhaço com 5 Supers diferentes. Cada Super é uma surpresa.", attack: "Juggling Act — Projéteis alternados.", super: "Pick a Card — 1 de 5 Supers aleatórios.", sp1: "Trickster — Rotação mais rápida.", sp2: "Extra Pepper — Mais dano em todos.", hp: 2400, dmg: 580, range: 9, speed: 720, modes: ["Showdown", "Bounty", "Gem Grab"] },
             { name: "Cordelius", emoji: "🍄", rarity: "legendary", cls: "Control", isNew: false, desc: "Cogumelo mágico que teletransporta inimigos para o seu reino paralelo.", attack: "Shroom Spores — Esporos de cogumelo.", super: "Shadow Realm — Envia inimigo para dimensão paralela.", sp1: "Fungal Infection — Mais tempo no realm.", sp2: "Mycotoxin — Envenenamento no realm.", hp: 2600, dmg: 520, range: 8, speed: 720, modes: ["Showdown", "Bounty", "Knockout"] },
             { name: "Kit", emoji: "😺", rarity: "legendary", cls: "Support", isNew: false, desc: "Gato mediático que salta para aliados, curandos eles e danificando inimigos.", attack: "Cat Attack — Garras em cone.", super: "Copycat — Salta para aliado ou inimigo.", sp1: "Attuned — Aliados recebem mais dano.", sp2: "Glutton — Kit dura mais nos aliados.", hp: 2600, dmg: 480, range: 4, speed: 800, modes: ["Gem Grab", "Hot Zone", "Brawl Ball"] },
-            { name: "Draco", emoji: "🎸", rarity: "legendary", cls: "Tank", isNew: false, desc: "Dragão guitarrista do MadEvil Manor que se transforma num dragão poderoso.", attack: "Power Chord — Acorde de guitarra elétrica.", super: "Dragon Form — Transforma-se em dragão.", sp1: "Metal Head — Mais dano no modo dragão.", sp2: "Rock On — Modo dragão dura mais.", hp: 5600, dmg: 700, range: 5, speed: 720, modes: ["Showdown", "Brawl Ball", "Hot Zone"] },
-            { name: "Lumi", emoji: "🥁", rarity: "legendary", cls: "Support", isNew: false, desc: "Baterista do MadEvil Manor. O ritmo melhora toda a equipa próxima.", attack: "Drumbeat — Onda sonora com slow.", super: "Drum Solo — Boost de dano e velocidade à equipa.", sp1: "Bass Drop — Super tem mais área.", sp2: "Encore — Super dura mais.", hp: 2800, dmg: 460, range: 8, speed: 720, modes: ["Gem Grab", "Hot Zone", "Brawl Ball"] },
-            { name: "Gus", emoji: "👻", rarity: "legendary", cls: "Support", isNew: false, desc: "Fantasma amigável que distribui escudos pela equipa com o Super.", attack: "Spirit Slap — Golpe de fantasma.", super: "Spirits Up! — Escudos para todos os aliados.", sp1: "Friendly Spirits — Mais fantasmas.", sp2: "Comet Shield — Escudos com mais HP.", hp: 2800, dmg: 460, range: 8, speed: 720, modes: ["Gem Grab", "Hot Zone", "Brawl Ball"] },
-            { name: "Damian", emoji: "🎤", img: "Skins (imagens)/Damian/Damian Padrão.png", rarity: "legendary", cls: "Tank", isNew: true, desc: "O vocalista do trio MadEvil Manor. Revelado com Electric Callboy no Update 67. Chega a 24 de Abril!", attack: "Sonic Scream — Rugido sónico em cone.", super: "Stage Dive — Salta causando dano de área.", sp1: "Crowd Surfer — Mais alcance no Super.", sp2: "Heavy Metal — Super aplica stun.", hp: 6400, dmg: 700, range: 5, speed: 720, modes: ["Showdown", "Hot Zone", "Brawl Ball"] },
+            { name: "Draco", emoji: "🐲", rarity: "legendary", cls: "Tank", isNew: false, desc: "Dragão guitarrista do MadEvil Manor que se transforma num dragão poderoso.", attack: "Power Chord — Acorde de guitarra elétrica.", super: "Dragon Form — Transforma-se em dragão.", sp1: "Metal Head — Mais dano no modo dragão.", sp2: "Rock On — Modo dragão dura mais.", hp: 5600, dmg: 700, range: 5, speed: 720, modes: ["Showdown", "Brawl Ball", "Hot Zone"] },
+            { name: "Damian", emoji: "🎤", img: "Skins (imagens)/Damian/Damian Padrão.png", rarity: "legendary", cls: "Tank", isNew: true, desc: "O vocalista do trio MadEvil Manor. Revelado com Electric Callboy no Update 67. Chega a 24 de Abril!", attack: "Sonic Scream — Rugido sónico em cone.", super: "Stage Dive — Salta causando dano de área.", sp1: "Crowd Surfer — Mais alcance no Super.", sp2: "Heavy Metal — Super aplica stun.", g1: "", g2: "", hp: 6400, dmg: 700, range: 5, speed: 720, modes: ["Showdown", "Hot Zone", "Brawl Ball"] },
             { name: "Sirius", emoji: "🌑", rarity: "ultra", cls: "Controller", isNew: false, desc: "O 100.º brawler e grande vilão de Starr Park. Coleciona sombras de brawlers e invoca-as em batalha.", attack: "Binary Starr — Projétil explosivo + sombra.", super: "Shadow Summon — Invoca todas as sombras.", sp1: "Dusk Runners — Sombras mais velozes.", sp2: "The Darkest Starr — Cada 4.º acerto guarda 2 sombras.", hp: 3000, dmg: 700, range: 10, speed: 720, modes: ["Gem Grab", "Bounty", "Knockout"] },
             { name: "Najia", emoji: "🐍", rarity: "ultra", cls: "Assassin", isNew: false, desc: "A 101.ª brawler. Assassina de cobras com ataques em duas etapas e serpentes invocadas.", attack: "Snake Delivery — Jarra com cobra.", super: "Den Mother — Ninho de cobras no campo.", sp1: "Serpentine — Veneno dura mais.", sp2: "Coiled Spring — Mais velocidade de ataque.", hp: 2800, dmg: 660, range: 7, speed: 800, modes: ["Showdown", "Bounty", "Knockout"] },
         ];
@@ -1153,10 +1323,24 @@
         const RARITY_LABELS = { starter: "Starter", rare: "Rare", super_rare: "Super Rare", epic: "Epic", mythic: "Mythic", legendary: "Legendary", ultra: "Ultra Legendary" };
         const RARITY_COLORS = { starter: "var(--c-starter)", rare: "var(--c-rare)", super_rare: "var(--c-super)", epic: "var(--c-epic)", mythic: "var(--c-mythic)", legendary: "var(--c-leg)", ultra: "var(--c-ultra)" };
 
+        // PROBLEMA 7 — contagem automática de brawlers por raridade
+        function buildRarityCounts() {
+            const counts = {};
+            BRAWLERS.forEach(b => { counts[b.rarity] = (counts[b.rarity] || 0) + 1; });
+            const dotColors = { starter: "var(--c-starter)", rare: "var(--c-rare)", super_rare: "var(--c-super)", epic: "var(--c-epic)", mythic: "var(--c-mythic)", legendary: "var(--c-leg)", ultra: "var(--c-ultra)" };
+            const container = document.getElementById("rarityCounts");
+            RARITY_ORDER.forEach(r => {
+                if (!counts[r]) return;
+                const pill = document.createElement("div");
+                pill.className = "rarity-count-pill";
+                pill.innerHTML = `<div class="rarity-dot" style="background:${dotColors[r]}"></div>${RARITY_LABELS[r]}: ${counts[r]}`;
+                container.appendChild(pill);
+            });
+        }
+        buildRarityCounts();
+
         function statColor(v) { return v >= 80 ? "#4ADE80" : v >= 60 ? "var(--yellow)" : v >= 40 ? "var(--orange)" : "#EF4444"; }
-
         let currentFilter = "all", currentSearch = "";
-
         const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.05 });
 
         function renderAll() {
@@ -1183,9 +1367,16 @@
                     card.className = "brawler-card";
                     card.dataset.rarity = b.rarity;
                     card.style.transitionDelay = `${i * 0.04}s`;
-                    card.innerHTML = `${b.isNew ? '<span class="new-badge">NOVO</span>' : ""}${b.img
-                        ? `<img src="${b.img}" alt="${b.name}" class="brawler-emoji" style="font-size:0;width:3rem;height:3rem;object-fit:contain"  onerror="this.outerHTML='<div class=brawler-emoji>'+b.emoji+'</div>'">`
-                        : `<div class="brawler-emoji">${b.emoji}</div>`}<div class="brawler-name">${b.name}</div><div class="rarity-pill ${b.rarity}">${RARITY_LABELS[b.rarity]}</div><div class="brawler-class">${b.cls}</div>`;
+                    card.innerHTML = `${b.isNew ? '<span class="new-badge">NOVO</span>' : ""}
+<img 
+    src="./Skins (imagens)/${b.name}/${b.name} Padrão.png" 
+    alt="${b.name}"
+    class="brawler-emoji brawler-img"
+    onerror="this.outerHTML='<div class=\'brawler-emoji\'>${b.emoji}</div>'"
+>
+<div class="brawler-name">${b.name}</div>
+<div class="rarity-pill ${b.rarity}">${RARITY_LABELS[b.rarity]}</div>
+<div class="brawler-class">${b.cls}</div>`;
                     card.addEventListener("click", () => openModal(b));
                     grid.appendChild(card);
                 });
@@ -1193,123 +1384,41 @@
             document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
         }
 
-        let currentBrawler = null;
-        let hyperActive = false;
+        let currentBrawler = null, hyperActive = false;
 
-        // Stats de Hypercharge individuais por brawler
-        // Formato: [hp, dmg, range, speed] — valores com Hypercharge ativo
         const HYPER_STATS = {
-            "Shelly": [4080, 816, 7, 864],
-            "Colt": [3360, 552, 12, 864],
-            "Nita": [4560, 960, 8, 864],
-            "Bull": [7200, 1128, 5, 864],
-            "Brock": [3360, 840, 15, 864],
-            "El Primo": [7680, 912, 5, 864],
-            "Barley": [3360, 672, 12, 864],
-            "Poco": [4320, 456, 10, 864],
-            "Rosa": [8640, 720, 4, 864],
-            "Penny": [3840, 696, 12, 864],
-            "Carl": [4080, 792, 11, 864],
-            "Jacky": [7200, 816, 5, 864],
-            "Darryl": [6720, 912, 5, 864],
-            "Rico": [3360, 672, 13, 864],
-            "Dynamike": [3360, 840, 12, 864],
-            "Tick": [3360, 672, 11, 864],
-            "8-Bit": [4320, 1056, 14, 252],
-            "Emz": [3840, 600, 10, 864],
-            "Lou": [3360, 576, 11, 864],
-            "Bo": [3840, 768, 11, 864],
-            "Piper": [2880, 1056, 17, 864],
-            "Pam": [5760, 648, 7, 864],
-            "Frank": [9600, 984, 5, 468],
-            "Bibi": [6240, 912, 5, 864],
-            "Bea": [2880, 912, 15, 864],
-            "Nani": [2880, 816, 12, 864],
-            "Gale": [3360, 504, 10, 864],
-            "Colette": [3840, 672, 10, 864],
-            "Edgar": [4560, 768, 4, 960],
-            "Griff": [4320, 840, 6, 864],
-            "Ash": [7680, 840, 5, 864],
-            "Lola": [3360, 696, 13, 864],
-            "Stu": [3360, 600, 9, 1044],
-            "Belle": [2880, 816, 15, 864],
-            "Bonnie": [3840, 936, 12, 864],
-            "Grom": [2880, 768, 16, 756],
-            "Sam": [6720, 864, 4, 864],
-            "Mandy": [2880, 984, 17, 864],
-            "Maisie": [3360, 816, 11, 864],
-            "Hank": [7680, 1056, 8, 756],
-            "Pearl": [3840, 768, 7, 864],
-            "Angelo": [2880, 960, 18, 864],
-            "Berry": [4080, 384, 10, 864],
-            "Clancy": [3840, 768, 11, 864],
-            "Moe": [6720, 864, 5, 864],
-            "Juju": [3360, 720, 11, 864],
-            "Shade": [3360, 768, 6, 960],
-            "Starr Nova": [3360, 840, 13, 864],
-            "Pierce": [3600, 744, 12, 864],
-            "Glowbert": [3360, 528, 11, 864],
-            "Mortis": [3360, 744, 6, 1044],
-            "Tara": [3360, 624, 11, 864],
-            "Gene": [3600, 576, 11, 864],
-            "Max": [3360, 528, 10, 1080],
-            "Mr. P": [3360, 648, 10, 864],
-            "Sprout": [2880, 720, 12, 864],
-            "Byron": [2880, 576, 12, 864],
-            "Squeak": [2880, 672, 11, 864],
-            "Buzz": [6240, 696, 7, 864],
-            "Fang": [4080, 768, 5, 960],
-            "Eve": [2880, 576, 10, 864],
-            "Janet": [2880, 648, 12, 864],
-            "Otis": [3360, 624, 11, 864],
-            "Buster": [6240, 672, 8, 864],
-            "Gray": [3120, 552, 11, 864],
-            "R-T": [5760, 696, 7, 864],
-            "Willow": [2880, 576, 10, 864],
-            "Doug": [3600, 432, 10, 864],
-            "Chuck": [3600, 672, 11, 864],
-            "Charlie": [3360, 600, 9, 864],
-            "Mico": [3360, 672, 5, 960],
-            "Melodie": [3360, 648, 6, 960],
-            "Lily": [3120, 672, 9, 960],
-            "Kaze": [3360, 624, 10, 864],
-            "Jae-Yong": [3360, 720, 11, 864],
-            "Kenji": [4320, 864, 5, 960],
-            "Gigi": [3360, 480, 10, 864],
-            "Larry": [3120, 672, 11, 864],
-            "Lawrie": [3120, 624, 10, 864],
-            "Bolt": [3600, 768, 11, 960],
-            "Spike": [2880, 744, 11, 864],
-            "Crow": [2880, 624, 12, 1044],
-            "Leon": [3360, 696, 9, 1044],
-            "Sandy": [3360, 576, 11, 864],
-            "Amber": [3360, 624, 9, 864],
-            "Meg": [6720, 888, 6, 756],
-            "Surge": [2880, 624, 11, 864],
-            "Chester": [2880, 696, 11, 864],
-            "Cordelius": [3120, 624, 10, 864],
-            "Kit": [3120, 576, 5, 960],
-            "Draco": [6720, 840, 6, 864],
-            "Lumi": [3360, 552, 10, 864],
-            "Gus": [3360, 552, 10, 864],
-            "Damian": [7680, 840, 6, 864],
-            "Sirius": [3600, 840, 12, 864],
-            "Najia": [3360, 792, 9, 960],
+            "Shelly": [4080, 816, 7, 864], "Colt": [3360, 552, 12, 864], "Nita": [4560, 960, 8, 864], "Bull": [7200, 1128, 5, 864],
+            "Brock": [3360, 840, 15, 864], "El Primo": [7680, 912, 5, 864], "Barley": [3360, 672, 12, 864], "Poco": [4320, 456, 10, 864],
+            "Rosa": [8640, 720, 4, 864], "Penny": [3840, 696, 12, 864], "Carl": [4080, 792, 11, 864], "Jacky": [7200, 816, 5, 864],
+            "Darryl": [6720, 912, 5, 864], "Rico": [3360, 672, 13, 864], "Dynamike": [3360, 840, 12, 864], "Tick": [3360, 672, 11, 864],
+            "8-Bit": [4320, 1056, 14, 252], "Emz": [3840, 600, 10, 864], "Lou": [3360, 576, 11, 864], "Bo": [3840, 768, 11, 864],
+            "Piper": [2880, 1056, 17, 864], "Pam": [5760, 648, 7, 864], "Frank": [9600, 984, 5, 468], "Bibi": [6240, 912, 5, 864],
+            "Bea": [2880, 912, 15, 864], "Nani": [2880, 816, 12, 864], "Gale": [3360, 504, 10, 864], "Colette": [3840, 672, 10, 864],
+            "Edgar": [4560, 768, 4, 960], "Griff": [4320, 840, 6, 864], "Ash": [7680, 840, 5, 864], "Lola": [3360, 696, 13, 864],
+            "Stu": [3360, 600, 9, 1044], "Belle": [2880, 816, 15, 864], "Bonnie": [3840, 936, 12, 864], "Grom": [2880, 768, 16, 756],
+            "Sam": [6720, 864, 4, 864], "Mandy": [2880, 984, 17, 864], "Maisie": [3360, 816, 11, 864], "Hank": [7680, 1056, 8, 756],
+            "Pearl": [3840, 768, 7, 864], "Angelo": [2880, 960, 18, 864], "Berry": [4080, 384, 10, 864], "Clancy": [3840, 768, 11, 864],
+            "Moe": [6720, 864, 5, 864], "Juju": [3360, 720, 11, 864], "Shade": [3360, 768, 6, 960], "Starr Nova": [3360, 840, 13, 864],
+            "Pierce": [3600, 744, 12, 864], "Glowbert": [3360, 528, 11, 864], "Mortis": [3360, 744, 6, 1044], "Tara": [3360, 624, 11, 864],
+            "Gene": [3600, 576, 11, 864], "Max": [3360, 528, 10, 1080], "Mr. P": [3360, 648, 10, 864], "Sprout": [2880, 720, 12, 864],
+            "Byron": [2880, 576, 12, 864], "Squeak": [2880, 672, 11, 864], "Buzz": [6240, 696, 7, 864], "Fang": [4080, 768, 5, 960],
+            "Eve": [2880, 576, 10, 864], "Janet": [2880, 648, 12, 864], "Otis": [3360, 624, 11, 864], "Buster": [6240, 672, 8, 864],
+            "Gray": [3120, 552, 11, 864], "R-T": [5760, 696, 7, 864], "Willow": [2880, 576, 10, 864], "Doug": [3600, 432, 10, 864],
+            "Chuck": [3600, 672, 11, 864], "Charlie": [3360, 600, 9, 864], "Mico": [3360, 672, 5, 960], "Melodie": [3360, 648, 6, 960],
+            "Lily": [3120, 672, 9, 960], "Kaze": [3360, 624, 10, 864], "Jae-Yong": [3360, 720, 11, 864], "Kenji": [4320, 864, 5, 960],
+            "Gigi": [3360, 480, 10, 864], "Bolt": [3600, 768, 11, 960], "Spike": [2880, 744, 11, 864], "Crow": [2880, 624, 12, 1044],
+            "Leon": [3360, 696, 9, 1044], "Sandy": [3360, 576, 11, 864], "Amber": [3360, 624, 9, 864], "Meg": [6720, 888, 6, 756],
+            "Surge": [2880, 624, 11, 864], "Chester": [2880, 696, 11, 864], "Cordelius": [3120, 624, 10, 864], "Kit": [3120, 576, 5, 960],
+            "Draco": [6720, 840, 6, 864], "Lumi": [3360, 552, 10, 864], "Gus": [3360, 552, 10, 864], "Damian": [7680, 840, 6, 864],
+            "Sirius": [3600, 840, 12, 864], "Najia": [3360, 792, 9, 960],
         };
 
         function getHyperStats(b) {
             const h = HYPER_STATS[b.name];
             if (h) return { hp: h[0], dmg: h[1], range: h[2], speed: h[3] };
-            // fallback genérico se brawler não estiver na lista
-            return {
-                hp: Math.round(b.hp * 1.20),
-                dmg: Math.round(b.dmg * 1.20),
-                range: Math.round(b.range * 1.15),
-                speed: Math.round(b.speed * 1.10),
-            };
+            return { hp: Math.round(b.hp * 1.20), dmg: Math.round(b.dmg * 1.20), range: Math.round(b.range * 1.15), speed: Math.round(b.speed * 1.10) };
         }
 
-        // Máximos reais do jogo
         const STAT_MAX = { hp: 15000, dmg: 10000, range: 20, speed: 900 };
         const STAT_UNITS = { hp: "", dmg: "", range: " bl", speed: "" };
 
@@ -1320,41 +1429,41 @@
             const keys = ["hp", "dmg", "range", "speed"];
             document.getElementById("modalStats").innerHTML = keys.map((k, i) => {
                 const bv = base[k], hv = hStats[k];
-                const curr = hyper ? hv : bv;
                 const delta = hv - bv;
-                const maxVal = STAT_MAX[k];
-                const bPct = Math.min(100, (bv / maxVal) * 100);
-                const hPct = Math.min(100, (hv / maxVal) * 100);
-                const unit = STAT_UNITS[k];
+                const bPct = Math.min(100, (bv / STAT_MAX[k]) * 100);
+                const hPct = Math.min(100, (hv / STAT_MAX[k]) * 100);
+                const curr = hyper ? hv : bv;
                 return `<div class="stat-row">
-      <div class="stat-label-text">${labels[i]}</div>
-      <div class="stat-bar-wrap${hyper ? " hyper-active" : ""}">
-        <div class="stat-bar-fill" style="width:${bPct}%;background:${statColor(bPct)}"></div>
-        <div class="stat-bar-hyper" style="width:${hPct}%"></div>
-      </div>
-      <div class="stat-value">${curr}${unit}<span class="hyper-delta">${hyper ? "+" + delta : ""}</span></div>
-    </div>`;
+                    <div class="stat-label-text">${labels[i]}</div>
+                    <div class="stat-bar-wrap${hyper ? " hyper-active" : ""}">
+                        <div class="stat-bar-fill" style="width:${bPct}%;background:${statColor(bPct)}"></div>
+                        <div class="stat-bar-hyper" style="width:${hPct}%"></div>
+                    </div>
+                    <div class="stat-value">${curr}${STAT_UNITS[k]}<span class="hyper-delta">${hyper ? "+" + delta : ""}</span></div>
+                </div>`;
             }).join("");
         }
 
         function toggleHyper() {
             hyperActive = !hyperActive;
-            const btn = document.getElementById("toggleBtn");
-            const toggle = document.getElementById("statsToggle");
-            btn.classList.toggle("on", hyperActive);
-            toggle.classList.toggle("hyper-on", hyperActive);
+            document.getElementById("toggleBtn").classList.toggle("on", hyperActive);
+            document.getElementById("statsToggle").classList.toggle("hyper-on", hyperActive);
             if (currentBrawler) renderStats(currentBrawler, hyperActive);
         }
 
         function openModal(b) {
             currentBrawler = b;
             hyperActive = false;
-            // reset toggle
             document.getElementById("toggleBtn").classList.remove("on");
             document.getElementById("statsToggle").classList.remove("hyper-on");
-
             const color = RARITY_COLORS[b.rarity];
-            document.getElementById("modalEmoji").textContent = b.emoji;
+            const modalEmoji = document.getElementById("modalEmoji");
+            modalEmoji.innerHTML = `<img 
+    src="Skins (imagens)/${b.name}/${b.name} Padrão.png"
+    alt="${b.name}"
+    style="width:5.5rem;height:5.5rem;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,.5))"
+    onerror="this.outerHTML='${b.emoji}'"
+>`;
             document.getElementById("modalHeroBg").style.background = `radial-gradient(ellipse 80% 80% at 20% 50%,${color},transparent)`;
             document.getElementById("modalRarityBadge").textContent = RARITY_LABELS[b.rarity];
             document.getElementById("modalRarityBadge").style.cssText = `background:${color}22;border:1px solid ${color}55;color:${color}`;
@@ -1362,13 +1471,28 @@
             document.getElementById("modalClass").textContent = `Classe: ${b.cls}`;
             document.getElementById("modalDesc").textContent = b.desc;
             document.getElementById("modalAbilities").innerHTML = [
-                { label: "⚔️ Ataque", text: b.attack },
-                { label: "⚡ Super", text: b.super },
-                { label: "⭐ Star Power 1", text: b.sp1 },
-                { label: "⭐ Star Power 2", text: b.sp2 },
-            ].map(a => `<div class="ability-card"><div class="ability-label">${a.label}</div><div class="ability-name">${a.text.split(" — ")[0]}</div><div class="ability-desc">${a.text.split(" — ")[1] || ""}</div></div>`).join("");
+                { label: `<img src="${b.attackImg || 'Imagens (Poderes de Estrela ou Acessórios)/Ataque.png'}" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">⚔️</span> Ataque`, text: b.attack },
+                { label: `<img src="${b.superImg || 'Imagens (Poderes de Estrela ou Acessórios)/Super.png'}" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">⚡</span> Super`, text: b.super },
+                { label: `<img src="Imagens (Poderes de Estrela ou Acessórios)/${b.name}/${b.sp1.split(' — ')[0]}.png" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">⭐</span> Star Power 1`, text: b.sp1 },
+                { label: `<img src="Imagens (Poderes de Estrela ou Acessórios)/${b.name}/${b.sp2.split(' — ')[0]}.png" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">⭐</span> Star Power 2`, text: b.sp2 },
+                { label: `<img src="Imagens (Poderes de Estrela ou Acessórios)/${b.name}/${b.g1.split(' — ')[0]}.png" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">✨</span> Gadget 1`, text: b.g1 },
+                { label: `<img src="Imagens (Poderes de Estrela ou Acessórios)/${b.name}/${b.g2.split(' — ')[0]}.png" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">✨</span> Gadget 2`, text: b.g2 },
+            ].map(a => `<div class="ability-card"><div class="ability-label" style="display:flex;align-items:center;gap:.3rem">${a.label}</div><div class="ability-name">${a.text.split(" — ")[0]}</div><div class="ability-desc">${a.text.split(" — ")[1] || ""}</div></div>`).join("");
             renderStats(b, false);
             document.getElementById("modalModes").innerHTML = b.modes.map((m, i) => `<span class="mode-chip ${i === 0 ? "great" : i === 1 ? "good" : ""}">${i === 0 ? "🏆" : i === 1 ? "✅" : ""} ${m}</span>`).join("");
+            const BRAWLERS_COM_BUFFIES = ["Shelly", "Colt", "Spike", "Mortis", "Frank", "Emz", "Leon", "Crow", "Fang", "Edgar", "Stu", "Mico", "Bull", "Nita", "Bibi", "Bo", "Griff", "Colette", "Sandy", "Rosa", "Sprout", "Hank", "Buzz", "Bea", "Brock", "8-Bit", "Darryl"];
+            const BUFFIE_MACHINE = {
+                Shelly: "machine-1", Colt: "machine-1", Spike: "machine-1",
+                Mortis: "machine-2", Frank: "machine-2", Emz: "machine-2",
+                Bull: "machine-3", Crow: "machine-3", Bibi: "machine-3",
+                Bo: "machine-4", Nita: "machine-4", Leon: "machine-4",
+                Edgar: "machine-5", Griff: "machine-5", Colette: "machine-5",
+            };
+            document.getElementById("modalActions").innerHTML = `
+    <a href="Skins.html?brawler=${encodeURIComponent(b.name)}" class="modal-action-btn modal-action-secondary">🎨 Ver todas as skins</a>
+    <a href="Brawlers Específicos/${b.name}.html" class="modal-action-btn modal-action-primary">📖 Saber mais →</a>
+    ${BRAWLERS_COM_BUFFIES.includes(b.name) ? `<a href="Buffies.html#${BUFFIE_MACHINE[b.name]}" class="modal-action-btn modal-action-secondary" style="margin-top:.5rem">🦊 Ver Buffies →</a>` : ""}
+`;
             document.getElementById("modalOverlay").classList.add("open");
             document.body.style.overflow = "hidden";
         }
@@ -1377,6 +1501,7 @@
         document.getElementById("modalClose").addEventListener("click", closeModal);
         document.getElementById("modalOverlay").addEventListener("click", e => { if (e.target === document.getElementById("modalOverlay")) closeModal(); });
         document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
         document.querySelectorAll(".filter-tab").forEach(tab => {
             tab.addEventListener("click", () => {
                 document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
@@ -1387,19 +1512,43 @@
         });
         document.getElementById("searchInput").addEventListener("input", e => { currentSearch = e.target.value; renderAll(); });
 
-        const cursor = document.getElementById("cursor");
-        const ring = document.getElementById("cursor-ring");
-        let mx = 0, my = 0, rx = 0, ry = 0;
-        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
-        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
-        document.querySelectorAll("a,button,.brawler-card").forEach(el => {
-            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
-            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
-        });
+        // MOBILE MENU — painel lateral
+        function openMobileMenu() { document.getElementById("mobileMenu").classList.add("open"); document.getElementById("mobileOverlay").classList.add("open"); document.body.style.overflow = "hidden"; }
+        function closeMobileMenu() { document.getElementById("mobileMenu").classList.remove("open"); document.getElementById("mobileOverlay").classList.remove("open"); document.body.style.overflow = ""; }
+        document.getElementById("hamburger").addEventListener("click", openMobileMenu);
+        document.getElementById("mobileClose").addEventListener("click", closeMobileMenu);
+        document.getElementById("mobileOverlay").addEventListener("click", closeMobileMenu);
+        document.querySelectorAll("#mobileMenu a").forEach(a => a.addEventListener("click", closeMobileMenu));
+
+        // CURSOR — corrigido (sem duplicação)
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        const cursorEl = document.getElementById("cursor");
+        const ringEl = document.getElementById("cursor-ring");
+        if (isTouchDevice) {
+            cursorEl.style.display = "none";
+            ringEl.style.display = "none";
+        } else {
+            let mx = 0, my = 0, rx = 0, ry = 0;
+            document.addEventListener("mousemove", e => {
+                mx = e.clientX; my = e.clientY;
+                cursorEl.style.left = mx + "px"; cursorEl.style.top = my + "px";
+            });
+            (function anim() {
+                rx += (mx - rx) * .12; ry += (my - ry) * .12;
+                ringEl.style.left = rx + "px"; ringEl.style.top = ry + "px";
+                requestAnimationFrame(anim);
+            })();
+            document.querySelectorAll("a,button,.brawler-card").forEach(el => {
+                el.addEventListener("mouseenter", () => { cursorEl.style.width = "20px"; cursorEl.style.height = "20px"; ringEl.style.width = "50px"; ringEl.style.height = "50px"; });
+                el.addEventListener("mouseleave", () => { cursorEl.style.width = "12px"; cursorEl.style.height = "12px"; ringEl.style.width = "36px"; ringEl.style.height = "36px"; });
+            });
+        }
 
         renderAll();
     </script>
     <script src="../pesquisa.js"></script>
+    <script src="../Breadcrumbs.js"></script>
+    <script src="../tema.js"></script>
 </body>
 
 </html>

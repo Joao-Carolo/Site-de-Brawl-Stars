@@ -11,8 +11,8 @@
 
 (function () {
 
-    /* ─── CSS DO TEMA CLARO ─────────────────────────────── */
-    const lightCSS = `
+  /* ─── CSS DO TEMA CLARO ─────────────────────────────── */
+  const lightCSS = `
     body.light-mode {
       background: #F0EDE8 !important;
       color: #1A1A2E !important;
@@ -259,6 +259,21 @@
 
     /* CURSOR */
     body.light-mode #cursor-ring { border-color: rgba(255,107,0,.5) !important; }
+    // Desativar cursor personalizado em dispositivos touch
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+if(isTouchDevice){
+  document.getElementById("cursor").style.display = "none";
+  document.getElementById("cursor-ring").style.display = "none";
+  document.body.style.cursor = "auto";
+  document.querySelectorAll("*").forEach(el => el.style.cursor = "");
+} else {
+  // Todo o código do cursor fica aqui dentro
+  const cursor = document.getElementById("cursor");
+  const ring = document.getElementById("cursor-ring");
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener("mousemove", e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+"px";cursor.style.top=my+"px";});
+  (function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+"px";ring.style.top=ry+"px";requestAnimationFrame(anim);})();
+}
 
     /* SCROLLBAR */
     body.light-mode ::-webkit-scrollbar { width: 6px; }
@@ -266,18 +281,18 @@
     body.light-mode ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.2); border-radius: 100px; }
   `;
 
-    /* ─── INJETAR CSS ───────────────────────────────────── */
-    const styleEl = document.createElement("style");
-    styleEl.id = "bz-theme-style";
-    styleEl.textContent = lightCSS;
-    document.head.appendChild(styleEl);
+  /* ─── INJETAR CSS ───────────────────────────────────── */
+  const styleEl = document.createElement("style");
+  styleEl.id = "bz-theme-style";
+  styleEl.textContent = lightCSS;
+  document.head.appendChild(styleEl);
 
-    /* ─── BOTÃO FLUTUANTE ───────────────────────────────── */
-    const btn = document.createElement("button");
-    btn.id = "bzThemeBtn";
-    btn.title = "Mudar tema";
-    btn.setAttribute("aria-label", "Mudar entre tema escuro e claro");
-    btn.style.cssText = `
+  /* ─── BOTÃO FLUTUANTE ───────────────────────────────── */
+  const btn = document.createElement("button");
+  btn.id = "bzThemeBtn";
+  btn.title = "Mudar tema";
+  btn.setAttribute("aria-label", "Mudar entre tema escuro e claro");
+  btn.style.cssText = `
     position: fixed;
     bottom: 2rem;
     right: 2rem;
@@ -294,45 +309,46 @@
     align-items: center;
     justify-content: center;
     transition: transform .2s, background .3s, box-shadow .3s;
-    cursor: none !important;
+    @media(pointer:coarse){*{cursor:auto!important;}}
+@media(pointer:fine){*{cursor:none!important;}}
     box-shadow: 0 4px 16px rgba(0,0,0,.3);
   `;
 
-    document.body.appendChild(btn);
+  document.body.appendChild(btn);
 
-    /* ─── HOVER ─────────────────────────────────────────── */
-    btn.addEventListener("mouseenter", () => {
-        btn.style.transform = "scale(1.12)";
-        btn.style.boxShadow = "0 6px 20px rgba(0,0,0,.4)";
-    });
-    btn.addEventListener("mouseleave", () => {
-        btn.style.transform = "scale(1)";
-        btn.style.boxShadow = "0 4px 16px rgba(0,0,0,.3)";
-    });
+  /* ─── HOVER ─────────────────────────────────────────── */
+  btn.addEventListener("mouseenter", () => {
+    btn.style.transform = "scale(1.12)";
+    btn.style.boxShadow = "0 6px 20px rgba(0,0,0,.4)";
+  });
+  btn.addEventListener("mouseleave", () => {
+    btn.style.transform = "scale(1)";
+    btn.style.boxShadow = "0 4px 16px rgba(0,0,0,.3)";
+  });
 
-    /* ─── LÓGICA DO TEMA ────────────────────────────────── */
-    function applyTheme(theme) {
-        if (theme === "light") {
-            document.body.classList.add("light-mode");
-            btn.textContent = "🌙";
-            btn.style.background = "rgba(255,208,0,.15)";
-            btn.style.borderColor = "rgba(255,208,0,.3)";
-        } else {
-            document.body.classList.remove("light-mode");
-            btn.textContent = "☀️";
-            btn.style.background = "rgba(255,255,255,.1)";
-            btn.style.borderColor = "rgba(255,255,255,.15)";
-        }
-        localStorage.setItem("bz-theme", theme);
+  /* ─── LÓGICA DO TEMA ────────────────────────────────── */
+  function applyTheme(theme) {
+    if (theme === "light") {
+      document.body.classList.add("light-mode");
+      btn.textContent = "🌙";
+      btn.style.background = "rgba(255,208,0,.15)";
+      btn.style.borderColor = "rgba(255,208,0,.3)";
+    } else {
+      document.body.classList.remove("light-mode");
+      btn.textContent = "☀️";
+      btn.style.background = "rgba(255,255,255,.1)";
+      btn.style.borderColor = "rgba(255,255,255,.15)";
     }
+    localStorage.setItem("bz-theme", theme);
+  }
 
-    btn.addEventListener("click", () => {
-        const current = localStorage.getItem("bz-theme") || "dark";
-        applyTheme(current === "dark" ? "light" : "dark");
-    });
+  btn.addEventListener("click", () => {
+    const current = localStorage.getItem("bz-theme") || "dark";
+    applyTheme(current === "dark" ? "light" : "dark");
+  });
 
-    /* ─── INIT ──────────────────────────────────────────── */
-    const saved = localStorage.getItem("bz-theme") || "dark";
-    applyTheme(saved);
+  /* ─── INIT ──────────────────────────────────────────── */
+  const saved = localStorage.getItem("bz-theme") || "dark";
+  applyTheme(saved);
 
 })();

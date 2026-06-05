@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos — BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --green: #22C55E;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --purple: #A855F7;
+            --red: #E8202A;
+            --teal: #00C9A7;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --text-dark: #1A1A2E;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        @media(pointer:coarse) {
+            * {
+                cursor: auto !important;
+            }
+        }
+
+        @media(pointer:fine) {
+            * {
+                cursor: none !important;
+            }
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--teal);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(0, 201, 167, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a.active {
+            color: var(--teal);
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* HEADER */
+        .page-header {
+            padding: 8rem 3rem 4rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--dark2);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .header-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 70% at 85% 50%, rgba(0, 201, 167, .18), transparent),
+                radial-gradient(ellipse 40% 50% at 10% 60%, rgba(255, 208, 0, .12), transparent);
+        }
+
+        .header-inner {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-eyebrow {
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: .5rem;
+        }
+
+        .page-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .page-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, .5);
+            max-width: 600px;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hstat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hstat-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--teal), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .hstat-label {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-top: .2rem;
+        }
+
+        /* GLOW LINE */
+        .glow-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--teal), var(--green), var(--teal), transparent);
+            opacity: .5;
+        }
+
+        /* FILTROS */
+        .toolbar {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media(max-width:700px) {
+            .toolbar {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+
+        .filter-tab {
+            padding: .4rem 1rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: .8rem;
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: rgba(255, 255, 255, .5);
+            background: transparent;
+            transition: all .2s;
+        }
+
+        .filter-tab:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, .3);
+        }
+
+        .filter-tab.active {
+            color: #fff;
+            border-color: transparent;
+        }
+
+        [data-f="all"].active {
+            background: rgba(255, 255, 255, .15);
+        }
+
+        [data-f="ativo"].active {
+            background: var(--green);
+        }
+
+        [data-f="proximo"].active {
+            background: var(--yellow);
+            color: var(--text-dark);
+        }
+
+        [data-f="passado"].active {
+            background: rgba(255, 255, 255, .2);
+        }
+
+        [data-f="brawlpass"].active {
+            background: var(--pink);
+        }
+
+        [data-f="evento"].active {
+            background: var(--orange);
+        }
+
+        [data-f="torneio"].active {
+            background: var(--blue);
+        }
+
+        [data-f="ranked"].active {
+            background: var(--purple);
+        }
+
+        /* RESULTS */
+        .results-info {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem .75rem;
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .3);
+            font-weight: 700;
+        }
+
+        @media(max-width:700px) {
+            .results-info {
+                padding: 0 1.5rem .75rem;
+            }
+        }
+
+        /* CONTAINER */
+        .events-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem 6rem;
+        }
+
+        @media(max-width:700px) {
+            .events-container {
+                padding: 0 1.5rem 4rem;
+            }
+        }
+
+        /* GRUPO */
+        .event-group {
+            margin-bottom: 3.5rem;
+        }
+
+        .event-group-header {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .event-group-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            letter-spacing: .05em;
+        }
+
+        .event-group-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .event-group-count {
+            font-size: .75rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .3);
+        }
+
+        /* GRID */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.25rem;
+        }
+
+        /* EVENT CARD */
+        .event-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform .25s, border-color .25s, box-shadow .25s;
+            position: relative;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-card.ativo:hover {
+            border-color: rgba(34, 197, 94, .3);
+            box-shadow: 0 12px 30px rgba(34, 197, 94, .08);
+        }
+
+        .event-card.proximo:hover {
+            border-color: rgba(255, 208, 0, .3);
+            box-shadow: 0 12px 30px rgba(255, 208, 0, .08);
+        }
+
+        .event-card.passado:hover {
+            border-color: rgba(255, 255, 255, .15);
+        }
+
+        .event-card.hidden {
+            display: none;
+        }
+
+        /* THUMB */
+        .ec-thumb {
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ec-thumb-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .ec-thumb-emoji {
+            font-size: 4.5rem;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .5));
+            transition: transform .3s;
+        }
+
+        .event-card:hover .ec-thumb-emoji {
+            transform: scale(1.12);
+        }
+
+        .ec-color-bar {
+            height: 3px;
+        }
+
+        /* BADGES */
+        .ec-badge {
+            position: absolute;
+            top: .75rem;
+            right: .75rem;
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .22rem .65rem;
+            border-radius: 100px;
+        }
+
+        .badge-ativo {
+            background: rgba(34, 197, 94, .85);
+            color: #fff;
+            animation: pulse-badge 1.5s ease-in-out infinite;
+        }
+
+        .badge-proximo {
+            background: rgba(255, 208, 0, .85);
+            color: var(--text-dark);
+        }
+
+        .badge-passado {
+            background: rgba(255, 255, 255, .12);
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .badge-novo {
+            background: rgba(255, 107, 0, .85);
+            color: #fff;
+        }
+
+        @keyframes pulse-badge {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .6
+            }
+        }
+
+        /* BODY */
+        .ec-body {
+            padding: 1.1rem 1.25rem 1.4rem;
+        }
+
+        .ec-cat {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: .4rem;
+        }
+
+        .ec-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            line-height: 1.3;
+            margin-bottom: .35rem;
+        }
+
+        .ec-dates {
+            font-size: .78rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .4);
+            margin-bottom: .65rem;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .ec-desc {
+            font-size: .84rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .55);
+            margin-bottom: 1rem;
+        }
+
+        /* COUNTDOWN */
+        .ec-countdown {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 12px;
+            padding: .85rem;
+            display: flex;
+            gap: .5rem;
+            justify-content: center;
+            margin-bottom: .9rem;
+        }
+
+        .cd-unit {
+            text-align: center;
+            min-width: 48px;
+        }
+
+        .cd-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            line-height: 1;
+            display: block;
+        }
+
+        .cd-label {
+            font-size: .58rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-top: .15rem;
+            display: block;
+        }
+
+        .cd-sep {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, .2);
+            align-self: flex-start;
+            padding-top: .1rem;
+        }
+
+        /* PROGRESSO */
+        .ec-progress {
+            margin-bottom: .85rem;
+        }
+
+        .ec-progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: .72rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .35);
+            margin-bottom: .4rem;
+        }
+
+        .ec-progress-bar {
+            height: 5px;
+            background: rgba(255, 255, 255, .08);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .ec-progress-fill {
+            height: 100%;
+            border-radius: 100px;
+            transition: width 1s ease;
+        }
+
+        /* REWARDS */
+        .ec-rewards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .35rem;
+            margin-bottom: .75rem;
+        }
+
+        .ec-reward {
+            font-size: .7rem;
+            font-weight: 700;
+            padding: .2rem .6rem;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .5);
+        }
+
+        /* LINK */
+        .ec-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ec-link a {
+            font-size: .8rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, .4);
+            transition: color .2s, gap .2s;
+            display: flex;
+            align-items: center;
+            gap: .35rem;
+        }
+
+        .ec-link a:hover {
+            color: #fff;
+            gap: .55rem;
+        }
+
+        /* EMPTY */
+        .no-results {
+            text-align: center;
+            padding: 5rem 0;
+            color: rgba(255, 255, 255, .3);
+            display: none;
+        }
+
+        .no-results-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: .5rem;
+        }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .55s ease, transform .55s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../Brawlers/Brawlers.html">Brawlers</a></li>
+            <li><a href="../Temporadas/Temporadas.html">Updates</a></li>
+            <li><a href="Eventos.html" class="active">Eventos</a></li>
+            <li><a href="../Notícias/Notícias.html">Notícias</a></li>
+            <li><a href="../Guias/Guias.html">Guias</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-bg"></div>
+        <div class="header-inner">
+            <p class="page-eyebrow">Calendário Atualizado</p>
+            <h1 class="page-title">📅 Eventos</h1>
+            <p class="page-desc">Todos os eventos de Brawl Stars com contagem regressiva em tempo real — Brawl Pass,
+                eventos limitados, torneios e temporadas Ranked.</p>
+            <div class="header-stats">
+                <div class="hstat"><span class="hstat-num" id="hAtivos">0</span><span class="hstat-label">Ativos
+                        agora</span></div>
+                <div class="hstat"><span class="hstat-num" id="hProximos">0</span><span class="hstat-label">Em
+                        breve</span></div>
+                <div class="hstat"><span class="hstat-num" id="hTotal">0</span><span class="hstat-label">Total</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="glow-line"></div>
+
+    <div class="toolbar">
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-f="all">Todos</button>
+            <button class="filter-tab" data-f="ativo">🟢 Ativos</button>
+            <button class="filter-tab" data-f="proximo">🔜 Em breve</button>
+            <button class="filter-tab" data-f="passado">⚫ Passados</button>
+            <button class="filter-tab" data-f="brawlpass">🎫 Brawl Pass</button>
+            <button class="filter-tab" data-f="evento">🎉 Eventos</button>
+            <button class="filter-tab" data-f="torneio">🏆 Torneios</button>
+            <button class="filter-tab" data-f="ranked">⚔️ Ranked</button>
+        </div>
+    </div>
+
+    <div class="results-info" id="resultsInfo"></div>
+    <div class="events-container" id="eventsContainer"></div>
+    <div class="no-results" id="noResults">
+        <div class="no-results-emoji">📅</div>
+        <h3>Nenhum evento encontrado</h3>
+        <p>Tenta outro filtro.</p>
+    </div>
+
+    <script>
+        /* ══════════════════════════════
+           DADOS DOS EVENTOS
+           Para adicionar um evento novo,
+           copia um objeto e preenche os campos.
+           estado: "ativo", "proximo" ou "passado"
+           end/start: new Date("YYYY-MM-DDTHH:MM:SSZ")
+        ══════════════════════════════ */
+        const EVENTOS = [
+            {
+                id: 1,
+                nome: "Brawl Pass — Temporada Patrulha Starr",
+                cat: "brawlpass",
+                emoji: "🌟",
+                cor: "#FF3CAC",
+                gradient: "linear-gradient(135deg,rgba(255,60,172,.4),rgba(168,85,247,.2))",
+                estado: "ativo",
+                start: new Date("2026-04-28T08:00:00Z"),
+                end: new Date("2026-06-09T08:00:00Z"),
+                desc: "Brawl Pass da temporada Patrulha Starr com 70 tiers de recompensas. Inclui skins do Spike, Colette e muito mais.",
+                rewards: ["🌟 Spike Patrulha Starr", "📊 Colette Rainha do Vácuo", "💎 Starr Drops", "⚡ Power Points"],
+                link: "../Temporadas/Temporadas.html",
+                badge: "ativo"
+            },
+            {
+                id: 2,
+                nome: "Brawl Cup 2026 — Berlim",
+                cat: "torneio",
+                emoji: "🏟️",
+                cor: "#FF6B00",
+                gradient: "linear-gradient(135deg,rgba(255,107,0,.4),rgba(255,208,0,.2))",
+                estado: "proximo",
+                start: new Date("2026-05-15T10:00:00Z"),
+                end: new Date("2026-05-17T22:00:00Z"),
+                desc: "Primeiro grande LAN do BSC 2026! As melhores equipas do mundo competem em Berlim por $100.000 e slots diretos para o World Finals.",
+                rewards: ["💰 $100.000 Prize Pool", "🏆 Slots para World Finals", "📺 Transmissão ao vivo"],
+                link: "../Torneios/Torneios.html",
+                badge: "proximo"
+            },
+            {
+                id: 3,
+                nome: "Ranked — Temporada 2",
+                cat: "ranked",
+                emoji: "⚔️",
+                cor: "#A855F7",
+                gradient: "linear-gradient(135deg,rgba(168,85,247,.35),rgba(59,130,246,.2))",
+                estado: "ativo",
+                start: new Date("2026-05-01T08:00:00Z"),
+                end: new Date("2026-06-05T08:00:00Z"),
+                desc: "Temporada 2 do Ranked em curso! Modo em destaque: Knockout. Brawlers gratuitos: Bea (Épico), Finx (Mítico), Spike (Lendário).",
+                rewards: ["⭐ Ranked Starr Drops", "🎨 Battle Card exclusivo", "💎 Legendary Starr Drop (Mythic I)"],
+                link: "../Ranqueado/Ranqueado.html",
+                badge: "ativo"
+            },
+            {
+                id: 4,
+                nome: "Evento Adidas × Brawl Stars",
+                cat: "evento",
+                emoji: "👟",
+                cor: "#ffffff",
+                gradient: "linear-gradient(135deg,rgba(255,255,255,.15),rgba(100,100,100,.1))",
+                estado: "ativo",
+                start: new Date("2026-05-01T08:00:00Z"),
+                end: new Date("2026-05-20T08:00:00Z"),
+                desc: "Modo Megabola, Supercopa Starr da Adidas e Arena Adidas disponíveis! Inclui goleiros automáticos e chutes carregados.",
+                rewards: ["🏟️ Arena Adidas", "⚽ Modo Megabola", "🎽 Skins Adidas"],
+                link: "../Notícias/Notícias.html",
+                badge: "novo"
+            },
+            {
+                id: 5,
+                nome: "Evento Starr Nova",
+                cat: "evento",
+                emoji: "🌟",
+                cor: "#A855F7",
+                gradient: "linear-gradient(135deg,rgba(168,85,247,.35),rgba(255,60,172,.2))",
+                estado: "ativo",
+                start: new Date("2026-04-28T08:00:00Z"),
+                end: new Date("2026-05-19T08:00:00Z"),
+                desc: "Transforma-te nas Starr Girls! Coleciona cristais durante as partidas para assumir a forma de Starr Nova, Bea, Juju, Amber ou Spike.",
+                rewards: ["👾 Finx Rei do Vácuo (grátis)", "🌟 Sorteios Nova", "⚡ Transformações Starr Girls"],
+                link: "../Notícias/Notícias Atuais/Notas de lançamento de abril de 2026.html",
+                badge: "ativo"
+            },
+            {
+                id: 6,
+                nome: "Brawl Pass — Temporada Craques do Brawl",
+                cat: "brawlpass",
+                emoji: "⚽",
+                cor: "#3B82F6",
+                gradient: "linear-gradient(135deg,rgba(59,130,246,.35),rgba(34,197,94,.2))",
+                estado: "proximo",
+                start: new Date("2026-06-09T08:00:00Z"),
+                end: new Date("2026-07-21T08:00:00Z"),
+                desc: "Próxima temporada do Brawl Pass com tema de futebol! Skins do Eugénio e Carl com cromaticos incluídos.",
+                rewards: ["⚽ Eugénio Bom de Bola", "⛹️ Carl Atacante", "🥅 Skins de futebol"],
+                link: "../Temporadas/Temporadas.html",
+                badge: "proximo"
+            },
+            {
+                id: 7,
+                nome: "BSC 2026 — Summer Monthly Finals",
+                cat: "torneio",
+                emoji: "🏅",
+                cor: "#3B82F6",
+                gradient: "linear-gradient(135deg,rgba(59,130,246,.35),rgba(168,85,247,.2))",
+                estado: "proximo",
+                start: new Date("2026-06-15T10:00:00Z"),
+                end: new Date("2026-09-30T22:00:00Z"),
+                desc: "3 Monthly Finals de verão — Junho, Julho e Agosto. As equipas acumulam pontos BSC para chegar ao World Finals.",
+                rewards: ["💰 $35K–$42.5K por região", "📊 Pontos BSC", "🌍 Slots para World Finals"],
+                link: "../Torneios/Torneios.html",
+                badge: "proximo"
+            },
+            {
+                id: 8,
+                nome: "Keep Brawl Alive",
+                cat: "evento",
+                emoji: "❤️‍🔥",
+                cor: "#22C55E",
+                gradient: "linear-gradient(135deg,rgba(0,212,106,.3),rgba(34,197,94,.15))",
+                estado: "passado",
+                start: new Date("2026-04-14T08:00:00Z"),
+                end: new Date("2026-04-24T08:00:00Z"),
+                desc: "O maior evento comunitário da história — 27 milhões de conjuntos de wins necessários. A comunidade completou todos os objetivos!",
+                rewards: ["🦊 Buffie grátis", "👑 Royale Trunk skin", "💥 30 Chaos Drops", "💎 100K Gems diários"],
+                link: "../Notícias/Notícias Antigas/Keep Brawl Alive.html",
+                badge: "passado"
+            },
+            {
+                id: 9,
+                nome: "BSC 2026 — Last Chance Qualifier",
+                cat: "torneio",
+                emoji: "⚔️",
+                cor: "#E8202A",
+                gradient: "linear-gradient(135deg,rgba(232,32,42,.35),rgba(255,107,0,.2))",
+                estado: "proximo",
+                start: new Date("2026-10-10T10:00:00Z"),
+                end: new Date("2026-10-12T22:00:00Z"),
+                desc: "8 equipas lutam pelos últimos 2 slots no World Finals — win or go home. O evento mais intenso do mobile esports.",
+                rewards: ["🏆 2 Slots para o World Finals", "💰 Prize Pool TBA"],
+                link: "../Torneios/Torneios.html",
+                badge: "proximo"
+            },
+            {
+                id: 10,
+                nome: "BSC 2026 — World Finals",
+                cat: "torneio",
+                emoji: "🌍",
+                cor: "#FFD000",
+                gradient: "linear-gradient(135deg,rgba(255,208,0,.35),rgba(255,107,0,.2))",
+                estado: "proximo",
+                start: new Date("2026-11-15T10:00:00Z"),
+                end: new Date("2026-11-17T22:00:00Z"),
+                desc: "O evento culminante do BSC 2026 — 12 melhores equipas do mundo. Localização ainda não confirmada.",
+                rewards: ["💰 $1.000.000+ Prize Pool", "🏆 Título Mundial", "🌍 Local TBA"],
+                link: "../Torneios/Torneios.html",
+                badge: "proximo"
+            },
+        ];
+
+        /* ══════════════════════════════
+           UTILITÁRIOS
+        ══════════════════════════════ */
+        const CAT_LABELS = { brawlpass: "Brawl Pass", evento: "Evento", torneio: "Torneio", ranked: "Ranked" };
+        const CAT_COLORS = { brawlpass: "#FF3CAC", evento: "#FF6B00", torneio: "#3B82F6", ranked: "#A855F7" };
+        const ESTADO_LABELS = { ativo: "🟢 Ativo", proximo: "🔜 Em breve", passado: "⚫ Terminado" };
+        const ESTADO_ORDER = { ativo: 0, proximo: 1, passado: 2 };
+
+        function pad(n) { return String(n).padStart(2, "0"); }
+
+        function getCountdown(event) {
+            const now = Date.now();
+            if (event.estado === "passado") return null;
+            const target = event.estado === "ativo" ? event.end : event.start;
+            const diff = target - now;
+            if (diff <= 0) return null;
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            return { d, h, m, s };
+        }
+
+        function getProgress(event) {
+            const now = Date.now();
+            const total = event.end - event.start;
+            const elapsed = now - event.start;
+            return Math.min(100, Math.max(0, Math.round((elapsed / total) * 100)));
+        }
+
+        function formatDate(d) {
+            return d.toLocaleDateString("pt-PT", { day: "numeric", month: "short", year: "numeric" });
+        }
+
+        /* ══════════════════════════════
+           RENDER
+        ══════════════════════════════ */
+        let currentFilter = "all";
+
+        function render() {
+            const container = document.getElementById("eventsContainer");
+            container.innerHTML = "";
+
+            const filtered = EVENTOS.filter(e =>
+                currentFilter === "all" || e.estado === currentFilter || e.cat === currentFilter
+            ).sort((a, b) => ESTADO_ORDER[a.estado] - ESTADO_ORDER[b.estado]);
+
+            document.getElementById("resultsInfo").textContent = `${filtered.length} evento${filtered.length !== 1 ? "s" : ""} encontrado${filtered.length !== 1 ? "s" : ""}`;
+
+            if (filtered.length === 0) {
+                document.getElementById("noResults").style.display = "block";
+                return;
+            }
+            document.getElementById("noResults").style.display = "none";
+
+            // Agrupar por estado
+            const groups = { ativo: [], proximo: [], passado: [] };
+            filtered.forEach(e => groups[e.estado].push(e));
+
+            ["ativo", "proximo", "passado"].forEach(estado => {
+                if (!groups[estado].length) return;
+                const group = document.createElement("div");
+                group.className = "event-group reveal";
+                const titles = { ativo: "🟢 A decorrer agora", proximo: "🔜 Em breve", passado: "⚫ Terminados" };
+                const colors = { ativo: "var(--green)", proximo: "var(--yellow)", passado: "rgba(255,255,255,.3)" };
+                group.innerHTML = `
+      <div class="event-group-header">
+        <div class="event-group-title" style="color:${colors[estado]}">${titles[estado]}</div>
+        <div class="event-group-line"></div>
+        <div class="event-group-count">${groups[estado].length} evento${groups[estado].length !== 1 ? "s" : ""}</div>
+      </div>
+      <div class="events-grid" id="grid-${estado}"></div>
+    `;
+                container.appendChild(group);
+
+                const grid = group.querySelector(`#grid-${estado}`);
+                groups[estado].forEach((ev, i) => {
+                    const col = ev.cor || CAT_COLORS[ev.cat] || "#fff";
+                    const catColor = CAT_COLORS[ev.cat] || "#fff";
+                    const prog = getProgress(ev);
+                    const rewards = ev.rewards.map(r => `<span class="ec-reward">${r}</span>`).join("");
+                    const card = document.createElement("div");
+                    card.className = `event-card ${ev.estado}`;
+                    card.dataset.cat = ev.cat;
+                    card.style.transitionDelay = `${i * 0.07}s`;
+                    card.innerHTML = `
+        <span class="ec-badge badge-${ev.badge}">${ev.badge === "ativo" ? "🟢 AO VIVO" :
+                            ev.badge === "proximo" ? "🔜 EM BREVE" :
+                                ev.badge === "novo" ? "🆕 NOVO" : "⚫ TERMINADO"
+                        }</span>
+        <div class="ec-color-bar" style="background:${col}"></div>
+        <div class="ec-thumb">
+          <div class="ec-thumb-bg" style="background:${ev.gradient}"></div>
+          <div class="ec-thumb-emoji">${ev.emoji}</div>
+        </div>
+        <div class="ec-body">
+          <div class="ec-cat" style="color:${catColor}">${CAT_LABELS[ev.cat] || ev.cat}</div>
+          <div class="ec-name">${ev.nome}</div>
+          <div class="ec-dates">📅 ${formatDate(ev.start)} → ${formatDate(ev.end)}</div>
+          <div class="ec-desc">${ev.desc}</div>
+          ${ev.estado !== "passado" ? `
+          <div class="ec-countdown" id="cd-${ev.id}">
+            <div class="cd-unit"><span class="cd-num" id="cd-d-${ev.id}">--</span><span class="cd-label">${ev.estado === "ativo" ? "Termina em" : "Começa em"}</span></div>
+            <span class="cd-sep">·</span>
+            <div class="cd-unit"><span class="cd-num" id="cd-h-${ev.id}">--</span><span class="cd-label">Horas</span></div>
+            <span class="cd-sep">·</span>
+            <div class="cd-unit"><span class="cd-num" id="cd-m-${ev.id}">--</span><span class="cd-label">Min</span></div>
+            <span class="cd-sep">·</span>
+            <div class="cd-unit"><span class="cd-num" id="cd-s-${ev.id}">--</span><span class="cd-label">Seg</span></div>
+          </div>`: ""}
+          ${ev.estado === "ativo" ? `
+          <div class="ec-progress">
+            <div class="ec-progress-label"><span>Progresso</span><span>${prog}%</span></div>
+            <div class="ec-progress-bar"><div class="ec-progress-fill" style="width:${prog}%;background:${col}"></div></div>
+          </div>`: ""}
+          <div class="ec-rewards">${rewards}</div>
+          <div class="ec-link"><a href="${ev.link}">Ver detalhes →</a></div>
+        </div>
+      `;
+                    grid.appendChild(card);
+                });
+            });
+
+            // Header stats
+            document.getElementById("hAtivos").textContent = EVENTOS.filter(e => e.estado === "ativo").length;
+            document.getElementById("hProximos").textContent = EVENTOS.filter(e => e.estado === "proximo").length;
+            document.getElementById("hTotal").textContent = EVENTOS.length;
+
+            document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+        }
+
+        /* ══════════════════════════════
+           COUNTDOWN TICKER
+        ══════════════════════════════ */
+        function tick() {
+            EVENTOS.forEach(ev => {
+                if (ev.estado === "passado") return;
+                const cd = getCountdown(ev);
+                if (!cd) return;
+                const dEl = document.getElementById(`cd-d-${ev.id}`);
+                const hEl = document.getElementById(`cd-h-${ev.id}`);
+                const mEl = document.getElementById(`cd-m-${ev.id}`);
+                const sEl = document.getElementById(`cd-s-${ev.id}`);
+                if (dEl) { dEl.textContent = pad(cd.d); }
+                if (hEl) { hEl.textContent = pad(cd.h); }
+                if (mEl) { mEl.textContent = pad(cd.m); }
+                if (sEl) { sEl.textContent = pad(cd.s); }
+            });
+        }
+
+        /* ══════════════════════════════
+           FILTROS
+        ══════════════════════════════ */
+        document.querySelectorAll(".filter-tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+                currentFilter = tab.dataset.f;
+                render();
+            });
+        });
+
+        /* ══════════════════════════════
+           INIT
+        ══════════════════════════════ */
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.06 });
+
+        render();
+        setInterval(tick, 1000);
+        tick();
+
+        /* CURSOR */
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        if (!isTouchDevice) {
+            const cursor = document.getElementById("cursor");
+            const ring = document.getElementById("cursor-ring");
+            let mx = 0, my = 0, rx = 0, ry = 0;
+            document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+            (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+            document.querySelectorAll("a,button,.event-card").forEach(el => {
+                el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+                el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+            });
+        } else {
+            document.getElementById("cursor").style.display = "none";
+            document.getElementById("cursor-ring").style.display = "none";
+        }
+    </script>
+    <script src="../Breadcrumbs.js"></script>
+    <script src="../pesquisa.js"></script>
+    <script src="../tema.js"></script>
+</body>
+
+</html>

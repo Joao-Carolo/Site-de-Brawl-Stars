@@ -47,8 +47,16 @@
             color: inherit;
         }
 
-        * {
-            cursor: none !important;
+        @media(pointer:coarse) {
+            * {
+                cursor: auto !important;
+            }
+        }
+
+        @media(pointer:fine) {
+            * {
+                cursor: none !important;
+            }
         }
 
         #cursor {
@@ -1107,7 +1115,8 @@
                     <p class="lore-p">O <strong>MadEvil Manor</strong> é a banda de heavy metal de Starr Park — três
                         brawlers unidos pela música mais pesada e caótica do universo do jogo. Formada por
                         <strong>Draco</strong> na guitarra, <strong>Lumi</strong> na bateria e <strong>Damian</strong>
-                        como vocalista, a banda representa a ala mais agressiva e energética de Starr Park.</p>
+                        como vocalista, a banda representa a ala mais agressiva e energética de Starr Park.
+                    </p>
                     <p class="lore-p"><strong>Draco</strong> é o guitarrista dragão e irmão mais novo de Damian. Foi ele
                         que fundou a banda e que descobriu a solução para os episódios de raiva de Damian — umas colunas
                         de cancelamento de ruído. Transforma-se num dragão de fogo com o Super.</p>
@@ -1417,7 +1426,8 @@
             <h2 class="sec-title reveal">Buffies do MadEvil Manor</h2>
             <p style="color:rgba(255,255,255,.5);font-size:.97rem;line-height:1.75;max-width:650px;margin-bottom:2rem;"
                 class="reveal">Os Buffies do MadEvil Manor estão disponíveis em duas Claw Machines — Draco e Lumi na
-                <strong style="color:#fff">MadEvil Manor Machine</strong> (Update 61), e Damian numa futura máquina.</p>
+                <strong style="color:#fff">MadEvil Manor Machine</strong> (Update 61), e Damian numa futura máquina.
+            </p>
 
             <div class="claw-machine-visual reveal">
                 <div class="claw-machine-header">
@@ -1637,6 +1647,21 @@
         document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
         // CURSOR
+        // Desativar cursor personalizado em dispositivos touch
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        if (isTouchDevice) {
+            document.getElementById("cursor").style.display = "none";
+            document.getElementById("cursor-ring").style.display = "none";
+            document.body.style.cursor = "auto";
+            document.querySelectorAll("*").forEach(el => el.style.cursor = "");
+        } else {
+            // Todo o código do cursor fica aqui dentro
+            const cursor = document.getElementById("cursor");
+            const ring = document.getElementById("cursor-ring");
+            let mx = 0, my = 0, rx = 0, ry = 0;
+            document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+            (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        }
         const cursor = document.getElementById("cursor");
         const ring = document.getElementById("cursor-ring");
         let mx = 0, my = 0, rx = 0, ry = 0;
@@ -1647,6 +1672,9 @@
             el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
         });
     </script>
+    <script src="../../Breadcrumbs.js"></script>
+    <script src="../../tema.js"></script>
+    <script src="../../pesquisa.js"></script>
 </body>
 
 </html>

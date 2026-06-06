@@ -886,6 +886,156 @@
             line-height: 1.6;
         }
 
+        .abilities-section-head {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .abilities-section-head .modal-section-title {
+            margin-bottom: 0;
+            flex: 1;
+            min-width: 8rem;
+        }
+
+        .modal-ability-btns {
+            display: flex;
+            gap: .5rem;
+            flex-shrink: 0;
+        }
+
+        .ability-extra-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .25rem .3rem .25rem .75rem;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .05);
+            transition: border-color .3s, background .3s;
+        }
+
+        .ability-extra-label {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .35);
+            white-space: nowrap;
+            transition: color .3s;
+            user-select: none;
+        }
+
+        .ability-extra-label img {
+            width: 1rem;
+            height: 1rem;
+            object-fit: contain;
+        }
+
+        .ability-extra-toggle-hyper.is-on {
+            border-color: rgba(155, 89, 255, .5);
+            background: rgba(155, 89, 255, .08);
+        }
+
+        .ability-extra-toggle-hyper.is-on .ability-extra-label {
+            color: #B07AFF;
+        }
+
+        .ability-extra-toggle-buffie.is-on {
+            border-color: rgba(255, 107, 0, .5);
+            background: rgba(255, 107, 0, .08);
+        }
+
+        .ability-extra-toggle-buffie.is-on .ability-extra-label {
+            color: #FFB366;
+        }
+
+        .toggle-btn.toggle-buffie.on {
+            background: var(--orange);
+        }
+
+        .ability-card.hyper {
+            border-color: rgba(155, 89, 255, .35);
+            background: linear-gradient(135deg, rgba(155, 89, 255, .1), rgba(108, 45, 199, .05));
+        }
+
+        .ability-card.hyper .ability-label {
+            color: #B07AFF;
+        }
+
+        .ability-card.buffie-g {
+            border-color: rgba(34, 197, 94, .3);
+            background: rgba(34, 197, 94, .06);
+        }
+
+        .ability-card.buffie-g .ability-label {
+            color: #4ADE80;
+        }
+
+        .ability-card.buffie-s {
+            border-color: rgba(255, 208, 0, .3);
+            background: rgba(255, 208, 0, .06);
+        }
+
+        .ability-card.buffie-s .ability-label {
+            color: var(--yellow);
+        }
+
+        .ability-card.buffie-h {
+            border-color: rgba(155, 89, 255, .3);
+            background: rgba(155, 89, 255, .06);
+        }
+
+        .ability-card.buffie-h .ability-label {
+            color: #B07AFF;
+        }
+
+        .ability-card.buffie-empty {
+            grid-column: 1 / -1;
+            border-style: dashed;
+            border-color: rgba(255, 107, 0, .25);
+        }
+
+        .buffie-accessory {
+            margin-top: .5rem;
+            padding: .35rem .5rem;
+            border-left: 2px solid rgba(34, 197, 94, .35);
+            margin-left: .25rem;
+        }
+
+        .buffie-accessory-name {
+            font-size: .65rem;
+            font-weight: 800;
+            color: #4ADE80;
+            margin-bottom: .15rem;
+        }
+
+        .buffie-accessory-desc {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .45);
+            line-height: 1.5;
+        }
+
+        .buffie-empty-link {
+            color: var(--orange);
+            font-weight: 800;
+            margin-top: .35rem;
+            display: inline-block;
+        }
+
+        .stats-toggle-label img {
+            width: 1rem;
+            height: 1rem;
+            object-fit: contain;
+            vertical-align: middle;
+            margin-right: .25rem;
+        }
+
         .stat-bars {
             display: flex;
             flex-direction: column;
@@ -935,7 +1085,7 @@
         .stat-value {
             font-size: .78rem;
             font-weight: 800;
-            width: 40px;
+            min-width: 52px;
             text-align: right;
             color: rgba(255, 255, 255, .7);
             flex-shrink: 0;
@@ -1190,19 +1340,19 @@
             </div>
             <div class="modal-body">
                 <div class="modal-section">
-                    <div class="modal-section-title">Habilidades</div>
+                    <div class="abilities-section-head">
+                        <div class="modal-section-title">Habilidades</div>
+                        <div class="modal-ability-btns" id="modalAbilityBtns" hidden></div>
+                    </div>
                     <div class="abilities-grid" id="modalAbilities"></div>
                 </div>
                 <div class="modal-section">
                     <div class="stats-header">
                         <div class="modal-section-title" style="margin-bottom:0">Stats</div>
                         <div class="stats-toggle" id="statsToggle">
-                            document.querySelector(".stats-toggle-label").innerHTML = `
-                            <img src="Imagens (Poderes de Estrela ou Acessórios)/${b.name}/Hipercarga.png"
-                                style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle"
-                                onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
-                            <span style="display:none">⚡</span> Hypercharge`;
-                            <button class="toggle-btn" id="toggleBtn" onclick="toggleHyper()"></button>
+                            <span class="stats-toggle-label" id="statsToggleLabel">Hypercharge</span>
+                            <button type="button" class="toggle-btn" id="toggleBtn" onclick="toggleHyper()"
+                                aria-label="Alternar stats com Hypercharge" aria-pressed="false"></button>
                         </div>
                     </div>
                     <div class="stat-bars" id="modalStats"></div>
@@ -1323,6 +1473,42 @@
         const RARITY_LABELS = { starter: "Starter", rare: "Rare", super_rare: "Super Rare", epic: "Epic", mythic: "Mythic", legendary: "Legendary", ultra: "Ultra Legendary" };
         const RARITY_COLORS = { starter: "var(--c-starter)", rare: "var(--c-rare)", super_rare: "var(--c-super)", epic: "var(--c-epic)", mythic: "var(--c-mythic)", legendary: "var(--c-leg)", ultra: "var(--c-ultra)" };
 
+        /* Brawlers com botões extra na linha «Habilidades» (edita as listas) */
+        const BRAWLERS_HYPER_BTN = ["Shelly", "Colt", "Bull", "Nita", "Bo", "Leon", "Edgar", "Griff", "Colette"];
+        const BRAWLERS_COM_BUFFIES = ["Shelly", "Colt", "Spike", "Mortis", "Frank", "Emz", "Leon", "Crow", "Fang", "Edgar", "Stu", "Mico", "Bull", "Nita", "Bibi", "Bo", "Griff", "Colette", "Sandy", "Rosa", "Sprout", "Hank", "Buzz", "Bea", "Brock", "8-Bit", "Darryl"];
+        const BUFFIE_MACHINE = {
+            Shelly: "machine-1", Colt: "machine-1", Spike: "machine-1",
+            Mortis: "machine-2", Frank: "machine-2", Emz: "machine-2",
+            Bull: "machine-3", Crow: "machine-3", Bibi: "machine-3",
+            Bo: "machine-4", Nita: "machine-4", Leon: "machine-4",
+            Edgar: "machine-5", Griff: "machine-5", Colette: "machine-5",
+        };
+
+        /* Buffies por brawler (sincroniza com Buffies.html — edita nos dois sítios) */
+        const BRAWLER_BUFFIES = {
+            Shelly: [
+                { t: "g", desc: "Fast Forward torna-se um dash longo...", acessorios: [{ nome: "Nome Acessório 1", desc: "Descrição do acessório 1" }, { nome: "Nome Acessório 2", desc: "Descrição do acessório 2" }] },
+                { t: "s", desc: "Shell Shock aplica slow mais duradouro..." },
+                { t: "h", desc: "Ataques básicos durante HC aplicam slow..." },
+            ],
+            Colt: [{ t: "g", desc: "Cada bala rouba 1 munição ao inimigo atingido" }, { t: "s", desc: "Slick Boots: mais velocidade em sprint; Magnum Special: mais dano ao longe" }, { t: "h", desc: "Balas ficam mais rápidas durante HC; +2s de duração" }],
+            Spike: [{ t: "g", desc: "Popping Pincushion faz raiz nos inimigos se todos os espinhos acertarem" }, { t: "s", desc: "Fertilize cura mais; Curveball aumenta mais a curva dos espinhos" }, { t: "h", desc: "Ataques básicos explodem duas vezes durante HC; +2s de duração" }],
+            Mortis: [{ t: "g", desc: "Blood Boomerang: ataque fantasma atinge a mesma área com delay; dash passa atrás do inimigo" }, { t: "s", desc: "Creepy Harvest cura mais por kill; Coiled Snake tem ainda mais alcance" }, { t: "h", desc: "Clone de sombra copia o próximo ataque — dano em dobro em burst; +2s de duração" }],
+            Frank: [{ t: "g", desc: "Emite uma onda de choque que destrói projéteis à frente; Power Grab com efeito de bleed" }, { t: "s", desc: "Sponge dá Knockback Resistance; Power Grab aumenta dano por mais tempo" }, { t: "h", desc: "Ataque base aplica stun de 5s durante HC; +2s de duração" }],
+            Emz: [{ t: "g", desc: "Friendzoner tem raio maior; stun de 1s em inimigos empurrados pelo Gadget" }, { t: "s", desc: "Bad Karma: slow ainda mais forte; Hype: mais cura por inimigo no Super" }, { t: "h", desc: "Nuvem de veneno fica ativa 2s após a morte de Emz; +2s de duração" }],
+            Bull: [{ t: "g", desc: "Clone Projector: pode reativar para trocar de posição com o clone" }, { t: "s", desc: "Lollipop Drop: Leon e aliados movem-se mais rápido na área" }, { t: "h", desc: "Smoke Trails: invisível durante mais tempo; +2s de duração" }],
+            Crow: [{ t: "g", desc: "Instapoison regressa a duração do veneno; Slowing Toxin ricocheteiam em alvos próximos" }, { t: "s", desc: "Extra Toxic: veneno mais forte; Carrion Crow: mais dano em alvos com baixo HP" }, { t: "h", desc: "Utility Knives: ataques HC perfuram e voltam com 20% menos dano; +2s duração" }],
+            Bibi: [{ t: "g", desc: "Reenergize carrega o Super completamente; Leave n' Weave tem mais usos" }, { t: "s", desc: "Fresh Kicks: mais ricochetes; Corn Paws: velocidade ainda maior no Super" }, { t: "h", desc: "Teen Spirit: lança um segundo ataque menor; +2s de duração" }],
+            Bo: [{ t: "g", desc: "T-Bone Injector introduz efeito Bleed; Stomper: stun e slow mais fortes" }, { t: "s", desc: "Tough Guy: imune a dano 0,5s após matar; Berserker: recarga ainda mais rápida" }, { t: "h", desc: "Jaws of Steel: ataque HC destrói mais paredes; +2s de duração" }],
+            Nita: [{ t: "g", desc: "Bear Paws: raiz se atingir 3 inimigos; Faux Fur: Bruce recebe escudo ao ativar" }, { t: "s", desc: "Bear With Me: cura de Bruce aumentada; Hyper Bear: mais velocidade de ataque" }, { t: "h", desc: "Hyperbearing: Bruce causa dano em área ao aparecer; +2s de duração" }],
+            Leon: [{ t: "g", desc: "Vitamin Booster carrega Home Run bar e cura 60% do dano; Extra Sticky: slow aumenta com tempo" }, { t: "s", desc: "Home Run: +20% dano; Batting Stance: escudo de 5s ao acertar Super" }, { t: "h", desc: "Out of Bounds: ataques HC perfuram e voltam 20% menos dano; +2s duração" }],
+            Edgar: [{ t: "g", desc: "Super Totem: aliados ficam com mais alcance perto do totem; Tripwire: minas explodem em área maior" }, { t: "s", desc: "Circling Eagle: Bo dispara uma 4.ª flecha com área maior; Snare a Bear: raiz mais longa" }, { t: "h", desc: "Catch a Bear: minas são invisíveis durante HC; +2s de duração" }],
+            Griff: [{ t: "g", desc: "Keep the Change: ataque com mais moedas e Mega Coin ao centro; Business Resilience: Super cura Griff" }, { t: "s", desc: "More Coins: mais largura de ataque e uma linha extra de moedas" }, { t: "h", desc: "Tax Rebate: ataques HC atravessam inimigos; +2s de duração" }],
+            Colette: [{ t: "g", desc: "Na-Ah: projétil atravessa paredes; Gotcha: apontável com 3 usos e overheal" }, { t: "s", desc: "Push It: inimigos não podem atacar Colette no final do push; Mass Tax: mais redução de dano" }, { t: "h", desc: "Velocidade de dash aumentada; +2s de duração" }],
+        };
+
+        const BUFFIE_TYPE_LABELS = { g: "Buffie Gadget", s: "Buffie Star Power", h: "Buffie Hyper" };
+
         // PROBLEMA 7 — contagem automática de brawlers por raridade
         function buildRarityCounts() {
             const counts = {};
@@ -1385,6 +1571,7 @@
         }
 
         let currentBrawler = null, hyperActive = false;
+        let abilityHyperOn = false, abilityBuffieOn = false;
 
         const HYPER_STATS = {
             "Shelly": [4080, 816, 7, 864], "Colt": [3360, 552, 12, 864], "Nita": [4560, 960, 8, 864], "Bull": [7200, 1128, 5, 864],
@@ -1413,10 +1600,182 @@
             "Sirius": [3600, 840, 12, 864], "Najia": [3360, 792, 9, 960],
         };
 
+        const HYPER_MULT = { hp: 1.20, dmg: 1.20, range: 1.15, speed: 1.10 };
+
+        function hyperFromBase(b) {
+            return {
+                hp: Math.round(b.hp * HYPER_MULT.hp),
+                dmg: Math.round(b.dmg * HYPER_MULT.dmg),
+                range: Math.round(b.range * HYPER_MULT.range),
+                speed: Math.round(b.speed * HYPER_MULT.speed),
+            };
+        }
+
         function getHyperStats(b) {
             const h = HYPER_STATS[b.name];
-            if (h) return { hp: h[0], dmg: h[1], range: h[2], speed: h[3] };
-            return { hp: Math.round(b.hp * 1.20), dmg: Math.round(b.dmg * 1.20), range: Math.round(b.range * 1.15), speed: Math.round(b.speed * 1.10) };
+            if (h) {
+                const fromMap = { hp: h[0], dmg: h[1], range: h[2], speed: h[3] };
+                if (fromMap.hp >= b.hp && fromMap.dmg >= b.dmg) return fromMap;
+            }
+            return hyperFromBase(b);
+        }
+
+        const IMG_BASE = "Imagens (Poderes de Estrela ou Acessórios)";
+
+        function abilityLabelHtml(emoji, imgSrc, labelText) {
+            return `<img src="${imgSrc}" alt="" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">${emoji}</span> ${labelText}`;
+        }
+
+        function setHyperToggleLabel(b) {
+            const label = document.getElementById("statsToggleLabel");
+            const hyperImg = `${IMG_BASE}/${encodeURIComponent(b.name)}/Hipercarga.png`;
+            const fallback = `${IMG_BASE}/Super.png`;
+            label.innerHTML = `<img src="${hyperImg}" alt="" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle;margin-right:.25rem" onerror="this.onerror=null;this.src='${fallback}'"><span style="display:none">⚡</span> Hypercharge`;
+        }
+
+        function buildBuffieCardHtml(bf) {
+            const extras = (bf.acessorios || []).map(a =>
+                `<div class="buffie-accessory"><div class="buffie-accessory-name">${a.nome}</div><div class="buffie-accessory-desc">${a.desc}</div></div>`
+            ).join("");
+            const emojis = { g: "🔧", s: "⭐", h: "💜" };
+            return `<div class="ability-card buffie-${bf.t}">
+                <div class="ability-label">${emojis[bf.t]} ${BUFFIE_TYPE_LABELS[bf.t]}</div>
+                <div class="ability-desc">${bf.desc}${extras}</div>
+            </div>`;
+        }
+
+        function buildAbilitiesHtml(b, opts = {}) {
+            const showHyper = !!opts.showHyper;
+            const showBuffies = !!opts.showBuffies;
+            let html = "";
+
+            const baseRows = [
+                { label: abilityLabelHtml("⚔️", b.attackImg || `${IMG_BASE}/Ataque.png`, "Ataque"), text: b.attack },
+                { label: abilityLabelHtml("⚡", b.superImg || `${IMG_BASE}/Super.png`, "Super"), text: b.super },
+            ];
+            [["⭐", "Star Power 1", b.sp1], ["⭐", "Star Power 2", b.sp2], ["🔧", "Gadget 1", b.g1], ["🔧", "Gadget 2", b.g2]]
+                .forEach(([emoji, type, text]) => {
+                    if (!text || !String(text).trim()) return;
+                    const name = text.split(" — ")[0];
+                    baseRows.push({
+                        label: abilityLabelHtml(emoji, `${IMG_BASE}/${b.name}/${name}.png`, type),
+                        text,
+                    });
+                });
+
+            html += baseRows.map(a => {
+                const title = a.text.split(" — ")[0];
+                const desc = a.text.split(" — ").slice(1).join(" — ") || "";
+                return `<div class="ability-card"><div class="ability-label" style="display:flex;align-items:center;gap:.3rem">${a.label}</div><div class="ability-name">${title}</div><div class="ability-desc">${desc}</div></div>`;
+            }).join("");
+
+            if (showHyper) {
+                const hyperText = b.hyper || "Hypercharge — Informação em breve.";
+                const title = hyperText.split(" — ")[0];
+                const desc = hyperText.split(" — ").slice(1).join(" — ") || "";
+                const hyperImg = `${IMG_BASE}/${encodeURIComponent(b.name)}/Hipercarga.png`;
+                html += `<div class="ability-card hyper">
+                    <div class="ability-label" style="display:flex;align-items:center;gap:.3rem">${abilityLabelHtml("💜", hyperImg, "Hypercharge")}</div>
+                    <div class="ability-name">${title}</div>
+                    <div class="ability-desc">${desc}</div>
+                </div>`;
+            }
+
+            if (showBuffies) {
+                const buffies = BRAWLER_BUFFIES[b.name];
+                if (buffies?.length) {
+                    html += buffies.map(buildBuffieCardHtml).join("");
+                } else {
+                    const anchor = BUFFIE_MACHINE[b.name] ? `Buffies.html#${BUFFIE_MACHINE[b.name]}` : "Buffies.html";
+                    html += `<div class="ability-card buffie-empty">
+                        <div class="ability-label">🦊 Buffies</div>
+                        <div class="ability-desc">Ainda sem Buffies registados para ${b.name}.
+                            <a href="${anchor}" class="buffie-empty-link">Ver na wiki de Buffies →</a>
+                        </div>
+                    </div>`;
+                }
+            }
+
+            return html;
+        }
+
+        function renderModalAbilities() {
+            if (!currentBrawler) return;
+            document.getElementById("modalAbilities").innerHTML = buildAbilitiesHtml(currentBrawler, {
+                showHyper: abilityHyperOn,
+                showBuffies: abilityBuffieOn,
+            });
+        }
+
+        function updateAbilityToggleUI(type, on) {
+            const id = type === "hyper" ? "abilityHyperToggle" : "abilityBuffieToggle";
+            const btn = document.getElementById(id);
+            const row = btn?.closest(".ability-extra-toggle");
+            btn?.classList.toggle("on", on);
+            btn?.setAttribute("aria-pressed", on ? "true" : "false");
+            row?.classList.toggle("is-on", on);
+        }
+
+        function syncHyperState(on) {
+            hyperActive = on;
+            const hasHyperBtn = currentBrawler && BRAWLERS_HYPER_BTN.includes(currentBrawler.name);
+            if (hasHyperBtn) {
+                abilityHyperOn = on;
+                updateAbilityToggleUI("hyper", on);
+            }
+            const statsBtn = document.getElementById("toggleBtn");
+            statsBtn?.classList.toggle("on", on);
+            statsBtn?.setAttribute("aria-pressed", on ? "true" : "false");
+            document.getElementById("statsToggle")?.classList.toggle("hyper-on", on);
+            if (currentBrawler) {
+                renderStats(currentBrawler, on);
+                if (hasHyperBtn) renderModalAbilities();
+            }
+        }
+
+        function toggleAbilityHyper() {
+            syncHyperState(!abilityHyperOn);
+        }
+
+        function toggleAbilityBuffie() {
+            abilityBuffieOn = !abilityBuffieOn;
+            updateAbilityToggleUI("buffie", abilityBuffieOn);
+            renderModalAbilities();
+        }
+
+        function renderAbilityExtraBtns(b) {
+            const wrap = document.getElementById("modalAbilityBtns");
+            const showHyper = BRAWLERS_HYPER_BTN.includes(b.name);
+            const showBuffie = BRAWLERS_COM_BUFFIES.includes(b.name);
+            abilityHyperOn = false;
+            abilityBuffieOn = false;
+            if (!showHyper && !showBuffie) {
+                wrap.hidden = true;
+                wrap.innerHTML = "";
+                return;
+            }
+            wrap.hidden = false;
+            const hyperImg = `${IMG_BASE}/${encodeURIComponent(b.name)}/Hipercarga.png`;
+            const fallbackImg = `${IMG_BASE}/Super.png`;
+            let html = "";
+            if (showHyper) {
+                html += `<div class="ability-extra-toggle ability-extra-toggle-hyper" data-extra="hyper">
+                    <span class="ability-extra-label">
+                        <img src="${hyperImg}" alt="" onerror="this.onerror=null;this.src='${fallbackImg}'"> Hypercharge
+                    </span>
+                    <button type="button" class="toggle-btn" id="abilityHyperToggle" aria-pressed="false" aria-label="Alternar Hypercharge"></button>
+                </div>`;
+            }
+            if (showBuffie) {
+                html += `<div class="ability-extra-toggle ability-extra-toggle-buffie" data-extra="buffie">
+                    <span class="ability-extra-label">🦊 Buffies</span>
+                    <button type="button" class="toggle-btn toggle-buffie" id="abilityBuffieToggle" aria-pressed="false" aria-label="Alternar Buffies"></button>
+                </div>`;
+            }
+            wrap.innerHTML = html;
+
+            document.getElementById("abilityHyperToggle")?.addEventListener("click", toggleAbilityHyper);
+            document.getElementById("abilityBuffieToggle")?.addEventListener("click", toggleAbilityBuffie);
         }
 
         const STAT_MAX = { hp: 15000, dmg: 10000, range: 20, speed: 900 };
@@ -1445,17 +1804,17 @@
         }
 
         function toggleHyper() {
-            hyperActive = !hyperActive;
-            document.getElementById("toggleBtn").classList.toggle("on", hyperActive);
-            document.getElementById("statsToggle").classList.toggle("hyper-on", hyperActive);
-            if (currentBrawler) renderStats(currentBrawler, hyperActive);
+            syncHyperState(!hyperActive);
         }
 
         function openModal(b) {
             currentBrawler = b;
             hyperActive = false;
-            document.getElementById("toggleBtn").classList.remove("on");
+            const toggleBtn = document.getElementById("toggleBtn");
+            toggleBtn.classList.remove("on");
+            toggleBtn.setAttribute("aria-pressed", "false");
             document.getElementById("statsToggle").classList.remove("hyper-on");
+            setHyperToggleLabel(b);
             const color = RARITY_COLORS[b.rarity];
             const modalEmoji = document.getElementById("modalEmoji");
             modalEmoji.innerHTML = `<img 
@@ -1470,28 +1829,16 @@
             document.getElementById("modalName").textContent = b.name;
             document.getElementById("modalClass").textContent = `Classe: ${b.cls}`;
             document.getElementById("modalDesc").textContent = b.desc;
-            document.getElementById("modalAbilities").innerHTML = [
-                { label: `<img src="${b.attackImg || 'Imagens (Poderes de Estrela ou Acessórios)/Ataque.png'}" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">⚔️</span> Ataque`, text: b.attack },
-                { label: `<img src="${b.superImg || 'Imagens (Poderes de Estrela ou Acessórios)/Super.png'}" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">⚡</span> Super`, text: b.super },
-                { label: `<img src="Imagens (Poderes de Estrela ou Acessórios)/${b.name}/${b.sp1.split(' — ')[0]}.png" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">⭐</span> Star Power 1`, text: b.sp1 },
-                { label: `<img src="Imagens (Poderes de Estrela ou Acessórios)/${b.name}/${b.sp2.split(' — ')[0]}.png" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">⭐</span> Star Power 2`, text: b.sp2 },
-                { label: `<img src="Imagens (Poderes de Estrela ou Acessórios)/${b.name}/${b.g1.split(' — ')[0]}.png" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">✨</span> Gadget 1`, text: b.g1 },
-                { label: `<img src="Imagens (Poderes de Estrela ou Acessórios)/${b.name}/${b.g2.split(' — ')[0]}.png" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">✨</span> Gadget 2`, text: b.g2 },
-            ].map(a => `<div class="ability-card"><div class="ability-label" style="display:flex;align-items:center;gap:.3rem">${a.label}</div><div class="ability-name">${a.text.split(" — ")[0]}</div><div class="ability-desc">${a.text.split(" — ")[1] || ""}</div></div>`).join("");
+            abilityHyperOn = false;
+            abilityBuffieOn = false;
+            renderAbilityExtraBtns(b);
+            renderModalAbilities();
             renderStats(b, false);
             document.getElementById("modalModes").innerHTML = b.modes.map((m, i) => `<span class="mode-chip ${i === 0 ? "great" : i === 1 ? "good" : ""}">${i === 0 ? "🏆" : i === 1 ? "✅" : ""} ${m}</span>`).join("");
-            const BRAWLERS_COM_BUFFIES = ["Shelly", "Colt", "Spike", "Mortis", "Frank", "Emz", "Leon", "Crow", "Fang", "Edgar", "Stu", "Mico", "Bull", "Nita", "Bibi", "Bo", "Griff", "Colette", "Sandy", "Rosa", "Sprout", "Hank", "Buzz", "Bea", "Brock", "8-Bit", "Darryl"];
-            const BUFFIE_MACHINE = {
-                Shelly: "machine-1", Colt: "machine-1", Spike: "machine-1",
-                Mortis: "machine-2", Frank: "machine-2", Emz: "machine-2",
-                Bull: "machine-3", Crow: "machine-3", Bibi: "machine-3",
-                Bo: "machine-4", Nita: "machine-4", Leon: "machine-4",
-                Edgar: "machine-5", Griff: "machine-5", Colette: "machine-5",
-            };
             document.getElementById("modalActions").innerHTML = `
     <a href="Skins.html?brawler=${encodeURIComponent(b.name)}" class="modal-action-btn modal-action-secondary">🎨 Ver todas as skins</a>
     <a href="Brawlers Específicos/${b.name}.html" class="modal-action-btn modal-action-primary">📖 Saber mais →</a>
-    ${BRAWLERS_COM_BUFFIES.includes(b.name) ? `<a href="Buffies.html#${BUFFIE_MACHINE[b.name]}" class="modal-action-btn modal-action-secondary" style="margin-top:.5rem">🦊 Ver Buffies →</a>` : ""}
+    ${BRAWLERS_COM_BUFFIES.includes(b.name) ? `<a href="Buffies.html${BUFFIE_MACHINE[b.name] ? "#" + BUFFIE_MACHINE[b.name] : ""}" class="modal-action-btn modal-action-secondary" style="margin-top:.5rem">🦊 Ver Buffies →</a>` : ""}
 `;
             document.getElementById("modalOverlay").classList.add("open");
             document.body.style.overflow = "hidden";

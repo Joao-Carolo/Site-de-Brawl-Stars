@@ -1259,11 +1259,13 @@
             }
         }
     </style>
+
 </head>
 
 <body>
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
+
 
     <nav>
 
@@ -1271,8 +1273,8 @@
         <ul class="nav-links">
             <li><a href="../Página inicial.html">Início</a></li>
             <li><a href="#" class="active">Brawlers</a></li>
-            <li><a href="../Updates/Updates.html">Updates</a></li>
-            <li><a href="../Guias/Guias.html">Guias</a></li>
+            <li><a href="Skins.html">Skins</a></li>
+            <li><a href="Buffies.html">Buffies</a></li>
         </ul>
         <button class="hamburger" id="hamburger" aria-label="Menu">
             <span></span><span></span><span></span>
@@ -1372,7 +1374,7 @@
 
     <script>
         const BRAWLERS = [
-            { name: "Shelly", emoji: "🔫", rarity: "starter", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Shelly é a lutadora perfeita: confiável, durona e imbatível com a espingarda. Com tantas qualidades assim, ela nunca entendeu como o Colt virou o queridinho da galera...", attack: "Chumbo Grosso — A arma da Shelly dispara chumbinhos em grande amplitude e longo alcance. Quanto mais chumbinhos acertarem o alvo, maior o dano.", super: "SuperBala — A Superbala da Shelly oblitera coberturas e inimigos. Os sobreviventes são empurrados para longe.", hyper: "Super Shell HC — O Super da Shelly durante o Hypercharge destrói ainda mais obstáculos e empurra inimigos com mais força.", sp1: "Xeque-Mate — A Superbala da Shelly desacelera os inimigos por 2 segundos e deixa a área em chamas!", sp2: "Tônico Revigorante — Quando a saúde da Shelly está abaixo de 40%, ela recupera 1989 pontos de saúde instantaneamente. É preciso esperar 15 segundos até que a habilidade esteja disponível novamente.", g1: "", g2: "", hp: 7800, dmg: 5760, range: 8, speed: 720, modes: ["Showdown", "Heist", "Brawl Ball"] },
+            { name: "Shelly", emoji: "🔫", rarity: "starter", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Shelly é a lutadora perfeita: confiável, durona e imbatível com a espingarda. Com tantas qualidades assim, ela nunca entendeu como o Colt virou o queridinho da galera...", attack: "Chumbo Grosso — A arma da Shelly dispara chumbinhos em grande amplitude e longo alcance. Quanto mais chumbinhos acertarem o alvo, maior o dano.", super: "SuperBala — A Superbala da Shelly oblitera coberturas e inimigos. Os sobreviventes são empurrados para longe.", hyper: "Super Shell HC — O Super da Shelly durante o Hypercharge destrói ainda mais obstáculos e empurra inimigos com mais força.", sp1: "Xeque-Mate — A Superbala da Shelly desacelera os inimigos por 2 segundos e deixa a área em chamas!", sp2: "Tônico Revigorante — Quando a saúde da Shelly está abaixo de 40%, ela recupera 1989 pontos de saúde instantaneamente. É preciso esperar 15 segundos até que a habilidade esteja disponível novamente.", g1: "Disparada — Shelly corre para a frente ou para a direção escolhida e recarrega totalmente o seu ataque principal.", g2: "Pombos de Argila — A área do ataque da Shelly fica mais focada, e o alcance aumenta. Disponivel por 3 ataques.", hp: 7800, dmg: 3000, range: 8, speed: 720, modes: ["Showdown", "Heist", "Brawl Ball"] },
             { name: "Colt", emoji: "🤠", rarity: "rare", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Um cowboy preciso com grande alcance. Dispara rajadas de 6 balas em linha reta.", attack: "Six-Shooters — 6 balas em linha reta.", super: "Bullet Storm — 12 balas que destroem paredes.", sp1: "Slick Boots — Velocidade aumentada.", sp2: "Magnum Special — Mais alcance e dano.", hp: 2800, dmg: 460, range: 10, speed: 720, modes: ["Heist", "Brawl Ball", "Bounty"] },
             { name: "Nita", emoji: "🐻", rarity: "rare", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Controla o espírito de um urso. O seu Super invoca Bruce, um urso fantasma.", attack: "Bear Paw — Onda de choque.", super: "Overbearing — Invoca Bruce, o urso.", sp1: "Bear With Me — Bruce cura Nita.", sp2: "Hyper Bear — Bruce ataca mais rápido.", hp: 3800, dmg: 800, range: 7, speed: 720, modes: ["Showdown", "Hot Zone", "Gem Grab"] },
             { name: "Bull", emoji: "🐂", rarity: "rare", cls: "Tank", isNew: false, desc: "Um tanque com espingarda dupla. Dano massivo ao perto, usa arbustos para emboscar.", attack: "Double-Barreled — Espingarda dupla.", super: "Bulldozer — Carrega destruindo obstáculos.", sp1: "Berserker — Recarga rápida abaixo de 40% HP.", sp2: "Tough Guy — Escudo ao ativar o Super.", hp: 6000, dmg: 940, range: 4, speed: 720, modes: ["Heist", "Showdown", "Brawl Ball"] },
@@ -1574,33 +1576,33 @@
         let abilityHyperOn = false, abilityBuffieOn = false;
 
         const HYPER_STATS = {
-            "Shelly": [4080, 816, 7, 864], "Colt": [3360, 552, 12, 864], "Nita": [4560, 960, 8, 864], "Bull": [7200, 1128, 5, 864],
-            "Brock": [3360, 840, 15, 864], "El Primo": [7680, 912, 5, 864], "Barley": [3360, 672, 12, 864], "Poco": [4320, 456, 10, 864],
-            "Rosa": [8640, 720, 4, 864], "Penny": [3840, 696, 12, 864], "Carl": [4080, 792, 11, 864], "Jacky": [7200, 816, 5, 864],
-            "Darryl": [6720, 912, 5, 864], "Rico": [3360, 672, 13, 864], "Dynamike": [3360, 840, 12, 864], "Tick": [3360, 672, 11, 864],
-            "8-Bit": [4320, 1056, 14, 252], "Emz": [3840, 600, 10, 864], "Lou": [3360, 576, 11, 864], "Bo": [3840, 768, 11, 864],
-            "Piper": [2880, 1056, 17, 864], "Pam": [5760, 648, 7, 864], "Frank": [9600, 984, 5, 468], "Bibi": [6240, 912, 5, 864],
-            "Bea": [2880, 912, 15, 864], "Nani": [2880, 816, 12, 864], "Gale": [3360, 504, 10, 864], "Colette": [3840, 672, 10, 864],
-            "Edgar": [4560, 768, 4, 960], "Griff": [4320, 840, 6, 864], "Ash": [7680, 840, 5, 864], "Lola": [3360, 696, 13, 864],
-            "Stu": [3360, 600, 9, 1044], "Belle": [2880, 816, 15, 864], "Bonnie": [3840, 936, 12, 864], "Grom": [2880, 768, 16, 756],
-            "Sam": [6720, 864, 4, 864], "Mandy": [2880, 984, 17, 864], "Maisie": [3360, 816, 11, 864], "Hank": [7680, 1056, 8, 756],
-            "Pearl": [3840, 768, 7, 864], "Angelo": [2880, 960, 18, 864], "Berry": [4080, 384, 10, 864], "Clancy": [3840, 768, 11, 864],
-            "Moe": [6720, 864, 5, 864], "Juju": [3360, 720, 11, 864], "Shade": [3360, 768, 6, 960], "Starr Nova": [3360, 840, 13, 864],
-            "Pierce": [3600, 744, 12, 864], "Glowbert": [3360, 528, 11, 864], "Mortis": [3360, 744, 6, 1044], "Tara": [3360, 624, 11, 864],
-            "Gene": [3600, 576, 11, 864], "Max": [3360, 528, 10, 1080], "Mr. P": [3360, 648, 10, 864], "Sprout": [2880, 720, 12, 864],
-            "Byron": [2880, 576, 12, 864], "Squeak": [2880, 672, 11, 864], "Buzz": [6240, 696, 7, 864], "Fang": [4080, 768, 5, 960],
-            "Eve": [2880, 576, 10, 864], "Janet": [2880, 648, 12, 864], "Otis": [3360, 624, 11, 864], "Buster": [6240, 672, 8, 864],
-            "Gray": [3120, 552, 11, 864], "R-T": [5760, 696, 7, 864], "Willow": [2880, 576, 10, 864], "Doug": [3600, 432, 10, 864],
-            "Chuck": [3600, 672, 11, 864], "Charlie": [3360, 600, 9, 864], "Mico": [3360, 672, 5, 960], "Melodie": [3360, 648, 6, 960],
-            "Lily": [3120, 672, 9, 960], "Kaze": [3360, 624, 10, 864], "Jae-Yong": [3360, 720, 11, 864], "Kenji": [4320, 864, 5, 960],
-            "Gigi": [3360, 480, 10, 864], "Bolt": [3600, 768, 11, 960], "Spike": [2880, 744, 11, 864], "Crow": [2880, 624, 12, 1044],
-            "Leon": [3360, 696, 9, 1044], "Sandy": [3360, 576, 11, 864], "Amber": [3360, 624, 9, 864], "Meg": [6720, 888, 6, 756],
-            "Surge": [2880, 624, 11, 864], "Chester": [2880, 696, 11, 864], "Cordelius": [3120, 624, 10, 864], "Kit": [3120, 576, 5, 960],
-            "Draco": [6720, 840, 6, 864], "Lumi": [3360, 552, 10, 864], "Gus": [3360, 552, 10, 864], "Damian": [7680, 840, 6, 864],
-            "Sirius": [3600, 840, 12, 864], "Najia": [3360, 792, 9, 960],
+            "Shelly": [0, 0, 0, 0], "Colt": [0, 0, 0, 0], "Nita": [0, 0, 0, 0], "Bull": [0, 0, 0, 0],
+            "Brock": [0, 0, 0, 0], "El Primo": [0, 0, 0, 0], "Barley": [0, 0, 0, 0], "Poco": [0, 0, 0, 0],
+            "Rosa": [0, 0, 0, 0], "Penny": [0, 0, 0, 0], "Carl": [0, 0, 0, 0], "Jacky": [0, 0, 0, 0],
+            "Darryl": [0, 0, 0, 0], "Rico": [0, 0, 0, 0], "Dynamike": [0, 0, 0, 0], "Tick": [0, 0, 0, 0],
+            "8-Bit": [0, 0, 0, 0], "Emz": [0, 0, 0, 0], "Lou": [0, 0, 0, 0], "Bo": [0, 0, 0, 0],
+            "Piper": [0, 0, 0, 0], "Pam": [0, 0, 0, 0], "Frank": [0, 0, 0, 0], "Bibi": [0, 0, 0, 0],
+            "Bea": [0, 0, 0, 0], "Nani": [0, 0, 0, 0], "Gale": [0, 0, 0, 0], "Colette": [0, 0, 0, 0],
+            "Edgar": [0, 0, 0, 0], "Griff": [0, 0, 0, 0], "Ash": [0, 0, 0, 0], "Lola": [0, 0, 0, 0],
+            "Stu": [0, 0, 0, 0], "Belle": [0, 0, 0, 0], "Bonnie": [0, 0, 0, 0], "Grom": [0, 0, 0, 0],
+            "Sam": [0, 0, 0, 0], "Mandy": [0, 0, 0, 0], "Maisie": [0, 0, 0, 0], "Hank": [0, 0, 0, 0],
+            "Pearl": [0, 0, 0, 0], "Angelo": [0, 0, 0, 0], "Berry": [0, 0, 0, 0], "Clancy": [0, 0, 0, 0],
+            "Moe": [0, 0, 0, 0], "Juju": [0, 0, 0, 0], "Shade": [0, 0, 0, 0], "Starr Nova": [0, 0, 0, 0],
+            "Pierce": [0, 0, 0, 0], "Glowbert": [0, 0, 0, 0], "Mortis": [0, 0, 0, 0], "Tara": [0, 0, 0, 0],
+            "Gene": [0, 0, 0, 0], "Max": [0, 0, 0, 0], "Mr. P": [0, 0, 0, 0], "Sprout": [0, 0, 0, 0],
+            "Byron": [0, 0, 0, 0], "Squeak": [0, 0, 0, 0], "Buzz": [0, 0, 0, 0], "Fang": [0, 0, 0, 0],
+            "Eve": [0, 0, 0, 0], "Janet": [0, 0, 0, 0], "Otis": [0, 0, 0, 0], "Buster": [0, 0, 0, 0],
+            "Gray": [0, 0, 0, 0], "R-T": [0, 0, 0, 0], "Willow": [0, 0, 0, 0], "Doug": [0, 0, 0, 0],
+            "Chuck": [0, 0, 0, 0], "Charlie": [0, 0, 0, 0], "Mico": [0, 0, 0, 0], "Melodie": [0, 0, 0, 0],
+            "Lily": [0, 0, 0, 0], "Kaze": [0, 0, 0, 0], "Jae-Yong": [0, 0, 0, 0], "Kenji": [0, 0, 0, 0],
+            "Gigi": [0, 0, 0, 0], "Bolt": [0, 0, 0, 0], "Spike": [0, 0, 0, 0], "Crow": [0, 0, 0, 0],
+            "Leon": [0, 0, 0, 0], "Sandy": [0, 0, 0, 0], "Amber": [0, 0, 0, 0], "Meg": [0, 0, 0, 0],
+            "Surge": [0, 0, 0, 0], "Chester": [0, 0, 0, 0], "Cordelius": [0, 0, 0, 0], "Kit": [0, 0, 0, 0],
+            "Draco": [0, 0, 0, 0], "Lumi": [0, 0, 0, 0], "Gus": [0, 0, 0, 0], "Damian": [0, 0, 0, 0],
+            "Sirius": [0, 0, 0, 0], "Najia": [0, 0, 0, 0],
         };
 
-        const HYPER_MULT = { hp: 1.20, dmg: 1.20, range: 1.15, speed: 1.10 };
+        const HYPER_MULT = { hp: 1.05, dmg: 1.05, range: 1.00, speed: 1.20 };
 
         function hyperFromBase(b) {
             return {
@@ -1644,48 +1646,58 @@
             </div>`;
         }
 
+        function getBuffieByType(b, type) {
+            return BRAWLER_BUFFIES[b.name]?.find(bf => bf.t === type);
+        }
+
+        function buildAbilityCardHtml(a) {
+            const title = a.text.split(" — ")[0];
+            const desc = a.text.split(" — ").slice(1).join(" — ") || "";
+            return `<div class="ability-card"><div class="ability-label" style="display:flex;align-items:center;gap:.3rem">${a.label}</div><div class="ability-name">${title}</div><div class="ability-desc">${desc}</div></div>`;
+        }
+
         function buildAbilitiesHtml(b, opts = {}) {
             const showHyper = !!opts.showHyper;
             const showBuffies = !!opts.showBuffies;
             let html = "";
 
-            const baseRows = [
+            const mainRows = [
                 { label: abilityLabelHtml("⚔️", b.attackImg || `${IMG_BASE}/Ataque.png`, "Ataque"), text: b.attack },
                 { label: abilityLabelHtml("⚡", b.superImg || `${IMG_BASE}/Super.png`, "Super"), text: b.super },
             ];
-            [["⭐", "Star Power 1", b.sp1], ["⭐", "Star Power 2", b.sp2], ["🔧", "Gadget 1", b.g1], ["🔧", "Gadget 2", b.g2]]
-                .forEach(([emoji, type, text]) => {
-                    if (!text || !String(text).trim()) return;
-                    const name = text.split(" — ")[0];
-                    baseRows.push({
-                        label: abilityLabelHtml(emoji, `${IMG_BASE}/${b.name}/${name}.png`, type),
-                        text,
-                    });
-                });
 
-            html += baseRows.map(a => {
-                const title = a.text.split(" — ")[0];
-                const desc = a.text.split(" — ").slice(1).join(" — ") || "";
-                return `<div class="ability-card"><div class="ability-label" style="display:flex;align-items:center;gap:.3rem">${a.label}</div><div class="ability-name">${title}</div><div class="ability-desc">${desc}</div></div>`;
+            html += mainRows.map(buildAbilityCardHtml).join("");
+
+            const starRows = [["⭐", "Star Power 1", b.sp1], ["⭐", "Star Power 2", b.sp2]];
+            const gadgetRows = [["🔧", "Gadget 1", b.g1], ["🔧", "Gadget 2", b.g2]];
+            const buildRows = rows => rows.map(([emoji, type, text]) => {
+                if (!text || !String(text).trim()) return "";
+                const name = text.split(" — ")[0];
+                return buildAbilityCardHtml({
+                    label: abilityLabelHtml(emoji, `${IMG_BASE}/${b.name}/${name}.png`, type),
+                    text,
+                });
             }).join("");
 
+            const buffieStar = showBuffies && getBuffieByType(b, "s");
+            const buffieGadget = showBuffies && getBuffieByType(b, "g");
+            html += buffieStar ? buildBuffieCardHtml(buffieStar) : buildRows(starRows);
+            html += buffieGadget ? buildBuffieCardHtml(buffieGadget) : buildRows(gadgetRows);
+
+            const buffieHyper = showHyper && showBuffies && getBuffieByType(b, "h");
             if (showHyper) {
                 const hyperText = b.hyper || "Hypercharge — Informação em breve.";
                 const title = hyperText.split(" — ")[0];
                 const desc = hyperText.split(" — ").slice(1).join(" — ") || "";
                 const hyperImg = `${IMG_BASE}/${encodeURIComponent(b.name)}/Hipercarga.png`;
-                html += `<div class="ability-card hyper">
+                html += buffieHyper ? buildBuffieCardHtml(buffieHyper) : `<div class="ability-card hyper">
                     <div class="ability-label" style="display:flex;align-items:center;gap:.3rem">${abilityLabelHtml("💜", hyperImg, "Hypercharge")}</div>
                     <div class="ability-name">${title}</div>
                     <div class="ability-desc">${desc}</div>
                 </div>`;
             }
 
-            if (showBuffies) {
-                const buffies = BRAWLER_BUFFIES[b.name];
-                if (buffies?.length) {
-                    html += buffies.map(buildBuffieCardHtml).join("");
-                } else {
+            if (showBuffies && !getBuffieByType(b, "g") && !getBuffieByType(b, "s") && !getBuffieByType(b, "h")) {
                     const anchor = BUFFIE_MACHINE[b.name] ? `Buffies.html#${BUFFIE_MACHINE[b.name]}` : "Buffies.html";
                     html += `<div class="ability-card buffie-empty">
                         <div class="ability-label">🦊 Buffies</div>
@@ -1693,7 +1705,6 @@
                             <a href="${anchor}" class="buffie-empty-link">Ver na wiki de Buffies →</a>
                         </div>
                     </div>`;
-                }
             }
 
             return html;
@@ -1778,7 +1789,7 @@
             document.getElementById("abilityBuffieToggle")?.addEventListener("click", toggleAbilityBuffie);
         }
 
-        const STAT_MAX = { hp: 15000, dmg: 10000, range: 20, speed: 900 };
+        const STAT_MAX = { hp: 15000, dmg: 10000, range: 20, speed: 1200 };
         const STAT_UNITS = { hp: "", dmg: "", range: " bl", speed: "" };
 
         function renderStats(b, hyper) {
@@ -1894,8 +1905,8 @@
         renderAll();
     </script>
     <script src="../pesquisa.js"></script>
-    <script src="../Breadcrumbs.js"></script>
     <script src="../tema.js"></script>
+    <script src="../Breadcrumbs.js"></script>
 </body>
 
 </html>

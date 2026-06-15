@@ -1021,21 +1021,21 @@
             line-height: 1.5;
         }
 
-        .buffie-accessory2 {
+        .buffie-power {
             margin-top: .5rem;
             padding: .35rem .5rem;
             border-left: 2px solid rgba(255, 255, 0, .3);
             margin-left: .25rem;
         }
 
-        .buffie-accessory-name2 {
+        .buffie-power-name {
             font-size: .65rem;
             font-weight: 800;
             color: #FFD000;
             margin-bottom: .15rem;
         }
 
-        .buffie-accessory-desc2 {
+        .buffie-power-desc {
             font-size: .78rem;
             color: rgba(255, 255, 255, .45);
             line-height: 1.5;
@@ -1307,8 +1307,8 @@
         <button class="mobile-close" id="mobileClose">✕</button>
         <a href="../Página inicial.html">Início</a>
         <a href="#" class="active">Brawlers</a>
-        <a href="../Updates/Updates.html">Updates</a>
-        <a href="../Guias/Guias.html">Guias</a>
+        <a href="Skins.html">Skins</a>
+        <a href="Buffies.html">Buffies</a>
     </div>
 
     <header class="page-header">
@@ -1394,7 +1394,7 @@
 
     <script>
         const BRAWLERS = [
-            { name: "Shelly", emoji: "🔫", rarity: "starter", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Shelly é a lutadora perfeita: confiável, durona e imbatível com a espingarda. Com tantas qualidades assim, ela nunca entendeu como o Colt virou o queridinho da galera...", attack: "Chumbo Grosso — A arma da Shelly dispara chumbinhos em grande amplitude e longo alcance. Quanto mais chumbinhos acertarem o alvo, maior o dano.", super: "SuperBala — A Superbala da Shelly oblitera coberturas e inimigos. Os sobreviventes são empurrados para longe.", hyper: "Super Shell HC — O Super da Shelly durante o Hypercharge destrói ainda mais obstáculos e empurra inimigos com mais força.", sp1: "Xeque-Mate — A Superbala da Shelly desacelera os inimigos por 2 segundos e deixa a área em chamas!", sp2: "Tônico Revigorante — Quando a saúde da Shelly está abaixo de 40%, ela recupera 1989 pontos de saúde instantaneamente. É preciso esperar 15 segundos até que a habilidade esteja disponível novamente.", g1: "Disparada — Shelly corre para a frente ou para a direção escolhida e recarrega totalmente o seu ataque principal.", g2: "Pombos de Argila — A área do ataque da Shelly fica mais focada, e o alcance aumenta. Disponivel por 3 ataques.", hp: 7800, dmg: 3000, range: 8, speed: 720, modes: ["Showdown", "Heist", "Brawl Ball"] },
+            { name: "Shelly", emoji: "🔫", rarity: "starter", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Shelly é a lutadora perfeita: confiável, durona e imbatível com a espingarda. Com tantas qualidades assim, ela nunca entendeu como o Colt virou o queridinho da galera...", attack: "Chumbo Grosso — A arma da Shelly dispara chumbinhos em grande amplitude e longo alcance. Quanto mais chumbinhos acertarem o alvo, maior o dano.", super: "SuperBala — A Superbala da Shelly oblitera coberturas e inimigos. Os sobreviventes são empurrados para longe.", hyper: "Cano Duplo — O raio da Superbala fica 33% maior.", sp1: "Xeque-Mate — A Superbala da Shelly desacelera os inimigos por 2 segundos e deixa a área em chamas!", sp2: "Tônico Revigorante — Quando a saúde da Shelly está abaixo de 40%, ela recupera 1989 pontos de saúde instantaneamente. É preciso esperar 15 segundos até que a habilidade esteja disponível novamente.", g1: "Disparada — Shelly corre para a frente ou para a direção escolhida e recarrega totalmente o seu ataque principal.", g2: "Pombos de Argila — A área do ataque da Shelly fica mais focada, e o alcance aumenta. Disponivel por 3 ataques.", hp: 7800, dmg: 3000, range: 8, speed: 720, modes: ["Showdown", "Heist", "Brawl Ball"] },
             { name: "Colt", emoji: "🤠", rarity: "rare", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Um cowboy preciso com grande alcance. Dispara rajadas de 6 balas em linha reta.", attack: "Six-Shooters — 6 balas em linha reta.", super: "Bullet Storm — 12 balas que destroem paredes.", sp1: "Slick Boots — Velocidade aumentada.", sp2: "Magnum Special — Mais alcance e dano.", hp: 2800, dmg: 460, range: 10, speed: 720, modes: ["Heist", "Brawl Ball", "Bounty"] },
             { name: "Nita", emoji: "🐻", rarity: "rare", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Controla o espírito de um urso. O seu Super invoca Bruce, um urso fantasma.", attack: "Bear Paw — Onda de choque.", super: "Overbearing — Invoca Bruce, o urso.", sp1: "Bear With Me — Bruce cura Nita.", sp2: "Hyper Bear — Bruce ataca mais rápido.", hp: 3800, dmg: 800, range: 7, speed: 720, modes: ["Showdown", "Hot Zone", "Gem Grab"] },
             { name: "Bull", emoji: "🐂", rarity: "rare", cls: "Tank", isNew: false, desc: "Um tanque com espingarda dupla. Dano massivo ao perto, usa arbustos para emboscar.", attack: "Double-Barreled — Espingarda dupla.", super: "Bulldozer — Carrega destruindo obstáculos.", sp1: "Berserker — Recarga rápida abaixo de 40% HP.", sp2: "Tough Guy — Escudo ao ativar o Super.", hp: 6000, dmg: 940, range: 4, speed: 720, modes: ["Heist", "Showdown", "Brawl Ball"] },
@@ -1509,9 +1509,19 @@
         /* Buffies por brawler (sincroniza com Buffies.html — edita nos dois sítios) */
         const BRAWLER_BUFFIES = {
             Shelly: [
-                { t: "g", desc: "Fast Forward torna-se um dash longo...", acessorios: [{ nome: "Disparada", desc: "Descrição do acessório 1" }, { nome: "Xeque-Mate", desc: "Descrição do acessório 2" }] },
-                { t: "s", desc: "Shell Shock aplica slow mais duradouro...", poderes: [{ nome: "Nome Acessório 3", desc: "Descrição do acessório 3" }, { nome: "Nome Acessório 4", desc: "Descrição do acessório 4" }] },
-                { t: "h", desc: "Ataques básicos durante HC aplicam slow..." },
+                {
+                    t: "g", desc: "", acessorios: [
+                        { nome: "Disparada", desc: "Ela também fica imune a dano durante a disparada." },
+                        { nome: "Pombos de Argila", desc: "Os ataques desaceleram os inimigos, e cada acerto aumenta o grau de desaceleração." },
+                    ]
+                },
+                {
+                    t: "s", desc: "", poderes: [
+                        { nome: "Xeque-Mate", desc: "Deixa a área em chamas!" },
+                        { nome: "Poder 2", desc: "Fica com a velocidade de movimento 15% mais alta por 3 segundos." },
+                    ]
+                },
+                { t: "h", desc: "A velocidade do projétil do ataque principal aumenta consideravelmente durante a Hipercarga." },
             ],
             Colt: [{ t: "g", desc: "Cada bala rouba 1 munição ao inimigo atingido" }, { t: "s", desc: "Slick Boots: mais velocidade em sprint; Magnum Special: mais dano ao longe" }, { t: "h", desc: "Balas ficam mais rápidas durante HC; +2s de duração" }],
             Spike: [{ t: "g", desc: "Popping Pincushion faz raiz nos inimigos se todos os espinhos acertarem" }, { t: "s", desc: "Fertilize cura mais; Curveball aumenta mais a curva dos espinhos" }, { t: "h", desc: "Ataques básicos explodem duas vezes durante HC; +2s de duração" }],
@@ -1661,7 +1671,7 @@
                 `<div class="buffie-accessory"><div class="buffie-accessory-name">${a.nome}</div><div class="buffie-accessory-desc">${a.desc}</div></div>`
             ).join("");
             const extras2 = (bf.poderes || []).map(a =>
-                `<div class="buffie-accessory2"><div class="buffie-accessory-name2">${a.nome}</div><div class="buffie-accessory-desc2">${a.desc}</div></div>`
+                `<div class="buffie-power"><div class="buffie-power-name">${a.nome}</div><div class="buffie-power-desc">${a.desc}</div></div>`
             ).join("");
             const emojis = { g: "🔧", s: "⭐", h: "💜" };
             return `<div class="ability-card buffie-${bf.t}">

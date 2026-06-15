@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damian — BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --red: #E8202A;
+            --orange: #FF6B00;
+            --yellow: #FFD000;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --text-dark: #1A1A2E;
+            --metal: #2A2A2A;
+            --fire1: #FF4500;
+            --fire2: #FF8C00;
+            --fire3: #FFD000;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        @media(pointer:coarse) {
+            * {
+                cursor: auto !important;
+            }
+        }
+
+        @media(pointer:fine) {
+            * {
+                cursor: none !important;
+            }
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--red);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(232, 32, 42, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-weight: 700;
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .4);
+            transition: color .2s;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .nav-back:hover {
+            color: var(--red);
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* ═══════ HERO ═══════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 7rem 2rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* fundo de palco */
+        .hero-stage {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 100%, rgba(232, 32, 42, .35) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 50% 80%, rgba(255, 107, 0, .25) 0%, transparent 55%),
+                radial-gradient(ellipse 100% 50% at 50% 0%, rgba(13, 13, 26, 1) 0%, transparent 40%),
+                #0a0a10;
+        }
+
+        /* spotlights */
+        .spotlight {
+            position: absolute;
+            bottom: 0;
+            width: 200px;
+            height: 100%;
+            background: linear-gradient(to top, rgba(255, 100, 0, .15), transparent);
+            clip-path: polygon(40% 100%, 60% 100%, 90% 0%, 10% 0%);
+            pointer-events: none;
+        }
+
+        .spotlight-1 {
+            left: 10%;
+            animation: spotMove1 4s ease-in-out infinite alternate;
+        }
+
+        .spotlight-2 {
+            left: 30%;
+            animation: spotMove2 5s ease-in-out infinite alternate;
+            opacity: .7;
+        }
+
+        .spotlight-3 {
+            right: 10%;
+            animation: spotMove3 4.5s ease-in-out infinite alternate;
+        }
+
+        .spotlight-4 {
+            right: 30%;
+            animation: spotMove1 6s ease-in-out infinite alternate;
+            opacity: .6;
+        }
+
+        @keyframes spotMove1 {
+            from {
+                transform: rotate(-8deg);
+            }
+
+            to {
+                transform: rotate(8deg);
+            }
+        }
+
+        @keyframes spotMove2 {
+            from {
+                transform: rotate(6deg);
+            }
+
+            to {
+                transform: rotate(-6deg);
+            }
+        }
+
+        @keyframes spotMove3 {
+            from {
+                transform: rotate(10deg);
+            }
+
+            to {
+                transform: rotate(-10deg);
+            }
+        }
+
+        /* chão do palco */
+        .stage-floor {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 180px;
+            background: linear-gradient(to top, rgba(232, 32, 42, .12), transparent);
+            border-top: 1px solid rgba(232, 32, 42, .2);
+        }
+
+        /* partículas de fogo */
+        .fire-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            bottom: 0;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: riseUp linear infinite;
+        }
+
+        @keyframes riseUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-300px) scale(0);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-new-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(232, 32, 42, .2);
+            border: 1px solid rgba(232, 32, 42, .5);
+            border-radius: 100px;
+            padding: .35rem 1rem;
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #FF6B6B;
+            margin-bottom: 1.5rem;
+            animation: fadeUp .6s ease both;
+        }
+
+        .hero-new-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--red);
+            box-shadow: 0 0 8px var(--red);
+            animation: blink 1.2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .2;
+            }
+        }
+
+        .hero-brawler-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            letter-spacing: .2em;
+            color: rgba(255, 255, 255, .25);
+            margin-bottom: .5rem;
+            animation: fadeUp .6s ease both .1s;
+        }
+
+        .hero-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(5rem, 18vw, 14rem);
+            line-height: .9;
+            letter-spacing: -.01em;
+            background: linear-gradient(135deg, #fff 0%, #FF6B6B 40%, var(--red) 70%, #8B0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 60px rgba(232, 32, 42, .5));
+            animation: fadeUp .8s cubic-bezier(.16, 1, .3, 1) both .15s;
+        }
+
+        .hero-title-sub {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.8rem);
+            letter-spacing: .15em;
+            color: rgba(255, 255, 255, .5);
+            margin-top: .5rem;
+            text-transform: uppercase;
+            animation: fadeUp .7s ease both .3s;
+        }
+
+        .hero-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            justify-content: center;
+            margin: 2rem 0;
+            animation: fadeUp .7s ease both .4s;
+        }
+
+        .chip {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .4rem 1rem;
+            border-radius: 100px;
+            font-size: .8rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .06);
+            backdrop-filter: blur(8px);
+        }
+
+        .chip-red {
+            border-color: rgba(232, 32, 42, .4);
+            background: rgba(232, 32, 42, .1);
+            color: #FF8080;
+        }
+
+        .chip-orange {
+            border-color: rgba(255, 107, 0, .4);
+            background: rgba(255, 107, 0, .1);
+            color: #FFAA66;
+        }
+
+        .chip-yellow {
+            border-color: rgba(255, 208, 0, .4);
+            background: rgba(255, 208, 0, .1);
+            color: var(--yellow);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5rem;
+            animation: fadeIn 1s ease both 1.2s;
+            z-index: 2;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, rgba(232, 32, 42, .6), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        .scroll-txt {
+            font-size: .65rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .25);
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                opacity: .4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* GLOW LINE */
+        .glow-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--red), var(--orange), var(--yellow), var(--orange), var(--red), transparent);
+            opacity: .7;
+        }
+
+        /* ═══════ LAYOUT ═══════ */
+        .page-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        @media(max-width:700px) {
+            .page-wrap {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .section {
+            padding: 4.5rem 0;
+        }
+
+        .section-label {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: .5rem;
+        }
+
+        .section-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .07), transparent);
+        }
+
+        /* ═══════ LORE ═══════ */
+        .lore-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media(max-width:750px) {
+            .lore-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .lore-text p {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, .6);
+            margin-bottom: 1rem;
+        }
+
+        .lore-text p strong {
+            color: #fff;
+        }
+
+        .lore-visual {
+            background: var(--dark2);
+            border: 1px solid rgba(232, 32, 42, .2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lore-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at bottom, rgba(232, 32, 42, .15), transparent 60%);
+        }
+
+        .lore-emoji {
+            font-size: 7rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(232, 32, 42, .4));
+        }
+
+        .lore-quote {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, .8);
+            position: relative;
+            z-index: 1;
+        }
+
+        .lore-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(232, 32, 42, .3);
+            line-height: 0;
+            vertical-align: -.5em;
+            margin-right: .2rem;
+        }
+
+        /* ═══════ STATS ═══════ */
+        .stats-section {
+            background: var(--dark2);
+            padding: 4.5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .stats-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        @media(max-width:700px) {
+            .stats-inner {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .stat-big-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform .25s, border-color .25s;
+        }
+
+        .stat-big-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(232, 32, 42, .3);
+        }
+
+        .stat-big-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .stat-big-hyper {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            color: rgba(168, 85, 247, .8);
+            margin-top: .2rem;
+        }
+
+        .stat-big-label {
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-top: .4rem;
+        }
+
+        .stat-bar-wrap {
+            height: 5px;
+            background: rgba(255, 255, 255, .07);
+            border-radius: 100px;
+            overflow: hidden;
+            margin-top: .75rem;
+            position: relative;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            border-radius: 100px;
+            background: linear-gradient(90deg, var(--red), var(--orange));
+        }
+
+        .stat-bar-hyper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-radius: 100px;
+            background: linear-gradient(90deg, #9B59FF, #6C2DC7);
+            opacity: 0;
+            transition: opacity .4s, width .8s cubic-bezier(.16, 1, .3, 1);
+        }
+
+        /* toggle hyper */
+        .hyper-toggle-wrap {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hyper-toggle-label {
+            font-size: .82rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, .4);
+            letter-spacing: .05em;
+        }
+
+        .htoggle {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 100px;
+            padding: .3rem .5rem .3rem .9rem;
+            transition: all .3s;
+        }
+
+        .htoggle.on {
+            border-color: rgba(155, 89, 255, .5);
+            background: rgba(155, 89, 255, .08);
+        }
+
+        .htoggle span {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .35);
+            transition: color .3s;
+        }
+
+        .htoggle.on span {
+            color: #B07AFF;
+        }
+
+        .htbtn {
+            width: 38px;
+            height: 22px;
+            border-radius: 100px;
+            border: none;
+            background: rgba(255, 255, 255, .12);
+            position: relative;
+            transition: background .3s;
+            flex-shrink: 0;
+        }
+
+        .htbtn::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #fff;
+            transition: transform .3s;
+        }
+
+        .htbtn.on {
+            background: #9B59FF;
+        }
+
+        .htbtn.on::after {
+            transform: translateX(16px);
+        }
+
+        .hyper-note {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .3);
+            font-style: italic;
+        }
+
+        /* ═══════ HABILIDADES ═══════ */
+        .abilities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        @media(max-width:700px) {
+            .abilities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ability-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 18px;
+            padding: 1.75rem;
+            transition: transform .25s, border-color .25s;
+        }
+
+        .ability-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .ability-card.attack:hover {
+            border-color: rgba(232, 32, 42, .3);
+        }
+
+        .ability-card.super-card:hover {
+            border-color: rgba(255, 107, 0, .3);
+        }
+
+        .ability-card.gadget:hover {
+            border-color: rgba(34, 197, 94, .3);
+        }
+
+        .ability-card.starpower:hover {
+            border-color: rgba(255, 208, 0, .3);
+        }
+
+        .ability-card.hyper-card:hover {
+            border-color: rgba(155, 89, 255, .3);
+        }
+
+        .ability-card.trait:hover {
+            border-color: rgba(59, 130, 246, .3);
+        }
+
+        .ability-type {
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: .5rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .attack .ability-type {
+            color: var(--red);
+        }
+
+        .super-card .ability-type {
+            color: var(--orange);
+        }
+
+        .gadget .ability-type {
+            color: #4ADE80;
+        }
+
+        .starpower .ability-type {
+            color: var(--yellow);
+        }
+
+        .hyper-card .ability-type {
+            color: #B07AFF;
+        }
+
+        .trait .ability-type {
+            color: #7EB8FF;
+        }
+
+        .ability-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: .75rem;
+        }
+
+        .ability-desc {
+            font-size: .9rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .ability-desc strong {
+            color: #fff;
+        }
+
+        .ability-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .3rem;
+            background: rgba(255, 255, 255, .07);
+            border-radius: 100px;
+            padding: .2rem .65rem;
+            font-size: .7rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .45);
+            margin-top: .75rem;
+            margin-right: .4rem;
+        }
+
+        .ability-card.hyper-card {
+            background: linear-gradient(135deg, rgba(155, 89, 255, .08), rgba(30, 0, 60, .4));
+            border-color: rgba(155, 89, 255, .2);
+        }
+
+        /* ═══════ BUILD ═══════ */
+        .build-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.1rem;
+        }
+
+        .build-card {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 14px;
+            padding: 1.4rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: transform .2s, border-color .2s;
+        }
+
+        .build-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, .15);
+        }
+
+        .build-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .build-label {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-bottom: .2rem;
+        }
+
+        .build-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: .95rem;
+            margin-bottom: .3rem;
+        }
+
+        .build-reason {
+            font-size: .82rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .5);
+        }
+
+        .build-rec {
+            display: inline-flex;
+            align-items: center;
+            gap: .3rem;
+            background: rgba(232, 32, 42, .12);
+            border: 1px solid rgba(232, 32, 42, .2);
+            border-radius: 100px;
+            padding: .15rem .6rem;
+            font-size: .68rem;
+            font-weight: 800;
+            color: #FF8080;
+            margin-top: .5rem;
+        }
+
+        /* ═══════ MODOS ═══════ */
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .mode-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 14px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: transform .25s, border-color .25s;
+        }
+
+        .mode-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .mode-card.s {
+            border-color: rgba(255, 208, 0, .3);
+            background: rgba(255, 208, 0, .04);
+        }
+
+        .mode-card.a {
+            border-color: rgba(34, 197, 94, .3);
+            background: rgba(34, 197, 94, .04);
+        }
+
+        .mode-card.b {
+            border-color: rgba(59, 130, 246, .3);
+            background: rgba(59, 130, 246, .04);
+        }
+
+        .mode-card.c {
+            border-color: rgba(255, 255, 255, .1);
+        }
+
+        .mode-tier {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            margin-bottom: .4rem;
+        }
+
+        .mode-card.s .mode-tier {
+            color: var(--yellow);
+        }
+
+        .mode-card.a .mode-tier {
+            color: #4ADE80;
+        }
+
+        .mode-card.b .mode-tier {
+            color: #7EB8FF;
+        }
+
+        .mode-card.c .mode-tier {
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .mode-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: .9rem;
+            margin-bottom: .3rem;
+        }
+
+        .mode-reason {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .45);
+            line-height: 1.5;
+        }
+
+        /* ═══════ COUNTERS ═══════ */
+        .counters-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media(max-width:600px) {
+            .counters-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .counter-col-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: .9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .counter-item {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 10px;
+            padding: .75rem 1rem;
+            margin-bottom: .6rem;
+            font-size: .88rem;
+        }
+
+        .counter-item.win {
+            border-color: rgba(34, 197, 94, .15);
+        }
+
+        .counter-item.lose {
+            border-color: rgba(232, 32, 42, .15);
+        }
+
+        .counter-emoji {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .counter-name {
+            font-weight: 700;
+        }
+
+        .counter-reason {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .45);
+            margin-top: .1rem;
+        }
+
+        /* ═══════ TRIO ═══════ */
+        .trio-section {
+            background: linear-gradient(135deg, rgba(30, 0, 10, .8), rgba(10, 0, 20, .9));
+            border-top: 1px solid rgba(232, 32, 42, .15);
+            border-bottom: 1px solid rgba(232, 32, 42, .15);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trio-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(232, 32, 42, .08), transparent);
+        }
+
+        .trio-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media(max-width:700px) {
+            .trio-inner {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .trio-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        @media(max-width:650px) {
+            .trio-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .trio-card {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform .25s, border-color .25s;
+            position: relative;
+        }
+
+        .trio-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .trio-card.damian {
+            border-color: rgba(232, 32, 42, .4);
+            background: rgba(232, 32, 42, .06);
+        }
+
+        .trio-card.draco {
+            border-color: rgba(255, 208, 0, .25);
+            background: rgba(255, 208, 0, .04);
+        }
+
+        .trio-card.lumi {
+            border-color: rgba(155, 89, 255, .25);
+            background: rgba(155, 89, 255, .04);
+        }
+
+        .trio-card-role {
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: .75rem;
+        }
+
+        .trio-card.damian .trio-card-role {
+            color: #FF8080;
+        }
+
+        .trio-card.draco .trio-card-role {
+            color: var(--yellow);
+        }
+
+        .trio-card.lumi .trio-card-role {
+            color: #B07AFF;
+        }
+
+        .trio-emoji {
+            font-size: 4rem;
+            margin-bottom: .75rem;
+            display: block;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .5));
+        }
+
+        .trio-card-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: .3rem;
+        }
+
+        .trio-card-inst {
+            font-size: .85rem;
+            color: rgba(255, 255, 255, .4);
+            margin-bottom: .75rem;
+        }
+
+        .trio-card-desc {
+            font-size: .85rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .55);
+        }
+
+        .trio-active-badge {
+            position: absolute;
+            top: .75rem;
+            right: .75rem;
+            background: var(--red);
+            color: #fff;
+            font-size: .6rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .2rem .55rem;
+            border-radius: 100px;
+        }
+
+        /* ═══════ COLLAB ═══════ */
+        .collab-section {
+            padding: 5rem 0;
+        }
+
+        .collab-banner {
+            background: linear-gradient(135deg, rgba(30, 0, 10, .9), rgba(15, 0, 30, .9));
+            border: 1px solid rgba(232, 32, 42, .2);
+            border-radius: 22px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media(max-width:650px) {
+            .collab-banner {
+                grid-template-columns: 1fr;
+            }
+
+            .collab-big {
+                display: none;
+            }
+        }
+
+        .collab-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(232, 32, 42, .1), transparent), radial-gradient(ellipse 40% 60% at 0% 50%, rgba(155, 89, 255, .08), transparent);
+        }
+
+        .collab-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .collab-tag {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: rgba(232, 32, 42, .8);
+            margin-bottom: .5rem;
+        }
+
+        .collab-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: .75rem;
+        }
+
+        .collab-desc {
+            font-size: .95rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, .6);
+            max-width: 520px;
+            margin-bottom: 1.5rem;
+        }
+
+        .collab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: var(--red);
+            color: #fff;
+            font-weight: 800;
+            font-size: .88rem;
+            padding: .7rem 1.5rem;
+            border-radius: 100px;
+            border: none;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .collab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(232, 32, 42, .4);
+        }
+
+        .collab-big {
+            font-size: 7rem;
+            opacity: .25;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .yt-wrap {
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .08);
+            aspect-ratio: 16/9;
+            margin-top: 2rem;
+        }
+
+        .yt-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ═══════ TIPS ═══════ */
+        .tips-grid {
+            display: flex;
+            flex-direction: column;
+            gap: .9rem;
+        }
+
+        .tip-item {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 12px;
+            padding: 1.1rem 1.4rem;
+            display: flex;
+            gap: .9rem;
+            align-items: flex-start;
+            transition: border-color .2s;
+        }
+
+        .tip-item:hover {
+            border-color: rgba(232, 32, 42, .2);
+        }
+
+        .tip-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: .05rem;
+        }
+
+        .tip-text {
+            font-size: .92rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .62);
+        }
+
+        .tip-text strong {
+            color: #fff;
+        }
+
+        /* ═══════ ANIMAÇÕES ═══════ */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .65s ease, transform .65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav>
+        <a href="../../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../Brawlers.html">Brawlers</a></li>
+            <li><a href="../Skins.html">Skins</a></li>
+            <li><a href="../Buffies.html">Buffies</a></li>
+        </ul>
+    </nav>
+
+    <!-- ════ HERO ════ -->
+    <section class="hero">
+        <div class="hero-stage"></div>
+        <div class="spotlight spotlight-1"></div>
+        <div class="spotlight spotlight-2"></div>
+        <div class="spotlight spotlight-3"></div>
+        <div class="spotlight spotlight-4"></div>
+        <div class="stage-floor"></div>
+        <div class="fire-particles" id="fireParticles"></div>
+
+        <div class="hero-content">
+            <div class="hero-new-badge"><span class="hero-new-dot"></span>Primeira Brawler do jogo</div>
+            <div class="hero-brawler-num"># 1 · Starter · Damage Dealer</div>
+            <h1 class="hero-name">DAMIAN</h1>
+            <p class="hero-title-sub">Vocalista do MadEvil Manor</p>
+            <div class="hero-chips">
+                <div class="chip chip-red">🎤 Heavy Metal</div>
+                <div class="chip chip-orange">💀 MadEvil Manor</div>
+                <div class="chip chip-yellow">⚡ Hypercharge no lançamento</div>
+                <div class="chip chip-red">🤘 Collab Electric Callboy</div>
+                <div class="chip chip-orange">🏆 Win rate: 66.2%</div>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <span class="scroll-txt">Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <div class="glow-line"></div>
+
+    <!-- ════ LORE ════ -->
+    <div class="page-wrap">
+        <section class="section">
+            <div class="section-label reveal">Lore & História</div>
+            <h2 class="section-title reveal">Quem é Damian?</h2>
+            <div class="lore-grid">
+                <div class="lore-text reveal">
+                    <p>Damian é o <strong>vocalista do MadEvil Manor</strong>, a banda de heavy metal de Starr Park
+                        formada com o seu irmão Draco (guitarra) e Lumi (bateria). É um amante de música tão intenso que
+                        o rock o coloca num estado de <strong>raiva incontrolável</strong>, destruindo tudo à sua volta.
+                    </p>
+                    <p>Após um acidente precoce provocado por uma música de heavy metal, <strong>Draco encontrou uma
+                            solução</strong> — uns auscultadores de cancelamento de ruído para Damian não entrar em modo
+                        fúria fora do palco. Mas nas partidas de Brawl Stars, esses auscultadores saem — e Damian
+                        <strong>rage completamente</strong>.
+                    </p>
+                    <p>Os seus espetáculos terminam quase sempre da mesma forma: <strong>Damian a destruir tudo perto do
+                            palco.</strong> Os fãs adoram. A faturação do espaço, nem tanto.</p>
+                </div>
+                <div class="lore-visual reveal" style="transition-delay:.15s">
+                    <span class="lore-emoji">🎤</span>
+                    <div class="lore-quote">A música coloca-me num lugar que não consigo controlar. E quando estou em
+                        palco... não quero controlar.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ════ STATS ════ -->
+    <section class="stats-section">
+        <div class="stats-inner">
+            <div class="section-label reveal">Valores reais · Power Level 11</div>
+            <h2 class="section-title reveal">Stats</h2>
+            <div class="hyper-toggle-wrap reveal">
+                <span class="hyper-toggle-label">Mostrar com Hypercharge</span>
+                <div class="htoggle" id="htoggle">
+                    <span>⚡ Hypercharge</span>
+                    <button class="htbtn" id="htbtn" onclick="toggleHyper()"></button>
+                </div>
+                <span class="hyper-note" id="hyperNote"></span>
+            </div>
+            <div class="stats-grid reveal">
+                <div class="stat-big-card">
+                    <div class="stat-big-num" id="sHP">11.200</div>
+                    <div class="stat-big-hyper" id="hHP" style="display:none">▲ 13.440 com HC</div>
+                    <div class="stat-big-label">HP</div>
+                    <div class="stat-bar-wrap">
+                        <div class="stat-bar-fill" id="bHP" style="width:74.7%"></div>
+                        <div class="stat-bar-hyper" id="bhHP" style="width:89.6%"></div>
+                    </div>
+                </div>
+                <div class="stat-big-card">
+                    <div class="stat-big-num" id="sDMG">2.400</div>
+                    <div class="stat-big-hyper" id="hDMG" style="display:none">▲ 2.880 com HC</div>
+                    <div class="stat-big-label">Dano por Explosão</div>
+                    <div class="stat-bar-wrap">
+                        <div class="stat-bar-fill" id="bDMG" style="width:78%"></div>
+                        <div class="stat-bar-hyper" id="bhDMG" style="width:88%"></div>
+                    </div>
+                </div>
+                <div class="stat-big-card">
+                    <div class="stat-big-num" id="sFIRE">600</div>
+                    <div class="stat-big-hyper" id="hFIRE" style="display:none">▲ 720/s com HC</div>
+                    <div class="stat-big-label">Dano Fogo HC (por seg)</div>
+                    <div class="stat-bar-wrap">
+                        <div class="stat-bar-fill" id="bFIRE" style="width:60%"></div>
+                        <div class="stat-bar-hyper" id="bhFIRE" style="width:72%"></div>
+                    </div>
+                </div>
+                <div class="stat-big-card">
+                    <div class="stat-big-num" id="sSPD">800</div>
+                    <div class="stat-big-hyper" id="hSPD" style="display:none">▲ 960 com HC</div>
+                    <div class="stat-big-label">Velocidade</div>
+                    <div class="stat-bar-wrap">
+                        <div class="stat-bar-fill" id="bSPD" style="width:88.9%"></div>
+                        <div class="stat-bar-hyper" id="bhSPD" style="width:100%"></div>
+                    </div>
+                </div>
+                <div class="stat-big-card">
+                    <div class="stat-big-num">1.600</div>
+                    <div class="stat-big-label">Dano Cadeia (por explosão)</div>
+                    <div class="stat-bar-wrap">
+                        <div class="stat-bar-fill" style="width:52%"></div>
+                    </div>
+                </div>
+                <div class="stat-big-card">
+                    <div class="stat-big-num">66.2%</div>
+                    <div class="stat-big-label">Win Rate atual</div>
+                    <div class="stat-bar-wrap">
+                        <div class="stat-bar-fill"
+                            style="width:66.2%;background:linear-gradient(90deg,#22C55E,#4ADE80)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════ HABILIDADES ════ -->
+    <div class="page-wrap">
+        <section class="section">
+            <div class="section-label reveal">Kit completo</div>
+            <h2 class="section-title reveal">Habilidades</h2>
+            <div class="abilities-grid">
+
+                <div class="ability-card attack reveal">
+                    <div class="ability-type">⚔️ Ataque — Power Trio</div>
+                    <div class="ability-name">Punch-Kick Combo</div>
+                    <div class="ability-desc">Damian lança um soco que <strong>carrega a sua barra de raiva</strong>.
+                        Quando a barra fica cheia, o próximo ataque é um chute explosivo que causa <strong>2.400 de
+                            dano</strong> com knockback. Os inimigos afetados explodem em <strong>reação em
+                            cadeia</strong> causando 1.600 de dano a quem estiver próximo.</div>
+                    <span class="ability-tag">🔥 Knockback</span>
+                    <span class="ability-tag">💥 Cadeia</span>
+                    <span class="ability-tag">📏 Curto alcance</span>
+                </div>
+
+                <div class="ability-card super-card reveal" style="transition-delay:.08s">
+                    <div class="ability-type">⚡ Super — Mosh Pit</div>
+                    <div class="ability-name">Stage Dive</div>
+                    <div class="ability-desc">Damian <strong>salta por cima de obstáculos</strong> e ao aterrar cria um
+                        <strong>Mosh Pit de grande área</strong>. Os inimigos ficam presos dentro do raio e não
+                        conseguem sair facilmente. O Super carrega com base no dano recebido — quanto mais dano Damian
+                        toma, mais rápido carrega.
+                    </div>
+                    <span class="ability-tag">🏟️ Área</span>
+                    <span class="ability-tag">🔒 Trap</span>
+                    <span class="ability-tag">🧱 Salta obstáculos</span>
+                </div>
+
+                <div class="ability-card gadget reveal" style="transition-delay:.12s">
+                    <div class="ability-type">🟢 Gadget 1 — Spiritual Healing</div>
+                    <div class="ability-name">Microfone Curador</div>
+                    <div class="ability-desc">Damian lança o seu microfone. <strong>Ao ser apanhado</strong>, cura
+                        Damian e os aliados próximos. Pode ser lançado por cima de paredes para ajudar a equipa.
+                        Cooldown de 15 segundos — disponível com frequência.</div>
+                    <span class="ability-tag">💚 Cura</span>
+                    <span class="ability-tag">🧱 Atravessa paredes</span>
+                    <span class="ability-tag">⭐ Recomendado</span>
+                </div>
+
+                <div class="ability-card gadget reveal" style="transition-delay:.16s">
+                    <div class="ability-type">🟢 Gadget 2 — Wall of Sound</div>
+                    <div class="ability-name">Parede de Amplificadores</div>
+                    <div class="ability-desc">Damian cria uma parede de <strong>3 amplificadores indestrutíveis</strong>
+                        que dura 7 segundos. Funciona como qualquer outra parede do jogo — bloqueia movimento e
+                        projéteis. Só pode ser destruída por habilidades que destroem paredes.</div>
+                    <span class="ability-tag">🧱 Parede</span>
+                    <span class="ability-tag">⏱️ 7 segundos</span>
+                    <span class="ability-tag">🛡️ Indestrutível</span>
+                </div>
+
+                <div class="ability-card starpower reveal" style="transition-delay:.2s">
+                    <div class="ability-type">⭐ Star Power 1 — Crowdkill</div>
+                    <div class="ability-name">Stun na Parede</div>
+                    <div class="ability-desc">Quando o chute explosivo de Damian projeta um inimigo <strong>contra uma
+                            parede</strong>, esse inimigo fica <strong>atordoado por 0,5 segundos</strong>. Requer bom
+                        conhecimento do mapa e direção do knockback para maximizar o potencial.</div>
+                    <span class="ability-tag">😵 Stun</span>
+                    <span class="ability-tag">🎯 Alta skill cap</span>
+                </div>
+
+                <div class="ability-card starpower reveal" style="transition-delay:.24s">
+                    <div class="ability-type">⭐ Star Power 2 — Vulgar Display of Punch</div>
+                    <div class="ability-name">Punho em Chamas</div>
+                    <div class="ability-desc">Durante o Super, Damian tem um <strong>punho em chamas</strong> e o
+                        próximo ataque <strong>carrega a barra instantaneamente</strong> — podendo disparar um chute
+                        explosivo imediatamente. Muito mais simples de usar do que Crowdkill.</div>
+                    <span class="ability-tag">🔥 Fogo</span>
+                    <span class="ability-tag">⚡ Carga imediata</span>
+                    <span class="ability-tag">⭐ Recomendado</span>
+                </div>
+
+                <div class="ability-card hyper-card reveal" style="transition-delay:.28s;grid-column:span 2">
+                    <div class="ability-type" style="color:#B07AFF">⚡ Hypercharge — Jump in the Fire</div>
+                    <div class="ability-name">Chão em Chamas</div>
+                    <div class="ability-desc">Ao ativar o Hypercharge, o Super de Damian <strong>deixa o chão em
+                            chamas</strong> no Mosh Pit inteiro, causando <strong>600 de dano por segundo</strong>
+                        durante 5 segundos. Adicionalmente, Damian ganha <strong>velocidade de movimento extra</strong>
+                        durante o Hypercharge. Uma das combinações mais devastadoras do jogo — Mosh Pit + chão em chamas
+                        = nenhum inimigo sobrevive dentro.</div>
+                    <span class="ability-tag" style="color:#B07AFF">⏱️ 5 segundos de fogo</span>
+                    <span class="ability-tag" style="color:#B07AFF">🔥 600 DPS</span>
+                    <span class="ability-tag" style="color:#B07AFF">🏃 Velocidade extra</span>
+                    <div
+                        style="background:rgba(155,89,255,.08);border:1px solid rgba(155,89,255,.2);border-radius:10px;padding:.75rem 1rem;margin-top:1rem;font-size:.82rem;color:rgba(255,255,255,.55);">
+                        ⚠️ <strong style="color:#B07AFF">Nota:</strong> O Hypercharge requer ~4,5 Supers para carregar —
+                        uma das taxas mais lentas do jogo. Não é prioridade de investimento para a maioria dos
+                        jogadores.</div>
+                </div>
+
+                <div class="ability-card trait reveal" style="transition-delay:.12s">
+                    <div class="ability-type" style="color:#7EB8FF">🔵 Trait Passivo</div>
+                    <div class="ability-name">Raiva Carregada pelo Dano</div>
+                    <div class="ability-desc">O Super de Damian <strong>carrega automaticamente ao receber
+                            dano</strong>. Quanto mais dano tomar, mais rápido o Super fica disponível. Isto torna-o
+                        muito mais difícil de derrubar — atacar Damian é literalmente dar-lhe o Super.</div>
+                    <span class="ability-tag">🛡️ Tank</span>
+                    <span class="ability-tag">📈 Passivo</span>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ════ BUILD ════ -->
+    <div class="page-wrap">
+        <section class="section">
+            <div class="section-label reveal">Loadout Otimizado</div>
+            <h2 class="section-title reveal">Melhor Build</h2>
+            <div class="build-grid">
+                <div class="build-card reveal">
+                    <div class="build-icon">🟢</div>
+                    <div>
+                        <div class="build-label">Gadget principal</div>
+                        <div class="build-name">Spiritual Healing</div>
+                        <div class="build-reason">Sustain enorme para um Tank. Podes lançá-lo por cima de paredes para
+                            curar aliados em posições agressivas. Cooldown baixo de 15s.</div>
+                        <div class="build-rec">⭐ Recomendado</div>
+                    </div>
+                </div>
+                <div class="build-card reveal" style="transition-delay:.08s">
+                    <div class="build-icon">⭐</div>
+                    <div>
+                        <div class="build-label">Star Power principal</div>
+                        <div class="build-name">Vulgar Display of Punch</div>
+                        <div class="build-reason">Carga imediata de barra durante o Super. Muito mais consistente e
+                            fácil de usar do que Crowdkill — perfeito para jogadores de todos os níveis.</div>
+                        <div class="build-rec">⭐ Recomendado</div>
+                    </div>
+                </div>
+                <div class="build-card reveal" style="transition-delay:.12s">
+                    <div class="build-icon">⚙️</div>
+                    <div>
+                        <div class="build-label">Gear 1</div>
+                        <div class="build-name">Shield Gear</div>
+                        <div class="build-reason">+900 HP de escudo que regenera em 10s a HP cheio. Amplifica ainda mais
+                            a survivability de Damian como Tank.</div>
+                        <div class="build-rec">✅ Principal</div>
+                    </div>
+                </div>
+                <div class="build-card reveal" style="transition-delay:.16s">
+                    <div class="build-icon">⚙️</div>
+                    <div>
+                        <div class="build-label">Gear 2</div>
+                        <div class="build-name">Health Gear</div>
+                        <div class="build-reason">+50% de recuperação de HP fora de combate. Mantém Damian em campo
+                            muito mais tempo entre confrontos.</div>
+                        <div class="build-rec">✅ Alternativo</div>
+                    </div>
+                </div>
+                <div class="build-card reveal" style="transition-delay:.2s">
+                    <div class="build-icon">🟢</div>
+                    <div>
+                        <div class="build-label">Gadget alternativo</div>
+                        <div class="build-name">Wall of Sound</div>
+                        <div class="build-reason">Em mapas com poucos obstáculos, criar paredes é extremamente valioso.
+                            Também funciona dentro do Mosh Pit para manter inimigos presos.</div>
+                        <div class="build-rec">🗺️ Mapas abertos</div>
+                    </div>
+                </div>
+                <div class="build-card reveal" style="transition-delay:.24s">
+                    <div class="build-icon">⭐</div>
+                    <div>
+                        <div class="build-label">Star Power alternativo</div>
+                        <div class="build-name">Crowdkill</div>
+                        <div class="build-reason">Com Wall of Sound, podes controlar a direção do knockback para
+                            garantir stuns. Altíssimo skill ceiling para jogadores avançados.</div>
+                        <div class="build-rec">🎯 Jogadores avançados</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ════ MODOS ════ -->
+    <div class="page-wrap">
+        <section class="section">
+            <div class="section-label reveal">Tier por modo</div>
+            <h2 class="section-title reveal">Modos de Jogo</h2>
+            <div class="modes-grid">
+                <div class="mode-card s reveal">
+                    <div class="mode-tier">S</div>
+                    <div class="mode-name">Gem Grab</div>
+                    <div class="mode-reason">Com a 2.ª Star Power é perfeito — controla o mid e prende gem carriers no
+                        Mosh Pit</div>
+                </div>
+                <div class="mode-card s reveal" style="transition-delay:.06s">
+                    <div class="mode-tier">S</div>
+                    <div class="mode-name">Wipeout</div>
+                    <div class="mode-reason">S-Tier — ataques explosivos, knockbacks e Super de carga rápida neste modo
+                    </div>
+                </div>
+                <div class="mode-card a reveal" style="transition-delay:.1s">
+                    <div class="mode-tier">A</div>
+                    <div class="mode-name">Brawl Ball</div>
+                    <div class="mode-reason">Salta para a defesa inimiga, dispersa com o Super e cria aberturas para
+                        golo</div>
+                </div>
+                <div class="mode-card a reveal" style="transition-delay:.14s">
+                    <div class="mode-tier">A</div>
+                    <div class="mode-name">Hot Zone</div>
+                    <div class="mode-reason">Força inimigos para fora da zona ou prende-os dentro com o Mosh Pit</div>
+                </div>
+                <div class="mode-card b reveal" style="transition-delay:.18s">
+                    <div class="mode-tier">B</div>
+                    <div class="mode-name">Knockout</div>
+                    <div class="mode-reason">Bom spam e knockbacks. Cuidado com snipers que aproveitam o curto alcance
+                    </div>
+                </div>
+                <div class="mode-card c reveal" style="transition-delay:.22s">
+                    <div class="mode-tier">C</div>
+                    <div class="mode-name">Heist</div>
+                    <div class="mode-reason">Pouco dano ao cofre. Há melhores opções para modo ofensivo puro</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ════ COUNTERS ════ -->
+    <div class="page-wrap">
+        <section class="section">
+            <div class="section-label reveal">Matchups</div>
+            <h2 class="section-title reveal">Counters & Aliados</h2>
+            <div class="counters-grid">
+                <div class="counter-col reveal">
+                    <div class="counter-col-title" style="color:#4ADE80">✅ Funciona bem com</div>
+                    <div class="counter-item win">
+                        <div class="counter-emoji">🌬️</div>
+                        <div>
+                            <div class="counter-name">Emz</div>
+                            <div class="counter-reason">Controla espaço e dana inimigos presos no Mosh Pit</div>
+                        </div>
+                    </div>
+                    <div class="counter-item win">
+                        <div class="counter-emoji">🏜️</div>
+                        <div>
+                            <div class="counter-name">Sandy</div>
+                            <div class="counter-reason">Tempestade esconde Damian a aproximar-se para o Super</div>
+                        </div>
+                    </div>
+                    <div class="counter-item win">
+                        <div class="counter-emoji">🍺</div>
+                        <div>
+                            <div class="counter-name">Barley</div>
+                            <div class="counter-reason">Lança garrafas para dentro do Mosh Pit — dano garantido</div>
+                        </div>
+                    </div>
+                    <div class="counter-item win">
+                        <div class="counter-emoji">🌺</div>
+                        <div>
+                            <div class="counter-name">Juju</div>
+                            <div class="counter-reason">Pressão constante com elementos dentro da área do Mosh Pit</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="counter-col reveal" style="transition-delay:.1s">
+                    <div class="counter-col-title" style="color:#FCA5A5">❌ Cuidado com</div>
+                    <div class="counter-item lose">
+                        <div class="counter-emoji">☂️</div>
+                        <div>
+                            <div class="counter-name">Piper</div>
+                            <div class="counter-reason">Elimina Damian à distância antes de ele chegar</div>
+                        </div>
+                    </div>
+                    <div class="counter-item lose">
+                        <div class="counter-emoji">🌀</div>
+                        <div>
+                            <div class="counter-name">Gray</div>
+                            <div class="counter-reason">Portais tiram aliados do Mosh Pit instantaneamente</div>
+                        </div>
+                    </div>
+                    <div class="counter-item lose">
+                        <div class="counter-emoji">🐱</div>
+                        <div>
+                            <div class="counter-name">Charlie</div>
+                            <div class="counter-reason">Casulo dentro do Mosh Pit inutiliza completamente o Super</div>
+                        </div>
+                    </div>
+                    <div class="counter-item lose">
+                        <div class="counter-emoji">⚡</div>
+                        <div>
+                            <div class="counter-name">Max</div>
+                            <div class="counter-reason">Velocidade turbo da equipa escapa sempre do Mosh Pit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DICAS -->
+            <div class="section-label reveal" style="margin-top:3rem">Dicas Pro</div>
+            <h3 class="section-title reveal" style="font-size:1.5rem">Como dominar Damian</h3>
+            <div class="tips-grid">
+                <div class="tip-item reveal">
+                    <div class="tip-icon">🎯</div>
+                    <div class="tip-text">Deixa os inimigos <strong>atacar-te primeiro</strong> para carregar o Super
+                        mais rápido — o trait passivo de carga por dano recebido é a tua maior vantagem.</div>
+                </div>
+                <div class="tip-item reveal">
+                    <div class="tip-icon">🧱</div>
+                    <div class="tip-text">Usa <strong>Wall of Sound dentro do Mosh Pit</strong> para bloquear as saídas
+                        — os inimigos ficam completamente presos e não conseguem escapar.</div>
+                </div>
+                <div class="tip-item reveal">
+                    <div class="tip-icon">🎤</div>
+                    <div class="tip-text">O <strong>microfone do Spiritual Healing</strong> pode ser lançado por cima de
+                        paredes — usa isto para curar aliados que estão a fazer pushes agressivos sem exposição.</div>
+                </div>
+                <div class="tip-item reveal">
+                    <div class="tip-icon">⚡</div>
+                    <div class="tip-text">Com <strong>Vulgar Display of Punch</strong>, entra no Super e dispara
+                        imediatamente o chute explosivo — é um dos bursts de dano mais rápidos do jogo em Tank.</div>
+                </div>
+                <div class="tip-item reveal">
+                    <div class="tip-icon">🏟️</div>
+                    <div class="tip-text">Em <strong>Gem Grab</strong>, usa o Super para prender o gem carrier inimigo —
+                        não precisas de matar, só de atrasar o suficiente para os aliados chegarem.</div>
+                </div>
+                <div class="tip-item reveal">
+                    <div class="tip-icon">🔥</div>
+                    <div class="tip-text">O <strong>Hypercharge com chão em chamas</strong> combina melhor com aliados
+                        que causam slow (Emz, Lou) — inimigos que não conseguem sair recebem todo o dano de fogo.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ════ TRIO MADEVIL ════ -->
+    <section class="trio-section">
+        <div class="trio-inner">
+            <div class="section-label reveal">A Banda Completa</div>
+            <h2 class="section-title reveal">MadEvil Manor 🤘</h2>
+            <p style="color:rgba(255,255,255,.5);font-size:.97rem;line-height:1.75;max-width:600px;" class="reveal">Com
+                a chegada de Damian, o trio está finalmente completo. Três brawlers, uma banda — os MadEvil Manor são o
+                grupo de heavy metal de Starr Park.</p>
+            <div class="trio-cards">
+                <div class="trio-card damian reveal">
+                    <div class="trio-active-badge">NOVO</div>
+                    <div class="trio-card-role">🎤 Vocalista</div>
+                    <span class="trio-emoji">🎤</span>
+                    <div class="trio-card-name">Damian</div>
+                    <div class="trio-card-inst">Voz & Punhos</div>
+                    <div class="trio-card-desc">O frontman explosivo. Entra em raiva ao ouvir rock e destrói tudo à sua
+                        volta. Chegou a 24 de Abril de 2026.</div>
+                </div>
+                <div class="trio-card draco reveal" style="transition-delay:.12s">
+                    <div class="trio-card-role">🎸 Guitarra</div>
+                    <span class="trio-emoji">🎸</span>
+                    <div class="trio-card-name">Draco</div>
+                    <div class="trio-card-inst">Guitarra & Fogo</div>
+                    <div class="trio-card-desc">O guitarrista dragão. Legendary Tank que se transforma num dragão com o
+                        Super. Irmão mais velho de Damian.</div>
+                </div>
+                <div class="trio-card lumi reveal" style="transition-delay:.24s">
+                    <div class="trio-card-role">🥁 Bateria</div>
+                    <span class="trio-emoji">🥁</span>
+                    <div class="trio-card-name">Lumi</div>
+                    <div class="trio-card-inst">Bateria & Ritmo</div>
+                    <div class="trio-card-desc">A baterista cujo ritmo potencia toda a equipa próxima. Legendary Support
+                        com Super de boost coletivo.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════ COLLAB ELECTRIC CALLBOY ════ -->
+    <div class="page-wrap">
+        <section class="collab-section">
+            <div class="section-label reveal">Colaboração Oficial</div>
+            <h2 class="section-title reveal">Electric Callboy × Brawl Stars</h2>
+            <div class="collab-banner reveal">
+                <div class="collab-inner">
+                    <div class="collab-tag">🎸 Parceria Musical Oficial</div>
+                    <div class="collab-title">HYPERCHARGED</div>
+                    <div class="collab-desc">A banda alemã de <strong>electronic metal Electric Callboy</strong> uniu-se
+                        à Supercell para revelar Damian com um music video épico — "HYPERCHARGED". O tema faz parte do
+                        álbum <em>Tanzneid</em>, com lançamento a <strong>7 de Agosto de 2026</strong>. O vídeo atingiu
+                        1 milhão de likes em tempo recorde.</div>
+                    <a href="https://www.youtube.com/watch?v=7B0-WJ5QYsc" target="_blank" class="collab-btn">▶️ Ver o
+                        Brawl Talk</a>
+                </div>
+                <div class="collab-big">🤘</div>
+            </div>
+            <div class="yt-wrap reveal">
+                <iframe src="https://www.youtube.com/embed/7B0-WJ5QYsc" title="Brawl Talk — Damian & Electric Callboy"
+                    allowfullscreen></iframe>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        /* FIRE PARTICLES */
+        const fp = document.getElementById("fireParticles");
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement("div");
+            p.className = "particle";
+            const hue = Math.random() < .5 ? 0 + Math.random() * 20 : 20 + Math.random() * 20;
+            p.style.cssText = `left:${Math.random() * 100}%;width:${2 + Math.random() * 4}px;height:${2 + Math.random() * 4}px;background:hsl(${hue},100%,60%);animation-duration:${1.5 + Math.random() * 3}s;animation-delay:${Math.random() * 3}s;`;
+            fp.appendChild(p);
+        }
+
+        /* HYPER TOGGLE */
+        let hyperOn = false;
+        function toggleHyper() {
+            hyperOn = !hyperOn;
+            document.getElementById("htbtn").classList.toggle("on", hyperOn);
+            document.getElementById("htoggle").classList.toggle("on", hyperOn);
+            document.getElementById("hyperNote").textContent = hyperOn ? "⚡ Hypercharge ativo" : "";
+            const ids = [["sHP", "11.200", "13.440", "hHP", "bHP", "bhHP"], ["sDMG", "2.400", "2.880", "hDMG", "bDMG", "bhDMG"], ["sSPD", "800", "960", "hSPD", "bSPD", "bhSPD"], ["sFIRE", "600", "720", "hFIRE", "bFIRE", "bhFIRE"]];
+            ids.forEach(([sId, base, hyper, hId, bId, bhId]) => {
+                document.getElementById(sId).textContent = hyperOn ? hyper : base;
+                document.getElementById(hId).style.display = hyperOn ? "block" : "none";
+                const bFill = document.getElementById(bId);
+                const bhFill = document.getElementById(bhId);
+                if (bFill) bFill.style.opacity = hyperOn ? "0" : "1";
+                if (bhFill) bhFill.style.opacity = hyperOn ? "1" : "0";
+            });
+        }
+
+        /* REVEAL */
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.08 });
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+        /* CURSOR */
+        // Desativar cursor personalizado em dispositivos touch
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        if (isTouchDevice) {
+            document.getElementById("cursor").style.display = "none";
+            document.getElementById("cursor-ring").style.display = "none";
+            document.body.style.cursor = "auto";
+            document.querySelectorAll("*").forEach(el => el.style.cursor = "");
+        } else {
+            // Todo o código do cursor fica aqui dentro
+            const cursor = document.getElementById("cursor");
+            const ring = document.getElementById("cursor-ring");
+            let mx = 0, my = 0, rx = 0, ry = 0;
+            document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+            (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        }
+        const cursor = document.getElementById("cursor");
+        const ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
+        (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
+        document.querySelectorAll("a,button,.stat-big-card,.ability-card,.build-card,.mode-card,.trio-card").forEach(el => {
+            el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
+            el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
+        });
+    </script>
+    <script src="../../pesquisa.js"></script>
+    <script src="../../tema.js"></script>
+    <script src="../../Breadcrumbs.js"></script>
+</body>
+
+</html>

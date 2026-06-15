@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-PT">
 
 <head>
@@ -1004,18 +1004,38 @@
         .buffie-accessory {
             margin-top: .5rem;
             padding: .35rem .5rem;
-            border-left: 2px solid rgba(34, 197, 94, .35);
+            border-left: 2px solid rgba(34, 197, 94, .3);
             margin-left: .25rem;
         }
 
         .buffie-accessory-name {
             font-size: .65rem;
             font-weight: 800;
-            color: #4ADE80;
+            color: #22C55E;
             margin-bottom: .15rem;
         }
 
         .buffie-accessory-desc {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .45);
+            line-height: 1.5;
+        }
+
+        .buffie-accessory2 {
+            margin-top: .5rem;
+            padding: .35rem .5rem;
+            border-left: 2px solid rgba(255, 255, 0, .3);
+            margin-left: .25rem;
+        }
+
+        .buffie-accessory-name2 {
+            font-size: .65rem;
+            font-weight: 800;
+            color: #FFD000;
+            margin-bottom: .15rem;
+        }
+
+        .buffie-accessory-desc2 {
             font-size: .78rem;
             color: rgba(255, 255, 255, .45);
             line-height: 1.5;
@@ -1489,8 +1509,8 @@
         /* Buffies por brawler (sincroniza com Buffies.html — edita nos dois sítios) */
         const BRAWLER_BUFFIES = {
             Shelly: [
-                { t: "g", desc: "Fast Forward torna-se um dash longo...", acessorios: [{ nome: "Nome Acessório 1", desc: "Descrição do acessório 1" }, { nome: "Nome Acessório 2", desc: "Descrição do acessório 2" }] },
-                { t: "s", desc: "Shell Shock aplica slow mais duradouro..." },
+                { t: "g", desc: "Fast Forward torna-se um dash longo...", acessorios: [{ nome: "Disparada", desc: "Descrição do acessório 1" }, { nome: "Xeque-Mate", desc: "Descrição do acessório 2" }] },
+                { t: "s", desc: "Shell Shock aplica slow mais duradouro...", poderes: [{ nome: "Nome Acessório 3", desc: "Descrição do acessório 3" }, { nome: "Nome Acessório 4", desc: "Descrição do acessório 4" }] },
                 { t: "h", desc: "Ataques básicos durante HC aplicam slow..." },
             ],
             Colt: [{ t: "g", desc: "Cada bala rouba 1 munição ao inimigo atingido" }, { t: "s", desc: "Slick Boots: mais velocidade em sprint; Magnum Special: mais dano ao longe" }, { t: "h", desc: "Balas ficam mais rápidas durante HC; +2s de duração" }],
@@ -1508,6 +1528,7 @@
             Griff: [{ t: "g", desc: "Keep the Change: ataque com mais moedas e Mega Coin ao centro; Business Resilience: Super cura Griff" }, { t: "s", desc: "More Coins: mais largura de ataque e uma linha extra de moedas" }, { t: "h", desc: "Tax Rebate: ataques HC atravessam inimigos; +2s de duração" }],
             Colette: [{ t: "g", desc: "Na-Ah: projétil atravessa paredes; Gotcha: apontável com 3 usos e overheal" }, { t: "s", desc: "Push It: inimigos não podem atacar Colette no final do push; Mass Tax: mais redução de dano" }, { t: "h", desc: "Velocidade de dash aumentada; +2s de duração" }],
         };
+
 
         const BUFFIE_TYPE_LABELS = { g: "Buffie Gadget", s: "Buffie Star Power", h: "Buffie Hyper" };
 
@@ -1639,10 +1660,13 @@
             const extras = (bf.acessorios || []).map(a =>
                 `<div class="buffie-accessory"><div class="buffie-accessory-name">${a.nome}</div><div class="buffie-accessory-desc">${a.desc}</div></div>`
             ).join("");
+            const extras2 = (bf.poderes || []).map(a =>
+                `<div class="buffie-accessory2"><div class="buffie-accessory-name2">${a.nome}</div><div class="buffie-accessory-desc2">${a.desc}</div></div>`
+            ).join("");
             const emojis = { g: "🔧", s: "⭐", h: "💜" };
             return `<div class="ability-card buffie-${bf.t}">
                 <div class="ability-label">${emojis[bf.t]} ${BUFFIE_TYPE_LABELS[bf.t]}</div>
-                <div class="ability-desc">${bf.desc}${extras}</div>
+                <div class="ability-desc">${bf.desc}${extras}${extras2}</div>
             </div>`;
         }
 
@@ -1698,8 +1722,8 @@
             }
 
             if (showBuffies && !getBuffieByType(b, "g") && !getBuffieByType(b, "s") && !getBuffieByType(b, "h")) {
-                    const anchor = BUFFIE_MACHINE[b.name] ? `Buffies.html#${BUFFIE_MACHINE[b.name]}` : "Buffies.html";
-                    html += `<div class="ability-card buffie-empty">
+                const anchor = BUFFIE_MACHINE[b.name] ? `Buffies.html#${BUFFIE_MACHINE[b.name]}` : "Buffies.html";
+                html += `<div class="ability-card buffie-empty">
                         <div class="ability-label">🦊 Buffies</div>
                         <div class="ability-desc">Ainda sem Buffies registados para ${b.name}.
                             <a href="${anchor}" class="buffie-empty-link">Ver na wiki de Buffies →</a>

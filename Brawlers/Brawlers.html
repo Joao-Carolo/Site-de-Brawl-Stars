@@ -1395,8 +1395,8 @@
     <script>
         const BRAWLERS = [
             { name: "Shelly", emoji: "🔫", rarity: "starter", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Shelly é a lutadora perfeita: confiável, durona e imbatível com a espingarda. Com tantas qualidades assim, ela nunca entendeu como o Colt virou o queridinho da galera...", attack: "Chumbo Grosso — A arma da Shelly dispara chumbinhos em grande amplitude e longo alcance. Quanto mais chumbinhos acertarem o alvo, maior o dano.", super: "SuperBala — A Superbala da Shelly oblitera coberturas e inimigos. Os sobreviventes são empurrados para longe.", hyper: "Cano Duplo — O raio da Superbala fica 33% maior.", sp1: "Xeque-Mate — A Superbala da Shelly desacelera os inimigos por 2 segundos e deixa a área em chamas!", sp2: "Tônico Revigorante — Quando a saúde da Shelly está abaixo de 40%, ela recupera 1989 pontos de saúde instantaneamente. É preciso esperar 15 segundos até que a habilidade esteja disponível novamente.", g1: "Disparada — Shelly corre para a frente ou para a direção escolhida e recarrega totalmente o seu ataque principal.", g2: "Pombos de Argila — A área do ataque da Shelly fica mais focada, e o alcance aumenta. Disponivel por 3 ataques.", hp: 7800, dmg: 3000, range: 8, speed: 720, modes: ["Showdown", "Heist", "Brawl Ball"] },
+            { name: "Nita", emoji: "🐻", rarity: "rare", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Nita é feroz e nunca desiste de uma luta. O urso de pelúcia que ela usa como gorro dá uma dica aos adversários: não se aproxime do urso!", attack: "Tremor — Nita cria um terremoto que causa danos aos inimigos atingidos pelo seu tremor", super: "Garra de Urso — Nita invoca o espírito do Grande Bebê Urso para lhe dar uma mãozinha na caça aos inimigos.", hyper: "HiperUrso — Bruce aumenta de tamanho e ganha 15% a mais de velocidade de movimento e 20% a mais de saúde", sp1: "Amigo-Urso — Nita recupera 1092 pontos de saúde cada vez que o urso acerta um Brawler inimigo. Quando ela inflige dano a Brawlers inimigos, o urso recupera 1094 pontos de saúde.", sp2: "Urso Hiperativo — O urso da Nita ataca mais depressa, com o tempo entre ataques reduzido em 60%.", g1: "Garra de Urso — Nita ordena que o seu urso golpeie violentamente o chão, atordoando todoa os inimigos dentro do alcance.", g2: "Pele Protetora — Pelos próximos 3s, o urso  da Nita ganha 35% de proteção contra dano.", hp: 8400, dmg: 1920, range: 6, speed: 720, modes: ["Showdown", "Hot Zone", "Gem Grab"] },
             { name: "Colt", emoji: "🤠", rarity: "rare", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Um cowboy preciso com grande alcance. Dispara rajadas de 6 balas em linha reta.", attack: "Six-Shooters — 6 balas em linha reta.", super: "Bullet Storm — 12 balas que destroem paredes.", sp1: "Slick Boots — Velocidade aumentada.", sp2: "Magnum Special — Mais alcance e dano.", hp: 2800, dmg: 460, range: 10, speed: 720, modes: ["Heist", "Brawl Ball", "Bounty"] },
-            { name: "Nita", emoji: "🐻", rarity: "rare", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Controla o espírito de um urso. O seu Super invoca Bruce, um urso fantasma.", attack: "Bear Paw — Onda de choque.", super: "Overbearing — Invoca Bruce, o urso.", sp1: "Bear With Me — Bruce cura Nita.", sp2: "Hyper Bear — Bruce ataca mais rápido.", hp: 3800, dmg: 800, range: 7, speed: 720, modes: ["Showdown", "Hot Zone", "Gem Grab"] },
             { name: "Bull", emoji: "🐂", rarity: "rare", cls: "Tank", isNew: false, desc: "Um tanque com espingarda dupla. Dano massivo ao perto, usa arbustos para emboscar.", attack: "Double-Barreled — Espingarda dupla.", super: "Bulldozer — Carrega destruindo obstáculos.", sp1: "Berserker — Recarga rápida abaixo de 40% HP.", sp2: "Tough Guy — Escudo ao ativar o Super.", hp: 6000, dmg: 940, range: 4, speed: 720, modes: ["Heist", "Showdown", "Brawl Ball"] },
             { name: "Brock", emoji: "🚀", rarity: "rare", cls: "Sniper", isNew: false, desc: "Especialista em rockets com grande alcance. Destrói paredes com facilidade.", attack: "Rockin' Rocket — Rocket que destrói obstáculos.", super: "Rocket Rain — Chuva de rockets em área.", sp1: "Incendiary — Chamas no Super.", sp2: "Rocket Fuel — Mais destruição de paredes.", hp: 2800, dmg: 700, range: 13, speed: 720, modes: ["Bounty", "Heist", "Siege"] },
             { name: "El Primo", emoji: "🤼", rarity: "rare", cls: "Tank", isNew: false, desc: "Um luchador com punhos de aço. Tanque ágil graças ao salto do Super.", attack: "Fists of Fury — Soco em cone.", super: "Flying Elbow Drop — Salta causando dano de área.", sp1: "El Fuego — Super deixa chamas.", sp2: "Meteor Rush — Velocidade após Super.", hp: 6400, dmg: 760, range: 4, speed: 720, modes: ["Showdown", "Brawl Ball", "Hot Zone"] },
@@ -1521,8 +1521,22 @@
                         { nome: "Poder 2", desc: "Fica com a velocidade de movimento 15% mais alta por 3 segundos." },
                     ]
                 },
-                { t: "h", desc: "A velocidade do projétil do ataque principal aumenta consideravelmente durante a Hipercarga." },
+                { t: "h", desc: "A velocidade do projétil do ataque principal aumenta consideravelmente durante a Hipercarga; +2s de duração" },
             ],
+            Nita: [
+                {
+                    t: "g", desc: "", acessorios: [
+                        { nome: "Garra de Urso", desc: "O próximo ataque do Bruce causa 50% a mais de dano." },
+                        { nome: "Coração de Urso", desc: "Nita e o seu urso ficam indestrutíveis por 0,5s." },
+                    ]
+                },
+                {
+                    t: "s", desc: "", poderes: [
+                        { nome: "Amigo-Urso", desc: "Esta habilidade pode curar Nita ou o urso além do limite de saúde, até o máximo de 2000." },
+                        { nome: "Urso Hiperativo", desc: "Invocar o urso dá à Nita +25% de velocidade de recarga por 3s." },
+                    ]
+                },
+                { t: "h", desc: "Os ataques da Nita têm velocidade, amplitude e alcance maiores; +2s de duração" }],
             Colt: [{ t: "g", desc: "Cada bala rouba 1 munição ao inimigo atingido" }, { t: "s", desc: "Slick Boots: mais velocidade em sprint; Magnum Special: mais dano ao longe" }, { t: "h", desc: "Balas ficam mais rápidas durante HC; +2s de duração" }],
             Spike: [{ t: "g", desc: "Popping Pincushion faz raiz nos inimigos se todos os espinhos acertarem" }, { t: "s", desc: "Fertilize cura mais; Curveball aumenta mais a curva dos espinhos" }, { t: "h", desc: "Ataques básicos explodem duas vezes durante HC; +2s de duração" }],
             Mortis: [{ t: "g", desc: "Blood Boomerang: ataque fantasma atinge a mesma área com delay; dash passa atrás do inimigo" }, { t: "s", desc: "Creepy Harvest cura mais por kill; Coiled Snake tem ainda mais alcance" }, { t: "h", desc: "Clone de sombra copia o próximo ataque — dano em dobro em burst; +2s de duração" }],
@@ -1532,7 +1546,6 @@
             Crow: [{ t: "g", desc: "Instapoison regressa a duração do veneno; Slowing Toxin ricocheteiam em alvos próximos" }, { t: "s", desc: "Extra Toxic: veneno mais forte; Carrion Crow: mais dano em alvos com baixo HP" }, { t: "h", desc: "Utility Knives: ataques HC perfuram e voltam com 20% menos dano; +2s duração" }],
             Bibi: [{ t: "g", desc: "Reenergize carrega o Super completamente; Leave n' Weave tem mais usos" }, { t: "s", desc: "Fresh Kicks: mais ricochetes; Corn Paws: velocidade ainda maior no Super" }, { t: "h", desc: "Teen Spirit: lança um segundo ataque menor; +2s de duração" }],
             Bo: [{ t: "g", desc: "T-Bone Injector introduz efeito Bleed; Stomper: stun e slow mais fortes" }, { t: "s", desc: "Tough Guy: imune a dano 0,5s após matar; Berserker: recarga ainda mais rápida" }, { t: "h", desc: "Jaws of Steel: ataque HC destrói mais paredes; +2s de duração" }],
-            Nita: [{ t: "g", desc: "Bear Paws: raiz se atingir 3 inimigos; Faux Fur: Bruce recebe escudo ao ativar" }, { t: "s", desc: "Bear With Me: cura de Bruce aumentada; Hyper Bear: mais velocidade de ataque" }, { t: "h", desc: "Hyperbearing: Bruce causa dano em área ao aparecer; +2s de duração" }],
             Leon: [{ t: "g", desc: "Vitamin Booster carrega Home Run bar e cura 60% do dano; Extra Sticky: slow aumenta com tempo" }, { t: "s", desc: "Home Run: +20% dano; Batting Stance: escudo de 5s ao acertar Super" }, { t: "h", desc: "Out of Bounds: ataques HC perfuram e voltam 20% menos dano; +2s duração" }],
             Edgar: [{ t: "g", desc: "Super Totem: aliados ficam com mais alcance perto do totem; Tripwire: minas explodem em área maior" }, { t: "s", desc: "Circling Eagle: Bo dispara uma 4.ª flecha com área maior; Snare a Bear: raiz mais longa" }, { t: "h", desc: "Catch a Bear: minas são invisíveis durante HC; +2s de duração" }],
             Griff: [{ t: "g", desc: "Keep the Change: ataque com mais moedas e Mega Coin ao centro; Business Resilience: Super cura Griff" }, { t: "s", desc: "More Coins: mais largura de ataque e uma linha extra de moedas" }, { t: "h", desc: "Tax Rebate: ataques HC atravessam inimigos; +2s de duração" }],
@@ -1699,6 +1712,7 @@
                 { label: abilityLabelHtml("⚔️", b.attackImg || `${IMG_BASE}/Ataque.png`, "Ataque"), text: b.attack },
                 { label: abilityLabelHtml("⚡", b.superImg || `${IMG_BASE}/Super.png`, "Super"), text: b.super },
             ];
+
 
             html += mainRows.map(buildAbilityCardHtml).join("");
 

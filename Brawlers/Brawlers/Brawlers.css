@@ -1266,3 +1266,9 @@
             grid-template-columns: 1fr;
         }
     }
+
+    /* Logo */
+    .logo {
+        height: 40px;
+        width: 40px;
+    }

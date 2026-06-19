@@ -1289,9 +1289,10 @@
 
     <nav>
 
-        <a href="../Página inicial.html" class="nav-logo"><span class="star">★</span><span>BrawlZone</span></a>
+        <a href="../Página inicial/Página inicial.html" class="nav-logo"><span
+                class="star">★</span><span>BrawlZone</span></a>
         <ul class="nav-links">
-            <li><a href="../Página inicial.html">Início</a></li>
+            <li><a href="../Página inicial/Página inicial.html">Início</a></li>
             <li><a href="#" class="active">Brawlers</a></li>
             <li><a href="Skins.html">Skins</a></li>
             <li><a href="Buffies.html">Buffies</a></li>
@@ -1305,7 +1306,7 @@
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-close" id="mobileClose">✕</button>
-        <a href="../Página inicial.html">Início</a>
+        <a href="../Página inicial/Página inicial.html">Início</a>
         <a href="#" class="active">Brawlers</a>
         <a href="Skins.html">Skins</a>
         <a href="Buffies.html">Buffies</a>
@@ -1486,7 +1487,7 @@
             { name: "Cordelius", emoji: "🍄", rarity: "legendary", cls: "Control", isNew: false, desc: "Cogumelo mágico que teletransporta inimigos para o seu reino paralelo.", attack: "Shroom Spores — Esporos de cogumelo.", super: "Shadow Realm — Envia inimigo para dimensão paralela.", sp1: "Fungal Infection — Mais tempo no realm.", sp2: "Mycotoxin — Envenenamento no realm.", hp: 2600, dmg: 520, range: 8, speed: 720, modes: ["Showdown", "Bounty", "Knockout"] },
             { name: "Kit", emoji: "😺", rarity: "legendary", cls: "Support", isNew: false, desc: "Gato mediático que salta para aliados, curandos eles e danificando inimigos.", attack: "Cat Attack — Garras em cone.", super: "Copycat — Salta para aliado ou inimigo.", sp1: "Attuned — Aliados recebem mais dano.", sp2: "Glutton — Kit dura mais nos aliados.", hp: 2600, dmg: 480, range: 4, speed: 800, modes: ["Gem Grab", "Hot Zone", "Brawl Ball"] },
             { name: "Draco", emoji: "🐲", rarity: "legendary", cls: "Tank", isNew: false, desc: "Dragão guitarrista do MadEvil Manor que se transforma num dragão poderoso.", attack: "Power Chord — Acorde de guitarra elétrica.", super: "Dragon Form — Transforma-se em dragão.", sp1: "Metal Head — Mais dano no modo dragão.", sp2: "Rock On — Modo dragão dura mais.", hp: 5600, dmg: 700, range: 5, speed: 720, modes: ["Showdown", "Brawl Ball", "Hot Zone"] },
-            { name: "Damian", emoji: "🎤", img: "Skins (imagens)/Damian/Damian Padrão.png", rarity: "legendary", cls: "Tank", isNew: true, desc: "O vocalista do trio MadEvil Manor. Revelado com Electric Callboy no Update 67. Chega a 24 de Abril!", attack: "Sonic Scream — Rugido sónico em cone.", super: "Stage Dive — Salta causando dano de área.", sp1: "Crowd Surfer — Mais alcance no Super.", sp2: "Heavy Metal — Super aplica stun.", g1: "", g2: "", hp: 6400, dmg: 700, range: 5, speed: 720, modes: ["Showdown", "Hot Zone", "Brawl Ball"] },
+            { name: "Damian", emoji: "🎤", rarity: "legendary", cls: "Tank", isNew: true, desc: "O vocalista do trio MadEvil Manor. Revelado com Electric Callboy no Update 67. Chega a 24 de Abril!", attack: "Sonic Scream — Rugido sónico em cone.", super: "Stage Dive — Salta causando dano de área.", sp1: "Crowd Surfer — Mais alcance no Super.", sp2: "Heavy Metal — Super aplica stun.", g1: "", g2: "", hp: 6400, dmg: 700, range: 5, speed: 720, modes: ["Showdown", "Hot Zone", "Brawl Ball"] },
             { name: "Sirius", emoji: "🌑", rarity: "ultra", cls: "Controller", isNew: false, desc: "O 100.º brawler e grande vilão de Starr Park. Coleciona sombras de brawlers e invoca-as em batalha.", attack: "Binary Starr — Projétil explosivo + sombra.", super: "Shadow Summon — Invoca todas as sombras.", sp1: "Dusk Runners — Sombras mais velozes.", sp2: "The Darkest Starr — Cada 4.º acerto guarda 2 sombras.", hp: 3000, dmg: 700, range: 10, speed: 720, modes: ["Gem Grab", "Bounty", "Knockout"] },
             { name: "Najia", emoji: "🐍", rarity: "ultra", cls: "Assassin", isNew: false, desc: "A 101.ª brawler. Assassina de cobras com ataques em duas etapas e serpentes invocadas.", attack: "Snake Delivery — Jarra com cobra.", super: "Den Mother — Ninho de cobras no campo.", sp1: "Serpentine — Veneno dura mais.", sp2: "Coiled Spring — Mais velocidade de ataque.", hp: 2800, dmg: 660, range: 7, speed: 800, modes: ["Showdown", "Bounty", "Knockout"] },
         ];
@@ -1601,7 +1602,7 @@
                     card.style.transitionDelay = `${i * 0.04}s`;
                     card.innerHTML = `${b.isNew ? '<span class="new-badge">NOVO</span>' : ""}
 <img 
-    src="./Skins (imagens)/${b.name}/${b.name} Padrão.png" 
+    src="Imagens/Skins (imagens)/${b.name}/${b.name} Padrão.png" 
     alt="${b.name}"
     class="brawler-emoji brawler-img"
     onerror="this.outerHTML='<div class=\'brawler-emoji\'>${b.emoji}</div>'"
@@ -1666,7 +1667,7 @@
             return hyperFromBase(b);
         }
 
-        const IMG_BASE = "Imagens (Poderes de Estrela ou Acessórios)";
+        const IMG_BASE = "Imagens/Imagens (Poderes de Estrela ou Acessórios)";
 
         function abilityLabelHtml(emoji, imgSrc, labelText) {
             return `<img src="${imgSrc}" alt="" style="width:1rem;height:1rem;object-fit:contain;vertical-align:middle" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">${emoji}</span> ${labelText}`;
@@ -1877,7 +1878,7 @@
             const color = RARITY_COLORS[b.rarity];
             const modalEmoji = document.getElementById("modalEmoji");
             modalEmoji.innerHTML = `<img 
-    src="Skins (imagens)/${b.name}/${b.name} Padrão.png"
+    src="Imagens/Skins (imagens)/${b.name}/${b.name} Padrão.png"
     alt="${b.name}"
     style="width:5.5rem;height:5.5rem;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,.5))"
     onerror="this.outerHTML='${b.emoji}'"

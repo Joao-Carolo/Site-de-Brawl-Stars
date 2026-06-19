@@ -1453,7 +1453,7 @@
                   { nome: "Poder 2", desc: "Fica com a velocidade de movimento 15% mais alta por 3 segundos." },
                 ]
               },
-              { t: "h", desc: "Ataques básicos durante HC aplicam slow..." },
+              { t: "h", desc: "A velocidade do projétil do ataque principal aumenta consideravelmente durante a Hipercarga; +2s de duração" },
             ]
           },
           { name: "Colt", rarity: "Rare", buffies: [{ t: "g", desc: "Cada bala rouba 1 munição ao inimigo atingido" }, { t: "s", desc: "Slick Boots: mais velocidade em sprint; Magnum Special: mais dano ao longe" }, { t: "h", desc: "Balas ficam mais rápidas durante HC; +2s de duração" }] },
@@ -1480,7 +1480,21 @@
         id: "machine4",
         brawlers: [
           { name: "Bo", rarity: "Rare", buffies: [{ t: "g", desc: "T-Bone Injector introduz efeito Bleed; Stomper: stun e slow mais fortes" }, { t: "s", desc: "Tough Guy: imune a dano 0,5s após matar; Berserker: recarga ainda mais rápida" }, { t: "h", desc: "Jaws of Steel: ataque HC destrói mais paredes; +2s de duração" }] },
-          { name: "Nita", rarity: "Rare", buffies: [{ t: "g", desc: "Bear Paws: raiz se atingir 3 inimigos; Faux Fur: Bruce recebe escudo ao ativar" }, { t: "s", desc: "Bear With Me: cura de Bruce aumentada; Hyper Bear: mais velocidade de ataque" }, { t: "h", desc: "Hyperbearing: Bruce causa dano em área ao aparecer; +2s de duração" }] },
+          {
+            name: "Nita", rarity: "Rare", buffies: [{
+              t: "g", desc: "", acessorios: [
+                { nome: "Garra de Urso", desc: "O próximo ataque do Bruce causa 50% a mais de dano." },
+                { nome: "Coração de Urso", desc: "Nita e o seu urso ficam indestrutíveis por 0,5s." },
+              ]
+            },
+            {
+              t: "s", desc: "", poderes: [
+                { nome: "Amigo-Urso", desc: "Esta habilidade pode curar Nita ou o urso além do limite de saúde, até o máximo de 2000." },
+                { nome: "Urso Hiperativo", desc: "Invocar o urso dá à Nita +25% de velocidade de recarga por 3s." },
+              ]
+            },
+            { t: "h", desc: "Os ataques da Nita têm velocidade, amplitude e alcance maiores; +2s de duração" }]
+          },
           { name: "Leon", rarity: "Epic", buffies: [{ t: "g", desc: "Vitamin Booster carrega Home Run bar e cura 60% do dano; Extra Sticky: slow aumenta com tempo" }, { t: "s", desc: "Home Run: +20% dano; Batting Stance: escudo de 5s ao acertar Super" }, { t: "h", desc: "Out of Bounds: ataques HC perfuram e voltam 20% menos dano; +2s duração" }] },
         ]
       },

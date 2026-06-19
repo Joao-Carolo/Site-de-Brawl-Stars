@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="BrawlZone — Todos os Brawlers de Brawl Stars. Habilidades, stats, Hypercharge e modos recomendados.">
+    <title>Brawlers — BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Brawlers.css">
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+
+    <nav>
+
+        <a href="../../Página inicial/Página inicial.html" class="nav-logo"><span
+                class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../../Página inicial/Página inicial.html">Início</a></li>
+            <li><a href="#" class="active">Brawlers</a></li>
+            <li><a href="../Skins/Skins.html">Skins</a></li>
+            <li><a href="../Buffies/Buffies.html">Buffies</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose">✕</button>
+        <a href="../Página inicial/Página inicial.html">Início</a>
+        <a href="#" class="active">Brawlers</a>
+        <a href="../Skins/Skins.html">Skins</a>
+        <a href="../Buffies/Buffies.html">Buffies</a>
+    </div>
+
+    <header class="page-header">
+        <div class="page-header-bg"></div>
+        <div class="page-header-content">
+            <p class="page-eyebrow">Update 67 · Abril 2026</p>
+            <h1 class="page-title">Todos os Brawlers</h1>
+            <p class="page-desc">Explora todos os Brawlers do jogo. Clica em qualquer um para ver habilidades, stats e
+                modos ideais.</p>
+            <!-- Contagens geradas automaticamente pelo JS -->
+            <div class="rarity-counts" id="rarityCounts"></div>
+        </div>
+    </header>
+
+    <div class="toolbar">
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">Todos</button>
+            <button class="filter-tab" data-filter="starter">Starter</button>
+            <button class="filter-tab" data-filter="rare">Rare</button>
+            <button class="filter-tab" data-filter="super_rare">Super Rare</button>
+            <button class="filter-tab" data-filter="epic">Epic</button>
+            <button class="filter-tab" data-filter="mythic">Mythic</button>
+            <button class="filter-tab" data-filter="legendary">Legendary</button>
+            <button class="filter-tab" data-filter="ultra">Ultra Leg.</button>
+        </div>
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="Procurar brawler...">
+        </div>
+    </div>
+
+    <div class="brawlers-container" id="brawlersContainer"></div>
+    <div class="no-results" id="noResults">
+        <div class="no-results-emoji">😅</div>
+        <h3>Nenhum brawler encontrado</h3>
+        <p>Tenta outro nome ou filtro.</p>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modal">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div class="modal-hero" id="modalHero">
+                <div class="modal-hero-bg" id="modalHeroBg"></div>
+                <div class="modal-emoji" id="modalEmoji"></div>
+                <div class="modal-info">
+                    <div class="modal-rarity-badge" id="modalRarityBadge"></div>
+                    <h2 class="modal-name" id="modalName"></h2>
+                    <p class="modal-class" id="modalClass"></p>
+                    <p class="modal-desc" id="modalDesc"></p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <div class="abilities-section-head">
+                        <div class="modal-section-title">Habilidades</div>
+                        <div class="modal-ability-btns" id="modalAbilityBtns" hidden></div>
+                    </div>
+                    <div class="abilities-grid" id="modalAbilities"></div>
+                </div>
+                <div class="modal-section">
+                    <div class="stats-header">
+                        <div class="modal-section-title" style="margin-bottom:0">Stats</div>
+                        <div class="stats-toggle" id="statsToggle">
+                            <span class="stats-toggle-label" id="statsToggleLabel">Hypercharge</span>
+                            <button type="button" class="toggle-btn" id="toggleBtn" onclick="toggleHyper()"
+                                aria-label="Alternar stats com Hypercharge" aria-pressed="false"></button>
+                        </div>
+                    </div>
+                    <div class="stat-bars" id="modalStats"></div>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-section-title">Modos Recomendados</div>
+                    <div class="modes-wrap" id="modalModes"></div>
+                </div>
+
+                <div class="modal-section">
+                    <div id="modalActions" style="display:flex;gap:.75rem;flex-wrap:wrap;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="Brawlers.js"></script>
+    <script src="../../Pesquisa.js"></script>
+    <script src="../../Tema.js"></script>
+</body>
+
+</html>

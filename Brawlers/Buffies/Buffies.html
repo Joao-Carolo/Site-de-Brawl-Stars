@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="BrawlZone — Tudo sobre os Buffies de Brawl Stars. Tipos, Claw Machines, efeitos por brawler e como desbloquear.">
+  <title>Buffies — BrawlZone Wiki</title>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="Buffies.css">
+
+</head>
+
+<body>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <a href="../../Página inicial/Página inicial.html">Início</a>
+    <a href="Brawlers.html">Brawlers</a>
+    <a href="Skins.html">Skins</a>
+    <a href="#" class="active">Buffies</a>
+  </div>
+
+  <nav>
+    <a href="../Página inicial/Página inicial.html" class="nav-logo"><span
+        class="star">★</span><span>BrawlZone</span></a>
+    <ul class="nav-links">
+      <li><a href="../Página inicial/Página inicial.html">Início</a></li>
+      <li><a href="Brawlers.html">Brawlers</a></li>
+      <li><a href="Skins.html">Skins</a></li>
+      <li><a href="#" class="active">Buffies</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <header class="page-header">
+    <div class="header-bg"></div>
+    <img src="../Imagens/Imagem Buffies/Buffie.png" alt=""
+      style="position:absolute;right:4rem;top:50%;transform:translateY(-50%);width:12rem;opacity:.06;pointer-events:none;">
+    <div class="header-inner">
+      <p class="page-eyebrow">Wiki — Sistema de Progressão</p>
+      <h1 class="page-title">
+        <img src="../Imagens/Imagem Buffies/Buffie.png" alt="Buffie"
+          style="width:4rem;height:4rem;object-fit:contain;vertical-align:middle">
+        Buffies
+      </h1>
+      <p class="page-desc">Tudo o que precisas de saber sobre os Buffies — o sistema de upgrades permanentes introduzido
+        no Update 65. Tipos, Claw Machines, efeitos por brawler e como desbloquear.</p>
+      <div class="type-pills">
+        <div class="type-pill pill-gadget">🟢 Gadget Buffie</div>
+        <div class="type-pill pill-star">🟡 Star Power Buffie</div>
+        <div class="type-pill pill-hyper">🟣 Hyper Buffie</div>
+        <div class="type-pill pill-bling">🩷 Bling Buffie</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="wiki-wrap">
+    <aside class="wiki-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-title">Navegação</div>
+        <ul class="sidebar-nav">
+          <li><a href="#oque" class="active-sec">📖 O que são?</a></li>
+          <li><a href="#tipos">🎨 Tipos de Buffie</a></li>
+          <li><a href="#obter">💰 Como Obter</a></li>
+          <li><a href="#machines">🎰 Claw Machines</a></li>
+          <li><a href="#brawlers">⚔️ Por Brawler</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-title">Informação Rápida</div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Introduzido</span><span
+            class="sidebar-stat-val">Update 65</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Data</span><span class="sidebar-stat-val">Dez
+            2025</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Custo Claw</span><span class="sidebar-stat-val">1K
+            Coins + 2K PP</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Buffies por Brawler</span><span
+            class="sidebar-stat-val">3</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Por Claw Machine</span><span
+            class="sidebar-stat-val">18 Buffies</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">1.º pull</span><span
+            class="sidebar-stat-val">GRÁTIS</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Desbloqueio</span><span
+            class="sidebar-stat-val">1.000 Trofeus</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Brawlers com Buffies</span><span
+            class="sidebar-stat-val">24+</span></div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-title">Claw Machines</div>
+        <ul class="sidebar-nav">
+          <li><a href="#machine-1">🤠 Ranger Ranch</a></li>
+          <li><a href="#machine-2">💀 Mortis' Mortuary</a></li>
+          <li><a href="#machine-3">🐂 Bull's Diner</a></li>
+          <li><a href="#machine-4">🌿 Rumble Jungle</a></li>
+          <li><a href="#machine-6">🕹️ Arcade Trio</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="wiki-content">
+
+      <section class="wiki-section reveal" id="oque">
+        <h2 class="wiki-h2"><span class="icon">📖</span> O que são os Buffies?</h2>
+        <div class="infobox">
+          <div class="infobox-title">Buffie</div>
+          <div class="infobox-emoji">
+            <img src="../Imagens/Imagem Buffies/Buffie.png" alt="Buffie"
+              style="width:4rem;height:4rem;object-fit:contain"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+            <span style="display:none">🦊</span>
+          </div>
+          <div class="infobox-row"><span class="infobox-label">Tipo</span><span class="infobox-val">Upgrade
+              Permanente</span></div>
+          <div class="infobox-row"><span class="infobox-label">Afeta</span><span class="infobox-val">Gadgets, Star
+              Powers, HC</span></div>
+          <div class="infobox-row"><span class="infobox-label">Ativação</span><span
+              class="infobox-val">Automática</span></div>
+          <div class="infobox-row"><span class="infobox-label">Custo base</span><span class="infobox-val">1.000 Coins +
+              2.000 PP</span></div>
+          <div class="infobox-row"><span class="infobox-label">Requisito</span><span class="infobox-val">1.000
+              Trofeus</span></div>
+          <div class="infobox-row"><span class="infobox-label">1.º Pull</span><span class="infobox-val"
+              style="color:var(--green)">GRÁTIS</span></div>
+        </div>
+        <p class="wiki-p">Os <strong>Buffies</strong> são upgrades permanentes introduzidos no <strong>Update 65
+            (Dezembro 2025)</strong> que melhoram as capacidades dos Gadgets, Star Powers e Hypercharge dos Brawlers.
+          São representados visualmente como <strong>pequenas porta-chaves</strong> que o Brawler carrega consigo.</p>
+        <p class="wiki-p">Ao contrário dos Gears, os Buffies não precisam de ser equipados manualmente — uma vez
+          desbloqueados ficam <strong>ativos permanentemente</strong>. Cada Brawler tem 3 Buffies disponíveis e podes
+          tê-los todos ativos ao mesmo tempo.</p>
+        <p class="wiki-p">Os Buffies substituíram os <strong>Gears Epic e Mythic</strong> dos Brawlers que os receberam
+          — esses Gears foram removidos e os jogadores receberam reembolso total em Coins.</p>
+        <div class="wiki-box tip">
+          <div class="wiki-box-icon">💡</div>
+          <div class="wiki-box-text">O <strong>primeiro pull de cada Claw Machine é sempre GRÁTIS</strong>. Aproveita
+            sempre o pull gratuito antes de gastar Coins e Power Points.</div>
+        </div>
+      </section>
+
+      <section class="wiki-section reveal" id="tipos">
+        <h2 class="wiki-h2"><span class="icon">🎨</span> Tipos de Buffie</h2>
+        <p class="wiki-p">Existem <strong>4 tipos de Buffies</strong>, cada um com uma cor de porta-chave diferente. Os
+          3 primeiros têm efeitos de gameplay; o quarto é puramente cosmético.</p>
+        <div class="buffie-types">
+          <div class="buffie-type-card gadget">
+            <div class="bt-keychain">🟢</div>
+            <div class="bt-name">Gadget Buffie</div>
+            <div class="bt-desc">Melhora ambos os Gadgets do Brawler. Pode adicionar um segundo efeito, tornar o Gadget
+              apontável com joystick, ou amplificar o efeito existente.</div>
+            <div class="bt-color">Porta-chave Verde</div>
+          </div>
+          <div class="buffie-type-card star">
+            <div class="bt-keychain">🟡</div>
+            <div class="bt-name">Star Power Buffie</div>
+            <div class="bt-desc">Melhora ambas as Star Powers do Brawler. Geralmente melhora a fraqueza da Star Power ou
+              adiciona um efeito extra complementar.</div>
+            <div class="bt-color">Porta-chave Amarela</div>
+          </div>
+          <div class="buffie-type-card hyper">
+            <div class="bt-keychain">🟣</div>
+            <div class="bt-name">Hyper Buffie</div>
+            <div class="bt-desc">Melhora o Hypercharge. Todos os Hyper Buffies adicionam <strong>+2 segundos de
+                duração</strong> ao Hypercharge e aumentam a eficácia do ataque base durante o mesmo.</div>
+            <div class="bt-color">Porta-chave Roxa</div>
+          </div>
+          <div class="buffie-type-card bling">
+            <div class="bt-keychain">🩷</div>
+            <div class="bt-name">Bling Buffie</div>
+            <div class="bt-desc">Cosmético exclusivo — não tem efeito de gameplay. Só disponível após desbloquear os 18
+              Buffies de uma Claw Machine. Custa 10.000 Bling por pull.</div>
+            <div class="bt-color">Porta-chave Rosa (Cosmético)</div>
+          </div>
+        </div>
+        <div class="wiki-box info">
+          <div class="wiki-box-icon">ℹ️</div>
+          <div class="wiki-box-text">Todos os <strong>Hyper Buffies</strong> partilham um efeito base universal:
+            <strong>+2 segundos de duração do Hypercharge</strong> e aumento da eficácia do ataque base durante o HC. O
+            efeito específico de cada um varia por Brawler.
+          </div>
+        </div>
+      </section>
+
+      <section class="wiki-section reveal" id="obter">
+        <h2 class="wiki-h2"><span class="icon">💰</span> Como Obter Buffies</h2>
+        <p class="wiki-p">Existem várias formas de desbloquear Buffies. O sistema de Buffies fica disponível para um
+          Brawler quando este atinge <strong>1.000 Trofeus</strong>.</p>
+        <div class="how-grid">
+          <div class="how-card">
+            <div class="how-icon">
+              <img src="../Imagens/Imagem Buffies/Como obter/Máquina.png" alt="Claw Machine"
+                style="width:2rem;height:2rem;object-fit:contain"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <span style="display:none">🎰</span>
+            </div>
+            <div class="how-title">Claw Machine</div>
+            <div class="how-desc">A forma principal. Cada pull é aleatório mas garante 1 Buffie. O primeiro pull de cada
+              máquina é sempre grátis.</div>
+            <div class="how-cost">1.000 Coins + 2.000 PP</div>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">
+              <img src="../Imagens/Imagem Buffies/Como obter/Chave.png" alt="Buffie Key"
+                style="width:2rem;height:2rem;object-fit:contain"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <span style="display:none">🔑</span>
+            </div>
+            <div class="how-title">Buffie Key (Vault)</div>
+            <div class="how-desc">Usa uma Buffie Key no Brawl Pass Vault para escolher o Buffie exato que queres — sem
+              aleatório.</div>
+            <div class="how-cost">1 Buffie Key</div>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">
+              <img src="../Imagens/Imagem Buffies/Como obter/Gemas.png" alt="Gems"
+                style="width:2rem;height:2rem;object-fit:contain"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <span style="display:none">💎</span>
+            </div>
+            <div class="how-title">Gems</div>
+            <div class="how-desc">Podes comprar Buffies específicos diretamente com Gems na loja dedicada.</div>
+            <div class="how-cost">Varia por raridade</div>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">
+              <img src="../Imagens/Imagem Buffies/Como obter/Ultra chaos drop.png" alt="Ultra Chaos Drop"
+                style="width:2rem;height:2rem;object-fit:contain"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <span style="display:none">💥</span>
+            </div>
+            <div class="how-title">Ultra Chaos Drop</div>
+            <div class="how-desc">Há cerca de 15% de chance de obter um token de Buffie a partir de um Chaos Drop Mythic
+              ou Legendary.</div>
+            <div class="how-cost">~15% chance (Mythic/Leg.)</div>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">
+              <img src="../Imagens/Imagem Buffies/Como obter/Mega quest.png" alt="Mega Quest"
+                style="width:2rem;height:2rem;object-fit:contain"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+              <span style="display:none">🎯</span>
+            </div>
+            <div class="how-title">Mega Quest Mensal</div>
+            <div class="how-desc">A partir do Update 66, cada temporada tem uma Mega Quest que dá um Buffie aleatório
+              como recompensa.</div>
+            <div class="how-cost">Grátis (completar quest)</div>
+          </div>
+          <div class="how-card">
+            <div class="how-icon">🩷</div>
+            <div class="how-title">Bling Buffie (Cosmético)</div>
+            <div class="how-desc">Depois de teres os 18 Buffies de uma Claw Machine, podes puxar Bling Buffies
+              cosméticos.</div>
+            <div class="how-cost">10.000 Bling</div>
+          </div>
+        </div>
+        <div class="wiki-box warn">
+          <div class="wiki-box-icon">⚠️</div>
+          <div class="wiki-box-text">Na Claw Machine <strong>não podes escolher qual Buffie recebes</strong> — é
+            aleatório. Se queres um Buffie específico, usa uma <strong>Buffie Key no Vault</strong> ou compra com Gems.
+          </div>
+        </div>
+        <h3 style="font-family:'Russo One',sans-serif;font-size:1.1rem;margin:2rem 0 1rem;">Custo total para completar
+          uma Claw Machine</h3>
+        <table class="wiki-table">
+          <tr>
+            <th>Método</th>
+            <th>Custo por Pull</th>
+            <th>Pulls Necessários</th>
+            <th>Custo Total (18 Buffies)</th>
+          </tr>
+          <tr>
+            <td>Claw Machine</td>
+            <td>1.000 Coins + 2.000 PP</td>
+            <td>18 (1 grátis)</td>
+            <td>17.000 Coins + 34.000 PP</td>
+          </tr>
+          <tr>
+            <td>Buffie Keys</td>
+            <td>1 Key</td>
+            <td>18</td>
+            <td>18 Buffie Keys</td>
+          </tr>
+          <tr>
+            <td>Bling Buffie (após completar)</td>
+            <td>10.000 Bling</td>
+            <td>Ilimitado</td>
+            <td>10.000 Bling por cosmético</td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="wiki-section reveal" id="machines">
+        <h2 class="wiki-h2"><span class="icon">🎰</span> Claw Machines</h2>
+        <p class="wiki-p">Cada Claw Machine contém os Buffies de <strong>6 Brawlers</strong> (18 Buffies no total). São
+          organizadas em <strong>dois trios de Brawlers relacionados</strong>. Uma nova máquina chega em cada update
+          principal.</p>
+        <div
+          style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center;justify-content:space-between"
+          id="buffieTypeFilters">
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <button class="type-filter active" data-type="all">Todos</button>
+            <button class="type-filter" data-type="g">🟢 Gadget</button>
+            <button class="type-filter" data-type="s">🟡 Star Power</button>
+            <button class="type-filter" data-type="h">🟣 Hyper</button>
+          </div>
+          <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="buffieSearch" class="search-input" placeholder="Procurar brawler...">
+          </div>
+        </div>
+        <div class="machines-grid">
+
+          <!-- MACHINE 1 -->
+          <div class="machine-card reveal" id="machine-1">
+            <div class="machine-header">
+              <div class="machine-icon">
+                <img src="../Imagens/Imagem Buffies/Máquinas/Ranger Ranch.png" alt="Ranger Ranch"
+                  style="width:2.5rem;height:2.5rem;object-fit:contain"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <span style="display:none">🤠</span>
+              </div>
+              <div class="machine-info">
+                <div class="machine-name">Ranger Ranch Claw Machine</div>
+                <div class="machine-update">Update 65 · Dezembro 2025</div>
+              </div>
+              <div class="machine-status status-past">Passado</div>
+            </div>
+            <div class="machine-brawlers" id="machine1-brawlers"></div>
+          </div>
+
+          <!-- MACHINE 2 -->
+          <div class="machine-card reveal" id="machine-2">
+            <div class="machine-header">
+              <div class="machine-icon">💀</div>
+              <div class="machine-info">
+                <div class="machine-name">Mortis' Mortuary Claw Machine</div>
+                <div class="machine-update">Update 65 · Dezembro 2025</div>
+              </div>
+              <div class="machine-status status-past">Passado</div>
+            </div>
+            <div class="machine-brawlers" id="machine2-brawlers"></div>
+          </div>
+
+          <!-- MACHINE 3 -->
+          <div class="machine-card reveal" id="machine-3">
+            <div class="machine-header">
+              <div class="machine-icon">🐂</div>
+              <div class="machine-info">
+                <div class="machine-name">Bull's Diner Claw Machine</div>
+                <div class="machine-update">Update 66 · Fevereiro 2026 (Retropolis Trio)</div>
+              </div>
+              <div class="machine-status status-past">Passado</div>
+            </div>
+            <div class="machine-brawlers" id="machine3-brawlers"></div>
+          </div>
+
+          <!-- MACHINE 4 -->
+          <div class="machine-card reveal" id="machine-4">
+            <div class="machine-header">
+              <div class="machine-icon">🌿</div>
+              <div class="machine-info">
+                <div class="machine-name">Rumble Jungle Claw Machine</div>
+                <div class="machine-update">Update 66 · Fevereiro 2026 (Rumble Jungle Trio)</div>
+              </div>
+              <div class="machine-status status-past">Passado</div>
+            </div>
+            <div class="machine-brawlers" id="machine4-brawlers"></div>
+          </div>
+
+          <!-- MACHINE 5 -->
+          <div class="machine-card reveal" id="machine-5">
+            <div class="machine-header">
+              <div class="machine-icon">🕹️</div>
+              <div class="machine-info">
+                <div class="machine-name">Arcade Trio Claw Machine</div>
+                <div class="machine-update">Update 67 · Abril 2026</div>
+              </div>
+              <div class="machine-status status-active">⚡ Ativo</div>
+            </div>
+            <div class="machine-brawlers" id="machine5-brawlers"></div>
+            <div style="padding:1rem 2rem;border-top:1px solid rgba(255,255,255,.06)">
+              <div class="wiki-box info" style="margin:0">
+                <div class="wiki-box-icon">ℹ️</div>
+                <div class="wiki-box-text">Os Buffies do <strong>Arcade Trio</strong> (Brock, 8-Bit e Darryl) chegaram
+                  com o Update 67. Os outros 3 Brawlers da máquina ainda não foram confirmados oficialmente.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="Buffies.js"></script>
+  <script src="../../Pesquisa.js"></script>
+  <script src="../../Tema.js"></script>
+</body>
+
+</html>

@@ -131,7 +131,7 @@ function openBrawlerModal(name) {
     <div class="modal-row"><span class="modal-row-label">HP (PL11)</span><span class="modal-row-val">${b.hp.toLocaleString()}</span></div>
     <div class="modal-row"><span class="modal-row-label">Dano</span><span class="modal-row-val">${b.dmg.toLocaleString()}</span></div>
     ${b.novo ? '<div class="modal-row"><span class="modal-row-label">Estado</span><span class="modal-row-val" style="color:var(--orange)">🆕 Novo!</span></div>' : ""}
-    <a href="../Brawlers/Brawlers Específicos/${b.name}.html" class="modal-btn">Ver todos os stats →</a>
+    <a href="../Brawlers/Coisas específicas/Brawlers Específicos/${b.name}/${b.name}.html" class="modal-btn">Ver todos os stats →</a>
     <a href="../Brawlers/Skins.html?brawler=${b.name}" class="modal-btn" style="margin-top:.5rem;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)">🎨 Ver todas as skins →</a>
     ${BRAWLERS_COM_BUFFIES.includes(b.name) ? `<a href="../Brawlers/Buffies.html#${BUFFIE_MACHINE[b.name]}" class="modal-btn" style="margin-top:.5rem;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)">🦊 Ver Buffies →</a>` : ""}
 `;

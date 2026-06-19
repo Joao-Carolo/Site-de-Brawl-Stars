@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="BrawlZone — Todas as skins de Brawl Stars. Filtra por raridade, tema, brawler ou preço.">
+  <title>Skins — BrawlZone Wiki</title>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="Skins.css">
+
+</head>
+
+<body>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <a href="../Página inicial/Página inicial.html">Início</a>
+    <a href="Brawlers.html">Brawlers</a>
+    <a href="#">Skins</a>
+    <a href="Buffies.html">Buffies</a>
+  </div>
+
+  <nav>
+    <a href="../Página inicial/Página inicial.html" class="nav-logo"><span
+        class="star">★</span><span>BrawlZone</span></a>
+    <ul class="nav-links">
+      <li><a href="../Página inicial/Página inicial.html">Início</a></li>
+      <li><a href="Brawlers.html">Brawlers</a></li>
+      <li><a href="#">Skins</a></li>
+      <li><a href="Buffies.html">Buffies</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <header class="page-header">
+    <div class="header-bg"></div>
+    <div class="header-inner">
+      <p class="page-eyebrow">Wiki — Cosméticos</p>
+      <h1 class="page-title">🎨 Skins</h1>
+      <p class="page-desc">Todas as skins de Brawl Stars numa só página. Filtra por raridade, tema, brawler ou preço.
+        Clica em qualquer skin para ver os detalhes completos.</p>
+      <div class="header-stats">
+        <div class="hstat"><span class="hstat-num">700+</span><span class="hstat-label">Skins totais</span></div>
+        <div class="hstat"><span class="hstat-num">6</span><span class="hstat-label">Raridades</span></div>
+        <div class="hstat"><span class="hstat-num">25</span><span class="hstat-label">Skins do Colt (recorde)</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="rarity-bar">
+    <div class="rarity-bar-inner">
+      <div class="rarity-info-pill ri-rare">
+        <div class="dot" style="background:var(--c-rare)"></div>Rare — 29 Gems / 1.000 Bling
+      </div>
+      <div class="ri-sep"></div>
+      <div class="rarity-info-pill ri-super">
+        <div class="dot" style="background:var(--c-super)"></div>Super Rare — 79 Gems / 3.000 Bling
+      </div>
+      <div class="ri-sep"></div>
+      <div class="rarity-info-pill ri-epic">
+        <div class="dot" style="background:var(--c-epic)"></div>Epic — 149 Gems / 5.000 Bling
+      </div>
+      <div class="ri-sep"></div>
+      <div class="rarity-info-pill ri-mythic">
+        <div class="dot" style="background:var(--c-mythic)"></div>Mythic — 249 Gems
+      </div>
+      <div class="ri-sep"></div>
+      <div class="rarity-info-pill ri-leg">
+        <div class="dot" style="background:var(--c-leg)"></div>Legendary — 299 Gems
+      </div>
+      <div class="ri-sep"></div>
+      <div class="rarity-info-pill ri-hyper">
+        <div class="dot" style="background:var(--c-hyper)"></div>Hypercharge — 499 Gems
+      </div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="filter-group" id="rarityFilters">
+      <button class="filter-tab active" data-rarity="all">Todas</button>
+      <button class="filter-tab" data-rarity="rare">Rare</button>
+      <button class="filter-tab" data-rarity="super">Super Rare</button>
+      <button class="filter-tab" data-rarity="epic">Epic</button>
+      <button class="filter-tab" data-rarity="mythic">Mythic</button>
+      <button class="filter-tab" data-rarity="legendary">Legendary</button>
+      <button class="filter-tab" data-rarity="hyper">Hypercharge</button>
+      <button class="filter-tab" data-rarity="true">True Gold/Silver</button>
+      <button class="filter-tab" data-rarity="brawlpass">Brawl Pass</button>
+    </div>
+  </div>
+  <div class="toolbar" style="padding-top:0;gap:.75rem;">
+    <div class="filter-theme-group" id="themeFilters">
+      <button class="theme-tab active" data-theme="all">🎨 Todos os Temas</button>
+      <button class="theme-tab" data-theme="madevil">🎸 MadEvil</button>
+      <button class="theme-tab" data-theme="strangerthings">👾 Stranger Things</button>
+      <button class="theme-tab" data-theme="toystory">🚀 Toy Story</button>
+      <button class="theme-tab" data-theme="brawlidays">🎄 Brawlidays</button>
+      <button class="theme-tab" data-theme="retropolis">🌃 Retropolis</button>
+      <button class="theme-tab" data-theme="lunar">🐉 Lunar Brawl</button>
+      <button class="theme-tab" data-theme="championship">🏆 Championship</button>
+      <button class="theme-tab" data-theme="sandsoftime">🏜️ Sands of Time</button>
+      <button class="theme-tab" data-theme="angels">😇 Angels vs Demons</button>
+      <button class="theme-tab" data-theme="patrulhastarr">🌟 Patrulha Starr</button>
+      <button class="theme-tab" data-theme="craquesdobrawl">⚽ Craques do Brawl</button>
+    </div>
+    <div style="display:flex;gap:.75rem;align-items:center;">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" id="searchInput" placeholder="Nome, brawler...">
+      </div>
+      <div class="view-toggle">
+        <button class="view-btn active" id="btnLarge" title="Grade grande">⊞</button>
+        <button class="view-btn" id="btnSmall" title="Grade pequena">⊟</button>
+        <button class="view-btn" id="btnList" title="Lista">☰</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-info" id="resultsInfo"></div>
+
+  <div class="skins-container">
+    <div class="skins-grid grid-large" id="skinsGrid"></div>
+    <div class="no-results" id="noResults">
+      <div class="no-results-emoji">🎨</div>
+      <h3>Nenhuma skin encontrada</h3>
+      <p>Tenta outro filtro ou termo de pesquisa.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-hero" id="modalHero">
+        <div class="modal-hero-bg" id="modalHeroBg"></div>
+        <div class="modal-emoji" id="modalEmoji"></div>
+        <div class="modal-skin-name" id="modalSkinName"></div>
+        <div class="modal-brawler" id="modalBrawler"></div>
+        <div class="modal-rarity-bar" id="modalRarityBar"></div>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="Skins.js"></script>
+  <script src="../../Pesquisa.js"></script>
+  <script src="../../Tema.js"></script>
+</body>
+
+</html>

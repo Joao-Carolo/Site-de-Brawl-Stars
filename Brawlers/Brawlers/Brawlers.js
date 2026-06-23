@@ -123,10 +123,10 @@ const BRAWLER_BUFFIES = {
         {
             t: "s", desc: "", poderes: [
                 { nome: "Xeque-Mate", desc: "Com projéteis testados e aprovados por Draco, Shelly deixa uma área em chamas com o Super." },
-                { nome: "Poder 2", desc: "Aumenta em 15% a velocidade de movimento durante 3 segundos." },
+                { nome: "Tônico Revigorante", desc: "Aumenta em 15% a velocidade de movimento durante 3 segundos." },
             ]
         },
-        { t: "h", desc: "A velocidade do projétil do ataque principal aumenta con; +2s de duração" },
+        { t: "h", nome: "Cano Duplo", desc: "A velocidade do projétil do ataque principal aumenta con; +2s de duração" },
     ],
     Nita: [
         {
@@ -141,7 +141,7 @@ const BRAWLER_BUFFIES = {
                 { nome: "Urso Hiperativo", desc: "Invocar o urso dá à Nita +25% de velocidade de recarga por 3s." },
             ]
         },
-        { t: "h", desc: "Os ataques da Nita têm velocidade, amplitude e alcance maiores; +2s de duração" }],
+        { t: "h", nome: "HiperUrso", desc: "Os ataques da Nita têm velocidade, amplitude e alcance maiores; +2s de duração" }],
     Colt: [{ t: "g", desc: "Cada bala rouba 1 munição ao inimigo atingido" }, { t: "s", desc: "Slick Boots: mais velocidade em sprint; Magnum Special: mais dano ao longe" }, { t: "h", desc: "Balas ficam mais rápidas durante HC; +2s de duração" }],
     Spike: [{ t: "g", desc: "Popping Pincushion faz raiz nos inimigos se todos os espinhos acertarem" }, { t: "s", desc: "Fertilize cura mais; Curveball aumenta mais a curva dos espinhos" }, { t: "h", desc: "Ataques básicos explodem duas vezes durante HC; +2s de duração" }],
     Mortis: [{ t: "g", desc: "Blood Boomerang: ataque fantasma atinge a mesma área com delay; dash passa atrás do inimigo" }, { t: "s", desc: "Creepy Harvest cura mais por kill; Coiled Snake tem ainda mais alcance" }, { t: "h", desc: "Clone de sombra copia o próximo ataque — dano em dobro em burst; +2s de duração" }],
@@ -209,8 +209,9 @@ function renderAll() {
     src="../Imagens/Skins (imagens)/${b.name}/${b.name} Padrão.png" 
     alt="${b.name}"
     class="brawler-emoji brawler-img"
-    onerror="this.outerHTML='<div class=\'brawler-emoji\'>${b.emoji}</div>'"
+    onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
 >
+<div class="brawler-emoji" style="display:none">${b.emoji}</div>
 <div class="brawler-name">${b.name}</div>
 <div class="rarity-pill ${b.rarity}">${RARITY_LABELS[b.rarity]}</div>
 <div class="brawler-class">${b.cls}</div>`;
@@ -332,22 +333,48 @@ function buildAbilitiesHtml(b, opts = {}) {
         });
     }).join("");
 
-    const buffieStar = showBuffies && getBuffieByType(b, "s");
-    const buffieGadget = showBuffies && getBuffieByType(b, "g");
-    html += buffieStar ? buildBuffieCardHtml(buffieStar) : buildRows(starRows);
-    html += buffieGadget ? buildBuffieCardHtml(buffieGadget) : buildRows(gadgetRows);
+    if (showBuffies && getBuffieByType(b, "g")) {
+        const buffieG = getBuffieByType(b, "g");
+        html += (buffieG.acessorios || []).map(a => buildAbilityCardHtml({
+            label: abilityLabelHtml("🔧", `${IMG_BASE}/${b.name}/${a.nome} (Buffie).png`, a.nome),
+            text: `${a.nome} — ${a.desc}`
+        })).join("");
+    } else {
+        html += buildRows(gadgetRows);
+    }
+
+    if (showBuffies && getBuffieByType(b, "s")) {
+        const buffieS = getBuffieByType(b, "s");
+        html += (buffieS.poderes || []).map(a => buildAbilityCardHtml({
+            label: abilityLabelHtml("⭐", `${IMG_BASE}/${b.name}/${a.nome} (Buffie).png`, a.nome),
+            text: `${a.nome} — ${a.desc}`
+        })).join("");
+    } else {
+        html += buildRows(starRows);
+    }
 
     const buffieHyper = showHyper && showBuffies && getBuffieByType(b, "h");
     if (showHyper) {
         const hyperText = b.hyper || "Hypercharge — Informação em breve.";
         const title = hyperText.split(" — ")[0];
         const desc = hyperText.split(" — ").slice(1).join(" — ") || "";
-        const hyperImg = `${IMG_BASE}/${encodeURIComponent(b.name)}/Hipercarga.png`;
-        html += buffieHyper ? buildBuffieCardHtml(buffieHyper) : `<div class="ability-card hyper">
-                    <div class="ability-label" style="display:flex;align-items:center;gap:.3rem">${abilityLabelHtml("💜", hyperImg, "Hypercharge")}</div>
-                    <div class="ability-name">${title}</div>
-                    <div class="ability-desc">${desc}</div>
-                </div>`;
+        const bh = getBuffieByType(b, "h");
+        const hyperImg = (showBuffies && bh && bh.nome)
+            ? `${IMG_BASE}/${b.name}/${bh.nome} (Buffie).png`
+            : `${IMG_BASE}/${encodeURIComponent(b.name)}/Hipercarga.png`;
+        if (buffieHyper) {
+            html += `<div class="ability-card hyper">
+            <div class="ability-label" style="display:flex;align-items:center;gap:.3rem">${abilityLabelHtml("💜", hyperImg, "Hypercharge")}</div>
+            <div class="ability-name">${buffieHyper.nome || title}</div>
+            <div class="ability-desc">${buffieHyper.desc || desc}</div>
+        </div>`;
+        } else {
+            html += `<div class="ability-card hyper">
+            <div class="ability-label" style="display:flex;align-items:center;gap:.3rem">${abilityLabelHtml("💜", hyperImg, "Hypercharge")}</div>
+            <div class="ability-name">${title}</div>
+            <div class="ability-desc">${desc}</div>
+        </div>`;
+        }
     }
 
     if (showBuffies && !getBuffieByType(b, "g") && !getBuffieByType(b, "s") && !getBuffieByType(b, "h")) {
@@ -485,8 +512,8 @@ function openModal(b) {
     src="../Imagens/Skins (imagens)/${b.name}/${b.name} Padrão.png"
     alt="${b.name}"
     style="width:5.5rem;height:5.5rem;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,.5))"
-    onerror="this.outerHTML='${b.emoji}'"
->`;
+    onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+><span style="display:none">${b.emoji}</span>`
     document.getElementById("modalHeroBg").style.background = `radial-gradient(ellipse 80% 80% at 20% 50%,${color},transparent)`;
     document.getElementById("modalRarityBadge").textContent = RARITY_LABELS[b.rarity];
     document.getElementById("modalRarityBadge").style.cssText = `background:${color}22;border:1px solid ${color}55;color:${color}`;

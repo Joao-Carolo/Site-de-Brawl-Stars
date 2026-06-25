@@ -420,9 +420,20 @@
         font-size: .9rem;
         outline: none;
         transition: border-color .2s, background .2s;
+        appearance: none;
+        cursor: pointer;
     }
 
-    #sortSelect option {
+    .sort-select:hover {
+        border-color: rgba(255, 255, 255, .3);
+    }
+
+    .sort-select:focus {
+        border-color: var(--yellow);
+        background: rgba(255, 255, 255, .09);
+    }
+
+    .sort-select option {
         background: var(--dark2);
         color: #fff;
     }

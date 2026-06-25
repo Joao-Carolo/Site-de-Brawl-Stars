@@ -1,7 +1,7 @@
 const BRAWLERS = [
     { name: "Shelly", emoji: "🔫", rarity: "starter", cls: "Damage Dealer", isNew: false, desc: "Shelly é a lutadora perfeita: confiável, durona e imbatível com a espingarda. Com tantas qualidades assim, ela nunca entendeu como o Colt virou o queridinho da galera...", attack: "Chumbo Grosso — A arma da Shelly dispara chumbinhos em grande amplitude e longo alcance. Quanto mais chumbinhos acertarem o alvo, maior o dano.", super: "SuperBala — A Superbala da Shelly oblitera coberturas e inimigos. Os sobreviventes são empurrados para longe.", hyper: "Cano Duplo — O raio da Superbala fica 33% maior.", sp1: "Xeque-Mate — A Superbala da Shelly diminui a velocidade do inimigo por 2s!", sp2: "Tônico Revigorante — Quando a sua saúde está abaixo de 40%, Shelly recupera 2340 pontos de saúde em um piscar de olhos, mas é preciso esperar 15 segundos atens que a habilidade esteja disponível novamente.", g1: "Disparada — Shelly corre para a frente ou para a direção escolhida e recarrega totalmente o seu ataque principal.", g2: "Pombos de Argila — A área do ataque da Shelly fica mais focada, e o alcance aumenta. Cada ativação dá 3 usos.", hp: 7800, dmg: 3000, range: 8, speed: 720, modes: ["Showdown", "Heist", "Brawl Ball"] },
     { name: "Nita", emoji: "🐻", rarity: "rare", cls: "Damage Dealer", isNew: false, desc: "Nita é feroz e nunca desiste de uma luta. O urso de pelúcia que ela usa como gorro dá uma dica aos adversários: não se aproxime do urso!", attack: "Tremor — Nita cria um terremoto que causa danos aos inimigos atingidos pelo seu tremor", super: "Garra de Urso — Nita invoca o espírito do Grande Bebê Urso para lhe dar uma mãozinha na caça aos inimigos.", hyper: "HiperUrso — Bruce aumenta de tamanho e ganha 15% a mais de velocidade de movimento e 20% a mais de saúde", sp1: "Amigo-Urso — Nita recupera 1092 pontos de saúde cada vez que o urso acerta um Brawler inimigo. Quando ela inflige dano a Brawlers inimigos, o urso recupera 1094 pontos de saúde.", sp2: "Urso Hiperativo — O urso da Nita ataca mais depressa, com o tempo entre ataques reduzido em 60%.", g1: "Garra de Urso — Nita ordena que o seu urso golpeie violentamente o chão, atordoando todoa os inimigos dentro do alcance.", g2: "Pele Protetora — Pelos próximos 3s, o urso  da Nita ganha 35% de proteção contra dano.", hp: 8400, dmg: 1920, range: 6, speed: 720, modes: ["Showdown", "Hot Zone", "Gem Grab"] },
-    { name: "Colt", emoji: "🤠", rarity: "rare", cls: "Damage Dealer", isNew: false, desc: "Todo mundo que visita o Starr Park quer ver o Colt de perto, pois o cara é boa-pinta, carismático e cheio de truques com suas pistolas. A uníca que não entende o sucesso dele é a Shelly.", attack: "Esvaziando o Tambor — Colt dispara seis tiros rápidos de longo alcance com seus revólveres.", super: "Trem-Bala — Colt dispara uma rajada de balas de longo alcance que destrói cobertura.", hyper: "Empunhadura Dupla — O raio de ação do Trem-Bala fica 120% maior.", sp1: "Botas Ligeiras — A velocidade de locomoção de Colt aumenta em 13%.", sp2: "Magnum Especial — O alcance e a velocidade do ataque do Colt aumentam em 11%.", g1: "Recarga Rápida — Colt dá dois disparos rápidos que desaceleram os alvos e causam 640 de dano.", g2: "Bala de Prata — Colt dá um disparo que destroí elementos do ambiente e atravessa Brawlers. Causa 1200 de dano e consome munição", hp: 2800, dmg: 460, range: 10, speed: 720, modes: ["Heist", "Brawl Ball", "Bounty"] },
+    { name: "Colt", emoji: "🤠", rarity: "rare", cls: "Damage Dealer", isNew: false, desc: "Todo mundo que visita o Starr Park quer ver o Colt de perto, pois o cara é boa-pinta, carismático e cheio de truques com suas pistolas. A uníca que não entende o sucesso dele é a Shelly.", attack: "Esvaziando o Tambor — Colt dispara seis tiros rápidos de longo alcance com seus revólveres.", super: "Trem-Bala — Colt dispara uma rajada de balas de longo alcance que destrói cobertura.", hyper: "Empunhadura Dupla — O raio de ação do Trem-Bala fica 120% maior.", sp1: "Botas Ligeiras — A velocidade de locomoção de Colt aumenta em 13%.", sp2: "Magnum Especial — O alcance e a velocidade do ataque do Colt aumentam em 11%.", g1: "Recarga Rápida — Colt dá dois disparos rápidos que desaceleram os alvos e causam 640 de dano.", g2: "Bala de Prata — Colt dá um disparo que destroí elementos do ambiente e atravessa Brawlers. Causa 1200 de dano e consome munição", hp: 6200, dmg: 4320, range: 9, speed: 720, modes: ["Heist", "Brawl Ball", "Bounty"] },
     { name: "Bull", emoji: "🐂", rarity: "rare", cls: "Tank", isNew: false, desc: "Um tanque com espingarda dupla. Dano massivo ao perto, usa arbustos para emboscar.", attack: "Double-Barreled — Espingarda dupla.", super: "Bulldozer — Carrega destruindo obstáculos.", hyper: "", sp1: "Berserker — Recarga rápida abaixo de 40% HP.", sp2: "Tough Guy — Escudo ao ativar o Super.", hp: 6000, dmg: 940, range: 4, speed: 720, modes: ["Heist", "Showdown", "Brawl Ball"] },
     { name: "Brock", emoji: "🚀", rarity: "rare", cls: "Sniper", isNew: false, desc: "Especialista em rockets com grande alcance. Destrói paredes com facilidade.", attack: "Rockin' Rocket — Rocket que destrói obstáculos.", super: "Rocket Rain — Chuva de rockets em área.", sp1: "Incendiary — Chamas no Super.", sp2: "Rocket Fuel — Mais destruição de paredes.", hp: 2800, dmg: 700, range: 13, speed: 720, modes: ["Bounty", "Heist", "Siege"] },
     { name: "El Primo", emoji: "🤼", rarity: "rare", cls: "Tank", isNew: false, desc: "Um luchador com punhos de aço. Tanque ágil graças ao salto do Super.", attack: "Fists of Fury — Soco em cone.", super: "Flying Elbow Drop — Salta causando dano de área.", sp1: "El Fuego — Super deixa chamas.", sp2: "Meteor Rush — Velocidade após Super.", hp: 6400, dmg: 760, range: 4, speed: 720, modes: ["Showdown", "Brawl Ball", "Hot Zone"] },
@@ -185,14 +185,55 @@ let currentSort = "rarity-asc";
 
 document.getElementById("sortSelect").addEventListener("change", e => {
     currentSort = e.target.value;
+    currentFilter = "all";
+    renderFilterTabs();
     renderAll();
 });
+
+function renderFilterTabs() {
+    const container = document.getElementById("rarityFilters");
+    if (currentSort === "class") {
+        const classes = [...new Set(BRAWLERS.map(b => b.cls || "Sem Classe"))].sort();
+        container.innerHTML = `<button class="filter-tab active" data-filter="all">Todas</button>` +
+            classes.map(c => `<button class="filter-tab" data-filter="${c}">${c}</button>`).join("");
+    } else if (currentSort === "alpha") {
+        const letters = [...new Set(BRAWLERS.map(b => b.name[0].toUpperCase()))].sort();
+        container.innerHTML = `<button class="filter-tab active" data-filter="all">Todas</button>` +
+            letters.map(l => `<button class="filter-tab" data-filter="${l}">${l}</button>`).join("");
+    } else {
+        container.innerHTML = `
+            <button class="filter-tab active" data-filter="all">Todos</button>
+            <button class="filter-tab" data-filter="starter">Starter</button>
+            <button class="filter-tab" data-filter="rare">Rare</button>
+            <button class="filter-tab" data-filter="super_rare">Super Rare</button>
+            <button class="filter-tab" data-filter="epic">Epic</button>
+            <button class="filter-tab" data-filter="mythic">Mythic</button>
+            <button class="filter-tab" data-filter="legendary">Legendary</button>
+            <button class="filter-tab" data-filter="ultra">Ultra Leg.</button>`;
+    }
+    // Re-attach listeners
+    container.querySelectorAll(".filter-tab").forEach(tab => {
+        tab.addEventListener("click", () => {
+            container.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+            currentFilter = tab.dataset.filter;
+            renderAll();
+        });
+    });
+}
 
 function renderAll() {
     const container = document.getElementById("brawlersContainer");
     container.innerHTML = "";
     const s = currentSearch.toLowerCase().trim();
-    const filtered = BRAWLERS.filter(b => (currentFilter === "all" || b.rarity === currentFilter) && (s === "" || b.name.toLowerCase().includes(s)));
+    const filtered = BRAWLERS.filter(b => {
+        const filterMatch = currentFilter === "all" ||
+            (currentSort === "class" ? b.cls === currentFilter :
+                currentSort === "alpha" ? b.name[0].toUpperCase() === currentFilter :
+                    b.rarity === currentFilter);
+        const searchMatch = s === "" || b.name.toLowerCase().includes(s);
+        return filterMatch && searchMatch;
+    });
 
     if (currentSort === "rarity-desc") {
         filtered.sort((a, b) => RARITY_ORDER.indexOf(b.rarity) - RARITY_ORDER.indexOf(a.rarity));
@@ -625,4 +666,5 @@ if (isTouchDevice) {
     });
 }
 
+renderFilterTabs();
 renderAll();

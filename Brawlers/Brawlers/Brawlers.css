@@ -410,6 +410,23 @@
         background: var(--c-ultra);
     }
 
+    .sort-select {
+        background: rgba(255, 255, 255, .06);
+        border: 1px solid rgba(255, 255, 255, .12);
+        border-radius: 100px;
+        padding: .55rem 1.2rem;
+        color: #fff;
+        font-family: 'Nunito', sans-serif;
+        font-size: .9rem;
+        outline: none;
+        transition: border-color .2s, background .2s;
+    }
+
+    #sortSelect option {
+        background: var(--dark2);
+        color: #fff;
+    }
+
     .search-wrap {
         position: relative;
     }

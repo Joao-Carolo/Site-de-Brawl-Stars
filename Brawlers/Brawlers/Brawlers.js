@@ -1,7 +1,7 @@
 const BRAWLERS = [
-    { name: "Shelly", emoji: "🔫", rarity: "starter", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Shelly é a lutadora perfeita: confiável, durona e imbatível com a espingarda. Com tantas qualidades assim, ela nunca entendeu como o Colt virou o queridinho da galera...", attack: "Chumbo Grosso — A arma da Shelly dispara chumbinhos em grande amplitude e longo alcance. Quanto mais chumbinhos acertarem o alvo, maior o dano.", super: "SuperBala — A Superbala da Shelly oblitera coberturas e inimigos. Os sobreviventes são empurrados para longe.", hyper: "Cano Duplo — O raio da Superbala fica 33% maior.", sp1: "Xeque-Mate — A Superbala da Shelly diminui a velocidade do inimigo por 2s!", sp2: "Tônico Revigorante — Quando a sua saúde está abaixo de 40%, Shelly recupera 2340 pontos de saúde em um piscar de olhos, mas é preciso esperar 15 segundos atens que a habilidade esteja disponível novamente.", g1: "Disparada — Shelly corre para a frente ou para a direção escolhida e recarrega totalmente o seu ataque principal.", g2: "Pombos de Argila — A área do ataque da Shelly fica mais focada, e o alcance aumenta. Cada ativação dá 3 usos.", hp: 7800, dmg: 3000, range: 8, speed: 720, modes: ["Showdown", "Heist", "Brawl Ball"] },
-    { name: "Nita", emoji: "🐻", rarity: "rare", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Nita é feroz e nunca desiste de uma luta. O urso de pelúcia que ela usa como gorro dá uma dica aos adversários: não se aproxime do urso!", attack: "Tremor — Nita cria um terremoto que causa danos aos inimigos atingidos pelo seu tremor", super: "Garra de Urso — Nita invoca o espírito do Grande Bebê Urso para lhe dar uma mãozinha na caça aos inimigos.", hyper: "HiperUrso — Bruce aumenta de tamanho e ganha 15% a mais de velocidade de movimento e 20% a mais de saúde", sp1: "Amigo-Urso — Nita recupera 1092 pontos de saúde cada vez que o urso acerta um Brawler inimigo. Quando ela inflige dano a Brawlers inimigos, o urso recupera 1094 pontos de saúde.", sp2: "Urso Hiperativo — O urso da Nita ataca mais depressa, com o tempo entre ataques reduzido em 60%.", g1: "Garra de Urso — Nita ordena que o seu urso golpeie violentamente o chão, atordoando todoa os inimigos dentro do alcance.", g2: "Pele Protetora — Pelos próximos 3s, o urso  da Nita ganha 35% de proteção contra dano.", hp: 8400, dmg: 1920, range: 6, speed: 720, modes: ["Showdown", "Hot Zone", "Gem Grab"] },
-    { name: "Colt", emoji: "🤠", rarity: "rare", cls: "Damage Dealer (Destruidor)", isNew: false, desc: "Todo mundo que visita o Starr Park quer ver o Colt de perto, pois o cara é boa-pinta, carismático e cheio de truques com suas pistolas. A uníca que não entende o sucesso dele é a Shelly.", attack: "Esvaziando o Tambor — Colt dispara seis tiros rápidos de longo alcance com seus revólveres.", super: "Trem-Bala — Colt dispara uma rajada de balas de longo alcance que destrói cobertura.", hyper: "Empunhadura Dupla — O raio de ação do Trem-Bala fica 120% maior.", sp1: "Botas Ligeiras — A velocidade de locomoção de Colt aumenta em 13%.", sp2: "Magnum Especial — O alcance e a velocidade do ataque do Colt aumentam em 11%.", g1: "Recarga Rápida — Colt dá dois disparos rápidos que desaceleram os alvos e causam 640 de dano.", g2: "Bala de Prata — Colt dá um disparo que destroí elementos do ambiente e atravessa Brawlers. Causa 1200 de dano e consome munição", hp: 2800, dmg: 460, range: 10, speed: 720, modes: ["Heist", "Brawl Ball", "Bounty"] },
+    { name: "Shelly", emoji: "🔫", rarity: "starter", cls: "Damage Dealer", isNew: false, desc: "Shelly é a lutadora perfeita: confiável, durona e imbatível com a espingarda. Com tantas qualidades assim, ela nunca entendeu como o Colt virou o queridinho da galera...", attack: "Chumbo Grosso — A arma da Shelly dispara chumbinhos em grande amplitude e longo alcance. Quanto mais chumbinhos acertarem o alvo, maior o dano.", super: "SuperBala — A Superbala da Shelly oblitera coberturas e inimigos. Os sobreviventes são empurrados para longe.", hyper: "Cano Duplo — O raio da Superbala fica 33% maior.", sp1: "Xeque-Mate — A Superbala da Shelly diminui a velocidade do inimigo por 2s!", sp2: "Tônico Revigorante — Quando a sua saúde está abaixo de 40%, Shelly recupera 2340 pontos de saúde em um piscar de olhos, mas é preciso esperar 15 segundos atens que a habilidade esteja disponível novamente.", g1: "Disparada — Shelly corre para a frente ou para a direção escolhida e recarrega totalmente o seu ataque principal.", g2: "Pombos de Argila — A área do ataque da Shelly fica mais focada, e o alcance aumenta. Cada ativação dá 3 usos.", hp: 7800, dmg: 3000, range: 8, speed: 720, modes: ["Showdown", "Heist", "Brawl Ball"] },
+    { name: "Nita", emoji: "🐻", rarity: "rare", cls: "Damage Dealer", isNew: false, desc: "Nita é feroz e nunca desiste de uma luta. O urso de pelúcia que ela usa como gorro dá uma dica aos adversários: não se aproxime do urso!", attack: "Tremor — Nita cria um terremoto que causa danos aos inimigos atingidos pelo seu tremor", super: "Garra de Urso — Nita invoca o espírito do Grande Bebê Urso para lhe dar uma mãozinha na caça aos inimigos.", hyper: "HiperUrso — Bruce aumenta de tamanho e ganha 15% a mais de velocidade de movimento e 20% a mais de saúde", sp1: "Amigo-Urso — Nita recupera 1092 pontos de saúde cada vez que o urso acerta um Brawler inimigo. Quando ela inflige dano a Brawlers inimigos, o urso recupera 1094 pontos de saúde.", sp2: "Urso Hiperativo — O urso da Nita ataca mais depressa, com o tempo entre ataques reduzido em 60%.", g1: "Garra de Urso — Nita ordena que o seu urso golpeie violentamente o chão, atordoando todoa os inimigos dentro do alcance.", g2: "Pele Protetora — Pelos próximos 3s, o urso  da Nita ganha 35% de proteção contra dano.", hp: 8400, dmg: 1920, range: 6, speed: 720, modes: ["Showdown", "Hot Zone", "Gem Grab"] },
+    { name: "Colt", emoji: "🤠", rarity: "rare", cls: "Damage Dealer", isNew: false, desc: "Todo mundo que visita o Starr Park quer ver o Colt de perto, pois o cara é boa-pinta, carismático e cheio de truques com suas pistolas. A uníca que não entende o sucesso dele é a Shelly.", attack: "Esvaziando o Tambor — Colt dispara seis tiros rápidos de longo alcance com seus revólveres.", super: "Trem-Bala — Colt dispara uma rajada de balas de longo alcance que destrói cobertura.", hyper: "Empunhadura Dupla — O raio de ação do Trem-Bala fica 120% maior.", sp1: "Botas Ligeiras — A velocidade de locomoção de Colt aumenta em 13%.", sp2: "Magnum Especial — O alcance e a velocidade do ataque do Colt aumentam em 11%.", g1: "Recarga Rápida — Colt dá dois disparos rápidos que desaceleram os alvos e causam 640 de dano.", g2: "Bala de Prata — Colt dá um disparo que destroí elementos do ambiente e atravessa Brawlers. Causa 1200 de dano e consome munição", hp: 2800, dmg: 460, range: 10, speed: 720, modes: ["Heist", "Brawl Ball", "Bounty"] },
     { name: "Bull", emoji: "🐂", rarity: "rare", cls: "Tank", isNew: false, desc: "Um tanque com espingarda dupla. Dano massivo ao perto, usa arbustos para emboscar.", attack: "Double-Barreled — Espingarda dupla.", super: "Bulldozer — Carrega destruindo obstáculos.", hyper: "", sp1: "Berserker — Recarga rápida abaixo de 40% HP.", sp2: "Tough Guy — Escudo ao ativar o Super.", hp: 6000, dmg: 940, range: 4, speed: 720, modes: ["Heist", "Showdown", "Brawl Ball"] },
     { name: "Brock", emoji: "🚀", rarity: "rare", cls: "Sniper", isNew: false, desc: "Especialista em rockets com grande alcance. Destrói paredes com facilidade.", attack: "Rockin' Rocket — Rocket que destrói obstáculos.", super: "Rocket Rain — Chuva de rockets em área.", sp1: "Incendiary — Chamas no Super.", sp2: "Rocket Fuel — Mais destruição de paredes.", hp: 2800, dmg: 700, range: 13, speed: 720, modes: ["Bounty", "Heist", "Siege"] },
     { name: "El Primo", emoji: "🤼", rarity: "rare", cls: "Tank", isNew: false, desc: "Um luchador com punhos de aço. Tanque ágil graças ao salto do Super.", attack: "Fists of Fury — Soco em cone.", super: "Flying Elbow Drop — Salta causando dano de área.", sp1: "El Fuego — Super deixa chamas.", sp2: "Meteor Rush — Velocidade após Super.", hp: 6400, dmg: 760, range: 4, speed: 720, modes: ["Showdown", "Brawl Ball", "Hot Zone"] },
@@ -132,7 +132,7 @@ const BRAWLER_BUFFIES = {
         {
             t: "g", desc: "", acessorios: [
                 { nome: "Garra de Urso", desc: "O próximo ataque do Bruce causa 50% a mais de dano." },
-                { nome: "Coração de Urso", desc: "Nita e o seu urso ficam indestrutíveis por 0,5s." },
+                { nome: "Pele Protetora", desc: "Nita e o seu urso ficam indestrutíveis por 0,5s." },
             ]
         },
         {
@@ -180,25 +180,68 @@ function statColor(v) { return v >= 80 ? "#4ADE80" : v >= 60 ? "var(--yellow)" :
 let currentFilter = "all", currentSearch = "";
 const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.05 });
 
+// VARIAVEL DOS MODOS PARA FILTRAR OS BRAWLERS
+let currentSort = "rarity-asc";
+
+document.getElementById("sortSelect").addEventListener("change", e => {
+    currentSort = e.target.value;
+    renderAll();
+});
+
 function renderAll() {
     const container = document.getElementById("brawlersContainer");
     container.innerHTML = "";
     const s = currentSearch.toLowerCase().trim();
     const filtered = BRAWLERS.filter(b => (currentFilter === "all" || b.rarity === currentFilter) && (s === "" || b.name.toLowerCase().includes(s)));
+
+    if (currentSort === "rarity-desc") {
+        filtered.sort((a, b) => RARITY_ORDER.indexOf(b.rarity) - RARITY_ORDER.indexOf(a.rarity));
+    } else if (currentSort === "alpha") {
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (currentSort === "class") {
+        filtered.sort((a, b) => a.cls.localeCompare(b.cls));
+    }
+
     if (filtered.length === 0) { document.getElementById("noResults").style.display = "block"; return; }
     document.getElementById("noResults").style.display = "none";
+
+    // Define os grupos e a ordem consoante a ordenação
+    let groupOrder, groupLabels, groupColors, getGroupKey;
+
+    if (currentSort === "class") {
+        const classes = [...new Set(filtered.map(b => b.cls || "Sem Classe"))].sort();
+        groupOrder = classes;
+        groupLabels = Object.fromEntries(classes.map(c => [c, c]));
+        groupColors = Object.fromEntries(classes.map(c => [c, "rgba(255,255,255,.6)"]));
+        getGroupKey = b => b.cls || "Sem Classe";
+    } else if (currentSort === "alpha") {
+        const letters = [...new Set(filtered.map(b => b.name[0].toUpperCase()))].sort();
+        groupOrder = letters;
+        groupLabels = Object.fromEntries(letters.map(l => [l, l]));
+        groupColors = Object.fromEntries(letters.map(l => [l, "rgba(255,255,255,.6)"]));
+        getGroupKey = b => b.name[0].toUpperCase();
+    } else {
+        const order = currentSort === "rarity-desc" ? [...RARITY_ORDER].reverse() : RARITY_ORDER;
+        groupOrder = order;
+        groupLabels = RARITY_LABELS;
+        groupColors = RARITY_COLORS;
+        getGroupKey = b => b.rarity;
+    }
+
     const groups = {};
-    RARITY_ORDER.forEach(r => { groups[r] = []; });
-    filtered.forEach(b => { if (groups[b.rarity]) groups[b.rarity].push(b); });
-    RARITY_ORDER.forEach(rarity => {
-        const brawlers = groups[rarity];
-        if (brawlers.length === 0) return;
+    groupOrder.forEach(g => { groups[g] = []; });
+    filtered.forEach(b => { const key = getGroupKey(b); if (groups[key]) groups[key].push(b); });
+
+    groupOrder.forEach(groupKey => {
+        const brawlers = groups[groupKey];
+        if (!brawlers || brawlers.length === 0) return;
         const section = document.createElement("div");
         section.className = "rarity-group reveal";
-        const color = RARITY_COLORS[rarity];
-        section.innerHTML = `<div class="rarity-group-header"><div class="rarity-group-title" style="color:${color}">${RARITY_LABELS[rarity]}</div><div class="rarity-group-line"></div><div class="rarity-group-count">${brawlers.length} brawler${brawlers.length > 1 ? "s" : ""}</div></div><div class="grid" id="grid-${rarity}"></div>`;
+        const color = groupColors[groupKey];
+        const label = groupLabels[groupKey];
+        section.innerHTML = `<div class="rarity-group-header"><div class="rarity-group-title" style="color:${color}">${label}</div><div class="rarity-group-line"></div><div class="rarity-group-count">${brawlers.length} brawler${brawlers.length > 1 ? "s" : ""}</div></div><div class="grid" id="grid-${groupKey.replace(/\s/g, '-')}"></div>`;
         container.appendChild(section);
-        const grid = section.querySelector(`#grid-${rarity}`);
+        const grid = section.querySelector(`#grid-${groupKey.replace(/\s/g, '-')}`);
         brawlers.forEach((b, i) => {
             const card = document.createElement("div");
             card.className = "brawler-card";

@@ -222,6 +222,77 @@ function renderFilterTabs() {
     });
 }
 
+// COMPARE PAINEL
+
+let compareSlots = [null, null];
+let compareMode = false;
+
+function toggleCompareMode() {
+    compareMode = !compareMode;
+    if (!compareMode) resetCompare();
+    document.getElementById("comparePanel").style.display = compareMode ? "block" : "none";
+}
+
+function resetCompare() {
+    compareSlots = [null, null];
+    compareMode = false;
+    document.getElementById("comparePanel").style.display = "none";
+    document.querySelectorAll(".brawler-card.compare-selected").forEach(c => c.classList.remove("compare-selected"));
+}
+
+function selectForCompare(b, card) {
+    if (compareSlots[0] && compareSlots[0].name === b.name) return;
+    if (compareSlots[1] && compareSlots[1].name === b.name) return;
+    if (!compareSlots[0]) {
+        compareSlots[0] = b;
+    } else if (!compareSlots[1]) {
+        compareSlots[1] = b;
+    } else {
+        document.querySelectorAll(".brawler-card.compare-selected")[0]?.classList.remove("compare-selected");
+        compareSlots[0] = compareSlots[1];
+        compareSlots[1] = b;
+    }
+    card.classList.add("compare-selected");
+    document.getElementById("comparePanel").style.display = "block";
+    renderCompare();
+}
+
+function renderCompare() {
+    const STATS = ["hp", "dmg", "range", "speed"];
+    const STAT_LABELS = { hp: "HP", dmg: "Dano", range: "Alcance", speed: "Velocidade" };
+
+    [0, 1].forEach(i => {
+        const slot = document.getElementById(`compareSlot${i + 1}`);
+        const b = compareSlots[i];
+        if (!b) {
+            slot.innerHTML = `<span class="compare-empty">Seleciona um brawler</span>`;
+            return;
+        }
+        const other = compareSlots[i === 0 ? 1 : 0];
+        const statsHtml = STATS.map(k => {
+            let cls = "draw";
+            if (other) {
+                if (b[k] > other[k]) cls = "win";
+                else if (b[k] < other[k]) cls = "lose";
+            }
+            return `<div class="compare-stat">
+                <span class="compare-stat-label">${STAT_LABELS[k]}</span>
+                <span class="compare-stat-val ${cls}">${b[k]}</span>
+            </div>`;
+        }).join("");
+        slot.innerHTML = `
+            <div class="compare-brawler-header">
+                <img class="compare-brawler-img" src="../Imagens/Skins (imagens)/${b.name}/${b.name} Padrão.png"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <span style="display:none">${b.emoji}</span>
+                <div class="compare-brawler-name">${b.name}</div>
+            </div>
+            ${statsHtml}`;
+    });
+}
+
+document.getElementById("compareClose").addEventListener("click", resetCompare);
+
 function renderAll() {
     const container = document.getElementById("brawlersContainer");
     container.innerHTML = "";
@@ -298,8 +369,15 @@ function renderAll() {
 <div class="brawler-emoji" style="display:none">${b.emoji}</div>
 <div class="brawler-name">${b.name}</div>
 <div class="rarity-pill ${b.rarity}">${RARITY_LABELS[b.rarity]}</div>
-<div class="brawler-class">${b.cls}</div>`;
-            card.addEventListener("click", () => openModal(b));
+<div class="brawler-class">${b.cls}</div>
+<button class="compare-btn" onclick="event.stopPropagation();toggleCompareMode();selectForCompare(${JSON.stringify(b).replace(/"/g, '&quot;')}, this.closest('.brawler-card'))">+ Comparar</button>`;
+            card.addEventListener("click", () => {
+                if (compareMode) {
+                    selectForCompare(b, card);
+                } else {
+                    openModal(b);
+                }
+            });
             grid.appendChild(card);
         });
     });

@@ -1294,3 +1294,150 @@
             grid-template-columns: 1fr;
         }
     }
+
+    /* COMPARE PANEL */
+
+    .compare-panel {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--dark2);
+        border-top: 1px solid rgba(255, 255, 255, .1);
+        padding: 1rem 3rem;
+        z-index: 600;
+        backdrop-filter: blur(20px);
+        animation: slideUp .3s ease;
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(100%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    .compare-panel-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .compare-slot {
+        background: var(--dark3);
+        border: 1px solid rgba(255, 255, 255, .08);
+        border-radius: 12px;
+        padding: 1rem;
+    }
+
+    .compare-empty {
+        color: rgba(255, 255, 255, .3);
+        font-size: .85rem;
+        font-weight: 700;
+    }
+
+    .compare-vs {
+        font-family: 'Russo One', sans-serif;
+        font-size: 1.5rem;
+        color: var(--yellow);
+    }
+
+    .compare-close {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, .08);
+        border: none;
+        color: rgba(255, 255, 255, .6);
+        font-size: .9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background .2s;
+    }
+
+    .compare-close:hover {
+        background: rgba(255, 255, 255, .15);
+        color: #fff;
+    }
+
+    .compare-stat {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: .82rem;
+        padding: .2rem 0;
+    }
+
+    .compare-stat-label {
+        color: rgba(255, 255, 255, .4);
+        font-weight: 700;
+        width: 80px;
+    }
+
+    .compare-stat-val.win {
+        color: #4ADE80;
+        font-weight: 800;
+    }
+
+    .compare-stat-val.lose {
+        color: #EF4444;
+        font-weight: 800;
+    }
+
+    .compare-stat-val.draw {
+        color: rgba(255, 255, 255, .6);
+        font-weight: 800;
+    }
+
+    .compare-brawler-header {
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        margin-bottom: .75rem;
+        padding-bottom: .75rem;
+        border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .compare-brawler-img {
+        width: 2.5rem;
+        height: 2.5rem;
+        object-fit: contain;
+    }
+
+    .compare-brawler-name {
+        font-family: 'Russo One', sans-serif;
+        font-size: 1rem;
+    }
+
+    .brawler-card.compare-selected {
+        border-color: var(--yellow);
+        box-shadow: 0 0 0 2px rgba(255, 208, 0, .3);
+    }
+
+    .compare-btn {
+        position: absolute;
+        bottom: .5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 208, 0, .15);
+        border: 1px solid rgba(255, 208, 0, .3);
+        border-radius: 100px;
+        color: var(--yellow);
+        font-size: .6rem;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        padding: .15rem .5rem;
+        display: none;
+    }
+
+    .brawler-card:hover .compare-btn {
+        display: block;
+    }

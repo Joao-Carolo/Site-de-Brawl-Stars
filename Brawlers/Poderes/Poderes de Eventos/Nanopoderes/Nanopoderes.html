@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BrawlZone — Todos os NanoPoderes de Brawl Stars. Temporada NanoNoodles.">
+    <title>NanoPoderes — BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Nanopoderes.css">
+    <link rel="stylesheet" href="../../../../Logo.css">
+
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose">✕</button>
+        <a href="../../../../Página inicial/Página inicial.html">Início</a>
+        <a href="../../Brawlers.html">Brawlers</a>
+        <a href="../Poderes Fixos/Buffies/Buffies.html" class="active">Buffies</a>
+        <a href="../../../../Guias/Guias.html">Guias</a>
+    </div>
+
+    <nav>
+        <a href="../../../../Página inicial/Página inicial.html" class="nav-logo"><span
+                class="star">★</span><span>BrawlZone</span></a>
+        <ul class="nav-links">
+            <li><a href="../../../../Página inicial/Página inicial.html">Início</a></li>
+            <li><a href="../../Brawlers.html">Brawlers</a></li>
+            <li><a href="../Poderes Fixos/Buffies/Buffies.html">Buffies</a></li>
+            <li><a href="../../../../Guias/Guias.html">Guias</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-bg"></div>
+        <div class="header-inner">
+            <p class="page-eyebrow">Temporada NanoNoodles · Poderes de Evento</p>
+            <h1 class="page-title">⚡ NanoPoderes</h1>
+            <p class="page-desc">Os NanoPoderes são melhorias sazonais desbloqueadas através de NanoDrops. Cada Brawler
+                tem 3 NanoPoderes únicos — no início de cada partida escolhes 1 de 2 opções disponíveis. Existem 4
+                raridades: Básico, Aumentado, Cibernético e Quântico.</p>
+            <div class="header-stats">
+                <div class="hstat"><span class="hstat-num">106</span><span class="hstat-label">NanoPoderes totais</span>
+                </div>
+                <div class="hstat"><span class="hstat-num">4</span><span class="hstat-label">Raridades</span></div>
+                <div class="hstat"><span class="hstat-num">3</span><span class="hstat-label">Poderes por Brawler</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="rarity-bar">
+        <div class="rarity-bar-inner">
+            <div class="rarity-info-pill ri-basico">
+                <div class="dot" style="background:var(--c-basico)"></div>Básico
+            </div>
+            <div class="rarity-info-pill ri-aumentado">
+                <div class="dot" style="background:var(--c-aumentado)"></div>Aumentado
+            </div>
+            <div class="rarity-info-pill ri-cibernetico">
+                <div class="dot" style="background:var(--c-cibernetico)"></div>Cibernético
+            </div>
+            <div class="rarity-info-pill ri-quantico">
+                <div class="dot" style="background:var(--c-quantico)"></div>Quântico
+            </div>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <div class="filter-group" id="nanoFilters">
+            <button class="filter-tab active" data-filter="all">Todos</button>
+            <button class="filter-tab" data-filter="basico">Básico</button>
+            <button class="filter-tab" data-filter="aumentado">Aumentado</button>
+            <button class="filter-tab" data-filter="cibernetico">Cibernético</button>
+            <button class="filter-tab" data-filter="quantico">Quântico</button>
+        </div>
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="Procurar brawler...">
+        </div>
+    </div>
+
+    <div class="info-box">
+        <div class="info-box-inner">
+            ℹ️ <span>Os NanoPoderes são <strong>ativados automaticamente</strong> nos modos de jogo do evento em
+                destaque. No início de cada partida, escolhes <strong>1 de 2 opções</strong> disponíveis dos teus 3
+                NanoPoderes.</span>
+        </div>
+    </div>
+
+    <div class="results-info" id="resultsInfo"></div>
+    <div class="brawlers-container" id="brawlersContainer"></div>
+    <div class="no-results" id="noResults">
+        <div class="no-results-emoji">⚡</div>
+        <h3>Nenhum brawler encontrado</h3>
+        <p>Tenta outro filtro ou nome.</p>
+    </div>
+</body>
+
+<script src="Nanopoderes.js"></script>
+<script src="../../../../Pesquisa.js"></script>
+<script src="../../../../Tema.js"></script>
+
+</html>

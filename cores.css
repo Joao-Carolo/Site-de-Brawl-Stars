@@ -1,0 +1,50 @@
+:root {
+    /* Cores principais */
+    --yellow: #FFD000;
+    --orange: #FF6B00;
+    --orange2: #FF4500;
+    --teal: #00C9A7;
+    --blue: #3B82F6;
+    --pink: #FF3CAC;
+    --green: #22C55E;
+    --red: #EF4444;
+    --purple: #A855F7;
+
+    /* Fundos */
+    --dark: #0D0D1A;
+    --dark2: #13132A;
+    --dark3: #1A1A35;
+    --dark4: #1F1F38;
+    --light: #F5F0E8;
+    --text-dark: #1A1A2E;
+
+    /* Raridades de Brawlers */
+    --c-starter: #9CA3AF;
+    --c-rare: #22C55E;
+    --c-super: #3B82F6;
+    --c-epic: #A855F7;
+    --c-mythic: #EF4444;
+    --c-leg: #FFD000;
+    --c-ultra: #FF6B00;
+
+    /* Raridades de Skins */
+    --c-true-silver: #9CA3AF;
+    --c-true-gold: #F59E0B;
+    --c-hyper: #FF6B00;
+    --c-brawlpass: #FF3CAC;
+
+    /* Raridades de Buffies */
+    --c-gadget: #22C55E;
+    --c-star: #FFD000;
+    --c-hyper-buffie: #A855F7;
+    --c-bling: #FF3CAC;
+
+    /* Raridades de NanoPoderes */
+    --c-basico: #22C55E;
+    --c-aumentado: #3B82F6;
+    --c-cibernetico: #A855F7;
+    --c-quantico: #FFD000;
+
+    /* Border radius */
+    --card-r: 16px;
+}

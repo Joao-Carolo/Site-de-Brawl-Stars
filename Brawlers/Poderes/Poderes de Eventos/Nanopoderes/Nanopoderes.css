@@ -1,0 +1,796 @@
+
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --orange2: #FF4500;
+            --teal: #00C9A7;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --dark4: #1F1F38;
+            --text-dark: #1A1A2E;
+            --c-starter: #9CA3AF;
+            --c-rare: #22C55E;
+            --c-super: #3B82F6;
+            --c-epic: #A855F7;
+            --c-mythic: #EF4444;
+            --c-leg: #FFD000;
+            --c-ultra: #FF6B00;
+
+            /* NanoPower raridades */
+            --c-basico: #22C55E;
+            --c-aumentado: #3B82F6;
+            --c-cibernetico: #A855F7;
+            --c-quantico: #FFD000;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* CURSOR */
+        @media(hover:none) {
+            * {
+                cursor: auto !important;
+            }
+        }
+
+        @media(hover:hover) and (pointer:fine) {
+            * {
+                cursor: none !important;
+            }
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--teal);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(0, 201, 167, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: .88rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
+            transition: color .2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+        }
+
+        .nav-links a.active {
+            color: var(--teal);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: .5rem;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* MOBILE MENU */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .6);
+            z-index: 399;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        .mobile-overlay.open {
+            display: block;
+            opacity: 1;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: min(320px, 85vw);
+            background: var(--dark2);
+            z-index: 400;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0;
+            padding: 2rem;
+            border-left: 1px solid rgba(255, 255, 255, .08);
+            transform: translateX(100%);
+            transition: transform .35s cubic-bezier(.16, 1, .3, 1);
+            display: flex;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .mobile-menu a {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, .6);
+            transition: color .2s, padding-left .2s;
+            padding: .9rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--teal);
+            padding-left: .5rem;
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .08);
+            border: none;
+            color: rgba(255, 255, 255, .6);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s;
+        }
+
+        .mobile-close:hover {
+            background: rgba(255, 255, 255, .15);
+            color: #fff;
+        }
+
+        /* HEADER */
+        .page-header {
+            padding: 8rem 3rem 4rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--dark2);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .header-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 55% 70% at 85% 50%, rgba(0, 201, 167, .2), transparent), radial-gradient(ellipse 40% 50% at 10% 60%, rgba(168, 85, 247, .15), transparent), radial-gradient(ellipse 30% 40% at 50% 10%, rgba(255, 208, 0, .1), transparent);
+        }
+
+        .header-inner {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-eyebrow {
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: .5rem;
+        }
+
+        .page-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .page-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, .5);
+            max-width: 650px;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hstat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hstat-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--teal), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .hstat-label {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-top: .2rem;
+        }
+
+        /* RARITY INFO BAR */
+        .rarity-bar {
+            background: var(--dark3);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            padding: 1rem 3rem;
+            overflow-x: auto;
+        }
+
+        .rarity-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .rarity-info-pill {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .4rem 1rem;
+            border-radius: 100px;
+            font-size: .78rem;
+            font-weight: 700;
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+
+        .rarity-info-pill .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .ri-basico {
+            background: rgba(34, 197, 94, .08);
+            border-color: rgba(34, 197, 94, .2);
+            color: var(--c-basico);
+        }
+
+        .ri-aumentado {
+            background: rgba(59, 130, 246, .08);
+            border-color: rgba(59, 130, 246, .2);
+            color: var(--c-aumentado);
+        }
+
+        .ri-cibernetico {
+            background: rgba(168, 85, 247, .08);
+            border-color: rgba(168, 85, 247, .2);
+            color: var(--c-cibernetico);
+        }
+
+        .ri-quantico {
+            background: rgba(255, 208, 0, .08);
+            border-color: rgba(255, 208, 0, .2);
+            color: var(--c-quantico);
+        }
+
+        /* TOOLBAR */
+        .toolbar {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media(max-width:700px) {
+            .toolbar {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+
+        .filter-tab {
+            padding: .4rem 1rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: .78rem;
+            letter-spacing: .04em;
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: rgba(255, 255, 255, .5);
+            background: transparent;
+            transition: all .2s;
+        }
+
+        .filter-tab:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, .3);
+        }
+
+        .filter-tab.active {
+            color: var(--text-dark);
+            border-color: transparent;
+        }
+
+        [data-filter="all"].active {
+            background: #fff;
+            color: var(--text-dark);
+        }
+
+        [data-filter="basico"].active {
+            background: var(--c-basico);
+        }
+
+        [data-filter="aumentado"].active {
+            background: var(--c-aumentado);
+        }
+
+        [data-filter="cibernetico"].active {
+            background: var(--c-cibernetico);
+        }
+
+        [data-filter="quantico"].active {
+            background: var(--c-quantico);
+            color: var(--text-dark);
+        }
+
+        .search-wrap {
+            position: relative;
+        }
+
+        .search-input {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 100px;
+            padding: .5rem 1.2rem .5rem 2.4rem;
+            color: #fff;
+            font-family: 'Nunito', sans-serif;
+            font-size: .88rem;
+            outline: none;
+            width: 210px;
+            transition: border-color .2s;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .search-input:focus {
+            border-color: var(--teal);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: .85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .85rem;
+            pointer-events: none;
+            opacity: .4;
+        }
+
+        /* RESULTS INFO */
+        .results-info {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem .75rem;
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .3);
+            font-weight: 700;
+        }
+
+        @media(max-width:700px) {
+            .results-info {
+                padding: 0 1.5rem .75rem;
+            }
+        }
+
+        /* BRAWLERS CONTAINER */
+        .brawlers-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem 6rem;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        @media(max-width:700px) {
+            .brawlers-container {
+                padding: 0 1.5rem 4rem;
+            }
+        }
+
+        /* BRAWLER CARD */
+        .brawler-nano-card {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color .2s;
+        }
+
+        .brawler-nano-card:hover {
+            border-color: rgba(255, 255, 255, .15);
+        }
+
+        .brawler-nano-card.expanded {
+            border-color: rgba(0, 201, 167, .3);
+        }
+
+        /* CARD HEADER */
+        .brawler-nano-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            user-select: none;
+            transition: background .2s;
+        }
+
+        .brawler-nano-header:hover {
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .brawler-nano-img {
+            width: 3rem;
+            height: 3rem;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .4));
+            flex-shrink: 0;
+        }
+
+        .brawler-nano-emoji {
+            font-size: 2rem;
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .4));
+        }
+
+        .brawler-nano-info {
+            flex: 1;
+        }
+
+        .brawler-nano-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            margin-bottom: .2rem;
+        }
+
+        .brawler-nano-meta {
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .brawler-rarity-pill {
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .18rem .55rem;
+            border-radius: 100px;
+        }
+
+        .pill-starter {
+            background: rgba(156, 163, 175, .15);
+            color: var(--c-starter);
+        }
+
+        .pill-rare {
+            background: rgba(34, 197, 94, .12);
+            color: var(--c-rare);
+        }
+
+        .pill-super_rare {
+            background: rgba(59, 130, 246, .12);
+            color: var(--c-super);
+        }
+
+        .pill-epic {
+            background: rgba(168, 85, 247, .12);
+            color: var(--c-epic);
+        }
+
+        .pill-mythic {
+            background: rgba(239, 68, 68, .12);
+            color: var(--c-mythic);
+        }
+
+        .pill-legendary {
+            background: rgba(255, 208, 0, .12);
+            color: var(--c-leg);
+        }
+
+        .pill-ultra {
+            background: rgba(255, 107, 0, .15);
+            color: var(--c-ultra);
+        }
+
+        .nano-rarity-badge {
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .18rem .55rem;
+            border-radius: 100px;
+        }
+
+        .nano-rarity-badge.basico {
+            background: rgba(34, 197, 94, .12);
+            color: var(--c-basico);
+        }
+
+        .nano-rarity-badge.aumentado {
+            background: rgba(59, 130, 246, .12);
+            color: var(--c-aumentado);
+        }
+
+        .nano-rarity-badge.cibernetico {
+            background: rgba(168, 85, 247, .12);
+            color: var(--c-cibernetico);
+        }
+
+        .nano-rarity-badge.quantico {
+            background: rgba(255, 208, 0, .12);
+            color: var(--c-quantico);
+        }
+
+        .brawler-nano-chevron {
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .3);
+            transition: transform .3s;
+            flex-shrink: 0;
+        }
+
+        .brawler-nano-card.expanded .brawler-nano-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* NANO POWERS BODY */
+        .brawler-nano-body {
+            display: none;
+            padding: 0 1.5rem 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .brawler-nano-card.expanded .brawler-nano-body {
+            display: block;
+        }
+
+        .nano-powers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: .75rem;
+            margin-top: 1rem;
+        }
+
+        .nano-power-card {
+            background: var(--dark3);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .nano-power-number {
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-bottom: .4rem;
+        }
+
+        .nano-power-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: .95rem;
+            margin-bottom: .4rem;
+            color: var(--teal);
+        }
+
+        .nano-power-desc {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .5);
+            line-height: 1.6;
+        }
+
+        .nano-power-empty {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .25);
+            font-style: italic;
+        }
+
+        /* NO RESULTS */
+        .no-results {
+            text-align: center;
+            padding: 5rem 0;
+            color: rgba(255, 255, 255, .3);
+            display: none;
+        }
+
+        .no-results-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: .5rem;
+        }
+
+        /* INFO BOX */
+        .info-box {
+            max-width: 1200px;
+            margin: 0 auto 1.5rem;
+            padding: 0 3rem;
+        }
+
+        @media(max-width:700px) {
+            .info-box {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .info-box-inner {
+            background: rgba(0, 201, 167, .07);
+            border: 1px solid rgba(0, 201, 167, .2);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            gap: .75rem;
+            align-items: flex-start;
+            font-size: .88rem;
+            color: rgba(255, 255, 255, .6);
+            line-height: 1.6;
+        }
+
+        .info-box-inner strong {
+            color: #fff;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .5s ease, transform .5s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media(max-width:600px) {
+            .page-header {
+                padding: 7rem 1.5rem 3rem;
+            }
+
+            .rarity-bar {
+                padding: 1rem 1.5rem;
+            }
+
+            .nano-powers-grid {
+                grid-template-columns: 1fr;
+            }
+        }

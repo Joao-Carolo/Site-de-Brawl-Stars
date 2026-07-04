@@ -3,11 +3,11 @@
    Edita aqui para atualizar ambas as páginas
 ══════════════════════════════ */
 const POSTS = [
-    { emoji: "🏟️", cor: "orange", tag: "Torneios", data: "3 Mai 2026", titulo: "Brawl Cup 2026 — Equipas confirmadas para Berlim!", excerpt: "FUT Esports, ZETA DIVISION e Tribe Gaming entre as 12 equipas confirmadas para o primeiro grande LAN do BSC 2026.", link: "../Torneios/Torneios.html", destaque: true },
+    { emoji: "🌟", cor: "yellow", tag: "Update", data: "27 Jun 2026", titulo: "Brawl Talk", excerpt: "Ramen Rebellion: a story event that will change Katana Kingdom forever! NanoPowers & Fusions Food Fight, Cooking Combat and more game modes 2 New Brawlers! Nori and Wendy Buffies, Skins, Hypercharges & way WAY MORE", link: "https://www.youtube.com/watch?v=pgGThZitPis&list=PLTBLax1DE1612clulHb7Ci4JQEVMKoC7x&index=3", destaque: true },
+    { emoji: "🏟️", cor: "orange", tag: "Torneios", data: "3 Mai 2026", titulo: "Brawl Cup 2026 — Equipas confirmadas para Berlim!", excerpt: "FUT Esports, ZETA DIVISION e Tribe Gaming entre as 12 equipas confirmadas para o primeiro grande LAN do BSC 2026.", link: "../Torneios/Torneios.html", destaque: false },
     { emoji: "⚔️", cor: "purple", tag: "Ranked", data: "1 Mai 2026", titulo: "Ranked Temporada 2 — Knockout em destaque", excerpt: "Bea, Finx e Spike como brawlers gratuitos desta temporada. Modo Knockout nos mapas Fontes Fartas e Garganta do Braço Dourado.", link: "../Ranqueado/Ranqueado.html", destaque: false },
     { emoji: "🦸", cor: "red", tag: "Collab", data: "28 Abr 2026", titulo: "My Hero Academia × Brawl Stars — 5 skins épicas", excerpt: "El Primo: All Might, Fang: Deku, Edgar: Bakugo e mais. A primeira collab de anime da história de Brawl Stars!", link: "../Collabs/Collabs/Collabs.html", destaque: false },
     { emoji: "⚙️", cor: "blue", tag: "Update", data: "28 Abr 2026", titulo: "Manutenção 28 Abril — Colette reativada", excerpt: "Bug crítico da Colette corrigido (+4.600 dano extra). Nerfs urgentes ao Damian, Sirius, Bull, Crow, Chester e Najia.", link: "../Notícias/Notícias Atuais/Manutenção 28 de abril.html", destaque: false },
-    { emoji: "🌟", cor: "yellow", tag: "Update", data: "28 Abr 2026", titulo: "Notas de Lançamento Abril 2026 — Tudo o que mudou", excerpt: "Damian, Starr Nova, Bolt, Shop Rework, Buffies do Edgar/Colette/Griff e muito mais no maior update do ano.", link: "../Notícias/Notícias Atuais/Notas de lançamento de abril de 2026.html", destaque: false },
 ];
 
 /* RENDER NOVIDADES */
@@ -132,7 +132,7 @@ function openBrawlerModal(name) {
     <div class="modal-row"><span class="modal-row-label">Dano</span><span class="modal-row-val">${b.dmg.toLocaleString()}</span></div>
     ${b.novo ? '<div class="modal-row"><span class="modal-row-label">Estado</span><span class="modal-row-val" style="color:var(--orange)">🆕 Novo!</span></div>' : ""}
     <a href="../Brawlers/Coisas específicas/Brawlers Específicos/${b.name}/${b.name}.html" class="modal-btn">Ver todos os stats →</a>
-    <a href="../Brawlers/Skins.html?brawler=${b.name}" class="modal-btn" style="margin-top:.5rem;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)">🎨 Ver todas as skins →</a>
+    <a href="../Brawlers/Skins/Skins.html?brawler=${b.name}" class="modal-btn" style="margin-top:.5rem;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)">🎨 Ver todas as skins →</a>
     ${BRAWLERS_COM_BUFFIES.includes(b.name) ? `<a href="../Brawlers/Buffies.html#${BUFFIE_MACHINE[b.name]}" class="modal-btn" style="margin-top:.5rem;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)">🦊 Ver Buffies →</a>` : ""}
 `;
 

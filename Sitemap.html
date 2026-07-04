@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa do Site — BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --orange: #FF6B00;
+            --teal: #00C9A7;
+            --blue: #3B82F6;
+            --pink: #FF3CAC;
+            --green: #22C55E;
+            --red: #EF4444;
+            --purple: #A855F7;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --text-dark: #1A1A2E;
+            --s-ok: #22C55E;
+            --s-wip: #FFD000;
+            --s-todo: #EF4444;
+            --s-planned: #A855F7;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(13, 13, 26, .88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .nav-logo {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .nav-logo .star {
+            color: var(--yellow);
+        }
+
+        @media(max-width:600px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+        }
+
+        /* HEADER */
+        .hero {
+            padding: 7rem 3rem 3rem;
+            background: var(--dark2);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(255, 208, 0, .12), transparent), radial-gradient(ellipse 40% 50% at 10% 60%, rgba(0, 201, 167, .08), transparent);
+        }
+
+        .hero-inner {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: .5rem;
+        }
+
+        .hero-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: .75rem;
+        }
+
+        .hero-desc {
+            font-size: .95rem;
+            color: rgba(255, 255, 255, .5);
+            max-width: 600px;
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+        /* LEGENDA */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .8rem;
+            font-weight: 700;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* STATS */
+        .stats-bar {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .stat {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 12px;
+            padding: .75rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .2rem;
+        }
+
+        .stat-num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.5rem;
+        }
+
+        .stat-label {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .35);
+        }
+
+        @media(max-width:600px) {
+            .stats-bar {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* CONTENT */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 3rem 5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media(max-width:600px) {
+            .content {
+                padding: 1.5rem 1.5rem 4rem;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 2.5rem;
+            }
+        }
+
+        /* FOLDER */
+        .folder {
+            background: var(--dark2);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .folder-header {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            user-select: none;
+            transition: background .2s;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .folder-header:hover {
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .folder-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .folder-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .folder-count {
+            font-size: .72rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .folder-chevron {
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .3);
+            transition: transform .3s;
+        }
+
+        .folder.open .folder-chevron {
+            transform: rotate(180deg);
+        }
+
+        .folder-body {
+            display: none;
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+
+        .folder:not(.open) .folder-body {
+            display: none;
+        }
+
+        .folder.open .folder-body {
+            display: flex;
+        }
+
+        /* NODES — sistema universal de níveis (funciona até N níveis) */
+        .node {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .node-header {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .65rem 1rem;
+            cursor: pointer;
+            user-select: none;
+            transition: background .2s;
+            border-radius: 12px;
+        }
+
+        .node-header:hover {
+            background: rgba(255, 255, 255, .04);
+        }
+
+        .node-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .node-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: .88rem;
+            flex: 1;
+        }
+
+        .node-chevron {
+            font-size: .7rem;
+            color: rgba(255, 255, 255, .25);
+            transition: transform .3s;
+            flex-shrink: 0;
+        }
+
+        .node.open>.node-header .node-chevron {
+            transform: rotate(180deg);
+        }
+
+        .node-body {
+            display: none;
+            flex-direction: column;
+            gap: .4rem;
+            padding-left: 1.25rem;
+            padding-top: .4rem;
+            border-left: 1px solid rgba(255, 255, 255, .06);
+            margin-left: .75rem;
+            margin-bottom: .25rem;
+        }
+
+        .node.open>.node-body {
+            display: flex;
+        }
+
+        /* Cores por nível de profundidade */
+        .node .node-name {
+            color: rgba(255, 255, 255, .7);
+        }
+
+        .node .node .node-name {
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .node .node .node .node-name {
+            color: rgba(255, 255, 255, .5);
+        }
+
+        .node .node .node .node .node-name {
+            color: rgba(255, 255, 255, .4);
+        }
+
+        /* PAGE ITEM */
+        .page-item {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            padding: .5rem .75rem;
+            border-radius: 10px;
+            transition: background .2s;
+        }
+
+        .page-item:hover {
+            background: rgba(255, 255, 255, .04);
+        }
+
+        .page-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .page-name {
+            font-size: .88rem;
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .page-link {
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .35);
+            font-family: monospace;
+        }
+
+        .page-update {
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: .15rem .5rem;
+            border-radius: 100px;
+            flex-shrink: 0;
+        }
+
+        .u-ok {
+            background: rgba(34, 197, 94, .12);
+            color: var(--s-ok);
+        }
+
+        .u-wip {
+            background: rgba(255, 208, 0, .12);
+            color: var(--s-wip);
+        }
+
+        .u-todo {
+            background: rgba(239, 68, 68, .12);
+            color: var(--s-todo);
+        }
+
+        .u-planned {
+            background: rgba(168, 85, 247, .12);
+            color: var(--s-planned);
+        }
+
+        /* STATUS COLORS */
+        .s-ok {
+            background: var(--s-ok);
+        }
+
+        .s-wip {
+            background: var(--s-wip);
+        }
+
+        .s-todo {
+            background: var(--s-todo);
+        }
+
+        .s-planned {
+            background: var(--s-planned);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="Página inicial/Página inicial.html" class="nav-logo"><span
+                class="star">★</span><span>BrawlZone</span></a>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-inner">
+            <p class="hero-eyebrow">BrawlZone — Interno</p>
+            <h1 class="hero-title">🗺️ Mapa do Site</h1>
+            <p class="hero-desc">Visão geral de todas as páginas do BrawlZone. Usa este mapa para saber o que está
+                completo, em construção ou por fazer.</p>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot s-ok"></div>Completo
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot s-wip"></div>Em construção
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot s-todo"></div>Por fazer
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot s-planned"></div>Planeado
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats-bar" id="statsBar">
+        <!-- gerado pelo JS -->
+    </div>
+
+    <div class="content" id="siteContent">
+
+        <!-- PÁGINA INICIAL -->
+        <div class="folder open">
+            <div class="folder-header" onclick="toggleFolder(this)">
+                <div class="folder-icon">🏠</div>
+                <div class="folder-name">Página Inicial</div>
+                <div class="folder-count"></div>
+                <div class="folder-chevron">▼</div>
+            </div>
+            <div class="folder-body">
+                <div class="page-item">
+                    <div class="page-status s-ok"></div>
+                    <div class="page-name">Página Inicial</div>
+                    <div class="page-link">Página inicial/Página inicial.html</div>
+                    <div class="page-update u-ok">Update 68</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BRAWLERS -->
+        <div class="folder open">
+            <div class="folder-header" onclick="toggleFolder(this)">
+                <div class="folder-icon">⚔️</div>
+                <div class="folder-name">Brawlers</div>
+                <div class="folder-count"></div>
+                <div class="folder-chevron">▼</div>
+            </div>
+            <div class="folder-body">
+                <div class="page-item">
+                    <div class="page-status s-wip"></div>
+                    <div class="page-name">Brawlers</div>
+                    <div class="page-link">Brawlers/Brawlers.html</div>
+                    <div class="page-update u-wip">Update 67</div>
+                </div>
+                <div class="page-item">
+                    <div class="page-status s-wip"></div>
+                    <div class="page-name">Skins</div>
+                    <div class="page-link">Brawlers/Skins/Skins.html</div>
+                    <div class="page-update u-wip">Em progresso</div>
+                </div>
+
+                <!-- PODERES -->
+                <div class="node open">
+                    <div class="node-header" onclick="toggleNode(this)">
+                        <div class="node-icon">📁</div>
+                        <div class="node-name">Poderes</div>
+                        <div class="node-chevron">▼</div>
+                    </div>
+                    <div class="node-body">
+                        <div class="node open">
+                            <div class="node-header" onclick="toggleNode(this)">
+                                <div class="node-icon">📁</div>
+                                <div class="node-name">Poderes Fixos</div>
+                                <div class="node-chevron">▼</div>
+                            </div>
+                            <div class="node-body">
+                                <div class="page-item">
+                                    <div class="page-status s-wip"></div>
+                                    <div class="page-name">Buffies</div>
+                                    <div class="page-link">Poderes/Poderes Fixos/Buffies/Buffies.html</div>
+                                    <div class="page-update u-wip">Update 67</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="node open">
+                            <div class="node-header" onclick="toggleNode(this)">
+                                <div class="node-icon">📁</div>
+                                <div class="node-name">Poderes de Eventos</div>
+                                <div class="node-chevron">▼</div>
+                            </div>
+                            <div class="node-body">
+                                <div class="page-item">
+                                    <div class="page-status s-wip"></div>
+                                    <div class="page-name">NanoPoderes</div>
+                                    <div class="page-link">Poderes/Poderes de Eventos/Nanopoderes/Nanopoderes.html</div>
+                                    <div class="page-update u-wip">Em construção</div>
+                                </div>
+                                <div class="page-item">
+                                    <div class="page-status s-planned"></div>
+                                    <div class="page-name">Wasabi</div>
+                                    <div class="page-link">Poderes/Poderes de Eventos/Wasabi/</div>
+                                    <div class="page-update u-planned">Planeado</div>
+                                </div>
+                                <div class="page-item">
+                                    <div class="page-status s-planned"></div>
+                                    <div class="page-name">Fusões</div>
+                                    <div class="page-link">Poderes/Poderes de Eventos/Fusões/</div>
+                                    <div class="page-update u-planned">Planeado</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COISAS ESPECÍFICAS -->
+                <div class="node open">
+                    <div class="node-header" onclick="toggleNode(this)">
+                        <div class="node-icon">📁</div>
+                        <div class="node-name">Coisas Específicas</div>
+                        <div class="node-chevron">▼</div>
+                    </div>
+                    <div class="node-body">
+                        <div class="node open">
+                            <div class="node-header" onclick="toggleNode(this)">
+                                <div class="node-icon">📁</div>
+                                <div class="node-name">Brawlers Específicos</div>
+                                <div class="node-chevron">▼</div>
+                            </div>
+                            <div class="node-body">
+                                <div class="page-item">
+                                    <div class="page-status s-wip"></div>
+                                    <div class="page-name">Damian</div>
+                                    <div class="page-link">Brawlers Específicos/Damian.html</div>
+                                    <div class="page-update u-wip">Update 67</div>
+                                </div>
+                                <div class="page-item">
+                                    <div class="page-status s-wip"></div>
+                                    <div class="page-name">Shelly</div>
+                                    <div class="page-link"><a
+                                            href="Brawlers/Coisas específicas/Brawlers Específicos/Shelly.html">Shelly</a>
+                                    </div>
+                                    <div class="page-update u-wip">Em construção</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="node open">
+                            <div class="node-header" onclick="toggleNode(this)">
+                                <div class="node-icon">📁</div>
+                                <div class="node-name">Trios</div>
+                                <div class="node-chevron">▼</div>
+                            </div>
+                            <div class="node-body">
+                                <div class="page-item">
+                                    <div class="page-status s-wip"></div>
+                                    <div class="page-name">MadEvil Manor</div>
+                                    <div class="page-link">Trios/MadEvil Manor.html</div>
+                                    <div class="page-update u-wip">Update 67</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- NOTÍCIAS -->
+        <div class="folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+                <div class="folder-icon">📰</div>
+                <div class="folder-name">Notícias</div>
+                <div class="folder-count"></div>
+                <div class="folder-chevron">▼</div>
+            </div>
+            <div class="folder-body">
+                <div class="page-item">
+                    <div class="page-status s-ok"></div>
+                    <div class="page-name">Notas de Lançamento — Update 68</div>
+                    <div class="page-link">Notícias/Update 68.html</div>
+                    <div class="page-update u-ok">Update 68</div>
+                </div>
+                <div class="page-item">
+                    <div class="page-status s-ok"></div>
+                    <div class="page-name">Notas de Lançamento — Update 67</div>
+                    <div class="page-link">Notícias/Update 67.html</div>
+                    <div class="page-update u-ok">Update 67</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GUIAS -->
+        <div class="folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+                <div class="folder-icon">📖</div>
+                <div class="folder-name">Guias</div>
+                <div class="folder-count"></div>
+                <div class="folder-chevron">▼</div>
+            </div>
+            <div class="folder-body">
+                <div class="page-item">
+                    <div class="page-status s-todo"></div>
+                    <div class="page-name">Guias</div>
+                    <div class="page-link">Guias/Guias.html</div>
+                    <div class="page-update u-todo">Por atualizar</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EVENTOS -->
+        <div class="folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+                <div class="folder-icon">🎮</div>
+                <div class="folder-name">Eventos</div>
+                <div class="folder-count"></div>
+                <div class="folder-chevron">▼</div>
+            </div>
+            <div class="folder-body">
+                <div class="page-item">
+                    <div class="page-status s-todo"></div>
+                    <div class="page-name">Eventos</div>
+                    <div class="page-link">Eventos/</div>
+                    <div class="page-update u-todo">Por fazer</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLLABS -->
+        <div class="folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+                <div class="folder-icon">🤝</div>
+                <div class="folder-name">Collabs</div>
+                <div class="folder-count"></div>
+                <div class="folder-chevron">▼</div>
+            </div>
+            <div class="folder-body">
+                <div class="page-item">
+                    <div class="page-status s-todo"></div>
+                    <div class="page-name">Collabs</div>
+                    <div class="page-link">Collabs/</div>
+                    <div class="page-update u-todo">Por fazer</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GLOSSÁRIO -->
+        <div class="folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+                <div class="folder-icon">📚</div>
+                <div class="folder-name">Glossário</div>
+                <div class="folder-count"></div>
+                <div class="folder-chevron">▼</div>
+            </div>
+            <div class="folder-body">
+                <div class="page-item">
+                    <div class="page-status s-todo"></div>
+                    <div class="page-name">Glossário</div>
+                    <div class="page-link">Glossário/</div>
+                    <div class="page-update u-todo">Por fazer</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAPAS -->
+        <div class="folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+                <div class="folder-icon">🗺️</div>
+                <div class="folder-name">Mapas</div>
+                <div class="folder-count"></div>
+                <div class="folder-chevron">▼</div>
+            </div>
+            <div class="folder-body">
+                <div class="page-item">
+                    <div class="page-status s-todo"></div>
+                    <div class="page-name">Mapas</div>
+                    <div class="page-link">Mapas/</div>
+                    <div class="page-update u-todo">Por fazer</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RANQUEADO -->
+        <div class="folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+                <div class="folder-icon">🏆</div>
+                <div class="folder-name">Ranqueado</div>
+                <div class="folder-count"></div>
+                <div class="folder-chevron">▼</div>
+            </div>
+            <div class="folder-body">
+                <div class="page-item">
+                    <div class="page-status s-todo"></div>
+                    <div class="page-name">Ranqueado</div>
+                    <div class="page-link">Ranqueado/</div>
+                    <div class="page-update u-todo">Por fazer</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEMPORADAS -->
+        <div class="folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+                <div class="folder-icon">📅</div>
+                <div class="folder-name">Temporadas</div>
+                <div class="folder-count"></div>
+                <div class="folder-chevron">▼</div>
+            </div>
+            <div class="folder-body">
+                <div class="page-item">
+                    <div class="page-status s-todo"></div>
+                    <div class="page-name">Temporadas</div>
+                    <div class="page-link">Temporadas/</div>
+                    <div class="page-update u-todo">Por fazer</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TORNEIOS -->
+        <div class="folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+                <div class="folder-icon">🥊</div>
+                <div class="folder-name">Torneios</div>
+                <div class="folder-count"></div>
+                <div class="folder-chevron">▼</div>
+            </div>
+            <div class="folder-body">
+                <div class="page-item">
+                    <div class="page-status s-todo"></div>
+                    <div class="page-name">Torneios</div>
+                    <div class="page-link">Torneios/</div>
+                    <div class="page-update u-todo">Por fazer</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SORTEIOS -->
+        <div class="folder">
+            <div class="folder-header" onclick="toggleFolder(this)">
+                <div class="folder-icon">🎰</div>
+                <div class="folder-name">Sorteios</div>
+                <div class="folder-count"></div>
+                <div class="folder-chevron">▼</div>
+            </div>
+            <div class="folder-body">
+                <div class="page-item">
+                    <div class="page-status s-planned"></div>
+                    <div class="page-name">NanoDrops</div>
+                    <div class="page-link">Sorteios/Nanodrops/</div>
+                    <div class="page-update u-planned">Planeado</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleFolder(header) {
+            header.parentElement.classList.toggle("open");
+        }
+        function toggleNode(header) {
+            header.parentElement.classList.toggle("open");
+        }
+
+        // Gerar stats automaticamente
+        function buildStats() {
+            const items = document.querySelectorAll(".page-item");
+            let ok = 0, wip = 0, todo = 0, planned = 0;
+            items.forEach(item => {
+                const dot = item.querySelector(".page-status");
+                if (dot.classList.contains("s-ok")) ok++;
+                else if (dot.classList.contains("s-wip")) wip++;
+                else if (dot.classList.contains("s-todo")) todo++;
+                else if (dot.classList.contains("s-planned")) planned++;
+            });
+            const total = ok + wip + todo + planned;
+            document.getElementById("statsBar").innerHTML = `
+        <div class="stat"><span class="stat-num" style="color:var(--s-ok)">${ok}</span><span class="stat-label">Completas</span></div>
+        <div class="stat"><span class="stat-num" style="color:var(--s-wip)">${wip}</span><span class="stat-label">Em construção</span></div>
+        <div class="stat"><span class="stat-num" style="color:var(--s-todo)">${todo}</span><span class="stat-label">Por fazer</span></div>
+        <div class="stat"><span class="stat-num" style="color:var(--s-planned)">${planned}</span><span class="stat-label">Planeadas</span></div>
+        <div class="stat"><span class="stat-num" style="color:rgba(255,255,255,.7)">${total}</span><span class="stat-label">Total de páginas</span></div>
+      `;
+        }
+        buildStats();
+    </script>
+</body>
+
+</html>

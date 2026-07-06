@@ -1,26 +1,3 @@
-    :root {
-        --yellow: #FFD000;
-        --orange: #FF6B00;
-        --pink: #FF3CAC;
-        --teal: #00C9A7;
-        --blue: #3B82F6;
-        --purple: #A855F7;
-        --green: #22C55E;
-        --c-rare: #22C55E;
-        --c-super: #3B82F6;
-        --c-epic: #A855F7;
-        --c-mythic: #EF4444;
-        --c-leg: #FFD000;
-        --c-hyper: #FF6B00;
-        --c-true-silver: #9CA3AF;
-        --c-true-gold: #F59E0B;
-        --dark: #0D0D1A;
-        --dark2: #13132A;
-        --dark3: #1A1A35;
-        --dark4: #1F1F38;
-        --text-dark: #1A1A2E;
-    }
-
     *,
     *::before,
     *::after {

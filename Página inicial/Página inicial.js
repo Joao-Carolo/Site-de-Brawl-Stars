@@ -4,7 +4,7 @@
 ══════════════════════════════ */
 const POSTS = [
     { emoji: "🌟", cor: "yellow", tag: "Update", data: "27 Jun 2026", titulo: "Brawl Talk", excerpt: "Ramen Rebellion: a story event that will change Katana Kingdom forever! NanoPowers & Fusions Food Fight, Cooking Combat and more game modes 2 New Brawlers! Nori and Wendy Buffies, Skins, Hypercharges & way WAY MORE", link: "https://www.youtube.com/watch?v=pgGThZitPis&list=PLTBLax1DE1612clulHb7Ci4JQEVMKoC7x&index=3", destaque: true },
-    { emoji: "🏟️", cor: "orange", tag: "Torneios", data: "3 Mai 2026", titulo: "Brawl Cup 2026 — Equipas confirmadas para Berlim!", excerpt: "FUT Esports, ZETA DIVISION e Tribe Gaming entre as 12 equipas confirmadas para o primeiro grande LAN do BSC 2026.", link: "../Torneios/Torneios.html", destaque: false },
+    { emoji: "🏟️", cor: "orange", tag: "Update", data: "2 Jul 2026", titulo: "Notas de lançamento de Julho", excerpt: "Uma loja de macarrão automatizada abriu em frente ao restaurante de sushi de Kenji e Kaze, despertando o interesse do filho deles, Nori. O caos se instala!", link: "../Notícias/Notícias Atuais/Mudanças/Mudanças do update 68/Notas de lançamento update 68/Notas de lançamento update 68.html", destaque: false },
     { emoji: "⚔️", cor: "purple", tag: "Ranked", data: "1 Mai 2026", titulo: "Ranked Temporada 2 — Knockout em destaque", excerpt: "Bea, Finx e Spike como brawlers gratuitos desta temporada. Modo Knockout nos mapas Fontes Fartas e Garganta do Braço Dourado.", link: "../Ranqueado/Ranqueado.html", destaque: false },
     { emoji: "🦸", cor: "red", tag: "Collab", data: "28 Abr 2026", titulo: "My Hero Academia × Brawl Stars — 5 skins épicas", excerpt: "El Primo: All Might, Fang: Deku, Edgar: Bakugo e mais. A primeira collab de anime da história de Brawl Stars!", link: "../Collabs/Collabs/Collabs.html", destaque: false },
     { emoji: "⚙️", cor: "blue", tag: "Update", data: "28 Abr 2026", titulo: "Manutenção 28 Abril — Colette reativada", excerpt: "Bug crítico da Colette corrigido (+4.600 dano extra). Nerfs urgentes ao Damian, Sirius, Bull, Crow, Chester e Najia.", link: "../Notícias/Notícias Atuais/Manutenção 28 de abril.html", destaque: false },
@@ -50,12 +50,12 @@ BRAWLERS — mesmo array do Brawlers.html
 (versão simplificada com os principais)
 ══════════════════════════════ */
 const BRAWLERS_HOME = [
-    { name: "Damian", emoji: "🎤", rarity: "mythic", classe: "Tank", novo: true, hp: 11200, dmg: 2400 },
-    { name: "Bolt", emoji: "⚡", rarity: "epic", classe: "Tank", novo: true, hp: 5800, dmg: 1200 },
-    { name: "Starr Nova", emoji: "🌟", rarity: "mythic", classe: "Assassin", novo: true, hp: 3600, dmg: 960 },
+    { name: "Nori", emoji: "🐍", rarity: "legendary", classe: "Assassin", novo: true, hp: 7600, dmg: 2200 },
+    { name: "Wendy", emoji: "🎸", rarity: "mythic", classe: "Support", novo: true, hp: 4000, dmg: 2200 },
+    { name: "Damian", emoji: "🎤", rarity: "mythic", classe: "Tank", novo: false, hp: 11200, dmg: 2400 },
+    { name: "Bolt", emoji: "⚡", rarity: "epic", classe: "Tank", novo: false, hp: 5800, dmg: 1200 },
+    { name: "Starr Nova", emoji: "🌟", rarity: "mythic", classe: "Assassin", novo: false, hp: 3600, dmg: 960 },
     { name: "Sirius", emoji: "🌑", rarity: "legendary", classe: "Controller", novo: false, hp: 3400, dmg: 1680 },
-    { name: "Najia", emoji: "🐍", rarity: "legendary", classe: "Assassin", novo: false, hp: 3360, dmg: 792 },
-    { name: "Draco", emoji: "🎸", rarity: "legendary", classe: "Tank", novo: false, hp: 11200, dmg: 700 },
     { name: "Leon", emoji: "🦁", rarity: "legendary", classe: "Assassin", novo: false, hp: 3360, dmg: 696 },
     { name: "Spike", emoji: "🌵", rarity: "legendary", classe: "Damage Dealer", novo: false, hp: 2880, dmg: 744 },
     { name: "Crow", emoji: "🐦‍⬛", rarity: "legendary", classe: "Assassin", novo: false, hp: 2880, dmg: 624 },
@@ -154,41 +154,10 @@ document.querySelectorAll("#brawlerTabs .filter-tab").forEach(tab => {
     });
 });
 
-/* CURSOR */
-const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-let cursor = null, ring = null;
-if (!isTouchDevice) {
-    cursor = document.getElementById("cursor");
-    ring = document.getElementById("cursor-ring");
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + "px"; cursor.style.top = my + "px"; });
-    (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(anim); })();
-    document.querySelectorAll("a,button,.news-card,.guide-card").forEach(el => {
-        el.addEventListener("mouseenter", () => { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; });
-        el.addEventListener("mouseleave", () => { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; });
-    });
-} else {
-    document.getElementById("cursor").style.display = "none";
-    document.getElementById("cursor-ring").style.display = "none";
-}
-
 /* REVEAL */
 const reveals = document.querySelectorAll(".reveal");
 const revealObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: .1 });
 reveals.forEach(el => revealObs.observe(el));
-
-/* MOBILE MENU */
-function openMobileMenu() { document.getElementById("mobileMenu").classList.add("open"); document.getElementById("mobileOverlay").classList.add("open"); document.body.style.overflow = "hidden"; }
-function closeMobileMenu() { document.getElementById("mobileMenu").classList.remove("open"); document.getElementById("mobileOverlay").classList.remove("open"); document.body.style.overflow = ""; }
-document.getElementById("hamburger").addEventListener("click", openMobileMenu);
-document.getElementById("mobileClose").addEventListener("click", closeMobileMenu);
-document.getElementById("mobileOverlay").addEventListener("click", closeMobileMenu);
-document.querySelectorAll("#mobileMenu a").forEach(a => a.addEventListener("click", closeMobileMenu));
-
-/* NAV SCROLL */
-window.addEventListener("scroll", () => {
-    document.querySelector("nav").style.background = window.scrollY > 50 ? "rgba(13,13,26,.97)" : "rgba(13,13,26,.75)";
-});
 
 /* EMAIL */
 document.querySelector(".email-btn").addEventListener("click", () => {

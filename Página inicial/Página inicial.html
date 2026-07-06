@@ -8,44 +8,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="Página inicial.css">
-    <link rel="icon" type="image/png" href="../Logo.png">
-    <link rel="stylesheet" href="../Logo.css">
+    <link rel="icon" type="image/png" href="../Gerais/Logo.png">
+    <link rel="stylesheet" href="../Gerais/Logo.css">
+    <link rel="stylesheet" href="../Gerais/Cores.css">
+    <link rel="stylesheet" href="../Gerais/Cursor/Cursor.css">
+    <link rel="stylesheet" href="../Gerais/Mobile Menu/Mobile Menu.css">
+    <link rel="stylesheet" href="../Gerais/Navbar/Navbar.css">
 </head>
 
 <body>
 
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-close" id="mobileClose">✕</button>
-        <a href="../../Notícias/Novidades.html">Novidades</a>
-        <a href="../../Brawlers/Brawlers/Brawlers.html">Brawlers</a>
-        <a href="../../Temporadas/Temporadas.html">Updates</a>
-        <a href="../../Guias/Guias.html">Guias</a>
-    </div>
-
     <!-- NAVBAR -->
     <nav>
-        <div class="nav-logo"><span class="star"><img class="logo" src="../Logo.png" alt="Logo"></span><span
-                class="zone">BrawlZone</span></div>
+        <div class="nav-logo">
+            <span class="star"><img class="logo" src="../Gerais/Logo.png" alt="Logo"></span>
+            <span class="zone">BrawlZone</span>
+        </div>
         <ul class="nav-links">
-            <li><a href="../Notícias/Novidades.html">Novidades</a></li>
-            <li><a href="../Brawlers/Brawlers/Brawlers.html">Brawlers</a></li>
-            <li><a href="../Temporadas/Temporadas.html">Updates</a></li>
-            <li><a href="../Guias/Guias.html">Guias</a></li>
-        </ul>
-        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-    </nav>
-
+            <!-- links específicos de cada página -->
+            <ul class="nav-links">
+                <li><a href="../Notícias/Novidades.html">Novidades</a></li>
+                <li><a href="../Brawlers/Brawlers/Brawlers.html">Brawlers</a></li>
+                <li><a href="../Temporadas/Temporadas.html">Updates</a></li>
+                <li><a href="../Guias/Guias.html">Guias</a></li>
+            </ul>
+    </ul>
+    <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose">✕</button>
+        <!-- links específicos de cada página -->
+        <a href="../Notícias/Novidades.html">Novidades</a>
+        <a href="../Brawlers/Brawlers/Brawlers.html">Brawlers</a>
+        <a href="../Temporadas/Temporadas.html">Updates</a>
+        <a href="../Guias/Guias.html">Guias</a>
+    </div>
     <!-- HERO -->
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-dots"></div>
         <div class="hero-blob"></div>
         <div class="hero-content">
-            <div class="hero-badge"><img class="logo-pequena" src="../Logo.png" alt="Logo"> Fan Site Português nº1</div>
+            <div class="hero-badge"><img class="logo-pequena" src="../Gerais/Logo.png" alt="Logo"> Fan Site Português
+                nº1</div>
             <h1 class="hero-title">
                 <span class="line1">O universo</span>
                 <span class="line2">Brawl Stars</span>
@@ -57,9 +67,9 @@
                 <a href="../Notícias/Novidades.html" class="btn-secondary">📰 Últimas Novidades</a>
             </div>
             <div class="hero-stats">
-                <div class="stat-item"><span class="stat-num">104</span><span class="stat-label">Brawlers</span></div>
+                <div class="stat-item"><span class="stat-num">106</span><span class="stat-label">Brawlers</span></div>
                 <div class="stat-divider"></div>
-                <div class="stat-item"><span class="stat-num">67</span><span class="stat-label">Updates</span></div>
+                <div class="stat-item"><span class="stat-num">68</span><span class="stat-label">Updates</span></div>
                 <div class="stat-divider"></div>
                 <div class="stat-item"><span class="stat-num">∞</span><span class="stat-label">Horas de Jogo</span>
                 </div>
@@ -121,57 +131,6 @@
             <div class="modal-body" id="modalBody"></div>
         </div>
     </div>
-
-    <!-- UPDATE BANNER -->
-    <section class="update-banner" id="update">
-        <div class="update-inner">
-            <div class="reveal">
-                <div class="update-badge">🔥 Update 67 — Abril 2026</div>
-                <h2 class="update-title">O maior update do ano está aqui</h2>
-                <p class="update-desc">3 novos Brawlers, Buffies para um novo trio, rework completo da Shop e do Bling,
-                    uma collab épica com os Electric Callboy, e muito mais. Fica a par de tudo.</p>
-                <div class="update-features">
-                    <div class="update-feature">
-                        <div class="update-feature-icon">🎤</div>3 Novos Brawlers — Damian, Bolt e Starr Nova
-                    </div>
-                    <div class="update-feature">
-                        <div class="update-feature-icon">🦊</div>Novos Buffies para o Arcade Trio
-                    </div>
-                    <div class="update-feature">
-                        <div class="update-feature-icon">🔮</div>Shop &amp; Bling completamente renovados
-                    </div>
-                    <div class="update-feature">
-                        <div class="update-feature-icon">🎸</div>Collab com Electric Callboy
-                    </div>
-                </div>
-            </div>
-            <div class="update-visual reveal" style="transition-delay:.15s">
-                <div class="update-card dark-card">
-                    <div class="update-card-icon">🎤</div>
-                    <div class="update-card-title">Damian</div>
-                    <div class="update-card-sub">Chegou a 24 Abr</div>
-                </div>
-                <div class="update-card orange-card">
-                    <div class="update-card-icon">🔮</div>
-                    <div class="update-card-title">Shop Rework</div>
-                    <div class="update-card-sub">Nova loja rotativa</div>
-                </div>
-                <div class="update-card yellow-card">
-                    <div class="update-card-icon">🦊</div>
-                    <div class="update-card-title">Buffies</div>
-                    <div class="update-card-sub" style="color:rgba(0,0,0,.5)">Arcade Trio</div>
-                </div>
-                <div class="update-card teal-card">
-                    <div class="update-card-icon">🎸</div>
-                    <div class="update-card-title">Collab</div>
-                    <div class="update-card-sub">Electric Callboy</div>
-                </div>
-            </div>
-            <a href="https://www.youtube.com/watch?v=7B0-WJ5QYsc&t" class="see-all" style="color:var(--teal);">Ver Brawl
-                Talk →</a>
-        </div>
-    </section>
-
     <!-- GUIAS -->
     <section class="guides-section" id="guias">
         <div class="container">
@@ -201,7 +160,8 @@
     <footer>
         <div class="footer-inner">
             <div class="footer-brand">
-                <div class="logo"><span class="star"><img class="logo-pequena" src="../Logo.png" alt="Logo"></span>
+                <div class="logo"><span class="star"><img class="logo-pequena" src="../Gerais/Logo.png"
+                            alt="Logo"></span>
                     BrawlZone</div>
                 <p>O fan site português de Brawl Stars. Guias, novidades, brawlers e tudo o mais — tudo em português.
                 </p>
@@ -239,8 +199,11 @@
         </div>
     </footer>
     <script src="Página inicial.js"></script>
-    <script src="../Pesquisa.js"></script>
-    <script src="../Tema.js"></script>
+    <script src="../Gerais/Pesquisa.js"></script>
+    <script src="../Gerais/Tema.js"></script>
+    <script src="../Gerais/Cursor/Cursor.js"></script>
+    <script src="../Gerais/Mobile Menu/Mobile Menu.js"></script>
+    <script src="../Gerais/Navbar/Navbar.js"></script>
 </body>
 
 </html>

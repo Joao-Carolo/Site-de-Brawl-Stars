@@ -16,6 +16,8 @@
     --dark3: #1A1A35;
     --dark4: #1F1F38;
     --light: #F5F0E8;
+    --light2: #EDE8DE;
+    --light3: #DDD8CE;
     --text-dark: #1A1A2E;
 
     /* Raridades de Brawlers */
@@ -47,4 +49,10 @@
 
     /* Border radius */
     --card-r: 16px;
+
+    /* setas */
+    --s-ok: #22C55E;
+    --s-wip: #FFD000;
+    --s-todo: #EF4444;
+    --s-planned: #A855F7;
 }

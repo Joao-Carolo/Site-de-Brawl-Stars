@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Página Roubada | BrawlZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD000;
+            --dark: #0D0D1A;
+            --dark2: #13132A;
+            --dark3: #1A1A35;
+            --purple: #A855F7;
+            --blue: #3B82F6;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* FUNDO ANIMADO */
+        .bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .bg-gradient {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(168, 85, 247, .15), transparent), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(59, 130, 246, .1), transparent);
+        }
+
+        .shadow {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(168, 85, 247, .06);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shadow:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .shadow:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 8%;
+            animation-delay: 2s;
+        }
+
+        .shadow:nth-child(4) {
+            width: 150px;
+            height: 150px;
+            bottom: 15%;
+            left: 30%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.05);
+            }
+        }
+
+        /* PARTÍCULAS DE SOMBRA */
+        .particles {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--purple);
+            opacity: 0;
+            animation: drift linear infinite;
+        }
+
+        @keyframes drift {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+
+            10% {
+                opacity: .6;
+            }
+
+            90% {
+                opacity: .3;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-10vh) scale(1.5);
+            }
+        }
+
+        /* CONTEÚDO */
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        /* SIRIUS */
+        .sirius-wrap {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .sirius-emoji {
+            font-size: 8rem;
+            line-height: 1;
+            filter: drop-shadow(0 0 30px rgba(168, 85, 247, .6));
+            animation: siriusPulse 3s ease-in-out infinite;
+            display: block;
+        }
+
+        @keyframes siriusPulse {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 30px rgba(168, 85, 247, .6));
+                transform: scale(1);
+            }
+
+            50% {
+                filter: drop-shadow(0 0 60px rgba(168, 85, 247, .9)) drop-shadow(0 0 100px rgba(168, 85, 247, .4));
+                transform: scale(1.05);
+            }
+        }
+
+        .sirius-shadows {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .mini-shadow {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: escapeShadow linear infinite;
+        }
+
+        @keyframes escapeShadow {
+            0% {
+                opacity: 0;
+                transform: translate(0, 0) scale(0.5);
+            }
+
+            20% {
+                opacity: .8;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0.1);
+            }
+        }
+
+        /* 404 */
+        .error-code {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(5rem, 15vw, 9rem);
+            line-height: 1;
+            background: linear-gradient(135deg, var(--purple), #6C2DC7, var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: .25rem;
+            animation: glitch 4s infinite;
+        }
+
+        @keyframes glitch {
+
+            0%,
+            90%,
+            100% {
+                transform: translate(0);
+                filter: none;
+            }
+
+            92% {
+                transform: translate(-3px, 1px);
+                filter: drop-shadow(3px 0 rgba(168, 85, 247, .8));
+            }
+
+            94% {
+                transform: translate(3px, -1px);
+                filter: drop-shadow(-3px 0 rgba(59, 130, 246, .8));
+            }
+
+            96% {
+                transform: translate(-2px, 2px);
+            }
+
+            98% {
+                transform: translate(2px, -2px);
+            }
+        }
+
+        .title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            margin-bottom: .75rem;
+        }
+
+        .subtitle {
+            font-size: clamp(.85rem, 2vw, 1rem);
+            color: rgba(255, 255, 255, .5);
+            line-height: 1.75;
+            margin-bottom: 2rem;
+            max-width: 440px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .subtitle strong {
+            color: #C084FC;
+        }
+
+        /* BOTÕES */
+        .btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: .75rem 1.75rem;
+            border-radius: 100px;
+            font-family: 'Russo One', sans-serif;
+            font-size: .9rem;
+            border: none;
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple), #6C2DC7);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(168, 85, 247, .3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 30px rgba(168, 85, 247, .5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, .07);
+            color: rgba(255, 255, 255, .7);
+            border: 1px solid rgba(255, 255, 255, .12);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, .12);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, .05);
+        }
+
+        /* LINKS RÁPIDOS */
+        .quick-links {
+            margin-top: 2.5rem;
+        }
+
+        .quick-title {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .25);
+            margin-bottom: 1rem;
+        }
+
+        .quick-grid {
+            display: flex;
+            gap: .75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .quick-link {
+            padding: .4rem 1rem;
+            border-radius: 100px;
+            font-size: .8rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            color: rgba(255, 255, 255, .45);
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .quick-link:hover {
+            background: rgba(255, 255, 255, .1);
+            color: #fff;
+            border-color: rgba(255, 255, 255, .2);
+        }
+
+        /* CURSOR */
+        @media(hover:none) {
+            * {
+                cursor: auto !important;
+            }
+        }
+
+        @media(hover:hover) and (pointer:fine) {
+            * {
+                cursor: none !important;
+            }
+        }
+
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--purple);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .2s, height .2s;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(168, 85, 247, .5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width .25s, height .25s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <div class="bg">
+        <div class="bg-gradient"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+    </div>
+
+    <div class="particles" id="particles"></div>
+
+    <div class="content">
+        <div class="sirius-wrap">
+            <div class="sirius-emoji">🌑</div>
+            <div class="sirius-shadows" id="siriusShadows"></div>
+        </div>
+
+        <div class="error-code">404</div>
+        <h1 class="title">O Sirius roubou esta página!</h1>
+        <p class="subtitle">
+            O vilão de Starr Park adicionou esta página à sua coleção de sombras.<br>
+            <strong>Não há nada aqui</strong> — só escuridão e o eco das tuas pisadas.
+        </p>
+
+        <div class="btns">
+            <button class="btn btn-primary" id="btnVoltar">← Voltar atrás</button>
+            <a href="Página inicial/Página inicial.html" class="btn btn-secondary">🏠 Página Inicial</a>
+        </div>
+
+        <div class="quick-links">
+            <div class="quick-title">Ou vai para</div>
+            <div class="quick-grid">
+                <a href="Brawlers/Brawlers/Brawlers.html" class="quick-link">⚔️ Brawlers</a>
+                <a href="Brawlers/Skins/Skins.html" class="quick-link">🎨 Skins</a>
+                <a href="Brawlers/Poderes/Poderes Fixos/Buffies/Buffies.html" class="quick-link">🦊 Buffies</a>
+                <a href="Notícias/Novidades.html" class="quick-link">📰 Novidades</a>
+                <a href="Guias/Guias.html" class="quick-link">📖 Guias</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* VOLTAR ATRÁS */
+        document.getElementById("btnVoltar").addEventListener("click", () => {
+            if (history.length > 1) {
+                history.back();
+            } else {
+                window.location.href = "Página inicial/Página inicial.html";
+            }
+        });
+
+        /* PARTÍCULAS DE SOMBRA */
+        const particles = document.getElementById("particles");
+        for (let i = 0; i < 25; i++) {
+            const p = document.createElement("div");
+            p.className = "particle";
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.animationDuration = (6 + Math.random() * 10) + "s";
+            p.style.animationDelay = (Math.random() * 10) + "s";
+            p.style.width = p.style.height = (2 + Math.random() * 4) + "px";
+            p.style.opacity = Math.random() * 0.6;
+            particles.appendChild(p);
+        }
+
+        /* SOMBRAS A ESCAPAR DO SIRIUS */
+        const shadowEmojis = ["👤", "🌑", "💀", "🖤", "👁️"];
+        const siriusShadows = document.getElementById("siriusShadows");
+        for (let i = 0; i < 6; i++) {
+            const s = document.createElement("div");
+            s.className = "mini-shadow";
+            s.textContent = shadowEmojis[Math.floor(Math.random() * shadowEmojis.length)];
+            const angle = (i / 6) * Math.PI * 2;
+            const dist = 80 + Math.random() * 40;
+            s.style.setProperty("--tx", Math.cos(angle) * dist + "px");
+            s.style.setProperty("--ty", Math.sin(angle) * dist + "px");
+            s.style.left = "50%";
+            s.style.top = "50%";
+            s.style.animationDuration = (2 + Math.random() * 2) + "s";
+            s.style.animationDelay = (Math.random() * 3) + "s";
+            siriusShadows.appendChild(s);
+        }
+
+        /* CURSOR */
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        const cursorEl = document.getElementById("cursor");
+        const ringEl = document.getElementById("cursor-ring");
+        if (isTouchDevice) {
+            cursorEl.style.display = "none";
+            ringEl.style.display = "none";
+        } else {
+            let mx = 0, my = 0, rx = 0, ry = 0;
+            document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; cursorEl.style.left = mx + "px"; cursorEl.style.top = my + "px"; });
+            (function anim() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ringEl.style.left = rx + "px"; ringEl.style.top = ry + "px"; requestAnimationFrame(anim); })();
+            document.querySelectorAll("a, button").forEach(el => {
+                el.addEventListener("mouseenter", () => { cursorEl.style.width = "20px"; cursorEl.style.height = "20px"; ringEl.style.width = "50px"; ringEl.style.height = "50px"; });
+                el.addEventListener("mouseleave", () => { cursorEl.style.width = "12px"; cursorEl.style.height = "12px"; ringEl.style.width = "36px"; ringEl.style.height = "36px"; });
+            });
+        }
+    </script>
+</body>
+
+</html>

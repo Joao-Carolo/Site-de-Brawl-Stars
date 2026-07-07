@@ -154,11 +154,6 @@ document.querySelectorAll("#brawlerTabs .filter-tab").forEach(tab => {
     });
 });
 
-/* REVEAL */
-const reveals = document.querySelectorAll(".reveal");
-const revealObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: .1 });
-reveals.forEach(el => revealObs.observe(el));
-
 /* EMAIL */
 document.querySelector(".email-btn").addEventListener("click", () => {
     const input = document.querySelector(".email-input");

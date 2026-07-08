@@ -5,8 +5,8 @@
 }
 
 .breadcrumb {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 500px;
+    margin: 73px 0 0 auto;
     display: flex;
     align-items: center;
     flex-wrap: wrap;

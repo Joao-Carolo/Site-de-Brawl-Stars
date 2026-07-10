@@ -2,12 +2,12 @@ function buildBreadcrumb() {
     const breadcrumb = document.getElementById("breadcrumb");
     if (!breadcrumb) return;
 
-    // Pega no caminho atual e limpa
+    const REPO_NAME = "Site-de-Brawl-Stars"; // nome do repositório a ignorar
+
     const parts = window.location.pathname
         .split("/")
-        .filter(p => p !== "" && !p.endsWith(".html"));
+        .filter(p => p !== "" && !p.endsWith(".html") && p !== REPO_NAME);
 
-    // Constrói os itens
     let html = `<a href="${"../".repeat(parts.length)}Página inicial/Página inicial.html">🏠 Início</a>`;
 
     parts.forEach((part, i) => {

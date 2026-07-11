@@ -1,18 +1,16 @@
-.breadcrumb-wrap {
-    padding: 5rem 3rem .75rem;
-    background: var(--dark2);
-    border-bottom: 1px solid rgba(255, 255, 255, .06);
-}
-
 .breadcrumb {
-    max-width: 500px;
-    margin: 73px 0 0 auto;
-    display: flex;
+    margin-top: 73px;
+    display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
     gap: .35rem;
     font-size: .78rem;
     font-weight: 700;
+    width: fit-content;
+    padding: .4rem .9rem;
+    background: rgba(255, 255, 255, .04);
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, .06);
 }
 
 .breadcrumb a {

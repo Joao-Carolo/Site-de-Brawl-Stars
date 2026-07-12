@@ -39,7 +39,7 @@ document.body.insertAdjacentHTML("beforeend", `
             <div class="footer-col">
                 <h4>Site</h4>
                 <ul>
-                    <li><a href="${basePath}Collabs/Collabs.html">Collabs</a></li>
+                    <li><a href="${basePath}Collabs/Collabs/Collabs.html">Collabs</a></li>
                     <li><a href="${basePath}Ranqueado/Ranqueado.html">Ranked</a></li>
                     <li><a href="${basePath}Notícias/Notícias.html">Notícias</a></li>
                 </ul>

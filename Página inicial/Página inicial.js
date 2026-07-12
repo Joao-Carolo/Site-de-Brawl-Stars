@@ -45,37 +45,12 @@ function renderNews() {
     }).join("");
 }
 
-/* ══════════════════════════════
-BRAWLERS — mesmo array do Brawlers.html
-(versão simplificada com os principais)
-══════════════════════════════ */
-const BRAWLERS_HOME = [
-    { name: "Nori", emoji: "🐍", rarity: "legendary", classe: "Assassin", novo: true, hp: 7600, dmg: 2200 },
-    { name: "Wendy", emoji: "🎸", rarity: "mythic", classe: "Support", novo: true, hp: 4000, dmg: 2200 },
-    { name: "Damian", emoji: "🎤", rarity: "mythic", classe: "Tank", novo: false, hp: 11200, dmg: 2400 },
-    { name: "Bolt", emoji: "⚡", rarity: "epic", classe: "Tank", novo: false, hp: 5800, dmg: 1200 },
-    { name: "Starr Nova", emoji: "🌟", rarity: "mythic", classe: "Assassin", novo: false, hp: 3600, dmg: 960 },
-    { name: "Sirius", emoji: "🌑", rarity: "legendary", classe: "Controller", novo: false, hp: 3400, dmg: 1680 },
-    { name: "Leon", emoji: "🦁", rarity: "legendary", classe: "Assassin", novo: false, hp: 3360, dmg: 696 },
-    { name: "Spike", emoji: "🌵", rarity: "legendary", classe: "Damage Dealer", novo: false, hp: 2880, dmg: 744 },
-    { name: "Crow", emoji: "🐦‍⬛", rarity: "legendary", classe: "Assassin", novo: false, hp: 2880, dmg: 624 },
-    { name: "Mortis", emoji: "⚰️", rarity: "mythic", classe: "Assassin", novo: false, hp: 3360, dmg: 744 },
-    { name: "Lumi", emoji: "🥁", rarity: "mythic", classe: "Support", novo: false, hp: 3500, dmg: 460 },
-    { name: "Tara", emoji: "🔮", rarity: "mythic", classe: "Support", novo: false, hp: 3360, dmg: 624 },
-    { name: "Max", emoji: "⚡", rarity: "mythic", classe: "Support", novo: false, hp: 3360, dmg: 528 },
-    { name: "Frank", emoji: "🔨", rarity: "epic", classe: "Tank", novo: false, hp: 7680, dmg: 1560 },
-    { name: "Bea", emoji: "🐝", rarity: "epic", classe: "Sniper", novo: false, hp: 2880, dmg: 912 },
-    { name: "Piper", emoji: "☂️", rarity: "epic", classe: "Sniper", novo: false, hp: 2880, dmg: 1056 },
-    { name: "Bull", emoji: "🐂", rarity: "rare", classe: "Tank", novo: false, hp: 5600, dmg: 940 },
-    { name: "Shelly", emoji: "🔫", rarity: "starter", classe: "Damage Dealer", novo: false, hp: 3200, dmg: 680 },
-];
-
 const RARITY_COLORS = { starter: "#00C9A7", rare: "#00C9A7", super: "#3B82F6", epic: "#A855F7", mythic: "#EF4444", legendary: "#FFD000" };
 const RARITY_LABELS = { starter: "Starter", rare: "Rare", super: "Super Rare", epic: "Epic", mythic: "Mythic", legendary: "Legendary" };
 
 function renderBrawlers(filter = "all") {
     const grid = document.getElementById("brawlersGrid");
-    const filtered = BRAWLERS_HOME.filter(b => {
+    const filtered = BRAWLERS.filter(b => {
         if (filter === "all") return true;
         if (filter === "novo") return b.novo;
         return b.rarity === filter;
@@ -103,7 +78,7 @@ function renderBrawlers(filter = "all") {
 }
 
 function openBrawlerModal(name) {
-    const b = BRAWLERS_HOME.find(x => x.name === name);
+    const b = BRAWLERS.find(x => x.name === name);
     if (!b) return;
     const col = RARITY_COLORS[b.rarity] || "#fff";
     document.getElementById("modalHeroBg").style.background = `radial-gradient(ellipse at center,${col}33,transparent 70%)`;

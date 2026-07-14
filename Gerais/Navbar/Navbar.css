@@ -91,3 +91,43 @@ nav {
         display: flex;
     }
 }
+
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: .35rem;
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 100px;
+    padding: .25rem;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: .3rem .5rem;
+    border-radius: 100px;
+    cursor: pointer;
+    opacity: .4;
+    filter: grayscale(60%);
+    transition: opacity .2s, filter .2s, background .2s;
+}
+
+.lang-btn:hover {
+    opacity: .8;
+    filter: grayscale(20%);
+}
+
+.lang-btn.active {
+    opacity: 1;
+    filter: grayscale(0%);
+    background: rgba(255, 255, 255, .08);
+}
+
+@media(max-width:768px) {
+    .lang-switcher {
+        display: none;
+    }
+}

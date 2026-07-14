@@ -44,10 +44,6 @@ function renderNews() {
     </article>`;
     }).join("");
 }
-
-const RARITY_COLORS = { starter: "#00C9A7", rare: "#00C9A7", super: "#3B82F6", epic: "#A855F7", mythic: "#EF4444", legendary: "#FFD000" };
-const RARITY_LABELS = { starter: "Starter", rare: "Rare", super: "Super Rare", epic: "Epic", mythic: "Mythic", legendary: "Legendary" };
-
 function renderBrawlers(filter = "all") {
     const grid = document.getElementById("brawlersGrid");
     const filtered = BRAWLERS.filter(b => {

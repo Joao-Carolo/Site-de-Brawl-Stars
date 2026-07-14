@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrawlZone — O Teu Fan Site de Brawl Stars</title>
+    <span data-i18n="start_title">
+        <title>BrawlZone — O Teu Fan Site de Brawl Stars</title>
+    </span>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="Página inicial.css">
@@ -31,10 +33,10 @@
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-close" id="mobileClose">✕</button>
         <!-- links específicos de cada página -->
-        <a href="../Notícias/Novidades.html">Novidades</a>
-        <a href="../Brawlers/Brawlers/Brawlers.html">Brawlers</a>
-        <a href="../Temporadas/Temporadas.html">Updates</a>
-        <a href="../Guias/Guias.html">Guias</a>
+        <a href="../Notícias/Novidades.html"><span data-i18n="nav_novidades">Novidades</span></a>
+        <a href="../Brawlers/Brawlers/Brawlers.html"><span data-i18n="nav_brawlers">Brawlers</span></a>
+        <a href="../Temporadas/Temporadas.html"><span data-i18n="nav_updates">Updates</span></a>
+        <a href="../Guias/Guias.html"><span data-i18n="nav_guias">Guias</span></a>
     </div>
     <!-- HERO -->
     <section class="hero">
@@ -45,14 +47,15 @@
             <div class="hero-badge"><img class="logo-pequena" src="../Gerais/Logo.png" alt="Logo"> Fan Site Português
                 nº1</div>
             <h1 class="hero-title">
-                <span class="line1">O universo</span>
+                <span class="line1">O universo de</span>
                 <span class="line2">Brawl Stars</span>
             </h1>
             <p class="hero-desc">Tudo o que precisas — brawlers, guias, updates e as últimas novidades do jogo. Sempre
                 atualizado, sempre em português.</p>
             <div class="hero-actions">
                 <a href="../Brawlers/Brawlers/Brawlers.html" class="btn-primary">🎮 Ver Brawlers</a>
-                <a href="../Notícias/Novidades.html" class="btn-secondary">📰 Últimas Novidades</a>
+                <a href="../Notícias/Novidades.html" class="btn-secondary">📰 Últimas <span
+                        data-i18n="nav_novidades">Novidades</span></a>
             </div>
             <div class="hero-stats">
                 <div class="stat-item"><span class="stat-num">106</span><span class="stat-label">Brawlers</span></div>
@@ -143,17 +146,21 @@
             <button class="email-btn">Subscrever</button>
         </div>
     </section>
+    <script src="../Gerais/Traduções/Tradução.js"></script>
     <script src="../Gerais/Constantes/Brawlers.js"></script>
+    <script src="../Gerais/Constantes/Raridades.js"></script>
     <script src="Página inicial.js"></script>
-    <script src="../Gerais/Pesquisa.js"></script>
     <script src="../Gerais/Tema.js"></script>
     <script src="../Gerais/Cursor/Cursor.js"></script>
     <script src="../Gerais/Mobile Menu/Mobile Menu.js"></script>
-    <script src="../Gerais/Navbar/Navbar.js"></script>
-    <script>buildNavbar("");</script>
+    <script src="../Gerais/Pesquisa.js"></script>
     <script src="../Gerais/Reveal/Reveal.js"></script>
     <script src="../Gerais/Breadcrumbs/Breadcrumbs.js"></script>
     <script src="../Gerais/Footer/Footer.js"></script>
+    <script src="../Gerais/Navbar/Navbar.js"></script>
+    <script>buildNavbar("");
+        applyTranslations();
+    </script>
 </body>
 
 </html>

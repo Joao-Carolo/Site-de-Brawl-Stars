@@ -10,29 +10,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="Brawlers.css">
-    <link rel="icon" type="image/png" href="../../Logo.png">
-    <link rel="stylesheet" href="../../Logo.css">
+    <link rel="icon" type="image/png" href="../../Gerais/Logo.png">
+    <link rel="stylesheet" href="../../Gerais/Logo.css">
+    <link rel="stylesheet" href="../../Gerais/Cores.css">
+    <link rel="stylesheet" href="../../Gerais/Cursor/Cursor.css">
+    <link rel="stylesheet" href="../../Gerais/Mobile Menu/Mobile Menu.css">
+    <link rel="stylesheet" href="../../Gerais/Navbar/Navbar.css">
+    <link rel="stylesheet" href="../../Gerais/Footer/Footer.css">
+    <link rel="stylesheet" href="../../Gerais/Reveal/Reveal.css">
+    <link rel="stylesheet" href="../../Gerais/Breadcrumbs/Breadcrumbs.css">
 </head>
 
 <body>
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
-
-
-    <nav>
-
-        <a href="../../Página inicial/Página inicial.html" class="nav-logo"><span class="star"><img class="logo"
-                    src="../../Logo.png" alt="Logo"></span><span>BrawlZone</span></a>
-        <ul class="nav-links">
-            <li><a href="../../Página inicial/Página inicial.html">Início</a></li>
-            <li><a href="#" class="active">Brawlers</a></li>
-            <li><a href="../Skins/Skins.html">Skins</a></li>
-            <li><a href="../Buffies/Buffies.html">Buffies</a></li>
-        </ul>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
-    </nav>
 
     <!-- MOBILE MENU -->
     <div class="mobile-overlay" id="mobileOverlay"></div>
@@ -142,11 +133,21 @@
             <button class="compare-close" id="compareClose">✕</button>
         </div>
     </div>
-
-
+    <script src="../../Gerais/Traduções/Tradução.js"></script>
+    <script src="../../Gerais/Constantes/Brawlers.js"></script>
+    <script src="../../Gerais/Constantes/Raridades.js"></script>
     <script src="Brawlers.js"></script>
-    <script src="../../Pesquisa.js"></script>
-    <script src="../../Tema.js"></script>
+    <script src="../../Gerais/Tema.js"></script>
+    <script src="../../Gerais/Cursor/Cursor.js"></script>
+    <script src="../../Gerais/Mobile Menu/Mobile Menu.js"></script>
+    <script src="../../Gerais/Pesquisa.js"></script>
+    <script src="../../Gerais/Reveal/Reveal.js"></script>
+    <script src="../../Gerais/Breadcrumbs/Breadcrumbs.js"></script>
+    <script src="../../Gerais/Footer/Footer.js"></script>
+    <script src="../../Gerais/Navbar/Navbar.js"></script>
+    <script>buildNavbar("brawlers");
+        applyTranslations();
+    </script>
 </body>
 
 </html>

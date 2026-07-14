@@ -10,15 +10,17 @@ function buildNavbar(activeLink = "") {
     const basePath = getBasePath();
 
     const links = [
-        { label: "Novidades", href: `${basePath}Notícias/Novidades.html`, key: "novidades" },
-        { label: "Brawlers", href: `${basePath}Brawlers/Brawlers/Brawlers.html`, key: "brawlers" },
-        { label: "Updates", href: `${basePath}Temporadas/Temporadas.html`, key: "updates" },
-        { label: "Guias", href: `${basePath}Guias/Guias.html`, key: "guias" },
+        { label: "Novidades", href: `${basePath}Notícias/Novidades.html`, key: "novidades", i18n: "nav_novidades" },
+        { label: "Brawlers", href: `${basePath}Brawlers/Brawlers/Brawlers.html`, key: "brawlers", i18n: "nav_brawlers" },
+        { label: "Updates", href: `${basePath}Temporadas/Temporadas.html`, key: "updates", i18n: "nav_updates" },
+        { label: "Guias", href: `${basePath}Guias/Guias.html`, key: "guias", i18n: "nav_guias" },
     ];
 
     const linksHtml = links.map(l =>
-        `<li><a href="${l.href}"${l.key === activeLink ? ' class="active"' : ''}>${l.label}</a></li>`
+        `<li><a href="${l.href}"${l.key === activeLink ? ' class="active"' : ''}><span data-i18n="${l.i18n}">${l.label}</span></a></li>`
     ).join("");
+
+    const currentLang = getCurrentLang();
 
     const navHtml = `
         <nav>
@@ -27,6 +29,10 @@ function buildNavbar(activeLink = "") {
                 <span class="zone">BrawlZone</span>
             </div>
             <ul class="nav-links">${linksHtml}</ul>
+            <div class="lang-switcher">
+                <button onclick="setLang('pt')" class="lang-btn${currentLang === 'pt' ? ' active' : ''}" title="Português">🇵🇹</button>
+                <button onclick="setLang('en')" class="lang-btn${currentLang === 'en' ? ' active' : ''}" title="English">🇬🇧</button>
+            </div>
             <button class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
             </button>

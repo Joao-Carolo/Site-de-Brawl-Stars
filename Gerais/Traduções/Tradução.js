@@ -31,9 +31,20 @@ const TRANSLATIONS = {
 
         //Página inicial
         start_title: "BrawlZone — O Teu Fan Site de Brawl Stars",
-        start_hero_desc: "O site de fãs de Brawl Stars mais completo, atualizado, sempre em português.",
+
+        //Página inicial - Hero Section
+        start_hero_badge: "O Fan Site Português nº1",
+        start_hero_line1: "O universo de",
+        start_hero_line2: "Brawl Stars",
+        start_hero_desc: "Tudo o que precisas — brawlers, guias, updates e as últimas novidades do jogo. Sempre atualizado.",
         start_hero_btn_brawlers: "🎮 Ver Brawlers",
         start_hero_btn_novidades: "📰 Últimas Novidades",
+        start_hero_stat_label3: "Horas de Jogo",
+
+        //Página inicial - Novidades
+        start_novidades_title: "Últimas Novidades",
+        start_novidades_p: "Sempre Atualizado",
+        start_novidades_btn: "Ver Todas →",
     },
     en: {
         // NAVBAR
@@ -67,9 +78,20 @@ const TRANSLATIONS = {
 
         //Página inicial
         start_title: "BrawlZone — Your Brawl Stars Fan Site",
-        start_hero_desc: "The most complete Brawl Stars fan site, updated, now in English too.",
+
+        //Página inicial - Hero Section
+        start_hero_badge: "Portuguese's #1 Fan Site",
+        start_hero_line1: "The universe of",
+        start_hero_line2: "Brawl Stars",
+        start_hero_desc: "Everything you need — brawlers, guides, updates and the latest news from the game. Always updated.",
         start_hero_btn_brawlers: "🎮 See Brawlers",
         start_hero_btn_novidades: "📰 Latest News",
+        start_hero_stat_label3: "Hours Played",
+
+        //Página inicial - Novidades
+        start_novidades_title: "Latest News",
+        start_novidades_p: "Always Updated",
+        start_novidades_btn: "See All →",
     }
 };
 

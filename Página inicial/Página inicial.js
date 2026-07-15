@@ -3,58 +3,73 @@
    Edita aqui para atualizar ambas as páginas
 ══════════════════════════════ */
 const POSTS = [
-    { emoji: "🌟", cor: "yellow", tag: "Update", data: "27 Jun 2026", titulo: "Brawl Talk", excerpt: "Ramen Rebellion: a story event that will change Katana Kingdom forever! NanoPowers & Fusions Food Fight, Cooking Combat and more game modes 2 New Brawlers! Nori and Wendy Buffies, Skins, Hypercharges & way WAY MORE", link: "https://www.youtube.com/watch?v=pgGThZitPis&list=PLTBLax1DE1612clulHb7Ci4JQEVMKoC7x&index=3", destaque: true },
-    { emoji: "⚔️", cor: "purple", tag: "Update", data: "9 Jul 2026", titulo: "Veja o Nori em ação", excerpt: "Nori's always fishing for trouble 🎣", link: "https://www.youtube.com/watch?v=S-8YkBgjFfo", destaque: false },
-    { emoji: "🦸", cor: "red", tag: "Update", data: "2 Jul 2026", titulo: "Ver a animação da Temporada", excerpt: "NanoNoodles Season is corrupting Starr Park! 🧪🍜", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0", destaque: false },
-    { emoji: "🏟️", cor: "orange", tag: "Update", data: "2 Jul 2026", titulo: "Notas de lançamento de Julho", excerpt: "Uma loja de macarrão automatizada abriu em frente ao restaurante de sushi de Kenji e Kaze, despertando o interesse do filho deles, Nori. O caos se instala!", link: "../Notícias/Notícias Atuais/Mudanças/Mudanças do update 68/Notas de lançamento update 68/Notas de lançamento update 68.html", destaque: false },
-    { emoji: "⚙️", cor: "blue", tag: "Update", data: "28 Abr 2026", titulo: "Manutenção 28 Abril — Colette reativada", excerpt: "Bug crítico da Colette corrigido (+4.600 dano extra). Nerfs urgentes ao Damian, Sirius, Bull, Crow, Chester e Najia.", link: "../Notícias/Notícias Atuais/Manutenção 28 de abril.html", destaque: false },
+    { emoji: "🌟", cor: "yellow", tagKey: "post1_tag", data: "27 Jun 2026", tituloKey: "post1_titulo", excerptKey: "post1_excerpt", link: "https://www.youtube.com/watch?v=pgGThZitPis&list=PLTBLax1DE1612clulHb7Ci4JQEVMKoC7x&index=3", destaque: true },
+    { emoji: "⚔️", cor: "purple", tagKey: "post2_tag", data: "9 Jul 2026", tituloKey: "post2_titulo", excerptKey: "post2_excerpt", link: "https://www.youtube.com/watch?v=S-8YkBgjFfo", destaque: false },
+    { emoji: "🦸", cor: "red", tagKey: "post3_tag", data: "2 Jul 2026", tituloKey: "post3_titulo", excerptKey: "post3_excerpt", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0", destaque: false },
+    { emoji: "🏟️", cor: "orange", tagKey: "post4_tag", data: "2 Jul 2026", tituloKey: "post4_titulo", excerptKey: "post4_excerpt", link: "../Notícias/Notícias Atuais/Mudanças/Mudanças do update 68/Notas de lançamento update 68/Notas de lançamento update 68.html", destaque: false },
+    { emoji: "⚙️", cor: "blue", tagKey: "post5_tag", data: "28 Abr 2026", tituloKey: "post5_titulo", excerptKey: "post5_excerpt", link: "../Notícias/Notícias Atuais/Manutenção 28 de abril.html", destaque: false },
 ];
-
 /* RENDER NOVIDADES */
 // Conta quantas vezes cada tag aparece para atribuir índice correto
 function renderNews() {
     const grid = document.getElementById("newsGrid");
     const max = 5;
     const posts = POSTS.slice(0, max);
+    const lang = getCurrentLang();
+    const dict = TRANSLATIONS[lang];
+    const dictPt = TRANSLATIONS.pt; // sempre português para os caminhos
+
     const tagCount = {};
     grid.innerHTML = posts.map((p, i) => {
         const featured = i === 0;
-        tagCount[p.tag] = (tagCount[p.tag] || 0) + 1;
-        const imgIndex = tagCount[p.tag];
-        const imgPath = `../Notícias/imagens/${p.tag}/${p.titulo}.png`;
+        const tag = dict[p.tagKey] || "";
+        const titulo = dict[p.tituloKey] || "";
+        const excerpt = dict[p.excerptKey] || "";
+
+        // Usa sempre o português para o caminho da imagem
+        const tagPt = dictPt[p.tagKey] || "";
+        const tituloPt = dictPt[p.tituloKey] || "";
+
+        tagCount[tagPt] = (tagCount[tagPt] || 0) + 1;
+        const imgPath = `../Notícias/imagens/${tagPt}/${tituloPt}.png`;
         const thumbContent = `
       <img
         src="${imgPath}"
-        alt="${p.titulo}"
+        alt="${titulo}"
         style="width:100%;height:100%;object-fit:cover;transition:transform .4s;"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
       >
       <div class="news-thumb-bg ${p.cor}" style="display:none">${p.emoji}</div>`;
+
         return `<article class="news-card${featured ? " featured" : ""}">
       <div class="news-thumb">
         ${thumbContent}
-        <span class="news-tag">${p.tag}</span>
+        <span class="news-tag">${tag}</span>
       </div>
       <div class="news-body">
         <p class="news-date">${p.data}</p>
-        <h3 class="news-title">${p.titulo}</h3>
-        <p class="news-excerpt">${p.excerpt}</p>
+        <h3 class="news-title">${titulo}</h3>
+        <p class="news-excerpt">${excerpt}</p>
         <a href="${p.link}" class="see-all" style="color:var(--orange2);margin-top:.75rem">Ler mais →</a>
       </div>
     </article>`;
     }).join("");
 }
-function renderBrawlers(filter = "all") {
+let currentBrawlerFilter = "all", currentBrawlerSearch = "";
+
+function renderBrawlers(filter = currentBrawlerFilter) {
+    currentBrawlerFilter = filter;
     const grid = document.getElementById("brawlersGrid");
+    const s = currentBrawlerSearch.toLowerCase().trim();
     const filtered = BRAWLERS.filter(b => {
-        if (filter === "all") return true;
-        if (filter === "novo") return b.novo;
-        return b.rarity === filter;
+        const filterMatch = filter === "all" ? true : filter === "novo" ? b.isNew : b.rarity === filter;
+        const searchMatch = s === "" || b.name.toLowerCase().includes(s);
+        return filterMatch && searchMatch;
     });
     grid.innerHTML = filtered.map(b => {
         const col = RARITY_COLORS[b.rarity] || "#fff";
         return `<div class="brawler-card" onclick="openBrawlerModal('${b.name}')">
-    ${b.novo ? '<span class="brawler-new-badge">NOVO</span>' : ""}
+    ${b.isNew ? '<span class="brawler-new-badge">NOVO</span>' : ""}
     <img
         src="../Brawlers/Imagens/Skins (imagens)/${b.name}/${b.name} Padrão.png"
         alt="${b.name}"
@@ -72,11 +87,19 @@ function renderBrawlers(filter = "all") {
         el.addEventListener("mouseleave", () => { if (cursor) { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; } });
     });
 }
+document.getElementById("brawlerSearch").addEventListener("input", e => {
+    currentBrawlerSearch = e.target.value;
+    renderBrawlers();
+});
 
 function openBrawlerModal(name) {
     const b = BRAWLERS.find(x => x.name === name);
     if (!b) return;
     const col = RARITY_COLORS[b.rarity] || "#fff";
+
+    const lang = getCurrentLang();
+    const dict = TRANSLATIONS[lang] || TRANSLATIONS.pt;
+
     document.getElementById("modalHeroBg").style.background = `radial-gradient(ellipse at center,${col}33,transparent 70%)`;
     const modalEmoji = document.getElementById("modalEmoji");
     modalEmoji.innerHTML = `<img
@@ -94,19 +117,30 @@ function openBrawlerModal(name) {
         Edgar: "machine-5", Griff: "machine-5", Colette: "machine-5",
     };
     document.getElementById("modalName").textContent = b.name;
-    document.getElementById("modalClass").textContent = b.classe;
+    document.getElementById("modalClass").textContent = b.cls;
     document.getElementById("modalRarityBar").style.background = col;
-    document.getElementById("modalBody").innerHTML = `
-    <div class="modal-row"><span class="modal-row-label">Raridade</span><span class="modal-row-val" style="color:${col}">${RARITY_LABELS[b.rarity] || b.rarity}</span></div>
-    <div class="modal-row"><span class="modal-row-label">Classe</span><span class="modal-row-val">${b.classe}</span></div>
-    <div class="modal-row"><span class="modal-row-label">HP (PL11)</span><span class="modal-row-val">${b.hp.toLocaleString()}</span></div>
-    <div class="modal-row"><span class="modal-row-label">Dano</span><span class="modal-row-val">${b.dmg.toLocaleString()}</span></div>
-    ${b.novo ? '<div class="modal-row"><span class="modal-row-label">Estado</span><span class="modal-row-val" style="color:var(--orange)">🆕 Novo!</span></div>' : ""}
-    <a href="../Brawlers/Coisas específicas/Brawlers Específicos/${b.name}/${b.name}.html" class="modal-btn">Ver todos os stats →</a>
-    <a href="../Brawlers/Skins/Skins.html?brawler=${b.name}" class="modal-btn" style="margin-top:.5rem;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)">🎨 Ver todas as skins →</a>
-    ${BRAWLERS_COM_BUFFIES.includes(b.name) ? `<a href="../Brawlers/Buffies.html#${BUFFIE_MACHINE[b.name]}" class="modal-btn" style="margin-top:.5rem;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)">🦊 Ver Buffies →</a>` : ""}
-`;
 
+    // Labels traduzíveis
+    const labelRaridade = dict.modal_label_raridade || "Raridade";
+    const labelClasse = dict.modal_label_classe || "Classe";
+    const labelHp = dict.modal_label_hp || "HP (PL11)";
+    const labelDano = dict.modal_label_dano || "Dano";
+    const labelEstado = dict.modal_label_estado || "Estado";
+    const labelNovo = dict.modal_label_novo || "🆕 Novo!";
+    const btnStats = dict.modal_btn_stats || "Ver todos os stats →";
+    const btnSkins = dict.modal_btn_skins || "🎨 Ver todas as skins →";
+    const btnBuffies = dict.modal_btn_buffies || "🦊 Ver Buffies →";
+
+    document.getElementById("modalBody").innerHTML = `
+    <div class="modal-row"><span class="modal-row-label">${labelRaridade}</span><span class="modal-row-val" style="color:${col}">${RARITY_LABELS[b.rarity] || b.rarity}</span></div>
+    <div class="modal-row"><span class="modal-row-label">${labelClasse}</span><span class="modal-row-val">${b.cls}</span></div>
+    <div class="modal-row"><span class="modal-row-label">${labelHp}</span><span class="modal-row-val">${b.hp.toLocaleString()}</span></div>
+    <div class="modal-row"><span class="modal-row-label">${labelDano}</span><span class="modal-row-val">${b.dmg.toLocaleString()}</span></div>
+    ${b.isNew ? `<div class="modal-row"><span class="modal-row-label">${labelEstado}</span><span class="modal-row-val" style="color:var(--orange)">${labelNovo}</span></div>` : ""}
+    <a href="../Brawlers/Coisas específicas/Brawlers Específicos/${b.name}/${b.name}.html" class="modal-btn">${btnStats}</a>
+    <a href="../Brawlers/Skins/Skins.html?brawler=${b.name}" class="modal-btn" style="margin-top:.5rem;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)">${btnSkins}</a>
+    ${BRAWLERS_COM_BUFFIES.includes(b.name) ? `<a href="../Brawlers/Buffies.html#${BUFFIE_MACHINE[b.name]}" class="modal-btn" style="margin-top:.5rem;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)">${btnBuffies}</a>` : ""}
+`;
     document.getElementById("modalOverlay").classList.add("open");
     document.body.style.overflow = "hidden";
 }
@@ -162,7 +196,13 @@ function renderGuides() {
     }).join("");
     document.querySelectorAll("#guidesGrid .reveal").forEach(el => revealObs.observe(el));
 }
+// Atualiza o contador de brawlers na página inicial
+function updateBrawlersCount() {
+    const el = document.getElementById("brawlersCount");
+    if (el) el.textContent = `${BRAWLERS.length} Brawlers`;
+}
 /* INIT */
 renderNews();
 renderBrawlers();
 renderGuides();
+updateBrawlersCount();

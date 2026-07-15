@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrawlZone — O Teu Fan Site de Brawl Stars</title>
+    <title data-i18n="start_title">BrawlZone — O Teu Fan Site de Brawl Stars</title>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="Página inicial.css">
@@ -91,19 +91,25 @@
         <div class="container">
             <div class="section-header reveal">
                 <div>
-                    <p class="section-eyebrow" style="color:var(--teal);">104 Brawlers</p>
-                    <h2 class="section-title dark">Os Brawlers</h2>
+                    <p class="section-eyebrow" style="color:var(--teal);" id="brawlersCount">106 Brawlers</p>
+                    <h2 class="section-title dark" data-i18n="start_brawlers_title">Os Brawlers</h2>
                 </div>
-                <a href="../Brawlers/Brawlers/Brawlers.html" class="see-all" style="color:var(--teal);">Ver todos →</a>
+                <a href="../Brawlers/Brawlers/Brawlers.html" class="see-all" style="color:var(--teal);"
+                    data-i18n="start_brawlers_btn">Ver todos →</a>
             </div>
             <div class="filter-tabs reveal" id="brawlerTabs">
-                <button class="filter-tab active" data-r="all">Todos</button>
-                <button class="filter-tab" data-r="novo">⭐ Novo</button>
-                <button class="filter-tab" data-r="legendary">💛 Legendary</button>
-                <button class="filter-tab" data-r="mythic">❤️ Mythic</button>
-                <button class="filter-tab" data-r="epic">💜 Epic</button>
-                <button class="filter-tab" data-r="super">💙 Super Rare</button>
-                <button class="filter-tab" data-r="rare">💚 Rare</button>
+                <button class="filter-tab active" data-r="all" data-i18n="start_brawlers_filter_all">Todos</button>
+                <button class="filter-tab" data-r="novo" data-i18n="start_brawlers_filter_novo">⭐ Novo</button>
+                <button class="filter-tab" data-r="legendary"
+                    data-i18n="start_brawlers_filter_legendary">💛Legendary</button>
+                <button class="filter-tab" data-r="mythic" data-i18n="start_brawlers_filter_mythic">❤️ Mythic</button>
+                <button class="filter-tab" data-r="epic" data-i18n="start_brawlers_filter_epic">💜 Epic</button>
+                <button class="filter-tab" data-r="super_rare" data-i18n="start_brawlers_filter_super">💙 Super
+                    Rare</button>
+                <button class="filter-tab" data-r="rare" data-i18n="start_brawlers_filter_rare">💚 Rare</button>
+            </div>
+            <div class="search-wrap-brawlers reveal" style="margin-bottom:1.5rem">
+                <input type="text" class="search-input-brawlers" id="brawlerSearch" placeholder="Procurar brawler...">
             </div>
             <div class="brawlers-grid reveal" id="brawlersGrid"></div>
         </div>

@@ -592,7 +592,7 @@
             color: var(--teal);
         }
 
-        .rarity-super {
+        .rarity-super_rare {
             background: rgba(59, 130, 246, .15);
             color: #7EB8FF;
         }
@@ -624,6 +624,30 @@
             text-transform: uppercase;
             padding: .18rem .5rem;
             border-radius: 100px;
+        }
+
+        /* BRAWLER Pesquisa */
+
+        .search-input-brawlers {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 100px;
+            padding: .6rem 1.4rem;
+            color: #fff;
+            font-family: 'Nunito', sans-serif;
+            font-size: .9rem;
+            outline: none;
+            width: 100%;
+            max-width: 300px;
+            transition: border-color .2s;
+        }
+
+        .search-input-brawlers::placeholder {
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .search-input-brawlers:focus {
+            border-color: var(--teal);
         }
 
         /* MODAL BRAWLER */
@@ -772,135 +796,6 @@
         .modal-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 18px rgba(255, 208, 0, .3);
-        }
-
-        /* UPDATE BANNER */
-        .update-banner {
-            background: var(--light2);
-            padding: 6rem 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .update-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        @media(max-width:800px) {
-            .update-inner {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .update-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            background: var(--orange2);
-            color: #fff;
-            font-size: .75rem;
-            font-weight: 800;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            padding: .4rem 1rem;
-            border-radius: 100px;
-            margin-bottom: 1.2rem;
-        }
-
-        .update-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            line-height: 1.05;
-            color: var(--text-dark);
-            margin-bottom: 1.2rem;
-        }
-
-        .update-desc {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: rgba(26, 26, 46, .6);
-            margin-bottom: 2rem;
-        }
-
-        .update-features {
-            display: flex;
-            flex-direction: column;
-            gap: .75rem;
-        }
-
-        .update-feature {
-            display: flex;
-            align-items: center;
-            gap: .75rem;
-            font-weight: 700;
-            font-size: .95rem;
-            color: var(--text-dark);
-        }
-
-        .update-feature-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: var(--dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-
-        .update-visual {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .update-card {
-            border-radius: 16px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: .5rem;
-        }
-
-        .update-card.dark-card {
-            background: var(--dark);
-            color: #fff;
-        }
-
-        .update-card.orange-card {
-            background: linear-gradient(135deg, var(--orange2), var(--pink));
-            color: #fff;
-        }
-
-        .update-card.yellow-card {
-            background: var(--yellow);
-            color: var(--text-dark);
-        }
-
-        .update-card.teal-card {
-            background: linear-gradient(135deg, var(--teal), var(--blue));
-            color: #fff;
-        }
-
-        .update-card-icon {
-            font-size: 1.8rem;
-        }
-
-        .update-card-title {
-            font-family: 'Russo One', sans-serif;
-            font-size: .95rem;
-        }
-
-        .update-card-sub {
-            font-size: .78rem;
-            opacity: .7;
-            font-weight: 600;
         }
 
         /* GUIAS */

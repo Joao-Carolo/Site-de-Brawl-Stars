@@ -50,7 +50,7 @@ function renderNews() {
         <p class="news-date">${p.data}</p>
         <h3 class="news-title">${titulo}</h3>
         <p class="news-excerpt">${excerpt}</p>
-        <a href="${p.link}" class="see-all" style="color:var(--orange2);margin-top:.75rem">Ler mais →</a>
+        <a href="${p.link}" class="see-all" style="color:var(--orange2);margin-top:.75rem" >${dict.start_novidades_btn_cards}</a>
       </div>
     </article>`;
     }).join("");

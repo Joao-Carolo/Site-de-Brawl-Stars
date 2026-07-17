@@ -1,5 +1,8 @@
 const TRANSLATIONS = {
     pt: {
+        // Geral
+        lema: "O fan site português de Brawl Stars. Guias, novidades, brawlers e tudo o mais — tudo em português.",
+
         // NAVBAR
         nav_novidades: "Novidades",
         nav_brawlers: "Brawlers",
@@ -8,7 +11,6 @@ const TRANSLATIONS = {
         nav_pesquisar: "Pesquisar",
 
         // FOOTER
-        footer_desc: "O fan site português de Brawl Stars. Guias, novidades, brawlers e tudo o mais — tudo em português.",
         footer_col_conteudo: "Conteúdo",
         footer_col_recursos: "Recursos",
         footer_col_site: "Site",
@@ -36,7 +38,6 @@ const TRANSLATIONS = {
         start_hero_badge: "O Fan Site Português nº1",
         start_hero_line1: "O universo de",
         start_hero_line2: "Brawl Stars",
-        start_hero_desc: "Tudo o que precisas — brawlers, guias, updates e as últimas novidades do jogo. Sempre atualizado.",
         start_hero_btn_brawlers: "🎮 Ver Brawlers",
         start_hero_btn_novidades: "📰 Últimas Novidades",
         start_hero_stat_label3: "Horas de Jogo",
@@ -53,6 +54,7 @@ const TRANSLATIONS = {
         post3_tag: "Update", post3_titulo: "Ver a animação da Temporada", post3_excerpt: "A Temporada NanoNoodles está a corromper o Starr Park! 🧪🍜",
         post4_tag: "Update", post4_titulo: "Notas de lançamento de Julho", post4_excerpt: "Uma loja de macarrão automatizada abriu em frente ao restaurante de sushi de Kenji e Kaze, despertando o interesse do filho deles, Nori. O caos se instala!",
         post5_tag: "Update", post5_titulo: "Manutenção 28 Abril — Colette reativada", post5_excerpt: "Bug crítico da Colette corrigido (+4.600 dano extra). Nerfs urgentes ao Damian, Sirius, Bull, Crow, Chester e Najia.",
+        start_novidades_btn_cards: "Ler mais →",
 
         // Página inicial - Brawlers Section
         start_brawlers_title: "Os Brawlers",
@@ -64,8 +66,9 @@ const TRANSLATIONS = {
         start_brawlers_filter_legendary: "💛 Lendário",
         start_brawlers_filter_mythic: "❤️ Mítico",
         start_brawlers_filter_epic: "💜 Épico",
-        start_brawlers_filter_super: "💙 Super Raro",
+        start_brawlers_filter_super_rare: "💙 Super Raro",
         start_brawlers_filter_rare: "💚 Raro",
+        start_brawlers_filter_pesquisa: "Procurar brawler...",
 
         //Página inicial - Brawlers Section - Brawlers
         modal_label_raridade: "Raridade",
@@ -77,8 +80,24 @@ const TRANSLATIONS = {
         modal_btn_stats: "Ver todos os stats →",
         modal_btn_skins: "🎨 Ver todas as skins →",
         modal_btn_buffies: "🦊 Ver Buffies →",
+
+        // Página inicial - Guias Section
+        start_guias_title: "Guias",
+        start_guias_btn: "Ver Todos →",
+        start_guias_p: "Para todos os níveis",
+
+        // Página inicial - Guias Section - Cards
+
+        // Página inicial - Cta Section
+        start_cta_title: "Fica sempre a par 🔔",
+        start_cta_desc: "Recebe as últimas novidades, guias e updates diretamente no teu email.",
+        start_cta_btn: "Subscrever",
+        start_cta_email_placeholder: "O teu email...",
     },
     en: {
+        //  Geral
+        lema: "The Brawl Stars fan site. Guides, news, brawlers and everything else — now in English too.",
+
         // NAVBAR
         nav_novidades: "News",
         nav_brawlers: "Brawlers",
@@ -87,7 +106,6 @@ const TRANSLATIONS = {
         nav_pesquisar: "Search",
 
         // FOOTER
-        footer_desc: "The Brawl Stars fan site. Guides, news, brawlers and everything else — now in English too.",
         footer_col_conteudo: "Content",
         footer_col_recursos: "Resources",
         footer_col_site: "Site",
@@ -115,7 +133,6 @@ const TRANSLATIONS = {
         start_hero_badge: "Portuguese's #1 Fan Site",
         start_hero_line1: "The universe of",
         start_hero_line2: "Brawl Stars",
-        start_hero_desc: "Everything you need — brawlers, guides, updates and the latest news from the game. Always updated.",
         start_hero_btn_brawlers: "🎮 See Brawlers",
         start_hero_btn_novidades: "📰 Latest News",
         start_hero_stat_label3: "Hours Played",
@@ -131,6 +148,7 @@ const TRANSLATIONS = {
         post3_tag: "Update", post3_titulo: "Watch the Season animation", post3_excerpt: "NanoNoodles Season is corrupting Starr Park! 🧪🍜",
         post4_tag: "Update", post4_titulo: "July release notes", post4_excerpt: "An automated noodle shop opened across from Kenji and Kaze's sushi restaurant, sparking their son Nori's interest. Chaos ensues!",
         post5_tag: "Update", post5_titulo: "April 28 Maintenance — Colette reactivated", post5_excerpt: "Fixed critical Colette bug (+4,600 extra damage). Urgent nerfs to Damian, Sirius, Bull, Crow, Chester and Najia.",
+        start_novidades_btn_cards: "Read more →",
 
         // Página inicial - Brawlers Section
         start_brawlers_title: "The Brawlers",
@@ -142,8 +160,9 @@ const TRANSLATIONS = {
         start_brawlers_filter_legendary: "💛 Legendary",
         start_brawlers_filter_mythic: "❤️ Mythic",
         start_brawlers_filter_epic: "💜 Epic",
-        start_brawlers_filter_super: "💙 Super Rare",
+        start_brawlers_filter_super_rare: "💙 Super Rare",
         start_brawlers_filter_rare: "💚 Rare",
+        start_brawlers_filter_pesquisa: "Search brawler...",
 
         //Página inicial - Brawlers Section - Brawlers
         modal_label_raridade: "Rarity",
@@ -157,7 +176,19 @@ const TRANSLATIONS = {
         modal_btn_buffies: "🦊 See Buffies →",
 
 
-        // Página inicial - Guias Section 
+        // Página inicial - Guias Section
+        start_guias_title: "Guides",
+        start_guias_btn: "See All →",
+        start_guias_p: "For every level",
+
+        // Página inicial - Guias Section - Cards
+
+        // Página inicial - Cta Section
+        start_cta_title: "Stay Updated🔔",
+        start_cta_desc: "Get the latest news, guides, and updates delivered straight to your inbox.",
+        start_cta_btn: "Subscribe",
+        start_cta_email_placeholder: "Your email..."
+        // Pedir ao claude os cards dos guias
     }
 };
 

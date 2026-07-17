@@ -12,6 +12,13 @@ const BREADCRUMB_TRANSLATIONS = {
         "Guias": "Guides",
         "Skins": "Skins",
         "Página inicial": "Home Page",
+    },
+    es: {
+        "Brawlers": "Brawlers",
+        "Notícias": "Noticias",
+        "Guias": "Guías",
+        "Skins": "Skins",
+        "Página inicial": "Página principal",
     }
 };
 

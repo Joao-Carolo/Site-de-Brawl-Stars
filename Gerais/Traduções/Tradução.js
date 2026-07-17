@@ -57,7 +57,7 @@ const TRANSLATIONS = {
         start_novidades_btn_cards: "Ler mais →",
 
         // Página inicial - Brawlers Section
-        start_brawlers_title: "Os Brawlers",
+        start_brawlers_title: "Brawlers",
         start_brawlers_btn: "Ver Todos →",
 
         // Página inicial - Brawlers Section - Filter Tabs
@@ -130,17 +130,17 @@ const TRANSLATIONS = {
         start_title: "BrawlZone — Your Brawl Stars Fan Site",
 
         //Página inicial - Hero Section
-        start_hero_badge: "Portuguese's #1 Fan Site",
+        start_hero_badge: "The #1 Portuguese Fan Site",
         start_hero_line1: "The universe of",
         start_hero_line2: "Brawl Stars",
-        start_hero_btn_brawlers: "🎮 See Brawlers",
+        start_hero_btn_brawlers: "🎮 View Brawlers",
         start_hero_btn_novidades: "📰 Latest News",
         start_hero_stat_label3: "Hours Played",
 
         //Página inicial - Novidades Section
         start_novidades_title: "Latest News",
         start_novidades_p: "Always Updated",
-        start_novidades_btn: "See All →",
+        start_novidades_btn: "View All →",
 
         // Página inicial - Novidades Section - Posts
         post1_tag: "Update", post1_titulo: "Brawl Talk", post1_excerpt: "Ramen Rebellion: a story event that will change Katana Kingdom forever! NanoPowers & Fusions, Food Fight, Cooking Combat and more game modes. 2 New Brawlers! Nori and Wendy. Buffies, Skins, Hypercharges and way WAY MORE",
@@ -151,8 +151,8 @@ const TRANSLATIONS = {
         start_novidades_btn_cards: "Read more →",
 
         // Página inicial - Brawlers Section
-        start_brawlers_title: "The Brawlers",
-        start_brawlers_btn: "See All →",
+        start_brawlers_title: "Brawlers",
+        start_brawlers_btn: "View All →",
 
         // Página inicial - Brawlers Section - Filter Tabs
         start_brawlers_filter_all: "All",
@@ -179,16 +179,115 @@ const TRANSLATIONS = {
         // Página inicial - Guias Section
         start_guias_title: "Guides",
         start_guias_btn: "See All →",
-        start_guias_p: "For every level",
+        start_guias_p: "For players of all skill levels",
 
         // Página inicial - Guias Section - Cards
 
         // Página inicial - Cta Section
-        start_cta_title: "Stay Updated🔔",
+        start_cta_title: "Stay Updated 🔔",
         start_cta_desc: "Get the latest news, guides, and updates delivered straight to your inbox.",
         start_cta_btn: "Subscribe",
-        start_cta_email_placeholder: "Your email..."
+        start_cta_email_placeholder: "Your email...",
+    },
+    es: {
+        // Geral
+        lema: "El sitio fan en español de Brawl Stars. Guías, noticias, brawlers y todo lo demás — todo en español.",
+
+        // NAVBAR
+        nav_novidades: "Noticias",
+        nav_brawlers: "Brawlers",
+        nav_updates: "Actualizaciones",
+        nav_guias: "Guías",
+        nav_pesquisar: "Buscar",
+
+        // FOOTER
+        footer_col_conteudo: "Contenido",
+        footer_col_recursos: "Recursos",
+        footer_col_site: "Sitio",
+        footer_link_brawlers: "Brawlers",
+        footer_link_updates: "Actualizaciones",
+        footer_link_guias: "Guías",
+        footer_link_skins: "Skins",
+        footer_link_buffies: "Buffies",
+        footer_link_eventos: "Eventos",
+        footer_link_torneios: "Torneos",
+        footer_link_glossario: "Glosario",
+        footer_link_collabs: "Colaboraciones",
+        footer_link_ranked: "Competitivo",
+        footer_link_noticias: "Noticias",
+        footer_copyright: "© 2026 BrawlZone — Sitio no oficial de fans",
+        footer_disclaimer: "Brawl Stars es propiedad de Supercell",
+
+        // BREADCRUMB
+        breadcrumb_inicio: "🏠 Inicio",
+
+        //Página inicial
+        start_title: "BrawlZone — Tu sitio fan de Brawl Stars",
+
+        //Página inicial - Hero Section
+        start_hero_badge: "El sitio de fans portugués nº 1",
+        start_hero_line1: "El universo de",
+        start_hero_line2: "Brawl Stars",
+        start_hero_btn_brawlers: "🎮 Ver Brawlers",
+        start_hero_btn_novidades: "📰 Últimas Noticias",
+        start_hero_stat_label3: "Horas Jugadas",
+
+        //Página inicial - Novidades Section
+        start_novidades_title: "Últimas Noticias",
+        start_novidades_p: "Siempre actualizado",
+        start_novidades_btn: "Ver Todas →",
+
+        // Página inicial - Novidades Section - Posts
+        post1_tag: "Actualización", post1_titulo: "Brawl Talk", post1_excerpt: "Rebelión del Ramen: ¡un evento de historia que cambiará para siempre el Reino Katana! NanoPoderes y Fusiones, Guerra de Comida, Combate Culinario y más modos de juego. ¡2 Nuevos Brawlers! Nori y Wendy. Buffies, Skins, Hypercharges y mucho, MUCHO MÁS",
+        post2_tag: "Actualización", post2_titulo: "Mira a Nori en acción", post2_excerpt: "Nori siempre está pescando problemas 🎣",
+        post3_tag: "Actualización", post3_titulo: "Mira la animación de la Temporada", post3_excerpt: "¡La Temporada NanoNoodles está corrompiendo Starr Park! 🧪🍜",
+        post4_tag: "Actualización", post4_titulo: "Notas de lanzamiento de julio", post4_excerpt: "¡Una tienda de fideos automatizada se abrió frente al restaurante de sushi de Kenji y Kaze, despertando el interés de su hijo Nori! ¡El caos se desata!",
+        post5_tag: "Actualización", post5_titulo: "Mantenimiento del 28 de abril — Colette reactivada", post5_excerpt: "Se corrigió un error crítico de Colette (+4.600 de daño adicional). Nerfs urgentes a Damian, Sirius, Bull, Crow, Chester y Najia.",
+        start_novidades_btn_cards: "Leer más →",
+
+        // Página inicial - Brawlers Section
+        start_brawlers_title: "Brawlers",
+        start_brawlers_btn: "Ver Todos →",
+
+        // Página inicial - Brawlers Section - Filter Tabs
+        start_brawlers_filter_all: "Todos",
+        start_brawlers_filter_novo: "⭐ Nuevo",
+        start_brawlers_filter_legendary: "💛 Legendario",
+        start_brawlers_filter_mythic: "❤️ Mítico",
+        start_brawlers_filter_epic: "💜 Épico",
+        start_brawlers_filter_super_rare: "💙 Súper Raro",
+        start_brawlers_filter_rare: "💚 Raro",
+        start_brawlers_filter_pesquisa: "Buscar brawler...",
+
+        //Página inicial - Brawlers Section - Brawlers
+        modal_label_raridade: "Rareza",
+        modal_label_classe: "Clase",
+        modal_label_hp: "HP (PL11)",
+        modal_label_dano: "Daño",
+        modal_label_estado: "Estado",
+        modal_label_novo: "🆕 ¡Nuevo!",
+        modal_btn_stats: "Ver todas las estadísticas →",
+        modal_btn_skins: "🎨 Ver todas las skins →",
+        modal_btn_buffies: "🦊 Ver Buffies →",
+
+        // Página inicial - Guias Section
+        start_guias_title: "Guías",
+        start_guias_btn: "Ver Todos →",
+        start_guias_p: "Para todos los niveles",
+
+        // Página inicial - Guias Section - Cards
+
+        // Página inicial - Cta Section
+        start_cta_title: "Mantente al día 🔔",
+        start_cta_desc: "Recibe las últimas noticias, guías y actualizaciones directamente en tu correo electrónico.",
+        start_cta_btn: "Suscribirse",
+        start_cta_email_placeholder: "Tu correo electrónico...",
+
+
+
+
         // Pedir ao claude os cards dos guias
+
     }
 };
 

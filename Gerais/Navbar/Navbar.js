@@ -33,6 +33,7 @@ function buildNavbar(activeLink = "") {
                 <button onclick="setLang('pt')" class="lang-btn${currentLang === 'pt' ? ' active' : ''}" title="Português">🇵🇹</button>
                 <button onclick="setLang('en')" class="lang-btn${currentLang === 'en' ? ' active' : ''}" title="English">🇬🇧</button>
                 <button onclick="setLang('es')" class="lang-btn${currentLang === 'es' ? ' active' : ''}" title="Español">🇪🇸</button>
+                <button onclick="setLang('fr')" class="lang-btn${currentLang === 'fr' ? ' active' : ''}" title="Français">🇫🇷</button>
             </div>
             <button class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>

@@ -288,6 +288,55 @@ const TRANSLATIONS = {
 
         // Pedir ao claude os cards dos guias
 
+    },
+    fr: {
+        // Geral
+        lema: "Le site de fans français de Brawl Stars. Guides, actualités, brawlers et tout le reste — tout en français.",
+
+        // NAVBAR
+        nav_novidades: "Actualités",
+        nav_brawlers: "Brawlers",
+        nav_updates: "Mises à jour",
+        nav_guias: "Guides",
+        nav_pesquisar: "Rechercher",
+        // FOOTER
+        footer_col_conteudo: "Contenu",
+        footer_col_recursos: "Ressources",
+        footer_col_site: "Site",
+        
+        // Página inicial - Hero Section
+        start_hero_title: "Le site officiel de Brawl Stars",
+        start_hero_desc: "Le site de fans non-officiel pour les joueurs de Brawl Stars.",
+        start_hero_btn: "Commencer",
+
+        // Página inicial - Brawlers Section
+        start_brawlers_title: "Brawlers",
+        start_brawlers_btn: "Voir tous →",
+        start_brawlers_p: "Pour tous les niveaux",
+
+        // Página inicial - Noticias Section
+        start_novidades_title: "Actualités",
+        start_novidades_p: "Toujours à jour",
+        start_novidades_btn: "Voir toutes →",
+
+        // Página inicial - Guias Section
+        start_guias_title: "Guides",
+        start_guias_btn: "Voir tous →",
+        start_guias_p: "Pour les joueurs de tous niveaux",
+
+        // Página inicial - Guias Section - Cards
+
+        // Página inicial - Cta Section
+        start_cta_title: "Restez informé 🔔",
+        start_cta_desc: "Recevez les dernières nouvelles, guides et mises à jour directement dans votre e-mail.",
+        start_cta_btn: "S'abonner",
+        start_cta_email_placeholder: "Votre adresse e-mail...",
+
+
+
+
+        // Pedir ao claude os cards dos guias
+
     }
 };
 

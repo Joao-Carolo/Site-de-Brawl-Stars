@@ -8,6 +8,7 @@ const TRANSLATIONS = {
         nav_brawlers: "Brawlers",
         nav_updates: "Updates",
         nav_guias: "Guias",
+        nav_idioma: "Idioma",
 
         // FOOTER
         footer_col_conteudo: "Conteúdo",
@@ -116,6 +117,7 @@ const TRANSLATIONS = {
         nav_brawlers: "Brawlers",
         nav_updates: "Updates",
         nav_guias: "Guides",
+        nav_idioma: "Language",
 
         // FOOTER
         footer_col_conteudo: "Content",
@@ -223,6 +225,7 @@ const TRANSLATIONS = {
         nav_brawlers: "Brawlers",
         nav_updates: "Actualizaciones",
         nav_guias: "Guías",
+        nav_idioma: "Idioma",
 
         // FOOTER
         footer_col_conteudo: "Contenido",

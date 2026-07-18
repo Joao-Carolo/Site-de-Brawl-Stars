@@ -6,6 +6,31 @@ function getBasePath() {
     return "../".repeat(parts.length);
 }
 
+/* Lista de todos os idiomas suportados pelo Brawl Stars */
+const AVAILABLE_LANGS = [
+    { code: "en", flag: "🇬🇧", name: "English" },
+    { code: "fr", flag: "🇫🇷", name: "Français" },
+    { code: "de", flag: "🇩🇪", name: "Deutsch" },
+    { code: "es", flag: "🇪🇸", name: "Español" },
+    { code: "it", flag: "🇮🇹", name: "Italiano" },
+    { code: "zh-cn", flag: "🇨🇳", name: "简体中文" },
+    { code: "zh-tw", flag: "🇹🇼", name: "繁體中文" },
+    { code: "ja", flag: "🇯🇵", name: "日本語" },
+    { code: "ko", flag: "🇰🇷", name: "한국어" },
+    { code: "pt", flag: "🇵🇹", name: "Português" },
+    { code: "ru", flag: "🇷🇺", name: "Русский" },
+    { code: "nl", flag: "🇳🇱", name: "Nederlands" },
+    { code: "tr", flag: "🇹🇷", name: "Türkçe" },
+    { code: "fi", flag: "🇫🇮", name: "Suomi" },
+    { code: "ms", flag: "🇲🇾", name: "Bahasa Melayu" },
+    { code: "vi", flag: "🇻🇳", name: "Tiếng Việt" },
+    { code: "th", flag: "🇹🇭", name: "ภาษาไทย" },
+    { code: "id", flag: "🇮🇩", name: "Bahasa Indonesia" },
+    { code: "ar", flag: "🇸🇦", name: "العربية" },
+    { code: "pl", flag: "🇵🇱", name: "Polski" },
+    { code: "he", flag: "🇮🇱", name: "עברית" },
+];
+
 function buildNavbar(activeLink = "") {
     const basePath = getBasePath();
 
@@ -21,6 +46,11 @@ function buildNavbar(activeLink = "") {
     ).join("");
 
     const currentLang = getCurrentLang();
+    const currentLangObj = AVAILABLE_LANGS.find(l => l.code === currentLang) || { flag: "🇵🇹", name: "Português" };
+
+    const langOptionsHtml = AVAILABLE_LANGS.map(l =>
+        `<button class="lang-option${l.code === currentLang ? ' active' : ''}" onclick="setLang('${l.code}')">${l.flag} ${l.name}</button>`
+    ).join("");
 
     const navHtml = `
         <nav>
@@ -30,10 +60,12 @@ function buildNavbar(activeLink = "") {
             </div>
             <ul class="nav-links">${linksHtml}</ul>
             <div class="lang-switcher">
-                <button onclick="setLang('pt')" class="lang-btn${currentLang === 'pt' ? ' active' : ''}" title="Português">🇵🇹</button>
-                <button onclick="setLang('en')" class="lang-btn${currentLang === 'en' ? ' active' : ''}" title="English">🇬🇧</button>
-                <button onclick="setLang('es')" class="lang-btn${currentLang === 'es' ? ' active' : ''}" title="Español">🇪🇸</button>
-                <button onclick="setLang('fr')" class="lang-btn${currentLang === 'fr' ? ' active' : ''}" title="Français">🇫🇷</button>
+                <button class="lang-toggle" id="langToggle">
+                    ${currentLangObj.flag} <span data-i18n="nav_idioma">Idioma</span> ▾
+                </button>
+                <div class="lang-dropdown" id="langDropdown">
+                    ${langOptionsHtml}
+                </div>
             </div>
             <button class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
@@ -41,6 +73,17 @@ function buildNavbar(activeLink = "") {
         </nav>`;
 
     document.body.insertAdjacentHTML("afterbegin", navHtml);
+
+    // Toggle do dropdown
+    const langToggle = document.getElementById("langToggle");
+    const langDropdown = document.getElementById("langDropdown");
+    langToggle.addEventListener("click", e => {
+        e.stopPropagation();
+        langDropdown.classList.toggle("open");
+    });
+    document.addEventListener("click", () => {
+        langDropdown.classList.remove("open");
+    });
 
     // Scroll effect
     window.addEventListener("scroll", () => {

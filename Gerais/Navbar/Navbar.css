@@ -93,37 +93,87 @@ nav {
 }
 
 .lang-switcher {
+    position: relative;
+}
+
+.lang-toggle {
     display: flex;
     align-items: center;
-    gap: .35rem;
-    background: rgba(255, 255, 255, .04);
-    border: 1px solid rgba(255, 255, 255, .08);
+    gap: .4rem;
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(255, 255, 255, .1);
     border-radius: 100px;
-    padding: .25rem;
+    padding: .5rem 1rem;
+    color: rgba(255, 255, 255, .7);
+    font-family: 'Nunito', sans-serif;
+    font-size: .82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s, border-color .2s;
 }
 
-.lang-btn {
+.lang-toggle:hover {
+    background: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .2);
+    color: #fff;
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: calc(100% + .6rem);
+    right: 0;
+    background: var(--dark2);
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 14px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, .4);
+    padding: .5rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    gap: .2rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    width: max-content;
+    max-width: 90vw;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity .2s, transform .2s;
+    z-index: 1000;
+}
+
+.lang-dropdown.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
     background: none;
     border: none;
-    font-size: 1.1rem;
-    line-height: 1;
-    padding: .3rem .5rem;
-    border-radius: 100px;
+    border-radius: 8px;
+    padding: .55rem .75rem;
+    color: rgba(255, 255, 255, .6);
+    font-family: 'Nunito', sans-serif;
+    font-size: .82rem;
+    font-weight: 600;
     cursor: pointer;
-    opacity: .4;
-    filter: grayscale(60%);
-    transition: opacity .2s, filter .2s, background .2s;
+    text-align: left;
+    transition: background .15s, color .15s;
+    white-space: nowrap;
 }
 
-.lang-btn:hover {
-    opacity: .8;
-    filter: grayscale(20%);
+.lang-option:hover {
+    background: rgba(255, 255, 255, .06);
+    color: #fff;
 }
 
-.lang-btn.active {
-    opacity: 1;
-    filter: grayscale(0%);
-    background: rgba(255, 255, 255, .08);
+.lang-option.active {
+    background: rgba(255, 208, 0, .1);
+    color: var(--yellow);
+    font-weight: 800;
 }
 
 @media(max-width:768px) {

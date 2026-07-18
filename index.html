@@ -1,8 +1,222 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 
 <head>
-    <meta http-equiv="refresh" content="0; url=Página inicial/Página inicial.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrawlZone — Choose your language</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="Gerais/Logo.png">
+    <link rel="stylesheet" href="Gerais/Cores.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .bg {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 60% at 20% 30%, rgba(255, 107, 0, .18) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 80% 70%, rgba(59, 130, 246, .15) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 40% at 50% 90%, rgba(255, 208, 0, .1) 0%, transparent 55%),
+                var(--dark);
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .6rem;
+            margin-bottom: 1.5rem;
+            animation: fadeSlideUp .6s ease both;
+        }
+
+        .logo-wrap img {
+            width: 44px;
+            height: 44px;
+        }
+
+        .logo-wrap .zone {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.6rem;
+        }
+
+        .title {
+            font-family: 'Russo One', sans-serif;
+            font-size: clamp(1.6rem, 5vw, 2.4rem);
+            margin-bottom: .75rem;
+            animation: fadeSlideUp .6s ease both .1s;
+        }
+
+        .subtitle {
+            font-size: .95rem;
+            color: rgba(255, 255, 255, .5);
+            margin-bottom: 2.5rem;
+            animation: fadeSlideUp .6s ease both .2s;
+        }
+
+        .lang-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: .75rem;
+            animation: fadeSlideUp .6s ease both .3s;
+        }
+
+        .lang-card {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 14px;
+            padding: .9rem 1.1rem;
+            color: #fff;
+            font-weight: 700;
+            font-size: .88rem;
+            cursor: pointer;
+            transition: transform .18s, background .18s, border-color .18s, box-shadow .18s;
+            text-align: left;
+        }
+
+        .lang-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 208, 0, .08);
+            border-color: rgba(255, 208, 0, .35);
+            box-shadow: 0 10px 24px rgba(255, 208, 0, .12);
+        }
+
+        .lang-card .flag {
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .25);
+            animation: fadeSlideUp .6s ease both .4s;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media(max-width:500px) {
+            .lang-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
+
+<body>
+    <div class="bg"></div>
+
+    <div class="content">
+        <div class="logo-wrap">
+            <img src="Gerais/Logo.png" alt="Logo">
+            <span class="zone">BrawlZone</span>
+        </div>
+        <h1 class="title">Choose your language / Escolhe o teu idioma</h1>
+        <p class="subtitle">Select a language to continue to the site</p>
+
+        <div class="lang-grid" id="langGrid"></div>
+
+        <p class="footer-note">Brawl Stars is property of Supercell</p>
+    </div>
+
+    <script>
+        const AVAILABLE_LANGS = [
+            { code: "pt", flag: "🇵🇹", name: "Português" },
+            { code: "en", flag: "🇬🇧", name: "English" },
+            { code: "fr", flag: "🇫🇷", name: "Français" },
+            { code: "de", flag: "🇩🇪", name: "Deutsch" },
+            { code: "es", flag: "🇪🇸", name: "Español" },
+            { code: "it", flag: "🇮🇹", name: "Italiano" },
+            { code: "zh-cn", flag: "🇨🇳", name: "简体中文" },
+            { code: "zh-tw", flag: "🇹🇼", name: "繁體中文" },
+            { code: "ja", flag: "🇯🇵", name: "日本語" },
+            { code: "ko", flag: "🇰🇷", name: "한국어" },
+            { code: "ru", flag: "🇷🇺", name: "Русский" },
+            { code: "nl", flag: "🇳🇱", name: "Nederlands" },
+            { code: "tr", flag: "🇹🇷", name: "Türkçe" },
+            { code: "fi", flag: "🇫🇮", name: "Suomi" },
+            { code: "ms", flag: "🇲🇾", name: "Bahasa Melayu" },
+            { code: "vi", flag: "🇻🇳", name: "Tiếng Việt" },
+            { code: "th", flag: "🇹🇭", name: "ภาษาไทย" },
+            { code: "id", flag: "🇮🇩", name: "Bahasa Indonesia" },
+            { code: "ar", flag: "🇸🇦", name: "العربية" },
+            { code: "pl", flag: "🇵🇱", name: "Polski" },
+            { code: "he", flag: "🇮🇱", name: "עברית" },
+        ];
+
+        const REPO_NAME = "Site-de-Brawl-Stars";
+
+        function getStartPath() {
+            // Deteta se já está dentro do repo (GitHub Pages) ou local
+            const parts = window.location.pathname.split("/").filter(p => p !== "");
+            const inRepo = parts.includes(REPO_NAME);
+            return inRepo ? `/${REPO_NAME}/Página inicial/Página inicial.html` : `Página inicial/Página inicial.html`;
+        }
+
+        // Se já houver idioma guardado, salta direto para a página inicial
+        const savedLang = localStorage.getItem("brawlzone_lang");
+        if (savedLang) {
+            window.location.href = getStartPath();
+        }
+
+        // Constrói a grelha de idiomas
+        const grid = document.getElementById("langGrid");
+        grid.innerHTML = AVAILABLE_LANGS.map(l =>
+            `<button class="lang-card" onclick="chooseLang('${l.code}')">
+                <span class="flag">${l.flag}</span> ${l.name}
+            </button>`
+        ).join("");
+
+        function chooseLang(code) {
+            localStorage.setItem("brawlzone_lang", code);
+            window.location.href = getStartPath();
+        }
+    </script>
+</body>
 
 </html>

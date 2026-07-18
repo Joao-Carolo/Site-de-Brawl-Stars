@@ -8,7 +8,6 @@ const TRANSLATIONS = {
         nav_brawlers: "Brawlers",
         nav_updates: "Updates",
         nav_guias: "Guias",
-        nav_pesquisar: "Pesquisar",
 
         // FOOTER
         footer_col_conteudo: "Conteúdo",
@@ -25,7 +24,7 @@ const TRANSLATIONS = {
         footer_link_collabs: "Collabs",
         footer_link_ranked: "Ranked",
         footer_link_noticias: "Notícias",
-        footer_copyright: "© 2026 BrawlZone — Fan site não oficial",
+        footer_copyright: "© 2026 <strong>BrawlZone</strong> — Fan site não oficial",
         footer_disclaimer: "Brawl Stars é propriedade da Supercell",
 
         // BREADCRUMB
@@ -87,6 +86,20 @@ const TRANSLATIONS = {
         start_guias_p: "Para todos os níveis",
 
         // Página inicial - Guias Section - Cards
+        guide1_titulo: "Como subir de rank rapidamente",
+        guide1_desc: "Os melhores brawlers para ranked, as melhores estratégias por modo de jogo, e os erros mais comuns que te impedem de subir.",
+        guide2_titulo: "Guia F2P — progredir sem gastar",
+        guide2_desc: "Maximiza os teus recursos grátis — Starr Drops, Chaos Drops, Brawl Pass gratuito e os melhores brawlers para desbloquear primeiro.",
+        guide3_titulo: "Buffies — Tudo o que precisas de saber",
+        guide3_desc: "O que são, como desbloqueá-los, qual a ordem certa e quais são os melhores Buffies por brawler no meta atual.",
+        guide4_titulo: "Guia de Modos no Ranked",
+        guide4_desc: "Gem Grab, Brawl Ball, Knockout — estratégias específicas para cada modo competitivo. Composições ideais e dicas de posicionamento.",
+        guide5_titulo: "Guia de Gem Grab",
+        guide5_desc: "Regras de ouro do Gem Grab, composições de equipa ideais, controlo do mid e como gerir as gemas em situações de pressão.",
+        guide6_titulo: "Mentalidade competitiva",
+        guide6_desc: "Como evitar o tilt, gerir a derrota, manter foco e desenvolver uma mentalidade de melhoria contínua do Gold ao Mythic.",
+        guide_link_text: "Ler guia →",
+
 
         // Página inicial - Cta Section
         start_cta_title: "Fica sempre a par 🔔",
@@ -103,7 +116,6 @@ const TRANSLATIONS = {
         nav_brawlers: "Brawlers",
         nav_updates: "Updates",
         nav_guias: "Guides",
-        nav_pesquisar: "Search",
 
         // FOOTER
         footer_col_conteudo: "Content",
@@ -120,7 +132,7 @@ const TRANSLATIONS = {
         footer_link_collabs: "Collabs",
         footer_link_ranked: "Ranked",
         footer_link_noticias: "News",
-        footer_copyright: "© 2026 BrawlZone — Unofficial fan site",
+        footer_copyright: "© 2026 <strong>BrawlZone</strong> — Unofficial fan site",
         footer_disclaimer: "Brawl Stars is property of Supercell",
 
         // BREADCRUMB
@@ -182,6 +194,19 @@ const TRANSLATIONS = {
         start_guias_p: "For players of all skill levels",
 
         // Página inicial - Guias Section - Cards
+        guide1_titulo: "How to climb rank quickly",
+        guide1_desc: "The best brawlers for ranked, the best strategies per game mode, and the most common mistakes holding you back from climbing.",
+        guide2_titulo: "F2P Guide — progress without spending",
+        guide2_desc: "Maximize your free resources — Starr Drops, Chaos Drops, free Brawl Pass, and the best brawlers to unlock first.",
+        guide3_titulo: "Buffies — Everything you need to know",
+        guide3_desc: "What they are, how to unlock them, the right order, and the best Buffies per brawler in the current meta.",
+        guide4_titulo: "Ranked Game Modes Guide",
+        guide4_desc: "Gem Grab, Brawl Ball, Knockout — specific strategies for each competitive mode. Ideal compositions and positioning tips.",
+        guide5_titulo: "Gem Grab Guide",
+        guide5_desc: "Golden rules of Gem Grab, ideal team compositions, mid control, and how to manage gems under pressure.",
+        guide6_titulo: "Competitive mindset",
+        guide6_desc: "How to avoid tilt, handle defeat, stay focused, and build a mindset of continuous improvement from Gold to Mythic.",
+        guide_link_text: "Read guide →",
 
         // Página inicial - Cta Section
         start_cta_title: "Stay Updated 🔔",
@@ -198,7 +223,6 @@ const TRANSLATIONS = {
         nav_brawlers: "Brawlers",
         nav_updates: "Actualizaciones",
         nav_guias: "Guías",
-        nav_pesquisar: "Buscar",
 
         // FOOTER
         footer_col_conteudo: "Contenido",
@@ -213,9 +237,9 @@ const TRANSLATIONS = {
         footer_link_torneios: "Torneos",
         footer_link_glossario: "Glosario",
         footer_link_collabs: "Colaboraciones",
-        footer_link_ranked: "Competitivo",
+        footer_link_ranked: "Ranked",
         footer_link_noticias: "Noticias",
-        footer_copyright: "© 2026 BrawlZone — Sitio no oficial de fans",
+        footer_copyright: "© 2026 <strong>BrawlZone</strong> — Sitio no oficial de fans",
         footer_disclaimer: "Brawl Stars es propiedad de Supercell",
 
         // BREADCRUMB
@@ -276,17 +300,25 @@ const TRANSLATIONS = {
         start_guias_p: "Para todos los niveles",
 
         // Página inicial - Guias Section - Cards
+        guide1_titulo: "Cómo subir de rango rápidamente",
+        guide1_desc: "Los mejores brawlers para ranked, las mejores estrategias por modo de juego y los errores más comunes que te impiden subir.",
+        guide2_titulo: "Guía F2P — progresar sin gastar",
+        guide2_desc: "Maximiza tus recursos gratuitos — Starr Drops, Chaos Drops, Brawl Pass gratuito y los mejores brawlers para desbloquear primero.",
+        guide3_titulo: "Buffies — Todo lo que necesitas saber",
+        guide3_desc: "Qué son, cómo desbloquearlos, cuál es el orden correcto y cuáles son los mejores Buffies por brawler en el meta actual.",
+        guide4_titulo: "Guía de Modos en Ranked",
+        guide4_desc: "Gem Grab, Brawl Ball, Knockout — estrategias específicas para cada modo competitivo. Composiciones ideales y consejos de posicionamiento.",
+        guide5_titulo: "Guía de Gem Grab",
+        guide5_desc: "Reglas de oro del Gem Grab, composiciones de equipo ideales, control del mid y cómo gestionar las gemas en situaciones de presión.",
+        guide6_titulo: "Mentalidad competitiva",
+        guide6_desc: "Cómo evitar el tilt, gestionar la derrota, mantener el enfoque y desarrollar una mentalidad de mejora continua del Gold al Mythic.",
+        guide_link_text: "Leer guía →",
 
         // Página inicial - Cta Section
         start_cta_title: "Mantente al día 🔔",
         start_cta_desc: "Recibe las últimas noticias, guías y actualizaciones directamente en tu correo electrónico.",
         start_cta_btn: "Suscribirse",
         start_cta_email_placeholder: "Tu correo electrónico...",
-
-
-
-
-        // Pedir ao claude os cards dos guias
 
     },
     fr: {
@@ -298,12 +330,11 @@ const TRANSLATIONS = {
         nav_brawlers: "Brawlers",
         nav_updates: "Mises à jour",
         nav_guias: "Guides",
-        nav_pesquisar: "Rechercher",
         // FOOTER
         footer_col_conteudo: "Contenu",
         footer_col_recursos: "Ressources",
         footer_col_site: "Site",
-        
+
         // Página inicial - Hero Section
         start_hero_title: "Le site officiel de Brawl Stars",
         start_hero_desc: "Le site de fans non-officiel pour les joueurs de Brawl Stars.",
@@ -331,12 +362,6 @@ const TRANSLATIONS = {
         start_cta_desc: "Recevez les dernières nouvelles, guides et mises à jour directement dans votre e-mail.",
         start_cta_btn: "S'abonner",
         start_cta_email_placeholder: "Votre adresse e-mail...",
-
-
-
-
-        // Pedir ao claude os cards dos guias
-
     }
 };
 
@@ -355,10 +380,17 @@ function setLang(lang) {
 function applyTranslations() {
     const lang = getCurrentLang();
     const dict = TRANSLATIONS[lang] || TRANSLATIONS.pt;
+    const KEYS_COM_HTML = ["footer_copyright", "footer_disclaimer"];
 
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
-        if (dict[key]) el.textContent = dict[key];
+        if (dict[key]) {
+            if (KEYS_COM_HTML.includes(key)) {
+                el.innerHTML = dict[key];
+            } else {
+                el.textContent = dict[key];
+            }
+        }
     });
 
     // Atributos como placeholder, title, etc.

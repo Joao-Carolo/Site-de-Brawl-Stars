@@ -61,14 +61,15 @@ function renderBrawlers(filter = currentBrawlerFilter) {
     currentBrawlerFilter = filter;
     const grid = document.getElementById("brawlersGrid");
     const s = currentBrawlerSearch.toLowerCase().trim();
-    const filtered = BRAWLERS.filter(b => {
+    const destaque = BRAWLERS.filter(b => BRAWLERS_DESTAQUE.includes(b.name));
+    const filtered = destaque.filter(b => {
         const filterMatch = filter === "all" ? true : filter === "novo" ? b.isNew : b.rarity === filter;
         const searchMatch = s === "" || b.name.toLowerCase().includes(s);
         return filterMatch && searchMatch;
     });
-    grid.innerHTML = filtered.map(b => {
+    grid.innerHTML = filtered.map((b, i) => {
         const col = RARITY_COLORS[b.rarity] || "#fff";
-        return `<div class="brawler-card" onclick="openBrawlerModal('${b.name}')">
+        return `<div class="brawler-card reveal" onclick="openBrawlerModal('${b.name}')" style="transition-delay:${i * 0.03}s">
     ${b.isNew ? '<span class="brawler-new-badge">NOVO</span>' : ""}
     <img
         src="../Brawlers/Imagens/Skins (imagens)/${b.name}/${b.name} Padrão.png"
@@ -81,10 +82,8 @@ function renderBrawlers(filter = currentBrawlerFilter) {
     <div class="brawler-rarity rarity-${b.rarity}">${RARITY_LABELS[b.rarity] || b.rarity}</div>
     </div>`;
     }).join("");
-    // re-attach cursor listeners
-    document.querySelectorAll(".brawler-card").forEach(el => {
-        el.addEventListener("mouseenter", () => { if (cursor) { cursor.style.width = "20px"; cursor.style.height = "20px"; ring.style.width = "50px"; ring.style.height = "50px"; } });
-        el.addEventListener("mouseleave", () => { if (cursor) { cursor.style.width = "12px"; cursor.style.height = "12px"; ring.style.width = "36px"; ring.style.height = "36px"; } });
+    requestAnimationFrame(() => {
+        document.querySelectorAll(".brawler-card").forEach(el => el.classList.add("visible"));
     });
 }
 document.getElementById("brawlerSearch").addEventListener("input", e => {
@@ -137,9 +136,9 @@ function openBrawlerModal(name) {
     <div class="modal-row"><span class="modal-row-label">${labelHp}</span><span class="modal-row-val">${b.hp.toLocaleString()}</span></div>
     <div class="modal-row"><span class="modal-row-label">${labelDano}</span><span class="modal-row-val">${b.dmg.toLocaleString()}</span></div>
     ${b.isNew ? `<div class="modal-row"><span class="modal-row-label">${labelEstado}</span><span class="modal-row-val" style="color:var(--orange)">${labelNovo}</span></div>` : ""}
-    <a href="../Brawlers/Coisas específicas/Brawlers Específicos/${b.name}/${b.name}.html" class="modal-btn">${btnStats}</a>
+    <a href="../Brawlers/Coisas específicas/Brawlers Específicos/${b.name}.html" class="modal-btn">${btnStats}</a>
     <a href="../Brawlers/Skins/Skins.html?brawler=${b.name}" class="modal-btn" style="margin-top:.5rem;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)">${btnSkins}</a>
-    ${BRAWLERS_COM_BUFFIES.includes(b.name) ? `<a href="../Brawlers/Buffies.html#${BUFFIE_MACHINE[b.name]}" class="modal-btn" style="margin-top:.5rem;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)">${btnBuffies}</a>` : ""}
+    ${BRAWLERS_COM_BUFFIES.includes(b.name) ? `<a href="../Brawlers/Poderes/Poderes Fixos/Buffies/Buffies.html#${BUFFIE_MACHINE[b.name]}" class="modal-btn" style="margin-top:.5rem;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)">${btnBuffies}</a>` : ""}
 `;
     document.getElementById("modalOverlay").classList.add("open");
     document.body.style.overflow = "hidden";
@@ -167,30 +166,37 @@ document.querySelector(".email-btn").addEventListener("click", () => {
 });
 /* GUIAS — mesmo array do Guias.html */
 const GUIDES = [
-    { emoji: "🏆", titulo: "Como subir de rank rapidamente", desc: "Os melhores brawlers para ranked, as melhores estratégias por modo de jogo, e os erros mais comuns que te impedem de subir.", cor: "linear-gradient(90deg,var(--yellow),var(--orange))", linkCor: "var(--yellow)", link: "../Guias/Guias.html" },
-    { emoji: "💰", titulo: "Guia F2P — progredir sem gastar", desc: "Maximiza os teus recursos grátis — Starr Drops, Chaos Drops, Brawl Pass gratuito e os melhores brawlers para desbloquear primeiro.", cor: "linear-gradient(90deg,var(--blue),var(--teal))", linkCor: "var(--teal)", link: "../Guias/Guias.html" },
-    { emoji: "🦊", titulo: "Buffies — Tudo o que precisas de saber", desc: "O que são, como desbloqueá-los, qual a ordem certa e quais são os melhores Buffies por brawler no meta atual.", cor: "linear-gradient(90deg,var(--pink),var(--orange2))", linkCor: "var(--pink)", link: "../Guias/Guias.html" },
-    { emoji: "🗺️", titulo: "Guia de Modos no Ranked", desc: "Gem Grab, Brawl Ball, Knockout — estratégias específicas para cada modo competitivo. Composições ideais e dicas de posicionamento.", cor: "linear-gradient(90deg,#A855F7,var(--blue))", linkCor: "#A855F7", link: "../Guias/Guias.html" },
-    { emoji: "💎", titulo: "Guia de Gem Grab", desc: "Regras de ouro do Gem Grab, composições de equipa ideais, controlo do mid e como gerir as gemas em situações de pressão.", cor: "linear-gradient(90deg,var(--teal),#22C55E)", linkCor: "var(--teal)", link: "../Guias/Guias.html" },
-    { emoji: "🧠", titulo: "Mentalidade competitiva", desc: "Como evitar o tilt, gerir a derrota, manter foco e desenvolver uma mentalidade de melhoria contínua do Gold ao Mythic.", cor: "linear-gradient(90deg,var(--orange),var(--yellow))", linkCor: "var(--orange)", link: "../Guias/Guias.html" },
+    { emoji: "🏆", tituloKey: "guide1_titulo", descKey: "guide1_desc", cor: "linear-gradient(90deg,var(--yellow),var(--orange))", linkCor: "var(--yellow)", link: "../Guias/Guias.html" },
+    { emoji: "💰", tituloKey: "guide2_titulo", descKey: "guide2_desc", cor: "linear-gradient(90deg,var(--blue),var(--teal))", linkCor: "var(--teal)", link: "../Guias/Guias.html" },
+    { emoji: "🦊", tituloKey: "guide3_titulo", descKey: "guide3_desc", cor: "linear-gradient(90deg,var(--pink),var(--orange2))", linkCor: "var(--pink)", link: "../Guias/Guias.html" },
+    { emoji: "🗺️", tituloKey: "guide4_titulo", descKey: "guide4_desc", cor: "linear-gradient(90deg,#A855F7,var(--blue))", linkCor: "#A855F7", link: "../Guias/Guias.html" },
+    { emoji: "💎", tituloKey: "guide5_titulo", descKey: "guide5_desc", cor: "linear-gradient(90deg,var(--teal),#22C55E)", linkCor: "var(--teal)", link: "../Guias/Guias.html" },
+    { emoji: "🧠", tituloKey: "guide6_titulo", descKey: "guide6_desc", cor: "linear-gradient(90deg,var(--orange),var(--yellow))", linkCor: "var(--orange)", link: "../Guias/Guias.html" },
 ];
 function renderGuides() {
     const grid = document.getElementById("guidesGrid");
+    const lang = getCurrentLang();
+    const dict = TRANSLATIONS[lang];
+    const dictPt = TRANSLATIONS.pt;
+
     grid.innerHTML = GUIDES.map((g, i) => {
         const delay = [0, 0.1, 0.2, 0.1, 0.2, 0.3][i] || 0;
-        const imgPath = `../Guias/Imagens/${g.titulo}.png`;
+        const titulo = dict[g.tituloKey] || "";
+        const desc = dict[g.descKey] || "";
+        const tituloPt = dictPt[g.tituloKey] || "";
+        const imgPath = `../Guias/Imagens/${tituloPt}.png`;
         return `<div class="guide-card reveal" style="transition-delay:${delay}s">
             <div class="guide-color-bar" style="background:${g.cor}"></div>
             <div class="guide-body">
                 <img
                     src="${imgPath}"
-                    alt="${g.titulo}"
+                    alt="${titulo}"
                     onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
                 >
                 <div class="guide-icon" style="display:none">${g.emoji}</div>
-                <h3 class="guide-title">${g.titulo}</h3>
-                <p class="guide-desc">${g.desc}</p>
-                <a href="${g.link}" class="guide-link" style="color:${g.linkCor}">Ler guia →</a>
+                <h3 class="guide-title">${titulo}</h3>
+                <p class="guide-desc">${desc}</p>
+                <a href="${g.link}" class="guide-link" style="color:${g.linkCor}">${dict.guide_link_text}</a>
             </div>
         </div>`;
     }).join("");
@@ -206,3 +212,20 @@ renderNews();
 renderBrawlers();
 renderGuides();
 updateBrawlersCount();
+const brawlersGrid = document.getElementById("brawlersGrid");
+brawlersGrid.addEventListener("mouseover", e => {
+    const card = e.target.closest(".brawler-card");
+    if (!card || !cursor) return;
+    cursor.style.width = "20px";
+    cursor.style.height = "20px";
+    ring.style.width = "50px";
+    ring.style.height = "50px";
+});
+brawlersGrid.addEventListener("mouseout", e => {
+    const card = e.target.closest(".brawler-card");
+    if (!card || !cursor) return;
+    cursor.style.width = "12px";
+    cursor.style.height = "12px";
+    ring.style.width = "36px";
+    ring.style.height = "36px";
+});

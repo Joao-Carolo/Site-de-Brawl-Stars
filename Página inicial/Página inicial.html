@@ -151,11 +151,11 @@
         <h2 class="reveal" data-i18n="start_cta_title">Fica sempre a par 🔔</h2>
         <p class="reveal" data-i18n="start_cta_desc">Recebe as últimas novidades, guias e updates diretamente no teu
             email.</p>
-        <div class="email-form reveal">
-            <input type="email" class="email-input" placeholder="O teu email..."
-                data-i18n-placeholder="start_cta_email_placeholder">
-            <button class="email-btn" data-i18n="start_cta_btn">Subscrever</button>
-        </div>
+        <form class="email-form reveal" id="newsletterForm" action="https://formspree.io/f/xpqvddkk" method="POST">
+            <input type="email" name="email" class="email-input" placeholder="O teu email..."
+                data-i18n-placeholder="start_cta_email_placeholder" required>
+            <button type="submit" class="email-btn" data-i18n="start_cta_btn">Subscrever</button>
+        </form>
     </section>
     <script src="../Gerais/Traduções/Tradução.js"></script>
     <script src="../Gerais/Constantes/Brawlers.js"></script>

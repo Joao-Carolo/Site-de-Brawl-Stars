@@ -158,11 +158,47 @@ document.querySelectorAll("#brawlerTabs .filter-tab").forEach(tab => {
     });
 });
 
-/* EMAIL */
-document.querySelector(".email-btn").addEventListener("click", () => {
-    const input = document.querySelector(".email-input");
-    if (input.value.includes("@")) { input.value = "✅ Subscrito!"; input.style.color = "var(--teal)"; input.disabled = true; }
-    else { input.style.borderColor = "#FF4444"; input.placeholder = "Insere um email válido!"; }
+/* EMAIL — Formspree */
+document.getElementById("newsletterForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const input = form.querySelector(".email-input");
+    const btn = form.querySelector(".email-btn");
+
+    if (!input.value.includes("@")) {
+        input.style.borderColor = "#FF4444";
+        input.placeholder = "Insere um email válido!";
+        return;
+    }
+
+    btn.disabled = true;
+    const originalBtnText = btn.textContent;
+    btn.textContent = "A enviar...";
+
+    try {
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { "Accept": "application/json" }
+        });
+
+        if (response.ok) {
+            input.value = "✅ Subscrito!";
+            input.style.color = "var(--teal)";
+            input.disabled = true;
+            btn.textContent = "Feito!";
+        } else {
+            input.style.borderColor = "#FF4444";
+            input.placeholder = "Erro! Tenta novamente.";
+            btn.disabled = false;
+            btn.textContent = originalBtnText;
+        }
+    } catch (error) {
+        input.style.borderColor = "#FF4444";
+        input.placeholder = "Erro de ligação!";
+        btn.disabled = false;
+        btn.textContent = originalBtnText;
+    }
 });
 /* GUIAS — mesmo array do Guias.html */
 const GUIDES = [

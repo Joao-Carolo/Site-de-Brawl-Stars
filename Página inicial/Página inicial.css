@@ -13,7 +13,7 @@
         body {
             font-family: 'Nunito', sans-serif;
             background: var(--dark);
-            color: #fff;
+            color: var(--branco);
             overflow-x: hidden;
         }
 
@@ -115,7 +115,7 @@
 
         .hero-title .line1 {
             display: block;
-            color: #fff;
+            color: var(--branco);
             width: 1200px;
         }
 
@@ -166,7 +166,7 @@
             align-items: center;
             gap: .5rem;
             background: rgba(255, 255, 255, .07);
-            color: #fff;
+            color: var(--branco);
             font-weight: 700;
             font-size: .95rem;
             padding: .85rem 2rem;
@@ -311,7 +311,7 @@
         }
 
         .section-title.dark {
-            color: #fff;
+            color: var(--branco);
         }
 
         .see-all {
@@ -344,7 +344,7 @@
         }
 
         .news-card {
-            background: #fff;
+            background: var(--branco);
             border-radius: var(--card-r);
             overflow: hidden;
             box-shadow: 0 2px 20px rgba(0, 0, 0, .06);
@@ -393,19 +393,19 @@
         }
 
         .news-thumb-bg.orange {
-            background: linear-gradient(135deg, #FF6B00, #FF3CAC);
+            background: linear-gradient(135deg, var(--orange), var(--pink));
         }
 
         .news-thumb-bg.blue {
-            background: linear-gradient(135deg, #3B82F6, #00C9A7);
+            background: linear-gradient(135deg, var(--blue), var(--teal));
         }
 
         .news-thumb-bg.yellow {
-            background: linear-gradient(135deg, #FFD000, #FF6B00);
+            background: linear-gradient(135deg, var(--yellow), var(--orange));
         }
 
         .news-thumb-bg.purple {
-            background: linear-gradient(135deg, #7C3AED, #3B82F6);
+            background: linear-gradient(135deg, var(--lavanda), var(--blue));
         }
 
         .news-thumb-bg.green {
@@ -426,7 +426,7 @@
             left: 1rem;
             background: rgba(0, 0, 0, .6);
             backdrop-filter: blur(8px);
-            color: #fff;
+            color: var(--branco);
             font-size: .7rem;
             font-weight: 800;
             letter-spacing: .1em;
@@ -583,33 +583,38 @@
         }
 
         .rarity-starter {
-            background: rgba(255, 255, 255, .07);
-            color: #fff;
+            background: var(--c-b-starter);
+            color: var(--c-starter);
         }
 
         .rarity-rare {
-            background: rgba(0, 201, 167, .15);
-            color: var(--teal);
+            background: var(--c-b-rare);
+            color: var(--c-rare);
         }
 
         .rarity-super_rare {
-            background: rgba(59, 130, 246, .15);
-            color: #7EB8FF;
+            background: var(--c-b-super);
+            color: var(--c-super);
         }
 
         .rarity-epic {
-            background: rgba(168, 85, 247, .15);
-            color: #C084FC;
+            background: var(--c-b-epic);
+            color: var(--c-epic);
         }
 
         .rarity-mythic {
-            background: rgba(239, 68, 68, .15);
-            color: #FCA5A5;
+            background: var(--c-b-mythic);
+            color: var(--c-mythic);
         }
 
         .rarity-legendary {
-            background: rgba(255, 208, 0, .15);
-            color: var(--yellow);
+            background: var(--c-b-leg);
+            color: var(--c-leg);
+        }
+
+        .rarity-ultra {
+            background: var(--c-b-ultra);
+            color: var(--c-ultra);
         }
 
         .brawler-new-badge {
@@ -617,7 +622,7 @@
             top: .75rem;
             right: .75rem;
             background: var(--orange);
-            color: #fff;
+            color: var(--branco);
             font-size: .62rem;
             font-weight: 800;
             letter-spacing: .08em;
@@ -633,7 +638,7 @@
             border: 1px solid rgba(255, 255, 255, .12);
             border-radius: 100px;
             padding: .6rem 1.4rem;
-            color: #fff;
+            color: var(--branco);
             font-family: 'Nunito', sans-serif;
             font-size: .9rem;
             outline: none;
@@ -707,7 +712,7 @@
 
         .modal-close:hover {
             background: rgba(255, 255, 255, .2);
-            color: #fff;
+            color: var(--branco);
         }
 
         .modal-hero {
@@ -925,7 +930,7 @@
             border: 1px solid rgba(255, 255, 255, .15);
             border-radius: 100px;
             padding: .9rem 1.5rem;
-            color: #fff;
+            color: var(--branco);
             font-family: 'Nunito', sans-serif;
             font-size: .95rem;
             outline: none;

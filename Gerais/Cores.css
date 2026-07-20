@@ -9,12 +9,14 @@
     --green: #22C55E;
     --red: #EF4444;
     --purple: #A855F7;
+    --lavanda: #7C3AED;
 
     /* Fundos */
     --dark: #0D0D1A;
     --dark2: #13132A;
     --dark3: #1A1A35;
     --dark4: #1F1F38;
+    --branco: #fff;
     --light: #F5F0E8;
     --light2: #EDE8DE;
     --light3: #DDD8CE;
@@ -28,6 +30,15 @@
     --c-mythic: #EF4444;
     --c-leg: #FFD000;
     --c-ultra: #FF6B00;
+
+    /* Raridades de Brawlers Fundo */
+    --c-b-starter: rgba(255, 255, 255, .07);
+    --c-b-rare: rgba(0, 201, 167, .15);
+    --c-b-super: rgba(59, 130, 246, .15);
+    --c-b-epic: rgba(168, 85, 247, .15);
+    --c-b-mythic: rgba(239, 68, 68, .15);
+    --c-b-leg: rgba(255, 208, 0, .15);
+    --c-b-ultra: rgba(255, 208, 0, 0.15);
 
     /* Raridades de Skins */
     --c-true-silver: #9CA3AF;

@@ -85,6 +85,9 @@ function renderBrawlers(filter = currentBrawlerFilter) {
     requestAnimationFrame(() => {
         document.querySelectorAll(".brawler-card").forEach(el => el.classList.add("visible"));
     });
+    if (filtered.length === 0) {
+        showToast("Nenhum brawler encontrado 😅", "info");
+    }
 }
 document.getElementById("brawlerSearch").addEventListener("input", e => {
     currentBrawlerSearch = e.target.value;
@@ -166,8 +169,8 @@ document.getElementById("newsletterForm").addEventListener("submit", async (e) =
     const btn = form.querySelector(".email-btn");
 
     if (!input.value.includes("@")) {
+        showToast("Insere um email válido!", "error");
         input.style.borderColor = "#FF4444";
-        input.placeholder = "Insere um email válido!";
         return;
     }
 
@@ -183,19 +186,18 @@ document.getElementById("newsletterForm").addEventListener("submit", async (e) =
         });
 
         if (response.ok) {
+            showToast("Inscrito com sucesso! 🎉", "success");
             input.value = "✅ Subscrito!";
             input.style.color = "var(--teal)";
             input.disabled = true;
             btn.textContent = "Feito!";
         } else {
-            input.style.borderColor = "#FF4444";
-            input.placeholder = "Erro! Tenta novamente.";
+            showToast("Erro! Tenta novamente.", "error");
             btn.disabled = false;
             btn.textContent = originalBtnText;
         }
     } catch (error) {
-        input.style.borderColor = "#FF4444";
-        input.placeholder = "Erro de ligação!";
+        showToast("Erro de ligação!", "error");
         btn.disabled = false;
         btn.textContent = originalBtnText;
     }

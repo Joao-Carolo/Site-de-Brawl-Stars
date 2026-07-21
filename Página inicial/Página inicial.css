@@ -409,11 +409,11 @@
         }
 
         .news-thumb-bg.green {
-            background: linear-gradient(135deg, #22C55E, #00C9A7);
+            background: linear-gradient(135deg, var(--green), var(--teal));
         }
 
         .news-thumb-bg.red {
-            background: linear-gradient(135deg, #E8202A, #FF6B00);
+            background: linear-gradient(135deg, var(--red2), var(--orange));
         }
 
         .news-card:hover .news-thumb img {

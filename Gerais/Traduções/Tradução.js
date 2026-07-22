@@ -405,3 +405,36 @@ function applyTranslations() {
 
 // Corre automaticamente quando o script é carregado
 applyTranslations();
+/* ══════════════════════════════
+   TRADUÇÕES DA SHELLY — adicionar aos objetos pt / en / es do Traducoes.js
+══════════════════════════════ */
+
+// PT
+/*shelly_desc: "Shelly é a lutadora perfeita: confiável, durona e imbatível com a espingarda. Com tantas qualidades assim, ela nunca entendeu como o Colt virou o queridinho da galera...",
+shelly_attack: "Chumbo Grosso — A arma da Shelly dispara chumbinhos em grande amplitude e longo alcance. Quanto mais chumbinhos acertarem o alvo, maior o dano.",
+shelly_super: "SuperBala — A Superbala da Shelly oblitera coberturas e inimigos. Os sobreviventes são empurrados para longe.",
+shelly_hyper: "Cano Duplo — O raio da Superbala fica 33% maior.",
+shelly_sp1: "Xeque-Mate — A Superbala da Shelly diminui a velocidade do inimigo por 2s!",
+shelly_sp2: "Tônico Revigorante — Quando a sua saúde está abaixo de 40%, Shelly recupera 2340 pontos de saúde em um piscar de olhos, mas é preciso esperar 15 segundos até que a habilidade esteja disponível novamente.",
+shelly_g1: "Disparada — Shelly corre para a frente ou para a direção escolhida e recarrega totalmente o seu ataque principal.",
+shelly_g2: "Pombos de Argila — A área do ataque da Shelly fica mais focada, e o alcance aumenta. Cada ativação dá 3 usos.",
+
+// EN
+shelly_desc: "Shelly is the perfect fighter: reliable, tough, and unbeatable with her shotgun. With so many qualities, she never understood how Colt became everyone's favorite...",
+shelly_attack: "Buckshot — Shelly's gun fires a spread of shells at wide range and long distance. The more shells that hit the target, the greater the damage.",
+shelly_super: "Super Shell — Shelly's Super Shell obliterates cover and enemies. Survivors are knocked back.",
+shelly_hyper: "Double Barrel — The Super Shell's radius becomes 33% bigger.",
+shelly_sp1: "Shell Shock — Shelly's Super Shell slows down enemies for 2s!",
+shelly_sp2: "Band-Aid — When her health drops below 40%, Shelly instantly recovers 2340 health points, but must wait 15 seconds before the ability becomes available again.",
+shelly_g1: "Fast Forward — Shelly dashes forward or in the chosen direction and fully reloads her main attack.",
+shelly_g2: "Clay Pigeons — Shelly's attack area becomes more focused, and its range increases. Each activation grants 3 uses.",
+
+// ES
+shelly_desc: "Shelly es la luchadora perfecta: confiable, dura e invencible con su escopeta. Con tantas cualidades, nunca entendió cómo Colt se convirtió en el favorito de todos...",
+shelly_attack: "Perdigones — El arma de Shelly dispara perdigones en gran amplitud y a larga distancia. Cuantos más perdigones acierten al objetivo, mayor será el daño.",
+shelly_super: "Superbala — La Superbala de Shelly destruye coberturas y enemigos. Los supervivientes salen despedidos.",
+shelly_hyper: "Cañón Doble — El radio de la Superbala aumenta un 33%.",
+shelly_sp1: "Jaque Mate — ¡La Superbala de Shelly reduce la velocidad del enemigo durante 2s!",
+shelly_sp2: "Tónico Revitalizante — Cuando su salud cae por debajo del 40%, Shelly recupera instantáneamente 2340 puntos de salud, pero debe esperar 15 segundos antes de que la habilidad vuelva a estar disponible.",
+shelly_g1: "Avance Rápido — Shelly corre hacia adelante o en la dirección elegida y recarga completamente su ataque principal.",
+shelly_g2: "Palomas de Barro — El área de ataque de Shelly se vuelve más enfocada y su alcance aumenta. Cada activación otorga 3 usos.",*/

@@ -27,7 +27,7 @@ function buildRarityCounts() {
 }
 buildRarityCounts();
 
-function statColor(v) { return v >= 80 ? "#4ADE80" : v >= 60 ? "var(--yellow)" : v >= 40 ? "var(--orange)" : "#EF4444"; }
+function statColor(v) { return v >= 80 ? "var(--green2)" : v >= 60 ? "var(--yellow)" : v >= 40 ? "var(--orange)" : "var(--red)"; }
 let currentFilter = "all", currentSearch = "";
 const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }); }, { threshold: 0.05 });
 
@@ -82,6 +82,8 @@ function toggleCompareMode() {
     compareMode = !compareMode;
     if (!compareMode) resetCompare();
     document.getElementById("comparePanel").style.display = compareMode ? "block" : "none";
+    showToast("Modo de comparação ativo! Clica em 2 brawlers.", "info");
+
 }
 
 function resetCompare() {
@@ -96,12 +98,13 @@ function selectForCompare(b, card) {
     if (compareSlots[1] && compareSlots[1].name === b.name) return;
     if (!compareSlots[0]) {
         compareSlots[0] = b;
+        showToast(`${b.name} selecionado! Escolhe outro para comparar.`, "info");
+
     } else if (!compareSlots[1]) {
         compareSlots[1] = b;
+        showToast(`A comparar ${compareSlots[0].name} vs ${b.name}`, "success");
     } else {
-        document.querySelectorAll(".brawler-card.compare-selected")[0]?.classList.remove("compare-selected");
-        compareSlots[0] = compareSlots[1];
-        compareSlots[1] = b;
+        showToast(`A comparar ${compareSlots[0].name} vs ${b.name}`, "success");
     }
     card.classList.add("compare-selected");
     document.getElementById("comparePanel").style.display = "block";
@@ -165,7 +168,13 @@ function renderAll() {
         filtered.sort((a, b) => a.cls.localeCompare(b.cls));
     }
 
-    if (filtered.length === 0) { document.getElementById("noResults").style.display = "block"; return; }
+    if (filtered.length === 0) {
+        document.getElementById("noResults").style.display = "block";
+        if (currentSearch.trim() !== "") {
+            showToast(`Nenhum brawler encontrado para "${currentSearch}"`, "info");
+        }
+        return;
+    }
     document.getElementById("noResults").style.display = "none";
 
     // Define os grupos e a ordem consoante a ordenação
@@ -210,6 +219,14 @@ function renderAll() {
             card.className = "brawler-card";
             card.dataset.rarity = b.rarity;
             card.style.transitionDelay = `${i * 0.04}s`;
+            function winrateToStars(winrate) {
+                if (!winrate) return "";
+                if (winrate < 50) return "⭐";
+                if (winrate < 53) return "⭐⭐";
+                if (winrate < 56) return "⭐⭐⭐";
+                if (winrate < 59) return "⭐⭐⭐⭐";
+                return "⭐⭐⭐⭐⭐";
+            }
             card.innerHTML = `${b.isNew ? '<span class="new-badge">NOVO</span>' : ""}
 <img 
     src="../Imagens/Skins (imagens)/${b.name}/${b.name} Padrão.png" 
@@ -221,6 +238,7 @@ function renderAll() {
 <div class="brawler-name">${b.name}</div>
 <div class="rarity-pill ${b.rarity}">${RARITY_LABELS[b.rarity]}</div>
 <div class="brawler-class">${b.cls}</div>
+<div class="brawler-winrate">${winrateToStars(b.winrate)}</div>
 <button class="compare-btn" onclick="event.stopPropagation();toggleCompareMode();selectForCompare(${JSON.stringify(b).replace(/"/g, '&quot;')}, this.closest('.brawler-card'))">+ Comparar</button>`;
             card.addEventListener("click", () => {
                 if (compareMode) {
@@ -327,16 +345,27 @@ function buildAbilitiesHtml(b, opts = {}) {
     const showBuffies = !!opts.showBuffies;
     let html = "";
 
+    const lang = getCurrentLang();
+    const dict = TRANSLATIONS[lang] || TRANSLATIONS.pt;
+
+    // Traduções com fallback para o texto original (só traduz se a chave existir)
+    const attackText = b.attackKey ? (dict[b.attackKey] || b.attack) : b.attack;
+    const superText = b.superKey ? (dict[b.superKey] || b.super) : b.super;
+    const hyperText = b.hyperKey ? (dict[b.hyperKey] || b.hyper) : b.hyper;
+    const sp1Text = b.sp1Key ? (dict[b.sp1Key] || b.sp1) : b.sp1;
+    const sp2Text = b.sp2Key ? (dict[b.sp2Key] || b.sp2) : b.sp2;
+    const g1Text = b.g1Key ? (dict[b.g1Key] || b.g1) : b.g1;
+    const g2Text = b.g2Key ? (dict[b.g2Key] || b.g2) : b.g2;
+
     const mainRows = [
-        { label: abilityLabelHtml("⚔️", b.attackImg || `${IMG_BASE}/Ataque.png`, "Ataque"), text: b.attack },
-        { label: abilityLabelHtml("⚡", b.superImg || `${IMG_BASE}/Super.png`, "Super"), text: b.super },
+        { label: abilityLabelHtml("⚔️", b.attackImg || `${IMG_BASE}/Ataque.png`, "Ataque"), text: attackText },
+        { label: abilityLabelHtml("⚡", b.superImg || `${IMG_BASE}/Super.png`, "Super"), text: superText },
     ];
-
-
     html += mainRows.map(buildAbilityCardHtml).join("");
 
-    const starRows = [["⭐", "Star Power 1", b.sp1], ["⭐", "Star Power 2", b.sp2]];
-    const gadgetRows = [["🔧", "Gadget 1", b.g1], ["🔧", "Gadget 2", b.g2]];
+    const starRows = [["⭐", "Star Power 1", sp1Text], ["⭐", "Star Power 2", sp2Text]];
+    const gadgetRows = [["🔧", "Gadget 1", g1Text], ["🔧", "Gadget 2", g2Text]];
+
     const buildRows = rows => rows.map(([emoji, type, text]) => {
         if (!text || !String(text).trim()) return "";
         const name = text.split(" — ")[0];
@@ -368,9 +397,9 @@ function buildAbilitiesHtml(b, opts = {}) {
 
     const buffieHyper = showHyper && showBuffies && getBuffieByType(b, "h");
     if (showHyper) {
-        const hyperText = b.hyper || "Hypercharge — Informação em breve.";
-        const title = hyperText.split(" — ")[0];
-        const desc = hyperText.split(" — ").slice(1).join(" — ") || "";
+        const hyperFullText = hyperText || "Hypercharge — Informação em breve.";
+        const title = hyperFullText.split(" — ")[0];
+        const desc = hyperFullText.split(" — ").slice(1).join(" — ") || "";
         const bh = getBuffieByType(b, "h");
         const hyperImg = (showBuffies && bh && bh.nome)
             ? `${IMG_BASE}/${b.name}/${bh.nome} (Buffie).png`
@@ -399,7 +428,6 @@ function buildAbilitiesHtml(b, opts = {}) {
                         </div>
                     </div>`;
     }
-
     return html;
 }
 
@@ -532,9 +560,15 @@ function openModal(b) {
     document.getElementById("modalRarityBadge").style.cssText = `background:${color}22;border:1px solid ${color}55;color:${color}`;
     document.getElementById("modalName").textContent = b.name;
     document.getElementById("modalClass").textContent = `Classe: ${b.cls}`;
+
     const lang = getCurrentLang();
-    document.getElementById("modalDesc").textContent =
-        (typeof b.desc === "object" ? (b.desc[lang] || b.desc.pt) : b.desc);
+    const dict = TRANSLATIONS[lang] || TRANSLATIONS.pt;
+
+    // Traduções com fallback para o texto original
+    const desc = b.descKey ? (dict[b.descKey] || b.desc) : b.desc;
+
+    document.getElementById("modalDesc").textContent = desc;
+
     abilityHyperOn = false;
     abilityBuffieOn = false;
     renderAbilityExtraBtns(b);
@@ -548,6 +582,13 @@ function openModal(b) {
 `;
     document.getElementById("modalOverlay").classList.add("open");
     document.body.style.overflow = "hidden";
+    const winrateEl = document.getElementById("modalWinrate");
+    if (b.winrate) {
+        const color = b.winrate >= 55 ? "#4ADE80" : b.winrate >= 50 ? "var(--yellow)" : "#EF4444";
+        winrateEl.innerHTML = `<span style="color:${color};font-weight:800">${b.winrate}%</span>`;
+    } else {
+        winrateEl.textContent = "Dados indisponíveis";
+    }
 }
 
 function closeModal() { document.getElementById("modalOverlay").classList.remove("open"); document.body.style.overflow = ""; }

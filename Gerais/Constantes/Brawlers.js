@@ -1,9 +1,32 @@
 const BRAWLERS = [
+    /* ══════════════════════════════
+       SUBSTITUI o objeto da Shelly no Brawlers-Data.js por este
+    ══════════════════════════════ */
     {
-        name: "Shelly", emoji: "🔫", rarity: "starter", cls: "Damage Dealer", isNew: false,
-        descKey: "shelly_desc", attackKey: "shelly_attack", superKey: "shelly_super", hyperKey: "shelly_hyper",
-        sp1Key: "shelly_sp1", sp2Key: "shelly_sp2", g1Key: "shelly_g1", g2Key: "shelly_g2",
-        hp: 7800, dmg: 3000, range: 8, speed: 720, modes: ["Showdown", "Heist", "Brawl Ball"]
+        name: "Shelly",
+        emoji: "🔫",
+        rarity: "starter",
+        cls: "Damage Dealer",
+        isNew: false,
+        desc: "Shelly é a lutadora perfeita: confiável, durona e imbatível com a espingarda. Com tantas qualidades assim, ela nunca entendeu como o Colt virou o queridinho da galera...",
+        descKey: "shelly_desc",
+        winrate: 43.4,
+        attack: "Chumbo Grosso — A arma da Shelly dispara chumbinhos em grande amplitude e longo alcance. Quanto mais chumbinhos acertarem o alvo, maior o dano.",
+        attackKey: "shelly_attack",
+        super: "SuperBala — A Superbala da Shelly oblitera coberturas e inimigos. Os sobreviventes são empurrados para longe.",
+        superKey: "shelly_super",
+        hyper: "Cano Duplo — O raio da Superbala fica 33% maior.",
+        hyperKey: "shelly_hyper",
+        sp1: "Xeque-Mate — A Superbala da Shelly diminui a velocidade do inimigo por 2s!",
+        sp1Key: "shelly_sp1",
+        sp2: "Tônico Revigorante — Quando a sua saúde está abaixo de 40%, Shelly recupera 2340 pontos de saúde em um piscar de olhos, mas é preciso esperar 15 segundos até que a habilidade esteja disponível novamente.",
+        sp2Key: "shelly_sp2",
+        g1: "Disparada — Shelly corre para a frente ou para a direção escolhida e recarrega totalmente o seu ataque principal.",
+        g1Key: "shelly_g1",
+        g2: "Pombos de Argila — A área do ataque da Shelly fica mais focada, e o alcance aumenta. Cada ativação dá 3 usos.",
+        g2Key: "shelly_g2",
+        hp: 7800, dmg: 3000, range: 8, speed: 720,
+        modes: ["Showdown", "Heist", "Brawl Ball"]
     }, { name: "Nita", emoji: "🐻", rarity: "rare", cls: "Damage Dealer", isNew: false, desc: "Nita é feroz e nunca desiste de uma luta. O urso de pelúcia que ela usa como gorro dá uma dica aos adversários: não se aproxime do urso!", attack: "Tremor — Nita cria um terremoto que causa danos aos inimigos atingidos pelo seu tremor", super: "Garra de Urso — Nita invoca o espírito do Grande Bebê Urso para lhe dar uma mãozinha na caça aos inimigos.", hyper: "HiperUrso — Bruce aumenta de tamanho e ganha 15% a mais de velocidade de movimento e 20% a mais de saúde", sp1: "Amigo-Urso — Nita recupera 1092 pontos de saúde cada vez que o urso acerta um Brawler inimigo. Quando ela inflige dano a Brawlers inimigos, o urso recupera 1094 pontos de saúde.", sp2: "Urso Hiperativo — O urso da Nita ataca mais depressa, com o tempo entre ataques reduzido em 60%.", g1: "Garra de Urso — Nita ordena que o seu urso golpeie violentamente o chão, atordoando todoa os inimigos dentro do alcance.", g2: "Pele Protetora — Pelos próximos 3s, o urso  da Nita ganha 35% de proteção contra dano.", hp: 8400, dmg: 1920, range: 6, speed: 720, modes: ["Showdown", "Hot Zone", "Gem Grab"] },
     { name: "Colt", emoji: "🤠", rarity: "rare", cls: "Damage Dealer", isNew: false, desc: "Todo mundo que visita o Starr Park quer ver o Colt de perto, pois o cara é boa-pinta, carismático e cheio de truques com suas pistolas. A uníca que não entende o sucesso dele é a Shelly.", attack: "Esvaziando o Tambor — Colt dispara seis tiros rápidos de longo alcance com seus revólveres.", super: "Trem-Bala — Colt dispara uma rajada de balas de longo alcance que destrói cobertura.", hyper: "Empunhadura Dupla — O raio de ação do Trem-Bala fica 120% maior.", sp1: "Botas Ligeiras — A velocidade de locomoção de Colt aumenta em 13%.", sp2: "Magnum Especial — O alcance e a velocidade do ataque do Colt aumentam em 11%.", g1: "Recarga Rápida — Colt dá dois disparos rápidos que desaceleram os alvos e causam 640 de dano.", g2: "Bala de Prata — Colt dá um disparo que destroí elementos do ambiente e atravessa Brawlers. Causa 1200 de dano e consome munição", hp: 6200, dmg: 4320, range: 9, speed: 720, modes: ["Heist", "Brawl Ball", "Bounty"] },
     { name: "Bull", emoji: "🐂", rarity: "rare", cls: "Tank", isNew: false, desc: "Um tanque com espingarda dupla. Dano massivo ao perto, usa arbustos para emboscar.", attack: "Double-Barreled — Espingarda dupla.", super: "Bulldozer — Carrega destruindo obstáculos.", hyper: "", sp1: "Berserker — Recarga rápida abaixo de 40% HP.", sp2: "Tough Guy — Escudo ao ativar o Super.", hp: 6000, dmg: 940, range: 4, speed: 720, modes: ["Heist", "Showdown", "Brawl Ball"] },

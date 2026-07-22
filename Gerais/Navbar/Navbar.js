@@ -56,7 +56,7 @@ function buildNavbar(activeLink = "") {
         <nav>
             <div class="nav-logo">
                 <span class="star"><img class="logo" src="${basePath}Gerais/Logo.png" alt="Logo"></span>
-                <span class="zone">BrawlZone</span>
+                <span class="zone"><a href="${basePath}Página inicial/Página inicial">BrawlZone</a></span>
             </div>
             <ul class="nav-links">${linksHtml}</ul>
             <div class="lang-switcher">

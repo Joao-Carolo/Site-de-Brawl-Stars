@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-PT">
 
 <head>
@@ -12,13 +12,17 @@
   <link rel="stylesheet" href="Buffies.css">
   <link rel="icon" type="image/png" href="../../Logo.png">
 
+    <link rel="stylesheet" href="../../../../Gerais/Breadcrumbs/Breadcrumbs.css">
 </head>
 
 <body>
   <div id="cursor"></div>
   <div id="cursor-ring"></div>
 
-  <!-- MOBILE MENU -->
+      <div class="breadcrumb-wrap">
+        <nav class="breadcrumb" id="breadcrumb"></nav>
+    </div>
+<!-- MOBILE MENU -->
   <div class="mobile-overlay" id="mobileOverlay"></div>
   <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-close" id="mobileClose">✕</button>
@@ -402,6 +406,7 @@
   <script src="Buffies.js"></script>
   <script src="../../Pesquisa.js"></script>
   <script src="../../Tema.js"></script>
+    <script src="../../../../Gerais/Breadcrumbs/Breadcrumbs.js"></script>
 </body>
 
 </html>

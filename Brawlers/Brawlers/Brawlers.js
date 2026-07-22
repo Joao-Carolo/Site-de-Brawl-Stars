@@ -219,14 +219,6 @@ function renderAll() {
             card.className = "brawler-card";
             card.dataset.rarity = b.rarity;
             card.style.transitionDelay = `${i * 0.04}s`;
-            function winrateToStars(winrate) {
-                if (!winrate) return "";
-                if (winrate < 50) return "⭐";
-                if (winrate < 53) return "⭐⭐";
-                if (winrate < 56) return "⭐⭐⭐";
-                if (winrate < 59) return "⭐⭐⭐⭐";
-                return "⭐⭐⭐⭐⭐";
-            }
             card.innerHTML = `${b.isNew ? '<span class="new-badge">NOVO</span>' : ""}
 <img 
     src="../Imagens/Skins (imagens)/${b.name}/${b.name} Padrão.png" 
@@ -238,7 +230,6 @@ function renderAll() {
 <div class="brawler-name">${b.name}</div>
 <div class="rarity-pill ${b.rarity}">${RARITY_LABELS[b.rarity]}</div>
 <div class="brawler-class">${b.cls}</div>
-<div class="brawler-winrate">${winrateToStars(b.winrate)}</div>
 <button class="compare-btn" onclick="event.stopPropagation();toggleCompareMode();selectForCompare(${JSON.stringify(b).replace(/"/g, '&quot;')}, this.closest('.brawler-card'))">+ Comparar</button>`;
             card.addEventListener("click", () => {
                 if (compareMode) {

@@ -1,3 +1,9 @@
+.breadcrumb-wrap {
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .breadcrumb {
     margin-top: 73px;
     display: inline-flex;
@@ -30,6 +36,10 @@
 
 .breadcrumb-current {
     color: var(--yellow);
+}
+
+.breadcrumb-muted {
+    color: rgba(255, 255, 255, .35);
 }
 
 @media(max-width:600px) {

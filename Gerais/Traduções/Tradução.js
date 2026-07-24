@@ -47,7 +47,7 @@ const TRANSLATIONS = {
         start_novidades_p: "Sempre Atualizado",
         start_novidades_btn: "Ver Todas →",
 
-        // Página inicial - Novidades Section - Posts
+        // Página inicial - Novidades Section - Posts - Aprofundados
 
         post1_tag: "Update", post1_titulo: "Brawl Talk", post1_excerpt: "Rebelião do Ramen: um evento de história que vai mudar o Reino Katana para sempre! NanoPoderes & Fusões, Guerra de Comida, Culinária de Combate e mais modos de jogo. 2 Novos Brawlers! Nori e Wendy. Buffies, Skins, Hypercharges e muito, MUITO MAIS",
         post2_tag: "Update", post2_titulo: "Veja o Nori em ação", post2_excerpt: "O Nori está sempre à pesca de problemas 🎣",
@@ -55,6 +55,16 @@ const TRANSLATIONS = {
         post4_tag: "Update", post4_titulo: "Notas de lançamento de Julho", post4_excerpt: "Uma loja de macarrão automatizada abriu em frente ao restaurante de sushi de Kenji e Kaze, despertando o interesse do filho deles, Nori. O caos se instala!",
         post5_tag: "Update", post5_titulo: "Manutenção 28 Abril — Colette reativada", post5_excerpt: "Bug crítico da Colette corrigido (+4.600 dano extra). Nerfs urgentes ao Damian, Sirius, Bull, Crow, Chester e Najia.",
         start_novidades_btn_cards: "Ler mais →",
+
+        // Página inicial - Novidades Section - Posts - Vídeos
+        start_videos_p: "Conteúdo em Vídeo",
+        start_videos_title: "Vídeos",
+        start_videos_watch_btn: "▶ Ver vídeo",
+        video1_titulo: "Brawl Talk",
+        video2_titulo: "Veja o Nori em ação",
+        video3_titulo: "Ver a animação da Temporada",
+        video4_titulo: "",
+        video5_titulo: "",
 
         // Página inicial - Brawlers Section
         start_brawlers_title: "Brawlers",

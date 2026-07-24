@@ -13,11 +13,11 @@ const POSTS = [
    VÍDEOS — array separado dos posts com página própria
 ══════════════════════════════ */
 const VIDEOS = [
-    { thumb: "../Notícias/imagens-videos/brawl-talk.png", tituloKey: "video1_titulo", link: "https://www.youtube.com/watch?v=pgGThZitPis&list=PLTBLax1DE1612clulHb7Ci4JQEVMKoC7x&index=3" },
-    { thumb: "../Notícias/imagens-videos/nori-acao.png", tituloKey: "video2_titulo", link: "https://www.youtube.com/watch?v=S-8YkBgjFfo" },
-    { thumb: "../Notícias/imagens-videos/animacao-temporada.png", tituloKey: "video3_titulo", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0" },
-    { thumb: "../Notícias/imagens-videos/video4.png", tituloKey: "video4_titulo", link: "" },
-    { thumb: "../Notícias/imagens-videos/video5.png", tituloKey: "video5_titulo", link: "" },
+    { thumb: "../Notícias/Imagens/Vídeos/Veja o Nori em ação.png", tituloKey: "video1_titulo", link: "https://www.youtube.com/watch?v=pgGThZitPis&list=PLTBLax1DE1612clulHb7Ci4JQEVMKoC7x&index=3" },
+    { thumb: "../Notícias/Imagens/Vídeo/.png", tituloKey: "video2_titulo", link: "https://www.youtube.com/watch?v=S-8YkBgjFfo" },
+    { thumb: "../Notícias/Imagens/Vídeo/.png", tituloKey: "video3_titulo", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0" },
+    { thumb: "../Notícias/Imagens/Vídeo.png", tituloKey: "video4_titulo", link: "" },
+    { thumb: "../Notícias/Imagens/Vídeo/", tituloKey: "video5_titulo", link: "" },
 ];
 
 let carouselIndex = 0;
@@ -154,7 +154,7 @@ function renderNews() {
         const tituloPt = dictPt[p.tituloKey] || "";
 
         tagCount[tagPt] = (tagCount[tagPt] || 0) + 1;
-        const imgPath = `../Notícias/imagens/${tagPt}/${tituloPt}.png`;
+        const imgPath = `../Notícias/Imagens/${tagPt}/${tituloPt}.png`;
         const thumbContent = `
       <img
         src="${imgPath}"

@@ -9,6 +9,129 @@ const POSTS = [
     { emoji: "🏟️", cor: "orange", tagKey: "post4_tag", data: "2 Jul 2026", tituloKey: "post4_titulo", excerptKey: "post4_excerpt", link: "../Notícias/Notícias Atuais/Mudanças/Mudanças do update 68/Notas de lançamento update 68/Notas de lançamento update 68.html", destaque: false },
     { emoji: "⚙️", cor: "blue", tagKey: "post5_tag", data: "28 Abr 2026", tituloKey: "post5_titulo", excerptKey: "post5_excerpt", link: "../Notícias/Notícias Atuais/Manutenção 28 de abril.html", destaque: false },
 ];
+/* ══════════════════════════════
+   VÍDEOS — array separado dos posts com página própria
+══════════════════════════════ */
+const VIDEOS = [
+    { thumb: "../Notícias/imagens-videos/brawl-talk.png", tituloKey: "video1_titulo", link: "https://www.youtube.com/watch?v=pgGThZitPis&list=PLTBLax1DE1612clulHb7Ci4JQEVMKoC7x&index=3" },
+    { thumb: "../Notícias/imagens-videos/nori-acao.png", tituloKey: "video2_titulo", link: "https://www.youtube.com/watch?v=S-8YkBgjFfo" },
+    { thumb: "../Notícias/imagens-videos/animacao-temporada.png", tituloKey: "video3_titulo", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0" },
+    { thumb: "../Notícias/imagens-videos/video4.png", tituloKey: "video4_titulo", link: "" },
+    { thumb: "../Notícias/imagens-videos/video5.png", tituloKey: "video5_titulo", link: "" },
+];
+
+let carouselIndex = 0;
+let carouselTimer = null;
+const CAROUSEL_INTERVAL = 6000;
+
+function renderCarousel() {
+    const track = document.getElementById("carouselTrack");
+    const dots = document.getElementById("carouselDots");
+    const lang = getCurrentLang();
+    const dict = TRANSLATIONS[lang] || TRANSLATIONS.pt;
+    const watchText = dict.start_videos_watch_btn || "▶ Ver vídeo";
+
+    track.innerHTML = VIDEOS.map(v => {
+        const titulo = dict[v.tituloKey] || "";
+        return `<div class="carousel-slide">
+            <img src="${v.thumb}" alt="${titulo}" onerror="this.style.display='none'">
+            <div class="carousel-slide-overlay">
+                <a href="${v.link}" target="_blank" rel="noopener" class="carousel-watch-btn">${watchText}</a>
+            </div>
+        </div>`;
+    }).join("");
+
+    dots.innerHTML = VIDEOS.map((_, i) =>
+        `<button class="carousel-dot${i === carouselIndex ? " active" : ""}" data-i="${i}"></button>`
+    ).join("");
+
+    dots.querySelectorAll(".carousel-dot").forEach(dot => {
+        dot.addEventListener("click", () => {
+            carouselIndex = Number(dot.dataset.i);
+            updateCarousel();
+            resetCarouselTimer();
+        });
+    });
+
+    updateCarousel();
+}
+
+function updateCarousel() {
+    const track = document.getElementById("carouselTrack");
+    track.style.transform = `translateX(-${carouselIndex * 100}%)`;
+    document.querySelectorAll(".carousel-dot").forEach((d, i) => d.classList.toggle("active", i === carouselIndex));
+}
+
+function nextSlide() {
+    carouselIndex = (carouselIndex + 1) % VIDEOS.length;
+    updateCarousel();
+}
+
+function prevSlide() {
+    carouselIndex = (carouselIndex - 1 + VIDEOS.length) % VIDEOS.length;
+    updateCarousel();
+}
+
+function resetCarouselTimer() {
+    clearInterval(carouselTimer);
+    carouselTimer = setInterval(nextSlide, CAROUSEL_INTERVAL);
+}
+
+function initCarousel() {
+    renderCarousel();
+    resetCarouselTimer();
+
+    document.getElementById("carouselNext").addEventListener("click", () => { nextSlide(); resetCarouselTimer(); });
+    document.getElementById("carouselPrev").addEventListener("click", () => { prevSlide(); resetCarouselTimer(); });
+
+    const wrap = document.getElementById("carouselWrap");
+
+    // Arrastar com o rato (drag)
+    let isDragging = false;
+    let startX = 0;
+    let dragDelta = 0;
+
+    wrap.addEventListener("mousedown", e => {
+        isDragging = true;
+        startX = e.clientX;
+        dragDelta = 0;
+        document.getElementById("carouselTrack").style.transition = "none";
+    });
+
+    window.addEventListener("mousemove", e => {
+        if (!isDragging) return;
+        dragDelta = e.clientX - startX;
+        const track = document.getElementById("carouselTrack");
+        const percent = (dragDelta / wrap.offsetWidth) * 100;
+        track.style.transform = `translateX(calc(-${carouselIndex * 100}% + ${percent}%))`;
+    });
+
+    window.addEventListener("mouseup", () => {
+        if (!isDragging) return;
+        isDragging = false;
+        const track = document.getElementById("carouselTrack");
+        track.style.transition = "";
+
+        if (Math.abs(dragDelta) > 60) {
+            if (dragDelta < 0) nextSlide(); else prevSlide();
+        } else {
+            updateCarousel();
+        }
+        resetCarouselTimer();
+    });
+
+    // Suporte a touch (mobile)
+    let touchStartX = 0;
+    wrap.addEventListener("touchstart", e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    wrap.addEventListener("touchend", e => {
+        const delta = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) > 50) {
+            if (delta < 0) nextSlide(); else prevSlide();
+            resetCarouselTimer();
+        }
+    }, { passive: true });
+}
+
 /* RENDER NOVIDADES */
 // Conta quantas vezes cada tag aparece para atribuir índice correto
 function renderNews() {
@@ -250,6 +373,7 @@ renderNews();
 renderBrawlers();
 renderGuides();
 updateBrawlersCount();
+initCarousel()
 const brawlersGrid = document.getElementById("brawlersGrid");
 brawlersGrid.addEventListener("mouseover", e => {
     const card = e.target.closest(".brawler-card");

@@ -166,6 +166,8 @@ function renderAll() {
         filtered.sort((a, b) => a.name.localeCompare(b.name));
     } else if (currentSort === "class") {
         filtered.sort((a, b) => a.cls.localeCompare(b.cls));
+    } else if (currentSort === "winrate") {
+        filtered.sort((a, b) => (b.winrate || 0) - (a.winrate || 0));
     }
 
     if (filtered.length === 0) {
@@ -219,6 +221,10 @@ function renderAll() {
             card.className = "brawler-card";
             card.dataset.rarity = b.rarity;
             card.style.transitionDelay = `${i * 0.04}s`;
+            function metaTierToStars(tier) {
+                const map = { S: "⭐⭐⭐⭐⭐", A: "⭐⭐⭐⭐", B: "⭐⭐⭐", C: "⭐⭐", D: "⭐" };
+                return map[tier] || "";
+            }
             card.innerHTML = `${b.isNew ? '<span class="new-badge">NOVO</span>' : ""}
 <img 
     src="../Imagens/Skins (imagens)/${b.name}/${b.name} Padrão.png" 
@@ -230,6 +236,7 @@ function renderAll() {
 <div class="brawler-name">${b.name}</div>
 <div class="rarity-pill ${b.rarity}">${RARITY_LABELS[b.rarity]}</div>
 <div class="brawler-class">${b.cls}</div>
+<div class="brawler-metaTier">${metaTierToStars(b.tier)}</div>
 <button class="compare-btn" onclick="event.stopPropagation();toggleCompareMode();selectForCompare(${JSON.stringify(b).replace(/"/g, '&quot;')}, this.closest('.brawler-card'))">+ Comparar</button>`;
             card.addEventListener("click", () => {
                 if (compareMode) {

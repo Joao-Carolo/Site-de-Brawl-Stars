@@ -13,11 +13,11 @@ const POSTS = [
    VÍDEOS — array separado dos posts com página própria
 ══════════════════════════════ */
 const VIDEOS = [
-    { thumb: "../Notícias/Imagens/Vídeos/Veja o Nori em ação.png", tituloKey: "video1_titulo", link: "https://www.youtube.com/watch?v=pgGThZitPis&list=PLTBLax1DE1612clulHb7Ci4JQEVMKoC7x&index=3" },
-    { thumb: "../Notícias/Imagens/Vídeo/.png", tituloKey: "video2_titulo", link: "https://www.youtube.com/watch?v=S-8YkBgjFfo" },
-    { thumb: "../Notícias/Imagens/Vídeo/.png", tituloKey: "video3_titulo", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0" },
-    { thumb: "../Notícias/Imagens/Vídeo.png", tituloKey: "video4_titulo", link: "" },
-    { thumb: "../Notícias/Imagens/Vídeo/", tituloKey: "video5_titulo", link: "" },
+    { thumb: "../Notícias/Imagens/Vídeos/Veja o Nori em ação.png", tituloKey: "video1_titulo", link: "https://www.youtube.com/watch?v=S-8YkBgjFfo" },
+    { thumb: "../Notícias/Imagens/Vídeos/Ver a animação da Temporada.png", tituloKey: "video2_titulo", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0" },
+    { thumb: "../Notícias/Imagens/Vídeos/video3.png", tituloKey: "video3_titulo", link: "" },
+    { thumb: "../Notícias/Imagens/Vídeos/video4.png", tituloKey: "video4_titulo", link: "" },
+    { thumb: "../Notícias/Imagens/Vídeos/video5.png", tituloKey: "video5_titulo", link: "" },
 ];
 
 let carouselIndex = 0;

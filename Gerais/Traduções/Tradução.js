@@ -60,9 +60,9 @@ const TRANSLATIONS = {
         start_videos_p: "Conteúdo em Vídeo",
         start_videos_title: "Vídeos",
         start_videos_watch_btn: "▶ Ver vídeo",
-        video1_titulo: "Brawl Talk",
-        video2_titulo: "Veja o Nori em ação",
-        video3_titulo: "Ver a animação da Temporada",
+        video1_titulo: "Veja o Nori em ação",
+        video2_titulo: "Ver a animação da Temporada",
+        video3_titulo: "",
         video4_titulo: "",
         video5_titulo: "",
 

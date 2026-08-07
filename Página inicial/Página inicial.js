@@ -361,7 +361,7 @@ function renderGuides() {
             </div>
         </div>`;
     }).join("");
-    document.querySelectorAll("#guidesGrid .reveal").forEach(el => revealObs.observe(el));
+    document.querySelectorAll("#guidesGrid .reveal").forEach(el => el.classList.add("visible"));
 }
 // Atualiza o contador de brawlers na página inicial
 function updateBrawlersCount() {
@@ -373,7 +373,7 @@ renderNews();
 renderBrawlers();
 renderGuides();
 updateBrawlersCount();
-initCarousel()
+initCarousel();
 const brawlersGrid = document.getElementById("brawlersGrid");
 brawlersGrid.addEventListener("mouseover", e => {
     const card = e.target.closest(".brawler-card");

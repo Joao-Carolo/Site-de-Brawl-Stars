@@ -36,7 +36,7 @@ function renderCarousel() {
         return `<div class="carousel-slide">
             <img src="${v.thumb}" alt="${titulo}" onerror="this.style.display='none'">
             <div class="carousel-slide-overlay">
-                <a href="${v.link}" target="_blank" rel="noopener" class="carousel-watch-btn">${watchText}</a>
+                <a href="${v.link}" target="_blank" rel="noopener" class="carousel-watch-btn">▶ ${titulo}</a>
             </div>
         </div>`;
     }).join("");

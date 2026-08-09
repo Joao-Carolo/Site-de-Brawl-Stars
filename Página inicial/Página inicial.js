@@ -13,11 +13,12 @@ const POSTS = [
    VÍDEOS — array separado dos posts com página própria
 ══════════════════════════════ */
 const VIDEOS = [
-    { thumb: "../Notícias/Imagens/Vídeos/Veja o Nori em ação.png", tituloKey: "video1_titulo", link: "https://www.youtube.com/watch?v=S-8YkBgjFfo" },
-    { thumb: "../Notícias/Imagens/Vídeos/Ver a animação da Temporada.png", tituloKey: "video2_titulo", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0" },
-    { thumb: "../Notícias/Imagens/Vídeos/video3.png", tituloKey: "video3_titulo", link: "" },
-    { thumb: "../Notícias/Imagens/Vídeos/video4.png", tituloKey: "video4_titulo", link: "" },
-    { thumb: "../Notícias/Imagens/Vídeos/video5.png", tituloKey: "video5_titulo", link: "" },
+    { thumb: "../Notícias/Imagens/Vídeos/Assista Agora!.png", tituloKey: "video1_titulo", link: "https://www.youtube.com/watch?v=PKBylOZ7yj4", cor: "#FFD000" },
+    { thumb: "../Notícias/Imagens/Vídeos/Ver a animação da Temporada.png", tituloKey: "video2_titulo", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0", cor: "var(--purple)" },
+    { thumb: "../Notícias/Imagens/Vídeos/video3.png", tituloKey: "video3_titulo", link: "", cor: "var(--orange)" },
+    { thumb: "../Notícias/Imagens/Vídeos/video4.png", tituloKey: "video4_titulo", link: "", cor: "var(--red)" },
+    { thumb: "../Notícias/Imagens/Vídeos/video5.png", tituloKey: "video5_titulo", link: "", cor: "var(--blue)" },
+    { thumb: "../Notícias/Imagens/Vídeos/video6.png", tituloKey: "video6_titulo", link: "", cor: "var(--pink)" },
 ];
 
 let carouselIndex = 0;
@@ -33,12 +34,13 @@ function renderCarousel() {
 
     track.innerHTML = VIDEOS.map(v => {
         const titulo = dict[v.tituloKey] || "";
+        const cor = v.cor || "#22C55E";
         return `<div class="carousel-slide">
-            <img src="${v.thumb}" alt="${titulo}" onerror="this.style.display='none'">
-            <div class="carousel-slide-overlay">
-                <a href="${v.link}" target="_blank" rel="noopener" class="carousel-watch-btn">▶ ${titulo}</a>
-            </div>
-        </div>`;
+        <img src="${v.thumb}" alt="${titulo}" onerror="this.style.display='none'">
+        <div class="carousel-slide-overlay">
+            <a href="${v.link}" target="_blank" rel="noopener" class="carousel-watch-btn" style="background:linear-gradient(135deg, ${cor}, ${cor}dd);box-shadow:0 8px 24px ${cor}59">${titulo}</a>
+        </div>
+    </div>`;
     }).join("");
 
     dots.innerHTML = VIDEOS.map((_, i) =>

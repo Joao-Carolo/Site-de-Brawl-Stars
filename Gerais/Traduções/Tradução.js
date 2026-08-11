@@ -61,11 +61,11 @@ const TRANSLATIONS = {
         start_videos_title: "Vídeos",
         start_videos_watch_btn: "▶ Ver vídeo",
         video1_titulo: "Assista Agora!",
-        video2_titulo: "Ver a animação da Temporada",
-        video3_titulo: "Ver o evento de Julho",
-        video4_titulo: "Ver a nova skin",
-        video5_titulo: "Ver o novo brawler",
-        video6_titulo: "Ver o lançamento do update",
+        video2_titulo: "Assistir à Animação",
+        video3_titulo: "Veja o Nori em ação!",
+        video4_titulo: "Ver a animação da Temporada",
+        video5_titulo: "Brawl Talk",
+        video6_titulo: "Assitir",
 
         // Página inicial - Brawlers Section
         start_brawlers_title: "Brawlers",

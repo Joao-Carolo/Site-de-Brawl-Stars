@@ -53,7 +53,6 @@ const TRANSLATIONS = {
         post2_tag: "Update", post2_titulo: "Veja o Nori em ação", post2_excerpt: "O Nori está sempre à pesca de problemas 🎣",
         post3_tag: "Update", post3_titulo: "Ver a animação da Temporada", post3_excerpt: "A Temporada NanoNoodles está a corromper o Starr Park! 🧪🍜",
         post4_tag: "Update", post4_titulo: "Notas de lançamento de Julho", post4_excerpt: "Uma loja de macarrão automatizada abriu em frente ao restaurante de sushi de Kenji e Kaze, despertando o interesse do filho deles, Nori. O caos se instala!",
-        post5_tag: "Update", post5_titulo: "Manutenção 28 Abril — Colette reativada", post5_excerpt: "Bug crítico da Colette corrigido (+4.600 dano extra). Nerfs urgentes ao Damian, Sirius, Bull, Crow, Chester e Najia.",
         start_novidades_btn_cards: "Ler mais →",
 
         // Página inicial - Novidades Section - Posts - Vídeos
@@ -172,7 +171,6 @@ const TRANSLATIONS = {
         post2_tag: "Update", post2_titulo: "Watch Nori in action", post2_excerpt: "Nori's always fishing for trouble 🎣",
         post3_tag: "Update", post3_titulo: "Watch the Season animation", post3_excerpt: "NanoNoodles Season is corrupting Starr Park! 🧪🍜",
         post4_tag: "Update", post4_titulo: "July release notes", post4_excerpt: "An automated noodle shop opened across from Kenji and Kaze's sushi restaurant, sparking their son Nori's interest. Chaos ensues!",
-        post5_tag: "Update", post5_titulo: "April 28 Maintenance — Colette reactivated", post5_excerpt: "Fixed critical Colette bug (+4,600 extra damage). Urgent nerfs to Damian, Sirius, Bull, Crow, Chester and Najia.",
         start_novidades_btn_cards: "Read more →",
 
         // Página inicial - Brawlers Section
@@ -280,7 +278,6 @@ const TRANSLATIONS = {
         post2_tag: "Actualización", post2_titulo: "Mira a Nori en acción", post2_excerpt: "Nori siempre está pescando problemas 🎣",
         post3_tag: "Actualización", post3_titulo: "Mira la animación de la Temporada", post3_excerpt: "¡La Temporada NanoNoodles está corrompiendo Starr Park! 🧪🍜",
         post4_tag: "Actualización", post4_titulo: "Notas de lanzamiento de julio", post4_excerpt: "¡Una tienda de fideos automatizada se abrió frente al restaurante de sushi de Kenji y Kaze, despertando el interés de su hijo Nori! ¡El caos se desata!",
-        post5_tag: "Actualización", post5_titulo: "Mantenimiento del 28 de abril — Colette reactivada", post5_excerpt: "Se corrigió un error crítico de Colette (+4.600 de daño adicional). Nerfs urgentes a Damian, Sirius, Bull, Crow, Chester y Najia.",
         start_novidades_btn_cards: "Leer más →",
 
         // Página inicial - Brawlers Section

@@ -7,8 +7,57 @@ const POSTS = [
     { emoji: "⚔️", cor: "purple", tagKey: "post2_tag", data: "9 Jul 2026", tituloKey: "post2_titulo", excerptKey: "post2_excerpt", link: "https://www.youtube.com/watch?v=S-8YkBgjFfo", destaque: false },
     { emoji: "🦸", cor: "red", tagKey: "post3_tag", data: "2 Jul 2026", tituloKey: "post3_titulo", excerptKey: "post3_excerpt", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0", destaque: false },
     { emoji: "🏟️", cor: "orange", tagKey: "post4_tag", data: "2 Jul 2026", tituloKey: "post4_titulo", excerptKey: "post4_excerpt", link: "../Notícias/Notícias Atuais/Mudanças/Mudanças do update 68/Notas de lançamento update 68/Notas de lançamento update 68.html", destaque: false },
-    { emoji: "⚙️", cor: "blue", tagKey: "post5_tag", data: "28 Abr 2026", tituloKey: "post5_titulo", excerptKey: "post5_excerpt", link: "../Notícias/Notícias Atuais/Manutenção 28 de abril.html", destaque: false },
 ];
+/* RENDER NOVIDADES — agora separa a destaque do resto */
+function renderNews() {
+    const featuredSlot = document.getElementById("featuredNewsSlot");
+    const grid = document.getElementById("newsGrid");
+    const max = 4; // máximo de notícias a mostrar na página inicial
+    const posts = POSTS.slice(0, max);
+    const lang = getCurrentLang();
+    const dict = TRANSLATIONS[lang];
+    const dictPt = TRANSLATIONS.pt; // sempre português para os caminhos
+
+    function buildCard(p, i, featured) {
+        const tag = dict[p.tagKey] || "";
+        const titulo = dict[p.tituloKey] || "";
+        const excerpt = dict[p.excerptKey] || "";
+
+        // Usa sempre o português para o caminho da imagem
+        const tagPt = dictPt[p.tagKey] || "";
+        const tituloPt = dictPt[p.tituloKey] || "";
+
+        const imgPath = `../Notícias/imagens/${tagPt}/${tituloPt}.png`;
+        const thumbContent = `
+      <img
+        src="${imgPath}"
+        alt="${titulo}"
+        style="width:100%;height:100%;object-fit:cover;transition:transform .4s;"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+      >
+      <div class="news-thumb-bg ${p.cor}" style="display:none">${p.emoji}</div>`;
+
+        return `<article class="news-card${featured ? " featured" : ""}">
+      <div class="news-thumb">
+        ${thumbContent}
+        <span class="news-tag">${tag}</span>
+      </div>
+      <div class="news-body">
+        <p class="news-date">${p.data}</p>
+        <h3 class="news-title">${titulo}</h3>
+        <p class="news-excerpt">${excerpt}</p>
+        <a href="${p.link}" class="see-all" style="color:var(--orange2);margin-top:.75rem">${dict.start_novidades_btn_cards}</a>
+      </div>
+    </article>`;
+    }
+
+    // Primeira notícia = destaque, vai para o slot ao lado do carrossel
+    const [firstPost, ...restPosts] = posts;
+    featuredSlot.innerHTML = buildCard(firstPost, 0, true);
+
+    // Restantes notícias, em baixo
+    grid.innerHTML = restPosts.map((p, i) => buildCard(p, i + 1, false)).join("");
+}
 /* ══════════════════════════════
    VÍDEOS — array separado dos posts com página própria
 ══════════════════════════════ */
@@ -132,53 +181,6 @@ function initCarousel() {
             resetCarouselTimer();
         }
     }, { passive: true });
-}
-
-/* RENDER NOVIDADES */
-// Conta quantas vezes cada tag aparece para atribuir índice correto
-function renderNews() {
-    const grid = document.getElementById("newsGrid");
-    const max = 5;
-    const posts = POSTS.slice(0, max);
-    const lang = getCurrentLang();
-    const dict = TRANSLATIONS[lang];
-    const dictPt = TRANSLATIONS.pt; // sempre português para os caminhos
-
-    const tagCount = {};
-    grid.innerHTML = posts.map((p, i) => {
-        const featured = i === 0;
-        const tag = dict[p.tagKey] || "";
-        const titulo = dict[p.tituloKey] || "";
-        const excerpt = dict[p.excerptKey] || "";
-
-        // Usa sempre o português para o caminho da imagem
-        const tagPt = dictPt[p.tagKey] || "";
-        const tituloPt = dictPt[p.tituloKey] || "";
-
-        tagCount[tagPt] = (tagCount[tagPt] || 0) + 1;
-        const imgPath = `../Notícias/Imagens/${tagPt}/${tituloPt}.png`;
-        const thumbContent = `
-      <img
-        src="${imgPath}"
-        alt="${titulo}"
-        style="width:100%;height:100%;object-fit:cover;transition:transform .4s;"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-      >
-      <div class="news-thumb-bg ${p.cor}" style="display:none">${p.emoji}</div>`;
-
-        return `<article class="news-card${featured ? " featured" : ""}">
-      <div class="news-thumb">
-        ${thumbContent}
-        <span class="news-tag">${tag}</span>
-      </div>
-      <div class="news-body">
-        <p class="news-date">${p.data}</p>
-        <h3 class="news-title">${titulo}</h3>
-        <p class="news-excerpt">${excerpt}</p>
-        <a href="${p.link}" class="see-all" style="color:var(--orange2);margin-top:.75rem" >${dict.start_novidades_btn_cards}</a>
-      </div>
-    </article>`;
-    }).join("");
 }
 let currentBrawlerFilter = "all", currentBrawlerSearch = "";
 

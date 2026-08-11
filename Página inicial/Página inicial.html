@@ -74,13 +74,12 @@
     <!-- NOVIDADES + VÍDEOS — secção unificada -->
     <section class="news-section" id="novidades">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header reveal"
+                style="flex-direction:column;align-items:center;text-align:center;gap:.5rem">
                 <div>
                     <p class="section-eyebrow" data-i18n="start_novidades_p">Sempre Atualizado</p>
                     <h2 class="section-title light" data-i18n="start_novidades_title">Novidades</h2>
                 </div>
-                <a href="../Notícias/Novidades.html" class="see-all" style="color:var(--orange2);"
-                    data-i18n="start_novidades_btn">Ver todas →</a>
             </div>
 
             <!-- Bloco topo: carrossel + destaque lado a lado -->
@@ -96,18 +95,21 @@
 
             <!-- Restantes notícias, em baixo -->
             <div class="news-grid reveal" id="newsGrid"></div>
+            <div style="text-align:center;margin-top:2rem">
+                <a href="../Notícias/Novidades.html" class="see-all" style="color:var(--orange2);justify-content:center"
+                    data-i18n="start_novidades_btn">Ver todas ▾</a>
+            </div>
         </div>
     </section>
     <!-- BRAWLERS — interativos -->
     <section class="brawlers-section" id="brawlers">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header reveal"
+                style="flex-direction:column;align-items:center;text-align:center;gap:.5rem">
                 <div>
                     <p class="section-eyebrow" style="color:var(--teal);" id="brawlersCount">106 Brawlers</p>
                     <h2 class="section-title dark" data-i18n="start_brawlers_title">Os Brawlers</h2>
                 </div>
-                <a href="../Brawlers/Brawlers/Brawlers.html" class="see-all" style="color:var(--teal);"
-                    data-i18n="start_brawlers_btn">Ver todos →</a>
             </div>
             <div class="filter-tabs reveal" id="brawlerTabs">
                 <button class="filter-tab active" data-r="all" data-i18n="start_brawlers_filter_all">Todos</button>
@@ -125,6 +127,10 @@
                     data-i18n-placeholder="start_brawlers_filter_pesquisa">
             </div>
             <div class="brawlers-grid reveal" id="brawlersGrid"></div>
+            <div style="text-align:center;margin-top:2rem">
+                <a href="../Brawlers/Brawlers/Brawlers.html" class="see-all"
+                    style="color:var(--teal);justify-content:center" data-i18n="start_brawlers_btn">Ver todos ▾</a>
+            </div>
         </div>
     </section>
 

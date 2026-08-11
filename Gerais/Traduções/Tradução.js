@@ -45,7 +45,7 @@ const TRANSLATIONS = {
         //Página inicial - Novidades Section
         start_novidades_title: "Últimas Novidades",
         start_novidades_p: "Sempre Atualizado",
-        start_novidades_btn: "Ver Todas →",
+        start_novidades_btn: "Ver Todas ▾",
 
         // Página inicial - Novidades Section - Posts - Aprofundados
 
@@ -164,7 +164,7 @@ const TRANSLATIONS = {
         //Página inicial - Novidades Section
         start_novidades_title: "Latest News",
         start_novidades_p: "Always Updated",
-        start_novidades_btn: "View All →",
+        start_novidades_btn: "View All ▾",
 
         // Página inicial - Novidades Section - Posts
         post1_tag: "Update", post1_titulo: "Brawl Talk", post1_excerpt: "Ramen Rebellion: a story event that will change Katana Kingdom forever! NanoPowers & Fusions, Food Fight, Cooking Combat and more game modes. 2 New Brawlers! Nori and Wendy. Buffies, Skins, Hypercharges and way WAY MORE",
@@ -271,7 +271,7 @@ const TRANSLATIONS = {
         //Página inicial - Novidades Section
         start_novidades_title: "Últimas Noticias",
         start_novidades_p: "Siempre actualizado",
-        start_novidades_btn: "Ver Todas →",
+        start_novidades_btn: "Ver Todas ▾",
 
         // Página inicial - Novidades Section - Posts
         post1_tag: "Actualización", post1_titulo: "Brawl Talk", post1_excerpt: "Rebelión del Ramen: ¡un evento de historia que cambiará para siempre el Reino Katana! NanoPoderes y Fusiones, Guerra de Comida, Combate Culinario y más modos de juego. ¡2 Nuevos Brawlers! Nori y Wendy. Buffies, Skins, Hypercharges y mucho, MUCHO MÁS",

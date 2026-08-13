@@ -74,6 +74,22 @@ function buildNavbar(activeLink = "") {
 
     document.body.insertAdjacentHTML("afterbegin", navHtml);
 
+    document.getElementById("mobileMenu").insertAdjacentHTML("beforeend", `
+        <div class="mobile-lang-switcher">
+            <button class="lang-toggle" id="mobileLangToggle">
+                ${currentLangObj.flag} <span data-i18n="nav_idioma">Idioma</span> ▾
+            </button>
+            <div class="lang-dropdown" id="mobileLangDropdown">
+                ${langOptionsHtml}
+            </div>
+        </div>
+    `);
+
+    document.getElementById("mobileLangToggle").addEventListener("click", e => {
+        e.stopPropagation();
+        document.getElementById("mobileLangDropdown").classList.toggle("open");
+    });
+
     // Toggle do dropdown
     const langToggle = document.getElementById("langToggle");
     const langDropdown = document.getElementById("langDropdown");

@@ -62,12 +62,13 @@ function renderNews() {
    VÍDEOS — array separado dos posts com página própria
 ══════════════════════════════ */
 const VIDEOS = [
-    { thumb: "../Notícias/Imagens/Vídeos/Assista Agora.png", tituloKey: "video1_titulo", link: "https://www.youtube.com/watch?v=PKBylOZ7yj4", cor: "#FFD000" },
-    { thumb: "../Notícias/Imagens/Vídeos/Assistir à Animação.png", tituloKey: "video2_titulo", link: "https://www.youtube.com/watch?v=QfX7RCEIkzU", cor: "#8B5CF6" },
-    { thumb: "../Notícias/Imagens/Vídeos/Veja o Nori em ação.png", tituloKey: "video3_titulo", link: "https://www.youtube.com/watch?v=S-8YkBgjFfo", cor: "#E8202A" },
-    { thumb: "../Notícias/Imagens/Vídeos/Ver a animação da Temporada.png", tituloKey: "video4_titulo", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0", cor: "#4ADE80" },
-    { thumb: "../Notícias/Imagens/Vídeos/Brawl Talk.png", tituloKey: "video5_titulo", link: "https://www.youtube.com/watch?v=pgGThZitPis&t", cor: "#3B82F6" },
-    { thumb: "../Notícias/Imagens/Vídeos/Assistir.png", tituloKey: "video6_titulo", link: "https://www.youtube.com/watch?v=BWJYT9t1Ieg", cor: "#EC4899" },
+    { thumb: "../Notícias/Imagens/Vídeos/Wendy.png", tituloKey: "video1_titulo", link: "", cor: "#22C55E" },
+    { thumb: "../Notícias/Imagens/Vídeos/Assista Agora.png", tituloKey: "video2_titulo", link: "https://www.youtube.com/watch?v=PKBylOZ7yj4", cor: "#FFD000" },
+    { thumb: "../Notícias/Imagens/Vídeos/Assistir à Animação.png", tituloKey: "video3_titulo", link: "https://www.youtube.com/watch?v=QfX7RCEIkzU", cor: "#8B5CF6" },
+    { thumb: "../Notícias/Imagens/Vídeos/Veja o Nori em ação.png", tituloKey: "video4_titulo", link: "https://www.youtube.com/watch?v=S-8YkBgjFfo", cor: "#E8202A" },
+    { thumb: "../Notícias/Imagens/Vídeos/Ver a animação da Temporada.png", tituloKey: "video5_titulo", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0", cor: "#4ADE80" },
+    { thumb: "../Notícias/Imagens/Vídeos/Brawl Talk.png", tituloKey: "video6_titulo", link: "https://www.youtube.com/watch?v=pgGThZitPis&t", cor: "#3B82F6" },
+    { thumb: "../Notícias/Imagens/Vídeos/Assistir.png", tituloKey: "video7_titulo", link: "https://www.youtube.com/watch?v=BWJYT9t1Ieg", cor: "#EC4899" },
 ];
 
 let carouselIndex = 0;

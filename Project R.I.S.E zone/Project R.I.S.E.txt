@@ -1,0 +1,694 @@
+🏰 Estrutura completa do site
+
+Eu começaria com o nome provisório:
+
+R.I.S.E. Zone — O Fan Site de Project R.I.S.E.
+
+A estrutura principal seria:
+
+RISE-Zone/
+│
+├── index.html
+│
+├── Heroes/
+│   ├── index.html
+│   └── [hero].html
+│
+├── Tower/
+│   ├── index.html
+│   ├── Floors/
+│   │   └── [floor].html
+│   ├── Enemies/
+│   │   └── [enemy].html
+│   └── Bosses/
+│       └── [boss].html
+│
+├── Perks/
+│   ├── index.html
+│   └── [perk].html
+│
+├── Progression/
+│   ├── index.html
+│   └── Upgrades/
+│       └── [upgrade].html
+│
+├── News/
+│   ├── index.html
+│   └── [noticia].html
+│
+├── Guides/
+│   ├── index.html
+│   └── [guia].html
+│
+├── Wiki/
+│   ├── index.html
+│   ├── Glossary/
+│   │   └── index.html
+│   ├── Mechanics/
+│   │   └── index.html
+│   ├── Items/
+│   │   └── index.html
+│   ├── Locations/
+│   │   └── index.html
+│   └── Lore/
+│       └── index.html
+│
+├── About/
+│   └── index.html
+│
+└── Gerais/
+    ├── CSS/
+    ├── JS/
+    ├── Images/
+    ├── Fonts/
+    ├── Logo/
+    ├── Navbar/
+    ├── Footer/
+    ├── Mobile Menu/
+    ├── Breadcrumbs/
+    ├── Search/
+    ├── Cursor/
+    ├── Reveal/
+    ├── Toast/
+    ├── Theme/
+    ├── Translations/
+    └── Data/
+
+Agora vamos separar isto por áreas.
+
+🏠 1. Página Inicial
+index.html
+
+A homepage seria o centro do site.
+
+Eu faria algo parecido com o conceito que já tens no BrawlZone:
+
+Hero
+
+PROJECT R.I.S.E.
+
+Explore. Fight. Rise.
+
+Com:
+
+imagem principal
+pequeno resumo do jogo
+botão Explore the Wiki
+botão Latest News
+Depois:
+
+📰 Últimas Notícias
+
+3–6 notícias recentes.
+
+⚔️ Heroes
+
+Mostrar alguns dos Heroes.
+
+🏰 The Tower
+
+Uma introdução à principal mecânica do jogo.
+
+✨ Perks
+
+Alguns perks em destaque.
+
+📖 Wiki
+
+Links rápidos para:
+
+Heroes
+Tower
+Enemies
+Bosses
+Perks
+Glossary
+
+📢 Newsletter
+
+Tal como tens no BrawlZone.
+
+⚔️ 2. Heroes
+
+Esta seria provavelmente uma das maiores secções.
+
+Heroes/
+│
+├── index.html
+│
+├── barbarian.html
+├── archer.html
+├── ...
+
+A página:
+
+Heroes/index.html
+
+seria a lista completa.
+
+Com:
+
+pesquisa
+filtros
+raridade
+classe
+tipo
+ordenação
+
+E cada personagem teria a sua própria página.
+
+Exemplo
+Heroes/
+└── barbarian.html
+
+Página do Hero:
+
+Barbarian
+
+[Imagem]
+
+Stats
+├── HP
+├── Damage
+├── Attack Speed
+├── Movement Speed
+├── Range
+└── ...
+
+Abilities
+
+Perks
+
+Playstyle
+
+Tips
+
+Lore
+
+Isto permite-te ter páginas extremamente completas sem tornar a página principal gigantesca.
+
+🏰 3. Tower
+
+Esta deve ser uma das categorias principais da navbar.
+
+Tower/
+│
+├── index.html
+│
+├── Floors/
+│   ├── index.html
+│   ├── floor-1.html
+│   ├── floor-2.html
+│   └── ...
+│
+├── Enemies/
+│   ├── index.html
+│   ├── [enemy].html
+│   └── ...
+│
+└── Bosses/
+    ├── index.html
+    ├── [boss].html
+    └── ...
+Tower/index.html
+
+Explicaria:
+
+o que é a Tower
+como funciona
+estrutura
+progressão
+tipos de salas
+inimigos
+bosses
+recompensas
+Floors
+
+Uma wiki dos diferentes andares.
+
+Enemies
+
+Todos os inimigos normais.
+
+Bosses
+
+Página dedicada aos bosses.
+
+Aqui podes posteriormente colocar:
+
+HP
+ataques
+habilidades
+estratégias
+recompensas
+✨ 4. Perks
+Perks/
+│
+├── index.html
+├── [perk].html
+└── ...
+
+Na página principal:
+
+PERKS
+
+[🔍 Pesquisar]
+
+[Todos] [Ofensivos] [Defensivos] [...]
+
+Cada perk:
+
+Perk Name
+⭐⭐⭐
+
+Descrição
+
+Efeito
+
+Heroes compatíveis
+
+Esta secção pode tornar-se enorme no futuro, por isso vale a pena separá-la desde o início.
+
+📈 5. Progression
+Progression/
+│
+├── index.html
+│
+└── Upgrades/
+    ├── index.html
+    └── [upgrade].html
+
+Aqui explicamos como o jogador evolui.
+
+Por exemplo:
+
+progressão
+upgrades
+recursos
+melhorias
+recompensas
+
+E:
+
+Progression/Upgrades/
+
+fica reservado para sistemas específicos de melhoria.
+
+📰 6. News
+
+Esta é importantíssima enquanto o jogo está em desenvolvimento.
+
+News/
+│
+├── index.html
+│
+├── project-rise-announced.html
+├── ...
+
+A página principal teria:
+
+LATEST NEWS
+
+[Pesquisa]
+
+[Todos]
+[Announcements]
+[Updates]
+[Development]
+[Events]
+
+E cada notícia teria uma página própria.
+
+Exemplo:
+
+News/
+└── project-rise-update.html
+
+Com:
+
+Título
+
+Data
+Categoria
+
+Imagem
+
+Texto
+
+Relacionado:
+[Heroes]
+[Perks]
+[Tower]
+📖 7. Wiki
+
+Aqui eu faria uma espécie de "enciclopédia" do R.I.S.E.
+
+Wiki/
+│
+├── index.html
+│
+├── Glossary/
+│   └── index.html
+│
+├── Mechanics/
+│   └── index.html
+│
+├── Items/
+│   └── index.html
+│
+├── Locations/
+│   └── index.html
+│
+└── Lore/
+    └── index.html
+Glossary
+
+Termos do jogo.
+
+Mechanics
+
+Explicação das mecânicas.
+
+Items
+
+Itens e objetos.
+
+Locations
+
+Locais importantes.
+
+Lore
+
+História e universo.
+
+🧭 8. Guides
+Guides/
+│
+├── index.html
+├── beginners-guide.html
+├── ...
+
+Aqui entram conteúdos como:
+
+Beginner Guides
+Hero Guides
+Tower Guides
+Boss Guides
+Builds
+Tips & Tricks
+
+A diferença entre Wiki e Guides seria:
+
+Wiki → informação
+
+Guides → como jogar
+
+Isso é importante para não misturar os dois.
+
+🔎 9. Pesquisa
+
+Como já tens no BrawlZone, eu manteria uma pesquisa global.
+
+Mas desta vez faria com que pesquisasse todo o site:
+
+🔍 Search R.I.S.E. Zone
+
+Resultados:
+
+Heroes
+Tower
+Enemies
+Bosses
+Perks
+News
+Guides
+Wiki
+
+Assim o utilizador pode escrever:
+
+Barbarian
+
+e encontrar imediatamente:
+
+Heroes → Barbarian
+
+Ou:
+
+Goblin
+
+e encontrar:
+
+Enemies → Goblin
+
+🌐 10. Traduções
+
+Como já fizeste no BrawlZone, eu prepararia desde o princípio:
+
+Gerais/
+└── Translations/
+    ├── pt.js
+    ├── en.js
+    └── es.js
+
+E manteria:
+
+🇵🇹 Português
+🇬🇧 English
+🇪🇸 Español
+
+Mas há uma diferença importante: o conteúdo das notícias e artigos não precisa necessariamente de estar todo dentro do sistema de traduções.
+
+A tradução automática das páginas gigantes pode ficar muito pesada.
+
+🧩 11. Gerais
+
+Aqui é onde podemos aproveitar muito do trabalho que já fizeste no BrawlZone.
+
+Gerais/
+│
+├── CSS/
+│
+├── JS/
+│
+├── Images/
+│
+├── Fonts/
+│
+├── Logo/
+│
+├── Navbar/
+│
+├── Footer/
+│
+├── Mobile Menu/
+│
+├── Breadcrumbs/
+│
+├── Search/
+│
+├── Cursor/
+│
+├── Reveal/
+│
+├── Toast/
+│
+├── Theme/
+│
+├── Translations/
+│
+└── Data/
+Data/
+
+Esta pasta é uma das alterações que eu faria no novo site.
+
+Data/
+├── heroes.js
+├── perks.js
+├── enemies.js
+├── bosses.js
+├── floors.js
+├── items.js
+└── news.js
+
+Em vez de escreveres todas as informações diretamente no HTML, podes guardar os dados aqui.
+
+Por exemplo:
+
+const heroes = [
+    {
+        id: "barbarian",
+        name: "Barbarian",
+        rarity: "...",
+        health: "...",
+        damage: "..."
+    }
+];
+
+Depois o JavaScript constrói os cards e páginas.
+
+Isto vai poupar-te MUITO trabalho.
+
+🎨 12. CSS
+
+Eu também não colocaria um único CSS gigante.
+
+Faria:
+
+Gerais/
+└── CSS/
+    ├── Cores.css
+    ├── Reset.css
+    ├── Global.css
+    ├── Components.css
+    ├── Cards.css
+    ├── Wiki.css
+    └── Responsive.css
+
+E páginas específicas podem ter o seu próprio CSS:
+
+Heroes/
+├── index.html
+└── Heroes.css
+🧠 13. JavaScript
+Gerais/
+└── JS/
+    ├── Global.js
+    ├── Search.js
+    ├── Theme.js
+    ├── Translations.js
+    └── DataLoader.js
+
+E depois:
+
+Heroes/
+└── Heroes.js
+Perks/
+└── Perks.js
+
+etc.
+
+🧱 Navbar
+
+Eu não colocaria tudo diretamente na navbar.
+
+Algo deste género:
+
+R.I.S.E. Zone
+
+Home
+Heroes
+Tower
+Perks
+Progression
+Wiki
+Guides
+News
+
+🔍
+🌐
+☰
+
+E dentro de Wiki:
+
+Wiki
+ ├─ Glossary
+ ├─ Mechanics
+ ├─ Items
+ ├─ Locations
+ └─ Lore
+
+Dentro de Tower:
+
+Tower
+ ├─ Overview
+ ├─ Floors
+ ├─ Enemies
+ └─ Bosses
+🦶 Footer
+
+Também manteria o sistema do BrawlZone:
+
+R.I.S.E. Zone
+
+O fan site de Project R.I.S.E.
+
+CONTENT
+• Heroes
+• Tower
+• Perks
+• Wiki
+• Guides
+• News
+
+RESOURCES
+• Glossary
+• Mechanics
+• Search
+
+SITE
+• About
+• Contact
+• Privacy
+
+© 2026 R.I.S.E. Zone
+⭐ E a estrutura final da navbar
+
+Eu acho que esta seria a melhor:
+
+🏠 HOME
+
+⚔️ HEROES
+
+🏰 TOWER
+   ├── Overview
+   ├── Floors
+   ├── Enemies
+   └── Bosses
+
+✨ PERKS
+
+📈 PROGRESSION
+
+📖 WIKI
+   ├── Glossary
+   ├── Mechanics
+   ├── Items
+   ├── Locations
+   └── Lore
+
+📚 GUIDES
+
+📰 NEWS
+
+E à direita:
+
+🔍 Search
+🌐 PT
+🔥 Uma coisa que acho importante
+
+Não criaria já dezenas de páginas individuais vazias.
+
+A estrutura das pastas pode estar preparada para elas, mas inicialmente teríamos apenas:
+
+Heroes/index.html
+Tower/index.html
+Tower/Floors/index.html
+Tower/Enemies/index.html
+Tower/Bosses/index.html
+Perks/index.html
+Progression/index.html
+Wiki/index.html
+Wiki/Glossary/index.html
+Wiki/Mechanics/index.html
+Guides/index.html
+News/index.html
+index.html
+
+Depois, à medida que descobrirmos conteúdo confirmado do R.I.S.E., vamos criando:
+
+Heroes/barbarian.html
+Heroes/...
+Tower/Bosses/...
+News/...
+
+Assim não construímos um monte de páginas que depois podem ficar desatualizadas ou ser removidas durante o desenvolvimento.

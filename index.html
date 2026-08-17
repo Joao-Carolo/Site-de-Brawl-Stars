@@ -189,7 +189,7 @@
             // Deteta se já está dentro do repo (GitHub Pages) ou local
             const parts = window.location.pathname.split("/").filter(p => p !== "");
             const inRepo = parts.includes(REPO_NAME);
-            return inRepo ? `/${REPO_NAME}/Pagina inicial.html` : `Pagina inicial.html`;
+            return inRepo ? `/${REPO_NAME}/Página inicial.html` : `Página inicial.html`;
         }
         // Se já houver idioma guardado, salta direto para a página inicial
         const savedLang = localStorage.getItem("brawlzone_lang");

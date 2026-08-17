@@ -1,0 +1,461 @@
+/* ==========================================================================
+   Supercellzone — Página Inicial (geral)
+   Usa variáveis --sz-* definidas em Gerais/Cores.css
+   ========================================================================== */
+
+body.sz-home {
+    background: var(--sz-bg);
+    color: var(--sz-primary);
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+}
+
+.sz-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+.sz-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sz-accent);
+    margin-bottom: 14px;
+}
+
+.sz-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    cursor: none;
+    border: none;
+}
+
+.sz-btn-primary {
+    background: linear-gradient(135deg, var(--sz-accent) 0%, var(--sz-accent-light) 100%);
+    color: #05070D;
+    box-shadow: 0 10px 30px -10px rgba(91, 141, 239, 0.5);
+}
+
+.sz-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px -10px rgba(91, 141, 239, 0.65);
+}
+
+.sz-btn-ghost {
+    background: rgba(232, 232, 237, 0.04);
+    color: var(--sz-primary);
+    border: 1px solid var(--sz-border);
+}
+
+.sz-btn-ghost:hover {
+    background: rgba(232, 232, 237, 0.08);
+    border-color: var(--sz-accent);
+    transform: translateY(-2px);
+}
+
+/* ---------------------------------------------------------------------
+   HERO
+   --------------------------------------------------------------------- */
+
+.sz-hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 160px 24px 100px;
+    position: relative;
+}
+
+.sz-hero::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 620px;
+    height: 620px;
+    background: radial-gradient(circle, rgba(91, 141, 239, 0.14) 0%, rgba(91, 141, 239, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sz-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+}
+
+.sz-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sz-muted);
+    margin-bottom: 24px;
+}
+
+.sz-title {
+    font-weight: 800;
+    font-size: clamp(2.6rem, 7vw, 4.2rem);
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+    color: var(--sz-primary);
+}
+
+.sz-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--sz-muted);
+    margin: 0 auto 40px;
+    max-width: 540px;
+}
+
+.sz-hero-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ---------------------------------------------------------------------
+   Secções gerais
+   --------------------------------------------------------------------- */
+
+.sz-section {
+    padding: 96px 0;
+}
+
+.sz-section-head {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 56px;
+}
+
+.sz-section-head h2 {
+    font-weight: 800;
+    font-size: clamp(1.9rem, 4vw, 2.5rem);
+    color: var(--sz-primary);
+    margin: 0 0 16px;
+    letter-spacing: -0.01em;
+}
+
+.sz-section-desc {
+    color: var(--sz-muted);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------------
+   Sobre o projeto
+   --------------------------------------------------------------------- */
+
+.sz-about-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 56px;
+    align-items: start;
+}
+
+.sz-about-text p {
+    color: var(--sz-muted);
+    font-size: 1.02rem;
+    line-height: 1.75;
+    margin: 0 0 20px;
+}
+
+.sz-about-text p:last-child {
+    margin-bottom: 0;
+}
+
+.sz-about-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.sz-stat-card {
+    background: var(--sz-bg-elevated);
+    border: 1px solid var(--sz-border);
+    border-radius: 14px;
+    padding: 28px 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sz-stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--sz-accent);
+}
+
+.sz-stat-label {
+    font-size: 0.78rem;
+    color: var(--sz-muted);
+    line-height: 1.3;
+}
+
+/* ---------------------------------------------------------------------
+   As Zones
+   --------------------------------------------------------------------- */
+
+.sz-zones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.sz-zone-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--sz-bg-elevated);
+    border: 1px solid var(--sz-border);
+    border-radius: 18px;
+    padding: 32px 26px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+a.sz-zone-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--sz-accent);
+    box-shadow: 0 20px 40px -20px rgba(91, 141, 239, 0.3);
+}
+
+.sz-zone-soon {
+    opacity: 0.55;
+    cursor: default;
+}
+
+.sz-zone-badge {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+}
+
+.sz-zone-badge-active {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ADE80;
+}
+
+.sz-zone-badge-building {
+    background: rgba(232, 185, 35, 0.15);
+    color: #F4D35E;
+}
+
+.sz-zone-badge-soon {
+    background: rgba(138, 141, 152, 0.15);
+    color: var(--sz-muted);
+}
+
+.sz-zone-icon {
+    font-size: 1.8rem;
+    color: var(--sz-accent);
+    margin-bottom: 18px;
+}
+
+.sz-zone-name {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--sz-primary);
+    margin: 0 0 4px;
+}
+
+.sz-zone-game {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--sz-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 16px;
+}
+
+.sz-zone-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--sz-muted);
+    margin: 0 0 20px;
+    flex-grow: 1;
+}
+
+.sz-zone-link {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--sz-accent);
+}
+
+/* ---------------------------------------------------------------------
+   Sobre a Supercell
+   --------------------------------------------------------------------- */
+
+.sz-company-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 56px;
+    align-items: start;
+}
+
+.sz-company-text p {
+    color: var(--sz-muted);
+    font-size: 1.02rem;
+    line-height: 1.75;
+    margin: 0 0 20px;
+}
+
+.sz-company-text p:last-child {
+    margin-bottom: 0;
+}
+
+.sz-company-facts {
+    background: var(--sz-bg-elevated);
+    border: 1px solid var(--sz-border);
+    border-radius: 14px;
+    padding: 8px 24px;
+}
+
+.sz-fact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--sz-border);
+}
+
+.sz-fact-row:last-child {
+    border-bottom: none;
+}
+
+.sz-fact-label {
+    font-size: 0.9rem;
+    color: var(--sz-muted);
+}
+
+.sz-fact-value {
+    font-weight: 700;
+    color: var(--sz-primary);
+    text-align: right;
+}
+
+/* ---------------------------------------------------------------------
+   Novidades (placeholder)
+   --------------------------------------------------------------------- */
+
+.sz-news-section {
+    padding-bottom: 40px;
+}
+
+/* ---------------------------------------------------------------------
+   CTA Newsletter
+   --------------------------------------------------------------------- */
+
+.sz-cta-card {
+    background: var(--sz-bg-elevated);
+    border: 1px solid var(--sz-border);
+    border-radius: 24px;
+    padding: 64px 40px;
+    text-align: center;
+}
+
+.sz-cta-card h2 {
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.3rem);
+    color: var(--sz-primary);
+    margin: 0 0 16px;
+}
+
+.sz-cta-card p {
+    color: var(--sz-muted);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 32px;
+}
+
+.sz-newsletter-form {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.sz-newsletter-form input {
+    flex: 1;
+    min-width: 220px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--sz-border);
+    background: var(--sz-bg);
+    color: var(--sz-primary);
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.95rem;
+}
+
+.sz-newsletter-form input:focus {
+    outline: none;
+    border-color: var(--sz-accent);
+}
+
+/* ---------------------------------------------------------------------
+   Responsivo
+   --------------------------------------------------------------------- */
+
+@media (max-width: 860px) {
+
+    .sz-about-grid,
+    .sz-company-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+}
+
+@media (max-width: 560px) {
+    .sz-section {
+        padding: 72px 0;
+    }
+
+    .sz-hero {
+        padding: 130px 20px 80px;
+    }
+
+    .sz-about-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .sz-hero-ctas {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .sz-hero-ctas .sz-btn {
+        width: 100%;
+    }
+
+    .sz-newsletter-form {
+        flex-direction: column;
+    }
+}

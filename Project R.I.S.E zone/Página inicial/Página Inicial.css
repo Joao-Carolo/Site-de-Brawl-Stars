@@ -1,0 +1,578 @@
+/* ==========================================================================
+   Project R.I.S.E Zone — Página Inicial
+   Usa as variáveis --rise-* definidas em Gerais/Cores.css
+   ========================================================================== */
+
+body.rise-zone {
+    background: var(--rise-bg);
+    color: var(--rise-text);
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+}
+
+.rise-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+.rise-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rise-accent);
+    margin-bottom: 14px;
+}
+
+.rise-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    cursor: none;
+}
+
+.rise-btn-primary {
+    background: linear-gradient(135deg, var(--rise-accent) 0%, var(--rise-accent-light) 100%);
+    color: var(--rise-primary-dark);
+    box-shadow: 0 0 0 1px rgba(232, 185, 35, 0.3), 0 10px 30px -10px rgba(232, 185, 35, 0.5);
+}
+
+.rise-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(232, 185, 35, 0.5), 0 16px 36px -10px rgba(232, 185, 35, 0.65);
+}
+
+.rise-btn-ghost {
+    background: rgba(240, 230, 255, 0.04);
+    color: var(--rise-text);
+    border: 1px solid var(--rise-border);
+}
+
+.rise-btn-ghost:hover {
+    background: rgba(240, 230, 255, 0.08);
+    border-color: var(--rise-accent);
+    transform: translateY(-2px);
+}
+
+/* ---------------------------------------------------------------------
+   HERO — a Tower como assinatura visual
+   --------------------------------------------------------------------- */
+
+.rise-hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 140px 24px 100px;
+}
+
+.rise-tower-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.tower-floor {
+    width: calc(100% - (var(--i) * 60px));
+    max-width: 900px;
+    height: 90px;
+    margin-top: -1px;
+    background: linear-gradient(180deg,
+            var(--rise-bg-elevated) 0%,
+            var(--rise-primary-dark) 100%);
+    border-top: 1px solid var(--rise-border);
+    clip-path: polygon(3% 0, 97% 0, 100% 100%, 0% 100%);
+    opacity: calc(1 - (var(--i) * 0.1));
+}
+
+.tower-glow {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(232, 185, 35, 0.25) 0%, rgba(232, 185, 35, 0) 70%);
+    animation: rise-glow-pulse 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes rise-glow-pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: translateX(-50%) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.12);
+    }
+}
+
+.rise-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(26, 15, 46, 0.55) 0%, rgba(26, 15, 46, 0.85) 60%, var(--rise-bg) 100%);
+    z-index: 1;
+}
+
+.rise-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 720px;
+}
+
+.rise-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rise-text-muted);
+    margin-bottom: 24px;
+}
+
+.rise-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 800;
+    line-height: 1;
+    margin: 0 0 24px;
+}
+
+.rise-title-line {
+    display: block;
+    font-size: clamp(2.6rem, 7vw, 4.6rem);
+    letter-spacing: 0.04em;
+    color: var(--rise-text);
+}
+
+.rise-title-accent {
+    background: linear-gradient(135deg, var(--rise-accent-light) 0%, var(--rise-accent) 60%, #a9781a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.14em;
+}
+
+.rise-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--rise-text-muted);
+    margin: 0 auto 36px;
+    max-width: 560px;
+}
+
+.rise-beta-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(240, 230, 255, 0.05);
+    border: 1px solid var(--rise-border);
+    border-radius: 100px;
+    padding: 10px 22px;
+    margin-bottom: 40px;
+}
+
+.beta-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rise-success);
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.18);
+    animation: rise-pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes rise-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.18);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.06);
+    }
+}
+
+.beta-text {
+    font-size: 0.85rem;
+    color: var(--rise-text-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.3;
+}
+
+.beta-text strong {
+    color: var(--rise-text);
+    font-weight: 700;
+}
+
+.rise-hero-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.rise-scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 22px;
+    height: 36px;
+    border: 2px solid var(--rise-text-muted);
+    border-radius: 12px;
+    opacity: 0.6;
+}
+
+.rise-scroll-hint span {
+    display: block;
+    width: 4px;
+    height: 8px;
+    background: var(--rise-accent);
+    border-radius: 2px;
+    margin: 6px auto 0;
+    animation: rise-scroll-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes rise-scroll-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(10px);
+        opacity: 0.3;
+    }
+}
+
+/* ---------------------------------------------------------------------
+   Secções gerais
+   --------------------------------------------------------------------- */
+
+.rise-section {
+    position: relative;
+    padding: 100px 0;
+    z-index: 2;
+}
+
+.rise-section-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 56px;
+}
+
+.rise-section-head h2 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    color: var(--rise-text);
+    margin: 0 0 16px;
+}
+
+.rise-section-desc {
+    color: var(--rise-text-muted);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------------
+   Sobre o jogo
+   --------------------------------------------------------------------- */
+
+.rise-about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 56px;
+    align-items: start;
+}
+
+.rise-about-text p {
+    color: var(--rise-text-muted);
+    font-size: 1.02rem;
+    line-height: 1.75;
+    margin: 0 0 20px;
+}
+
+.rise-about-text p:last-child {
+    margin-bottom: 0;
+}
+
+.rise-about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.rise-stat-card {
+    background: var(--rise-bg-elevated);
+    border: 1px solid var(--rise-border);
+    border-radius: 14px;
+    padding: 24px 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.rise-stat-num {
+    font-family: 'Cinzel', serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: var(--rise-accent);
+}
+
+.rise-stat-label {
+    font-size: 0.78rem;
+    color: var(--rise-text-muted);
+    line-height: 1.3;
+}
+
+/* ---------------------------------------------------------------------
+   Heróis
+   --------------------------------------------------------------------- */
+
+.rise-heroes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.rise-hero-card {
+    background: var(--rise-bg-elevated);
+    border: 1px solid var(--rise-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.rise-hero-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--rise-accent);
+    box-shadow: 0 20px 40px -20px rgba(232, 185, 35, 0.25);
+}
+
+.rise-hero-card-img {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rise-primary) 0%, var(--rise-primary-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--rise-accent-light);
+    border: 2px solid var(--rise-border);
+}
+
+.rise-hero-card-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--rise-text);
+    margin: 0 0 6px;
+}
+
+.rise-hero-card-class {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rise-accent);
+    margin: 0 0 4px;
+}
+
+.rise-hero-card-family {
+    font-size: 0.82rem;
+    color: var(--rise-text-muted);
+    margin: 0;
+}
+
+.rise-hero-card-unknown {
+    opacity: 0.5;
+}
+
+.rise-hero-card-unknown .rise-hero-card-name {
+    color: var(--rise-text-muted);
+}
+
+/* ---------------------------------------------------------------------
+   A Tower — passos
+   --------------------------------------------------------------------- */
+
+.rise-tower-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.rise-tower-step {
+    background: var(--rise-bg-elevated);
+    border: 1px solid var(--rise-border);
+    border-radius: 16px;
+    padding: 28px 22px;
+    position: relative;
+}
+
+.rise-step-num {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--rise-primary);
+    -webkit-text-stroke: 1px var(--rise-accent);
+    margin-bottom: 14px;
+}
+
+.rise-tower-step h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--rise-text);
+    margin: 0 0 10px;
+}
+
+.rise-tower-step p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--rise-text-muted);
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------------
+   CTA final
+   --------------------------------------------------------------------- */
+
+.rise-cta-card {
+    background: linear-gradient(135deg, var(--rise-bg-elevated) 0%, var(--rise-primary-dark) 100%);
+    border: 1px solid var(--rise-border);
+    border-radius: 24px;
+    padding: 64px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.rise-cta-card::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(232, 185, 35, 0.18) 0%, rgba(232, 185, 35, 0) 70%);
+    pointer-events: none;
+}
+
+.rise-cta-card h2 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    color: var(--rise-text);
+    margin: 0 0 16px;
+}
+
+.rise-cta-card p {
+    color: var(--rise-text-muted);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    max-width: 520px;
+    margin: 0 auto 32px;
+}
+
+.rise-cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------------------------------------------------------------------
+   Responsivo
+   --------------------------------------------------------------------- */
+
+@media (max-width: 860px) {
+    .rise-about-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .rise-tower-steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .rise-section {
+        padding: 72px 0;
+    }
+
+    .rise-hero {
+        padding: 120px 20px 80px;
+        min-height: 80vh;
+    }
+
+    .rise-about-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .rise-tower-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .rise-hero-ctas,
+    .rise-cta-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .rise-hero-ctas .rise-btn,
+    .rise-cta-buttons .rise-btn {
+        width: 100%;
+    }
+}
+
+/* ---------------------------------------------------------------------
+   Movimento reduzido
+   --------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tower-glow,
+    .beta-dot,
+    .rise-scroll-hint span {
+        animation: none;
+    }
+}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrawlZone — Choose your language</title>
+    <title>Supercellzone — Choose your language</title>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/png" href="Gerais/Logo.png">
@@ -150,20 +150,16 @@
 
 <body>
     <div class="bg"></div>
-
     <div class="content">
         <div class="logo-wrap">
             <img src="Gerais/Logo.png" alt="Logo">
-            <span class="zone">BrawlZone</span>
+            <span class="zone">Supercellzone</span>
         </div>
         <h1 class="title">Choose your language / Escolhe o teu idioma</h1>
         <p class="subtitle">Select a language to continue to the site</p>
-
         <div class="lang-grid" id="langGrid"></div>
-
-        <p class="footer-note">Brawl Stars is property of Supercell</p>
+        <p class="footer-note">Fan-site not affiliated with Supercell</p>
     </div>
-
     <script>
         const AVAILABLE_LANGS = [
             { code: "pt", flag: "🇵🇹", name: "Português" },
@@ -188,22 +184,18 @@
             { code: "pl", flag: "🇵🇱", name: "Polski" },
             { code: "he", flag: "🇮🇱", name: "עברית" },
         ];
-
         const REPO_NAME = "Site-de-Brawl-Stars";
-
         function getStartPath() {
             // Deteta se já está dentro do repo (GitHub Pages) ou local
             const parts = window.location.pathname.split("/").filter(p => p !== "");
             const inRepo = parts.includes(REPO_NAME);
-            return inRepo ? `/${REPO_NAME}/Página inicial/Página inicial.html` : `Página inicial/Página inicial.html`;
+            return inRepo ? `/${REPO_NAME}/Pagina inicial.html` : `Pagina inicial.html`;
         }
-
         // Se já houver idioma guardado, salta direto para a página inicial
         const savedLang = localStorage.getItem("brawlzone_lang");
         if (savedLang) {
             window.location.href = getStartPath();
         }
-
         // Constrói a grelha de idiomas
         const grid = document.getElementById("langGrid");
         grid.innerHTML = AVAILABLE_LANGS.map(l =>
@@ -211,7 +203,6 @@
                 <span class="flag">${l.flag}</span> ${l.name}
             </button>`
         ).join("");
-
         function chooseLang(code) {
             localStorage.setItem("brawlzone_lang", code);
             window.location.href = getStartPath();

@@ -1,4 +1,13 @@
 :root {
+    /* Supercellzone — cores principais (página geral, neutra) */
+    --sz-bg: #0B0C10;
+    --sz-bg-elevated: #15161C;
+    --sz-primary: #E8E8ED;
+    --sz-muted: #8A8D98;
+    --sz-border: #24262E;
+    --sz-accent: #5B8DEF;
+    --sz-accent-light: #8AB0F5;
+
     /* Cores principais */
     --yellow: #FFD000;
     --orange: #FF6B00;
@@ -68,4 +77,23 @@
     --s-wip: #FFD000;
     --s-todo: #EF4444;
     --s-planned: #A855F7;
+
+    /* Project R.I.S.E Zone — cores principais */
+    --rise-primary: #6B3FA0;
+    --rise-primary-dark: #3D2159;
+    --rise-accent: #E8B923;
+    --rise-accent-light: #F4D35E;
+
+    /* Project R.I.S.E Zone — fundos */
+    --rise-bg: #1A0F2E;
+    --rise-bg-elevated: #2A1B42;
+
+    /* Project R.I.S.E Zone — texto e bordas */
+    --rise-text: #F0E6FF;
+    --rise-text-muted: #B8A3D9;
+    --rise-border: #4A2E6E;
+
+    /* Project R.I.S.E Zone — estados (consistentes com o resto do site) */
+    --rise-success: #22C55E;
+    --rise-danger: #EF4444;
 }

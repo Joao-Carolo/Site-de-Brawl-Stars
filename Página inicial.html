@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supercellzone — Fan-sites dedicados aos jogos da Supercell</title>
+    <meta name="description"
+        content="Supercellzone é uma rede de fan-sites não oficiais dedicados aos jogos da Supercell: Brawl Stars, Project R.I.S.E e mais.">
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Gerais -->
+    <link rel="stylesheet" href="Gerais/Cores.css">
+    <link rel="stylesheet" href="Gerais/Logo.css">
+    <link rel="stylesheet" href="Gerais/Cursor/Cursor.css">
+    <link rel="stylesheet" href="Gerais/Mobile Menu/Mobile Menu.css">
+    <link rel="stylesheet" href="Gerais/Navbar/Navbar.css">
+    <link rel="stylesheet" href="Gerais/Footer/Footer.css">
+    <link rel="stylesheet" href="Gerais/Reveal/Reveal.css">
+    <link rel="stylesheet" href="Gerais/Breadcrumbs/Breadcrumbs.css">
+    <link rel="stylesheet" href="Gerais/Toast/Toast.css">
+
+    <!-- CSS da página -->
+    <link rel="stylesheet" href="Página inicial.css">
+</head>
+
+<body class="sz-home">
+
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <nav class="breadcrumb" id="breadcrumb"></nav>
+
+    <!-- HERO -->
+    <header class="sz-hero">
+        <div class="sz-hero-content reveal">
+            <p class="sz-eyebrow" data-i18n="sz_hero_eyebrow">Rede de fan-sites não oficial</p>
+            <h1 class="sz-title">Supercellzone</h1>
+            <p class="sz-subtitle" data-i18n="sz_hero_subtitle">
+                Um ponto de encontro para fãs dos jogos da Supercell. Cada jogo tem a sua Zone própria — completa,
+                interativa e sempre atualizada.
+            </p>
+            <div class="sz-hero-ctas">
+                <a href="#zonas" class="sz-btn sz-btn-primary" data-i18n="sz_hero_cta_zonas">Ver as Zones</a>
+                <a href="#sobre" class="sz-btn sz-btn-ghost" data-i18n="sz_hero_cta_sobre">Sobre o projeto</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SOBRE O PROJETO -->
+    <section class="sz-section" id="sobre">
+        <div class="sz-container">
+            <div class="sz-section-head reveal">
+                <p class="sz-label" data-i18n="sz_about_label">O projeto</p>
+                <h2 data-i18n="sz_about_title">O que é a Supercellzone</h2>
+            </div>
+
+            <div class="sz-about-grid">
+                <div class="sz-about-text reveal">
+                    <p data-i18n="sz_about_p1">
+                        A Supercellzone nasceu de um único fan-site sobre Brawl Stars e cresceu para algo maior: uma
+                        rede de sites dedicados a diferentes jogos da Supercell, cada um com a sua própria identidade,
+                        mas todos com o mesmo compromisso — ser a fonte mais completa e sempre atualizada em português.
+                    </p>
+                    <p data-i18n="sz_about_p2">
+                        Cada Zone é construída e mantida manualmente, acompanhando cada atualização de perto. Não há
+                        atalhos nem conteúdo automatizado — só trabalho feito com atenção ao detalhe, para quem
+                        realmente quer perceber os jogos a fundo.
+                    </p>
+                </div>
+
+                <div class="sz-about-stats reveal">
+                    <div class="sz-stat-card">
+                        <span class="sz-stat-num" id="sz-zone-count">2</span>
+                        <span class="sz-stat-label" data-i18n="sz_about_stat_zones">Zones ativas</span>
+                    </div>
+                    <div class="sz-stat-card">
+                        <span class="sz-stat-num">PT</span>
+                        <span class="sz-stat-label" data-i18n="sz_about_stat_lang">Idioma base</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AS ZONES -->
+    <section class="sz-section sz-zones-section" id="zonas">
+        <div class="sz-container">
+            <div class="sz-section-head reveal">
+                <p class="sz-label" data-i18n="sz_zones_label">Escolhe o teu jogo</p>
+                <h2 data-i18n="sz_zones_title">As Zones</h2>
+                <p class="sz-section-desc" data-i18n="sz_zones_desc">
+                    Cada jogo tem o seu próprio espaço, com identidade visual e conteúdo dedicado.
+                </p>
+            </div>
+
+            <div class="sz-zones-grid">
+
+                <a class="sz-zone-card sz-zone-brawl reveal" href="BrawlZone/Página Inicial/Página Inicial.html">
+                    <div class="sz-zone-badge sz-zone-badge-active" data-i18n="sz_zone_status_active">Ativa</div>
+                    <div class="sz-zone-icon" aria-hidden="true">★</div>
+                    <h3 class="sz-zone-name">BrawlZone</h3>
+                    <p class="sz-zone-game" data-i18n="sz_zone_brawl_game">Brawl Stars</p>
+                    <p class="sz-zone-desc" data-i18n="sz_zone_brawl_desc">
+                        Brawlers, mapas, buffies, skins e muito mais — o fan-site mais completo sobre Brawl Stars em
+                        português.
+                    </p>
+                    <span class="sz-zone-link" data-i18n="sz_zone_enter">Entrar na Zone →</span>
+                </a>
+
+                <a class="sz-zone-card sz-zone-rise reveal" href="Project R.I.S.E Zone/Pagina-Inicial.html">
+                    <div class="sz-zone-badge sz-zone-badge-building" data-i18n="sz_zone_status_building">Em construção
+                    </div>
+                    <div class="sz-zone-icon" aria-hidden="true">▲</div>
+                    <h3 class="sz-zone-name">R.I.S.E Zone</h3>
+                    <p class="sz-zone-game" data-i18n="sz_zone_rise_game">Project R.I.S.E</p>
+                    <p class="sz-zone-desc" data-i18n="sz_zone_rise_desc">
+                        Tudo sobre o novo RPG de ação social da Supercell, ainda em fase de beta. Heróis, a Tower, e
+                        mais.
+                    </p>
+                    <span class="sz-zone-link" data-i18n="sz_zone_enter">Entrar na Zone →</span>
+                </a>
+
+                <div class="sz-zone-card sz-zone-soon reveal">
+                    <div class="sz-zone-badge sz-zone-badge-soon" data-i18n="sz_zone_status_soon">Por vir</div>
+                    <div class="sz-zone-icon" aria-hidden="true">+</div>
+                    <h3 class="sz-zone-name" data-i18n="sz_zone_next_title">Próxima Zone</h3>
+                    <p class="sz-zone-desc" data-i18n="sz_zone_next_desc">
+                        Clash of Clans, Clash Royale ou Hay Day podem ser os próximos. Ainda por decidir.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE A SUPERCELL -->
+    <section class="sz-section sz-company-section">
+        <div class="sz-container">
+            <div class="sz-section-head reveal">
+                <p class="sz-label" data-i18n="sz_company_label">A empresa</p>
+                <h2 data-i18n="sz_company_title">Sobre a Supercell</h2>
+            </div>
+
+            <div class="sz-company-grid">
+                <div class="sz-company-text reveal">
+                    <p data-i18n="sz_company_p1">
+                        A Supercell é uma empresa finlandesa de jogos para telemóvel, fundada em maio de 2010 e sediada
+                        em Helsínquia. Desde então, lançou vários dos jogos móveis mais jogados do mundo, incluindo Hay
+                        Day, Clash of Clans, Boom Beach, Clash Royale e Brawl Stars.
+                    </p>
+                    <p data-i18n="sz_company_p2">
+                        Este site não tem qualquer afiliação oficial com a Supercell — é um projeto feito por fãs, para
+                        fãs, com o único objetivo de documentar e celebrar estes jogos com o máximo de detalhe possível.
+                    </p>
+                </div>
+
+                <div class="sz-company-facts reveal">
+                    <div class="sz-fact-row">
+                        <span class="sz-fact-label" data-i18n="sz_company_founded">Fundada</span>
+                        <span class="sz-fact-value">2010</span>
+                    </div>
+                    <div class="sz-fact-row">
+                        <span class="sz-fact-label" data-i18n="sz_company_hq">Sede</span>
+                        <span class="sz-fact-value">Helsínquia, Finlândia</span>
+                    </div>
+                    <div class="sz-fact-row">
+                        <span class="sz-fact-label" data-i18n="sz_company_games">Jogos lançados</span>
+                        <span class="sz-fact-value">7</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOVIDADES GERAIS -->
+    <section class="sz-section sz-news-section" id="novidades">
+        <div class="sz-container">
+            <div class="sz-section-head reveal">
+                <p class="sz-label" data-i18n="sz_news_label">Fica a par</p>
+                <h2 data-i18n="sz_news_title">Novidades</h2>
+                <p class="sz-section-desc" data-i18n="sz_news_desc">
+                    Esta secção vai reunir novidades que atravessam várias Zones. Por agora, cada jogo tem as suas
+                    próprias novidades dentro da respetiva Zone.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA NEWSLETTER -->
+    <section class="sz-section sz-cta-section">
+        <div class="sz-container">
+            <div class="sz-cta-card reveal">
+                <p class="sz-label" data-i18n="sz_cta_label">Não percas nada</p>
+                <h2 data-i18n="sz_cta_title">Subscreve a newsletter</h2>
+                <p data-i18n="sz_cta_desc">
+                    Novidades de todas as Zones, direto no teu email. Sem spam, cancela quando quiseres.
+                </p>
+                <form class="email-form reveal" id="newsletterForm" action="https://formspree.io/f/xpqvddkk"
+                    method="POST">
+                    <input type="email" name="email" class="email-input" placeholder="O teu email..."
+                        data-i18n-placeholder="start_cta_email_placeholder" required>
+                    <button type="submit" class="email-btn" data-i18n="start_cta_btn">Subscrever</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts (ordem importa) -->
+    <script src="Gerais/Traduções/Tradução.js"></script>
+    <script src="Página inicial.js"></script>
+    <script src="Gerais/Tema.js"></script>
+    <script src="Gerais/Cursor/Cursor.js"></script>
+    <script src="Gerais/Reveal/Reveal.js"></script>
+    <script src="Gerais/Breadcrumbs/Breadcrumbs.js"></script>
+    <script src="Gerais/Footer/Footer.js"></script>
+    <script src="Gerais/Toast/Toast.js"></script>
+    <script src="Gerais/Navbar/Navbar.js"></script>
+    <script>
+        buildNavbar("sz-inicio");
+        applyTranslations();
+    </script>
+    <script src="Gerais/Mobile Menu/Mobile Menu.js"></script>
+
+</body>
+
+</html>

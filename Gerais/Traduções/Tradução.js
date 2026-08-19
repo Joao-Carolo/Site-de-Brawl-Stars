@@ -1,16 +1,74 @@
 const TRANSLATIONS = {
     pt: {
+        // BREADCRUMB
+        breadcrumb_inicio: "🏠 Início",
+
         // Geral
         lema: "O fan site português de Brawl Stars. Guias, novidades, brawlers e tudo o mais — tudo em português.",
 
-        // NAVBAR
+        // Supercellzone - Hero
+        sz_hero_eyebrow: "Rede de fan-sites não oficial",
+        sz_hero_subtitle: "Um ponto de encontro para fãs dos jogos da Supercell. Cada jogo tem a sua Zone própria — completa, interativa e sempre atualizada.",
+        sz_hero_cta_zonas: "Ver as Zones",
+        sz_hero_cta_sobre: "Sobre o projeto",
+
+        // Supercellzone - Sobre o projeto
+        sz_about_label: "O projeto",
+        sz_about_title: "O que é a Supercellzone",
+        sz_about_p1: "A Supercellzone nasceu de um único fan-site sobre Brawl Stars e cresceu para algo maior: uma rede de sites dedicados a diferentes jogos da Supercell, cada um com a sua própria identidade, mas todos com o mesmo compromisso — ser a fonte mais completa e sempre atualizada em português.",
+        sz_about_p2: "Cada Zone é construída e mantida manualmente, acompanhando cada atualização de perto. Não há atalhos nem conteúdo automatizado — só trabalho feito com atenção ao detalhe, para quem realmente quer perceber os jogos a fundo.",
+        sz_about_stat_zones: "Zones ativas",
+        sz_about_stat_lang: "Idioma base",
+
+        // Supercellzone - As Zones
+        sz_zones_label: "Escolhe o teu jogo",
+        sz_zones_title: "As Zones",
+        sz_zones_desc: "Cada jogo tem o seu próprio espaço, com identidade visual e conteúdo dedicado.",
+        sz_zone_status_active: "Ativa",
+        sz_zone_status_building: "Em construção",
+        sz_zone_status_soon: "Por vir",
+        sz_zone_brawl_game: "Brawl Stars",
+        sz_zone_brawl_desc: "Brawlers, mapas, buffies, skins e muito mais — o fan-site mais completo sobre Brawl Stars em português.",
+        sz_zone_rise_game: "Project R.I.S.E",
+        sz_zone_rise_desc: "Tudo sobre o novo RPG de ação social da Supercell, ainda em fase de beta. Heróis, a Tower, e mais.",
+        sz_zone_enter: "Entrar na Zone →",
+        sz_zone_next_title: "Próxima Zone",
+        sz_zone_next_desc: "Clash of Clans, Clash Royale ou Hay Day podem ser os próximos. Ainda por decidir.",
+
+        // Supercellzone - Sobre a Supercell
+        sz_company_label: "A empresa",
+        sz_company_title: "Sobre a Supercell",
+        sz_company_p1: "A Supercell é uma empresa finlandesa de jogos para telemóvel, fundada em maio de 2010 e sediada em Helsínquia. Desde então, lançou vários dos jogos móveis mais jogados do mundo, incluindo Hay Day, Clash of Clans, Boom Beach, Clash Royale e Brawl Stars.",
+        sz_company_p2: "Este site não tem qualquer afiliação oficial com a Supercell — é um projeto feito por fãs, para fãs, com o único objetivo de documentar e celebrar estes jogos com o máximo de detalhe possível.",
+        sz_company_founded: "Fundada",
+        sz_company_hq: "Sede",
+        sz_company_games: "Jogos lançados",
+
+        // Supercellzone - Novidades
+        sz_news_label: "Fica a par",
+        sz_news_title: "Novidades",
+        sz_news_desc: "Esta secção vai reunir novidades que atravessam várias Zones. Por agora, cada jogo tem as suas próprias novidades dentro da respetiva Zone.",
+
+        // Supercellzone - Cta Newsletter
+        sz_cta_label: "Não percas nada",
+        sz_cta_title: "Subscreve a newsletter",
+        sz_cta_desc: "Novidades de todas as Zones, direto no teu email. Sem spam, cancela quando quiseres.",
+        sz_cta_placeholder: "O teu email",
+        sz_cta_submit: "Subscrever",
+
+        // Supercellzone - NAVBAR
+        nav_sz_sobre: "Sobre",
+        nav_sz_zonas: "Zones",
+        nav_sz_novidades: "Novidades",
+
+        // Brawlzone - NAVBAR
         nav_novidades: "Novidades",
         nav_brawlers: "Brawlers",
         nav_updates: "Updates",
         nav_guias: "Guias",
         nav_idioma: "Idioma",
 
-        // FOOTER
+        // Brawlzone - FOOTER
         footer_col_conteudo: "Conteúdo",
         footer_col_recursos: "Recursos",
         footer_col_site: "Site",
@@ -28,13 +86,11 @@ const TRANSLATIONS = {
         footer_copyright: "© 2026 <strong>BrawlZone</strong> — Fan site não oficial",
         footer_disclaimer: "Brawl Stars é propriedade da Supercell",
 
-        // BREADCRUMB
-        breadcrumb_inicio: "🏠 Início",
 
-        //Página inicial
+        // Brawlzone - Página inicial
         start_title: "BrawlZone — O Teu Fan Site de Brawl Stars",
 
-        //Página inicial - Hero Section
+        // Brawlzone - Página inicial - Hero Section
         start_hero_badge: "O Fan Site Português nº1",
         start_hero_line1: "O universo de",
         start_hero_line2: "Brawl Stars",
@@ -42,12 +98,12 @@ const TRANSLATIONS = {
         start_hero_btn_novidades: "📰 Últimas Novidades",
         start_hero_stat_label3: "Horas de Jogo",
 
-        //Página inicial - Novidades Section
+        // Brawlzone - Página inicial - Novidades Section
         start_novidades_title: "Últimas Novidades",
         start_novidades_p: "Sempre Atualizado",
         start_novidades_btn: "Ver Todas ▾",
 
-        // Página inicial - Novidades Section - Posts - Aprofundados
+        // Brawlzone - Página inicial - Novidades Section - Posts - Aprofundados
 
         post1_tag: "Update", post1_titulo: "Brawl Talk", post1_excerpt: "Rebelião do Ramen: um evento de história que vai mudar o Reino Katana para sempre! NanoPoderes & Fusões, Guerra de Comida, Culinária de Combate e mais modos de jogo. 2 Novos Brawlers! Nori e Wendy. Buffies, Skins, Hypercharges e muito, MUITO MAIS",
         post2_tag: "Update", post2_titulo: "Veja o Nori em ação", post2_excerpt: "O Nori está sempre à pesca de problemas 🎣",
@@ -55,7 +111,7 @@ const TRANSLATIONS = {
         post4_tag: "Update", post4_titulo: "Notas de lançamento de Julho", post4_excerpt: "Uma loja de macarrão automatizada abriu em frente ao restaurante de sushi de Kenji e Kaze, despertando o interesse do filho deles, Nori. O caos se instala!",
         start_novidades_btn_cards: "Ler mais →",
 
-        // Página inicial - Novidades Section - Posts - Vídeos
+        // Brawlzone - Página inicial - Novidades Section - Posts - Vídeos
         start_videos_p: "Conteúdo em Vídeo",
         start_videos_title: "Vídeos",
         start_videos_watch_btn: "▶ Ver vídeo",
@@ -67,11 +123,11 @@ const TRANSLATIONS = {
         video6_titulo: "Brawl Talk",
         video7_titulo: "Assitir",
 
-        // Página inicial - Brawlers Section
+        // Brawlzone - Página inicial - Brawlers Section
         start_brawlers_title: "Brawlers",
         start_brawlers_btn: "Ver Todos →",
 
-        // Página inicial - Brawlers Section - Filter Tabs
+        // Brawlzone - Página inicial - Brawlers Section - Filter Tabs
         start_brawlers_filter_all: "Todos",
         start_brawlers_filter_novo: "⭐ Novo",
         start_brawlers_filter_legendary: "💛 Lendário",
@@ -81,7 +137,7 @@ const TRANSLATIONS = {
         start_brawlers_filter_rare: "💚 Raro",
         start_brawlers_filter_pesquisa: "Procurar brawler...",
 
-        //Página inicial - Brawlers Section - Brawlers
+        // Brawlzone - Página inicial - Brawlers Section - Brawlers
         modal_label_raridade: "Raridade",
         modal_label_classe: "Classe",
         modal_label_hp: "HP (PL11)",
@@ -92,12 +148,12 @@ const TRANSLATIONS = {
         modal_btn_skins: "🎨 Ver todas as skins →",
         modal_btn_buffies: "🦊 Ver Buffies →",
 
-        // Página inicial - Guias Section
+        // Brawlzone - Página inicial - Guias Section
         start_guias_title: "Guias",
         start_guias_btn: "Ver Todos →",
         start_guias_p: "Para todos os níveis",
 
-        // Página inicial - Guias Section - Cards
+        // Brawlzone - Página inicial - Guias Section - Cards
         guide1_titulo: "Como subir de rank rapidamente",
         guide1_desc: "Os melhores brawlers para ranked, as melhores estratégias por modo de jogo, e os erros mais comuns que te impedem de subir.",
         guide2_titulo: "Guia F2P — progredir sem gastar",
@@ -113,7 +169,7 @@ const TRANSLATIONS = {
         guide_link_text: "Ler guia →",
 
 
-        // Página inicial - Cta Section
+        //  Brawlzone - Página inicial - Cta Section
         start_cta_title: "Fica sempre a par 🔔",
         start_cta_desc: "Recebe as últimas novidades, guias e updates diretamente no teu email.",
         start_cta_btn: "Subscrever",
@@ -369,7 +425,7 @@ const TRANSLATIONS = {
 
         // Página inicial - Guias Section - Cards
 
-        // Página inicial - Cta Section
+        //Página inicial - Cta Section
         start_cta_title: "Restez informé 🔔",
         start_cta_desc: "Recevez les dernières nouvelles, guides et mises à jour directement dans votre e-mail.",
         start_cta_btn: "S'abonner",

@@ -94,8 +94,7 @@ function buildNavbar(activeLink = "", zone = "brawlzone", isHome = false) {
     const navHtml = `
         <nav>
             <div class="nav-logo">
-                <span class="star"><img class="logo" src="${basePath}Gerais/Logo.png" alt="Logo"></span>
-                <span class="zone"><a href="${logoState.homeHref}">${logoState.nome}</a></span>
+                <span class="star"><a href="${logoState.homeHref}"><img class="logo" src="${basePath}Gerais/Logos/Logo ${logoState.nome}.png" alt="Logo"></a></span>
             </div>
             <ul class="nav-links">${linksHtml}</ul>
             <div class="lang-switcher">

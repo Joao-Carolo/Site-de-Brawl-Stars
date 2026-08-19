@@ -3,9 +3,9 @@
 // Newsletter via Formspree, seguindo o mesmo padrão usado no BrawlZone.
 // ==========================================================================
 
-// TODO: substituir pelo endpoint real do Formspree da Supercellzone
-// (pode ser o mesmo do BrawlZone ou um novo formulário dedicado — a decidir)
-const SZ_FORMSPREE_ENDPOINT = "https://formspree.io/f/SUBSTITUIR_ID";
+// Mesmo endpoint Formspree já usado no BrawlZone — uma única lista de subscritores
+// partilhada entre todas as Zones da Supercellzone.
+const SZ_FORMSPREE_ENDPOINT = "https://formspree.io/f/xpqvddkk";
 
 function initNewsletterForm() {
     const form = document.getElementById("sz-newsletter-form");

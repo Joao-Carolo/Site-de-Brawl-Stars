@@ -1,0 +1,121 @@
+        // BREADCRUMB
+        breadcrumb_inicio: "",
+
+        // Geral
+        lema: "",
+
+        // Supercellzone
+
+        // Brawlzone - NAVBAR
+        nav_novidades: "",
+        nav_brawlers: "",
+        nav_updates: "",
+        nav_guias: "",
+        nav_idioma: "",
+
+        // Brawlzone - FOOTER
+        footer_col_conteudo: "",
+        footer_col_recursos: "",
+        footer_col_site: "",
+        footer_link_brawlers: "",
+        footer_link_updates: "",
+        footer_link_guias: "",
+        footer_link_skins: "",
+        footer_link_buffies: "",
+        footer_link_eventos: "",
+        footer_link_torneios: "",
+        footer_link_glossario: "",
+        footer_link_collabs: "",
+        footer_link_ranked: "",
+        footer_link_noticias: "",
+        footer_copyright: "",
+        footer_disclaimer: "",
+
+
+        // Brawlzone - Página inicial
+        start_title: "",
+
+        // Brawlzone - Página inicial - Hero Section
+        start_hero_badge: "",
+        start_hero_line1: "",
+        start_hero_line2: "",
+        start_hero_btn_brawlers: "",
+        start_hero_btn_novidades: "",
+        start_hero_stat_label3: "",
+
+        // Brawlzone - Página inicial - Novidades Section
+        start_novidades_title: "",
+        start_novidades_p: "",
+        start_novidades_btn: "",
+
+        // Brawlzone - Página inicial - Novidades Section - Posts - Aprofundados
+
+        post1_tag: "", post1_titulo: "", post1_excerpt: "",
+        post2_tag: "", post2_titulo: "", post2_excerpt: "",
+        post3_tag: "", post3_titulo: "", post3_excerpt: "",
+        post4_tag: "", post4_titulo: "", post4_excerpt: "",
+        start_novidades_btn_cards: "",
+
+        // Brawlzone - Página inicial - Novidades Section - Posts - Vídeos
+        start_videos_p: "",
+        start_videos_title: "",
+        start_videos_watch_btn: "",
+        video1_titulo: "",
+        video2_titulo: "",
+        video3_titulo: "",
+        video4_titulo: "",
+        video5_titulo: "",
+        video6_titulo: "",
+        video7_titulo: "",
+
+        // Brawlzone - Página inicial - Brawlers Section
+        start_brawlers_title: "",
+        start_brawlers_btn: "",
+
+        // Brawlzone - Página inicial - Brawlers Section - Filter Tabs
+        start_brawlers_filter_all: "",
+        start_brawlers_filter_novo: "",
+        start_brawlers_filter_legendary: "",
+        start_brawlers_filter_mythic: "",
+        start_brawlers_filter_epic: "",
+        start_brawlers_filter_super_rare: "",
+        start_brawlers_filter_rare: "",
+        start_brawlers_filter_pesquisa: "",
+
+        // Brawlzone - Página inicial - Brawlers Section - Brawlers
+        modal_label_raridade: "",
+        modal_label_classe: "",
+        modal_label_hp: "",
+        modal_label_dano: "",
+        modal_label_estado: "",
+        modal_label_novo: "",
+        modal_btn_stats: "",
+        modal_btn_skins: "",
+        modal_btn_buffies: "",
+
+        // Brawlzone - Página inicial - Guias Section
+        start_guias_title: "",
+        start_guias_btn: "",
+        start_guias_p: "",
+
+        // Brawlzone - Página inicial - Guias Section - Cards
+        guide1_titulo: "",
+        guide1_desc: "",
+        guide2_titulo: "",
+        guide2_desc: "",
+        guide3_titulo: "",
+        guide3_desc: "",
+        guide4_titulo: "",
+        guide4_desc: "",
+        guide5_titulo: "",
+        guide5_desc: "",
+        guide6_titulo: "",
+        guide6_desc: "",
+        guide_link_text: "",
+
+
+        //  Brawlzone - Página inicial - Cta Section
+        start_cta_title: "",
+        start_cta_desc: "",
+        start_cta_btn: "",
+        start_cta_email_placeholder: "",

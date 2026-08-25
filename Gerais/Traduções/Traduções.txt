@@ -4,7 +4,60 @@
         // Geral
         lema: "",
 
-        // Supercellzone
+        // Supercellzone - Hero
+        sz_hero_eyebrow: "",
+        sz_hero_subtitle: "",
+        sz_hero_cta_zonas: "",
+        sz_hero_cta_sobre: "",
+
+        // Supercellzone - Sobre o projeto
+        sz_about_label: "",
+        sz_about_title: "",
+        sz_about_p1: "",
+        sz_about_p2: "",
+        sz_about_stat_zones: "",
+        sz_about_stat_lang: "",
+
+        // Supercellzone - As Zones
+        sz_zones_label: "",
+        sz_zones_title: "",
+        sz_zones_desc: "",
+        sz_zone_status_active: "",
+        sz_zone_status_building: "",
+        sz_zone_status_soon: "",
+        sz_zone_brawl_game: "",
+        sz_zone_brawl_desc: "",
+        sz_zone_rise_game: "",
+        sz_zone_rise_desc: "",
+        sz_zone_enter: "",
+        sz_zone_next_title: "",
+        sz_zone_next_desc: "",
+
+        // Supercellzone - Sobre a Supercell
+        sz_company_label: "",
+        sz_company_title: "",
+        sz_company_p1: "",
+        sz_company_p2: "",
+        sz_company_founded: "",
+        sz_company_hq: "",
+        sz_company_games: "",
+
+        // Supercellzone - Novidades
+        sz_news_label: "",
+        sz_news_title: "",
+        sz_news_desc: "",
+
+        // Supercellzone - Cta Newsletter
+        sz_cta_label: "",
+        sz_cta_title: "",
+        sz_cta_desc: "",
+        sz_cta_placeholder: "",
+        sz_cta_submit: "",
+
+        // Supercellzone - NAVBAR
+        nav_sz_sobre: "",
+        nav_sz_zonas: "",
+        nav_sz_novidades: "",
 
         // Brawlzone - NAVBAR
         nav_novidades: "",

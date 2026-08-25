@@ -15,8 +15,8 @@ const TRANSLATIONS = {
         // Supercellzone - Sobre o projeto
         sz_about_label: "O projeto",
         sz_about_title: "O que é a Supercellzone",
-        sz_about_p1: "A Supercellzone nasceu de um único fan-site sobre Brawl Stars e cresceu para algo maior: uma rede de sites dedicados a diferentes jogos da Supercell, cada um com a sua própria identidade, mas todos com o mesmo compromisso — ser a fonte mais completa e sempre atualizada em português.",
-        sz_about_p2: "Cada Zone é construída e mantida manualmente, acompanhando cada atualização de perto. Não há atalhos nem conteúdo automatizado — só trabalho feito com atenção ao detalhe, para quem realmente quer perceber os jogos a fundo.",
+        sz_about_p1: "A Supercellzone é uma rede de fan-sites não oficial, criado por um único fã dos jogos da Supercell. O objetivo é fazer o fan-site mais completo possível, com conteúdo detalhado, atualizado e interativo, para quem quer perceber os jogos a fundo, de forma simples e rápida.",
+        sz_about_p2: "Cada Zone é construída e mantida manualmente, acompanhando cada atualização de perto. Não há atalhos nem conteúdo automatizado — só trabalho feito com atenção ao detalhe, para quem realmente quer perceber os jogos a fundo e sem erros.",
         sz_about_stat_zones: "Zones ativas",
         sz_about_stat_lang: "Idioma base",
 

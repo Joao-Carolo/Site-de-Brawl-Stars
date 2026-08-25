@@ -37,7 +37,9 @@ Supercellzone/                          (raiz do repo, ainda chamado Site-de-Bra
 ├── Pagina-Inicial.html/css/js          (Página Inicial da Supercellzone — institucional)
 ├── Gerais/                             (partilhado entre TODAS as Zones)
 │   ├── Cores.css                       (todas as variáveis de cor de todas as Zones, um único :root)
-│   ├── Logo.css
+│   ├── Logo/
+|   |   ├── Logo.css
+|   |   └── Logo.png                    (As três logos estão aqui)
 │   ├── Cursor/                         (Cursor.js/.css — cursor personalizado com anel, desativado em touch)
 │   ├── Mobile Menu/                    (Mobile Menu.js/.css — painel lateral com overlay)
 │   ├── Navbar/                         (Navbar.js/.css — buildNavbar multi-zona)
@@ -58,9 +60,9 @@ Supercellzone/                          (raiz do repo, ainda chamado Site-de-Bra
 ├── BrawlZone/
 │   └── Página inicial/Página inicial.html
 │   └── (Brawlers.html, Skins.html, Buffies.html, Nanopoderes.html, etc.)
-└── Project R.I.S.E Zone/
+└── Project R.I.S.E Zone/               (em construção)
     ├── Pagina-Inicial.html/css/js
-    └── Herois.html                     (em construção)
+    └── Herois.html  
 ```
 
 ### Decisões-chave de estrutura

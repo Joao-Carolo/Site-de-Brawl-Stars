@@ -175,7 +175,7 @@ function buildBreadcrumb() {
         dict["Página inicial"] ||
         "Início";
 
-    const homeHref = "../".repeat(Math.max(parts.length - 1, 0)) + "Página inicial/Página inicial.html";
+    const homeHref = "../".repeat(Math.max(parts.length - 1, 0)) + "Página inicial.html";
     let html = `<a href="${homeHref}" data-i18n="breadcrumb_inicio">${inicioText}</a>`;
 
     const items =

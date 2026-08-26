@@ -10,6 +10,10 @@
 <!-- Fontes -->
     <!-- CSS Gerais -->
     <!-- Fontes -->
+    <!-- CSS Gerais -->
+    <!-- Fontes -->
+    <!-- CSS Gerais -->
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -29,23 +33,15 @@
 </head>
 
 <body>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu"><button class="mobile-close" id="mobileClose">âœ•</button></div>
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
 
         <div class="breadcrumb-wrap">
         <nav class="breadcrumb" id="breadcrumb"></nav>
     </div>
-<nav>
-        <a href="../../Página inicial/Página inicial.html" class="nav-logo"><span
-                class="star">★</span><span>BrawlZone</span></a>
-        <ul class="nav-links">
-            <li><a href="../../Brawlers/Brawlers.html">Brawlers</a></li>
-            <li><a href="../../Temporadas/Temporadas.html">Updates</a></li>
-            <li><a href="../../Notícias/Notícias.html">Notícias</a></li>
-            <li><a href="../../Collabs/Collabs/Collabs.html" class="active">Collabs</a></li>
-            <li><a href="../../Guias/Guias.html">Guias</a></li>
-        </ul>
-    </nav>
+
 
     <!-- HEADER -->
     <header class="page-header">
@@ -609,7 +605,6 @@
     </div>
     <script src="../../Gerais/Pesquisa.js"></script>
 <!-- Scripts (ordem importa) -->
-<!-- Scripts (ordem importa) -->
     <!-- Scripts (ordem importa) -->
     <script src="../../../Gerais/Traduções/Tradução.js"></script>
     <script src="Collabs.js"></script>
@@ -620,6 +615,10 @@
     <script src="../../../Gerais/Footer/Footer.js"></script>
     <script src="../../../Gerais/Toast/Toast.js"></script>
     <script src="../../../Gerais/Navbar/Navbar.js"></script>
+    <script>
+        buildNavbar("", "brawlzone", false);
+        applyTranslations();
+    </script>
     <script src="../../../Gerais/Mobile Menu/Mobile Menu.js"></script>
 </body>
 

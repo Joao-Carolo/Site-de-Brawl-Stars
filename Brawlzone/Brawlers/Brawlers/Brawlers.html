@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-PT">
 
 <head>
@@ -7,19 +7,27 @@
     <meta name="description"
         content="BrawlZone — Todos os Brawlers de Brawl Stars. Habilidades, stats, Hypercharge e modos recomendados.">
     <title>Brawlers — BrawlZone</title>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Nunito:wght@400;600;700;800;900&display=swap"
-        rel="stylesheet">
     <link rel="icon" type="image/png" href="../../Gerais/Logo.png">
+<!-- Fontes -->
+<!-- Fontes -->
+    <!-- CSS Gerais -->
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <!-- CSS Gerais -->
+    <link rel="stylesheet" href="../../../Gerais/Cores.css">
+    <link rel="stylesheet" href="../../../Gerais/Logos/Logo.css">
+    <link rel="stylesheet" href="../../../Gerais/Cursor/Cursor.css">
+    <link rel="stylesheet" href="../../../Gerais/Mobile Menu/Mobile Menu.css">
+    <link rel="stylesheet" href="../../../Gerais/Navbar/Navbar.css">
+    <link rel="stylesheet" href="../../../Gerais/Footer/Footer.css">
+    <link rel="stylesheet" href="../../../Gerais/Reveal/Reveal.css">
+    <link rel="stylesheet" href="../../../Gerais/Breadcrumbs/Breadcrumbs.css">
+    <link rel="stylesheet" href="../../../Gerais/Toast/Toast.css">
+
+    <!-- CSS da pÃ¡gina -->
     <link rel="stylesheet" href="Brawlers.css">
-    <link rel="stylesheet" href="../../Gerais/Logo.css">
-    <link rel="stylesheet" href="../../Gerais/Cores.css">
-    <link rel="stylesheet" href="../../Gerais/Cursor/Cursor.css">
-    <link rel="stylesheet" href="../../Gerais/Mobile Menu/Mobile Menu.css">
-    <link rel="stylesheet" href="../../Gerais/Navbar/Navbar.css">
-    <link rel="stylesheet" href="../../Gerais/Footer/Footer.css">
-    <link rel="stylesheet" href="../../Gerais/Reveal/Reveal.css">
-    <link rel="stylesheet" href="../../Gerais/Breadcrumbs/Breadcrumbs.css">
-    <link rel="stylesheet" href="../../Gerais/Toast/Toast.css">
 </head>
 
 <body>
@@ -132,21 +140,26 @@
             <button class="compare-close" id="compareClose">✕</button>
         </div>
     </div>
-    <script src="../../Gerais/Traduções/Tradução.js"></script>
-    <script src="../../Gerais/Constantes/Brawlers.js"></script>
     <script src="../../Gerais/Constantes/Raridades.js"></script>
     <script src="../../Gerais/Constantes/Buffies.js"></script>
-    <script src="Brawlers.js"></script>
-    <script src="../../Gerais/Tema.js"></script>
-    <script src="../../Gerais/Cursor/Cursor.js"></script>
-    <script src="../../Gerais/Mobile Menu/Mobile Menu.js"></script>
     <script src="../../Gerais/Pesquisa.js"></script>
-    <script src="../../Gerais/Reveal/Reveal.js"></script>
-    <script src="../../Gerais/Breadcrumbs/Breadcrumbs.js"></script>
-    <script src="../../Gerais/Footer/Footer.js"></script>
-    <script src="../../Gerais/Toast/Toast.js"></script>
-    <script src="../../Gerais/Navbar/Navbar.js"></script>
-    <script>buildNavbar("brawlers"); applyTranslations();</script>
+<!-- Scripts (ordem importa) -->
+<!-- Scripts (ordem importa) -->
+    <!-- Scripts (ordem importa) -->
+    <script src="../../../Gerais/Traduções/Tradução.js"></script>
+    <script src="Brawlers.js"></script>
+    <script src="../../../Gerais/Tema.js"></script>
+    <script src="../../../Gerais/Cursor/Cursor.js"></script>
+    <script src="../../../Gerais/Reveal/Reveal.js"></script>
+    <script src="../../../Gerais/Breadcrumbs/Breadcrumbs.js"></script>
+    <script src="../../../Gerais/Footer/Footer.js"></script>
+    <script src="../../../Gerais/Toast/Toast.js"></script>
+    <script src="../../../Gerais/Navbar/Navbar.js"></script>
+    <script>
+        buildNavbar("brawlers", "brawlzone", false);
+        applyTranslations();
+    </script>
+    <script src="../../../Gerais/Mobile Menu/Mobile Menu.js"></script>
 </body>
 
 </html>

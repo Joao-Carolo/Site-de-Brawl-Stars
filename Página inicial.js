@@ -1,7 +1,33 @@
 // ==========================================================================
 // Supercellzone — Página Inicial (geral)
 // Newsletter via Formspree, seguindo o mesmo padrão usado no BrawlZone.
+// Novidades: reaproveita POSTS e buildNewsCard de Gerais/Constantes/Novidades.js
+// (a mesma função usada na Página Inicial do BrawlZone) — evita duplicar
+// a lógica de renderização de cards em dois sítios diferentes.
 // ==========================================================================
+
+// Caminho relativo (a partir desta página, na raiz da Supercellzone) até
+// à pasta de imagens de notícias do BrawlZone.
+const SZ_NEWS_IMG_BASE = "BrawlZone/Notícias/imagens";
+
+// Quantos posts mostrar na Página Inicial da Supercellzone
+const SZ_NEWS_MAX = 3;
+
+function renderSzNews() {
+    const grid = document.getElementById("sz-news-grid");
+    if (!grid) return;
+
+    // POSTS e buildNewsCard vêm de Gerais/Constantes/Novidades.js
+    if (typeof POSTS === "undefined" || !POSTS.length) {
+        grid.innerHTML = `<p class="sz-news-empty">Sem novidades por agora.</p>`;
+        return;
+    }
+
+    const posts = POSTS.slice(0, SZ_NEWS_MAX);
+    grid.innerHTML = posts
+        .map((p, i) => buildNewsCard(p, i === 0, SZ_NEWS_IMG_BASE, "sz_zone_enter"))
+        .join("");
+}
 
 // Mesmo endpoint Formspree já usado no BrawlZone — uma única lista de subscritores
 // partilhada entre todas as Zones da Supercellzone.
@@ -42,5 +68,6 @@ function initNewsletterForm() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    renderSzNews();
     initNewsletterForm();
 });

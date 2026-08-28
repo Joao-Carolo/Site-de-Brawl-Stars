@@ -7,21 +7,14 @@
     <title>Supercellzone — Fan-sites dedicados aos jogos da Supercell</title>
     <meta name="description"
         content="Supercellzone é uma rede de fan-sites não oficiais dedicados aos jogos da Supercell: Brawl Stars, Project R.I.S.E e mais.">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="Gerais/Logos/Logo Supercellzone.png" type="image/x-icon">
-    <!-- Fontes -->
-    <!-- Fontes -->
-    <!-- CSS Gerais -->
-    <!-- Fontes -->
-    <!-- CSS Gerais -->
-    <!-- Fontes -->
-    <!-- CSS Gerais -->
+
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
         rel="stylesheet">
+
     <!-- CSS Gerais -->
     <link rel="stylesheet" href="Gerais/Cores.css">
     <link rel="stylesheet" href="Gerais/Logos/Logo.css">
@@ -33,14 +26,13 @@
     <link rel="stylesheet" href="Gerais/Breadcrumbs/Breadcrumbs.css">
     <link rel="stylesheet" href="Gerais/Toast/Toast.css">
 
-    <!-- CSS da pÃ¡gina -->
+    <!-- CSS da página -->
     <link rel="stylesheet" href="Página inicial.css">
 </head>
 
 <body class="sz-home">
     <div class="mobile-overlay" id="mobileOverlay"></div>
-    <div class="mobile-menu" id="mobileMenu"><button class="mobile-close" id="mobileClose">âœ•</button></div>
-
+    <div class="mobile-menu" id="mobileMenu"><button class="mobile-close" id="mobileClose"></button></div>
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
 
@@ -125,7 +117,7 @@
                 </a>
 
                 <a class="sz-zone-card sz-zone-rise reveal"
-                    href="Project R.I.S.E zone/Página inicial/Página Inicial.html">
+                    href="Project R.I.S.E Zone/Página inicial/Página inicial.html">
                     <div class="sz-zone-badge sz-zone-badge-building" data-i18n="sz_zone_status_building">Em construção
                     </div>
                     <div class="sz-zone-icon" aria-hidden="true"><img class="logo-nas-zones"
@@ -198,9 +190,12 @@
                 <p class="sz-label" data-i18n="sz_news_label">Fica a par</p>
                 <h2 data-i18n="sz_news_title">Novidades</h2>
                 <p class="sz-section-desc" data-i18n="sz_news_desc">
-                    Esta secção vai reunir novidades que atravessam várias Zones. Por agora, cada jogo tem as suas
-                    próprias novidades dentro da respetiva Zone.
+                    As últimas novidades de todas as Zones, num único sítio.
                 </p>
+            </div>
+
+            <div class="sz-news-grid" id="sz-news-grid">
+                <!-- Cards gerados via JS a partir de POSTS (Gerais/Constantes/Novidades.js) -->
             </div>
         </div>
     </section>
@@ -223,10 +218,11 @@
             </div>
         </div>
     </section>
-    <!-- Scripts (ordem importa) -->
+
     <!-- Scripts (ordem importa) -->
     <script src="Gerais/Traduções/Tradução.js"></script>
-    <script src="Página inicial.js"></script>
+    <script src="Gerais/Constantes/Novidades.js"></script>
+    <script src="Pagina-Inicial.js"></script>
     <script src="Gerais/Tema.js"></script>
     <script src="Gerais/Cursor/Cursor.js"></script>
     <script src="Gerais/Reveal/Reveal.js"></script>
@@ -239,6 +235,7 @@
         applyTranslations();
     </script>
     <script src="Gerais/Mobile Menu/Mobile Menu.js"></script>
+
 </body>
 
 </html>

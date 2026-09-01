@@ -8,7 +8,7 @@
 
 // Caminho relativo (a partir desta página, na raiz da Supercellzone) até
 // à pasta de imagens de notícias do BrawlZone.
-const SZ_NEWS_IMG_BASE = "BrawlZone/Notícias/imagens";
+const SZ_NEWS_IMG_BASE = "BrawlZone/Notícias/Imagens";
 
 // Quantos posts mostrar na Página Inicial da Supercellzone
 const SZ_NEWS_MAX = 3;

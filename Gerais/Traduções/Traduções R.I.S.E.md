@@ -3,7 +3,7 @@
 | Chave | Português |
 |---|---|
 | `breadcrumb_inicio` | 🏠 Início |
-| `lema` | O fan site português de Brawl Stars. Guias, novidades, brawlers e tudo o mais — tudo em português. |
+| `bz_lema` | O fan site português de Brawl Stars. Guias, novidades, brawlers e tudo o mais — tudo em português. |
 | `sz_hero_eyebrow` | Rede de fan-sites não oficial |
 | `sz_hero_subtitle` | Um ponto de encontro para fãs dos jogos da Supercell. Cada jogo tem a sua Zone própria — completa, interativa e sempre atualizada. |
 | `sz_hero_cta_zonas` | Ver as Zones |
@@ -45,27 +45,27 @@
 | `nav_sz_sobre` | Sobre |
 | `nav_sz_zonas` | Zones |
 | `nav_sz_novidades` | Novidades |
-| `nav_novidades` | Novidades |
-| `nav_brawlers` | Brawlers |
-| `nav_updates` | Updates |
-| `nav_guias` | Guias |
-| `nav_idioma` | Idioma |
-| `footer_col_conteudo` | Conteúdo |
-| `footer_col_recursos` | Recursos |
-| `footer_col_site` | Site |
-| `footer_link_brawlers` | Brawlers |
-| `footer_link_updates` | Updates |
-| `footer_link_guias` | Guias |
-| `footer_link_skins` | Skins |
-| `footer_link_buffies` | Buffies |
-| `footer_link_eventos` | Eventos |
-| `footer_link_torneios` | Torneios |
-| `footer_link_glossario` | Glossário |
-| `footer_link_collabs` | Collabs |
-| `footer_link_ranked` | Ranked |
-| `footer_link_noticias` | Notícias |
-| `footer_copyright` | © 2026 **BrawlZone** — Fan site não oficial |
-| `footer_disclaimer` | Brawl Stars é propriedade da Supercell |
+| `bz_nav_novidades` | Novidades |
+| `bz_nav_brawlers` | Brawlers |
+| `bz_nav_updates` | Updates |
+| `bz_nav_guias` | Guias |
+| `bz_nav_idioma` | Idioma |
+| `bz_footer_title_conteudo` | Conteúdo |
+| `bz_footer_title_recursos` | Recursos |
+| `bz_footer_title_site` | Site |
+| `bz_footer_link_brawlers` | Brawlers |
+| `bz_footer_link_updates` | Updates |
+| `bz_footer_link_guias` | Guias |
+| `bz_footer_link_skins` | Skins |
+| `bz_footer_link_buffies` | Buffies |
+| `bz_footer_link_eventos` | Eventos |
+| `bz_footer_link_torneios` | Torneios |
+| `bz_footer_link_glossario` | Glossário |
+| `bz_footer_link_collabs` | Collabs |
+| `bz_footer_link_ranked` | Ranked |
+| `bz_footer_link_noticias` | Notícias |
+| `bz_footer_copyright` | © 2026 **BrawlZone** — Fan site não oficial |
+| `bz_footer_disclaimer` | Brawl Stars é propriedade da Supercell |
 | `start_title` | BrawlZone — O Teu Fan Site de Brawl Stars |
 | `start_hero_badge` | O Fan Site Português nº1 |
 | `start_hero_line1` | O universo de |

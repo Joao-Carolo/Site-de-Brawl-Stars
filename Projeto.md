@@ -130,7 +130,7 @@ Em `Brawlers.html`, o sistema aplica-se em cascata a: imagem do brawler, ataque,
 
 - `getCurrentLang()` lê `localStorage.brawlzone_lang` (default `"pt"`).
 - `setLang(lang)` grava a escolha e recarrega a página.
-- `applyTranslations()` aplica a todos os elementos `[data-i18n]` via `textContent`, exceto chaves na lista `KEYS_COM_HTML` que usam `innerHTML` (ex.: `footer_copyright`, que contém `<strong>`).
+- `applyTranslations()` aplica a todos os elementos `[data-i18n]` via `textContent`, exceto chaves na lista `KEYS_COM_HTML` que usam `innerHTML` (ex.: `bz_footer_copyright`, que contém `<strong>`).
 - `data-i18n-placeholder` usado para placeholders de inputs.
 
 ### Idiomas

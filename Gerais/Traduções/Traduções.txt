@@ -2,7 +2,7 @@
 breadcrumb_inicio:
 
 // Geral
-lema:
+bz_lema:
 
 // Supercellzone - Hero
 sz_hero_eyebrow:
@@ -60,29 +60,29 @@ nav_sz_zonas:
 nav_sz_novidades:
 
 // Brawlzone - NAVBAR
-nav_novidades:
-nav_brawlers:
-nav_updates:
-nav_guias:
-nav_idioma:
+bz_nav_novidades:
+bz_nav_brawlers:
+bz_nav_updates:
+bz_nav_guias:
+bz_nav_idioma:
 
 // Brawlzone - FOOTER
-footer_col_conteudo:
-footer_col_recursos:
-footer_col_site:
-footer_link_brawlers:
-footer_link_updates:
-footer_link_guias:
-footer_link_skins:
-footer_link_buffies:
-footer_link_eventos:
-footer_link_torneios:
-footer_link_glossario:
-footer_link_collabs:
-footer_link_ranked:
-footer_link_noticias:
-footer_copyright:
-footer_disclaimer:
+bz_footer_title_conteudo:
+bz_footer_title_recursos:
+bz_footer_title_site:
+bz_footer_link_brawlers:
+bz_footer_link_updates:
+bz_footer_link_guias:
+bz_footer_link_skins:
+bz_footer_link_buffies:
+bz_footer_link_eventos:
+bz_footer_link_torneios:
+bz_footer_link_glossario:
+bz_footer_link_collabs:
+bz_footer_link_ranked:
+bz_footer_link_noticias:
+bz_footer_copyright:
+bz_footer_disclaimer:
 
 // Brawlzone - Página inicial
 start_title:

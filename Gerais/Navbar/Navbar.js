@@ -52,10 +52,10 @@ const ZONES = {
         onHome: { nome: "Supercellzone", homeHref: "../../Página inicial.html" },
         elsewhere: { nome: "BrawlZone", homeHref: "Página inicial/Página inicial.html" },
         links: [
-            { label: "Novidades", href: `Notícias/Novidades.html`, key: "novidades", i18n: "nav_novidades" },
-            { label: "Brawlers", href: `Brawlers/Brawlers/Brawlers.html`, key: "brawlers", i18n: "nav_brawlers" },
-            { label: "Updates", href: `Temporadas/Temporadas.html`, key: "updates", i18n: "nav_updates" },
-            { label: "Guias", href: `Guias/Guias.html`, key: "guias", i18n: "nav_guias" },
+            { label: "Novidades", href: `Notícias/Novidades.html`, key: "novidades", i18n: "bz_nav_novidades" },
+            { label: "Brawlers", href: `Brawlers/Brawlers/Brawlers.html`, key: "brawlers", i18n: "bz_nav_brawlers" },
+            { label: "Updates", href: `Temporadas/Temporadas.html`, key: "updates", i18n: "bz_nav_updates" },
+            { label: "Guias", href: `Guias/Guias.html`, key: "guias", i18n: "bz_nav_guias" },
         ]
     },
     rise: {
@@ -99,7 +99,7 @@ function buildNavbar(activeLink = "", zone = "brawlzone", isHome = false) {
             <ul class="nav-links">${linksHtml}</ul>
             <div class="lang-switcher">
                 <button class="lang-toggle" id="langToggle">
-                    ${currentLangObj.flag} <span data-i18n="nav_idioma">Idioma</span> ▾
+                    ${currentLangObj.flag} <span data-i18n="bz_nav_idioma">Idioma</span> ▾
                 </button>
                 <div class="lang-dropdown" id="langDropdown">
                     ${langOptionsHtml}
@@ -113,7 +113,7 @@ function buildNavbar(activeLink = "", zone = "brawlzone", isHome = false) {
     document.getElementById("mobileMenu").insertAdjacentHTML("beforeend", `
         <div class="mobile-lang-switcher">
             <button class="lang-toggle" id="mobileLangToggle">
-                ${currentLangObj.flag} <span data-i18n="nav_idioma">Idioma</span> ▾
+                ${currentLangObj.flag} <span data-i18n="bz_nav_idioma">Idioma</span> ▾
             </button>
             <div class="lang-dropdown" id="mobileLangDropdown">
                 ${langOptionsHtml}

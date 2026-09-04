@@ -1,10 +1,10 @@
 const TRANSLATIONS = {
     pt: {
-        // BREADCRUMB
+        // Geral - BREADCRUMB
         breadcrumb_inicio: "🏠 Início",
 
         // Geral
-        lema: "O fan site português de Brawl Stars. Guias, novidades, brawlers e tudo o mais — tudo em português.",
+        bz_lema: "O fan site português de Brawl Stars. Guias, novidades, brawlers e tudo o mais — tudo em português.",
 
         // Supercellzone - Hero
         sz_hero_eyebrow: "Rede de fan-sites não oficial",
@@ -62,29 +62,29 @@ const TRANSLATIONS = {
         nav_sz_novidades: "Novidades",
 
         // Brawlzone - NAVBAR
-        nav_novidades: "Novidades",
-        nav_brawlers: "Brawlers",
-        nav_updates: "Updates",
-        nav_guias: "Guias",
-        nav_idioma: "Idioma",
+        bz_nav_novidades: "Novidades",
+        bz_nav_brawlers: "Brawlers",
+        bz_nav_updates: "Updates",
+        bz_nav_guias: "Guias",
+        bz_nav_idioma: "Idioma",
 
         // Brawlzone - FOOTER
-        footer_col_conteudo: "Conteúdo",
-        footer_col_recursos: "Recursos",
-        footer_col_site: "Site",
-        footer_link_brawlers: "Brawlers",
-        footer_link_updates: "Updates",
-        footer_link_guias: "Guias",
-        footer_link_skins: "Skins",
-        footer_link_buffies: "Buffies",
-        footer_link_eventos: "Eventos",
-        footer_link_torneios: "Torneios",
-        footer_link_glossario: "Glossário",
-        footer_link_collabs: "Collabs",
-        footer_link_ranked: "Ranked",
-        footer_link_noticias: "Notícias",
-        footer_copyright: "© 2026 <strong>BrawlZone</strong> — Fan site não oficial",
-        footer_disclaimer: "Brawl Stars é propriedade da Supercell",
+        bz_footer_title_conteudo: "Conteúdo",
+        bz_footer_title_recursos: "Recursos",
+        bz_footer_title_site: "Site",
+        bz_footer_link_brawlers: "Brawlers",
+        bz_footer_link_updates: "Updates",
+        bz_footer_link_guias: "Guias",
+        bz_footer_link_skins: "Skins",
+        bz_footer_link_buffies: "Buffies",
+        bz_footer_link_eventos: "Eventos",
+        bz_footer_link_torneios: "Torneios",
+        bz_footer_link_glossario: "Glossário",
+        bz_footer_link_collabs: "Collabs",
+        bz_footer_link_ranked: "Ranked",
+        bz_footer_link_noticias: "Notícias",
+        bz_footer_copyright: "© 2026 <strong>BrawlZone</strong> — Fan site não oficial",
+        bz_footer_disclaimer: "Brawl Stars é propriedade da Supercell",
 
 
         // Brawlzone - Página inicial
@@ -219,32 +219,32 @@ const TRANSLATIONS = {
     },
     en: {
         //  Geral
-        lema: "The Brawl Stars fan site. Guides, news, brawlers and everything else — now in English too.",
+        bz_lema: "The Brawl Stars fan site. Guides, news, brawlers and everything else — now in English too.",
 
         // NAVBAR
-        nav_novidades: "News",
-        nav_brawlers: "Brawlers",
-        nav_updates: "Updates",
-        nav_guias: "Guides",
-        nav_idioma: "Language",
+        bz_nav_novidades: "News",
+        bz_nav_brawlers: "Brawlers",
+        bz_nav_updates: "Updates",
+        bz_nav_guias: "Guides",
+        bz_nav_idioma: "Language",
 
         // FOOTER
-        footer_col_conteudo: "Content",
-        footer_col_recursos: "Resources",
-        footer_col_site: "Site",
-        footer_link_brawlers: "Brawlers",
-        footer_link_updates: "Updates",
-        footer_link_guias: "Guides",
-        footer_link_skins: "Skins",
-        footer_link_buffies: "Buffies",
-        footer_link_eventos: "Events",
-        footer_link_torneios: "Tournaments",
-        footer_link_glossario: "Glossary",
-        footer_link_collabs: "Collabs",
-        footer_link_ranked: "Ranked",
-        footer_link_noticias: "News",
-        footer_copyright: "© 2026 <strong>BrawlZone</strong> — Unofficial fan site",
-        footer_disclaimer: "Brawl Stars is property of Supercell",
+        bz_footer_title_conteudo: "Content",
+        bz_footer_title_recursos: "Resources",
+        bz_footer_title_site: "Site",
+        bz_footer_link_brawlers: "Brawlers",
+        bz_footer_link_updates: "Updates",
+        bz_footer_link_guias: "Guides",
+        bz_footer_link_skins: "Skins",
+        bz_footer_link_buffies: "Buffies",
+        bz_footer_link_eventos: "Events",
+        bz_footer_link_torneios: "Tournaments",
+        bz_footer_link_glossario: "Glossary",
+        bz_footer_link_collabs: "Collabs",
+        bz_footer_link_ranked: "Ranked",
+        bz_footer_link_noticias: "News",
+        bz_footer_copyright: "© 2026 <strong>BrawlZone</strong> — Unofficial fan site",
+        bz_footer_disclaimer: "Brawl Stars is property of Supercell",
 
         // BREADCRUMB
         breadcrumb_inicio: "🏠 Home",
@@ -368,32 +368,32 @@ const TRANSLATIONS = {
     },
     es: {
         // Geral
-        lema: "El sitio fan en español de Brawl Stars. Guías, noticias, brawlers y todo lo demás — todo en español.",
+        bz_lema: "El sitio fan en español de Brawl Stars. Guías, noticias, brawlers y todo lo demás — todo en español.",
 
         // NAVBAR
-        nav_novidades: "Noticias",
-        nav_brawlers: "Brawlers",
-        nav_updates: "Actualizaciones",
-        nav_guias: "Guías",
-        nav_idioma: "Idioma",
+        bz_nav_novidades: "Noticias",
+        bz_nav_brawlers: "Brawlers",
+        bz_nav_updates: "Actualizaciones",
+        bz_nav_guias: "Guías",
+        bz_nav_idioma: "Idioma",
 
         // FOOTER
-        footer_col_conteudo: "Contenido",
-        footer_col_recursos: "Recursos",
-        footer_col_site: "Sitio",
-        footer_link_brawlers: "Brawlers",
-        footer_link_updates: "Actualizaciones",
-        footer_link_guias: "Guías",
-        footer_link_skins: "Skins",
-        footer_link_buffies: "Buffies",
-        footer_link_eventos: "Eventos",
-        footer_link_torneios: "Torneos",
-        footer_link_glossario: "Glosario",
-        footer_link_collabs: "Colaboraciones",
-        footer_link_ranked: "Ranked",
-        footer_link_noticias: "Noticias",
-        footer_copyright: "© 2026 <strong>BrawlZone</strong> — Sitio no oficial de fans",
-        footer_disclaimer: "Brawl Stars es propiedad de Supercell",
+        bz_footer_title_conteudo: "Contenido",
+        bz_footer_title_recursos: "Recursos",
+        bz_footer_title_site: "Sitio",
+        bz_footer_link_brawlers: "Brawlers",
+        bz_footer_link_updates: "Actualizaciones",
+        bz_footer_link_guias: "Guías",
+        bz_footer_link_skins: "Skins",
+        bz_footer_link_buffies: "Buffies",
+        bz_footer_link_eventos: "Eventos",
+        bz_footer_link_torneios: "Torneos",
+        bz_footer_link_glossario: "Glosario",
+        bz_footer_link_collabs: "Colaboraciones",
+        bz_footer_link_ranked: "Ranked",
+        bz_footer_link_noticias: "Noticias",
+        bz_footer_copyright: "© 2026 <strong>BrawlZone</strong> — Sitio no oficial de fans",
+        bz_footer_disclaimer: "Brawl Stars es propiedad de Supercell",
 
         // BREADCRUMB
         breadcrumb_inicio: "🏠 Inicio",
@@ -515,48 +515,6 @@ const TRANSLATIONS = {
         rise_cta_discord: "",
 
     },
-    fr: {
-        // Geral
-        lema: "Le site de fans français de Brawl Stars. Guides, actualités, brawlers et tout le reste — tout en français.",
-
-        // NAVBAR
-        nav_novidades: "Actualités",
-        nav_brawlers: "Brawlers",
-        nav_updates: "Mises à jour",
-        nav_guias: "Guides",
-        // FOOTER
-        footer_col_conteudo: "Contenu",
-        footer_col_recursos: "Ressources",
-        footer_col_site: "Site",
-
-        // Página inicial - Hero Section
-        start_hero_title: "Le site officiel de Brawl Stars",
-        start_hero_desc: "Le site de fans non-officiel pour les joueurs de Brawl Stars.",
-        start_hero_btn: "Commencer",
-
-        // Página inicial - Brawlers Section
-        start_brawlers_title: "Brawlers",
-        start_brawlers_btn: "Voir tous →",
-        start_brawlers_p: "Pour tous les niveaux",
-
-        // Página inicial - Noticias Section
-        start_novidades_title: "Actualités",
-        start_novidades_p: "Toujours à jour",
-        start_novidades_btn: "Voir toutes →",
-
-        // Página inicial - Guias Section
-        start_guias_title: "Guides",
-        start_guias_btn: "Voir tous →",
-        start_guias_p: "Pour les joueurs de tous niveaux",
-
-        // Página inicial - Guias Section - Cards
-
-        //Página inicial - Cta Section
-        start_cta_title: "Restez informé 🔔",
-        start_cta_desc: "Recevez les dernières nouvelles, guides et mises à jour directement dans votre e-mail.",
-        start_cta_btn: "S'abonner",
-        start_cta_email_placeholder: "Votre adresse e-mail...",
-    }
 };
 
 /* Devolve o idioma atual guardado, ou "pt" por defeito */
@@ -574,7 +532,7 @@ function setLang(lang) {
 function applyTranslations() {
     const lang = getCurrentLang();
     const dict = TRANSLATIONS[lang] || TRANSLATIONS.pt;
-    const KEYS_COM_HTML = ["footer_copyright", "footer_disclaimer"];
+    const KEYS_COM_HTML = ["bz_footer_copyright", "bz_footer_disclaimer"];
 
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;

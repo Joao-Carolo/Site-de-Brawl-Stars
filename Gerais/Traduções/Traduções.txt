@@ -1,174 +1,221 @@
-        // BREADCRUMB
-        breadcrumb_inicio: "",
+// BREADCRUMB
+breadcrumb_inicio:
 
-        // Geral
-        lema: "",
+// Geral
+lema:
 
-        // Supercellzone - Hero
-        sz_hero_eyebrow: "",
-        sz_hero_subtitle: "",
-        sz_hero_cta_zonas: "",
-        sz_hero_cta_sobre: "",
+// Supercellzone - Hero
+sz_hero_eyebrow:
+sz_hero_subtitle:
+sz_hero_cta_zonas:
+sz_hero_cta_sobre:
 
-        // Supercellzone - Sobre o projeto
-        sz_about_label: "",
-        sz_about_title: "",
-        sz_about_p1: "",
-        sz_about_p2: "",
-        sz_about_stat_zones: "",
-        sz_about_stat_lang: "",
+// Supercellzone - Sobre o projeto
+sz_about_label:
+sz_about_title:
+sz_about_p1:
+sz_about_p2:
+sz_about_stat_zones:
+sz_about_stat_lang:
 
-        // Supercellzone - As Zones
-        sz_zones_label: "",
-        sz_zones_title: "",
-        sz_zones_desc: "",
-        sz_zone_status_active: "",
-        sz_zone_status_building: "",
-        sz_zone_status_soon: "",
-        sz_zone_brawl_game: "",
-        sz_zone_brawl_desc: "",
-        sz_zone_rise_game: "",
-        sz_zone_rise_desc: "",
-        sz_zone_enter: "",
-        sz_zone_next_title: "",
-        sz_zone_next_desc: "",
+// Supercellzone - As Zones
+sz_zones_label:
+sz_zones_title:
+sz_zones_desc:
+sz_zone_status_active:
+sz_zone_status_building:
+sz_zone_status_soon:
+sz_zone_brawl_game:
+sz_zone_brawl_desc:
+sz_zone_rise_game:
+sz_zone_rise_desc:
+sz_zone_enter:
+sz_zone_next_title:
+sz_zone_next_desc:
 
-        // Supercellzone - Sobre a Supercell
-        sz_company_label: "",
-        sz_company_title: "",
-        sz_company_p1: "",
-        sz_company_p2: "",
-        sz_company_founded: "",
-        sz_company_hq: "",
-        sz_company_games: "",
+// Supercellzone - Sobre a Supercell
+sz_company_label:
+sz_company_title:
+sz_company_p1:
+sz_company_p2:
+sz_company_founded:
+sz_company_hq:
+sz_company_games:
 
-        // Supercellzone - Novidades
-        sz_news_label: "",
-        sz_news_title: "",
-        sz_news_desc: "",
+// Supercellzone - Novidades
+sz_news_label:
+sz_news_title:
+sz_news_desc:
 
-        // Supercellzone - Cta Newsletter
-        sz_cta_label: "",
-        sz_cta_title: "",
-        sz_cta_desc: "",
-        sz_cta_placeholder: "",
-        sz_cta_submit: "",
+// Supercellzone - CTA Newsletter
+sz_cta_label:
+sz_cta_title:
+sz_cta_desc:
+sz_cta_placeholder:
+sz_cta_submit:
 
-        // Supercellzone - NAVBAR
-        nav_sz_sobre: "",
-        nav_sz_zonas: "",
-        nav_sz_novidades: "",
+// Supercellzone - NAVBAR
+nav_sz_sobre:
+nav_sz_zonas:
+nav_sz_novidades:
 
-        // Brawlzone - NAVBAR
-        nav_novidades: "",
-        nav_brawlers: "",
-        nav_updates: "",
-        nav_guias: "",
-        nav_idioma: "",
+// Brawlzone - NAVBAR
+nav_novidades:
+nav_brawlers:
+nav_updates:
+nav_guias:
+nav_idioma:
 
-        // Brawlzone - FOOTER
-        footer_col_conteudo: "",
-        footer_col_recursos: "",
-        footer_col_site: "",
-        footer_link_brawlers: "",
-        footer_link_updates: "",
-        footer_link_guias: "",
-        footer_link_skins: "",
-        footer_link_buffies: "",
-        footer_link_eventos: "",
-        footer_link_torneios: "",
-        footer_link_glossario: "",
-        footer_link_collabs: "",
-        footer_link_ranked: "",
-        footer_link_noticias: "",
-        footer_copyright: "",
-        footer_disclaimer: "",
+// Brawlzone - FOOTER
+footer_col_conteudo:
+footer_col_recursos:
+footer_col_site:
+footer_link_brawlers:
+footer_link_updates:
+footer_link_guias:
+footer_link_skins:
+footer_link_buffies:
+footer_link_eventos:
+footer_link_torneios:
+footer_link_glossario:
+footer_link_collabs:
+footer_link_ranked:
+footer_link_noticias:
+footer_copyright:
+footer_disclaimer:
 
+// Brawlzone - Página inicial
+start_title:
 
-        // Brawlzone - Página inicial
-        start_title: "",
+// Brawlzone - Página inicial - Hero Section
+start_hero_badge:
+start_hero_line1:
+start_hero_line2:
+start_hero_btn_brawlers:
+start_hero_btn_novidades:
+start_hero_stat_label3:
 
-        // Brawlzone - Página inicial - Hero Section
-        start_hero_badge: "",
-        start_hero_line1: "",
-        start_hero_line2: "",
-        start_hero_btn_brawlers: "",
-        start_hero_btn_novidades: "",
-        start_hero_stat_label3: "",
+// Brawlzone - Página inicial - Novidades Section
+start_novidades_title:
+start_novidades_p:
+start_novidades_btn:
 
-        // Brawlzone - Página inicial - Novidades Section
-        start_novidades_title: "",
-        start_novidades_p: "",
-        start_novidades_btn: "",
+// Brawlzone - Página inicial - Novidades Section - Posts - Aprofundados
+post1_tag:
+post1_titulo:
+post1_excerpt:
+post2_tag:
+post2_titulo:
+post2_excerpt:
+post3_tag:
+post3_titulo:
+post3_excerpt:
+post4_tag:
+post4_titulo:
+post4_excerpt:
+start_novidades_btn_cards:
 
-        // Brawlzone - Página inicial - Novidades Section - Posts - Aprofundados
+// Brawlzone - Página inicial - Novidades Section - Vídeos
+start_videos_p:
+start_videos_title:
+start_videos_watch_btn:
+video1_titulo:
+video2_titulo:
+video3_titulo:
+video4_titulo:
+video5_titulo:
+video6_titulo:
+video7_titulo:
 
-        post1_tag: "", post1_titulo: "", post1_excerpt: "",
-        post2_tag: "", post2_titulo: "", post2_excerpt: "",
-        post3_tag: "", post3_titulo: "", post3_excerpt: "",
-        post4_tag: "", post4_titulo: "", post4_excerpt: "",
-        start_novidades_btn_cards: "",
+// Brawlzone - Página inicial - Brawlers Section
+start_brawlers_title:
+start_brawlers_btn:
 
-        // Brawlzone - Página inicial - Novidades Section - Posts - Vídeos
-        start_videos_p: "",
-        start_videos_title: "",
-        start_videos_watch_btn: "",
-        video1_titulo: "",
-        video2_titulo: "",
-        video3_titulo: "",
-        video4_titulo: "",
-        video5_titulo: "",
-        video6_titulo: "",
-        video7_titulo: "",
+// Brawlzone - Página inicial - Brawlers Section - Filter Tabs
+start_brawlers_filter_all:
+start_brawlers_filter_novo:
+start_brawlers_filter_legendary:
+start_brawlers_filter_mythic:
+start_brawlers_filter_epic:
+start_brawlers_filter_super_rare:
+start_brawlers_filter_rare:
+start_brawlers_filter_pesquisa:
 
-        // Brawlzone - Página inicial - Brawlers Section
-        start_brawlers_title: "",
-        start_brawlers_btn: "",
+// Brawlzone - Página inicial - Brawlers Section - Brawlers
+modal_label_raridade:
+modal_label_classe:
+modal_label_hp:
+modal_label_dano:
+modal_label_estado:
+modal_label_novo:
+modal_btn_stats:
+modal_btn_skins:
+modal_btn_buffies:
 
-        // Brawlzone - Página inicial - Brawlers Section - Filter Tabs
-        start_brawlers_filter_all: "",
-        start_brawlers_filter_novo: "",
-        start_brawlers_filter_legendary: "",
-        start_brawlers_filter_mythic: "",
-        start_brawlers_filter_epic: "",
-        start_brawlers_filter_super_rare: "",
-        start_brawlers_filter_rare: "",
-        start_brawlers_filter_pesquisa: "",
+// Brawlzone - Página inicial - Guias Section
+start_guias_title:
+start_guias_btn:
+start_guias_p:
 
-        // Brawlzone - Página inicial - Brawlers Section - Brawlers
-        modal_label_raridade: "",
-        modal_label_classe: "",
-        modal_label_hp: "",
-        modal_label_dano: "",
-        modal_label_estado: "",
-        modal_label_novo: "",
-        modal_btn_stats: "",
-        modal_btn_skins: "",
-        modal_btn_buffies: "",
+// Brawlzone - Página inicial - Guias Section - Cards
+guide1_titulo:
+guide1_desc:
+guide2_titulo:
+guide2_desc:
+guide3_titulo:
+guide3_desc:
+guide4_titulo:
+guide4_desc:
+guide5_titulo:
+guide5_desc:
+guide6_titulo:
+guide6_desc:
+guide_link_text:
 
-        // Brawlzone - Página inicial - Guias Section
-        start_guias_title: "",
-        start_guias_btn: "",
-        start_guias_p: "",
+// Brawlzone - Página inicial - CTA Section
+start_cta_title:
+start_cta_desc:
+start_cta_btn:
+start_cta_email_placeholder:
 
-        // Brawlzone - Página inicial - Guias Section - Cards
-        guide1_titulo: "",
-        guide1_desc: "",
-        guide2_titulo: "",
-        guide2_desc: "",
-        guide3_titulo: "",
-        guide3_desc: "",
-        guide4_titulo: "",
-        guide4_desc: "",
-        guide5_titulo: "",
-        guide5_desc: "",
-        guide6_titulo: "",
-        guide6_desc: "",
-        guide_link_text: "",
+// R.I.S.E Zone - Hero
+rise_hero_eyebrow:
+rise_hero_subtitle:
+rise_hero_beta_label:
+rise_hero_beta_dates:
+rise_hero_cta_explore:
+rise_hero_cta_heroes:
 
+// R.I.S.E Zone - Sobre o jogo
+rise_about_label:
+rise_about_title:
+rise_about_p1:
+rise_about_p2:
+rise_about_stat_team:
+rise_about_stat_heroes:
+rise_about_stat_tower:
 
-        //  Brawlzone - Página inicial - Cta Section
-        start_cta_title: "",
-        start_cta_desc: "",
-        start_cta_btn: "",
-        start_cta_email_placeholder: "",
+// R.I.S.E Zone - Heróis
+rise_heroes_label:
+rise_heroes_title:
+rise_heroes_desc:
+
+// R.I.S.E Zone - A Tower
+rise_tower_label:
+rise_tower_title:
+rise_tower_desc:
+rise_tower_step1_title:
+rise_tower_step1_desc:
+rise_tower_step2_title:
+rise_tower_step2_desc:
+rise_tower_step3_title:
+rise_tower_step3_desc:
+rise_tower_step4_title:
+rise_tower_step4_desc:
+
+// R.I.S.E Zone - CTA
+rise_cta_label:
+rise_cta_title:
+rise_cta_desc:
+rise_cta_signup:
+rise_cta_discord:

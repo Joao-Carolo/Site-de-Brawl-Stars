@@ -7,14 +7,11 @@
     <title>Project R.I.S.E Zone — A tua fonte sobre Project R.I.S.E</title>
     <meta name="description"
         content="Site fã não oficial dedicado a Project R.I.S.E, o novo jogo da Supercell. Heróis, mecânicas da Tower e tudo sobre a beta.">
-    <!-- CSS Gerais -->
-    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
         rel="stylesheet">
-    <!-- CSS Gerais -->
     <link rel="stylesheet" href="../../Gerais/Cores.css">
     <link rel="stylesheet" href="../../Gerais/Logos/Logo.css">
     <link rel="stylesheet" href="../../Gerais/Cursor/Cursor.css">
@@ -25,13 +22,12 @@
     <link rel="stylesheet" href="../../Gerais/Breadcrumbs/Breadcrumbs.css">
     <link rel="stylesheet" href="../../Gerais/Toast/Toast.css">
 
-    <!-- CSS da pÃ¡gina -->
     <link rel="stylesheet" href="Página Inicial.css">
 </head>
 
 <body class="rise-zone">
     <div class="mobile-overlay" id="mobileOverlay"></div>
-    <div class="mobile-menu" id="mobileMenu"><button class="mobile-close" id="mobileClose">âœ•</button></div>
+    <div class="mobile-menu" id="mobileMenu"><button class="mobile-close" id="mobileClose">✕</button></div>
 
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
@@ -51,12 +47,12 @@
         </div>
 
         <div class="rise-hero-content reveal">
-            <p class="rise-eyebrow" data-i18n="hero_eyebrow">Fã-site não oficial</p>
+            <p class="rise-eyebrow" data-i18n="rise_hero_eyebrow">Fã-site não oficial</p>
             <h1 class="rise-title">
                 <span class="rise-title-line">PROJECT</span>
                 <span class="rise-title-line rise-title-accent">R.I.S.E</span>
             </h1>
-            <p class="rise-subtitle" data-i18n="hero_subtitle">
+            <p class="rise-subtitle" data-i18n="rise_hero_subtitle">
                 Tudo sobre o novo RPG de ação social e roguelite da Supercell. Heróis, a Tower, e o caminho até ao
                 lançamento.
             </p>
@@ -64,14 +60,15 @@
             <div class="rise-beta-banner">
                 <span class="beta-dot" aria-hidden="true"></span>
                 <span class="beta-text">
-                    <strong data-i18n="hero_beta_label">Beta a decorrer</strong>
-                    <span data-i18n="hero_beta_dates">19 de agosto — 2 de setembro de 2026</span>
+                    <strong data-i18n="rise_hero_beta_label">Beta a decorrer</strong>
+                    <span data-i18n="rise_hero_beta_dates">19 de agosto — 2 de setembro de 2026</span>
                 </span>
             </div>
 
             <div class="rise-hero-ctas">
-                <a href="#tower" class="rise-btn rise-btn-primary" data-i18n="hero_cta_explore">Explorar a Tower</a>
-                <a href="#heroi-lista" class="rise-btn rise-btn-ghost" data-i18n="hero_cta_heroes">Ver Heróis</a>
+                <a href="#tower" class="rise-btn rise-btn-primary" data-i18n="rise_hero_cta_explore">Explorar a
+                    Tower</a>
+                <a href="#heroi-lista" class="rise-btn rise-btn-ghost" data-i18n="rise_hero_cta_heroes">Ver Heróis</a>
             </div>
         </div>
 
@@ -84,18 +81,18 @@
     <section class="rise-section rise-about" id="sobre">
         <div class="rise-container">
             <div class="rise-section-head reveal">
-                <p class="rise-label" data-i18n="about_label">O jogo</p>
-                <h2 data-i18n="about_title">Do fundo da Tower até ao topo</h2>
+                <p class="rise-label" data-i18n="rise_about_label">O jogo</p>
+                <h2 data-i18n="rise_about_title">Do fundo da Tower até ao topo</h2>
             </div>
 
             <div class="rise-about-grid">
                 <div class="rise-about-text reveal">
-                    <p data-i18n="about_p1">
+                    <p data-i18n="rise_about_p1">
                         Project R.I.S.E é um RPG de ação social roguelite ambientado no universo Clash, atualmente em
                         desenvolvimento pela Supercell. Nasceu das cinzas do antigo Clash Heroes, mas é um jogo novo —
                         mais focado em jogar em equipa do que em explorar sozinho.
                     </p>
-                    <p data-i18n="about_p2">
+                    <p data-i18n="rise_about_p2">
                         Em cada sessão, formas equipa com outros dois jogadores para escalar a Tower: uma estrutura
                         misteriosa dividida em pisos, cada um com os seus próprios desafios. O objetivo é simples de
                         dizer e difícil de fazer — chegar o mais alto possível.
@@ -105,15 +102,15 @@
                 <div class="rise-about-stats reveal">
                     <div class="rise-stat-card">
                         <span class="rise-stat-num">3</span>
-                        <span class="rise-stat-label" data-i18n="about_stat_team">Jogadores por equipa</span>
+                        <span class="rise-stat-label" data-i18n="rise_about_stat_team">Jogadores por equipa</span>
                     </div>
                     <div class="rise-stat-card">
                         <span class="rise-stat-num" id="rise-hero-count">6</span>
-                        <span class="rise-stat-label" data-i18n="about_stat_heroes">Heróis conhecidos</span>
+                        <span class="rise-stat-label" data-i18n="rise_about_stat_heroes">Heróis conhecidos</span>
                     </div>
                     <div class="rise-stat-card">
                         <span class="rise-stat-num">∞</span>
-                        <span class="rise-stat-label" data-i18n="about_stat_tower">Pisos por escalar</span>
+                        <span class="rise-stat-label" data-i18n="rise_about_stat_tower">Pisos por escalar</span>
                     </div>
                 </div>
             </div>
@@ -124,9 +121,9 @@
     <section class="rise-section rise-heroes" id="heroi-lista">
         <div class="rise-container">
             <div class="rise-section-head reveal">
-                <p class="rise-label" data-i18n="heroes_label">Elenco</p>
-                <h2 data-i18n="heroes_title">Heróis</h2>
-                <p class="rise-section-desc" data-i18n="heroes_desc">
+                <p class="rise-label" data-i18n="rise_heroes_label">Elenco</p>
+                <h2 data-i18n="rise_heroes_title">Heróis</h2>
+                <p class="rise-section-desc" data-i18n="rise_heroes_desc">
                     A informação pública sobre cada herói ainda está a crescer com a beta. Esta lista vai sendo
                     atualizada à medida que sai mais conteúdo oficial.
                 </p>
@@ -142,9 +139,9 @@
     <section class="rise-section rise-tower-section" id="tower">
         <div class="rise-container">
             <div class="rise-section-head reveal">
-                <p class="rise-label" data-i18n="tower_label">Mecânica</p>
-                <h2 data-i18n="tower_title">A Tower</h2>
-                <p class="rise-section-desc" data-i18n="tower_desc">
+                <p class="rise-label" data-i18n="rise_tower_label">Mecânica</p>
+                <h2 data-i18n="rise_tower_title">A Tower</h2>
+                <p class="rise-section-desc" data-i18n="rise_tower_desc">
                     Cada piso é uma pequena missão em equipa. Sobreviver não chega — é preciso encontrar o caminho para
                     subir.
                 </p>
@@ -153,26 +150,28 @@
             <div class="rise-tower-steps">
                 <div class="rise-tower-step reveal">
                     <span class="rise-step-num">01</span>
-                    <h3 data-i18n="tower_step1_title">Entra num piso</h3>
-                    <p data-i18n="tower_step1_desc">Junta-te a duas outras pessoas — ou a Heróis-bot, se não houver
+                    <h3 data-i18n="rise_tower_step1_title">Entra num piso</h3>
+                    <p data-i18n="rise_tower_step1_desc">Junta-te a duas outras pessoas — ou a Heróis-bot, se não houver
                         jogadores suficientes — e entra num piso da Tower.</p>
                 </div>
                 <div class="rise-tower-step reveal">
                     <span class="rise-step-num">02</span>
-                    <h3 data-i18n="tower_step2_title">Encontra os power cores</h3>
-                    <p data-i18n="tower_step2_desc">Explora o piso e localiza os power cores. São eles que ativam o
+                    <h3 data-i18n="rise_tower_step2_title">Encontra os power cores</h3>
+                    <p data-i18n="rise_tower_step2_desc">Explora o piso e localiza os power cores. São eles que ativam o
                         elevador para o piso seguinte.</p>
                 </div>
                 <div class="rise-tower-step reveal">
                     <span class="rise-step-num">03</span>
-                    <h3 data-i18n="tower_step3_title">Enfrenta o boss</h3>
-                    <p data-i18n="tower_step3_desc">De vez em quando, o caminho é bloqueado por um boss. A equipa toda
+                    <h3 data-i18n="rise_tower_step3_title">Enfrenta o boss</h3>
+                    <p data-i18n="rise_tower_step3_desc">De vez em quando, o caminho é bloqueado por um boss. A equipa
+                        toda
                         tem de o derrotar para continuar a subir.</p>
                 </div>
                 <div class="rise-tower-step reveal">
                     <span class="rise-step-num">04</span>
-                    <h3 data-i18n="tower_step4_title">Sobe de novo</h3>
-                    <p data-i18n="tower_step4_desc">Com Hero Badges e Gold ganhos pelo caminho, sobes o Tier dos teus
+                    <h3 data-i18n="rise_tower_step4_title">Sobe de novo</h3>
+                    <p data-i18n="rise_tower_step4_desc">Com Hero Badges e Gold ganhos pelo caminho, sobes o Tier dos
+                        teus
                         heróis — mais ataque, mais vida, mais upgrades.</p>
                 </div>
             </div>
@@ -183,24 +182,22 @@
     <section class="rise-section rise-cta-section">
         <div class="rise-container">
             <div class="rise-cta-card reveal">
-                <p class="rise-label" data-i18n="cta_label">Junta-te</p>
-                <h2 data-i18n="cta_title">Queres jogar antes de todos?</h2>
-                <p data-i18n="cta_desc">
+                <p class="rise-label" data-i18n="rise_cta_label">Junta-te</p>
+                <h2 data-i18n="rise_cta_title">Queres jogar antes de todos?</h2>
+                <p data-i18n="rise_cta_desc">
                     A Supercell está a convidar jogadores para a beta. Inscreve-te no formulário oficial e acompanha as
                     novidades no Discord da comunidade.
                 </p>
                 <div class="rise-cta-buttons">
                     <a href="https://supr.cl/projectrisebeta" target="_blank" rel="noopener"
-                        class="rise-btn rise-btn-primary" data-i18n="cta_signup">Inscrever na Beta</a>
+                        class="rise-btn rise-btn-primary" data-i18n="rise_cta_signup">Inscrever na Beta</a>
                     <a href="https://supr.cl/projectrisediscord" target="_blank" rel="noopener"
-                        class="rise-btn rise-btn-ghost" data-i18n="cta_discord">Discord Oficial</a>
+                        class="rise-btn rise-btn-ghost" data-i18n="rise_cta_discord">Discord Oficial</a>
                 </div>
             </div>
         </div>
     </section>
     <script src="../../Gerais/Constantes/Project R.I.S.E Zone/Herois.js"></script>
-    <!-- Scripts (ordem importa) -->
-    <!-- Scripts (ordem importa) -->
     <script src="../../Gerais/Traduções/Tradução.js"></script>
     <script src="Página Inicial.js"></script>
     <script src="../../Gerais/Tema.js"></script>

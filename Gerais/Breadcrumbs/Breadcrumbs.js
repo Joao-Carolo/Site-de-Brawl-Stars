@@ -1,5 +1,6 @@
 const BREADCRUMB_TRANSLATIONS = {
     pt: {
+        "Brawlzone": "Brawlzone",
         "Página inicial": "Início",
         "Brawlers": "Brawlers",
         "Notícias": "Notícias",
@@ -27,8 +28,11 @@ const BREADCRUMB_TRANSLATIONS = {
         "Manutenção 28 de abril": "Manutenção 28 de abril",
         "Notas de lançamento de abril de 2026": "Notas de abril 2026",
         "Notas de lançamento update 68": "Notas update 68",
+        "Project R.I.S.E zone": "Project R.I.S.E zone",
+        "Heróis": "Heróis",
     },
     en: {
+        "Brawlzone": "Brawlzone",
         "Página inicial": "Home",
         "Brawlers": "Brawlers",
         "Notícias": "News",
@@ -56,8 +60,11 @@ const BREADCRUMB_TRANSLATIONS = {
         "Manutenção 28 de abril": "April 28 maintenance",
         "Notas de lançamento de abril de 2026": "April 2026 notes",
         "Notas de lançamento update 68": "Update 68 notes",
+        "Project R.I.S.E zone": "Project R.I.S.E zone",
+        "Heróis": "Heroes",
     },
     es: {
+        "Brawlzone": "Brawlzone",
         "Página inicial": "Inicio",
         "Brawlers": "Brawlers",
         "Notícias": "Noticias",
@@ -85,6 +92,8 @@ const BREADCRUMB_TRANSLATIONS = {
         "Manutenção 28 de abril": "Mantenimiento 28 de abril",
         "Notas de lançamento de abril de 2026": "Notas de abril 2026",
         "Notas de lançamento update 68": "Notas update 68",
+        "Project R.I.S.E zone": "Project R.I.S.E zone",
+        "Heróis": "Héroes",
     },
 };
 

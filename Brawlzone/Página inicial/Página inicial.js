@@ -3,6 +3,12 @@
    Edita aqui para atualizar ambas as páginas
 ══════════════════════════════ */
 /* RENDER NOVIDADES — agora separa a destaque do resto */
+const POSTS = [
+    { emoji: "🌟", cor: "yellow", tagKey: "bz_start_post1_tag", data: "27 Jun 2026", tituloKey: "bz_start_post1_titulo", excerptKey: "bz_start_post1_excerpt", link: "https://www.youtube.com/watch?v=pgGThZitPis&list=PLTBLax1DE1612clulHb7Ci4JQEVMKoC7x&index=3", destaque: true },
+    { emoji: "⚔️", cor: "purple", tagKey: "bz_start_post2_tag", data: "9 Jul 2026", tituloKey: "bz_start_post2_titulo", excerptKey: "bz_start_post2_excerpt", link: "https://www.youtube.com/watch?v=S-8YkBgjFfo", destaque: false },
+    { emoji: "🦸", cor: "red", tagKey: "bz_start_post3_tag", data: "2 Jul 2026", tituloKey: "bz_start_post3_titulo", excerptKey: "bz_start_post3_excerpt", link: "https://www.youtube.com/watch?v=A6g3ozZQQQ0", destaque: false },
+    { emoji: "🏟️", cor: "orange", tagKey: "bz_start_post4_tag", data: "2 Jul 2026", tituloKey: "bz_start_post4_titulo", excerptKey: "bz_start_post4_excerpt", link: "../Notícias/Notícias Atuais/Mudanças/Mudanças do update 68/Notas de lançamento update 68/Notas de lançamento update 68.html", destaque: false },
+];
 function renderNews() {
     const featuredSlot = document.getElementById("featuredNewsSlot");
     const grid = document.getElementById("newsGrid");

@@ -88,33 +88,33 @@ const TRANSLATIONS = {
 
 
         // Brawlzone - Página inicial
-        start_title: "BrawlZone — O Teu Fan Site de Brawl Stars",
+        bz_start_title: "BrawlZone — O Teu Fan Site de Brawl Stars",
 
         // Brawlzone - Página inicial - Hero Section
-        start_hero_badge: "O Fan Site Português nº1",
-        start_hero_line1: "O universo de",
-        start_hero_line2: "Brawl Stars",
-        start_hero_btn_brawlers: "🎮 Ver Brawlers",
-        start_hero_btn_novidades: "📰 Últimas Novidades",
-        start_hero_stat_label3: "Horas de Jogo",
+        bz_start_hero_badge: "O Fan Site Português nº1",
+        bz_start_hero_line1: "O universo de",
+        bz_start_hero_line2: "Brawl Stars",
+        bz_start_hero_btn_brawlers: "🎮 Ver Brawlers",
+        bz_start_hero_btn_novidades: "📰 Últimas Novidades",
+        bz_start_hero_stat_label3: "Horas de Jogo",
 
         // Brawlzone - Página inicial - Novidades Section
-        start_novidades_title: "Últimas Novidades",
-        start_novidades_p: "Sempre Atualizado",
-        start_novidades_btn: "Ver Todas ▾",
+        bz_start_novidades_title: "Últimas Novidades",
+        bz_start_novidades_p: "Sempre Atualizado",
+        bz_start_novidades_btn: "Ver Todas ▾",
 
         // Brawlzone - Página inicial - Novidades Section - Posts - Aprofundados
 
-        post1_tag: "Update", post1_titulo: "Brawl Talk", post1_excerpt: "Rebelião do Ramen: um evento de história que vai mudar o Reino Katana para sempre! NanoPoderes & Fusões, Guerra de Comida, Culinária de Combate e mais modos de jogo. 2 Novos Brawlers! Nori e Wendy. Buffies, Skins, Hypercharges e muito, MUITO MAIS",
-        post2_tag: "Update", post2_titulo: "Veja o Nori em ação", post2_excerpt: "O Nori está sempre à pesca de problemas 🎣",
-        post3_tag: "Update", post3_titulo: "Ver a animação da Temporada", post3_excerpt: "A Temporada NanoNoodles está a corromper o Starr Park! 🧪🍜",
-        post4_tag: "Update", post4_titulo: "Notas de lançamento de Julho", post4_excerpt: "Uma loja de macarrão automatizada abriu em frente ao restaurante de sushi de Kenji e Kaze, despertando o interesse do filho deles, Nori. O caos se instala!",
-        start_novidades_btn_cards: "Ler mais →",
+        bz_start_post1_tag: "Update", bz_start_post1_titulo: "Brawl Talk", bz_start_post1_excerpt: "Rebelião do Ramen: um evento de história que vai mudar o Reino Katana para sempre! NanoPoderes & Fusões, Guerra de Comida, Culinária de Combate e mais modos de jogo. 2 Novos Brawlers! Nori e Wendy. Buffies, Skins, Hypercharges e muito, MUITO MAIS",
+        bz_start_post2_tag: "Update", bz_start_post2_titulo: "Veja o Nori em ação", bz_start_post2_excerpt: "O Nori está sempre à pesca de problemas 🎣",
+        bz_start_post3_tag: "Update", bz_start_post3_titulo: "Ver a animação da Temporada", bz_start_post3_excerpt: "A Temporada NanoNoodles está a corromper o Starr Park! 🧪🍜",
+        bz_start_post4_tag: "Update", bz_start_post4_titulo: "Notas de lançamento de Julho", bz_start_post4_excerpt: "Uma loja de macarrão automatizada abriu em frente ao restaurante de sushi de Kenji e Kaze, despertando o interesse do filho deles, Nori. O caos se instala!",
+        bz_start_novidades_btn_cards: "Ler mais →",
 
         // Brawlzone - Página inicial - Novidades Section - Posts - Vídeos
-        start_videos_p: "Conteúdo em Vídeo",
-        start_videos_title: "Vídeos",
-        start_videos_watch_btn: "▶ Ver vídeo",
+        bz_start_videos_p: "Conteúdo em Vídeo",
+        bz_start_videos_title: "Vídeos",
+        bz_start_videos_watch_btn: "▶ Ver vídeo",
         video1_titulo: "Wendy!",
         video2_titulo: "Assista Agora!",
         video3_titulo: "Assistir à Animação",
@@ -124,18 +124,18 @@ const TRANSLATIONS = {
         video7_titulo: "Assitir",
 
         // Brawlzone - Página inicial - Brawlers Section
-        start_brawlers_title: "Brawlers",
-        start_brawlers_btn: "Ver Todos →",
+        bz_start_brawlers_title: "Brawlers",
+        bz_start_brawlers_btn: "Ver Todos ▾",
 
         // Brawlzone - Página inicial - Brawlers Section - Filter Tabs
-        start_brawlers_filter_all: "Todos",
-        start_brawlers_filter_novo: "⭐ Novo",
-        start_brawlers_filter_legendary: "💛 Lendário",
-        start_brawlers_filter_mythic: "❤️ Mítico",
-        start_brawlers_filter_epic: "💜 Épico",
-        start_brawlers_filter_super_rare: "💙 Super Raro",
-        start_brawlers_filter_rare: "💚 Raro",
-        start_brawlers_filter_pesquisa: "Procurar brawler...",
+        bz_start_brawlers_filter_all: "Todos",
+        bz_start_brawlers_filter_novo: "⭐ Novo",
+        bz_start_brawlers_filter_legendary: "💛 Lendário",
+        bz_start_brawlers_filter_mythic: "❤️ Mítico",
+        bz_start_brawlers_filter_epic: "💜 Épico",
+        bz_start_brawlers_filter_super_rare: "💙 Super Raro",
+        bz_start_brawlers_filter_rare: "💚 Raro",
+        bz_start_brawlers_filter_pesquisa: "Procurar brawler...",
 
         // Brawlzone - Página inicial - Brawlers Section - Brawlers
         modal_label_raridade: "Raridade",
@@ -149,9 +149,9 @@ const TRANSLATIONS = {
         modal_btn_buffies: "🦊 Ver Buffies →",
 
         // Brawlzone - Página inicial - Guias Section
-        start_guias_title: "Guias",
-        start_guias_btn: "Ver Todos →",
-        start_guias_p: "Para todos os níveis",
+        bz_start_guias_title: "Guias",
+        bz_start_guias_btn: "Ver Todos ▾",
+        bz_start_guias_p: "Para todos os níveis",
 
         // Brawlzone - Página inicial - Guias Section - Cards
         guide1_titulo: "Como subir de rank rapidamente",
@@ -170,10 +170,10 @@ const TRANSLATIONS = {
 
 
         //  Brawlzone - Página inicial - Cta Section
-        start_cta_title: "Fica sempre a par 🔔",
-        start_cta_desc: "Recebe as últimas novidades, guias e updates diretamente no teu email.",
-        start_cta_btn: "Subscrever",
-        start_cta_email_placeholder: "O teu email...",
+        bz_start_cta_title: "Fica sempre a par 🔔",
+        bz_start_cta_desc: "Recebe as últimas novidades, guias e updates diretamente no teu email.",
+        bz_start_cta_btn: "Subscrever",
+        bz_start_cta_email_placeholder: "O teu email...",
 
         // R.I.S.E Zone - Hero
         rise_hero_eyebrow: "Fã-site não oficial",
@@ -250,41 +250,41 @@ const TRANSLATIONS = {
         breadcrumb_inicio: "🏠 Home",
 
         //Página inicial
-        start_title: "BrawlZone — Your Brawl Stars Fan Site",
+        bz_start_title: "BrawlZone — Your Brawl Stars Fan Site",
 
         //Página inicial - Hero Section
-        start_hero_badge: "The #1 Portuguese Fan Site",
-        start_hero_line1: "The universe of",
-        start_hero_line2: "Brawl Stars",
-        start_hero_btn_brawlers: "🎮 View Brawlers",
-        start_hero_btn_novidades: "📰 Latest News",
-        start_hero_stat_label3: "Hours Played",
+        bz_start_hero_badge: "The #1 Portuguese Fan Site",
+        bz_start_hero_line1: "The universe of",
+        bz_start_hero_line2: "Brawl Stars",
+        bz_start_hero_btn_brawlers: "🎮 View Brawlers",
+        bz_start_hero_btn_novidades: "📰 Latest News",
+        bz_start_hero_stat_label3: "Hours Played",
 
         //Página inicial - Novidades Section
-        start_novidades_title: "Latest News",
-        start_novidades_p: "Always Updated",
-        start_novidades_btn: "View All ▾",
+        bz_start_novidades_title: "Latest News",
+        bz_start_novidades_p: "Always Updated",
+        bz_start_novidades_btn: "View All ▾",
 
         // Página inicial - Novidades Section - Posts
-        post1_tag: "Update", post1_titulo: "Brawl Talk", post1_excerpt: "Ramen Rebellion: a story event that will change Katana Kingdom forever! NanoPowers & Fusions, Food Fight, Cooking Combat and more game modes. 2 New Brawlers! Nori and Wendy. Buffies, Skins, Hypercharges and way WAY MORE",
-        post2_tag: "Update", post2_titulo: "Watch Nori in action", post2_excerpt: "Nori's always fishing for trouble 🎣",
-        post3_tag: "Update", post3_titulo: "Watch the Season animation", post3_excerpt: "NanoNoodles Season is corrupting Starr Park! 🧪🍜",
-        post4_tag: "Update", post4_titulo: "July release notes", post4_excerpt: "An automated noodle shop opened across from Kenji and Kaze's sushi restaurant, sparking their son Nori's interest. Chaos ensues!",
-        start_novidades_btn_cards: "Read more →",
+        bz_start_post1_tag: "Update", bz_start_post1_titulo: "Brawl Talk", bz_start_post1_excerpt: "Ramen Rebellion: a story event that will change Katana Kingdom forever! NanoPowers & Fusions, Food Fight, Cooking Combat and more game modes. 2 New Brawlers! Nori and Wendy. Buffies, Skins, Hypercharges and way WAY MORE",
+        bz_start_post2_tag: "Update", bz_start_post2_titulo: "Watch Nori in action", bz_start_post2_excerpt: "Nori's always fishing for trouble 🎣",
+        bz_start_post3_tag: "Update", bz_start_post3_titulo: "Watch the Season animation", bz_start_post3_excerpt: "NanoNoodles Season is corrupting Starr Park! 🧪🍜",
+        bz_start_post4_tag: "Update", bz_start_post4_titulo: "July release notes", bz_start_post4_excerpt: "An automated noodle shop opened across from Kenji and Kaze's sushi restaurant, sparking their son Nori's interest. Chaos ensues!",
+        bz_start_novidades_btn_cards: "Read more →",
 
         // Página inicial - Brawlers Section
-        start_brawlers_title: "Brawlers",
-        start_brawlers_btn: "View All →",
+        bz_start_brawlers_title: "Brawlers",
+        bz_start_brawlers_btn: "View All ▾",
 
         // Página inicial - Brawlers Section - Filter Tabs
-        start_brawlers_filter_all: "All",
-        start_brawlers_filter_novo: "⭐ New",
-        start_brawlers_filter_legendary: "💛 Legendary",
-        start_brawlers_filter_mythic: "❤️ Mythic",
-        start_brawlers_filter_epic: "💜 Epic",
-        start_brawlers_filter_super_rare: "💙 Super Rare",
-        start_brawlers_filter_rare: "💚 Rare",
-        start_brawlers_filter_pesquisa: "Search brawler...",
+        bz_start_brawlers_filter_all: "All",
+        bz_start_brawlers_filter_novo: "⭐ New",
+        bz_start_brawlers_filter_legendary: "💛 Legendary",
+        bz_start_brawlers_filter_mythic: "❤️ Mythic",
+        bz_start_brawlers_filter_epic: "💜 Epic",
+        bz_start_brawlers_filter_super_rare: "💙 Super Rare",
+        bz_start_brawlers_filter_rare: "💚 Rare",
+        bz_start_brawlers_filter_pesquisa: "Search brawler...",
 
         //Página inicial - Brawlers Section - Brawlers
         modal_label_raridade: "Rarity",
@@ -299,9 +299,9 @@ const TRANSLATIONS = {
 
 
         // Página inicial - Guias Section
-        start_guias_title: "Guides",
-        start_guias_btn: "See All →",
-        start_guias_p: "For players of all skill levels",
+        bz_start_guias_title: "Guides",
+        bz_start_guias_btn: "See All ▾",
+        bz_start_guias_p: "For players of all skill levels",
 
         // Página inicial - Guias Section - Cards
         guide1_titulo: "How to climb rank quickly",
@@ -319,10 +319,10 @@ const TRANSLATIONS = {
         guide_link_text: "Read guide →",
 
         // Página inicial - Cta Section
-        start_cta_title: "Stay Updated 🔔",
-        start_cta_desc: "Get the latest news, guides, and updates delivered straight to your inbox.",
-        start_cta_btn: "Subscribe",
-        start_cta_email_placeholder: "Your email...",
+        bz_start_cta_title: "Stay Updated 🔔",
+        bz_start_cta_desc: "Get the latest news, guides, and updates delivered straight to your inbox.",
+        bz_start_cta_btn: "Subscribe",
+        bz_start_cta_email_placeholder: "Your email...",
 
         // R.I.S.E Zone - Hero
         rise_hero_eyebrow: "",
@@ -399,41 +399,41 @@ const TRANSLATIONS = {
         breadcrumb_inicio: "🏠 Inicio",
 
         //Página inicial
-        start_title: "BrawlZone — Tu sitio fan de Brawl Stars",
+        bz_start_title: "BrawlZone — Tu sitio fan de Brawl Stars",
 
         //Página inicial - Hero Section
-        start_hero_badge: "El sitio de fans portugués nº 1",
-        start_hero_line1: "El universo de",
-        start_hero_line2: "Brawl Stars",
-        start_hero_btn_brawlers: "🎮 Ver Brawlers",
-        start_hero_btn_novidades: "📰 Últimas Noticias",
-        start_hero_stat_label3: "Horas Jugadas",
+        bz_start_hero_badge: "El sitio de fans portugués nº 1",
+        bz_start_hero_line1: "El universo de",
+        bz_start_hero_line2: "Brawl Stars",
+        bz_start_hero_btn_brawlers: "🎮 Ver Brawlers",
+        bz_start_hero_btn_novidades: "📰 Últimas Noticias",
+        bz_start_hero_stat_label3: "Horas Jugadas",
 
         //Página inicial - Novidades Section
-        start_novidades_title: "Últimas Noticias",
-        start_novidades_p: "Siempre actualizado",
-        start_novidades_btn: "Ver Todas ▾",
+        bz_start_novidades_title: "Últimas Noticias",
+        bz_start_novidades_p: "Siempre actualizado",
+        bz_start_novidades_btn: "Ver Todas ▾",
 
         // Página inicial - Novidades Section - Posts
-        post1_tag: "Actualización", post1_titulo: "Brawl Talk", post1_excerpt: "Rebelión del Ramen: ¡un evento de historia que cambiará para siempre el Reino Katana! NanoPoderes y Fusiones, Guerra de Comida, Combate Culinario y más modos de juego. ¡2 Nuevos Brawlers! Nori y Wendy. Buffies, Skins, Hypercharges y mucho, MUCHO MÁS",
-        post2_tag: "Actualización", post2_titulo: "Mira a Nori en acción", post2_excerpt: "Nori siempre está pescando problemas 🎣",
-        post3_tag: "Actualización", post3_titulo: "Mira la animación de la Temporada", post3_excerpt: "¡La Temporada NanoNoodles está corrompiendo Starr Park! 🧪🍜",
-        post4_tag: "Actualización", post4_titulo: "Notas de lanzamiento de julio", post4_excerpt: "¡Una tienda de fideos automatizada se abrió frente al restaurante de sushi de Kenji y Kaze, despertando el interés de su hijo Nori! ¡El caos se desata!",
-        start_novidades_btn_cards: "Leer más →",
+        bz_start_post1_tag: "Actualización", bz_start_post1_titulo: "Brawl Talk", bz_start_post1_excerpt: "Rebelión del Ramen: ¡un evento de historia que cambiará para siempre el Reino Katana! NanoPoderes y Fusiones, Guerra de Comida, Combate Culinario y más modos de juego. ¡2 Nuevos Brawlers! Nori y Wendy. Buffies, Skins, Hypercharges y mucho, MUCHO MÁS",
+        bz_start_post2_tag: "Actualización", bz_start_post2_titulo: "Mira a Nori en acción", bz_start_post2_excerpt: "Nori siempre está pescando problemas 🎣",
+        bz_start_post3_tag: "Actualización", bz_start_post3_titulo: "Mira la animación de la Temporada", bz_start_post3_excerpt: "¡La Temporada NanoNoodles está corrompiendo Starr Park! 🧪🍜",
+        bz_start_post4_tag: "Actualización", bz_start_post4_titulo: "Notas de lanzamiento de julio", bz_start_post4_excerpt: "¡Una tienda de fideos automatizada se abrió frente al restaurante de sushi de Kenji y Kaze, despertando el interés de su hijo Nori! ¡El caos se desata!",
+        bz_start_novidades_btn_cards: "Leer más →",
 
         // Página inicial - Brawlers Section
-        start_brawlers_title: "Brawlers",
-        start_brawlers_btn: "Ver Todos →",
+        bz_start_brawlers_title: "Brawlers",
+        bz_start_brawlers_btn: "Ver Todos ▾",
 
         // Página inicial - Brawlers Section - Filter Tabs
-        start_brawlers_filter_all: "Todos",
-        start_brawlers_filter_novo: "⭐ Nuevo",
-        start_brawlers_filter_legendary: "💛 Legendario",
-        start_brawlers_filter_mythic: "❤️ Mítico",
-        start_brawlers_filter_epic: "💜 Épico",
-        start_brawlers_filter_super_rare: "💙 Súper Raro",
-        start_brawlers_filter_rare: "💚 Raro",
-        start_brawlers_filter_pesquisa: "Buscar brawler...",
+        bz_start_brawlers_filter_all: "Todos",
+        bz_start_brawlers_filter_novo: "⭐ Nuevo",
+        bz_start_brawlers_filter_legendary: "💛 Legendario",
+        bz_start_brawlers_filter_mythic: "❤️ Mítico",
+        bz_start_brawlers_filter_epic: "💜 Épico",
+        bz_start_brawlers_filter_super_rare: "💙 Súper Raro",
+        bz_start_brawlers_filter_rare: "💚 Raro",
+        bz_start_brawlers_filter_pesquisa: "Buscar brawler...",
 
         //Página inicial - Brawlers Section - Brawlers
         modal_label_raridade: "Rareza",
@@ -447,9 +447,9 @@ const TRANSLATIONS = {
         modal_btn_buffies: "🦊 Ver Buffies →",
 
         // Página inicial - Guias Section
-        start_guias_title: "Guías",
-        start_guias_btn: "Ver Todos →",
-        start_guias_p: "Para todos los niveles",
+        bz_start_guias_title: "Guías",
+        bz_start_guias_btn: "Ver Todos ▾",
+        bz_start_guias_p: "Para todos los niveles",
 
         // Página inicial - Guias Section - Cards
         guide1_titulo: "Cómo subir de rango rápidamente",
@@ -467,10 +467,10 @@ const TRANSLATIONS = {
         guide_link_text: "Leer guía →",
 
         // Página inicial - Cta Section
-        start_cta_title: "Mantente al día 🔔",
-        start_cta_desc: "Recibe las últimas noticias, guías y actualizaciones directamente en tu correo electrónico.",
-        start_cta_btn: "Suscribirse",
-        start_cta_email_placeholder: "Tu correo electrónico...",
+        bz_start_cta_title: "Mantente al día 🔔",
+        bz_start_cta_desc: "Recibe las últimas noticias, guías y actualizaciones directamente en tu correo electrónico.",
+        bz_start_cta_btn: "Suscribirse",
+        bz_start_cta_email_placeholder: "Tu correo electrónico...",
 
         // R.I.S.E Zone - Hero
         rise_hero_eyebrow: "",

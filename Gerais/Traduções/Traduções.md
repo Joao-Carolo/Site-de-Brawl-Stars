@@ -66,32 +66,32 @@
 | `bz_footer_link_noticias` | Notícias |
 | `bz_footer_copyright` | © 2026 **BrawlZone** — Fan site não oficial |
 | `bz_footer_disclaimer` | Brawl Stars é propriedade da Supercell |
-| `start_title` | BrawlZone — O Teu Fan Site de Brawl Stars |
-| `start_hero_badge` | O Fan Site Português nº1 |
-| `start_hero_line1` | O universo de |
-| `start_hero_line2` | Brawl Stars |
-| `start_hero_btn_brawlers` | 🎮 Ver Brawlers |
-| `start_hero_btn_novidades` | 📰 Últimas Novidades |
-| `start_hero_stat_label3` | Horas de Jogo |
-| `start_novidades_title` | Últimas Novidades |
-| `start_novidades_p` | Sempre Atualizado |
-| `start_novidades_btn` | Ver Todas ▾ |
-| `post1_tag` | Update |
-| `post1_titulo` | Brawl Talk |
-| `post1_excerpt` | Rebelião do Ramen: um evento de história que vai mudar o Reino Katana para sempre! NanoPoderes & Fusões, Guerra de Comida, Culinária de Combate e mais modos de jogo. 2 Novos Brawlers! Nori e Wendy. Buffies, Skins, Hypercharges e muito, MUITO MAIS |
-| `post2_tag` | Update |
-| `post2_titulo` | Veja o Nori em ação |
-| `post2_excerpt` | O Nori está sempre à pesca de problemas 🎣 |
-| `post3_tag` | Update |
-| `post3_titulo` | Ver a animação da Temporada |
-| `post3_excerpt` | A Temporada NanoNoodles está a corromper o Starr Park! 🧪🍜 |
-| `post4_tag` | Update |
-| `post4_titulo` | Notas de lançamento de Julho |
-| `post4_excerpt` | Uma loja de macarrão automatizada abriu em frente ao restaurante de sushi de Kenji e Kaze, despertando o interesse do filho deles, Nori. O caos se instala! |
-| `start_novidades_btn_cards` | Ler mais → |
-| `start_videos_p` | Conteúdo em Vídeo |
-| `start_videos_title` | Vídeos |
-| `start_videos_watch_btn` | ▶ Ver vídeo |
+| `bz_start_title` | BrawlZone — O Teu Fan Site de Brawl Stars |
+| `bz_start_hero_badge` | O Fan Site Português nº1 |
+| `bz_start_hero_line1` | O universo de |
+| `bz_start_hero_line2` | Brawl Stars |
+| `bz_start_hero_btn_brawlers` | 🎮 Ver Brawlers |
+| `bz_start_hero_btn_novidades` | 📰 Últimas Novidades |
+| `bz_start_hero_stat_label3` | Horas de Jogo |
+| `bz_start_novidades_title` | Últimas Novidades |
+| `bz_start_novidades_p` | Sempre Atualizado |
+| `bz_start_novidades_btn` | Ver Todas ▾ |
+| `bz_start_post1_tag` | Update |
+| `bz_start_post1_titulo` | Brawl Talk |
+| `bz_start_post1_excerpt` | Rebelião do Ramen: um evento de história que vai mudar o Reino Katana para sempre! NanoPoderes & Fusões, Guerra de Comida, Culinária de Combate e mais modos de jogo. 2 Novos Brawlers! Nori e Wendy. Buffies, Skins, Hypercharges e muito, MUITO MAIS |
+| `bz_start_post2_tag` | Update |
+| `bz_start_post2_titulo` | Veja o Nori em ação |
+| `bz_start_post2_excerpt` | O Nori está sempre à pesca de problemas 🎣 |
+| `bz_start_post3_tag` | Update |
+| `bz_start_post3_titulo` | Ver a animação da Temporada |
+| `bz_start_post3_excerpt` | A Temporada NanoNoodles está a corromper o Starr Park! 🧪🍜 |
+| `bz_start_post4_tag` | Update |
+| `bz_start_post4_titulo` | Notas de lançamento de Julho |
+| `bz_start_post4_excerpt` | Uma loja de macarrão automatizada abriu em frente ao restaurante de sushi de Kenji e Kaze, despertando o interesse do filho deles, Nori. O caos se instala! |
+| `bz_start_novidades_btn_cards` | Ler mais → |
+| `bz_start_videos_p` | Conteúdo em Vídeo |
+| `bz_start_videos_title` | Vídeos |
+| `bz_start_videos_watch_btn` | ▶ Ver vídeo |
 | `video1_titulo` | Wendy! |
 | `video2_titulo` | Assista Agora! |
 | `video3_titulo` | Assistir à Animação |
@@ -99,16 +99,16 @@
 | `video5_titulo` | Ver a animação da Temporada |
 | `video6_titulo` | Brawl Talk |
 | `video7_titulo` | Assitir |
-| `start_brawlers_title` | Brawlers |
-| `start_brawlers_btn` | Ver Todos → |
-| `start_brawlers_filter_all` | Todos |
-| `start_brawlers_filter_novo` | ⭐ Novo |
-| `start_brawlers_filter_legendary` | 💛 Lendário |
-| `start_brawlers_filter_mythic` | ❤️ Mítico |
-| `start_brawlers_filter_epic` | 💜 Épico |
-| `start_brawlers_filter_super_rare` | 💙 Super Raro |
-| `start_brawlers_filter_rare` | 💚 Raro |
-| `start_brawlers_filter_pesquisa` | Procurar brawler... |
+| `bz_start_brawlers_title` | Brawlers |
+| `bz_start_brawlers_btn` | Ver Todos → |
+| `bz_start_brawlers_filter_all` | Todos |
+| `bz_start_brawlers_filter_novo` | ⭐ Novo |
+| `bz_start_brawlers_filter_legendary` | 💛 Lendário |
+| `bz_start_brawlers_filter_mythic` | ❤️ Mítico |
+| `bz_start_brawlers_filter_epic` | 💜 Épico |
+| `bz_start_brawlers_filter_super_rare` | 💙 Super Raro |
+| `bz_start_brawlers_filter_rare` | 💚 Raro |
+| `bz_start_brawlers_filter_pesquisa` | Procurar brawler... |
 | `modal_label_raridade` | Raridade |
 | `modal_label_classe` | Classe |
 | `modal_label_hp` | HP (PL11) |
@@ -118,9 +118,9 @@
 | `modal_btn_stats` | Ver todos os stats → |
 | `modal_btn_skins` | 🎨 Ver todas as skins → |
 | `modal_btn_buffies` | 🦊 Ver Buffies → |
-| `start_guias_title` | Guias |
-| `start_guias_btn` | Ver Todos → |
-| `start_guias_p` | Para todos os níveis |
+| `bz_start_guias_title` | Guias |
+| `bz_start_guias_btn` | Ver Todos → |
+| `bz_start_guias_p` | Para todos os níveis |
 | `guide1_titulo` | Como subir de rank rapidamente |
 | `guide1_desc` | Os melhores brawlers para ranked, as melhores estratégias por modo de jogo, e os erros mais comuns que te impedem de subir. |
 | `guide2_titulo` | Guia F2P — progredir sem gastar |
@@ -134,10 +134,10 @@
 | `guide6_titulo` | Mentalidade competitiva |
 | `guide6_desc` | Como evitar o tilt, gerir a derrota, manter foco e desenvolver uma mentalidade de melhoria contínua do Gold ao Mythic. |
 | `guide_link_text` | Ler guia → |
-| `start_cta_title` | Fica sempre a par 🔔 |
-| `start_cta_desc` | Recebe as últimas novidades, guias e updates diretamente no teu email. |
-| `start_cta_btn` | Subscrever |
-| `start_cta_email_placeholder` | O teu email... |
+| `bz_start_cta_title` | Fica sempre a par 🔔 |
+| `bz_start_cta_desc` | Recebe as últimas novidades, guias e updates diretamente no teu email. |
+| `bz_start_cta_btn` | Subscrever |
+| `bz_start_cta_email_placeholder` | O teu email... |
 | `rise_hero_eyebrow` | Fã-site não oficial |
 | `rise_hero_subtitle` | Tudo sobre o novo RPG de ação social e roguelite da Supercell. Heróis, a Tower, e o caminho até ao lançamento. |
 | `rise_hero_beta_label` | Beta a decorrer |

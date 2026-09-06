@@ -85,40 +85,40 @@ bz_footer_copyright:
 bz_footer_disclaimer:
 
 // Brawlzone - Página inicial
-start_title:
+bz_start_title:
 
 // Brawlzone - Página inicial - Hero Section
-start_hero_badge:
-start_hero_line1:
-start_hero_line2:
-start_hero_btn_brawlers:
-start_hero_btn_novidades:
-start_hero_stat_label3:
+bz_start_hero_badge:
+bz_start_hero_line1:
+bz_start_hero_line2:
+bz_start_hero_btn_brawlers:
+bz_start_hero_btn_novidades:
+bz_start_hero_stat_label3:
 
 // Brawlzone - Página inicial - Novidades Section
-start_novidades_title:
-start_novidades_p:
-start_novidades_btn:
+bz_start_novidades_title:
+bz_start_novidades_p:
+bz_start_novidades_btn:
 
 // Brawlzone - Página inicial - Novidades Section - Posts - Aprofundados
-post1_tag:
-post1_titulo:
-post1_excerpt:
-post2_tag:
-post2_titulo:
-post2_excerpt:
-post3_tag:
-post3_titulo:
-post3_excerpt:
-post4_tag:
-post4_titulo:
-post4_excerpt:
-start_novidades_btn_cards:
+bz_start_post1_tag:
+bz_start_post1_titulo:
+bz_start_post1_excerpt:
+bz_start_post2_tag:
+bz_start_post2_titulo:
+bz_start_post2_excerpt:
+bz_start_post3_tag:
+bz_start_post3_titulo:
+bz_start_post3_excerpt:
+bz_start_post4_tag:
+bz_start_post4_titulo:
+bz_start_post4_excerpt:
+bz_start_novidades_btn_cards:
 
 // Brawlzone - Página inicial - Novidades Section - Vídeos
-start_videos_p:
-start_videos_title:
-start_videos_watch_btn:
+bz_start_videos_p:
+bz_start_videos_title:
+bz_start_videos_watch_btn:
 video1_titulo:
 video2_titulo:
 video3_titulo:
@@ -128,18 +128,18 @@ video6_titulo:
 video7_titulo:
 
 // Brawlzone - Página inicial - Brawlers Section
-start_brawlers_title:
-start_brawlers_btn:
+bz_start_brawlers_title:
+bz_start_brawlers_btn:
 
 // Brawlzone - Página inicial - Brawlers Section - Filter Tabs
-start_brawlers_filter_all:
-start_brawlers_filter_novo:
-start_brawlers_filter_legendary:
-start_brawlers_filter_mythic:
-start_brawlers_filter_epic:
-start_brawlers_filter_super_rare:
-start_brawlers_filter_rare:
-start_brawlers_filter_pesquisa:
+bz_start_brawlers_filter_all:
+bz_start_brawlers_filter_novo:
+bz_start_brawlers_filter_legendary:
+bz_start_brawlers_filter_mythic:
+bz_start_brawlers_filter_epic:
+bz_start_brawlers_filter_super_rare:
+bz_start_brawlers_filter_rare:
+bz_start_brawlers_filter_pesquisa:
 
 // Brawlzone - Página inicial - Brawlers Section - Brawlers
 modal_label_raridade:
@@ -153,9 +153,9 @@ modal_btn_skins:
 modal_btn_buffies:
 
 // Brawlzone - Página inicial - Guias Section
-start_guias_title:
-start_guias_btn:
-start_guias_p:
+bz_start_guias_title:
+bz_start_guias_btn:
+bz_start_guias_p:
 
 // Brawlzone - Página inicial - Guias Section - Cards
 guide1_titulo:
@@ -173,10 +173,10 @@ guide6_desc:
 guide_link_text:
 
 // Brawlzone - Página inicial - CTA Section
-start_cta_title:
-start_cta_desc:
-start_cta_btn:
-start_cta_email_placeholder:
+bz_start_cta_title:
+bz_start_cta_desc:
+bz_start_cta_btn:
+bz_start_cta_email_placeholder:
 
 // R.I.S.E Zone - Hero
 rise_hero_eyebrow:

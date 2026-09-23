@@ -60,10 +60,10 @@ const ZONES = {
     },
     rise: {
         onHome: { nome: "Supercellzone", homeHref: "../../Página inicial.html" },
-        elsewhere: { nome: "R.I.S.E Zone", homeHref: "../Página inicial/Página inicial.html" },
+        elsewhere: { nome: "RISE Zone", homeHref: "../Página inicial/Página inicial.html" },
         links: [
-            { label: "Heróis", href: `Project R.I.S.E zone/Herois/Herois.html`, key: "herois", i18n: "nav_rise_herois" },
-            { label: "A Tower", href: `Project R.I.S.E zone/Tower/Tower.html`, key: "tower", i18n: "nav_rise_tower" },
+            { label: "Heróis", href: `Project RISE zone/Herois/Herois.html`, key: "herois", i18n: "nav_rise_herois" },
+            { label: "A Tower", href: `Project RISE zone/Tower/Tower.html`, key: "tower", i18n: "nav_rise_tower" },
         ]
     }
 };

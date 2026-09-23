@@ -29,7 +29,7 @@ const TRANSLATIONS = {
         sz_zone_status_soon: "Por vir",
         sz_zone_brawl_game: "Brawl Stars",
         sz_zone_brawl_desc: "Brawlers, mapas, buffies, skins e muito mais — o fan-site mais completo sobre Brawl Stars em português.",
-        sz_zone_rise_game: "Project R.I.S.E",
+        sz_zone_rise_game: "Project RISE",
         sz_zone_rise_desc: "Tudo sobre o novo RPG de ação social da Supercell, ainda em fase de beta. Heróis, a Tower, e mais.",
         sz_zone_enter: "Entrar na Zone →",
         sz_zone_next_title: "Próxima Zone",
@@ -175,7 +175,7 @@ const TRANSLATIONS = {
         bz_start_cta_btn: "Subscrever",
         bz_start_cta_email_placeholder: "O teu email...",
 
-        // R.I.S.E Zone - Hero
+        // RISE Zone - Hero
         rise_hero_eyebrow: "Fã-site não oficial",
         rise_hero_subtitle: "Tudo sobre o novo RPG de ação social e roguelite da Supercell. Heróis, a Tower, e o caminho até ao lançamento.",
         rise_hero_beta_label: "Beta a decorrer",
@@ -183,21 +183,21 @@ const TRANSLATIONS = {
         rise_hero_cta_explore: "Explorar a Tower",
         rise_hero_cta_heroes: "Ver Heróis",
 
-        // R.I.S.E Zone - Sobre o jogo
+        // RISE Zone - Sobre o jogo
         rise_about_label: "O jogo",
         rise_about_title: "Do fundo da Tower até ao topo",
-        rise_about_p1: "Project R.I.S.E é um RPG de ação social roguelite ambientado no universo Clash, atualmente em desenvolvimento pela Supercell. Nasceu das cinzas do antigo Clash Heroes, mas é um jogo novo — mais focado em jogar em equipa do que em explorar sozinho.",
+        rise_about_p1: "Project RISE é um RPG de ação social roguelite ambientado no universo Clash, atualmente em desenvolvimento pela Supercell. Nasceu das cinzas do antigo Clash Heroes, mas é um jogo novo — mais focado em jogar em equipa do que em explorar sozinho.",
         rise_about_p2: "Em cada sessão, formas equipa com outros dois jogadores para escalar a Tower: uma estrutura misteriosa dividida em pisos, cada um com os seus próprios desafios. O objetivo é simples de dizer e difícil de fazer — chegar o mais alto possível.",
         rise_about_stat_team: "Jogadores por equipa",
         rise_about_stat_heroes: "Heróis conhecidos",
         rise_about_stat_tower: "Pisos por escalar",
 
-        // R.I.S.E Zone - Heróis
+        // RISE Zone - Heróis
         rise_heroes_label: "Elenco",
         rise_heroes_title: "Heróis",
         rise_heroes_desc: "A informação pública sobre cada herói ainda está a crescer com a beta. Esta lista vai sendo atualizada à medida que sai mais conteúdo oficial.",
 
-        // R.I.S.E Zone - A Tower
+        // RISE Zone - A Tower
         rise_tower_label: "Mecânica",
         rise_tower_title: "A Tower",
         rise_tower_desc: "Cada piso é uma pequena missão em equipa. Sobreviver não chega — é preciso encontrar o caminho para subir.",
@@ -210,7 +210,7 @@ const TRANSLATIONS = {
         rise_tower_step4_title: "Sobe de novo",
         rise_tower_step4_desc: "Com Hero Badges e Gold ganhos pelo caminho, sobes o Tier dos teus heróis — mais ataque, mais vida, mais upgrades.",
 
-        // R.I.S.E Zone - Cta
+        // RISE Zone - Cta
         rise_cta_label: "Junta-te",
         rise_cta_title: "Queres jogar antes de todos?",
         rise_cta_desc: "A Supercell está a convidar jogadores para a beta. Inscreve-te no formulário oficial e acompanha as novidades no Discord da comunidade.",
@@ -324,7 +324,7 @@ const TRANSLATIONS = {
         bz_start_cta_btn: "Subscribe",
         bz_start_cta_email_placeholder: "Your email...",
 
-        // R.I.S.E Zone - Hero
+        // RISE Zone - Hero
         rise_hero_eyebrow: "",
         rise_hero_subtitle: "",
         rise_hero_beta_label: "",
@@ -332,7 +332,7 @@ const TRANSLATIONS = {
         rise_hero_cta_explore: "",
         rise_hero_cta_heroes: "",
 
-        // R.I.S.E Zone - Sobre o jogo
+        // RISE Zone - Sobre o jogo
         rise_about_label: "",
         rise_about_title: "",
         rise_about_p1: "",
@@ -341,12 +341,12 @@ const TRANSLATIONS = {
         rise_about_stat_heroes: "",
         rise_about_stat_tower: "",
 
-        // R.I.S.E Zone - Heróis
+        // RISE Zone - Heróis
         rise_heroes_label: "",
         rise_heroes_title: "",
         rise_heroes_desc: "",
 
-        // R.I.S.E Zone - A Tower
+        // RISE Zone - A Tower
         rise_tower_label: "",
         rise_tower_title: "",
         rise_tower_desc: "",
@@ -359,7 +359,7 @@ const TRANSLATIONS = {
         rise_tower_step4_title: "",
         rise_tower_step4_desc: "",
 
-        // R.I.S.E Zone - Cta
+        // RISE Zone - Cta
         rise_cta_label: "",
         rise_cta_title: "",
         rise_cta_desc: "",
@@ -472,7 +472,7 @@ const TRANSLATIONS = {
         bz_start_cta_btn: "Suscribirse",
         bz_start_cta_email_placeholder: "Tu correo electrónico...",
 
-        // R.I.S.E Zone - Hero
+        // RISE Zone - Hero
         rise_hero_eyebrow: "",
         rise_hero_subtitle: "",
         rise_hero_beta_label: "",
@@ -480,7 +480,7 @@ const TRANSLATIONS = {
         rise_hero_cta_explore: "",
         rise_hero_cta_heroes: "",
 
-        // R.I.S.E Zone - Sobre o jogo
+        // RISE Zone - Sobre o jogo
         rise_about_label: "",
         rise_about_title: "",
         rise_about_p1: "",
@@ -489,12 +489,12 @@ const TRANSLATIONS = {
         rise_about_stat_heroes: "",
         rise_about_stat_tower: "",
 
-        // R.I.S.E Zone - Heróis
+        // RISE Zone - Heróis
         rise_heroes_label: "",
         rise_heroes_title: "",
         rise_heroes_desc: "",
 
-        // R.I.S.E Zone - A Tower
+        // RISE Zone - A Tower
         rise_tower_label: "",
         rise_tower_title: "",
         rise_tower_desc: "",
@@ -507,7 +507,7 @@ const TRANSLATIONS = {
         rise_tower_step4_title: "",
         rise_tower_step4_desc: "",
 
-        // R.I.S.E Zone - Cta
+        // RISE Zone - Cta
         rise_cta_label: "",
         rise_cta_title: "",
         rise_cta_desc: "",

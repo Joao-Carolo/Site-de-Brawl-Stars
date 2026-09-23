@@ -1,6 +1,6 @@
 // ==========================================================================
-// Project R.I.S.E zone — Página Inicial
-// Render dos cards de Heróis a partir de HEROIS (Gerais/Constantes/Project R.I.S.E zone/Herois.js)
+// Project RISE zone — Página Inicial
+// Render dos cards de Heróis a partir de HEROIS (Gerais/Constantes/Project RISE zone/Herois.js)
 // ==========================================================================
 
 function renderHeroesGrid() {

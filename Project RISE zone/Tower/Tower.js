@@ -1,5 +1,5 @@
 // ==========================================================================
-// Project R.I.S.E Zone — A Tower
+// Project RISE Zone — A Tower
 // Gera o visual de pisos empilhados (reaproveita o motivo do hero da
 // Página Inicial) e a marcação do piso "boss" a cada N pisos.
 // ==========================================================================

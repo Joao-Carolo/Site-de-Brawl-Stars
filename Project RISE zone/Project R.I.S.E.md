@@ -1,6 +1,6 @@
-# Project R.I.S.E zone — Plano de Trabalho
+# Project RISE zone — Plano de Trabalho
 
-> Documento de retoma. A trabalhar no Project R.I.S.E zone estava em pausa
+> Documento de retoma. A trabalhar no Project RISE zone estava em pausa
 > enquanto se resolvia a fundação multijogo da Supercellzone. Este ficheiro
 > resume tudo o que já foi decidido, para retomar sem perder contexto.
 
@@ -8,7 +8,7 @@
 
 ## 1. Sobre o jogo
 
-**Project R.I.S.E** é um jogo experimental/beta da Supercell — um RPG de
+**Project RISE** é um jogo experimental/beta da Supercell — um RPG de
 ação social roguelite, ambientado no universo Clash. Nasceu de um reboot do
 antigo _Clash Heroes_.
 
@@ -57,7 +57,7 @@ antigo _Clash Heroes_.
 ### Estrutura de pastas
 
 ```
-Project R.I.S.E zone/
+Project RISE zone/
 ├── Página inicial.html          (nome confirmado — sem hífen, "inicial" minúsculo)
 ├── Página inicial.css
 ├── Página inicial.js
@@ -70,7 +70,7 @@ Guides
 News))
 
 Gerais/Constantes/
-└── Project R.I.S.E zone/
+└── Project RISE zone/
     └── Herois.js
 ```
 
@@ -118,7 +118,7 @@ Campos definidos (ver ficheiro real para o array completo):
 - `habilidade`/`ultimate` ficam `null` mesmo nos heróis confirmados —
   info pública insuficiente para preencher com confiança.
 
-✅ Já criado em `Gerais/Constantes/Project R.I.S.E zone/Herois.js`.
+✅ Já criado em `Gerais/Constantes/Project RISE zone/Herois.js`.
 
 ### Página Inicial — secções (única página prioritária por agora)
 
@@ -173,7 +173,7 @@ buildNavbar(activeLink, "rise", isHome);
 - [x] Validar os valores de `homeHref` no `Navbar.js` para esta Zone —
       confirmados corretos: `onHome.homeHref = "../../Página inicial.html"`
       (2 níveis até à raiz da Supercellzone, bate certo com a profundidade
-      real `Project R.I.S.E zone/Página inicial/`) e
+      real `Project RISE zone/Página inicial/`) e
       `elsewhere.homeHref = "Página inicial.html"` (mesma pasta).
 - [ ] **Preencher traduções `en`/`es`** para as 31 chaves `rise_*` no
       `Tradução.js` (chaves já existem em `Traducoes-RISE.txt`, só faltam

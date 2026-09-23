@@ -1,7 +1,7 @@
 // ==========================================================================
-// Project R.I.S.E Zone — Heróis
+// Project RISE Zone — Heróis
 // Grid agrupada por classe, filtros, pesquisa e modal de detalhe.
-// Dados vêm de HEROIS (Gerais/Constantes/Project R.I.S.E Zone/Herois.js)
+// Dados vêm de HEROIS (Gerais/Constantes/Project RISE Zone/Herois.js)
 // ==========================================================================
 
 let currentClassFilter = "all";

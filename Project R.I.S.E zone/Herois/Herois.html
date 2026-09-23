@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heróis — Project R.I.S.E Zone</title>
+    <meta name="description"
+        content="Todos os heróis conhecidos de Project R.I.S.E — família, classe e habilidades. Site fã não oficial.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../../Gerais/Cores.css">
+    <link rel="stylesheet" href="../../../Gerais/Logos/Logo.css">
+    <link rel="stylesheet" href="../../../Gerais/Cursor/Cursor.css">
+    <link rel="stylesheet" href="../../../Gerais/Mobile Menu/Mobile Menu.css">
+    <link rel="stylesheet" href="../../../Gerais/Navbar/Navbar.css">
+    <link rel="stylesheet" href="../../../Gerais/Footer/Footer.css">
+    <link rel="stylesheet" href="../../../Gerais/Reveal/Reveal.css">
+    <link rel="stylesheet" href="../../../Gerais/Breadcrumbs/Breadcrumbs.css">
+    <link rel="stylesheet" href="../../../Gerais/Toast/Toast.css">
+
+    <link rel="stylesheet" href="Herois.css">
+</head>
+
+<body class="rise-zone">
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu"><button class="mobile-close" id="mobileClose">✕</button></div>
+
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <div class="breadcrumb-wrap">
+        <nav class="breadcrumb" id="breadcrumb"></nav>
+    </div>
+
+    <!-- HEADER -->
+    <header class="herois-header">
+        <div class="rise-container">
+            <p class="herois-eyebrow" data-i18n="rise_herois_eyebrow">Elenco completo</p>
+            <h1 class="herois-title" data-i18n="rise_herois_title">Heróis</h1>
+            <p class="herois-desc" data-i18n="rise_herois_desc">
+                Todos os heróis conhecidos de Project R.I.S.E até agora — família, classe e o que já se sabe sobre as
+                suas habilidades. Esta página é atualizada à medida que sai mais informação oficial.
+            </p>
+            <div class="herois-stats">
+                <div class="herois-stat">
+                    <span class="herois-stat-num" id="herois-header-count">6</span>
+                    <span class="herois-stat-label" data-i18n="rise_herois_stat_total">Heróis listados</span>
+                </div>
+                <div class="herois-stat">
+                    <span class="herois-stat-num" id="herois-header-conhecidos">6</span>
+                    <span class="herois-stat-label" data-i18n="rise_herois_stat_conhecidos">Confirmados</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TOOLBAR -->
+    <div class="rise-container">
+        <div class="herois-toolbar">
+            <div class="herois-filters" id="herois-filters"></div>
+            <div class="herois-search-wrap">
+                <span class="herois-search-icon">🔍</span>
+                <input type="text" class="herois-search" id="heroisSearch"
+                    data-i18n-placeholder="rise_herois_search_placeholder" placeholder="Procurar herói...">
+            </div>
+        </div>
+        <div class="herois-results-info" id="herois-results-info"></div>
+    </div>
+
+    <!-- GRID -->
+    <div class="rise-container">
+        <div class="herois-content" id="herois-content"></div>
+        <div class="herois-no-results" id="herois-no-results">
+            <div class="herois-no-results-icon">?</div>
+            <p data-i18n="rise_herois_no_results">Nenhum herói encontrado. Tenta outro filtro ou nome.</p>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="hero-modal-overlay" id="heroModalOverlay">
+        <div class="hero-modal">
+            <button class="hero-modal-close" id="heroModalClose">✕</button>
+            <div class="hero-modal-hero">
+                <div class="hero-modal-img" id="heroModalImg"></div>
+                <h2 class="hero-modal-name" id="heroModalName"></h2>
+                <div class="hero-modal-tags" id="heroModalTags"></div>
+            </div>
+            <div class="hero-modal-body" id="heroModalBody"></div>
+        </div>
+    </div>
+
+    <script src="../../../Gerais/Constantes/Project R.I.S.E Zone/Herois.js"></script>
+    <script src="../../../Gerais/Traduções/Tradução.js"></script>
+    <script src="Herois.js"></script>
+    <script src="../../../Gerais/Tema.js"></script>
+    <script src="../../../Gerais/Cursor/Cursor.js"></script>
+    <script src="../../../Gerais/Reveal/Reveal.js"></script>
+    <script src="../../../Gerais/Breadcrumbs/Breadcrumbs.js"></script>
+    <script src="../../../Gerais/Footer/Footer.js"></script>
+    <script src="../../../Gerais/Toast/Toast.js"></script>
+    <script src="../../../Gerais/Navbar/Navbar.js"></script>
+    <script>
+        buildNavbar("herois", "rise", false);
+        applyTranslations();
+    </script>
+    <script src="../../../Gerais/Mobile Menu/Mobile Menu.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,434 @@
+/* ==========================================================================
+   Project R.I.S.E Zone — A Tower
+   Usa as variáveis --rise-* definidas em Gerais/Cores.css
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body.rise-zone {
+    background: var(--rise-bg);
+    color: var(--rise-text);
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+}
+
+.rise-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ---------------------------------------------------------------------
+   HEADER
+   --------------------------------------------------------------------- */
+
+.tower-header {
+    padding: 140px 0 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--rise-border);
+    text-align: center;
+}
+
+.tower-header::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 460px;
+    height: 460px;
+    background: radial-gradient(circle, rgba(232, 185, 35, 0.16) 0%, rgba(232, 185, 35, 0) 70%);
+    pointer-events: none;
+}
+
+.tower-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rise-accent);
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.tower-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    color: var(--rise-text);
+    margin: 0 0 18px;
+    line-height: 1;
+    position: relative;
+}
+
+.tower-desc {
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: var(--rise-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* ---------------------------------------------------------------------
+   VISUAL DA TOWER — reaproveita o motivo do hero da Página Inicial
+   --------------------------------------------------------------------- */
+
+.tower-visual-section {
+    padding: 72px 0;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--rise-border);
+    background: var(--rise-bg-elevated);
+}
+
+.tower-visual-wrap {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.tower-visual-floor {
+    width: calc(100% - (var(--i) * 34px));
+    max-width: 420px;
+    height: 76px;
+    margin-top: -1px;
+    background: linear-gradient(180deg, var(--rise-bg-elevated) 0%, var(--rise-primary-dark) 100%);
+    border: 1px solid var(--rise-border);
+    border-bottom: none;
+    clip-path: polygon(3% 0, 97% 0, 100% 100%, 0% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: none;
+    transition: filter 0.2s ease, transform 0.2s ease;
+    position: relative;
+}
+
+.tower-visual-floor:hover {
+    filter: brightness(1.25);
+    transform: scale(1.015);
+}
+
+.tower-visual-floor.is-boss {
+    border-color: var(--rise-danger);
+    background: linear-gradient(180deg, rgba(239, 68, 68, 0.14) 0%, var(--rise-primary-dark) 100%);
+}
+
+.tower-floor-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--rise-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tower-floor-label .floor-icon {
+    font-size: 0.9rem;
+}
+
+.tower-visual-top {
+    width: 100px;
+    height: 40px;
+    margin-bottom: -1px;
+    background: linear-gradient(180deg, var(--rise-accent) 0%, var(--rise-accent-light) 100%);
+    clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+    box-shadow: 0 0 40px rgba(232, 185, 35, 0.4);
+}
+
+.tower-visual-caption {
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--rise-text-muted);
+    margin-top: 24px;
+    letter-spacing: 0.04em;
+}
+
+/* ---------------------------------------------------------------------
+   TIMELINE DETALHADA
+   --------------------------------------------------------------------- */
+
+.tower-timeline-section {
+    padding: 100px 0;
+}
+
+.tower-section-head {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 64px;
+}
+
+.tower-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rise-accent);
+    margin-bottom: 14px;
+}
+
+.tower-section-head h2 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    color: var(--rise-text);
+    margin: 0 0 16px;
+}
+
+.tower-section-desc {
+    color: var(--rise-text-muted);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.tower-timeline {
+    position: relative;
+    max-width: 780px;
+    margin: 0 auto;
+    padding-left: 48px;
+}
+
+.tower-timeline::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--rise-accent), var(--rise-primary));
+}
+
+.tower-timeline-item {
+    position: relative;
+    padding-bottom: 56px;
+}
+
+.tower-timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.tower-timeline-dot {
+    position: absolute;
+    left: -48px;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--rise-bg-elevated);
+    border: 2px solid var(--rise-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--rise-accent-light);
+    flex-shrink: 0;
+}
+
+.tower-timeline-item.is-boss .tower-timeline-dot {
+    border-color: var(--rise-danger);
+    color: #fca5a5;
+}
+
+.tower-timeline-card {
+    background: var(--rise-bg-elevated);
+    border: 1px solid var(--rise-border);
+    border-radius: 16px;
+    padding: 28px 26px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.tower-timeline-card:hover {
+    border-color: var(--rise-accent);
+    transform: translateY(-2px);
+}
+
+.tower-timeline-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rise-accent);
+    margin-bottom: 10px;
+}
+
+.tower-timeline-item.is-boss .tower-timeline-tag {
+    color: #fca5a5;
+}
+
+.tower-timeline-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--rise-text);
+    margin: 0 0 12px;
+}
+
+.tower-timeline-desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--rise-text-muted);
+    margin: 0 0 16px;
+}
+
+.tower-timeline-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tower-detail-row {
+    display: flex;
+    gap: 10px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--rise-text-muted);
+}
+
+.tower-detail-row .detail-icon {
+    flex-shrink: 0;
+    color: var(--rise-accent);
+}
+
+/* ---------------------------------------------------------------------
+   PROGRESSÃO — Hero Badges / Gold / Tier
+   --------------------------------------------------------------------- */
+
+.tower-progression-section {
+    padding: 90px 0;
+    background: var(--rise-bg-elevated);
+    border-top: 1px solid var(--rise-border);
+    border-bottom: 1px solid var(--rise-border);
+}
+
+.tower-progression-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.tower-progression-card {
+    background: var(--rise-bg);
+    border: 1px solid var(--rise-border);
+    border-radius: 16px;
+    padding: 28px 22px;
+    text-align: center;
+}
+
+.tower-progression-icon {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    color: var(--rise-accent);
+    margin-bottom: 12px;
+}
+
+.tower-progression-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--rise-text);
+    margin: 0 0 10px;
+}
+
+.tower-progression-desc {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--rise-text-muted);
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------------
+   BOT HEROES BOX
+   --------------------------------------------------------------------- */
+
+.tower-info-section {
+    padding: 80px 0;
+}
+
+.tower-info-box {
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--rise-bg-elevated);
+    border: 1px solid var(--rise-border);
+    border-left: 3px solid var(--rise-accent);
+    border-radius: 14px;
+    padding: 28px 30px;
+    display: flex;
+    gap: 18px;
+}
+
+.tower-info-icon {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--rise-accent);
+    flex-shrink: 0;
+}
+
+.tower-info-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--rise-text-muted);
+}
+
+.tower-info-text strong {
+    color: var(--rise-text);
+}
+
+/* ---------------------------------------------------------------------
+   Responsivo
+   --------------------------------------------------------------------- */
+
+@media (max-width: 700px) {
+    .tower-progression-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .tower-header {
+        padding: 120px 0 48px;
+    }
+
+    .tower-timeline {
+        padding-left: 40px;
+    }
+
+    .tower-timeline-dot {
+        left: -40px;
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+
+    .tower-timeline-card {
+        padding: 22px 18px;
+    }
+
+    .tower-info-box {
+        flex-direction: column;
+    }
+}

@@ -15,7 +15,7 @@
 - **Objetivo declarado do BrawlZone:** ser o site mais completo e interativo sobre Brawl Stars em português, sempre atualizado a cada update do jogo.
 - **Zones ativas atualmente:**
   - **BrawlZone** (Brawl Stars) — a mais madura/desenvolvida.
-  - **Project R.I.S.E Zone** — em construção ativa.
+  - **Project R.I.S.E zone** — em construção ativa.
   - Mais Zones estão planeadas para o futuro.
 
 ### Plano de Backend (futuro, ~2027)
@@ -53,14 +53,14 @@ Supercellzone/                          (raiz do repo, ainda chamado Site-de-Bra
 │   │   ├── Brawlers.js                 (array BRAWLERS centralizado — BrawlZone)
 │   │   ├── Raridades.js                (RARITY_LABELS / RARITY_COLORS / RARITY_ORDER)
 │   │   ├── Buffies.js                  (BRAWLER_BUFFIES e MACHINES)
-│   │   └── Project R.I.S.E Zone/
+│   │   └── Project R.I.S.E zone/
 │   │       └── Herois.js               (a criar)
 │   ├── Tema.js
 │   └── Pesquisa.js
 ├── BrawlZone/
 │   └── Página inicial/Página inicial.html
 │   └── (Brawlers.html, Skins.html, Buffies.html, Nanopoderes.html, etc.)
-└── Project R.I.S.E Zone/               (em construção)
+└── Project R.I.S.E zone/               (em construção)
     ├── Pagina-Inicial.html/css/js
     └── Herois.html  
 ```
@@ -68,7 +68,7 @@ Supercellzone/                          (raiz do repo, ainda chamado Site-de-Bra
 ### Decisões-chave de estrutura
 
 - **`Cores.css`**: um único ficheiro, todas as cores de todas as Zones no mesmo `:root`, sem sistema de override.
-  - Prefixos: `--rise-*` (Project R.I.S.E Zone, paleta roxo/dourado), `--sz-*` (Supercellzone, paleta neutra escura + acento azul), variáveis já existentes do BrawlZone.
+  - Prefixos: `--rise-*` (Project R.I.S.E zone, paleta roxo/dourado), `--sz-*` (Supercellzone, paleta neutra escura + acento azul), variáveis já existentes do BrawlZone.
 - **`Constantes/`**: é o único local dentro de `Gerais/` com subpastas por jogo. O resto de `Gerais/` fica partilhado sem subdivisão.
 - **`index.html`** (raiz): só faz seleção de idioma (chave `brawlzone_lang` no `localStorage`, nome mantido por compatibilidade) e redireciona para `Pagina-Inicial.html` da Supercellzone. `REPO_NAME` mantém-se `"Site-de-Brawl-Stars"`.
 - **Caminhos**: preferência explícita por definições manuais de path em vez de cálculo automático (corrigido várias vezes ao longo do projeto).
@@ -216,18 +216,18 @@ Objeto central que define, por zona:
 - Secções: Hero, Sobre o projeto, As Zones (cards), Sobre a Supercell, Novidades (placeholder vazio), CTA newsletter.
 - Redireciona a partir de `index.html`.
 
-### 8.2 Project R.I.S.E Zone — Página Inicial — ✅ Criada
+### 8.2 Project R.I.S.E zone — Página Inicial — ✅ Criada
 
 - Paleta roxo/dourado (`--rise-*`).
 - Secções: Hero, Sobre o jogo, Heróis, A Tower, CTA beta/Discord.
 - ⚠️ Tem `data-i18n` com chaves `tower_*` copiadas por engano, ainda sem par em `Tradução.js` — precisa de revisão/remoção.
 
-### 8.3 Project R.I.S.E Zone — Página de Heróis (`Herois.html`) — 🚧 Em construção
+### 8.3 Project R.I.S.E zone — Página de Heróis (`Herois.html`) — 🚧 Em construção
 
 - Modelada de perto sobre `Brawlers.html` (filtros, pesquisa, modal).
 - **`Herois.js` ainda não existe** — precisa de ser criado do zero.
 - **6 heróis confirmados** (dados a fornecer pelo utilizador): Archer, Barbarian, Valkyrie, Firecracker, Bomber, Goblin Brawler.
-- Ficheiro final vai em `Gerais/Constantes/Project R.I.S.E Zone/Herois.js`.
+- Ficheiro final vai em `Gerais/Constantes/Project R.I.S.E zone/Herois.js`.
 
 ### 8.4 Página Inicial do BrawlZone — ✅ Considerada 100% completa
 
@@ -292,8 +292,8 @@ Objeto central que define, por zona:
 - ✅ `index.html` (raiz) — atualizado.
 - ✅ `Gerais/Navbar/Navbar.js` — reescrito.
 - ✅ `Supercellzone/Pagina-Inicial.html/css/js` — criado (paleta `--sz-*`; secções: Hero, Sobre o projeto, As Zones, Sobre a Supercell, Novidades placeholder, CTA newsletter).
-- ✅ `Project R.I.S.E Zone/Pagina-Inicial.html/css/js` — criado (paleta `--rise-*`; secções: Hero, Sobre o jogo, Heróis, A Tower, CTA beta/Discord).
-- ✅ `Gerais/Constantes/Project R.I.S.E Zone/Herois.js` — criado (4 heróis confirmados + 2 placeholders "por revelar"). ⚠️ *Nota: número de heróis confirmados atualizado depois para 6 (ver secção 8.3) — Archer, Barbarian, Valkyrie, Firecracker, Bomber, Goblin Brawler.*
+- ✅ `Project R.I.S.E zone/Pagina-Inicial.html/css/js` — criado (paleta `--rise-*`; secções: Hero, Sobre o jogo, Heróis, A Tower, CTA beta/Discord).
+- ✅ `Gerais/Constantes/Project R.I.S.E zone/Herois.js` — criado (4 heróis confirmados + 2 placeholders "por revelar"). ⚠️ *Nota: número de heróis confirmados atualizado depois para 6 (ver secção 8.3) — Archer, Barbarian, Valkyrie, Firecracker, Bomber, Goblin Brawler.*
 - ✅ Bloco de traduções pt para a Supercellzone — preparado, por colar em `Tradução.js` no sítio já reservado (`// Supercellzone`).
 
 ---
@@ -328,7 +328,7 @@ Objeto central que define, por zona:
 - [ ] Integrar e testar o Carrossel de Vídeos (`initCarousel()`, preencher os 2 últimos vídeos, criar pasta `Notícias/imagens-videos/`).
 
 ### Geral / longo prazo
-- [ ] Retomar conteúdo mais amplo do Project R.I.S.E Zone depois da página de Heróis.
+- [ ] Retomar conteúdo mais amplo do Project R.I.S.E zone depois da página de Heróis.
 - [ ] Modernizar páginas standalone (Skins, Buffies, Nanopoderes) para o novo padrão navbar/footer/tradução.
 - [ ] Planear futuras Zones além de BrawlZone e R.I.S.E Zone.
 - [ ] Iniciar migração de backend (~2027).

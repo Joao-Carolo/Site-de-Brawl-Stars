@@ -1,6 +1,6 @@
-# Project R.I.S.E Zone — Plano de Trabalho
+# Project R.I.S.E zone — Plano de Trabalho
 
-> Documento de retoma. A trabalhar no Project R.I.S.E Zone estava em pausa
+> Documento de retoma. A trabalhar no Project R.I.S.E zone estava em pausa
 > enquanto se resolvia a fundação multijogo da Supercellzone. Este ficheiro
 > resume tudo o que já foi decidido, para retomar sem perder contexto.
 
@@ -57,7 +57,7 @@ antigo _Clash Heroes_.
 ### Estrutura de pastas
 
 ```
-Project R.I.S.E Zone/
+Project R.I.S.E zone/
 ├── Página inicial.html          (nome confirmado — sem hífen, "inicial" minúsculo)
 ├── Página inicial.css
 ├── Página inicial.js
@@ -70,7 +70,7 @@ Guides
 News))
 
 Gerais/Constantes/
-└── Project R.I.S.E Zone/
+└── Project R.I.S.E zone/
     └── Herois.js
 ```
 
@@ -118,7 +118,7 @@ Campos definidos (ver ficheiro real para o array completo):
 - `habilidade`/`ultimate` ficam `null` mesmo nos heróis confirmados —
   info pública insuficiente para preencher com confiança.
 
-✅ Já criado em `Gerais/Constantes/Project R.I.S.E Zone/Herois.js`.
+✅ Já criado em `Gerais/Constantes/Project R.I.S.E zone/Herois.js`.
 
 ### Página Inicial — secções (única página prioritária por agora)
 

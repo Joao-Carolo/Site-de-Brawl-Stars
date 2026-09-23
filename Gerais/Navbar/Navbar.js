@@ -50,20 +50,20 @@ const ZONES = {
     },
     brawlzone: {
         onHome: { nome: "Supercellzone", homeHref: "../../Página inicial.html" },
-        elsewhere: { nome: "BrawlZone", homeHref: "Página inicial/Página inicial.html" },
+        elsewhere: { nome: "BrawlZone", homeHref: "../Página inicial/Página inicial.html" },
         links: [
-            { label: "Novidades", href: `Notícias/Novidades.html`, key: "novidades", i18n: "bz_nav_novidades" },
-            { label: "Brawlers", href: `Brawlers/Brawlers/Brawlers.html`, key: "brawlers", i18n: "bz_nav_brawlers" },
-            { label: "Updates", href: `Temporadas/Temporadas.html`, key: "updates", i18n: "bz_nav_updates" },
-            { label: "Guias", href: `Guias/Guias.html`, key: "guias", i18n: "bz_nav_guias" },
+            { label: "Novidades", href: `Brawlzone/Notícias/Novidades.html`, key: "novidades", i18n: "bz_nav_novidades" },
+            { label: "Brawlers", href: `Brawlzone/Brawlers/Brawlers.html`, key: "brawlers", i18n: "bz_nav_brawlers" },
+            { label: "Updates", href: `Brawlzone/Temporadas/Temporadas.html`, key: "updates", i18n: "bz_nav_updates" },
+            { label: "Guias", href: `Brawlzone/Guias/Guias.html`, key: "guias", i18n: "bz_nav_guias" },
         ]
     },
     rise: {
         onHome: { nome: "Supercellzone", homeHref: "../../Página inicial.html" },
-        elsewhere: { nome: "R.I.S.E Zone", homeHref: "Página inicial.html" },
+        elsewhere: { nome: "R.I.S.E Zone", homeHref: "../Página inicial/Página inicial.html" },
         links: [
-            { label: "Heróis", href: "#heroi-lista", key: "herois", i18n: "nav_rise_herois" },
-            { label: "A Tower", href: "#tower", key: "tower", i18n: "nav_rise_tower" },
+            { label: "Heróis", href: `Project R.I.S.E zone/Herois/Herois.html`, key: "herois", i18n: "nav_rise_herois" },
+            { label: "A Tower", href: `Project R.I.S.E zone/Tower/Tower.html`, key: "tower", i18n: "nav_rise_tower" },
         ]
     }
 };

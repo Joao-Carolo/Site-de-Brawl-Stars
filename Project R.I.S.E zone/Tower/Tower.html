@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Tower — Project R.I.S.E Zone</title>
+    <meta name="description"
+        content="Tudo sobre a mecânica principal de Project R.I.S.E: a Tower. Pisos, power cores, bosses e progressão. Site fã não oficial.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../../Gerais/Cores.css">
+    <link rel="stylesheet" href="../../../Gerais/Logos/Logo.css">
+    <link rel="stylesheet" href="../../../Gerais/Cursor/Cursor.css">
+    <link rel="stylesheet" href="../../../Gerais/Mobile Menu/Mobile Menu.css">
+    <link rel="stylesheet" href="../../../Gerais/Navbar/Navbar.css">
+    <link rel="stylesheet" href="../../../Gerais/Footer/Footer.css">
+    <link rel="stylesheet" href="../../../Gerais/Reveal/Reveal.css">
+    <link rel="stylesheet" href="../../../Gerais/Breadcrumbs/Breadcrumbs.css">
+    <link rel="stylesheet" href="../../../Gerais/Toast/Toast.css">
+
+    <link rel="stylesheet" href="Tower.css">
+</head>
+
+<body class="rise-zone">
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu"><button class="mobile-close" id="mobileClose">✕</button></div>
+
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <div class="breadcrumb-wrap">
+        <nav class="breadcrumb" id="breadcrumb"></nav>
+    </div>
+
+    <!-- HEADER -->
+    <header class="tower-header">
+        <div class="rise-container">
+            <p class="tower-eyebrow" data-i18n="rise_towerpage_eyebrow">Mecânica principal</p>
+            <h1 class="tower-title" data-i18n="rise_towerpage_title">A Tower</h1>
+            <p class="tower-desc" data-i18n="rise_towerpage_desc">
+                Uma estrutura misteriosa dividida em pisos. Equipas de 3 jogadores sobem-na juntos — cada piso é uma
+                pequena missão, e o caminho até ao topo está cheio de surpresas.
+            </p>
+        </div>
+    </header>
+
+    <!-- VISUAL DA TOWER -->
+    <section class="tower-visual-section">
+        <div class="rise-container">
+            <div class="tower-visual-wrap" id="towerVisualWrap"></div>
+            <p class="tower-visual-caption" data-i18n="rise_towerpage_visual_caption">
+                Ilustração conceptual — clica num piso. A estrutura real de pisos ainda não foi confirmada oficialmente.
+            </p>
+        </div>
+    </section>
+
+    <!-- TIMELINE DETALHADA -->
+    <section class="tower-timeline-section">
+        <div class="rise-container">
+            <div class="tower-section-head">
+                <p class="tower-label" data-i18n="rise_towerpage_timeline_label">Passo a passo</p>
+                <h2 data-i18n="rise_towerpage_timeline_title">Como funciona cada subida</h2>
+                <p class="tower-section-desc" data-i18n="rise_towerpage_timeline_desc">
+                    Do momento em que entras num piso até chegares ao seguinte — em detalhe.
+                </p>
+            </div>
+
+            <div class="tower-timeline">
+
+                <div class="tower-timeline-item">
+                    <div class="tower-timeline-dot">01</div>
+                    <div class="tower-timeline-card">
+                        <div class="tower-timeline-tag" data-i18n="rise_towerpage_step1_tag">Entrada no piso</div>
+                        <h3 class="tower-timeline-title" data-i18n="rise_towerpage_step1_title">Formação da equipa</h3>
+                        <p class="tower-timeline-desc" data-i18n="rise_towerpage_step1_desc">
+                            Junta-te a duas outras pessoas para entrar num piso da Tower. Se não houver jogadores
+                            suficientes disponíveis, Bot Heroes preenchem os lugares em falta para a equipa poder
+                            avançar na mesma.
+                        </p>
+                        <div class="tower-timeline-details">
+                            <div class="tower-detail-row">
+                                <span class="detail-icon">▸</span>
+                                <span data-i18n="rise_towerpage_step1_detail1">Equipas de 3 jogadores por piso</span>
+                            </div>
+                            <div class="tower-detail-row">
+                                <span class="detail-icon">▸</span>
+                                <span data-i18n="rise_towerpage_step1_detail2">Bot Heroes substituem lugares
+                                    vazios</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tower-timeline-item">
+                    <div class="tower-timeline-dot">02</div>
+                    <div class="tower-timeline-card">
+                        <div class="tower-timeline-tag" data-i18n="rise_towerpage_step2_tag">Exploração</div>
+                        <h3 class="tower-timeline-title" data-i18n="rise_towerpage_step2_title">Localizar os power cores
+                        </h3>
+                        <p class="tower-timeline-desc" data-i18n="rise_towerpage_step2_desc">
+                            Cada piso esconde power cores espalhados pelo mapa. É preciso encontrá-los e ativá-los — são
+                            eles que destrancam o elevador para o piso seguinte.
+                        </p>
+                        <div class="tower-timeline-details">
+                            <div class="tower-detail-row">
+                                <span class="detail-icon">▸</span>
+                                <span data-i18n="rise_towerpage_step2_detail1">Objetivo: ativar os power cores do
+                                    piso</span>
+                            </div>
+                            <div class="tower-detail-row">
+                                <span class="detail-icon">▸</span>
+                                <span data-i18n="rise_towerpage_step2_detail2">Sem power cores ativos, o elevador não
+                                    abre</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tower-timeline-item is-boss">
+                    <div class="tower-timeline-dot">⚔</div>
+                    <div class="tower-timeline-card">
+                        <div class="tower-timeline-tag" data-i18n="rise_towerpage_step3_tag">Confronto (ocasional)</div>
+                        <h3 class="tower-timeline-title" data-i18n="rise_towerpage_step3_title">Enfrentar o boss</h3>
+                        <p class="tower-timeline-desc" data-i18n="rise_towerpage_step3_desc">
+                            De vez em quando, o caminho para o elevador é bloqueado por um boss. Quando isto acontece, a
+                            equipa toda tem de o derrotar em conjunto antes de poder continuar a subir.
+                        </p>
+                        <div class="tower-timeline-details">
+                            <div class="tower-detail-row">
+                                <span class="detail-icon">▸</span>
+                                <span data-i18n="rise_towerpage_step3_detail1">Não acontece em todos os pisos</span>
+                            </div>
+                            <div class="tower-detail-row">
+                                <span class="detail-icon">▸</span>
+                                <span data-i18n="rise_towerpage_step3_detail2">Requer coordenação da equipa
+                                    completa</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tower-timeline-item">
+                    <div class="tower-timeline-dot">04</div>
+                    <div class="tower-timeline-card">
+                        <div class="tower-timeline-tag" data-i18n="rise_towerpage_step4_tag">Progressão</div>
+                        <h3 class="tower-timeline-title" data-i18n="rise_towerpage_step4_title">Subir de novo</h3>
+                        <p class="tower-timeline-desc" data-i18n="rise_towerpage_step4_desc">
+                            Com Hero Badges e Gold acumulados pelo caminho, sobes o Tier dos teus heróis — mais ataque,
+                            mais vida e novos upgrades de habilidade. Depois, é só voltar a subir.
+                        </p>
+                        <div class="tower-timeline-details">
+                            <div class="tower-detail-row">
+                                <span class="detail-icon">▸</span>
+                                <span data-i18n="rise_towerpage_step4_detail1">Hero Badges e Gold sobem o Tier dos
+                                    heróis</span>
+                            </div>
+                            <div class="tower-detail-row">
+                                <span class="detail-icon">▸</span>
+                                <span data-i18n="rise_towerpage_step4_detail2">Tier mais alto = mais ataque, vida e
+                                    upgrades</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRESSÃO -->
+    <section class="tower-progression-section">
+        <div class="rise-container">
+            <div class="tower-section-head">
+                <p class="tower-label" data-i18n="rise_towerpage_prog_label">Recompensas</p>
+                <h2 data-i18n="rise_towerpage_prog_title">O que ganhas ao subir</h2>
+            </div>
+            <div class="tower-progression-grid">
+                <div class="tower-progression-card">
+                    <div class="tower-progression-icon">◆</div>
+                    <h3 class="tower-progression-title" data-i18n="rise_towerpage_prog_badges_title">Hero Badges</h3>
+                    <p class="tower-progression-desc" data-i18n="rise_towerpage_prog_badges_desc">
+                        Recompensa principal ganha ao completar pisos. Usados para subir o Tier dos heróis.
+                    </p>
+                </div>
+                <div class="tower-progression-card">
+                    <div class="tower-progression-icon">●</div>
+                    <h3 class="tower-progression-title" data-i18n="rise_towerpage_prog_gold_title">Gold</h3>
+                    <p class="tower-progression-desc" data-i18n="rise_towerpage_prog_gold_desc">
+                        Moeda acumulada ao longo da subida, usada em conjunto com os Hero Badges para progressão.
+                    </p>
+                </div>
+                <div class="tower-progression-card">
+                    <div class="tower-progression-icon">▲</div>
+                    <h3 class="tower-progression-title" data-i18n="rise_towerpage_prog_tier_title">Tier dos Heróis</h3>
+                    <p class="tower-progression-desc" data-i18n="rise_towerpage_prog_tier_desc">
+                        Cada subida de Tier melhora o ataque, a vida e desbloqueia upgrades de habilidade do herói.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOTA — BOT HEROES / INFO ADICIONAL -->
+    <section class="tower-info-section">
+        <div class="rise-container">
+            <div class="tower-info-box">
+                <div class="tower-info-icon">ⓘ</div>
+                <div class="tower-info-text" data-i18n="rise_towerpage_info_text">
+                    <strong>Sobre esta página:</strong> a estrutura exata da Tower (número de pisos, frequência de
+                    bosses, detalhes de recompensas) ainda não foi confirmada oficialmente pela Supercell. O conteúdo
+                    acima é baseado no que já se sabe através da beta fechada e será atualizado assim que sair mais
+                    informação — especialmente após o fim da janela de beta.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../../../Gerais/Traduções/Tradução.js"></script>
+    <script src="Tower.js"></script>
+    <script src="../../../Gerais/Tema.js"></script>
+    <script src="../../../Gerais/Cursor/Cursor.js"></script>
+    <script src="../../../Gerais/Reveal/Reveal.js"></script>
+    <script src="../../../Gerais/Breadcrumbs/Breadcrumbs.js"></script>
+    <script src="../../../Gerais/Footer/Footer.js"></script>
+    <script src="../../../Gerais/Toast/Toast.js"></script>
+    <script src="../../../Gerais/Navbar/Navbar.js"></script>
+    <script>
+        buildNavbar("tower", "rise", false);
+        applyTranslations();
+    </script>
+    <script src="../../../Gerais/Mobile Menu/Mobile Menu.js"></script>
+</body>
+
+</html>

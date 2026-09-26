@@ -1,6 +1,6 @@
-# Project RISE zone — Plano de Trabalho
+# Project R.I.S.E Zone — Plano de Trabalho
 
-> Documento de retoma. A trabalhar no Project RISE zone estava em pausa
+> Documento de retoma. A trabalhar no Project R.I.S.E Zone estava em pausa
 > enquanto se resolvia a fundação multijogo da Supercellzone. Este ficheiro
 > resume tudo o que já foi decidido, para retomar sem perder contexto.
 
@@ -8,9 +8,9 @@
 
 ## 1. Sobre o jogo
 
-**Project RISE** é um jogo experimental/beta da Supercell — um RPG de
+**Project R.I.S.E** é um jogo experimental/beta da Supercell — um RPG de
 ação social roguelite, ambientado no universo Clash. Nasceu de um reboot do
-antigo _Clash Heroes_.
+antigo *Clash Heroes*.
 
 - Ainda **não tem lançamento global**. Beta fechada: **19 de agosto — 2 de
   setembro de 2026**.
@@ -18,7 +18,6 @@ antigo _Clash Heroes_.
 - Muito pouco conteúdo público disponível — dados podem mudar sem aviso.
 
 ### Mecânica principal — a Tower
-
 - Equipas de **3 jogadores** sobem uma estrutura misteriosa por pisos.
 - Em cada piso: localizar **power cores** para ativar o elevador ao piso
   seguinte.
@@ -29,15 +28,14 @@ antigo _Clash Heroes_.
 - Se não houver jogadores suficientes, entram **Bot Heroes**.
 
 ### Heróis conhecidos (pré-beta)
-
-| Nome           | Família  | Classe  |
-| -------------- | -------- | ------- |
-| Archer         | Villager | Spotter |
-| Barbarian      | Villager | Smasher |
-| Firecracker    | Villager | Smasher |
-| Valkyrie       | Villager | Bruiser |
-| Bomber         | —        | —       |
-| Goblin Brawler | —        | —       |
+| Nome | Família | Classe |
+|---|---|---|
+| Archer | Villager | Spotter |
+| Barbarian | Villager | Smasher |
+| Firecracker | Villager | Smasher |
+| Valkyrie | Villager | Bruiser |
+| Bomber | — | — |
+| Goblin Brawler | — | — |
 
 (Total de 6 heróis conhecidos até agora)
 
@@ -46,7 +44,6 @@ antigo _Clash Heroes_.
 ## 2. Decisões já tomadas
 
 ### Abordagem geral
-
 - Baseado em conteúdo público (não há acesso à beta ainda).
 - Objetivo: **wiki completa** (heróis, mecânicas, tudo).
 - Sem visitantes ainda → **sem avisos de "dados sujeitos a mudança"** nas
@@ -55,9 +52,8 @@ antigo _Clash Heroes_.
   partilhado, i18n, cursor, navbar, etc.).
 
 ### Estrutura de pastas
-
 ```
-Project RISE zone/
+Project R.I.S.E Zone/
 ├── Página inicial.html          (nome confirmado — sem hífen, "inicial" minúsculo)
 ├── Página inicial.css
 ├── Página inicial.js
@@ -70,7 +66,7 @@ Guides
 News))
 
 Gerais/Constantes/
-└── Project RISE zone/
+└── Project R.I.S.E Zone/
     └── Herois.js
 ```
 
@@ -80,21 +76,20 @@ Gerais/Constantes/
   mesmo `:root`, sem sistema de override. Prefixo `--rise-*` para esta Zone.
 
 ### Identidade visual
-
 **Paleta roxo/dourado** (fantasia, RPG clássico, evoca a Tower e mistério):
 
 ```css
---rise-primary: #6b3fa0;
---rise-primary-dark: #3d2159;
---rise-accent: #e8b923;
---rise-accent-light: #f4d35e;
---rise-bg: #1a0f2e;
---rise-bg-elevated: #2a1b42;
---rise-text: #f0e6ff;
---rise-text-muted: #b8a3d9;
---rise-border: #4a2e6e;
---rise-success: #22c55e; /* igual ao --green do resto do site */
---rise-danger: #ef4444; /* igual ao --red do resto do site */
+--rise-primary: #6B3FA0;
+--rise-primary-dark: #3D2159;
+--rise-accent: #E8B923;
+--rise-accent-light: #F4D35E;
+--rise-bg: #1A0F2E;
+--rise-bg-elevated: #2A1B42;
+--rise-text: #F0E6FF;
+--rise-text-muted: #B8A3D9;
+--rise-border: #4A2E6E;
+--rise-success: #22C55E;   /* igual ao --green do resto do site */
+--rise-danger: #EF4444;    /* igual ao --red do resto do site */
 ```
 
 ✅ Já adicionado ao `Gerais/Cores.css` partilhado.
@@ -107,9 +102,7 @@ no hero (`.tower-floor`), não é decoração — representa a mecânica real do
 jogo.
 
 ### Estrutura de dados — `Herois.js`
-
 Campos definidos (ver ficheiro real para o array completo):
-
 - `nome`, `familia`, `classe`, `isStarter` (binário, equivalente a `isNew`
   do `Brawlers.js`), `habilidade`, `ultimate`, `imgKey`
 - Heróis por revelar entram como placeholders com todos os campos a `null`
@@ -118,10 +111,9 @@ Campos definidos (ver ficheiro real para o array completo):
 - `habilidade`/`ultimate` ficam `null` mesmo nos heróis confirmados —
   info pública insuficiente para preencher com confiança.
 
-✅ Já criado em `Gerais/Constantes/Project RISE zone/Herois.js`.
+✅ Já criado em `Gerais/Constantes/Project R.I.S.E Zone/Herois.js`.
 
 ### Página Inicial — secções (única página prioritária por agora)
-
 1. **Hero** — tagline, visual da Tower, destaque da janela de beta
 2. **Sobre o jogo** — resumo do conceito (RPG ação social roguelite, Tower,
    3 jogadores)
@@ -133,13 +125,10 @@ Campos definidos (ver ficheiro real para o array completo):
 ✅ Já criado: `Página inicial.html` / `.css` / `.js`.
 
 ### Navbar
-
 Integrado no sistema multi-zona do `Gerais/Navbar/Navbar.js`:
-
 ```js
 buildNavbar(activeLink, "rise", isHome);
 ```
-
 - `activeLink` válidos: `"herois"`, `"tower"`, ou `""`
 - Links da Zone são âncoras (`#heroi-lista`, `#tower`) — a única página
   existe é a Página Inicial.
@@ -173,7 +162,7 @@ buildNavbar(activeLink, "rise", isHome);
 - [x] Validar os valores de `homeHref` no `Navbar.js` para esta Zone —
       confirmados corretos: `onHome.homeHref = "../../Página inicial.html"`
       (2 níveis até à raiz da Supercellzone, bate certo com a profundidade
-      real `Project RISE zone/Página inicial/`) e
+      real `Project R.I.S.E zone/Página inicial/`) e
       `elsewhere.homeHref = "Página inicial.html"` (mesma pasta).
 - [ ] **Preencher traduções `en`/`es`** para as 31 chaves `rise_*` no
       `Tradução.js` (chaves já existem em `Traducoes-RISE.txt`, só faltam

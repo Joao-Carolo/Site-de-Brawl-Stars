@@ -1,5 +1,5 @@
 // ==========================================================================
-// Project RISE zone — Página Inicial
+// Project RISE zone — Página inicial
 // Render dos cards de Heróis a partir de HEROIS (Gerais/Constantes/Project RISE zone/Herois.js)
 // ==========================================================================
 

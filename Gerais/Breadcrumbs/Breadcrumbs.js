@@ -28,7 +28,7 @@ const BREADCRUMB_TRANSLATIONS = {
         "Manutenção 28 de abril": "Manutenção 28 de abril",
         "Notas de lançamento de abril de 2026": "Notas de abril 2026",
         "Notas de lançamento update 68": "Notas update 68",
-        "Project R.I.S.E zone": "Project R.I.S.E zone",
+        "RISEzone": "Project R.I.S.E zone",
         "Heróis": "Heróis",
     },
     en: {
@@ -60,7 +60,7 @@ const BREADCRUMB_TRANSLATIONS = {
         "Manutenção 28 de abril": "April 28 maintenance",
         "Notas de lançamento de abril de 2026": "April 2026 notes",
         "Notas de lançamento update 68": "Update 68 notes",
-        "Project R.I.S.E zone": "Project R.I.S.E zone",
+        "RISEzone": "Project R.I.S.E zone",
         "Heróis": "Heroes",
     },
     es: {
@@ -92,7 +92,7 @@ const BREADCRUMB_TRANSLATIONS = {
         "Manutenção 28 de abril": "Mantenimiento 28 de abril",
         "Notas de lançamento de abril de 2026": "Notas de abril 2026",
         "Notas de lançamento update 68": "Notas update 68",
-        "Project R.I.S.E zone": "Project R.I.S.E zone",
+        "RISEzone": "Project R.I.S.E zone",
         "Heróis": "Héroes",
     },
 };

@@ -178,6 +178,11 @@ bz_start_cta_desc:
 bz_start_cta_btn:
 bz_start_cta_email_placeholder:
 
+// R.I.S.E Zone - NAVBAR
+nav_rise_herois: "",
+nav_rise_tower: "",
+nav_rise_guias: "",
+
 // R.I.S.E Zone - Hero
 rise_hero_eyebrow:
 rise_hero_subtitle:

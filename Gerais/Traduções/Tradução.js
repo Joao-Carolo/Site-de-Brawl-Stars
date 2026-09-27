@@ -175,6 +175,11 @@ const TRANSLATIONS = {
         bz_start_cta_btn: "Subscrever",
         bz_start_cta_email_placeholder: "O teu email...",
 
+        // RISE Zone - NAVBAR
+        nav_rise_herois: "Heróis",
+        nav_rise_tower: "A Tower",
+        nav_rise_guias: "Guias",
+
         // RISE Zone - Hero
         rise_hero_eyebrow: "Fã-site não oficial",
         rise_hero_subtitle: "Tudo sobre o novo RPG de ação social e roguelite da Supercell. Heróis, a Tower, e o caminho até ao lançamento.",

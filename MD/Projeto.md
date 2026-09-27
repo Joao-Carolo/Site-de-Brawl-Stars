@@ -1,6 +1,6 @@
 # Supercellzone — Documentação do Projeto
 
-> Última atualização: 25 de agosto de 2026
+> Última atualização: 27 de outubro de 2026
 > Repositório: `joao-carolo/Site-de-Brawl-Stars` (GitHub Pages)
 
 ---

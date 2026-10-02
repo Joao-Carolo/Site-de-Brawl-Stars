@@ -95,5 +95,6 @@
 
     /* Project R.I.S.E zone — estados (consistentes com o resto do site) */
     --rise-success: #22C55E;
+    --rise-warning: #F59E0B;
     --rise-danger: #EF4444;
 }

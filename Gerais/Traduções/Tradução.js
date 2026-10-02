@@ -183,8 +183,8 @@ const TRANSLATIONS = {
         // RISE Zone - Hero
         rise_hero_eyebrow: "Fã-site não oficial",
         rise_hero_subtitle: "Tudo sobre o novo RPG de ação social e roguelite da Supercell. Heróis, a Tower, e o caminho até ao lançamento.",
-        rise_hero_beta_label: "Beta a decorrer",
-        rise_hero_beta_dates: "19 de agosto — 2 de setembro de 2026",
+        rise_hero_beta_label: "A espera de informação da Supercell",
+        rise_hero_beta_dates: "Desde 3 de Setembro de 2026",
         rise_hero_cta_explore: "Explorar a Tower",
         rise_hero_cta_heroes: "Ver Heróis",
 

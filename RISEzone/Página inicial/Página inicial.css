@@ -195,8 +195,8 @@ body.rise-zone {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--rise-success);
-    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.18);
+    background: var(--rise-warning);
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
     animation: rise-pulse 2s ease-in-out infinite;
     flex-shrink: 0;
 }
@@ -205,11 +205,11 @@ body.rise-zone {
 
     0%,
     100% {
-        box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.18);
+        box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
     }
 
     50% {
-        box-shadow: 0 0 0 8px rgba(74, 222, 128, 0.06);
+        box-shadow: 0 0 0 8px rgba(245, 158, 11, 0.06);
     }
 }
 

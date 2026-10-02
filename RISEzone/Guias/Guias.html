@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guias — Project R.I.S.E Zone</title>
+    <meta name="description"
+        content="Guias sobre Project R.I.S.E — dicas, estratégias e conselhos. Site fã não oficial.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../Gerais/Cores.css">
+    <link rel="stylesheet" href="../../Gerais/Logos/Logo.css">
+    <link rel="stylesheet" href="../../Gerais/Cursor/Cursor.css">
+    <link rel="stylesheet" href="../../Gerais/Mobile Menu/Mobile Menu.css">
+    <link rel="stylesheet" href="../../Gerais/Navbar/Navbar.css">
+    <link rel="stylesheet" href="../../Gerais/Footer/Footer.css">
+    <link rel="stylesheet" href="../../Gerais/Reveal/Reveal.css">
+    <link rel="stylesheet" href="../../Gerais/Breadcrumbs/Breadcrumbs.css">
+    <link rel="stylesheet" href="../../Gerais/Toast/Toast.css">
+
+    <link rel="stylesheet" href="Guides.css">
+</head>
+
+<body class="rise-zone">
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu"><button class="mobile-close" id="mobileClose">✕</button></div>
+
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <div class="breadcrumb-wrap">
+        <nav class="breadcrumb" id="breadcrumb"></nav>
+    </div>
+
+    <!-- HEADER -->
+    <header class="guides-header">
+        <div class="rise-container">
+            <p class="guides-eyebrow" data-i18n="rise_guides_eyebrow">Dicas & Estratégias</p>
+            <h1 class="guides-title" data-i18n="rise_guides_title">Guias</h1>
+            <p class="guides-desc" data-i18n="rise_guides_desc">
+                Guias sobre Project R.I.S.E — desde os primeiros passos na Tower até estratégias mais avançadas de
+                equipa. Esta secção vai crescer à medida que o jogo evolui e mais informação fica disponível.
+            </p>
+            <div class="guides-early-note">
+                <span>ⓘ</span>
+                <span data-i18n="rise_guides_early_note"><strong>Ainda em fase inicial</strong> — os guias abaixo são
+                    exemplos ilustrativos da estrutura desta página.</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- TOOLBAR -->
+    <div class="rise-container">
+        <div class="guides-toolbar">
+            <div class="guides-filters" id="guides-filters"></div>
+            <div class="guides-search-wrap">
+                <span class="guides-search-icon">🔍</span>
+                <input type="text" class="guides-search" id="guidesSearch"
+                    data-i18n-placeholder="rise_guides_search_placeholder" placeholder="Procurar guia...">
+            </div>
+        </div>
+        <div class="guides-results-info" id="guides-results-info"></div>
+    </div>
+
+    <!-- GRID -->
+    <div class="rise-container">
+        <div class="guides-content" id="guides-content"></div>
+        <div class="guides-no-results" id="guides-no-results">
+            <div class="guides-no-results-icon">?</div>
+            <p data-i18n="rise_guides_no_results">Nenhum guia encontrado. Tenta outro filtro ou termo.</p>
+        </div>
+    </div>
+
+    <script src="../../Gerais/Traduções/Tradução.js"></script>
+    <script src="Guides.js"></script>
+    <script src="../../Gerais/Tema.js"></script>
+    <script src="../../Gerais/Cursor/Cursor.js"></script>
+    <script src="../../Gerais/Reveal/Reveal.js"></script>
+    <script src="../../Gerais/Breadcrumbs/Breadcrumbs.js"></script>
+    <script src="../../Gerais/Footer/Footer.js"></script>
+    <script src="../../Gerais/Toast/Toast.js"></script>
+    <script src="../../Gerais/Navbar/Navbar.js"></script>
+    <script>
+        buildNavbar("", "rise", false);
+        applyTranslations();
+    </script>
+    <script src="../../Gerais/Mobile Menu/Mobile Menu.js"></script>
+</body>
+
+</html>

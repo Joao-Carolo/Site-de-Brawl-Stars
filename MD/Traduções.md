@@ -141,6 +141,7 @@
 | `nav_rise_herois` | Heróis |
 | `nav_rise_tower` | A Tower |
 | `nav_rise_guias` | Guias |
+| `nav_rise_noticias` | Notícias |
 | `rise_hero_eyebrow` | Fã-site não oficial |
 | `rise_hero_subtitle` | Tudo sobre o novo RPG de ação social e roguelite da Supercell. Heróis, a Tower, e o caminho até ao lançamento. |
 | `rise_hero_beta_label` | A espera de informação da Supercell |

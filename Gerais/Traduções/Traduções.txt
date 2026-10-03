@@ -182,6 +182,7 @@ bz_start_cta_email_placeholder:
 nav_rise_herois: "",
 nav_rise_tower: "",
 nav_rise_guias: "",
+nav_rise_noticias: "",
 
 // R.I.S.E Zone - Hero
 rise_hero_eyebrow:

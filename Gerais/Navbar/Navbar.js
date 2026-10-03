@@ -65,6 +65,7 @@ const ZONES = {
             { label: "Heróis", href: `RISEzone/Herois/Herois.html`, key: "herois", i18n: "nav_rise_herois" },
             { label: "A Tower", href: `RISEzone/Tower/Tower.html`, key: "tower", i18n: "nav_rise_tower" },
             { label: "Guias", href: `RISEzone/Guias/Guias.html`, key: "guias", i18n: "nav_rise_guias" },
+            { label: "Notícias", href: `RISEzone/Notícias/Notícias.html`, key: "noticias", i18n: "nav_rise_noticias" },
         ]
     }
 };

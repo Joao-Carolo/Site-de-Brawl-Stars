@@ -179,6 +179,7 @@ const TRANSLATIONS = {
         nav_rise_herois: "Heróis",
         nav_rise_tower: "A Tower",
         nav_rise_guias: "Guias",
+        nav_rise_noticias: "Notícias",
 
         // RISE Zone - Hero
         rise_hero_eyebrow: "Fã-site não oficial",

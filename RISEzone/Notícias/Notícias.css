@@ -1,0 +1,285 @@
+/* ==========================================================================
+   Project R.I.S.E Zone — News
+   Usa as variáveis --rise-* definidas em Gerais/Cores.css
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body.rise-zone {
+    background: var(--rise-bg);
+    color: var(--rise-text);
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+}
+
+.rise-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ---------------------------------------------------------------------
+   HEADER
+   --------------------------------------------------------------------- */
+
+.news-header {
+    padding: 140px 0 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--rise-border);
+}
+
+.news-header::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 440px;
+    height: 440px;
+    background: radial-gradient(circle, rgba(232, 185, 35, 0.14) 0%, rgba(232, 185, 35, 0) 70%);
+    pointer-events: none;
+}
+
+.news-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rise-accent);
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.news-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 800;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    color: var(--rise-text);
+    margin: 0 0 18px;
+    line-height: 1.05;
+    position: relative;
+}
+
+.news-desc {
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: var(--rise-text-muted);
+    max-width: 560px;
+    margin: 0 auto 24px;
+    position: relative;
+}
+
+.news-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 100px;
+    padding: 7px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #4ADE80;
+    position: relative;
+}
+
+.news-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ADE80;
+    box-shadow: 0 0 6px #4ADE80;
+    animation: newsBlink 1.4s ease-in-out infinite;
+}
+
+@keyframes newsBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* ---------------------------------------------------------------------
+   TOOLBAR
+   --------------------------------------------------------------------- */
+
+.news-toolbar {
+    padding: 24px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-bottom: 1px solid var(--rise-border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(26, 15, 46, 0.92);
+    backdrop-filter: blur(10px);
+}
+
+.news-filter-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 7px 14px;
+    border-radius: 100px;
+    border: 1px solid var(--rise-border);
+    background: transparent;
+    color: var(--rise-text-muted);
+    cursor: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.news-filter-chip:hover {
+    border-color: var(--rise-accent);
+    color: var(--rise-text);
+}
+
+.news-filter-chip.active {
+    background: var(--rise-accent);
+    border-color: var(--rise-accent);
+    color: var(--rise-primary-dark);
+}
+
+/* ---------------------------------------------------------------------
+   FEED
+   --------------------------------------------------------------------- */
+
+.news-feed-wrap {
+    padding: 32px 0 100px;
+}
+
+.news-post {
+    background: var(--rise-bg-elevated);
+    border: 1px solid var(--rise-border);
+    border-radius: 16px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.news-post:hover {
+    border-color: var(--rise-accent);
+    transform: translateX(4px);
+}
+
+.news-post::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--rise-accent);
+}
+
+.news-post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.news-post-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rise-accent);
+}
+
+.news-post-date {
+    font-size: 0.78rem;
+    color: var(--rise-text-muted);
+    font-weight: 600;
+}
+
+.news-example-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 9px;
+    border-radius: 100px;
+    background: rgba(240, 230, 255, 0.06);
+    color: var(--rise-text-muted);
+    border: 1px dashed var(--rise-border);
+}
+
+.news-post-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--rise-text);
+    margin: 0 0 8px;
+    line-height: 1.3;
+}
+
+.news-post-text {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--rise-text-muted);
+    margin: 0;
+}
+
+.news-post-text strong {
+    color: var(--rise-text);
+}
+
+/* ---------------------------------------------------------------------
+   EMPTY STATE
+   --------------------------------------------------------------------- */
+
+.news-empty {
+    display: none;
+    text-align: center;
+    padding: 70px 0;
+    color: var(--rise-text-muted);
+}
+
+.news-empty-icon {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    color: var(--rise-border);
+}
+
+/* ---------------------------------------------------------------------
+   Responsivo
+   --------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+    .news-header {
+        padding: 120px 0 44px;
+    }
+
+    .news-post {
+        padding: 20px 18px;
+    }
+}

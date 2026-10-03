@@ -1,7 +1,7 @@
 const BREADCRUMB_TRANSLATIONS = {
     pt: {
         "Brawlzone": "Brawlzone",
-        "Página inicial": "Início",
+        "Página inicial": " ",
         "Brawlers": "Brawlers",
         "Notícias": "Notícias",
         "Novidades": "Novidades",

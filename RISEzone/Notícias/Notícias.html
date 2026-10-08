@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novidades — Project R.I.S.E Zone</title>
+    <meta name="description"
+        content="Últimas novidades sobre Project R.I.S.E — beta, heróis e mecânicas. Site fã não oficial.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../Gerais/Cores.css">
+    <link rel="stylesheet" href="../../Gerais/Logos/Logo.css">
+    <link rel="stylesheet" href="../../Gerais/Cursor/Cursor.css">
+    <link rel="stylesheet" href="../../Gerais/Mobile Menu/Mobile Menu.css">
+    <link rel="stylesheet" href="../../Gerais/Navbar/Navbar.css">
+    <link rel="stylesheet" href="../../Gerais/Footer/Footer.css">
+    <link rel="stylesheet" href="../../Gerais/Reveal/Reveal.css">
+    <link rel="stylesheet" href="../../Gerais/Breadcrumbs/Breadcrumbs.css">
+    <link rel="stylesheet" href="../../Gerais/Toast/Toast.css">
+
+    <link rel="stylesheet" href="Notícias.css">
+</head>
+
+<body class="rise-zone">
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu"><button class="mobile-close" id="mobileClose">✕</button></div>
+
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <div class="breadcrumb-wrap">
+        <nav class="breadcrumb" id="breadcrumb"></nav>
+    </div>
+
+    <!-- HEADER -->
+    <header class="news-header">
+        <div class="rise-container">
+            <p class="news-eyebrow" data-i18n="rise_news_eyebrow">Fica a par</p>
+            <h1 class="news-title" data-i18n="rise_news_title">Novidades</h1>
+            <p class="news-desc" data-i18n="rise_news_desc">
+                Tudo o que se sabe sobre Project R.I.S.E, à medida que vai saindo — beta, heróis, mecânicas e mais.
+            </p>
+            <div class="news-live-badge">
+                <span class="news-live-dot"></span>
+                <span data-i18n="rise_news_live_badge">A acompanhar a Supercell</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- TOOLBAR -->
+    <div class="rise-container">
+        <div class="news-toolbar" id="news-filters"></div>
+    </div>
+
+    <!-- FEED -->
+    <div class="rise-container">
+        <div class="news-feed-wrap">
+            <div id="news-feed"></div>
+            <div class="news-empty" id="news-empty">
+                <div class="news-empty-icon">?</div>
+                <p data-i18n="rise_news_empty">Nenhuma novidade nesta categoria ainda.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../Gerais/Traduções/Tradução.js"></script>
+    <script src="Notícias.js"></script>
+    <script src="../../Gerais/Tema.js"></script>
+    <script src="../../Gerais/Cursor/Cursor.js"></script>
+    <script src="../../Gerais/Reveal/Reveal.js"></script>
+    <script src="../../Gerais/Breadcrumbs/Breadcrumbs.js"></script>
+    <script src="../../Gerais/Footer/Footer.js"></script>
+    <script src="../../Gerais/Toast/Toast.js"></script>
+    <script src="../../Gerais/Navbar/Navbar.js"></script>
+    <script>
+        buildNavbar("", "rise", false);
+        applyTranslations();
+    </script>
+    <script src="../../Gerais/Mobile Menu/Mobile Menu.js"></script>
+</body>
+
+</html>

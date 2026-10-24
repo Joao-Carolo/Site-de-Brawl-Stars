@@ -201,7 +201,7 @@ Objeto central que define, por zona:
 
 ## 7. Newsletter (Formspree)
 
-- Endpoint: `https://formspree.io/f/xpqvddkk` (plano gratuito, 50 submissões/mês).
+- Endpoint: `https://formspree.io/f/xgaojkbq` (plano gratuito, 50 submissões/mês).
 - **Reaproveitado** o mesmo endpoint entre BrawlZone e Supercellzone — uma lista só de subscritores, sem duplicar o limite mensal.
 - Envio: `fetch` com `FormData`, feedback ao utilizador via `showToast`.
 - Não há envio de emails em massa automatizado — se necessário, exportar CSV do Formspree e importar noutro serviço (Buttondown/Mailchimp).

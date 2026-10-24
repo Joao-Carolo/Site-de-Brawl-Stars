@@ -31,7 +31,7 @@ function renderSzNews() {
 
 // Mesmo endpoint Formspree já usado no BrawlZone — uma única lista de subscritores
 // partilhada entre todas as Zones da Supercellzone.
-const SZ_FORMSPREE_ENDPOINT = "https://formspree.io/f/xpqvddkk";
+const SZ_FORMSPREE_ENDPOINT = "https://formspree.io/f/xgaojkbq";
 
 function initNewsletterForm() {
     const form = document.getElementById("sz-newsletter-form");

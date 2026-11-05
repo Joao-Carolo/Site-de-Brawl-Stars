@@ -1,181 +1,176 @@
-# Project R.I.S.E Zone — Plano de Trabalho
+# Supercellzone — Documento do Projeto
 
-> Documento de retoma. A trabalhar no Project R.I.S.E Zone estava em pausa
-> enquanto se resolvia a fundação multijogo da Supercellzone. Este ficheiro
-> resume tudo o que já foi decidido, para retomar sem perder contexto.
+> Hub multijogo de fan-sites não oficiais dedicados a jogos da Supercell.
+> Repositório: `Site-de-Brawl-Stars` (GitHub Pages). Idioma-base: português europeu.
+> Stack: HTML, CSS e JavaScript vanilla, tudo estático.
 
 ---
 
-## 1. Sobre o jogo
+## 1. Visão geral
 
-**Project R.I.S.E** é um jogo experimental/beta da Supercell — um RPG de
-ação social roguelite, ambientado no universo Clash. Nasceu de um reboot do
-antigo *Clash Heroes*.
+A **Supercellzone** é a evolução do antigo "BrawlZone" (fã-site só de Brawl Stars). O BrawlZone passou a ser uma das "Zones" dentro de um hub central, que apresenta o projeto, as Zones disponíveis, informação sobre a Supercell e novidades.
 
-- Ainda **não tem lançamento global**. Beta fechada: **19 de agosto — 2 de
-  setembro de 2026**.
-- Nome pode não ser final (nome de código de desenvolvimento).
-- Muito pouco conteúdo público disponível — dados podem mudar sem aviso.
-
-### Mecânica principal — a Tower
-- Equipas de **3 jogadores** sobem uma estrutura misteriosa por pisos.
-- Em cada piso: localizar **power cores** para ativar o elevador ao piso
-  seguinte.
-- Periodicamente, um **boss** bloqueia o caminho — a equipa toda tem de o
-  derrotar.
-- Progressão: **Hero Badges** e Gold sobem o **Tier** dos heróis (mais
-  ataque, mais vida, upgrades de ability).
-- Se não houver jogadores suficientes, entram **Bot Heroes**.
-
-### Heróis conhecidos (pré-beta)
-| Nome | Família | Classe |
+**Zones:**
+| Zone | Jogo | Estado |
 |---|---|---|
-| Archer | Villager | Spotter |
-| Barbarian | Villager | Smasher |
-| Firecracker | Villager | Smasher |
-| Valkyrie | Villager | Bruiser |
-| Bomber | — | — |
-| Goblin Brawler | — | — |
+| BrawlZone | Brawl Stars | Ativa (a mais desenvolvida) |
+| Project R.I.S.E Zone | Project R.I.S.E (beta) | Em construção (só Página Inicial) |
+| Próxima Zone | A decidir (Clash of Clans / Clash Royale / Hay Day) | Por decidir |
 
-(Total de 6 heróis conhecidos até agora)
+**Backend (futuro, ~2027):** Node.js (Express/Fastify) + MongoDB ou PostgreSQL, começando eventualmente por um serviço gerido tipo Firebase. Até lá o site fica totalmente estático, com dados bem estruturados e centralizados para facilitar a migração.
 
 ---
 
-## 2. Decisões já tomadas
+## 2. Estrutura de pastas
 
-### Abordagem geral
-- Baseado em conteúdo público (não há acesso à beta ainda).
-- Objetivo: **wiki completa** (heróis, mecânicas, tudo).
-- Sem visitantes ainda → **sem avisos de "dados sujeitos a mudança"** nas
-  páginas por agora.
-- Reaproveitar ao máximo a estrutura técnica do BrawlZone (`Gerais/`
-  partilhado, i18n, cursor, navbar, etc.).
-
-### Estrutura de pastas
 ```
-Project R.I.S.E Zone/
-├── Página inicial.html          (nome confirmado — sem hífen, "inicial" minúsculo)
-├── Página inicial.css
-├── Página inicial.js
-└── (futuras páginas: Todas as imagináveis para ser o mais completo possível, mas estas serão as prováveis páginas (Heroes
-Tower
-Perks
-Progression
-Wiki
-Guides
-News))
-
-Gerais/Constantes/
+Site-de-Brawl-Stars/                  (raiz do repo)
+├── index.html                        (só seletor de idioma → redireciona)
+├── Página inicial.html/css/js        (Página Inicial da Supercellzone)
+├── Gerais/                           (partilhado por TODAS as Zones)
+│   ├── Cores.css                     (todas as cores de todas as Zones, um só :root)
+│   ├── Logos/
+│   ├── Cursor/ · Mobile Menu/ · Navbar/ · Footer/
+│   ├── Breadcrumbs/ · Reveal/ · Toast/
+│   ├── Traduções/Tradução.js         (i18n)
+│   ├── Constantes/                   (único sítio com subpastas por jogo)
+│   │   ├── Brawlers.js · Raridades.js · Buffies.js · Novidades.js
+│   │   └── Project R.I.S.E Zone/Herois.js
+│   ├── Tema.js
+│   └── Pesquisa.js
+├── BrawlZone/
+│   └── Página inicial/Página inicial.html (+ restantes páginas)
 └── Project R.I.S.E Zone/
-    └── Herois.js
+    └── Página inicial.html/css/js
 ```
 
-- `Constantes/` é o **único** sítio dentro de `Gerais/` com subpastas por
-  jogo. O resto do `Gerais/` fica partilhado sem subdivisão.
-- `Cores.css`: **um único ficheiro**, todas as cores de todos os jogos no
-  mesmo `:root`, sem sistema de override. Prefixo `--rise-*` para esta Zone.
+**Decisões de estrutura:**
+- `Cores.css` é um único ficheiro; cada Zone usa o seu prefixo (`--sz-*`, `--rise-*`, e as variáveis do BrawlZone sem prefixo).
+- `Constantes/` é o único local de `Gerais/` subdividido por jogo.
+- Caminhos: preferência por definições manuais em vez de cálculo automático, exceto onde já existe `getBasePath()`.
 
-### Identidade visual
-**Paleta roxo/dourado** (fantasia, RPG clássico, evoca a Tower e mistério):
+---
+
+## 3. Fluxo de navegação
+
+1. `index.html` → sem idioma guardado mostra o seletor; com idioma guardado redireciona logo.
+2. Destino: `Página inicial.html` da Supercellzone (página institucional completa, não um simples seletor de jogos).
+3. Dessa página, os cards das Zones levam à Página Inicial de cada Zone.
+4. Dentro de uma Zone, a logo leva de volta ao "nível acima":
+   - Numa página interior → Página Inicial da própria Zone (com o logo da Zone)
+   - Na Página Inicial da Zone → Supercellzone (com o logo da Supercellzone)
+
+Chave de idioma no `localStorage`: `brawlzone_lang` (nome mantido por compatibilidade).
+
+---
+
+## 4. Página Inicial da Supercellzone
+
+**Identidade visual:** paleta neutra escura com acento azul, para não competir com as Zones.
 
 ```css
---rise-primary: #6B3FA0;
---rise-primary-dark: #3D2159;
---rise-accent: #E8B923;
---rise-accent-light: #F4D35E;
---rise-bg: #1A0F2E;
---rise-bg-elevated: #2A1B42;
---rise-text: #F0E6FF;
---rise-text-muted: #B8A3D9;
---rise-border: #4A2E6E;
---rise-success: #22C55E;   /* igual ao --green do resto do site */
---rise-danger: #EF4444;    /* igual ao --red do resto do site */
+--sz-bg: #0B0C10;
+--sz-bg-elevated: #15161C;
+--sz-primary: #E8E8ED;
+--sz-muted: #8A8D98;
+--sz-border: #24262E;
+--sz-accent: #5B8DEF;
+--sz-accent-light: #8AB0F5;
 ```
 
-✅ Já adicionado ao `Gerais/Cores.css` partilhado.
+**Secções:** Hero · Sobre o projeto · As Zones (cards) · Sobre a Supercell · Novidades · CTA newsletter.
 
-**Tipografia:** Cinzel (títulos, talhe heróico/fantasia) + Manrope (corpo de
-texto) + JetBrains Mono (labels tipo classe/tier).
+**Novidades (dinâmicas):** lê o array `POSTS` de `Gerais/Constantes/Novidades.js` e mostra os 3 mais recentes através de `buildNewsCard(p, featured, imgBasePath, ctaTextKey)`, função partilhada com o BrawlZone. O prefixo do caminho das imagens (`BrawlZone/Notícias/imagens`) é passado por parâmetro porque o browser resolve caminhos relativos a partir da página HTML que executa o código, não do `.js`.
 
-**Assinatura visual:** a própria **Tower**, desenhada como pisos empilhados
-no hero (`.tower-floor`), não é decoração — representa a mecânica real do
-jogo.
+**Newsletter:** Formspree, endpoint partilhado com o BrawlZone (`https://formspree.io/f/xpqvddkk`), uma só lista de subscritores (plano gratuito, 50 submissões/mês).
 
-### Estrutura de dados — `Herois.js`
-Campos definidos (ver ficheiro real para o array completo):
-- `nome`, `familia`, `classe`, `isStarter` (binário, equivalente a `isNew`
-  do `Brawlers.js`), `habilidade`, `ultimate`, `imgKey`
-- Heróis por revelar entram como placeholders com todos os campos a `null`
-  (incluindo `nome`) — a página trata isso automaticamente mostrando "Por
-  revelar" com estilo semi-transparente.
-- `habilidade`/`ultimate` ficam `null` mesmo nos heróis confirmados —
-  info pública insuficiente para preencher com confiança.
-
-✅ Já criado em `Gerais/Constantes/Project R.I.S.E Zone/Herois.js`.
-
-### Página Inicial — secções (única página prioritária por agora)
-1. **Hero** — tagline, visual da Tower, destaque da janela de beta
-2. **Sobre o jogo** — resumo do conceito (RPG ação social roguelite, Tower,
-   3 jogadores)
-3. **Heróis** — cards simples dos heróis conhecidos, sem filtros complexos
-4. **A Tower** — explicação da mecânica (4 passos: entrar no piso → power
-   cores → boss → subir)
-5. **CTA** — beta signup oficial + Discord
-
-✅ Já criado: `Página inicial.html` / `.css` / `.js`.
-
-### Navbar
-Integrado no sistema multi-zona do `Gerais/Navbar/Navbar.js`:
-```js
-buildNavbar(activeLink, "rise", isHome);
-```
-- `activeLink` válidos: `"herois"`, `"tower"`, ou `""`
-- Links da Zone são âncoras (`#heroi-lista`, `#tower`) — a única página
-  existe é a Página Inicial.
-- `homeHref` (logo): fixo, manual — aponta para a Supercellzone quando
-  `isHome = true`, ou para a própria Página Inicial da Zone quando
-  `isHome = false`.
+**Factos sobre a Supercell usados no site:** empresa finlandesa fundada em maio de 2010, sediada em Helsínquia, jogos lançados: Hay Day, Clash of Clans, Boom Beach, Clash Royale, Brawl Stars, Squad Busters, mo.co (7). Nota: o Squad Busters está a ser descontinuado.
 
 ---
 
-## 3. Pendências conhecidas
+## 5. Navbar multi-zona (`Gerais/Navbar/Navbar.js`)
 
-> Atualizado em 2 de setembro de 2026 — dia seguinte ao fim da beta fechada
-> (19 ago – 2 set). Nesta sessão resolveram-se as 4 pendências técnicas da
-> Página Inicial; as duas pendências de conteúdo continuam adiadas.
+Assinatura: `buildNavbar(activeLink, zone, isHome)`
 
-- [x] **Prefixo `rise_` nas chaves i18n** — todas as 31 chaves `data-i18n`
-      da Página Inicial foram renomeadas com o prefixo `rise_`
-      (`hero_eyebrow` → `rise_hero_eyebrow`, `tower_step1_title` →
-      `rise_tower_step1_title`, etc.), eliminando o risco de colisão com
-      chaves genéricas de outras Zones no `Tradução.js`. HTML atualizado
-      (`Página Inicial.html`).
-- [x] **Traduções `pt` no `Tradução.js`** — bloco `pt` completo escrito
-      (todas as 31 chaves com o texto que já estava de fallback no HTML).
-      Blocos `en`/`es` criados com as mesmas 31 chaves, mas vazios — por
-      preencher. Ficheiro de apoio: `Traducoes-RISE.txt`, pronto a colar
-      nos três objetos do `Tradução.js` (sugestão: a seguir à secção
-      `Brawlzone - Página inicial - Cta Section`).
-- [x] **Confirmar chamada `buildNavbar()`** na página real — confirmado
-      `buildNavbar("", "rise", true)`, correto para a Página Inicial da
-      zona (activeLink vazio, zone "rise", isHome true).
-- [x] Validar os valores de `homeHref` no `Navbar.js` para esta Zone —
-      confirmados corretos: `onHome.homeHref = "../../Página inicial.html"`
-      (2 níveis até à raiz da Supercellzone, bate certo com a profundidade
-      real `Project R.I.S.E zone/Página inicial/`) e
-      `elsewhere.homeHref = "Página inicial.html"` (mesma pasta).
-- [ ] **Preencher traduções `en`/`es`** para as 31 chaves `rise_*` no
-      `Tradução.js` (chaves já existem em `Traducoes-RISE.txt`, só faltam
-      os valores).
-- [ ] **Página de Heróis dedicada** (`Herois.html`) — decidido não
-      prioritizar ainda; a Página Inicial mostra só uma prévia.
-- [ ] **Página/secção da Tower** com mais detalhe — mesma decisão, não
-      prioritizado ainda.
-- [ ] **Acompanhar o fim da beta fechada (2 set 2026)** — a app já estava
-      live na Google Play com descrição mencionando "perks" e "builds"
-      (termos ainda não refletidos na estrutura de dados `Herois.js`, que
-      só tem `habilidade`/`ultimate`). Vale a pena rever se a Supercell
-      publica mais informação oficial (lançamento global, novos heróis
-      além de Archer/Barbarian/Firecracker/Valkyrie/Bomber/Goblin Brawler,
-      mecânicas de perks) e atualizar este documento e o `Herois.js` em
-      conformidade.
+- **`zone`**: `"supercellzone"` | `"brawlzone"` | `"rise"`
+- **`isHome`**: `true` se a página é a Página Inicial da Zone; controla qual logo/nome aparece e para onde aponta
+- **`activeLink`**: `key` do link destacado, ou `""`
+
+| Zone | `activeLink` válidos |
+|---|---|
+| brawlzone | `"novidades"`, `"brawlers"`, `"updates"`, `"guias"` |
+| rise | `"herois"`, `"tower"` |
+| supercellzone | `"sobre"`, `"zonas"`, `"novidades"` |
+
+O objeto `ZONES` define, por Zone, os estados `onHome` / `elsewhere` (nome + `homeHref` fixos e manuais) e a lista de `links`. Os `links` são prefixados com `basePath` (calculado por `getBasePath()`), exceto âncoras `#...` e URLs `http`. O `homeHref` fica fixo porque aponta para fora da Zone, a outra profundidade.
+
+**Exemplos:**
+```js
+buildNavbar("", "supercellzone", true);   // Página inicial da Supercellzone
+buildNavbar("", "brawlzone", true);       // Página inicial do BrawlZone
+buildNavbar("brawlers", "brawlzone", false);
+buildNavbar("", "rise", true);            // Página inicial do R.I.S.E
+```
+
+**Erro identificado:** a Página Inicial da Supercellzone ainda tinha `buildNavbar("sz-inicio")`, resquício da versão antiga. A chamada correta é `buildNavbar("", "supercellzone", true)`.
+
+---
+
+## 6. Traduções (i18n)
+
+- `Tradução.js` tem um objeto plano por idioma, organizado por comentários (zona → secção → página).
+- Tradução completa: `pt`, `en`, `es`. Restantes idiomas caem em fallback para `pt`.
+- Bloco `pt` da Supercellzone preparado (`sz_hero_*`, `sz_about_*`, `sz_zones_*`, `sz_company_*`, `sz_news_*`, `sz_cta_*`, `nav_sz_*`), para colar no espaço `// Supercellzone`.
+- Caminhos de imagem/ficheiro nunca traduzem — usar sempre `TRANSLATIONS.pt`.
+
+---
+
+## 7. Estado atual
+
+**Feito:**
+- Estrutura multijogo e `Gerais/` partilhado
+- `index.html` a redirecionar para a Supercellzone
+- Página Inicial da Supercellzone (HTML/CSS/JS) com Novidades dinâmicas
+- Navbar multi-zona com logo dependente de `isHome`
+- `Cores.css` com blocos `--sz-*` e `--rise-*`
+- Página Inicial do Project R.I.S.E Zone + `Herois.js`
+- `Novidades.js` centralizado com `buildNewsCard`
+- Formspree ligado à Supercellzone
+
+---
+
+## 8. Ainda por fazer
+
+**Supercellzone**
+- [ ] Corrigir a chamada `buildNavbar()` da Página Inicial (`("", "supercellzone", true)`)
+- [ ] Verificar todas as chamadas `buildNavbar()` em todas as páginas (BrawlZone incluído)
+- [ ] Colar o bloco de traduções `pt` no `Tradução.js` e criar as versões `en`/`es`
+- [ ] Decidir o card "Próxima Zone" (mantém-se ou sai, já que é uma promessa pública)
+- [ ] Decidir imagens/logo próprio da Supercellzone e dos cards das Zones
+- [ ] Rever o Footer (texto ainda muito centrado em Brawl Stars)
+- [ ] Decidir cor dos cards de Novidades na Supercellzone (hoje usam o laranja do BrawlZone)
+
+**BrawlZone**
+- [ ] Trocar a função local `buildCard` da Página Inicial por `buildNewsCard` (de `Novidades.js`) e remover o array `POSTS` duplicado
+- [ ] Confirmar os `homeHref` fixos no `Navbar.js` contra a profundidade real das pastas
+- [ ] Continuar Brawlers.html (tradução dos filtros, Toast, Fase 2: winrate/metaTier)
+
+**Project R.I.S.E Zone** (em pausa por decisão do Carolo)
+- [ ] Renomear chaves `data-i18n` com prefixo `rise_`
+- [ ] Adicionar traduções ao `Tradução.js`
+- [ ] Páginas de Heróis e Tower quando houver dados
+- Ver `project-rise-zone-plano.md`
+
+**Backend**
+- [ ] Migração planeada para ~2027, sem data fixa
+
+---
+
+## 9. Convenções a manter
+
+- Português europeu como idioma-base dos dados-fonte.
+- Nomes de campo consistentes: `isNew`, `cls`, `rarity` (`starter` / `rare` / `super_rare` / `epic` / `mythic` / `legendary` / `ultra`).
+- Nunca duplicar arrays de dados entre páginas: centralizar em `Gerais/Constantes/`.
+- Ordem de scripts: Tradução → dados → JS da página → utilitários → Footer → Navbar → chamada a `buildNavbar` → Mobile Menu.
+- Imagens com fallback: `onerror` a esconder a imagem e mostrar o elemento seguinte; nunca usar `outerHTML` inline.
+- Alterações mínimas e explicadas passo a passo; receber só o código alterado.

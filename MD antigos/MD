@@ -1,0 +1,38 @@
+Documentação/
+│
+├── README.md
+│
+├── 01 - Geral/
+│   ├── ESTRUTURA-PASTAS.md
+│   ├── CONVENCOES.md
+│   ├── DECISOES.md
+│   ├── ROADMAP.md
+│   ├── COMO-ADICIONAR-CONTEUDO.md
+│   ├── COMO-TRABALHAR-COM-IA.md
+│   ├── COMO-CRIAR-UMA-ZONE.md
+│   ├── FONTES-DE-DADOS.md
+│   └── PROBLEMAS-E-SOLUCOES.md
+│
+├── 02 - Sistemas Gerais/
+│   ├── GERAIS.md
+│   ├── TRADUCOES.md
+│   ├── DADOS.md
+│   ├── PESQUISA.md
+│   ├── NAVBAR-FOOTER.md
+│   ├── DESIGN.md
+│   ├── MOBILE.md
+│   └── BACKEND.md
+│
+├── 03 - Supercellzone/
+│   ├── PAGINA-INICIAL.md
+│   └── PAGINAS-GERAIS.MD 
+│
+├── 04 - BrawlZone/
+│   ├── PAGINA-INICIAL.md
+│   ├── BRAWLERS.md
+│   ├── EXTRAS-DOS-BRAWLERS-TMPORARIOS.md
+│   ├── EXTRAS-DOS-BRAWLERS-PERMANENTES.md
+│   └── NOTICIAS.md
+│
+└── 05 - Project R.I.S.E Zone/
+    └── PROJECT-RISE-ZONE.md
